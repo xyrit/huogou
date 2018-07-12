@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>登录</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/member.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script type="text/javascript" src="js/jquery.imagezoom.min.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+	<script>
+	$(document).ready(function(){
+		$('.ico_wx').on('click',function(){
+			$('.fixed_wx').addClass('wx_100');
+		})
+		$('.fixed_wx_act').on('click',function(){
+			$('.fixed_wx').removeClass('wx_100');
+		})
+	})
+	</script>
+</head>
+<body>
+	<section class="wrap clear">
+		<a class="logo" href=""></a>
+		<a class="return" href="index.html">返回首页</a>
+	</section>
+	<section class="log_in">
+		<div class="wrap clear">
+			<div class="log_con">
+				<h3>登 录</h3>
+				<input class="log_id" placeholder="手机号/邮箱地址" type="text" >
+				<input class="log_code" placeholder="密码" type="text" >
+				<summary>
+					<a class="fl" href="">忘记密码？</a>
+					<a class="rl" href="">没有账号？前往注册 >></a>
+				</summary>
+				<input type="submit" value="登  录">
+				<article>
+					使用其他方式登录：<a class="ico_qq" href="">腾讯QQ</a><a class="ico_wx" href="javascript:;">微信</a>
+				</article>
+				<div class="fixed_wx">
+					<h2>微信登录</h2>
+					<div>
+						<img src="img/wx_m.jpg" alt="">
+					</div>
+					<p>请使用微信扫描二维码登录<br>“伙购网”</p>
+					<b class="fixed_wx_act"></b>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="wrap clear log_in_foot">
+		<article>
+			<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+		</article>
+		<summary>
+			Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备0000000号
+		</summary>
+	</section>
+</body>
+</html>

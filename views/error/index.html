@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="keywords" content="伙购网,夺宝,伙购官网,伙购网,伙购" />
+    <meta name="description" content="伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。" />
+    <title>对不起，您访问的页面不存在！</title>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/css/global.css">
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/css/member.css">
+    <script src="{{ app.params.skinUrl }}/js/jquery-1.11.2.min.js"></script>
+    <!--[if IE]>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/html5.js"></script>
+    <script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+    <![endif]-->
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/DD_belatedPNG_0.0.8a.min.js"></script>
+    <script>
+        DD_belatedPNG.fix('*');
+    </script>
+    <![endif]-->
+</head>
+<body>
+<section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return" href="{{ url(['/']) }}">返回首页</a>
+</section>
+<section class="error">
+    <figure>
+        <picture>
+            <img src="{{ app.params.skinUrl }}/img/o_404.jpg">
+        </picture>
+        <figcaption>
+            <h1>ERROR</h1>
+            <p>抱歉！您访问的页面出错啦！</p>
+            <a href="">刷新页面试试</a>
+            <!--<a href="">关闭页面</a>-->
+        </figcaption>
+    </figure>
+</section>
+<div style="display: none;">{{code}}-{{name}}-{{message}}</div>
+<section class="wrap clear log_in_foot">
+    <article>
+        <a href="{{ url(['/help/default/about']) }}">关于伙购</a><i>|</i><a href="{{ url(['/help/default/privacy']) }}">隐私声明</a><i>|</i><a href="{{ url(['/help/info/business'])}}">合作专区</a><i>|</i><a href="{{ url(['/help/default/jobs']) }}">加入伙购</a><i>|</i><a href="{{ url(['/help/default/contactus']) }}">联系我们</a>
+    </article>
+    <summary>
+        Copyright © 2015 - 2020, 版权所有 huogou.com 粤ICP备15087800号-1
+    </summary>
+</section>
+</body>
+</html>

@@ -1,0 +1,194 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ detail.title }}{% endblock %}
+{% block description %}{{ detail.content }}{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/global.css" />
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css" />
+{% endblock %}
+
+{% block title %}{{ detail.title }}_晒单分享_伙购网{% endblock %}
+
+{% block body %}
+{% include '@app/views/topbar.html' %}
+{% include '@app/views/nav.html' %}
+
+<!--内容部分-->
+<section class="wrap clear">
+    <div class="present">
+        <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/share']) }}">晒单分享</a><i></i><a href="">晒单详情</a>
+    </div>
+
+    <div class="bask_con">
+        <div class="fl">
+            <div class="fl_con">
+                <div class="fl_hjr">
+                    <div class="fl_hjr_le">
+                        <picture>
+                            <img src="{{ periodInfo.user_avatar }}">
+                        </picture>
+                        <article>
+                            <p>获奖者:<a href="{{ url('/user', {'id': periodInfo.user_home_id}) }}" title="{{ periodInfo.user_name }}">{{ periodInfo.user_name }}</a></p>
+                            <p>本期参与：<i>{{ periodInfo.user_buy_num }}人次</i></p>
+                            <p>幸运伙购码：<span>{{ periodInfo.lucky_code }}</span></p>
+                            <p>揭晓时间：<span>{{ periodInfo.raff_time }}</span></p>
+                        </article>
+                    </div>
+                    <div class="fl_hjr_re">
+                        <picture>
+                            <i></i>
+                            <img src="{{ periodInfo.goods_picture_url }}">
+                        </picture>
+                        <article>
+                            <h3><a href="{{ url('/product', {'pid':periodInfo.goods_id}) }}">{{ periodInfo.goods_name }}</a></h3>
+                            <aside>期号：{{ periodInfo.period_no }}</aside>
+                            <aside>总需：{{ periodInfo.price }}人次 </aside>
+                            {% if detail.curPeriodNumber %}
+                            <span><a href="{{ url('/product', {'pid':periodInfo.goods_id}) }}">新一期正在进行..</a></span>
+                            {% endif %}
+                        </article>
+                    </div>
+                </div>
+
+                <div class="fl_hjr_01">
+                    <article>
+                        <h3>{{ detail.title }}</h3>
+                        <aside>{{ detail.created_at }}    {{ detail.view_num }}人阅读    {{ detail.comment_num }}人评论</aside>
+                    </article>
+                    <picture>
+                        <b>{{ detail.point }}</b>
+                    </picture>
+                </div>
+
+                <div class="fl_hjr_con">
+                    <article>
+                        {{ detail.content }}
+                    </article>
+                    <summary>
+                        {% for picture in pictures %}
+                        <img src="{{ picture }}">
+                        {% endfor %}
+                    </summary>
+                </div>
+
+                <div class="fl_hjr_cut">
+                    <p>共<i>{{ detail.comment_num }}</i>条评论</p>
+                    <article>
+                        <aside id="xianmu">
+                            <em>{% if is_up == 0 %}羡慕{% else %}已羡慕{% endif %}</em><span><i></i>{{ detail.up_num }}</span>
+                        </aside>
+                        <i class="bdsharebuttonbox"><a href="javascript:;" class="bds_more" data-cmd="more">分享到</a></i>
+                    </article>
+                </div>
+
+
+                <div class="fl_hjr_state">
+                    <picture>
+                        <img src="{{ loginUser.avatar }}">
+                    </picture>
+                    {% if app.user.isGuest %}
+                    <article>
+                        <i></i>
+                        请您<a href="javascript:;" onclick="showLoginForm()">登录</a>或<a href="{{ url(['/passport/default/register']) }}">注册</a>后再评论
+                    </article>
+                    {% else %}
+                    <div class="editor-wrap">
+                        <textarea id="editor"></textarea>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <ul class="fl_hjr_pl" id="commentList">
+
+                </ul>
+
+                <div class="pagination">
+                </div>
+            </div>
+        </div>
+
+        <div class="rl">
+            <span class="else_title" href="">其他获得者
+                <a class="else_prev" href="javascript:;"></a>
+                <a class="else_next" href="javascript:;"></a>
+            </span>
+            <ul class="else_list" id="dl_otherget">
+
+            </ul>
+            <p class="newest_title">最新晒单</p>
+            <ul class="newest_list">
+                {% for snew in shareNew %}
+                <li>
+                    <a href="/detail-{{ snew.id }}.html">
+                        <h3>{{ snew.title | slice(0, 12)  }}</h3>
+                        <aside>{{ snew.content | slice(0, 32) }}...</aside>
+                        <article>
+                            {% for url in snew.picture %}
+                            <img src="{{ url }}" alt="" width="66" height="66">
+                            {% endfor %}
+                        </article>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+<section id="safety-b-con">
+    <div class="safety-b-box">
+        <i class="safety-b-close"></i>
+        <h3></h3>
+    </div>
+</section>
+
+
+<!--底部-->
+{% include '@app/views/footer.html' %}
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/share.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/keditor/kindeditor.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+
+<script>
+    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":createShareImgUrl("{{ detail.header_image }}", 'main'),"bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
+    var register_url = passportBaseUrl + "/register.html";
+    var isGuest = "{{app.user.isGuest}}";
+    var user_id = "{{app.user.id}}";
+    var user_avatar = "{% if app.user.isGuest %}"+createUserFaceImgUrl(0, 160)+"{% else %}{{app.user.avatar}}{% endif %}";
+    shareCommentList();
+    otherShareOrder_condition.productId = "{{ detail.product_id }}";
+    otherShareOrder_condition.exceptUserId = "{{ detail.user_id }}";
+    getOtherShareOrder();
+    var editor = KindEditor.create('#editor', {
+        resizeType : 0,
+        allowPreviewEmoticons : true,
+        allowImageUpload : false,
+        items : ['emoticons'],
+        themeType : 'simple',
+        pasteType : 1,
+        width : '800px',
+        height : '130px',
+        afterChange : function(){
+            var textNum = this.count('text');
+            if (textNum > 150) {
+                $('#edit-submit').css({'color':'#fff','backgroundColor':'grey','borderColor':'grey'}).addClass('dis');
+                KindEditor('#edit-count').html('<span>已超过' + (textNum - 150) + '个字了，请适当删除部分内容</span>');
+            }else{
+                $('#edit-submit').removeClass('dis');
+                KindEditor('#edit-count').html('<span>' + this.count('text') + '</span>/150');
+                //                border: 1px solid #ff500b;
+                if (this.html() != '' && textNum > 0) {
+                    $('#edit-submit').css({'backgroundColor': '#ff500b','borderColor': '#ff500b'});
+                } else {
+                    $('#edit-submit').css({'backgroundColor':'grey','borderColor': 'grey'});
+                }
+            }
+        },
+        layout: '<div class="container"><i><em></em></i><div class="edit"></div><div class="toolbar"></div><div class="edit-info"><div id="edit-count">0/150</div><a href="javascript:;" id="edit-submit" onclick="commit({{ detail.id }})" style="background: grey;border: 1px solid grey">提交</a></div><div class="statusbar"></div></div>'
+    });
+
+</script>
+{% endblock %}

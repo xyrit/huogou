@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>快速登录注册_1元云购</title>
+    <meta name="Description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/sslComm.css" />
+    <link rel="stylesheet" type="text/css" href="css/logincart.css" />
+</head>
+<body>
+<div class="wrapper">
+    <input name="hidLoginForward" type="hidden" id="hidLoginForward" value="group-5.html" />
+    <input name="hidQQAppID" type="hidden" id="hidQQAppID" value="100511748" />
+    <input name="hidWxAppID" type="hidden" id="hidWxAppID" value="wxe61d43f2e02a5b10" />
+    <div class="screen-right clrfix">
+        <div class="login-panel" id="LoginForm">
+            <dl>
+                <dt>
+                    <em class="fl">登录</em>
+                    <a id="hylinkRegisterPage" tabindex="7" class="fr orange" href="register.html" target="_blank">免费注册<i class="passport-icon"></i></a>
+                </dt>
+                <dd>
+                    <div class="register-form-con clrfix">
+                        <ul>
+                            <li>
+                                <input id="username" type="text" maxlength="100" tabindex="1" autocomplete="off" />
+                                <b class="passport-icon user-name transparent-png"></b>
+                                <em style="">手机号/邮箱地址</em>
+                            </li>
+                            <li>
+                                <input id="pwd" type="password" maxlength="20" tabindex="2" />
+                                <b class="passport-icon login-password transparent-png"></b>
+                                <em style="">密码</em>
+                            </li>
+                        </ul>
+                    </div>
+                </dd>
+                <dd class="text-alignR">
+                    <a id="hylinkGetPassPage" tabindex="3" class="gray9" href="findpassword.html?forward=http%3a%2f%2fgroup.1yyg.com%2fgroup-5.html" target="_blank">忘记密码？</a></dd>
+                <dd class="error-message orange" style="display: none;" id="dd_error_msg"></dd>
+            </dl>
+            <p><a id="btnSubmitLogin" href="javascript:;" class="z-agreeBtn" tabindex="4">登录</a></p>
+            <div class="other-login">
+                <span>使用其它方式快捷登录：</span>
+                <a id="qq_login_btn" href="javascript:;" class="qq-icon" tabindex="5"><b class="passport-icon transparent-png"></b></a>
+                <a id="wx_login_btn" href="javascript:;" class="wx-icon" tabindex="6"><b class="passport-icon transparent-png"></b></a>
+            </div>
+
+            <!--下拉-->
+            <ul class="j-tips-wrap" id="j-tips-wrap">
+            </ul>
+
+        </div>
+        <div class="wx-login clrfix" id="wxLogin" style="display: ;">
+            <h2 class="gray3">微信登录</h2>
+            <p id="p_code"></p>
+            <a id="a_return" href="javascript:;"></a>
+        </div>
+    </div>
+</div>
+<link type="text/css" rel="stylesheet" href="css/pageDialog.css" />
+<div class="pageDialogBG" id="pageDialogBG"></div>
+<div class="pageDialogBorder" id="pageDialogBorder"></div>
+<div class="pageDialog" id="pageDialog">
+    <div class="pageDialogClose" id="pageDialogClose" title="关闭"></div>
+    <div class="pageDialogMain" id="pageDialogMain"> </div>
+</div>
+</body>
+</html>

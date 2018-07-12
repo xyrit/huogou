@@ -1,0 +1,69 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增商品分类</strong>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'name', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'name', {'placeholder':'输入分类名称'})|raw }}
+                        {{ html.error(formModel, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'parent_id', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeListBox(formModel, 'parent_id', categoryItems,{'data-am-selected':"{searchBox: 1,maxHeight: 200}"})|raw }}
+                        {{ html.error(formModel, 'parent_id', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'list_order', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'list_order', {'value':0})|raw }}<span>（整数越小越靠前）</span>
+                        {{ html.error(formModel, 'list_order', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+            var $cat_selected = $('#productcategoryform-parent_id');
+            var $brand_checkbox = $('#productcategoryform-brands');
+            $cat_selected.on('change', function () {
+                $cat_id = $cat_selected.val();
+                $.post('{{ url(['/admin/product-category/brand']) }}', {cat_id: $cat_id}, function (data) {
+                    if (data) {
+                        $brand_checkbox.html('');
+                        data = JSON.parse(data);
+                        for (k in data) {
+                            $brand_checkbox.append('<label class="am-checkbox-inline"><input type="checkbox" name="ProductCategoryForm[brands][]" value="' + k + '">' + data[k] + '</label>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

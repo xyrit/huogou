@@ -1,0 +1,10 @@
+CREATE TABLE `user_notices` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '用户ID',
+  `receive_sysinfo` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '接受系统消息',
+  `receive_wchat` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '接受微信或邮件信息',
+  `created_at` INT(10) UNSIGNED NOT NULL,
+  `updated_at` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='消息设置表';

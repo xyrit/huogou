@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>购物车 - 1元云购触屏版</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="MyCart/CSS/cartList.css" rel="stylesheet" type="text/css" />
+    <script src="JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+    <!-- 栏目页面顶部 -->
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn">
+                <s></s><b>返回</b></a>
+        </div>
+        <h2>购物车</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <input name="hidUserID" type="hidden" id="hidUserID" value="8571919" />
+    <section class="clearfix g-Cart">
+        <div id="divTopMoney" class="g-Total gray9">合计金额：<span class="orange arial">22.00</span> 元 <a href="javascript:;" class="z-Btn-js">结算</a></div>
+        <article class="clearfix m-round g-Cart-list">
+            <ul id="cartBody">
+                <li>
+                    <a class="fl u-Cart-img" href="/product/1595140.html">
+                        <img src="images/loading.gif" src2="GoodsPic/pic-200-200/20150623170747765.jpg" border="0" alt="" />
+                        <div class="pTitle pPurchase" style="display:none">
+                            限购
+                        </div>
+                    </a>
+                    <div class="u-Cart-r">
+                        <p class="z-Cart-tt">
+                            <a href="/product/1595140.html" class="gray6">(第2638云)苹果（Apple）iPhone 6s 16G版 4G手机</a>
+                        </p>
+                        <ins class="z-promo gray9">
+                            剩余
+                            <em class="arial">5128</em>人次
+                            <em style="display:none;">/</em>
+                            <em class="gray9"> </em>
+                        </ins>
+                        <p id="tip_1595140" class="gray9">总共云购：
+                            <em class="arial">1</em>人次/
+                            <em class="orange arial">￥1.00</em>
+                        </p>
+                        <p class="f-Cart-Other">
+                            <input type="hidden" value="1.00" class="dangjian" />
+                            <a href="javascript:;" class="fr z-del" name="delLink" cid="1595140"></a>
+                            <a href="javascript:;" class="fl z-jian z-jiandis">-</a>
+                            <input id="txtNum1595140" name="num" type="text" maxlength="7" value="1" class="fl z-amount" />
+                            <a href="javascript:;" class="fl z-jia ">+</a>
+                            <input id="oldshopNum1595140" type="hidden" value="1" />
+                            <input id="suplus1595140" type="hidden" value="5128" />
+                            <input id="goodsTag1595140" type="hidden" value="0" />
+                            <input id="limitBuyNum1595140" type="hidden" value="0" />
+                            <input id="haveBuyNum1595140" type="hidden" value="0" />
+                            <input id="codeState1595140" type="hidden" value="1" />
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </article>
+        <div id="divBtmMoney" class="g-Total-bt">
+            <p>总共云购<span class="orange arial z-user" id="totalNum">1</span>个商品 合计金额：<span class="orange arial" id="totalMoney">1.00</span> 元</p>
+            <a href="MyCart/Payment.html" class="orgBtn">结 算</a>
+        </div>
+        <div id="divNone" class="haveNot z-minheight" style="display:none;">
+            <s></s>
+            <p>抱歉，您的购物车没有商品记录！</p>
+        </div>
+    </section>
+    <footer id="pageBottom_footer" class="footer">
+        <div class="u-ft-nav" id="fLoginInfo">
+            <span><a href="index.html">首页</a><b></b></span>
+            <span><a href="about.html">新手指南</a><b></b></span>
+            <span><a href="passport/login.html">登录</a><b></b></span>
+            <span>
+                <a href="member/index.html" class="Member">云狗骗子不中再也不买</a>
+                <a href="index.html" class="Exit">退出</a>
+            </span>
+        </div>
+        <p class="m-ftA">
+            <a href="http://m.1yyg.com/">触屏版</a>
+            <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+            <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+        </p>
+        <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    </footer>
+</div>
+<script src="JS/lazy_img.js"></script>
+<script>
+    //加载src2中的图片
+    $(window).load(function(){
+        lazy_img('#cartBody');
+    })
+    var num = 1;
+    var price = $('.arial').html();
+    $('.z-jia').click(function(){
+        num++;
+        $(this).siblings('.z-amount').val(num);
+        $('.z-jian').removeClass('z-jiandis');
+        totalMoney(num,this);
+    })
+    $('.z-jian').click(function(){
+        if(num>0){
+            num--;
+        }
+        $(this).siblings('.z-amount').val(num);
+        totalMoney(num,this);
+    })
+    function totalMoney(num,t){
+        $("#totalMoney").html( num*$(t).siblings(".dangjian").val()+".00");
+        $("#totalNum").html( num);
+    }
+</script>
+</body>
+</html>

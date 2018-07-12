@@ -1,0 +1,30 @@
+<div class="footer" style="">
+<ul>
+<li class="f_home"><a href="{{ url(['/mobile']) }}" title="首页" {% if this.context.uniqueId=='mobile/default' %}class="hover"{% endif %}><i></i>首页</a></li>
+<!--<li class="f_whole"><a href="{{ url(['/mobile/list']) }}" title="所有商品" {% if this.context.uniqueId=='mobile/list' %}class="hover"{% endif %}><i></i>所有商品</a></li>-->
+<li class="f_announced"><a href="{{ url(['/mobile/lottery']) }}" {% if this.context.uniqueId=='mobile/lottery' %}class="hover"{% endif %}><i></i>最新揭晓</a></li>
+<li class="f_guide"><a href="{{ url(['/mobile/help/about']) }}" {% if this.context.uniqueId=='mobile/help' %}class="hover"{% endif %}><i></i>新手指南</a></li>
+<!--<li class="f_single"><a href="{{ url(['/mobile/post']) }}" {% if this.context.uniqueId=='mobile/post' %}class="hover"{% endif %}><i></i>晒单</a></li>-->
+<li class="f_car"><a id="btnCartFooter" href="{{ url(['/mobile/cart']) }}" title="购物车" {% if this.context.uniqueId=='mobile/cart' %}class="hover"{% endif %}><i></i>购物车</a></li>
+<li class="f_personal"><a href="{{ url(['/mobile/member']) }}" title="我的伙购" {% if this.context.uniqueId=='mobile/member' %}class="hover"{% endif %}><i></i>我的伙购</a></li>
+</ul>
+</div>
+
+<footer id="pageBottom_footer" class="footer_b">
+    <div class="u-ft-nav" id="fLoginInfo">
+        <span><a href="/">首页</a><b></b></span>
+        <span><a href="/help/contact.html">联系我们</a><b></b></span>
+        {% if app.user.id %}
+        <span><a href="/member/index.html" class="Member">{{app.user.nickname}}</a><a href="/passport/logout.html" class="Exit">退出</a></span>
+        {% else %}
+        <span><a href="/passport/login.html">登录</a><b></b></span>
+        <span><a href="/passport/register.html">注册</a><b></b></span>
+        {% endif %}
+    </div>
+
+    <p class="m-ftA"><a href="http://m.{{constant('DOMAIN')}}/">触屏版</a><a href="http://www.{{constant('DOMAIN')}}?dev=1">电脑版</a>
+
+    <p class="grayc">客服热线<span class="orange">400-000-5000</span>粤ICP备15087800号-1</p>
+    <a id="btnTop" href="javascript:;" class="z-top" style="display: none; z-index: 99;"><b class="z-arrow"></b></a>
+
+</footer>

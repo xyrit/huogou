@@ -1,0 +1,131 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}伙购网 - 快乐伙购 惊喜无限!{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/index.css" />
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/index.js?v=160219" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.lazyload.min.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/fly.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/requestAnimationFrame.js" ></script>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+
+    <section class="banner">
+        <ul id="banner_main">
+        </ul>
+        <ul id="indicator"></ul>
+    </section>
+
+    <section class="wrap clear">
+        <div class="publish">
+            <div class="publish_title">
+                <h2>最新揭晓</h2><a href="">看看附近都有谁获得了商品</a>
+                <i></i>
+            </div>
+            <ul class="publish_list clear">
+
+            </ul>
+        </div>
+        <div class="publish_rl">
+            <a class="play" href="/guide.html" target="_blank"><img src="img/pic22.jpg" alt=""></a>
+            <div class="safety">
+                <ul class="clearfix">
+                    <li>
+                        <a class="ico02" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin1">诚信网站</a>
+                    </li>
+                    <li>
+                        <a class="ico01" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin2">可信网站</a>
+                    </li>
+                    <li>
+                        <a class="ico03" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin3">电商诚信</a>
+                    </li>
+                    <li>
+                        <a class="ico04" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin4">安信宝</a>
+                    </li>
+                    <li>
+                        <a class="ico05" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin5">监督管理局</a>
+                    </li>
+                    <li>
+                        <a class="ico06" target="_blank" href="{{ url(['/help/default/sincerity']) }}#sin6">更多</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="notice">
+                <h3>最新公告</h3>
+                <article>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap clear">
+        <div class="eredar_title">
+            <h2>最新伙购达人</h2><a href="{{ url(['/historybuylist']) }}" target="_blank"></a>
+        </div>
+        <div id="myeredar">
+            <ul class="eredar_list clearfix" id="eredar_list"></ul>
+        </div>
+    </section>
+
+    <section class="wrap clear">
+        <div class="recommend">
+            <h2>最热推荐</h2><a href="{{ url('/list', {'r':20}) }}" target="_blank"></a>
+        </div>
+        <dl class="recommend_list">
+            <dt style="margin-top: -1px;">
+                <article id="quickSearch">
+                    <a href="javascript:;">Apple</a><a href="javascript:;">小米</a><a href="javascript:;">金条</a><a href="javascript:;">手表</a>
+                </article>
+            </dt>
+        </dl>
+    </section>
+
+    <section class="wrap clear">
+        <div class="announce" style="border: 0;">
+            <h2>即将揭晓</h2><a href="{{ url('/list', {'r':10}) }}" target="_blank"></a>
+        </div>
+        <dl class="announce_list">
+        </dl>
+    </section>
+
+    <section class="wrap clear">
+    <div class="share">
+    <h2>晒单分享</h2><a href="{{ url(['/share']) }}"></a>
+    </div>
+    <div class="share_box">
+    <div class="share_fl">
+    <ul class="share_con">
+
+    </ul>
+    <div class="share_list">
+    <b></b>
+    <ul class="share_cut"></ul>
+    </div>
+    </div>
+
+    <ul class="share_rl">
+
+    </ul>
+    </div>
+    </section>
+
+    {% include '@app/views/footer.html' %}
+
+    <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+
+</div>
+{% endblock %}
+
+

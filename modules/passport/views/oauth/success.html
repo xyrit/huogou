@@ -1,0 +1,46 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block title %}绑定成功_{{ app.name }}{% endblock %}
+
+{% block body %}
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return" href="{{ url(['/']) }}">返回首页</a>
+  </section>
+
+  <section class="binding_box">
+    <div class="binding-success">
+      <h1>恭喜您，绑定成功 !</h1>
+      <a href="{{ url(['/']) }}"id="go-home">立即伙购<i>(4秒)</i></a>
+    </div>
+  </section>
+
+  {% include '@passportModule/views/footer.html' %}
+{% endblock %}
+
+{% block script %}
+  <script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+  <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/bind.js"> </script>
+  <script>
+    $(function() {
+      countDownSendCodeBtn();
+    });
+
+    function countDownSendCodeBtn() {
+      var obj = $("#go-home");
+      var sec = 4;
+      obj.attr('t',sec).html('立即伙购<i>('+sec+'秒)</i>');
+      var j =setInterval(function(){
+        var t = parseInt(obj.attr("t")-1);
+        if (t <= 0) {
+          clearInterval(j);
+          window.location.href = obj.attr('href');
+        }else{
+          obj.attr('t',t).html('立即伙购<i>('+t+'秒)</i>');
+        }
+      },1000);
+    }
+
+  </script>
+
+{% endblock %}

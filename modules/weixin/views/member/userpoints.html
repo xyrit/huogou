@@ -1,0 +1,33 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}我的福分{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/comm.css?v=160328" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/userpoints.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div id="wrapper" class="wrapper">
+    <div class="blessings-title colorbbb">
+        <p class="gray9">可用<em class="orange">{{ app.user.identity.point }}</em>福分</p>100福分=1元，支付时可抵现金{{  "%d"|format(app.user.identity.point/100)  }}元
+    </div>
+    <div class="blessings-con">
+
+        <dl id="dlList" >
+            <dt>
+                <i class="gray6">福分明细</i>
+                <b></b>
+            </dt>    
+
+        </dl>
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}

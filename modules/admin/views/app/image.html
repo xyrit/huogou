@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/openpic?os={{ app.request.get("os")  }}" target="_black">开机图片</a></strong>
+    </div>
+</div>
+<hr>
+
+<div class="am-u-sm-12" style="display:none">
+    {% set  form = active_form_begin({"options":{"class":"am-form am-form-horizontal"}})  %}
+        {{ html.activeHiddenInput(model, "id") | raw }}
+        {{ form.field(model,'open_name',{"options":{"class":"am-form-group"}}).textInput() | raw  }}
+        {{ form.field(model,'open_images').textarea({"placeholder":"图片链接回车或者逗号分割"})  |raw }}
+        {{ form.field(model,'open_time').textInput({"class":"laydate form-control"}) |raw }}
+        {{ form.field(model,'status').checkbox() |raw }}
+        {{ html.submitButton('保存',{'class':'am-btn am-btn-primary'}) |raw}}
+        {{  ActiveForm_end() | raw }}
+</div>
+
+<div class="am-u-sm-12">
+        
+        
+        <div class="am-form-group field-appconfig-image_src required">
+                    <label for="appconfig-image_src" class="control-label am-u-sm-2 am-form-label" style=" text-align: right;">图片</label>
+                    <div class="am-u-sm-10">
+                        <div id="imageLoading" style="display: none;text-align: right"><img src="{{app.params.skin}}/mobile/images/logining.gif" /></div>
+                        <img src="{{model.image_src}}" id="image_src_show" style="max-width:400px;max-height: 400px;display:{{ model.image_src ? "black" : "none" }}" /> 
+                    <form id="upImgForm" method="post" target="upFrame" enctype="multipart/form-data" action="/app/image?callback=hg_upimg.onSuccess">
+                        {{ html.HiddenInput("_csrf","{{ app.request.getCsrfToken()}}") | raw }}
+                        <input id="btnUpload" type="file" name="upload" class="Upload"  onchange="hg_upimg.onStart()" />
+                        <div style="display: none;">         <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>     </div> 
+                        <script>
+                            var hg_upimg = {
+                                onStart : function()
+                                {
+                                        $("#imageLoading").show();
+                                        $('#upImgForm').submit();
+                                },
+                                onSuccess : function(json)
+                                {
+                                    $("#imageLoading").hide();
+                                    data = JSON.parse(json);
+                                    if (data.error) {      return alert(data.message);    }
+                                    $("#image_src").val(data.src);
+                                    $("#image_src_show").attr("src",data.src).show();
+                                }
+                            };
+                        </script>
+                    </form>
+                    </div>
+                <p class="help-block help-block-error" style="margin-left: 18%;"></p>
+            </div>
+        
+        {% set  form = active_form_begin({"options":{"class":"am-form am-form-horizontal","enctype":"multipart/form-data"}})  %}
+        {{ html.activeHiddenInput(model, "id") | raw }}
+        {{ html.activeHiddenInput(model, "image_src",{"id":"image_src"}) | raw }}
+        
+        {{ form.field(model,'image_link',{"options":{"class":"am-form-group"}}).textInput() | raw  }}
+        {{ form.field(model,'image_title',{"options":{"class":"am-form-group"}}).textInput() | raw  }}
+        
+        <div class="form-group field-appconfig-open_time am-form-group">
+            <label for="appconfig-open_time" class="control-label am-u-sm-2 am-form-label">有效期(作用时间)</label>
+                  <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model,'start_time',{"class":"am-form-group laydate","placeholder":"开始时间"}) | raw  }}       
+                        {{ html.activeTextInput(model,'end_time',{"class":"am-form-group laydate","placeholder":"结束时间"}) | raw  }} 
+                  </div>
+            </div>
+        {{   form.field(model,'system').radioList({'android':"Android",'ios':"IOS"}) | raw }}
+        {{   form.field(model,'status').checkbox() | raw }}
+    
+        {{ html.submitButton('保存',{'class':'am-btn am-btn-primary'}) |raw}}
+        {{  ActiveForm_end() | raw }}
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        我的关注
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="member/CSS/newmember.css" rel="stylesheet" type="text/css" />
+    <script src="weixin/JS/jquery-1.11.3.min.js"></script>
+</head>
+<body id="loadingPicBlock" fnav="1" class="g-acc-bg">
+<!--微信分享初始参数-->
+<input name="hidAppID" type="hidden" id="hidAppID" value="wxb305761c75b19f0c" />
+<input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="1449825172" />
+<input name="hidNonceStr" type="hidden" id="hidNonceStr" value="YqQyKohX3WkY4pVW" />
+<input name="hidSignature" type="hidden" id="hidSignature" value="0c54859225a2eeb518716ebebaa3122b44f7b680" />
+<div>
+    <div class="goodList">
+        <ul id="ul_list">
+            <li issale="1" goodsid="21877"><span class="gList_l fl"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20140814170358311.jpg" /></span>
+                <div class="gList_r">
+                    <h3 class="gray6">中国农业银行传世之宝 &quot;金元宝&quot; Au9999 200g</h3>
+                    <div class="gRate clearfix">
+                        <a href="javascript:;" class="now_btn">第<span class="orange">1530</span>云进行中<span class="dotting"></span></a>
+                        <div class="fr">
+                            <a href="javascript:;" codeid="2380750" class="car-btn">
+                                <s></s></a>
+                            <div class="share">
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <div class="option" style="display:none;">
+                                    <a href="javascript:;" goodsid="21877" class="z-del o-btn"><i></i>删除</a>
+                                    <a href="javascript:;" goodsname="中国农业银行传世之宝 " class="z-share o-btn"><i class="z-set"></i>分享</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li issale="1" goodsid="21877"><span class="gList_l fl"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20140814170358311.jpg" /></span>
+                <div class="gList_r">
+                    <h3 class="gray6">中国农业银行传世之宝 &quot;金元宝&quot; Au9999 200g</h3>
+                    <div class="gRate clearfix">
+                        <a href="javascript:;" class="now_btn">第<span class="orange">1530</span>云进行中<span class="dotting"></span></a>
+                        <div class="fr">
+                            <a href="javascript:;" codeid="2380750" class="car-btn">
+                                <s></s></a>
+                            <div class="share">
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <div class="option" style="display:none;">
+                                    <a href="javascript:;" goodsid="21877" class="z-del o-btn"><i></i>删除</a>
+                                    <a href="javascript:;" goodsname="中国农业银行传世之宝 " class="z-share o-btn"><i class="z-set"></i>分享</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li issale="1" goodsid="21877"><span class="gList_l fl"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-200-200/20140814170358311.jpg" /></span>
+                <div class="gList_r">
+                    <h3 class="gray6">中国农业银行传世之宝 &quot;金元宝&quot; Au9999 200g</h3>
+                    <div class="gRate clearfix"><a href="javascript:;" class="now_btn">已结束</a><div class="fr"><a goodsid="22610" href="javascript:;" class="z-del"><i></i></a></div></div>
+                </div>
+            </li>
+        </ul>
+        <div id="divLoading" class="loading clearfix g-acc-bg" style="display: none;">
+            <b></b>正在加载
+        </div>
+    </div>
+    <input id="hidPageType" type="hidden" value="-1" />
+    <div class="footer clearfix" style="display:none;">
+        <ul>
+            <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+            <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+            <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+            <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+            <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+        </ul>
+    </div>
+</div>
+
+<!--分享弹窗-->
+<div class="m_popUp" style="display: none"><div class="m_guide"></div><cite></cite></div>
+
+
+<script>
+    $(function(){
+        $('.share').click(function(){
+            $(this).children('.option').toggle();
+        })
+
+        $('.z-share').click(function(){
+            $('.m_popUp').show();
+        })
+        $('.m_popUp').click(function(){
+            $(this).hide();
+        })
+
+    })
+</script>
+</body>
+</html>

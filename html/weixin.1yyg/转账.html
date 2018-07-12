@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        转账
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="weixin/CSS/accounts.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="g-acc-bg">
+<div id="wrapper">
+    <input name="hidBalance" type="hidden" id="hidBalance" value="1.00" />
+    <div class="tips-con">
+        <p>温馨提示：单笔转账金额不能超过200元，24小时内转账次数不能超过5笔。</p>
+        <h4 class="gray9">您的当前余额：<em class="orange">￥1.00</em></h4>
+    </div>
+    <div class="recharge-con clearfix">
+        <ul>
+            <li> <input id="txtMoney" type="text" placeholder="请输入正整数金额" /><i>转账金额：</i><cite>元</cite></li>
+            <li> <input id="txtAccount" type="text" placeholder="请输入对方手机号或邮箱" /><i>收款账号：</i></li>
+            <li> <input id="txtMemo" type="text" placeholder="选填" maxlength="20" /><i>备<em>注：</em></i></li>
+            <li> <input id="txtPaypwd" type="password" placeholder="请输入6位支付密码" maxlength="6" /><i>支付密码：</i></li>
+            <li class="z-rec-a"><a id="btnForget" href="javascript:;" class="gray9">忘记支付密码？</a></li>
+            <li class="z-rec-a"><a id="btnSubmit" href="javascript:;" class="orangeBtn">确认提交</a></li>
+        </ul>
+    </div>
+    <div class="weixin-mask" style="display:none;"></div>
+    <input id="hidPageType" type="hidden" value="-1" />
+    <div class="footer clearfix" style="display:none;">
+        <ul>
+            <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+            <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+            <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+            <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+            <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

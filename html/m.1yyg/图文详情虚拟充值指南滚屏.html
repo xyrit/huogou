@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, maximum-scale=5.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>
+        图文详情
+    </title>
+    <script src="JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<link rel="stylesheet" href="CSS/swiper.min.css">
+<style type="text/css">
+    *{ margin: 0; padding: 0;}
+    /*.swiper-wrapper .swiper-slide {*/
+        /*color: #fff;*/
+        /*text-align: center;*/
+        /*font-size: 50px;*/
+    /*}*/
+</style>
+
+<div class="s_swiperbox">
+    <div class="swiper-container" id="swiper-container" style="height:100%; position: relative;">
+        <div class="swiper-wrapper" style="transform: translate3d(-800px, 0px, 0px); transition-duration: 0ms;">
+            <div class="swiper-slide">
+                <img src="images/03-1.jpg" width="60%" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/03-2.jpg" width="60%" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/03-3.jpg" width="60%" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/03-4.jpg" width="60%" alt="">
+            </div>
+            <div class="swiper-slide">
+                <img src="images/03-5.jpg" width="60%" alt="">
+            </div>
+        </div>
+        <div class="swiper-pagination" style="position: absolute; bottom: 0;"></div>
+    </div>
+</div>
+<script src="JS/swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        loop:true,
+        autoplay : 2000,
+        autoplayDisableOnInteraction : false,
+        pagination: '.swiper-pagination',
+        paginationClickable: true
+    })
+    var h = $(window).height();
+    var w = $(window).width();
+    $('.swiper-slide').css({'width':w,'height':h});
+    $('.swiper-slide img').css({'width':w,'height':h});
+</script>
+
+</body>
+</html>

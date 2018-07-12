@@ -1,0 +1,119 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}伙购结果{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/cartList.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/openApp.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/mobile/js/pay_result.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<input id="hidOrderId" type="hidden" value="{{orderId}}">
+<input id="hidROrderId" type="hidden" value="{{rorderId}}">
+
+<div id="divDownApp" class="app-icon-wrapper" style="display: none; bottom: 0;">
+    <div class="app-icon">
+        <a href="javascript:;" class="close-icon"><i class="set-icon"></i></a>
+        <a class="info-icon">
+            <i class="set-icon"></i>
+            <div class="info">
+                <h6>下载伙购APP</h6>
+                <p>快速开奖，公平公正，签到即送福利。</p>
+            </div>
+        </a>
+        <a id="downLink" href="http://www.{{constant('DOMAIN')}}/app/down" target="_blank" class="down-icon">立即下载</a>
+    </div>
+</div>
+
+<div id="shopResultBox" class="wrapper">
+    <div class="g-pay-success marginB">
+
+        <!--交易失败-->
+        <div class="g-pay-success marginB" style="display: none" id="payFailed">
+            <div class="g-pay-auto gray6 g-pay-newtips">
+                <i></i>购买失败！您下手太慢了 !！
+            </div>
+            <div class="m_btn fail_btn">
+                <a href="/" class="orangeBtn fr">继续购物</a>
+            </div>
+        </div>
+        <!--交易失败-->
+
+        <!--付款loading-->
+        <div class="g-pay-auto gray9 new-pay" id="payLoading">
+            <p>已成功提交支付</p>
+            <p class="wait">正在获取支付结果，请稍作等待...</p>
+            <div class="loading-progress">
+                <span class="loading-pgbar"><span class="loading-pging"></span></span>
+            </div>
+        </div>
+        <!--付款loading-->
+
+        <!--付款成功-->
+        <div class="g-pay-success marginB" style="display: none" id="paySuccess">
+            <div class="g-pay-auto gray6 g-pay-newtips">
+                <div class="z-pay-tips">
+                    <s></s>支付成功，请耐心等待揭晓结果！
+                    <span>成功支付<em>1</em>个商品！</span>
+                    <p style="font-size: 14px; color: #000;">添加伙购网微信：<b style="font-style: normal; color: #f60;">yyhuogou</b> 接收获奖通知</p>
+                </div>
+            </div>
+            <div class="m_btn">
+                <a href="/member/goodsbuylist.html" class="whiteBtn fl gray6">查看伙购记录</a>
+                <a href="/" class="orangeBtn fr">继续购物</a>
+            </div>
+            <div class="pay-flag-tip success" id="successPay" style="display: none">
+                <h6 class="green"></h6>
+                <div class="goods-wrap">
+                    <ul class="goods-list">
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pay-flag-tip success" id="somePay" style="display: none">
+                <h6 class="green"></h6>
+                <div class="goods-wrap">
+                    <ul class="goods-list">
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pay-flag-tip fail" id="failPay" style="display: none">
+                <h6 class="gray6"></h6>
+                <div class="goods-wrap">
+                    <ul class="goods-list">
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--付款成功-->
+
+
+        <div class="mobile-mask" style="display: none;"></div>
+    </div>
+
+    <div class="footer" style="height: auto;">
+        <!--<div class="" style="text-align: center; background-color: #fcebd1;">-->
+            <!--<img src="{{ app.params.skinUrl }}/mobile/images/addweixin.jpg" width="100%">-->
+        <!--</div>-->
+    </div>
+
+    <!-- <div class="footer" style="display: none" id="payShare">
+        <div class="share-btn-wrap">
+            <a href="javascript:;" class="share-btn" id="addGroup">加入伙购官方QQ群，畅谈经验，分享心得</a>
+            <img src="{{ app.params.skinUrl }}/weixin/images/click.gif" height="100%">
+        </div>
+    </div> -->
+</div>
+
+{% endblock %}

@@ -1,0 +1,3303 @@
+@charset "utf-8";
+
+.g-pagination {
+    width: 1154px;
+    margin: 0 auto;
+    border-top: 1px solid #f3f3f3;
+    padding: 30px 0;
+}
+
+input {
+    outline: none;
+}
+
+.Current_nav {
+    width: 1190px;
+    font-size: 12px;
+    color: #bbb;
+    height: 25px;
+    margin: 10px auto 0;
+}
+
+.Current_nav a {
+    color: #bbb;
+}
+
+.Current_nav a:hover {
+    color: #f60;
+}
+
+.Current_nav span {
+    font-family: 'sans-serif';
+}
+
+.clear {
+    clear: both;
+    width: 100%;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.ng-fl {
+    float: left;
+}
+
+.ng-fr {
+    float: right;
+}
+
+.ng-xq-bg {
+    background: #fff url(http://skin.1yyg.com/Images/ng-xq-bg.gif?v=20150610) no-repeat;
+}
+
+.ng-result-bg {
+    background: url(http://skin.1yyg.com/Images/result-bg.png?v=20150610) no-repeat;
+}
+
+.ng-wrap {
+    width: 1190px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.ng-total-nav {
+    border: 1px solid #e4e4e4;
+    overflow: hidden;
+    position: relative;
+    z-index: 11;
+    box-shadow: 0 0 5px #e4e4e4;
+    _display: inline-block;
+}
+
+.ng-sort {
+    height: 38px;
+    margin-right: -30px;
+}
+
+.ng-sort li {
+    float: left;
+    border-left: 1px solid #e4e4e4;
+    line-height: 38px;
+    text-align: center;
+    position: relative;
+    margin-left: -1px;
+}
+
+.ng-sort a {
+    display: block;
+    width: 115px;
+    height: 38px;
+    color: #999;
+    background-color: #fff;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.ng-sort li a:hover {
+    color: #f60;
+}
+
+.ng-sort li.current a {
+    color: #fff;
+    background-color: #f60;
+}
+
+.ng-sort li.now {
+    width: 154px;
+}
+
+.ng-sort li.now a {
+    width: 154px;
+}
+
+.ng-sort li.more a {
+    color: #666;
+}
+
+.ng-sort li.more a:hover {
+    color: #f60;
+}
+
+.ng-sort li.last {
+    border-right: 1px solid #e4e4e4;
+}
+
+.ng-sort a i {
+    font-family: '宋体';
+    font-size: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    top: 0\9;
+    *top: 2px;
+    _top: -2px;
+    padding-left: 1px;
+}
+
+.ng-result li .result-line {
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    background-color: #F4F4F4;
+    overflow: hidden;
+    z-index: 99;
+}
+
+.ng-result li .on-line {
+    width: 50%;
+    height: 2px;
+    background: url(http://skin.1yyg.com/Images/result-time.gif?v=20150610) no-repeat;
+    overflow: hidden;
+    margin: 0;
+    float: left;
+}
+
+.ng-sort li.current a:hover {
+    color: #fff;
+}
+
+.u-progress {
+    width: 200px;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.2);
+    background: #eee;
+    position: relative;
+}
+
+.u-progress .pgbar,.u-progress .pging {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.jiexiao-end .u-progress .pgbar {
+    background: #f60;
+    background: -webkit-gradient(linear,0% 0,0% 100%,from(#f60),to(#f60));
+    background: -webkit-linear-gradient(#cbcbcb,#bbb);
+    background: -moz-linear-gradient(#cbcbcb,#bbb);
+    background: -ms-linear-gradient(#cbcbcb,#bbb);
+    background: linear-gradient(#ffa800,#ffa800);
+    -webkit-transition: width 0.5s linear;
+    -moz-transition: width 0.5s linear;
+    -ms-transition: width 0.5s linear;
+    transition: width 0.5s linear;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.line-time .u-progress .pging {
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ff934b',endColorStr='#ff6601',gradientType='1');
+    background: -moz-linear-gradient(0deg,#ff934b,#ff6601);
+    background: -webkit-gradient(linear,0% 0,100% 0,from(#ff934b),to(#ff6601));
+    background: -ms-linear-gradient(left,#ff934b 0,#ff6601 100%);
+    background: -o-linear-gradient(0deg,#ff934b,#ff6601);
+    animation: none;
+    -webkit-animation: none;
+    -moz-animation: none;
+    -ms-animation: none;
+    -o-animation: none;
+}
+
+.jiexiao-end .u-progress .pging {
+    background: -webkit-gradient(linear,0% 0,100% 100%,from(rgba(0,0,0,0)),to(rgba(255,255,255,0.4)),color-stop(25%,rgba(0,0,0,0)),color-stop(25%,rgba(255,255,255,0.4)),color-stop(50%,rgba(255,255,255,0.4)),color-stop(50%,rgba(0,0,0,0)),color-stop(75%,rgba(0,0,0,0)),color-stop(75%,rgba(255,255,255,0.4)));
+    background: -webkit-linear-gradient(-45deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 25%,rgba(255,255,255,0.4) 25%,rgba(255,255,255,0.4) 50%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 75%,rgba(255,255,255,0.4) 75%,rgba(255,255,255,0.4));
+    background: -moz-linear-gradient(-45deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 25%,rgba(255,255,255,0.4) 25%,rgba(255,255,255,0.4) 50%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 75%,rgba(255,255,255,0.4) 75%,rgba(255,255,255,0.4));
+    background: -ms-linear-gradient(-45deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 25%,rgba(255,255,255,0.4) 25%,rgba(255,255,255,0.4) 50%,rgba(0,0,0,0) 50%,rgba(0,0,0,0) 75%,rgba(255,255,255,0.4) 75%,rgba(255,255,255,0.4));
+    -moz-background-size: 30px 30px;
+    -ms-background-size: 30px 30px;
+    background-size: 30px 30px;
+    -webkit-animation: pging 1s linear infinite;
+    -moz-animation: pging 1s linear infinite;
+    -ms-animation: pging 1s linear infinite;
+    animation: pging 1s linear infinite;
+}
+
+@-webkit-keyframes pging {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 30px 0;
+    }
+}
+
+@-moz-keyframes pging {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 30px 0;
+    }
+}
+
+@-ms-keyframes pging {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 30px 0;
+    }
+}
+
+@keyframes pging {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 30px 0;
+    }
+}
+
+.ng-main {
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    border-top: none;
+    background: #fff;
+}
+
+.content .ng-main {
+    border: none;
+}
+
+.ng-goods-img {
+    width: 343px;
+    float: left;
+    height: 480px;
+    padding: 0 20px;
+    position: relative;
+}
+
+.ng-goods-detail {
+    width: 508px;
+    height: 480px;
+    border-left: 1px solid #f3f3f3;
+    float: left;
+    padding: 0 33px;
+    *zoom: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-buy {
+    width: 229px;
+    height: 480px;
+    float: left;
+    border-left: 1px solid #f3f3f3;
+    background-color: #fbfbfb;
+    position: relative;
+}
+
+.middlePicRemark {
+    width: 361px;
+    height: 30px;
+    position: absolute;
+    left: 11px;
+    z-index: 15;
+}
+
+.middlePicRemark p {
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.middlePicRemark span {
+    display: block;
+    width: 361px;
+    height: 30px;
+    background: #000;
+    opacity: 0.2;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}
+
+.ng-product-content {
+    width: 1188px;
+    overflow: hidden;
+    border: 1px solid #E4E4E4;
+    background: #fff;
+    margin: auto;
+    border-top: none;
+    position: relative;
+    top: -1px;
+}
+
+.ng-product-content .product-con {
+    padding: 30px;
+    width: 1128px;
+    overflow: hidden;
+}
+
+.ng-share-goods {
+    width: 1188px;
+    border: 1px solid #e4e4e4;
+    border-top: none;
+    text-align: left;
+    padding-top: 13px;
+}
+
+.ng-share-goods .ng-share-header {
+    padding-left: 24px;
+    height: 35px;
+    line-height: 35px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e4e4e4;
+    margin: -13px 0 13px;
+}
+
+.ng-share-goods .ng-share-header .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.ng-share-goods .total {
+    display: block;
+    width: 1134px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    margin: 0 auto;
+    background: #f6f6f6;
+    color: #999;
+    text-align: left;
+    position: relative;
+    z-index: 5;
+}
+
+.ng-share-goods .total span {
+    font-size: 14px;
+    padding: 0 3px;
+}
+
+.ng-share-goods .ng-share-wrapper {
+    padding: 0 17px 0;
+    margin-top: -1px;
+    position: relative;
+    z-index: 0;
+}
+
+.ng-share-goods .ng-share-detail {
+    padding: 18px 10px 8px 20px;
+    border-top: 1px solid #f3f3f3;
+    margin-top: -1px;
+    *zoom: 1;
+    position: relative;
+}
+
+.ng-share-goods .ng-share-pic {
+    width: 78px;
+    height: 78px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    float: left;
+    border-radius: 50%;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    text-align: center;
+}
+
+.ng-share-goods .ng-share-pic img {
+    display: block;
+    margin: -1px 0 0 -1px;
+    width: 80px;
+    height: 80px;
+}
+
+.ng-share-goods .ng-share-con {
+    margin-left: 100px;
+}
+
+.ng-share-goods .ng-share-con .name-line {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.ng-share-goods .ng-share-con .name-line a:hover {
+    text-decoration: underline;
+}
+
+.ng-share-goods .ng-share-con .u-name {
+    color: #2af;
+}
+
+.ng-share-goods .ng-share-con .u-time {
+    padding-left: 6px;
+    color: #bbb;
+}
+
+.ng-share-goods .ng-share-con .u-data {
+    height: 36px;
+    line-height: 36px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-share-goods .ng-share-con .u-num {
+    color: #999;
+    font-size: 14px;
+}
+
+.ng-share-goods .ng-share-con .u-show {
+    padding-left: 6px;
+    font-size: 18px;
+    color: #333;
+}
+
+.ng-share-goods .ng-share-con .u-data a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.ng-share-goods .ng-share-con .share-info {
+    padding: 2px 0 18px;
+    color: #999;
+    font-size: 13px;
+    line-height: 18px;
+    word-break: break-all;
+}
+
+.ng-share-goods .ng-share-con .share-info a {
+    color: #999;
+}
+
+.ng-share-goods .ng-share-con .pic-list-wrap {
+    position: relative;
+    height: 85px;
+}
+
+.ng-share-goods .ng-share-con .pic-list {
+    width: 460px;
+    *zoom: 1;
+}
+
+.ng-share-goods .ng-share-con .pic-list li {
+    width: 71px;
+    height: 71px;
+    padding: 1px;
+    border: 1px solid #e4e4e4;
+    background-color: #fff;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.ng-share-goods .ng-share-con .pic-list .pic-hover {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 99;
+    background: url(http://skin.1yyg.com/Images/share-pic-hover.png?v=20150610) no-repeat 0 0;
+    display: none;
+    cursor: pointer;
+}
+
+.ng-share-goods .ng-share-con .pic-list .pic-hover.current {
+    background-position: 0 -75px;
+}
+
+.ng-share-goods .ng-share-con .pic-list span {
+    display: block;
+}
+
+.ng-share-goods .ng-share-con .pic-list span img {
+    width: 71px;
+    height: 71px;
+    position: relative;
+    z-index: 2;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap {
+    height: 25px;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    line-height: 25px;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a {
+    color: #bababa;
+    float: left;
+    color: #999;
+    padding-left: 16px;
+    position: relative;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap i {
+    background-image: url(http://skin.1yyg.com/Post/images/single.png?v=20150610);
+    background-repeat: no-repeat;
+    overflow: hidden;
+    float: left;
+    height: 12px;
+    cursor: pointer;
+    margin-right: 3px;
+    display: inline;
+    position: relative;
+    top: 6px;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a img {
+    position: absolute;
+    top: 2px;
+    left: 12px;
+    display: none;
+}
+
+.ng-share-goods .ng-share-con .xianmu i {
+    width: 16px;
+    background-position: 1px 0;
+}
+
+.ng-share-goods .ng-share-con .pinglun i {
+    width: 15px;
+    background-position: 1px -60px;
+}
+
+.ng-share-goods .ng-share-con .xianmu-past i {
+    background-position: 0 -45px;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a:hover {
+    color: #f60;
+}
+
+.ng-share-goods .ng-share-con a.xianmu:hover i {
+    background-position: 1px -15px;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a.xianmu-past:hover {
+    color: #999;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a.xianmu-past:hover i {
+    background-position: 0 -45px;
+}
+
+.ng-share-goods .ng-share-con a.pinglun:hover i {
+    background-position: 1px -75px;
+}
+
+.ng-goods-img .ng-middle-box {
+    width: 343px;
+    height: 343px;
+    position: relative;
+    text-align: center;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+.ng-goods-img .ng-middle-box .product-end {
+    width: 62px;
+    height: 48px;
+    padding: 24px 17px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 20px;
+    color: #666;
+    background-color: #f4f4f4;
+    position: absolute;
+    top: 30px;
+    left: 26px;
+    z-index: 5;
+}
+
+.ng-goods-img .ng-middle-box img.z-middle-loading {
+    margin-top: 60px;
+}
+
+.ng-goods-img .ng-goods-piclist {
+    width: 343px;
+    height: 40px;
+    position: relative;
+    margin: 20px auto 0;
+}
+
+.ng-goods-img .ng-list-wrapper {
+    width: 343px;
+    height: 40px;
+    position: relative;
+    overflow: hidden;
+    float: left;
+}
+
+.ng-goods-img .ng-list-inner {
+    height: 40px;
+    position: absolute;
+    left: 0;
+}
+
+.ng-goods-img .ng-list-inner li {
+    width: 38px;
+    height: 38px;
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+}
+
+.ng-goods-img .ng-list-inner li:hover,.ng-goods-img .ng-list-inner li.current {
+    border-color: #f60;
+}
+
+.ng-goods-img .ng-list-inner li img {
+    width: 38px;
+    height: 38px;
+    vertical-align: middle;
+}
+
+.ng-goods-img .ng-goods-btn {
+    width: 18px;
+    height: 42px;
+    cursor: pointer;
+    float: left;
+}
+
+.ng-goods-img .prev {
+    background-position: 0 -135px;
+    margin-right: 8px;
+}
+
+.ng-goods-img .next {
+    background-position: -28px -135px;
+}
+
+.ng-goods-img .prev.end {
+    background-position: -1px -214px;
+    cursor: auto;
+}
+
+.ng-goods-img .next.end {
+    background-position: -28px -214px;
+    cursor: auto;
+}
+
+.ng-goods-img .ng-share-out {
+    width: 343px;
+    margin: 12px auto 0;
+    height: 30px;
+}
+
+.ng-goods-img .ng-share-out .sc {
+    width: 70px;
+    height: 28px;
+    border-radius: 18px;
+    color: #999;
+    display: block;
+    float: left;
+    line-height: 31px;
+    text-align: left;
+    padding-left: 2px;
+    margin-top: -1px;
+}
+
+.ng-goods-img .ng-share-out .t-icon {
+    display: inline-block!important;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    line-height: 30px;
+    *zoom: 1;
+    _display: inline;
+    _margin-top: 7px;
+}
+
+.ng-goods-img .ng-share-out .sc-icon {
+    background-position: 0 0;
+    position: relative;
+    top: -1px;
+    _top: -3px;
+    margin-right: 3px;
+}
+
+.ng-goods-img .ng-share-out .sc-icon-past {
+    background-position: -36px 0;
+}
+
+.ng-goods-img .ng-share-out .sc:hover,.ng-goods-img .ng-share-out .sc.current {
+    color: #f60;
+    border-color: #f60;
+}
+
+.ng-goods-img .ng-share-out .sc:hover .sc-icon,.ng-goods-img .ng-share-out .sc.current .sc-icon {
+    background-position: -18px 0;
+}
+
+.ng-goods-img .ng-share-out .has-in:hover {
+    color: #999;
+    border-color: #e5e5e5;
+}
+
+.ng-goods-img .ng-share-out .has-in:hover .sc-icon {
+    background-position: -36px 0;
+}
+
+.ng-goods-img .ng-share-out .fx {
+    width: 228px;
+    height: 28px;
+    color: #999;
+    display: block;
+    float: left;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-img .ng-share-out .fx-txt {
+    float: left;
+    width: 58px;
+    text-align: center;
+    line-height: 28px;
+}
+
+.ng-goods-img .ng-share-out .fx-icon {
+    background-position: -54px 0;
+    position: relative;
+    top: -1px;
+    *top: 1px;
+    _top: -2px;
+    margin-right: 4px;
+}
+
+.ng-goods-img .ng-share-out .fx.current,.ng-goods-img .ng-share-out .fx:hover {
+    border-color: #f60;
+    color: #f60;
+}
+
+.ng-goods-img .ng-share-out .fx.current .fx-icon,.ng-goods-img .ng-share-out .fx:hover .fx-icon {
+    background-position: -73px 0;
+}
+
+.ng-goods-img .fx-out {
+    width: 125px;
+    height: 16px;
+    float: left;
+    margin-top: 6px;
+}
+
+.ng-goods-img .fx-out-inner {
+    margin-right: -10px;
+    *zoom: 1;
+}
+
+.ng-goods-img .fx-out-inner .bdshare-button-style0-16 a {
+    margin-right: 8px;
+}
+
+.ng-goods-detail .title,.ng-result-detail .title {
+    font-size: 18px;
+    color: #333;
+    width: 508px;
+    height: 36px;
+    line-height: 36px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 9px;
+}
+
+.ng-goods-detail .o-title {
+    height: expression(this.offsetWidth>106 ? '106px':true);
+    max-height: 106px;
+    height: expression(this.offsetWidth>72 ? '72px':true);
+    min-height: 72px;
+    font-size: 18px;
+    color: #333;
+    line-height: 26px;
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px;
+    text-align: left;
+    word-break: break-all;
+}
+
+.ng-goods-detail .o-title span {
+    word-break: break-all;
+}
+
+.ng-goods-detail .o-info {
+    color: #f00;
+    padding-left: 6px;
+}
+
+.ng-goods-detail .end-title {
+    padding-top: 30px;
+    white-space: normal;
+    word-break: break-all;
+}
+
+.ng-goods-detail .price,.ng-result-detail .price {
+    color: #999;
+    font-size: 14px;
+}
+
+.ng-goods-detail .text-left {
+    text-align: left;
+}
+
+.ng-goods-detail .o-p {
+    height: 28px;
+    line-height: 28px;
+    margin-bottom: 5px;
+}
+
+.ng-goods-detail .my-buy {
+    margin-top: 8px;
+    width: 508px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    position: relative;
+}
+
+.ng-goods-detail .my-buy p {
+    font-size: 14px;
+    color: #999;
+}
+
+.ng-goods-detail .mine {
+    margin-right: 4px;
+    float: left;
+}
+
+.ng-goods-detail .option-wrapper {
+    width: 117px;
+    height: 26px;
+    border: 1px solid #e4e4e4;
+    border-radius: 18px;
+    float: left;
+    margin-right: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-detail .option-wrapper a {
+    display: block;
+    width: 28px;
+    height: 26px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    line-height: 26px;
+    color: #666;
+}
+
+.ng-goods-detail .option-wrapper a.add:hover,.ng-goods-detail .option-wrapper a.mius:hover {
+    color: #f60;
+}
+
+.ng-goods-detail .option-wrapper a.cur {
+    background-color: #f5f5f5;
+    cursor: default;
+}
+
+.ng-goods-detail .option-wrapper a.mius {
+    letter-spacing: -1px;
+}
+
+.ng-goods-detail .option-wrapper a.cur:hover {
+    color: #666;
+}
+
+.ng-goods-detail .option-wrapper .input-num {
+    width: 59px;
+    height: 26px;
+    border: none;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+    float: left;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    line-height: 26px;
+    _zoom: 1;
+}
+
+.ng-goods-detail .option-wrapper .btn {
+    display: block;
+    width: 7px;
+    height: 7px;
+    margin-top: 13px;
+    margin-left: 13px;
+    *margin-left: 5px;
+}
+
+.ng-goods-detail .option-wrapper .click-add {
+    background-position: -115px -18px;
+}
+
+.ng-goods-detail .option-wrapper .click-mius {
+    background-position: -115px -34px;
+}
+
+.ng-goods-detail .my-buy .mine-prob {
+    width: 236px;
+    height: 21px;
+    text-align: center;
+    position: absolute;
+    top: -30px;
+    left: 0;
+}
+
+.ng-goods-detail .my-buy .mine-prob .txt {
+    display: inline-block;
+    height: 21px;
+    padding: 0 10px;
+    background: #ffefca;
+    color: #f60;
+    font-size: 13px;
+    line-height: 21px;
+    _display: inline;
+}
+
+.ng-goods-detail .my-buy .mine-prob i {
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent;
+    border-top-color: #ffefca;
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    margin-left: -8px;
+    _display: none;
+}
+
+.ng-goods-detail .consume-wrapper {
+    width: 508px;
+    height: 49px;
+    margin-top: 15px;
+    text-align: center;
+    line-height: 49px;
+    font-size: 20px;
+}
+
+.ng-goods-detail .consume-now {
+    display: block;
+    width: 276px;
+    height: 49px;
+    background-color: #f60;
+    border-radius: 24px;
+    color: #fff;
+    float: left;
+    margin-right: 10px;
+}
+
+.ng-goods-detail .consume-now:hover {
+    background-color: #f40;
+}
+
+.ng-goods-detail .consume-end {
+    background-color: #ddd;
+    cursor: default;
+}
+
+.ng-goods-detail .consume-end:hover {
+    background-color: #ddd;
+}
+
+.ng-goods-detail .consume-addcar {
+    display: block;
+    width: 222px;
+    height: 49px;
+    background-color: #ffac4a;
+    color: #fff;
+    float: left;
+    border-radius: 24px;
+}
+
+.ng-goods-detail .consume-addcar:hover {
+    background-color: #f92;
+}
+
+.ng-goods-detail .consume-addend {
+    background-color: #ddd;
+    cursor: default;
+}
+
+.ng-goods-detail .consume-addend:hover {
+    background-color: #ddd;
+}
+
+.ng-goods-detail .check-num {
+    float: left;
+    height: 28px;
+}
+
+.ng-goods-detail .check-num li {
+    float: left;
+    width: 59px;
+    height: 26px;
+    margin-right: 10px;
+    border: 1px solid #e4e4e4;
+    border-radius: 18px;
+    color: #333;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    _margin-right: 8px;
+}
+
+.ng-goods-detail .check-num li.current {
+    border-color: #f60;
+    color: #f60;
+}
+
+.ng-goods-detail .check-num li:hover {
+    color: #f60;
+}
+
+.ng-goods-detail .xg-tips {
+    padding: 0 12px;
+    height: 25px;
+    font-size: 14px;
+    background-color: #ffefca;
+    line-height: 25px;
+    color: #f60;
+    text-align: center;
+    border-radius: 16px;
+    float: left;
+    margin-top: 2px;
+    position: relative;
+    margin-left: 26px;
+    _display: inline;
+}
+
+.ng-goods-detail .xg-tips i {
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 6px 8px;
+    border-style: solid;
+    border-color: transparent;
+    border-bottom-color: #ffefca;
+    position: absolute;
+    top: 11px;
+    left: -2px;
+    top: 13px\0;
+    left: -7px\0;
+    *top: 13px;
+    *left: -7px;
+    overflow: hidden;
+    _display: none;
+}
+
+@media screen and (min-width:0) {
+    .ng-goods-detail .xg-tips i {
+        top: 11px;
+        left: -2px;
+    }
+}
+
+.ng-goods-detail .about-tips {
+    height: 22px;
+    line-height: 22px;
+    margin-top: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ng-goods-detail .end-tips {
+    margin-top: 26px;
+}
+
+.ng-goods-detail .has-end {
+    width: 506px;
+    height: 169px;
+    background-color: #fbfbfb;
+    color: #999;
+    font-size: 32px;
+    border: 1px solid #e4e4e4;
+    line-height: 171px;
+    text-align: center;
+    margin: 28px 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.ng-goods-detail .f-inner {
+    float: left;
+    height: 22px;
+}
+
+.ng-goods-detail .f-inner li {
+    color: #999;
+    padding-left: 25px;
+    position: relative;
+    float: left;
+}
+
+.ng-goods-detail .f-inner li.z-beginning {
+    padding-left: 20px;
+    margin-right: 15px;
+}
+
+.ng-goods-detail .f-inner li.z-lines {
+    padding-left: 0;
+    margin: 0 15px;
+}
+
+.ng-goods-detail .f-inner li.z-lines b {
+    display: block;
+    font-size: 0;
+    width: 0;
+    height: 17px;
+    border-left: 1px solid #f1f1f1;
+    position: relative;
+    top: 2px;
+}
+
+.ng-goods-detail .f-inner li a {
+    color: #999;
+}
+
+.ng-goods-detail .f-inner li a:hover {
+    color: #f60;
+}
+
+.ng-goods-detail .f-inner i {
+    display: block;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+.ng-goods-detail .t1 {
+    background-position: -110px -48px;
+}
+
+.ng-goods-detail .t2 {
+    background-position: -110px -77px;
+}
+
+.ng-goods-detail .t3 {
+    background-position: -110px -106px;
+}
+
+.ng-goods-detail .advert-wrapper {
+    width: 506px;
+    height: 124px;
+    border: 1px solid #e4e4e4;
+    border-radius: 20px;
+    margin-top: 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-detail .select-wrapper {
+    float: left;
+    width: 52px;
+    height: 124px;
+    border-right: 1px solid #e4e4e4;
+    position: relative;
+}
+
+.ng-goods-detail .select-wrapper li {
+    padding: 41px 10px;
+    cursor: default;
+    float: left;
+    position: relative;
+    font-size: 14px;
+    color: #f60;
+}
+
+.ng-goods-detail .select-wrapper i {
+    width: 8px;
+    height: 13px;
+    background-position: -109px -283px;
+    position: absolute;
+    top: 55px;
+    right: -8px;
+    *right: -12px;
+    overflow: hidden;
+}
+
+.ng-goods-detail .adver-end {
+    margin-top: 24px;
+}
+
+.ng-goods-detail .advert-inner {
+    width: 453px;
+    float: left;
+    height: 110px;
+    padding-top: 14px;
+    text-align: center;
+}
+
+.ng-goods-detail .advert-how {
+    padding: 0 6px 0 16px;
+    text-align: left;
+}
+
+.ng-result-detail .result-how {
+    padding: 0 6px 0 0;
+    text-align: left;
+}
+
+.ng-goods-detail .advert-how h6,.ng-result-detail .result-how h6 {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    height: 22px;
+    line-height: 22px;
+    padding-bottom: 3px;
+}
+
+.ng-result-detail .result-how h6 {
+    padding-bottom: 2px;
+}
+
+.ng-goods-detail .advert-how p,.ng-result-detail .result-how p {
+    color: #999;
+    line-height: 18px;
+}
+
+.ng-result-detail .result-how p {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.ng-goods-detail .advert-list01 {
+    width: 132px;
+    float: left;
+    position: relative;
+}
+
+.ng-goods-detail .ad-icon01 {
+    width: 38px;
+    height: 35px;
+    background-position: 0 0;
+    margin-left: 39px;
+    *margin-left: 0;
+}
+
+.ng-goods-detail .ad-title {
+    color: #444;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.ng-goods-detail .ad-info {
+    color: #bbb;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.ng-goods-detail .advert-list02 {
+    width: 145px;
+    float: left;
+    position: relative;
+}
+
+.ng-goods-detail .ad-icon02 {
+    width: 59px;
+    height: 30px;
+    background-position: 0 -50px;
+    margin: 4px auto 2px;
+}
+
+.ng-goods-detail .advert-list03 {
+    float: left;
+    width: 176px;
+}
+
+.ng-goods-detail .ad-icon03 {
+    width: 38px;
+    height: 37px;
+    background-position: 0 -103px;
+    _background-position: 0 -102px;
+    margin: -1px auto 0;
+}
+
+.ng-goods-detail .advert-list01:hover .ad-icon01 {
+    background-position: 0 -171px;
+}
+
+.ng-goods-detail .advert-list02:hover .ad-icon02 {
+    background-position: 0 -230px;
+}
+
+.ng-goods-detail .advert-list03:hover .ad-icon03 {
+    background-position: 0 -290px;
+}
+
+.ng-goods-detail .advert-m {
+    cursor: default;
+}
+
+.ng-goods-detail .advert-m:hover .ad-title {
+    color: #f60;
+}
+
+.ng-goods-detail .arrow {
+    width: 17px;
+    height: 8px;
+    background-position: -111px -5px;
+    position: absolute;
+    top: 15px;
+    overflow: hidden;
+}
+
+.ng-goods-detail .advert-list01 .arrow {
+    right: -8px;
+}
+
+.ng-goods-detail .advert-list02 .arrow {
+    right: -12px;
+}
+
+.ng-goods-detail-height .advert-wrapper {
+    height: 95px;
+}
+
+.ng-goods-detail-height .select-wrapper {
+    height: 95px;
+}
+
+.ng-goods-detail-height .select-wrapper li {
+    padding: 26px 10px;
+}
+
+.ng-goods-detail-height .select-wrapper li i {
+    top: 41px;
+}
+
+.ng-goods-detail-height .advert-inner {
+    height: 63px;
+    padding-top: 20px;
+}
+
+.ng-goods-detail-height .advert-inner .ad-info {
+    display: none;
+}
+
+.ng-goods-detail .num,.ng-result-detail .num {
+    padding-right: 6px;
+}
+
+.ng-goods-detail .time-model {
+    width: 458px;
+    height: 108px;
+    background-color: #fff2b7;
+    margin: 10px auto 0;
+    padding: 22px 25px 15px;
+    border-radius: 20px;
+}
+
+.ng-goods-detail .time-view {
+    width: 240px;
+    height: 105px;
+    margin-right: 10px;
+    border: 1px solid #ffbc70;
+    float: left;
+    position: relative;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.ng-goods-detail .message-view {
+    width: 204px;
+    height: 105px;
+    border: 1px solid #ffbc70;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.ng-goods-detail .message-inner {
+    width: 186px;
+    height: 105px;
+    margin: 0 auto;
+}
+
+.ng-goods-detail .full-tips {
+    width: 187px;
+    height: 24px;
+    border: 1px solid #ffb76a;
+    border-radius: 12px;
+    background-color: #fffbe7;
+    color: #f60;
+    text-align: center;
+    line-height: 24px;
+    position: absolute;
+    top: -13px;
+    left: 24px;
+    font-size: 14px;
+}
+
+.ng-goods-detail .jiexiao-end {
+    width: 210px;
+    height: 15px;
+    position: absolute;
+    top: 43px;
+    left: 16px;
+}
+
+.ng-goods-detail .for-begin {
+    padding-top: 32px;
+    width: 210px;
+    height: 58px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-detail .for-begin li {
+    display: block;
+    width: 18px;
+    height: 58px;
+    line-height: 58px;
+    color: #f60;
+    text-align: center;
+    float: left;
+    font-size: 24px;
+    border-radius: 20px;
+    zoom: 1;
+}
+
+.ng-goods-detail .for-begin li.cur {
+    background-color: #f60;
+    color: #fff;
+    font-size: 36px;
+    width: 58px;
+}
+
+.ng-goods-detail .method {
+    font-size: 14px;
+    color: #999;
+    line-height: 24px;
+    margin-top: 12px;
+    text-align: left;
+}
+
+.ng-goods-detail .method .t {
+    color: #666;
+    font-weight: bold;
+}
+
+.ng-goods-detail .process {
+    font-size: 12px;
+    color: #999;
+    margin-top: 10px;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.ng-goods-detail .process .t {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ng-goods-detail .process-detail {
+    margin-top: 8px;
+    height: 72px;
+    text-align: center;
+    padding-left: 2px;
+}
+
+.ng-goods-detail .process-detail span {
+    line-height: 72px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #cfcfcf;
+    float: left;
+}
+
+.ng-goods-detail .process-btn {
+    border: 1px solid #e4e4e4;
+    border-radius: 20px;
+    margin: 0 3px;
+    float: left;
+    display: table;
+    vertical-align: middle;
+}
+
+.ng-goods-detail .process-detail .step01 {
+    width: 91px;
+    height: 70px;
+}
+
+.ng-goods-detail .process-detail .step02 {
+    width: 91px;
+    height: 70px;
+}
+
+.ng-goods-detail .process-detail .step03 {
+    width: 91px;
+    height: 70px;
+}
+
+.ng-goods-detail .process-detail .step04 {
+    width: 135px;
+    height: 70px;
+    margin-right: 0;
+}
+
+.ng-goods-detail .process-btn p {
+    line-height: 14px;
+}
+
+.ng-goods-detail .process-btn .o-num {
+    font-size: 16px;
+    color: #f60;
+    height: 24px;
+    line-height: 20px;
+    font-family: "\5FAE\8F6F\96C5\9ED1",Arial;
+}
+
+.ng-goods-detail .tb-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.ng-goods-detail .step01 .tb-cell {
+    *padding-top: 8px;
+}
+
+.ng-goods-detail .step02 .tb-cell {
+    *padding-top: 6px;
+}
+
+.ng-goods-detail .step03 .tb-cell {
+    *padding-top: 12px;
+}
+
+.ng-goods-detail .step04 .tb-cell {
+    *padding-top: 12px;
+}
+
+.ng-goods-buy .ng-buy-list {
+    width: 199px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.ng-goods-buy .list-wrap {
+    height: 436px;
+    *zoom: 1;
+    overflow: hidden;
+}
+
+.ng-goods-buy .list-wrap .my-record {
+    height: 368px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-goods-buy .list-wrap .my-list {
+    height: 360px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.ng-goods-buy .ng-buy-nav {
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #e4e4e4;
+    position: relative;
+}
+
+.ng-goods-buy .ng-buy-menu {
+    height: 36px;
+    line-height: 36px;
+    border-bottom: 1px solid #e4e4e4;
+    color: #666;
+    text-align: left;
+    font-size: 14px;
+}
+
+.ng-goods-buy .ng-buy-select {
+    float: left;
+    width: 199px;
+    height: 82px;
+    padding: 13px 0;
+    *zoom: 1;
+    font-size: 12px;
+    border-top: 1px solid #efefef;
+    margin-top: -1px;
+    overflow: hidden;
+}
+
+.ng-goods-buy .img-wrapper {
+    width: 82px;
+    height: 82px;
+    float: left;
+    margin-right: 16px;
+}
+
+.ng-goods-buy .info-select {
+    text-align: left;
+    float: left;
+    width: 100px;
+}
+
+.ng-goods-buy .info-select .p-name {
+    color: #666;
+    line-height: 16px;
+    height: 32px;
+    position: relative;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.ng-goods-buy .info-select .p-name a {
+    color: #666;
+}
+
+.ng-goods-buy .info-select .p-price {
+    color: #999;
+    line-height: 16px;
+}
+
+.ng-goods-buy .info-select .p-price ins {
+    color: #666;
+    text-decoration: none;
+}
+
+.ng-goods-buy .info-select dl.m-progress {
+    margin: 7px 0 8px;
+}
+
+.ng-goods-buy .info-select dl.m-progress,.ng-goods-buy .info-select dl.m-progress dt {
+    width: 95px;
+    height: 3px;
+}
+
+.ng-goods-buy .info-select dl.m-progress dt b {
+    height: 3px;
+}
+
+.ng-goods-buy .info-select .now-buy {
+    display: block;
+    width: 90px;
+    height: 26px;
+    background-color: #f60;
+    color: #fff;
+    border-radius: 14px;
+    text-align: center;
+    line-height: 26px;
+    margin-top: 4px;
+}
+
+.ng-goods-buy .info-select .now-buy:hover {
+    background-color: #f40;
+}
+
+.ng-goods-buy .ng-buy-nav a {
+    display: block;
+    width: 99px;
+    height: 35px;
+    text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+.ng-goods-buy .ng-buy-nav a.current {
+    color: #333;
+}
+
+.ng-goods-buy .ng-buy-nav a:hover {
+    color: #333;
+}
+
+.ng-goods-buy .ng-buy-nav .b-line {
+    width: 50%;
+    height: 2px;
+    background-color: #f60;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    overflow: hidden;
+}
+
+.ng-goods-buy .list {
+    font-size: 12px;
+}
+
+.ng-goods-buy .list li {
+    height: 33px;
+    line-height: 33px;
+    color: #bbb;
+    text-align: left;
+    overflow: hidden;
+}
+
+.ng-goods-buy .list .buy-name {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    word-break: break-all;
+    color: #666;
+    padding-right: 4px;
+    height: 30px;
+    line-height: 27px;
+    width: expression(this.offsetWidth>100 ? '100px':true);
+    max-width: 100px;
+    padding-left: 26px;
+    float: left;
+    margin-top: 3px;
+}
+
+.ng-goods-buy .list .buy-name:hover {
+    color: #2af;
+    text-decoration: underline;
+}
+
+.ng-goods-buy .list .buy-num {
+    color: #f60;
+    padding: 0 4px;
+}
+
+.ng-goods-buy .list .head-s-pic {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+    background-color: #ccc;
+    overflow: hidden;
+    position: absolute;
+    top: 2px;
+    left: 0;
+}
+
+.ng-goods-buy .select-all {
+    display: block;
+    width: 174px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #999;
+    background-color: #fff;
+    border: 1px solid #e4e4e4;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 24px;
+    font-size: 14px;
+}
+
+.ng-goods-buy .select-all:hover {
+    color: #f60;
+    border-color: #f60;
+}
+
+.ng-goods-buy .my-record dl {
+    padding: 12px 0;
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 12px;
+    line-height: 22px;
+    display: block;
+    margin-right: -30px;
+    *zoom: 1;
+}
+
+.ng-goods-buy .my-record dl.last {
+    border-bottom: none;
+}
+
+.ng-goods-buy .my-record dt {
+    color: #bbb;
+    text-align: left;
+}
+
+.ng-goods-buy .my-record dd {
+    color: #777;
+    padding-right: 15px;
+    text-align: left;
+    float: left;
+}
+
+.ng-goods-buy .no-login-wrapper {
+    padding-top: 160px;
+}
+
+.ng-goods-buy .no-login-inner {
+    color: #999;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.ng-goods-buy .login-btn-wrpper {
+    padding-top: 24px;
+    height: 30px;
+    *zoom: 1;
+}
+
+.ng-goods-buy .login-btn-wrpper a {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: block;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 16px;
+}
+
+.ng-goods-buy .login-btn-wrpper .u-login {
+    background-color: #f60;
+    float: left;
+}
+
+.ng-goods-buy .login-btn-wrpper .u-register {
+    background-color: #2af;
+    float: right;
+}
+
+.ng-goods-option {
+    border: 1px solid #e4e4e4;
+    margin-top: 15px;
+    border-bottom: none;
+    position: relative;
+    z-index: 13;
+}
+
+.ng-goods-option .options-menu {
+    height: 37px;
+    background-color: #fbfbfb;
+    width: 1188px;
+    border-bottom: 1px solid #e4e4e4;
+    _overflow: hidden;
+}
+
+.ng-goods-option .options-menu li {
+    height: 37px;
+    background-color: #fbfbfb;
+    border-right: 1px solid #e4e4e4;
+    line-height: 37px;
+    float: left;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    color: #333;
+    position: relative;
+    padding: 0 30px;
+    _overflow-x: hidden;
+}
+
+.ng-goods-option .options-menu li.current {
+    height: 38px;
+    background-color: #fff;
+    z-index: 12;
+    color: #f60;
+    font-weight: bold;
+}
+
+.ng-goods-option .options-menu li i {
+    display: none;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    background-color: #f60;
+    overflow: hidden;
+}
+
+.ng-goods-option .options-menu li.current i {
+    display: block;
+}
+
+.bn {
+    border: none;
+}
+
+.ng-all-record {
+    width: 1188px;
+    border: 1px solid #e4e4e4;
+    border-top: none;
+    margin-top: -1px;
+}
+
+.ng-all-record .record {
+    width: 100%;
+}
+
+.ng-all-record .rocord-header {
+    font-size: 16px;
+    padding-left: 24px;
+    height: 35px;
+    line-height: 35px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e4e4e4;
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+}
+
+.ng-data-wrapper .ng-all-record {
+    border: none;
+    border-top: 1px solid #e4e4e4;
+}
+
+.ng-data-wrapper .ng-share-goods {
+    border: none;
+    border-top: 1px solid #e4e4e4;
+}
+
+.ng-all-record .record-list {
+    width: 1154px;
+    margin: 0 auto;
+}
+
+.ng-all-record .record-list li {
+    padding-left: 20px;
+    border-top: 1px solid #f3f3f3;
+    height: 42px;
+    line-height: 42px;
+}
+
+.ng-all-record .record-list li:after {
+    clear: both;
+}
+
+.ng-all-record .record-list li span {
+    display: block;
+    float: left;
+    font-size: 14px;
+    color: #999;
+}
+
+.ng-all-record .record-list .record-menu {
+    height: 32px;
+    line-height: 32px;
+    border-top: none;
+    padding-top: 2px;
+}
+
+.ng-all-record .record-list .time {
+    width: 282px;
+}
+
+.ng-all-record .record-list .name {
+    width: 240px;
+    color: #666;
+}
+
+.ng-all-record .record-list .name .w {
+    display: block;
+    height: 42px;
+    padding-left: 32px;
+    position: relative;
+}
+
+.ng-all-record .record-list .name .head-s-img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background-color: #ccc;
+    overflow: hidden;
+}
+
+.ng-all-record .record-list .name a {
+    color: #666;
+}
+
+.ng-all-record .record-list .name a:hover {
+    color: #2af;
+    text-decoration: underline;
+}
+
+.ng-all-record .record-list .ip {
+    width: 326px;
+}
+
+.ng-all-record .record-list .people {
+    width: 150px;
+}
+
+.ng-all-record .record-list .form {
+    width: 135px;
+}
+
+.ng-all-record .record-list .form a {
+    color: #999;
+    display: block;
+    height: 42px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.ng-all-record .record-list .form .f-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 11px;
+    left: -10px;
+    background: url(http://skin.1yyg.com/Images/form-icon.gif?v=20150616) no-repeat;
+}
+
+.ng-all-record .record-list .form .mobile {
+    background-position: 0 -161px;
+    left: 3px;
+}
+
+.ng-all-record .record-list .form .andriod {
+    background-position: 0 -38px;
+    left: 0;
+}
+
+.ng-all-record .record-list .form .ios {
+    background-position: 0 0;
+    left: 3px;
+}
+
+.ng-all-record .record-list .form .pc {
+    background-position: 0 -118px;
+    left: 2px;
+}
+
+.ng-all-record .record-list .form .wx {
+    background-position: 0 -77px;
+    left: 1px;
+}
+
+.ng-all-record .record-list .form a:hover .mobile {
+    background-position: -21px -161px;
+}
+
+.ng-all-record .record-list .form a:hover .andriod {
+    background-position: -21px -38px;
+}
+
+.ng-all-record .record-list .form a:hover .ios {
+    background-position: -21px 0;
+}
+
+.ng-all-record .record-list .form a:hover .pc {
+    background-position: -21px -118px;
+}
+
+.ng-all-record .record-list .form a:hover .wx {
+    background-position: -21px -77px;
+}
+
+.ng-all-record .record-list .form a:hover {
+    color: #f60;
+}
+
+.ng-all-record .record-list .record-menu span {
+    font-size: 12px;
+    color: #bbb;
+}
+
+.line-time .line-wrapper {
+    width: 508px;
+    height: 12px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin: 0;
+    position: relative;
+}
+
+.line-time .text-wrapper {
+    height: 40px;
+}
+
+.line-time .text-wrapper div {
+    height: 40px;
+    float: left;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.line-time .now-has,.line-time .overplus-has {
+    width: 169px;
+}
+
+.line-time .now-has {
+    text-align: left;
+}
+
+.line-time .overplus-has {
+    text-align: right;
+}
+
+.line-time .total-has {
+    width: 170px;
+    text-align: center;
+}
+
+.line-time .now-has span {
+    color: #f60;
+}
+
+.line-time .overplus-has span {
+    color: #2af;
+}
+
+.line-time .total-has span {
+    color: #666;
+}
+
+.line-time .text-wrapper p {
+    color: #bbb;
+    height: 20px;
+    line-height: 18px;
+}
+
+.ng-ot-wrapper .ng-result-detail .result-main {
+    margin: 6px auto;
+}
+
+.ng-ot-wrapper .line-time {
+    margin-top: 4px;
+}
+
+.ng-ot-wrapper .line-time .line-wrapper {
+    width: 646px;
+}
+
+.ng-ot-wrapper .line-time .now-has,.ng-ot-wrapper .line-time .overplus-has {
+    width: 215px;
+}
+
+.ng-ot-wrapper .line-time .total-has {
+    width: 216px;
+}
+
+.ng-period {
+    width: 1169px;
+    margin: 0 0 0 19px;
+}
+
+.ng-period-inner {
+    position: relative;
+    padding-bottom: 18px;
+}
+
+.ng-period-inner .ng-frame-close {
+    top: 12px;
+    right: 15px;
+}
+
+.ng-period-inner .ng-frame-close i {
+    background-position: 0 -415px;
+    display: block;
+    width: 17px;
+    height: 17px;
+    transform: rotateZ(0deg);
+    transition: 1s;
+}
+
+.ng-period-inner .ng-frame-close.current i {
+    background-position: 0 -494px;
+}
+
+.ng-period-inner .ng-frame-close.rotate i {
+    transform: rotateZ(360deg);
+}
+
+.ng-period-inner .select-wrap {
+    padding: 12px 0;
+    height: 32px;
+    line-height: 32px;
+}
+
+.ng-period-inner .select-wrap .input-wrapper {
+    width: 226px;
+    height: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    background: url(http://skin.1yyg.com/Images/yun-wrap-bg.gif?v=2015062);
+    border-radius: 20px;
+    font-size: 14px;
+    color: #999;
+    line-height: 30px;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.ng-period-inner .select-wrap .label {
+    width: 62px;
+    height: 30px;
+    text-indent: 12px;
+    float: left;
+    border-right: 1px solid #f4f4f4;
+}
+
+.ng-period-inner .select-wrap .unit {
+    width: 64px;
+    height: 30px;
+    text-indent: 10px;
+    float: left;
+    border-left: 1px solid #f4f4f4;
+}
+
+.ng-period-inner .select-wrap .inp {
+    width: 98px;
+    height: 30px;
+    float: left;
+    background-color: #fff;
+}
+
+.ng-period-inner .select-wrap .inp input {
+    width: 98px;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    padding: 0;
+    background-color: #fff;
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+    float: left;
+}
+
+.ng-pt {
+    width: 100%;
+    height: 445px;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+}
+
+.ng-period-inner .select-wrap .fly {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background-position: 6px -597px;
+}
+
+.ng-period-inner .select-wrap .fly:hover {
+    background-position: 6px -564px;
+}
+
+.ng-period-inner .select-wrap .input-wrapper.current,.ng-period-inner .select-wrap .input-wrapper.current .fly {
+    border-color: #ddd;
+}
+
+.ng-period-inner .select-wrap .input-wrapper.current .inp input {
+    color: #999;
+}
+
+.ng-pt-inner {
+    border: 1px solid #e4e4e4;
+    width: 1149px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: none;
+    border-right: none;
+    float: left;
+    *zoom: 1;
+}
+
+.ng-pt-inner li {
+    width: 164px;
+    height: 46px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    margin-left: -1px;
+    float: left;
+}
+
+.ng-pt-inner li a {
+    display: block;
+    width: 164px;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    color: #999;
+    font-size: 14px;
+}
+
+.ng-pt-inner li b {
+    padding-left: 4px;
+}
+
+.ng-pt-inner li a:hover {
+    color: #f60;
+}
+
+.ng-pt-inner li.current a {
+    color: #fff;
+    background-color: #f60;
+}
+
+.ng-pt-bg {
+    width: 100%;
+    height: 29px;
+    background: url(http://skin.1yyg.com/Images/pt-inner-bg.png?v=20150610) repeat-x;
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    background-position: 0 -12px;
+}
+
+.ng-pt-top {
+    bottom: auto;
+    top: 56px;
+    background: url(http://skin.1yyg.com/Images/pt-top-bg.png?v=20150610) repeat-x;
+    background-position: 0 -15px;
+}
+
+.ng-period-inner .ng-pt-bg {
+    width: 1147px;
+}
+
+.ng-pt-line {
+    width: 1190px;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #e4e4e4;
+    z-index: 13;
+}
+
+.ng-frame-close {
+    display: block;
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+    text-indent: 99px;
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    background-position: 8px -405px;
+    text-indent: -99px;
+}
+
+.ng-frame-close:hover {
+    background-position: 8px -484px;
+}
+
+.ng-over-time {
+    width: 62px;
+    height: 62px;
+    position: absolute;
+    top: 39px;
+    left: 31px;
+    color: #fff;
+    font-size: 16px;
+    background-position: -224px 0;
+    text-align: center;
+}
+
+.ng-over-time p {
+    line-height: 20px;
+    padding-top: 10px;
+}
+
+.ng-over-time span {
+    line-height: 62px;
+}
+
+.ng-show-past {
+    width: 1190px;
+    height: 0;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    background-color: #fff;
+    z-index: 12;
+    overflow: hidden;
+}
+
+.ng-show-bigpic {
+    width: 309px;
+    padding: 4px;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 0 8px #ddd;
+    position: absolute;
+    top: 80px;
+    left: -108px;
+    z-index: 91;
+    background-color: #fff;
+}
+
+.ng-show-bigpic img {
+    display: block;
+    position: relative;
+    z-index: 90;
+}
+
+.ng-s-wait {
+    width: 100%;
+    height: 50px;
+    padding-top: 120px;
+    background: url(http://skin.1yyg.com/Images/goods_loading2.gif?v=20150610) no-repeat center 120px;
+}
+
+.ng-b-wait {
+    width: 100%;
+    padding: 128px 0;
+    background: url(http://skin.1yyg.com/Images/goods_loading.gif?v=20150610) no-repeat center 70px;
+}
+
+.ng-all-record .record-list .ng-b-wait {
+    padding: 141px 0 128px;
+    background: url(http://skin.1yyg.com/Images/goods_loading.gif?v=20150610) no-repeat center 83px;
+}
+
+.null-tips-wrapper {
+    padding-top: 148px;
+    *zoom: 1;
+}
+
+.null-tips-wrapper .null-body {
+    background: url(http://skin.1yyg.com/images/webmsg.png?v=20150610) no-repeat;
+    width: 72px;
+    height: 90px;
+    background-position: 0 0;
+    margin: 0 auto;
+}
+
+.null-tips-wrapper .null-text {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 8px 0 0 8px;
+}
+
+.null-mytips-wrapper {
+    padding-top: 160px;
+}
+
+.null-mytips-wrapper .my-text {
+    color: #bbb;
+    font-size: 14px;
+    line-height: 42px;
+    padding-left: 8px;
+}
+
+.null-retips-wrapper {
+    padding: 92px 0;
+    text-align: center;
+}
+
+.ng-share-goods .null-retips-wrapper {
+    padding: 78px 0 92px;
+}
+
+.null-retips-wrapper span {
+    color: #bbb;
+    font-size: 16px;
+    padding-left: 16px;
+    line-height: 50px;
+}
+
+.ng-main-wrapper {
+    width: 1190px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.ng-share-goods .ng-share-con .talk-wrap a b {
+    display: block;
+    background-image: url(http://skin.1yyg.com/Post/images/single_Detai.gif?v=20150610);
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.has-heart {
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 23px;
+    text-align: center;
+    line-height: 18px;
+    _line-height: 21px;
+    background-position: 0 -152px;
+    position: absolute;
+    left: -5px;
+    top: -24px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+}
+
+.ng-all-record .record-list .people a {
+    padding-left: 10px;
+    font-size: 14px;
+    color: #999;
+}
+
+.ng-all-record .record-list .people a:hover {
+    color: #f60;
+}
+
+.yungou-code-wrapper {
+    width: 361px;
+    height: 208px;
+    position: absolute;
+    top: 100px;
+    left: 528px;
+    border: 1px solid #e4e4e4;
+    z-index: 99;
+    background-color: #fff;
+    box-shadow: 0 0 16px #ccc;
+}
+
+.yungou-code-inner {
+    width: 320px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.yungou-code-inner .yt {
+    height: 40px;
+    line-height: 46px;
+    border-bottom: 1px solid #e4e4e4;
+    color: #999;
+}
+
+.yungou-code-inner .yt a {
+    color: #2af;
+    padding-right: 5px;
+}
+
+.yungou-code-inner .yt a:hover {
+    text-decoration: underline;
+}
+
+.yungou-code-inner .yt span {
+    color: #f60;
+    padding: 0 4px;
+}
+
+.yungou-code-inner .yt .w {
+    display: block;
+    float: left;
+    height: 40px;
+    padding-left: 27px;
+    position: relative;
+}
+
+.yungou-code-inner .yt .head-s-img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+    position: absolute;
+    top: 12px;
+    left: 0;
+    background-color: #ccc;
+    overflow: hidden;
+}
+
+.yungou-code-inner .code-info {
+    padding-top: 15px;
+}
+
+.yungou-code-inner .code-ul-wrapper {
+    width: 100%;
+    height: 145px;
+    overflow: hidden;
+}
+
+.yungou-code-inner .code-ul {
+    zoom: 1;
+}
+
+.yungou-code-inner .code-ul li {
+    padding: 0 23px 10px 0;
+    float: left;
+    color: #999;
+    font-size: 12px;
+}
+
+.yungou-code-wrapper .close-btn {
+    display: block;
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background-position: 0 -457px;
+}
+
+.yungou-code-wrapper .close-btn:hover {
+    background-position: 0 -539px;
+}
+
+.yungou-code-wrapper i {
+    top: 97px;
+    right: -12px;
+}
+
+.yungou-code-wrapper .j {
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent;
+    border-left-color: #e4e4e4;
+    position: absolute;
+}
+
+.yungou-code-wrapper .j .j {
+    border-left-color: #fff;
+    top: -6px;
+    left: -7px;
+}
+
+.op-addcar {
+    display: block;
+    width: 80px;
+    height: 39px;
+    background-color: #22abfe;
+    line-height: 39px;
+    padding-left: 39px;
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+}
+
+.op-addcar .a-icon {
+    display: block;
+    background: url(http://skin.1yyg.com/images/head-2014.png?v=20150610) no-repeat;
+    width: 21px;
+    height: 20px;
+    background-position: 0 -44px;
+    position: absolute;
+    top: 9px;
+    left: 11px;
+    _display: inline;
+}
+
+.op-addcar:hover {
+    color: #fff;
+}
+
+.fx-out-inner .bdshare-button-style2-16 a {
+    height: 17px;
+    line-height: 17px;
+    background-image: url(http://skin.1yyg.com/Images/net-share-icon.gif?v=20150610);
+    margin-right: 8px;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_tsina {
+    background-position: 0 0;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_weixin {
+    background-position: -27px 0;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_qzone {
+    background-position: -54px 0;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_tqq {
+    background-position: -81px 0;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_sqq {
+    background-position: -108px 0;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_tsina:hover {
+    background-position: 0 -26px;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_weixin:hover {
+    background-position: -27px -26px;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_qzone:hover {
+    background-position: -54px -26px;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_tqq:hover {
+    background-position: -81px -26px;
+}
+
+.fx-out-inner .bdshare-button-style2-16 .bds_sqq:hover {
+    background-position: -108px -26px;
+}
+
+img.jqzoom {
+    cursor: crosshair;
+}
+
+div.jqZoomTitle {
+    z-index: 5000;
+    text-align: center;
+    font-size: 11px;
+    font-family: Tahoma;
+    height: 16px;
+    padding-top: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: #FFF;
+    background: #999;
+}
+
+.jqZoomPup {
+    overflow: hidden;
+    background-color: #FFF;
+    -moz-opacity: 0.6;
+    opacity: 0.6;
+    filter: alpha(opacity = 60);
+    z-index: 10;
+    border-color: #e3e3e3;
+    border-style: solid;
+    cursor: crosshair;
+}
+
+.jqZoomPup img {
+    border: 1px;
+}
+
+.jqZoomWindow {
+    border: 1px solid #ccc;
+    background-color: #FFF;
+}
+
+.preload {
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+    filter: alpha(opacity = 80);
+    color: #333;
+    font-size: 12px;
+    font-family: Tahoma;
+    text-decoration: none;
+    border: 1px solid #CCC;
+    background-color: white;
+    padding: 8px;
+    text-align: center;
+    background-image: url(http://skin.1yyg.com/Images/loading.gif?v=20150610);
+    background-repeat: no-repeat;
+    background-position: 43px 30px;
+    width: 90px;
+    height: 43px;
+    z-index: 10;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+}
+
+div.jqZoomBigPic {
+    position: absolute;
+    display: none;
+    left: -2000px;
+    top: -2000px;
+}
+
+div.jqZoomBigPic img {
+    border: 0;
+}
+
+.jspContainer {
+    overflow: hidden;
+    position: relative;
+    outline: none;
+}
+
+.jspPane {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.jspVerticalBar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 46px;
+    height: 100%;
+    background: none;
+}
+
+.jspHorizontalBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: red;
+}
+
+.jspVerticalBar *,.jspHorizontalBar * {
+    margin: 0;
+    padding: 0;
+}
+
+.jspCap {
+    display: none;
+}
+
+.jspHorizontalBar .jspCap {
+    float: left;
+}
+
+.jspTrack {
+    position: relative;
+    width: 46px;
+    background: transparent url(http://skin.1yyg.com/Images/scrollpane.gif?v=20150610) repeat-y 25px 0;
+}
+
+.jspDrag {
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    width: 46px;
+    background: transparent url(http://skin.1yyg.com/Images/srollbar.gif?v=20150610) repeat-y 24px 0;
+}
+
+.jspHorizontalBar .jspTrack,.jspHorizontalBar .jspDrag {
+    float: left;
+    height: 100%;
+}
+
+.jspArrow {
+    background: #50506d;
+    text-indent: -20000px;
+    display: block;
+    cursor: pointer;
+}
+
+.jspArrow.jspDisabled {
+    cursor: default;
+    background: #80808d;
+}
+
+.jspVerticalBar .jspArrow {
+    height: 16px;
+}
+
+.jspHorizontalBar .jspArrow {
+    width: 16px;
+    float: left;
+    height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus {
+    outline: none;
+}
+
+.jspCorner {
+    background: #eeeef4;
+    float: left;
+    height: 100%;
+}
+
+* html .jspCorner {
+    margin: 0 -3px 0 0;
+}
+
+.Member_Pop_friend s,.Member_Pop_letter i {
+    background: url(http://skin.1yyg.com/star/images/star-icon.png?v=20150610);
+}
+
+.Member_Pop_friend,.Member_Pop_letter,.Member_Pop_Has {
+    height: 23px;
+    border-radius: 3px;
+    font-size: 12px;
+    line-height: 23px;
+    line-height: 26px\9;
+    _line-height: 23px;
+    display: inline-block;
+    color: #fff;
+    text-align: left;
+    margin-right: 8px;
+}
+
+.Member_Pop_friend s,.Member_Pop_letter i {
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    vertical-align: -1px;
+    cursor: pointer;
+}
+
+.Member_Pop_friend {
+    width: 62px;
+    padding-left: 12px;
+    background: #49B8FF;
+    border: 1px solid #1BA3FA;
+    position: relative;
+    text-indent: 15px;
+}
+
+.Member_Pop_friend:hover {
+    background: #1BA3FA;
+    border: 1px solid #1BA3FA;
+    color: #fff;
+}
+
+.Member_Pop_friend s {
+    background-position: 0 -53px;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 10px;
+    top: 7px;
+}
+
+.Member_Pop_pal {
+    color: #747474;
+    width: 74px;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    float: left;
+}
+
+.Member_Pop_pal:hover {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    color: #747474;
+}
+
+.Member_Pop_letter {
+    width: 62px;
+    padding-left: 12px;
+    border: 1px solid #DDD;
+    background: #fff;
+    color: #2af;
+    position: relative;
+    text-indent: 15px;
+}
+
+.Member_Pop_letter:hover {
+    border: 1px solid #BBB;
+    color: #2af;
+}
+
+.Member_Pop_letter i,.ta-friend li .Member_Pop_letter i,.Member-list li .Member_Pop_letter i {
+    background-position: -11px -53px;
+    width: 13px;
+    height: 10px;
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    padding: 0;
+}
+
+.Member_Pop_Has {
+    color: #747474;
+    width: 74px;
+    text-align: center;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+}
+
+.Member_Pop_Has:hover {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    color: #747474;
+    cursor: default;
+}
+
+.Member_Pop {
+    width: 278px;
+    height: 140px;
+    border: 1px solid #CCC9C6;
+    background: #fff;
+    position: absolute;
+    box-shadow: 2px 2px 3px 0 rgba(34,25,25,.2);
+}
+
+.Member_Pop_cur {
+    background: #FBFBFB;
+}
+
+.Member_Pop_img {
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    display: inline;
+}
+
+.Member_Pop_img img,.ta-friend li .Member_Pop_img img,.Member-list li .Member_Pop_img img,.R-list .Member_Pop_img img {
+    width: 80px;
+    height: 80px;
+}
+
+.Member_Pop_info,.ta-friend li .Member_Pop_info {
+    margin-left: 91px;
+    margin-top: 7px;
+    text-align: left;
+}
+
+.Member_Pop_info .Member_Pop_intro {
+    height: 40px;
+    overflow: hidden;
+    padding-right: 8px;
+}
+
+.Member_Pop_name {
+    font-size: 14px;
+    height: 25px;
+}
+
+.Member_Pop_class {
+    height: 22px;
+}
+
+.Member_Pop_class .class-icon {
+    float: left;
+}
+
+.Member_Pop_class span {
+    float: left;
+}
+
+.Member_Pop_class span.address-icon {
+    width: 95px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.Member_Pop_but {
+    width: 100%;
+    height: 30px;
+    background: #F4F4F4;
+    position: absolute;
+    bottom: 0;
+    margin-left: 0;
+    left: 0;
+    text-align: right;
+    padding-top: 5px;
+}
+
+@media screen and (max-width:1190px) {
+    body {
+        min-width: 1190px;
+    }
+
+    .w1190 {
+        width: 1190px;
+    }
+
+    .search_cart_wrap {
+        width: 930px;
+    }
+
+    .number {
+        margin-left: 115px;
+    }
+
+    .g-nav {
+        width: 1190px;
+    }
+
+    .m-menu {
+        width: 240px;
+    }
+
+    .m-menu-all {
+        width: 240px;
+    }
+
+    .m-all-sort {
+        width: 238px;
+    }
+
+    .m-menu-all h3 a {
+        width: 222px;
+    }
+
+    .m-all-sort {
+        width: 238px;
+    }
+
+    .m-all-sort dl.hover {
+        width: 238px;
+    }
+
+    .m-all-sort dt {
+        padding-left: 15px;
+    }
+
+    .m-all-sort dd a {
+        margin-left: 15px;
+    }
+
+    .nav-main li a {
+        padding: 0 32px;
+    }
+
+    .nav-main li.f-nav-home a {
+        padding: 0 31px 0 32px;
+    }
+
+    .nav-main li span.nav-new {
+        right: 16px;
+    }
+
+    .g-guide dl {
+        padding: 30px 59px 25px;
+    }
+
+    .g-service {
+        height: 100px;
+        border: 0 none;
+    }
+
+    .m-ser {
+        width: 237px;
+        border: 1px solid #ddd;
+        margin-right: -1px;
+        font-size: 14px;
+        color: #999;
+        margin-left: 0;
+    }
+
+    .u-ser1 {
+        display: block;
+    }
+
+    .g-special li {
+        width: 273px;
+        padding-left: 123px;
+    }
+
+    .g-special li em {
+        left: 68px;
+    }
+}
+
+body.f-width-change .w1190 {
+    width: 1190px;
+}
+
+body.f-width-change .search_cart_wrap {
+    width: 930px;
+}
+
+body.f-width-change .number {
+    margin-left: 115px;
+}
+
+body.f-width-change .g-nav {
+    width: 1190px;
+}
+
+body.f-width-change .m-menu {
+    width: 240px;
+}
+
+body.f-width-change .m-menu-all {
+    width: 240px;
+}
+
+body.f-width-change .m-all-sort {
+    width: 238px;
+}
+
+body.f-width-change .m-menu-all h3 a {
+    width: 222px;
+}
+
+body.f-width-change .m-all-sort {
+    width: 238px;
+}
+
+body.f-width-change .m-all-sort dl.hover {
+    width: 238px;
+}
+
+body.f-width-change .m-all-sort dt {
+    padding-left: 15px;
+}
+
+body.f-width-change .m-all-sort dd a {
+    margin-left: 15px;
+}
+
+body.f-width-change .nav-main li a {
+    padding: 0 32px;
+}
+
+body.f-width-change .nav-main li.f-nav-home a {
+    padding: 0 31px 0 32px;
+}
+
+body.f-width-change .nav-main li span.nav-new {
+    right: 16px;
+}
+
+body.f-width-change .g-guide dl {
+    padding: 30px 59px 25px;
+}
+
+body.f-width-change .g-service {
+    height: 100px;
+    border: 0 none;
+}
+
+body.f-width-change .m-ser {
+    width: 237px;
+    border: 1px solid #ddd;
+    margin-right: -1px;
+    font-size: 14px;
+    color: #999;
+    margin-left: 0;
+}
+
+body.f-width-change .u-ser1 {
+    display: block;
+}
+
+body.f-width-change .g-special li {
+    width: 273px;
+    padding-left: 123px;
+}
+
+body.f-width-change .g-special li em {
+    left: 68px;
+}

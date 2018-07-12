@@ -1,0 +1,75 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}晒单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/header.html' %}
+
+        <div class="member_con">
+            {% include '@memberModule/views/sidebar.html' %}
+            <div class="member_con_rl">
+                <div class="find-friends">
+                    <h1 class="record">晒单详情</h1>
+                    <table class="get record_con" id="record_con">
+                        <tbody>
+                            {% if info.is_pass == 2 %}
+                            <div class="application-for" style="margin-left: 30px;">
+                                <p>未审核通过原因：{{ info.note }}</p>
+                            </div>
+                            {% endif %}
+                            <tr>
+                                <td width="16%">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题：</td>
+                                <td width="57%" class="left">{{ info.title }}</td>
+                                <td width="18%">状态：</td>
+                                <td width="13%">{% if info.is_pass == 0 %}审核中{% elseif info.is_pass == 1 %}审核通过{% else %}审核未通过{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td width="16%">伙购感言：</td>
+                                <td width="57%" class="left">{{ info.content }}</td>
+                            </tr>
+                            <tr>
+                                <td width="16%">上传图片：</td>
+                                <td width="57%" class="left">
+                                    <div class="pic" id="post_AllPic">
+                                    {% for picture in pictures %}
+                                        <a href="javascript:gotoClick();" id="{{ picture.basename }}" name="{{ picture.basename }}" return false;" title="点击查看大图">
+                                            <img id="img20150911180516784" src="{{ picture.url }}" width="128px" height="128px"/>
+                                        </a>
+                                    {% endfor %}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 0;">
+                                <td><input id="edit" type="button" value="编辑晒单" name="modify" class="orangebut" onclick="javascript:location.href='/share/edit-{{ info.id }}.html';" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination" style="margin: 0px auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+</script>
+
+{% endblock %}

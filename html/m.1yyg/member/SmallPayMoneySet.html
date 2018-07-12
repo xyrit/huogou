@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>安全设置 - 1元云购触屏版</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/security.css" rel="stylesheet" type="text/css" />
+    <script src="../JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v11">
+    <!-- 栏目页面顶部 -->
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="SmallPayMoneyCheck.html" class="z-HReturn">
+                <s></s><b>返回</b></a>
+        </div>
+        <h2>小额免密设置</h2>
+        <div class="head-r">
+            <a href="index.html" class="z-Member"></a>
+        </div>
+    </header>
+    <section class="secrityBg">
+        <input name="hidOldMoney" type="hidden" id="hidOldMoney" />
+        <input name="hidSmallMoney" type="hidden" id="hidSmallMoney" value="0" />
+        <div class="login-protection small-money clearfix">
+            <cite class="gray9">请选择免密支付额度</cite>
+            <ul id="ul_smallmoney">
+                <li money="50" class="hover"><a href="javascript:;">≤ 50元/单笔<b class="member-icon"></b></a></li>
+                <li money="100"><a href="javascript:;">≤ 100元/单笔<b class="member-icon"></b></a></li>
+                <li money="200"><a href="javascript:;">≤ 200元/单笔<b class="member-icon"></b></a></li>
+                <li money="500"><a href="javascript:;">≤ 500元/单笔<b class="member-icon"></b></a></li>
+                <li money="0">≤
+                    <input id="txtCustomMoney" type="text" placeholder="自定义" maxlength="5" class="gray9" />
+                    <em>元/单笔</em>
+                    <b class="member-icon"></b>
+                </li>
+            </ul>
+            <span class="btn-margin"><a id="btnSubmit" href="javascript:;" class="orgBtn">保存</a></span>
+        </div>
+    </section>
+    <footer id="pageBottom_footer" class="footer">
+        <div class="u-ft-nav" id="fLoginInfo">
+            <span><a href="../index.html">首页</a><b></b></span>
+            <span><a href="../about.html">新手指南</a><b></b></span>
+            <span>
+                <a href="index.html" class="Member">云狗骗子</a>
+                <a href="../index.html" class="Exit">退出</a>
+            </span>
+        </div>
+        <p class="m-ftA">
+            <a href="http://m.1yyg.com/">触屏版</a>
+            <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+            <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+        </p>
+        <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    </footer>
+</div>
+<script>
+    $('#ul_smallmoney li').click(function(){
+        $(this).toggleClass('hover').siblings('li').removeClass('hover');
+    })
+</script>
+</body>
+</html>

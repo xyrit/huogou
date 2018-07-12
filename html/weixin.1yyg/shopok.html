@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>云购结果</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="CMBNETPAYMENT" content="China Merchants Bank" />
+    <link href="weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="mycart/CSS/newCartList.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<input name="hidShopID" type="hidden" id="hidShopID" value="151124103250282546" />
+<input name="hidActSource" type="hidden" id="hidActSource" />
+<input name="hidAppID" type="hidden" id="hidAppID" value="wxb305761c75b19f0c" />
+<input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="1448332370" />
+<input name="hidNonceStr" type="hidden" id="hidNonceStr" value="yR16vwBj76GJbx0Z" />
+<input name="hidSignature" type="hidden" id="hidSignature" value="40d93e790b78ddd45aecd2821f5d43724c244f32" />
+<div id="shopResultBox" class="wrapper">
+    <div class="g-pay-success marginB">
+
+        <!--交易失败-->
+        <div class="g-pay-success marginB">
+            <div class="g-pay-auto gray6 g-pay-newtips">
+                <i></i>交易失败！
+            </div>
+            <div class="m_btn fail_btn">
+                <a href="/index.do" class="orangeBtn fr">继续购物</a>
+            </div>
+        </div>
+        <!--交易失败-->
+
+        <!--付款loading-->
+        <div class="g-pay-auto gray9 new-pay">
+            <p>已成功提交支付</p>
+            <p class="wait">正在获取支付结果，请稍作等待...</p>
+            <div class="loading-progress">
+                <span class="loading-pgbar"><span class="loading-pging"></span></span>
+            </div>
+        </div>
+        <!--付款loading-->
+
+        <!--付款成功-->
+        <div class="g-pay-success marginB">
+            <div class="g-pay-auto gray6 g-pay-newtips">
+                <div class="z-pay-tips">
+                    <s></s>支付成功，请耐心等待揭晓结果！
+                    <span>成功支付<em>1</em>个商品！</span>
+                </div>
+            </div>
+            <div class="m_btn">
+                <a href="/member/goodsbuylist.do" class="whiteBtn fl gray6">查看云购记录</a>
+                <a href="/index.do" class="orangeBtn fr">继续购物</a>
+            </div>
+            <div class="pay-flag-tip success">
+                <h6 class="green">以下<span>1</span>件商品支付成功</h6>
+                <div class="goods-wrap">
+                    <ul class="goods-list">
+                        <li onclick="location.href='/product/1889784.do'">
+                            <span class="g-pic">
+                                <img src="http://mimg.1yyg.com/GoodsPic/pic-200-200/20150422140044438.jpg" alt="" width="35" height="35" />
+                            </span>
+                            <p>(第192云)中国农业银行传世之宝 〃金元宝〃 Au9999 200g</p>
+                            <p>
+                                <span>
+                                    <em class="orange">1</em>人次
+                                </span>支付成功
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer"><div class="share-btn-wrap"><a href="javascript:;" class="share-btn">分享好友求祝福</a></div></div>
+        <!--付款成功-->
+
+
+        <div class="weixin-mask" style="display: none;"></div>
+    </div>
+</div>
+<input id="hidPageType" type="hidden" value="-1" />
+<div class="footer clearfix" style="display:none;">
+    <ul>
+        <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+        <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+        <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+        <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+        <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+    </ul>
+</div>
+</body>
+</html>

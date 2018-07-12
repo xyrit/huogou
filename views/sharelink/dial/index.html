@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>转盘</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/fastclick.js"></script>
+
+	<!--调用-->
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/awardRotate.js"></script>
+	<script type="text/javascript" src="js/reg.js"></script>
+</head>
+	<script>
+	$(document).ready(function(){
+		var box=document.getElementById("winning-list"),can=true;
+			box.innerHTML+=box.innerHTML;
+			box.onmouseover=function(){can=false};
+			box.onmouseout=function(){can=true};
+			new function (){
+			 var stop=box.scrollTop%37==0&&!can;
+			 if(!stop)box.scrollTop==parseInt(box.scrollHeight/2)?box.scrollTop=0:box.scrollTop++;
+			 setTimeout(arguments.callee,box.scrollTop%37?37:0);
+			};
+
+		var rotateTimeOut = function (){
+			$('#rotate').rotate({
+				angle:0,
+				animateTo:2160,
+				duration:8000,
+				callback:function (){
+					alert('网络超时，请检查您的网络设置！');
+				}
+			});
+		};
+		var bRotate = false;
+		var rotateFn = function (awards, angles, txt){
+			bRotate = !bRotate;
+			$('#rotate').stopRotate();
+			$('#rotate').rotate({
+				angle:0,
+				animateTo:angles+1800,
+				duration:3000,
+				callback:function (){
+					//alert(txt);
+					$('#awards').text(txt);
+					$('.register').fadeIn();
+					$("html").css('overflow','hidden');
+					bRotate = !bRotate;
+				}
+			})
+		};
+
+		// var awards = ['1元买iPhone','1元买Mac Book','1元买iWatch'];
+		$('.pointer').click(function (){
+			if(bRotate)return;
+			var item = rnd(0,5);
+			switch (item) {
+				case 0:
+					rotateFn(0, 0, 'iPhone');
+					break;
+				case 1:
+					rotateFn(1, 60, '30元话费充值卡');
+					break;
+				case 2:
+					rotateFn(2, 120, 'Mac Book');
+					break;
+				case 3:
+					rotateFn(3, 180, '农业银行金元宝');
+					break;
+				case 4:
+					rotateFn(4, 240, 'iWatch');
+					break;
+				case 5:
+					rotateFn(5, 300, '佳能数码相机');
+					break;
+			}
+			// console.log(item);
+		});
+		
+		function rnd(n, m){
+			return Math.floor(Math.random()*(m-n+1)+n);
+		}
+
+		// $('.awards-tip-no').on('click',function(){
+		// 	$('.login,.register').fadeOut();
+		// })
+
+		// $('#download').on('click',function(){
+		// 	$('.awards-tip').fadeOut();
+		// 	$('.login').fadeIn();
+		// })
+
+		// $('#register-submit').on('click',function(){
+		// 	$('.register').fadeOut();
+		// 	$('#r-down').fadeIn();
+		// })
+
+		// $('.btn-register').on('click',function(){
+		// 	$('.awards-tip').fadeOut();
+		// 	$('.register').fadeIn();
+		// })
+
+		// $('#login-pass').on('click',function(){
+		// 	$(this).hasClass('show') ? $(this).removeClass('show').siblings('input').attr('type','password') : $(this).addClass('show').siblings('input').attr('type','text');
+		// })
+
+		// $('#r-down-no').on('click',function(){
+	 //    	$('#r-down').fadeOut();
+	 //    })
+
+		// $('.r-down-a').on('click',function(){
+	 //    	$('#wechat-con').fadeIn();
+	 //    	$('#r-down').fadeOut();
+	 //    })
+	 //    $('#wechat-no').on('click',function(){
+	 //    	$('#wechat-con').fadeOut();
+	 //    })
+
+		// ---------------累计参与----------------
+	    var arrCount = [];
+	    var oldCountLen = null;
+
+	    function countInit(){
+	        var strCounts = "";
+	        var arrComma = [];
+	        for (var i = 1, l = arrCount.length - 1; i < Math.floor(l / 3) + 1; i++) {
+	            arrComma.unshift(l - 3 * i);
+	        };
+
+	        for (var i = 0; i < arrCount.length; i++) {
+	            strCounts += "<li class='num'><aside>";
+	            for (var j = arrCount[i]; j >= 0; j--) {
+	                strCounts += "<em>" + j + "</em>";
+	            }
+	            strCounts += "</aside></li>";
+	            if (i == arrComma[0]) {
+	                strCounts +="<li class='nobor'>,</li>";
+	                arrComma.shift();
+	            }
+	        }
+
+	        $('#counts').html(strCounts).find('aside').each(function(){
+	            $(this).stop().animate({'bottom':($(this).find('em').size() - 1) * -14},2e3);
+	        });
+	    }
+
+	    function countUpdate(){
+	        $('#counts').find('aside').each(function(index){
+	            var old = $(this).find('em').eq(0).html();
+	            var newNum = arrCount[index] - 1;
+	            var strCounts = "";
+	            do{
+	                newNum++;
+	                if (newNum > 9) newNum = 0;
+	                strCounts += "<em>" + newNum + "</em>";
+	            }while(old != newNum)
+
+	            $(this).html(strCounts).css('bottom',0).stop().animate({'bottom':($(this).find('em').size() - 1) * -14},2e3);
+	        })
+	    }
+
+	    function count(){
+	        $.ajax({
+	            url : 'abc'+Math.floor(Math.random()*5+1)+'.txt', //请求地址现为测试txt文件
+	            success : function(data,status,xhr){
+	                arrCount = data.replace(/[^0-9]/ig,"").split("");
+	                if (arrCount.length > 0 && arrCount.length == oldCountLen) {
+	                    countUpdate();
+	                }else if(arrCount.length > 0){
+	                    countInit()
+	                }
+	                oldCountLen = arrCount.length;
+	                setTimeout(count, 5e3)
+	            }
+	        })
+	    }
+
+	    if ($('#counts').size() > 0) {
+	        count();
+	    }
+	    // ---------------累计参与----------------
+
+	    
+	})
+	</script>
+<body>
+	<img class="w100" src="img/extension/dial01.jpg">
+	<section class="dial">
+		<img class="w100" src="img/extension/dial02.jpg">
+		<div class="dial-box">
+			<img class="w100" id="rotate" alt="turntable" src="img/extension/dial04.png">
+			<img class="pointer" alt="pointer" src="img/extension/dial03.png">
+		</div>
+	</section>
+	
+	<section class="winning">
+		<img class="w100" src="img/extension/dial06.jpg">
+		<div>
+			<ul id="winning-list">
+				<li><em>188****0253</em><span>抽中</span><i>iPhone</i></li>
+				<li><em>188****3223</em><span>抽中</span><i>30元话费充值卡</i></li>
+				<li><em>188****3864</em><span>抽中</span><i>iPhone</i></li>
+				<li><em>154****3233</em><span>抽中</span><i>Mac Book</i></li>
+				<li><em>147****4331</em><span>抽中</span><i>佳能数码相机</i></li>
+				<li><em>188****6654</em><span>抽中</span><i>Mac Book</i></li>
+				<li><em>186****7842</em><span>抽中</span><i>iPhone</i></li>
+				<li><em>188****8842</em><span>抽中</span><i>农业银行金元宝</i></li>
+				<li><em>189****7532</em><span>抽中</span><i>30元话费充值卡</i></li>
+				<li><em>130****0806</em><span>抽中</span><i>Mac Book</i></li>
+				<li><em>135****0089</em><span>抽中</span><i>佳能数码相机</i></li>
+				<li><em>138****8099</em><span>抽中</span><i>农业银行金元宝</i></li>
+				<li><em>186****2099</em><span>抽中</span><i>Mac Book</i></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="rule">
+		<img class="w100" src="img/extension/dial05.jpg">
+		<img class="w100" src="img/extension/dial07.jpg">
+		<div class="rule-con">
+			<h3>活动时间：</h3>
+			<p>即日起生效，结束时间等待官方发布消息。</p>
+			<h3>活动细则：</h3>
+			<p>1、必须安装“伙购网APP”才能使用。</p>
+			<p>2、转盘抽到的是购买机会，并非100%获得。</p>
+			<h3>声明：</h3>
+			<p>本活动最终解释权归伙购网所有。</p>
+		</div>
+		<aside>Copyright © 2015 - 2020, 版权所有 huogou.com <br> 粤ICP备15087800号-1</aside>
+	</section>
+
+	<!-- <div class="awards-tip">
+		<div class="awards-tip-box">
+			<div class="awards-tip-title">中奖提示<i class="awards-tip-no">x</i></div>
+			<div class="awards-tip-nav">
+				<p>恭喜您获得“<span id="awards">iPhone6s</span>”的机会，请登伙购APP查看详情</p>
+				<a class="btn-red" id="download" href="javascript:;">立即登录伙购</a>
+				<a class="btn-register" href="javascript:;">没有账号？立即注册</a>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="login">
+		<div class="awards-tip-box">
+			<div class="awards-tip-title">登陆账号<i class="awards-tip-no">x</i></div>
+			
+			<div class="login-con">
+				<div class="login-input">
+					<div class="input-text">
+						<input type="text">
+					</div>
+					<div class="input-password">
+						<input type="password"><i id="login-pass"></i>
+					</div>
+				</div>
+				<input class="login-submit" type="submit" value="登 录">
+			</div>
+		</div>
+	</div> -->
+
+	<div class="register">
+		<div class="awards-tip-box">
+			<div class="awards-tip-title">恭喜中奖</div>
+			<div class="register-title">
+				<p>恭喜您获得1元买<span>“<em id="awards">iPhone6s</em>”</span>的机会<br>请注册后使用伙购APP查看详情</p>
+			</div>
+			<div class="login-con">
+				<h2 class="register-h2">注册账号</h2>
+				<div class="login-input">
+					<div class="input-phone">
+						<input placeholder="手机号码" type="text">
+					</div>
+					<div class="input-verify">
+						<input placeholder="短信验证码" type="text"><a class="act" href="">获取验证码</a>
+					</div>
+					<div class="input-password">
+						<input placeholder="8-20位数字+字母组合密码" type="password" >
+					</div>
+				</div>
+				<input id="register-submit" class="login-submit" type="submit" value="确 定">
+			</div>
+		</div>
+	</div>
+
+	<div id="r-down">
+		<section>
+			<div class="r-down-title">
+				<i id="r-down-no">x</i>
+				<h2>注册成功</h2>
+				<aside>赶快下载伙购APP，中大奖赢好礼</aside>
+			</div>
+			<div class="r-down-con">
+				<img src="img/extension/dial13.png">
+				<div class="r-down-counts">
+					已有<ul id="counts">
+						<li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li><li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li><li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li><li class="nobor">,</li><li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li><li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li><li class="num">
+							<aside>
+								<em>0</em>
+								<em>1</em>
+								<em>2</em>
+								<em>3</em>
+								<em>4</em>
+								<em>5</em>
+								<em>6</em>
+								<em>7</em>
+								<em>8</em>
+								<em>9</em>
+							</aside>
+						</li>
+					</ul>人中奖！
+				</div>
+			</div>
+			<a class="r-down-a" href="javascript:;">立即下载伙购APP</a>
+		</section>
+	</div>
+
+	<section id="wechat-con">
+		<div>
+			<b id="wechat-no">x</b>
+			<picture><img src="img/contact05.png"></picture>
+			<p>长按图片识别二维码关注</p>
+		</div>
+	</section>
+	<div class="popUp"></div>
+	<div id="dialog" class="mgp-dialog-alert" style="">
+		<div class="mgp-dialog-alert-title"></div>
+		<div class="mgp-dialog-alert-cont">请重新输入</div>
+		<div class="mgp-dialog-alert-close j_alert_button" d-tap="0" onclick="closePop()">确定</div>
+	</div>
+</body>
+</html>

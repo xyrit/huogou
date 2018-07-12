@@ -1,0 +1,29 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}邀请记录{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/invitelist.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <input type="hidden" id="hidPage" value="1">
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <div id="divInviteList" class="inviteDetails">
+        <dl>
+          <dt>
+            <span>用户名</span><span>时间</span><span>邀请编号</span><span>消费状态</span>
+          </dt>
+        </dl>
+      </div>
+      <div id="divLoading" class="loading" style="display: block;">
+        <b></b>正在加载
+      </div>
+    </div>
+  </div>
+{% endblock %}

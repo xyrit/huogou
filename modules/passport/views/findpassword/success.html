@@ -1,0 +1,50 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block keywords %}伙购网,夺宝,伙购官网,伙购网,伙购{% endblock %}
+{% block description %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}
+
+{% block title %}伙购网 - 欢乐伙购 惊喜无限!{% endblock %}
+
+
+{% block body %}
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return" href="{{ url(['/']) }}">返回首页</a>
+  </section>
+
+  <section class="binding_box padding">
+    <div class="binding-success padding">
+      <h1>恭喜您，密码设置成功 !</h1>
+      <a href="{{ url(['/passport/default/login']) }}" id="go-home">立即登录<i>(4秒)</i></a>
+    </div>
+  </section>
+
+  {% include '@passportModule/views/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(function() {
+
+      countDownSendCodeBtn();
+    });
+
+    function countDownSendCodeBtn() {
+      var obj = $("#go-home");
+      var sec = 4;
+      obj.attr('t',sec).html('立即登录<i>('+sec+'秒)</i>');
+      var j =setInterval(function(){
+        var t = parseInt(obj.attr("t")-1);
+        if (t <= 0) {
+          clearInterval(j);
+          window.location.href = obj.attr('href');
+        }else{
+          obj.attr('t',t).html('立即登录<i>('+t+'秒)</i>');
+        }
+      },1000);
+    }
+
+  </script>
+{% endblock %}
+

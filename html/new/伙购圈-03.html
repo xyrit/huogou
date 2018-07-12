@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>伙购圈</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/fly.js"></script>
+	<script src="js/requestAnimationFrame.js"></script>
+
+	<link rel="stylesheet" href="js/keditor/themes/default/default.css" />
+	<script type="text/javascript" src="js/keditor/kindeditor-min.js"></script>
+	<script type="text/javascript" src="js/keditor/lang/zh_CN.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+	<script>
+	$(document).ready(function(){
+		$('#qz-show').on('mouseenter',function(){
+			$(this).find('div').stop().slideDown();
+		}).on('mouseleave',function(){
+			$(this).find('div').stop().slideUp();
+		})
+
+		$('.hot-member').find('li').each(function(index){
+			if ((index + 1) % 3 == 0) {
+				$(this).css('marginRight',0);
+			}
+		})
+
+		//退出本圈子吗
+		$('.hg-circle-close').on('click',function(){
+			$('.hg-circle-fixed').fadeOut();
+		})
+
+
+		var showCard = null;
+		var hideCard = null;
+		var iLeft = null;
+		$('.show-card').on('mouseenter',function(){
+			var $This = $(this);
+			iLeft = ($('html').width() - $This.offset().left - 100) > 360 ? $This.offset().left + 100 : $This.offset().left - 394;
+			showCard = setTimeout(function(){
+				$('#member-infocard').css({'top':$This.offset().top + $This.height() / 2 - 80, 'left':iLeft, 'display':'block'})
+			},600)
+		}).on('mouseleave',function(){
+			clearTimeout(showCard);
+			hideCard = setTimeout(function(){
+				$('#member-infocard').css({'top':-300, 'left':-300, 'display':'none'})
+			},300)
+		})
+		$('#member-infocard').on('mouseenter',function(){
+			clearTimeout(hideCard);
+		}).on('mouseleave',function(){
+			hideCard = setTimeout(function(){
+				$('#member-infocard').css({'top':-300, 'left':-300, 'display':'none'})
+			},300)
+		})
+
+
+		var editor = KindEditor.create('#hg-neweditor', {
+			resizeType : 0,
+			allowPreviewEmoticons : true,
+			allowImageUpload : false,
+			items : ['emoticons','link','bold'],
+			themeType : 'hgreply',
+			pasteType : 1,
+			width : '897px',
+			height : '396px',
+			layout: '<div class="container"><div class="toolbararea"><input type="button" id="uploadButton" value="" /><div class="toolbar"></div></div><div class="edit"></div><div class="edit-info"><a href="javascript:;" id="edit-cancle">取消</a><a href="javascript:;" id="edit-submit" style="padding:0 10px">立即发送</a></div><div class="statusbar"></div></div>'
+		});
+
+		KindEditor.ready(function(K) {
+			
+			var uploadInit = 0;
+			$('.hg-neweditor-ipt').find('*').on('click',function(){
+				$('.hg-neweditor-ipt').hide();
+				$('.hg-neweditor-container').show();
+
+				if (!uploadInit) {
+					var uploadbutton = K.uploadbutton({
+						button : K('#uploadButton')[0],
+						fieldName : 'imgFile',
+						url : '../php/upload_json.php?dir=file',
+						afterUpload : function(data) {
+							if (data.error === 0) {
+								var url = K.formatUrl(data.url, 'absolute');
+								K('#url').val(url);
+							} else {
+								alert(data.message);
+							}
+						},
+						afterError : function(str) {
+							alert('自定义错误信息: ' + str);
+						}
+					});
+					uploadbutton.fileBox.change(function(e) {
+						uploadbutton.submit();
+					});
+
+					uploadInit = 1;
+				}
+			})
+
+			$('#edit-cancle').on('click',function(){
+				$('.hg-neweditor-ipt').show();
+				$('.hg-neweditor-container').hide();
+			})
+		});
+	})
+	</script>
+</head>
+<body>
+	<!--退出本圈子吗-->
+	<section class="hg-circle-fixed">
+		<div class="hg-circle-box">
+			<i class="hg-circle-close"></i>
+			<article>
+				<i><img src="img/g_circle05.png" alt=""></i>您确认退出本圈子吗？
+			</article>
+			<a href="javascript:;">取 消</a><a class="hg-circle-determine" href="javascript:;">确定</a>
+		</div>
+	</section>
+	<!--头部-->
+	<section class="log clear">
+		<article>
+			<div class="log_lf"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a><i>|</i><a id="mobile" href="javascript:;"><b></b><span>手机伙购</span><p><img src="img/pic04.jpg">下载手机端</p></a></div>
+			<ul class="log_rl">
+				<li>hi , 欢迎您来到伙购网！</li>
+				<li><a href="">登录</a></li>
+				<li><a href="">注册</a></li>
+				<li><i>|</i></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">我的一元乐购</a>
+					<div>
+						<a href="">云购记录</a>
+						<a href="">获得的商品</a>
+						<a href="">个人设置</a>
+					</div>
+				</li>
+				<li><a href="">充值</a></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">帮助中心</a>
+					<div class="help">
+						<a href="">新手指南</a>
+						<a href="">服务保障</a>
+						<a href="">商品配送</a>
+					</div>
+				</li>
+				<li class="service"><a href="">在线客服</a></li>
+			</ul>
+		</article>
+	</section>
+
+	<!--导航-->
+	<header>
+		<section class="clear">
+			<a class="logo" href=""></a>
+			<div class="add">
+				<img class="add_pic" src="img/pic05.gif">
+				<span>累计参与</span>
+				<ul>
+					<li class="num">5</li>
+					<li class="num">4</li>
+					<li class="nobor">,</li>
+					<li class="num">8</li>
+					<li class="num">3</li>
+					<li class="num">6</li>
+					<li class="nobor">,</li>
+					<li class="num">2</li>
+					<li class="num">6</li>
+					<li class="num">8</li>
+				</ul>
+				<span>人次</span>
+			</div>
+			<div class="search">
+				<div>
+					<input id="search_input" value="请输入要搜索的商品" type="text">
+					<span id="search_span">
+						<a href="">汽车</a>
+						<a href="">手机</a>
+					</span>
+				</div>
+				<input type="submit" value="">
+			</div>
+		</section>
+		<section class="clear">
+			<div class="sort">
+				<a class="sort_title" href="">全部商品分类</a>
+				<div>
+					<dl class="sort_list">
+						<dt><a href="">手机数码</a></dt>
+						<dd>
+							<a href="">手机</a><a href="">数码</a><a href="">影音</a><a href="">苹果手机</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_b">
+						<dt><a href="">电脑办公</a></dt>
+						<dd>
+							<a href="">笔记本</a><a href="">平板电脑</a><a href="">外设</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_c">
+						<dt><a href="">家电汽车</a></dt>
+						<dd>
+							<a href="">大家电</a><a href="">厨房</a><a href="">家电汽车</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_d">
+						<dt><a href="">化妆个护</a></dt>
+						<dd>
+							<a href="">面部护理</a><a href="">美发护发</a><a href="">香水</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_e">
+						<dt><a href="">钟表首饰</a></dt>
+						<dd>
+							<a href="">珠宝首饰</a><a href="">金条银条</a><a href="">手表</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_f">
+						<dt><a href="">食品饮料</a><i> / </i><a href="">其他</a></dt>
+						<dd>
+							<a href="">美食</a><a href="">粮油</a><a href="">酒类</a><a href="">饮料</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="act"><a href="">首页</a></li>
+				<li><a href="">最新揭晓</a></li>
+				<li><a href="">限购专区</a></li>
+				<li><a href="">晒单分享</a></li>
+				<li><a href="">乐购圈</a></li>
+				<li class="invite"><a href="">邀请有礼</a></li>
+			</ul>
+			<a class="shop" href="">购物车（0）</a>
+		</section>
+	</header>
+
+	<!--内容区-->
+	<section id="hgq-banner">
+		<div class="hgq-myinfo">
+			<figure>
+				<picture>
+					<img src="img/pic89.jpg">
+					<i></i>
+				</picture>
+				<figcaption>
+					<h2>伙购真棒伙购真棒</h2>
+					<span><img src="img/xl_v1.png">伙购先锋</span>
+				</figcaption>
+			</figure>
+			<ul>
+				<li>
+					<a href="">
+						<span>2</span>
+						<p>话题</p>
+					</a>
+				</li>
+				<li class="bd">
+					<a href="">
+						<span>4</span>
+						<p>回复</p>
+					</a>
+				</li>
+				<li id="qz-show">
+					<a href="">
+						<span>5</span>
+						<p>加入圈子</p>
+					</a>
+					<div class="hgq-myinfo-qz">
+						<a href="" class="hgq-myinfo-qz01">意见反馈</a>
+						<a href="" class="hgq-myinfo-qz02">伙购宝典</a>
+						<a href="" class="hgq-myinfo-qz03">活动专区</a>
+						<a href="" class="hgq-myinfo-qz04">新手交流</a>
+						<a href="" class="hgq-myinfo-qz05">伙购杂谈</a>
+					</div>
+				</li>
+			</ul>
+			<div class="hgq-myinfo-qz">
+				<a href="" class="hgq-myinfo-qz01">意见反馈</a>
+				<a href="" class="hgq-myinfo-qz02">伙购宝典</a>
+				<a href="" class="hgq-myinfo-qz03">活动专区</a>
+				<a href="" class="hgq-myinfo-qz04">新手交流</a>
+				<a href="" class="hgq-myinfo-qz05">伙购杂谈</a>
+			</div>
+		</div>
+	</section>
+	
+	<section class="hgq-content globe-m">
+		<div class="hg-circle">
+			<div class="hg-circle-title">
+				<div class="left">
+					<picture>
+						<img src="img/g_circle01.png" alt="">
+					</picture>
+					<summary>
+						<h2>意见反馈<a href="">申请加入</a></h2>
+						<aside>成员：4760  话题：2094  精华：2  创建时间：2012-09-13 12:30</aside>
+						<p>如果您对1元云购有什么意见或建议，请您在这儿告诉我们，帮助我们一起改进，一起进步，还有机会获得礼物哦。 </p>
+					</summary>
+				</div>
+				<div class="right">
+					<i class="floor"></i>
+					<picture><img src="img/g_circle02.png" alt=""></picture>
+					<a href="">1元伙购</a>
+					<aside><b><img src="img/g_circle03.png" alt=""></b>伙购官方</aside>
+				</div>
+			</div>
+
+			<div class="hg-notice">
+				<h2>圈子公告：</h2>
+				<p>暂无</p>
+			</div>
+
+			<div class="hg-neweditor-wrap">
+				<div class="hg-neweditor-ipt">
+					<input type="text" value="点击展开"><a href="javascript:;">发表话题</a>
+				</div>
+				<div class="hg-neweditor-container">
+					<textarea name="" id="hg-neweditor"></textarea>
+				</div>
+			</div>
+
+			<ul class="hg-con-title clear">
+				<li class="act"><a href="">话 题</a></li>
+				<li><a href="">精 华</a></li>
+			</ul>
+			<ul class="hg-con-list">
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">
+							<img src="img/g_circle06.jpg" alt="">
+						</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+				<li>
+					<summary>
+						<picture><img src="img/find02.jpg" alt=""></picture>
+						<a href="">哥还想搞个苹果</a>
+						<p><i><img src="img/xl_v1.png" alt=""></i>伙购先锋</p>
+					</summary>
+					<div class="hg-con-list-a">
+						<i class="arrow"></i>
+						<h3>
+							<a href="">不想在多说！30号前要是没看到货！起诉！</a><span>10月22日 07:33</span>
+						</h3>
+						<div class="hg-con-list-a-nr">我10号中的商品：订单号1435743 到现在没有发货！不知道主动联系了你们客服多少次，结果得到的永远是：发货时间都是１０个工作日（周末 法定节假日不计算 在内）　，这个时间内都是我们公司物流部安排发货。结果到现在几天。想问问你们是不是一个星期上2天班的啊？10个工作日就是用手指头算也知道现在几天了！不想…</div>
+						<article>
+							<p>最后回复：<a href="">让我中手机啊翟大宝</a>25分钟前</p>
+							<aside>
+								<span class="reply">回复(57)</span> <em>/</em> <span class="like">人气(1818)</span>
+							</aside>
+						</article>	
+					</div>
+				</li>
+			</ul>
+			<div class="pagination">
+				<a href="" class="prev">上一页</a><a class="act" href=""><b></b>1</a><a href=""><b></b>2</a><a href=""><b></b>3</a><a href=""><b></b>4</a><a href=""><b></b>5</a><i>...</i><a href=""><b></b>10</a><a href="" class="next">下一页</a>
+			</div>
+		</div>
+
+		<div class="hgq-content-right">
+			<div class="hot-member clear">
+				<div class="hot-title">
+					<h2>最新加入</h2>
+					<a href="">全部 ></a>
+				</div>
+				<ul>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/member02.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic27.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/member02.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic27.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/member02.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic27.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/member02.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+					<li class="show-card"><a href="">
+						<picture>
+							<img src="img/pic27.jpg">
+							<i></i>
+						</picture>
+						<p>无意间的</p>
+					</a></li>
+				</ul>
+			</div>
+			<div class="hot-theme clear" style="border:0;">
+				<div class="hot-title">
+					<h2>圈子动态</h2>
+					<a href="">全部 ></a>
+				</div>
+				<ul>
+					<li>
+						<picture class="show-card">
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<a>亲们~~~回复我的帖。。。</a>
+						<p>活动专区 | 5003条回复</p>
+					</li>
+					<li>
+						<picture class="show-card">
+							<img src="img/pic98.jpg">
+							<i></i>
+						</picture>
+						<a>宝马奥迪即将揭晓，最终</a>
+						<p>活动专区 | 5003条回复</p>
+					</li>
+					<li>
+						<picture class="show-card">
+							<img src="img/pic27.jpg">
+							<i></i>
+						</picture>
+						<a>亲们~~~回复我的帖。。。</a>
+						<p>活动专区 | 5003条回复</p>
+					</li>
+					<li>
+						<picture class="show-card">
+							<img src="img/member02.jpg">
+							<i></i>
+						</picture>
+						<a>宝马奥迪即将揭晓，最终</a>
+						<p>活动专区 | 5003条回复</p>
+					</li>
+					<li>
+						<picture class="show-card">
+							<img src="img/pic89.jpg">
+							<i></i>
+						</picture>
+						<a>亲们~~~回复我的帖。。。</a>
+						<p>活动专区 | 5003条回复</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<figure id="member-infocard">
+		<em><em></em></em>
+		<picture>
+			<img src="img/pic89.jpg">
+			<i></i>
+		</picture>
+		<figcaption>
+			<h2>快让我中奖啊</h2>
+			<span class="member-infocard-level">伙购先锋</span> <span class="member-infocard-location">甘肃省天水市</span>
+			<p>这家伙很懒，什么都没留下。</p>
+			<a href="" class="add-friend">+ 加好友</a>
+			<a href="" class="send-message">发私信</a>
+		</figcaption>
+	</figure>
+		
+	<footer>
+		<section class="footer_a">
+			<div class="footer_a_list">
+				<dl>
+					<dt>新手指南</dt>
+					<dd><a href="">常见问题</a></dd>
+					<dd><a href="">会员福分经验值</a></dd>
+				</dl>
+				<dl>
+					<dt>权益保障</dt>
+					<dd><a href="">伙购保障体系</a></dd>
+					<dd><a href="">安全支付</a></dd>
+					<dd><a href="">投诉建议</a></dd>
+				</dl>
+				<dl>
+					<dt>商品配送</dt>
+					<dd><a href="">配送费用</a></dd>
+					<dd><a href="">商品验货与签收</a></dd>
+					<dd><a href="">长时间未收到商品</a></dd>
+				</dl>
+				<dl>
+					<dt>关于伙购</dt>
+					<dd><a href="">伙购介绍</a></dd>
+					<dd><a href="">云购公益</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				<dl>
+					<dt>伙购合作</dt>
+					<dd><a href="">商务合作</a></dd>
+					<dd><a href="">友情链接</a></dd>
+					<dd><a href="">官方QQ群交流</a></dd>
+				</dl>
+			</div>
+			<div class="service">
+				<summary>
+					<h3>服务热线</h3>
+					<p>(7*24小时为您服务)</p>
+				</summary>
+				<aside>400-000-5000</aside>
+				<a class="service_qq" href="">在线咨询</a>
+			</div>
+		</section>
+
+		<section class="footer_b">
+			<div class="wrap clear">
+				<article class="footer_b_01">
+					<summary>
+						<p>下载手机客户端</p>
+						<a href="">立即下载</a>
+					</summary>
+				</article>
+				<article class="footer_b_02">
+				</article>
+				<article class="footer_b_03">
+					<summary>
+						<p>服务器时间</p>
+						<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+					</summary>
+				</article>
+				<article class="footer_b_04">
+					<summary>
+						<p>伙购公益基金</p>
+						<span>￥180600.08</span>
+					</summary>
+				</article>
+			</div>
+		</section>
+
+		<section class="footer_c">
+			<div class="wrap clear">
+				<ul>
+					<li class="footer_c_01">
+						<h3>100%公平公正</h3>
+						<aside>参与过程公开透明，用户可随时查看</aside>
+					</li>
+					<li class="footer_c_02">
+						<h3>100%正品保证</h3>
+						<aside>精心挑选优质产品，100%品牌正品</aside>
+					</li>
+					<li class="footer_c_03">
+						<h3>全国免运费</h3>
+						<aside>全场商品全国包邮（港澳台地区除外）</aside>
+					</li>
+					<li class="footer_c_04">
+						<h3>100%权益保障</h3>
+						<aside>多重保障，让用户无忧伙购</aside>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="footer_d">
+			<div class="wrap clear">
+				<article>
+					<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+				</article>
+				<aside>Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备082120500号</aside>
+				<summary>
+					<a href=""><img src="img/pic51.jpg"></a><a href=""><img src="img/pic52.jpg"></a><a href=""><img src="img/pic53.jpg"></a><a href=""><img src="img/pic54.jpg"></a>
+				</summary>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

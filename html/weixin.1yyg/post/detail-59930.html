@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>
+        晒单详情
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="../weixin/CSS/single.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <input name="userState" type="hidden" id="userState" value="1" />
+    <input name="hidPostID" type="hidden" id="hidPostID" value="59930" />
+    <input name="codeID" type="hidden" id="codeID" value="351887" />
+    <div class="wrapper">
+        <div class="singleDetail marginB">
+            <div class="sing_info">
+                <a href="http://weixin.1yyg.com/userpage/1007224470">
+                    <img src="../UserFace/160/20150916102900501.jpg" />
+                </a>
+                <p class="gray9">
+                    <a href="http://weixin.1yyg.com/userpage/1007224470" class="blue">大元宝的思密达</a> 本云参与：
+                    <em class="orange">100</em>人次
+                    <span>获得的商品：(第641云) 小米（MIUI）7.9英寸平板电脑 16GB 白色</span>
+                </p>
+                <cite>奖励福分<em>400</em></cite>
+                <s>
+                    <i></i>
+                </s>
+            </div>
+            <dl>
+                <dt class="gray6">
+                    又来个小米平板，
+                </dt>
+                <dd>
+                    03月04日 17:22
+                </dd>
+                <dd>
+                    <p class="gray9">
+                        这也太支持国产了，中了好几个小米的产品了，平板很薄，红包太多啦，不要红包啦，多给点福分吧，看看福分能不能带来好运，让我在中一个小米note。
+                        下个目标就是你啦，进攻，必须拿下。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+                </dd>
+                <dd>
+                    <p>
+                        <img src2="../UserPost/big/20150304171938558.jpg" src="../weixin/images/loading.gif" border="0" alt="" />
+                    </p>
+                    <p>
+                        <img src2="../UserPost/big/20150304171938558.jpg" src="../weixin/images/loading.gif" border="0" alt="" />
+                    </p>
+                    <p>
+                        <img src2="../UserPost/big/20150304171938558.jpg" src="../weixin/images/loading.gif" border="0" alt="" />
+                    </p>
+                    <p>
+                        <img src2="../UserPost/big/20150304171938558.jpg" src="../weixin/images/loading.gif" border="0" alt="" />
+                    </p>
+                    <p>
+                        <img src2="../UserPost/big/20150304171938558.jpg" src="../weixin/images/loading.gif" border="0" alt="" />
+                    </p>
+                </dd>
+            </dl>
+            <div class="comment">
+                <ul id="replyList"></ul>
+            </div>
+            <a href="CommentList-59930.html" class="lookAll gray6" style="display:none;">查看所有<em class="orange">0</em>条评论</a>
+        </div>
+        <div class="s_comments" style="display:none;">
+            <textarea id="comment">说两句吧！</textarea>
+            <span id="p_size">0/150</span>
+            <p>
+                <a href="javascript:;" id="a_cancel" class="cancelBtn fl" title="取消">取消</a>
+                <a id="a_sendok" href="javascript:;" class="orangeBtn fr" title="确定发表">确定发表</a>
+            </p>
+        </div>
+        <div class="saysome">
+            <a href="javascript:;" id="tocomment">
+                <s></s>我要评论</a>
+        </div>
+        <input id="hidPageType" type="hidden" value="-1" />
+        <div class="footer" style="display: none;">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="../member/index.html" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+//    点击我要评论 列表页隐藏 弹出输入发表窗口 我要评论按钮隐藏
+    $('.saysome').click(function(){
+        $(this).siblings('.singleDetail').hide();
+        $(this).hide();
+        $(this).siblings('.s_comments').show();
+    })
+
+//获得和失去输入框焦点默认文字消失 颜色改变
+    var areaTxt = document.getElementById('comment');
+    areaTxt.onfocus = function(){
+        if(areaTxt.value == '说两句吧！'){
+            areaTxt.value = '';
+            areaTxt.style.color = '#666';
+        }
+    }
+    areaTxt.onblur = function(){
+        if(areaTxt.value == ''){
+            areaTxt.value = '说两句吧！';
+            areaTxt.style.color = '#ccc';
+        }
+    }
+//    点击取消返回列表页
+    $('#a_cancel').click(function(){
+        $(this).siblings('.singleDetail').hide();
+        $('.singleDetail').show();
+        $('.saysome').show();
+    })
+</script>
+</body>
+</html>

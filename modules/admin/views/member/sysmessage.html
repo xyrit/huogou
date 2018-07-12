@@ -1,0 +1,115 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">佣金提现</strong></div>
+        </div>
+
+        <div class="am-g">
+            {{ html.beginForm('', 'get', {}) | raw }}
+            <div class="am-u-sm-12 am-u-md-6">
+                <div class="am-form-group">
+                    <div class="am-u-sm-2">
+                        操作时间：
+                    </div>
+                    <div class="am-u-sm-5">
+                        <input type="text" class="am-form-field" id="start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+                    </div>
+                    <div class="am-u-sm-5">
+                        <input type="text" class="am-form-field" id="end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" name="account" class="am-form-field" placeholder="请输入手机号/邮箱" value="{{ condition.account }}">
+          <span class="am-input-group-btn">
+              <button class="am-btn am-btn-default" type="submit">搜索</button>
+          </span>
+                </div>
+            </div>
+            {{ html.endForm() | raw }}
+        </div>
+
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>会员</th>
+                            <th class="am-hide-sm-only">内容</th>
+                            <th class="am-hide-sm-only">时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list.list %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.to_userid.phone }}<br />{{ item.to_userid.email }}</td>
+                                <td class="am-hide-sm-only">{{ item.message }}</td>
+                                <td class="am-hide-sm-only">{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <div class="am-fr">
+                            <div class="am-cf">
+                                <p class="am-fl">共 {{ list.pagination.totalCount }} 条记录</p>
+
+                                <div class="am-fr">
+                                    {{ use('/app/widgets/BackendLinkPager') }}
+                                    {{ backend_link_pager_widget({'pagination': list.pagination}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+    <script>
+        $('#status').selected({
+            btnWidth: '100px',
+        });
+        laydate({
+            elem: '#start',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+
+        laydate({
+            elem: '#end',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+    </script>
+{% endblock %}
+

@@ -1,0 +1,167 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}{{ topicDetail.subject }}_{{ app.name }}{% endblock %}
+
+{% block body %}
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+
+    {% include '@app/modules/group/views/groupheader.html' %}
+
+    <section class="hgq-content globe-m">
+        <div class="hg-circle">
+            <div class="hg-circle-title">
+                <div class="left">
+                    <picture class="min">
+                        <img src="{{ app.params.skinUrl }}/img/finda{{ groupDetail.id }}.png" alt="">
+                    </picture>
+                    <summary>
+                        <h2>{{ groupDetail.name }}
+                            {% if(app.user.id) %}
+                                {% if (isJoin.id != '') %}
+                                    <span class="qz-join"><em>已加入</em><i>|</i><a href="" class="quite group-quit"  data-id="{{ groupDetail.id }}">退出</a></span>
+                                {% else %}
+                                    {% if(groupDetail.group_closed == '0') %}
+                                        <a href="javascript:;" class="group-join" data-id="{{ groupDetail.id }}">申请加入</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        </h2>
+                        <aside>成员：{{ groupDetail.user_count }} &nbsp;&nbsp;&nbsp; 话题：{{ groupDetail.topic_count }} &nbsp;&nbsp;&nbsp; 精华：{{ groupDetail.digest_count }} &nbsp;&nbsp;&nbsp; 创建时间：{{ groupDetail.created_at }}</aside>
+                    </summary>
+                </div>
+                <a href="{{ url('default/view', {'id':groupDetail.id}) }}" class="qz-back">&lt;&lt; 返回圈子</a>
+            </div>
+            <div class="hg-article-wrap">
+                <figure class="hg-article-info">
+                    <picture>
+                        <a href="{{ url('/user/default/index', {'id':topicDetail.user_id.home_id}) }}" class="show-card"><img src="{{ avatar }}"></a>
+                    </picture>
+                    <figcaption>
+                        <h1>{{ topicDetail.subject }}</h1>
+                        {% if(topicDetail.is_top == 1) %}<img src="{{ app.params.skinUrl }}/img/o_pic32.png">{% endif %}
+                        {% if(topicDetail.is_digest) %}<img src="{{ app.params.skinUrl }}/img/o_pic30.png">{% endif %}
+                        {% if(img) %}<img src="{{ app.params.skinUrl }}/img/o_pic31.png">{% endif %}
+                        <div><a href="{{ url('/user/default/index', {'id':topicDetail.user_id.home_id}) }}" class="name show-card" target="_blank">{{ topicDetail.user_id.username }}</a> <span class="level"><img src="{{ app.params.skinUrl }}/img/{{ topicDetail.user_id.level.pic }}">{{ topicDetail.user_id.level.name }}</span> <span class="date">{{ topicDetail.created_at }}　人气({{ topicDetail.view_count }})</span></div>
+                    </figcaption>
+                </figure>
+                <article class="hg-article-content clearfix">
+                    {% autoescape true %}
+                        {{ topicMessage|replace({'/grouppic/org': '/grouppic/big'})|raw }}
+                    {% endautoescape %}
+                </article>
+                <div class="hg-article-aside">
+                    <span class="reply-count">共<i>{{ replyMessage.pagination.totalCount }}</i>条回复</span>
+                    <a href="javascript:;" class="bottom_reply">回复</a>
+                </div>
+                <ul class="reply-list">
+                    {% for key , item in comment %}
+                        <li>
+                            <picture>
+                                <a href="{{ url('/user/default/index', {'id':item.username.home_id}) }}" class="show-card"><img src="{{ item.user_avatar }}"></a>
+                            </picture>
+                            <div>
+                                <a href="{{ url('/user/default/index', {'id':item.username.home_id}) }}">{{ item.username.username }}</a>{% if(item.reply_floor != 0) %} 对 {{ item.reply_floor }}楼 说：{% endif %}
+                                <p>{% autoescape true %}
+                                        {{ item.message|raw }}
+                                    {% endautoescape %}
+                                    <span>{% if(item.created_at == '0分钟前') %}刚刚{% else %}{{ item.created_at }}{% endif %}</span>
+                                </p>
+                            </div>
+                            <span class="v_floor"><em>{{ replyMessage.floor - (key) }}</em>楼</span>
+                            {% if(item.user_id == app.user.id) %}
+                                <a href="javascript:;" data-id="{{ item.id }}" class="del-comment">删除</a>
+                            {% else %}
+                                <a href="javascript:;" class="reply" floor="{{ item.floor }}" data-id="{{ item.username.home_id }}">回复</a>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {{ use('/app/widgets/LinkPager') }}
+            {{ link_pager_widget({pagination: replyMessage.pagination}) }}
+
+            <div id="reply-editor" class="fl_hjr_state">
+                <picture>
+                    <img src="{{ userAvatar }}">
+                </picture>
+                {% if app.user.isGuest %}
+                <article>
+                    <i></i>
+                    请您<a href="javascript:;" onclick="showLoginForm()">登录</a>或<a href="{{ url(['/passport/default/register']) }}">注册</a>后再评论
+                </article>
+                {% else %}
+                    <div class="editor-wrap">
+                        {% if (groupDetail.comment_closed == 0) %}
+                                <div id="floor"></div>
+                                <textarea id="editor" name="content" ></textarea>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="hgq-content-right">
+            <div class="hot-member clear">
+                <div class="hot-title">
+                    <h2>最新加入</h2>
+                </div>
+                <ul class="newJoin">
+                </ul>
+            </div>
+            <div class="hot-theme Dynamic clear" style="border:0;">
+                <div class="hot-title">
+                    <h2>圈子动态</h2>
+                </div>
+                <ul class="newTopic">
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    {% include '@app/views/footer.html' %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/group.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/group_new.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/keditor/kindeditor.js" ></script>
+    <script>
+        var editor = KindEditor.create('#editor', {
+            resizeType : 0,
+            allowPreviewEmoticons : true,
+            allowImageUpload : false,
+            items : ['emoticons'],
+            themeType : 'simple',
+            pasteType : 1,
+            width : '800px',
+            height : '130px',
+            afterChange : function(){
+                var textNum = this.count('text');
+                if (textNum > 150) {
+                    $('#edit-submit').removeClass('org').addClass('dis');
+                    KindEditor('#edit-count').html('<span>已超过' + (textNum - 150) + '个字了，请适当删除部分内容</span>');
+                }else{
+                    if(textNum == ""){
+                        $('#edit-submit').removeClass('org').addClass('dis');
+                    }else{
+                        $('#edit-submit').removeClass('dis').addClass('org');
+                    }
+                    KindEditor('#edit-count').html('<span>' + this.count('text') + '</span>/150');
+                }
+            },
+            layout: '<div class="container"><i><em></em></i><div class="edit"></div><div class="toolbar"></div><div class="edit-info"><div id="edit-count">0/150</div><a href="javascript:;" id="edit-submit" style="padding:0 10px" onclick="commitTopic({{topicDetail.id}})">立即发送</a></div><div class="statusbar"></div></div>'
+        });
+
+        $(function(){
+            var groupid = {{ groupDetail.id }};
+            newJoin(groupid);
+            groupNew(groupid);
+        })
+    </script>
+{% endblock %}

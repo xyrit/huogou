@@ -1,0 +1,10 @@
+CREATE TABLE `brands` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` VARCHAR(255) NOT NULL COMMENT '品牌名称',
+  `alias` VARCHAR(255) NULL COMMENT '品牌别名',
+  `url` VARCHAR(255) NULL COMMENT '品牌网址',
+  `intro` TEXT NULL COMMENT '品牌介绍',
+  `create_name` VARCHAR(20) NOT NULL COMMENT '创建人',
+  `created_at` INT(10) UNSIGNED NOT NULL
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='品牌表';

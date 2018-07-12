@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>计算详情 - 滴滴夺宝</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="css/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="css/security.css" rel="stylesheet" type="text/css" />
+    <link href="css/lottery.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body style="background-color: #f0f0f0;">
+<div>
+    <div class="wrapper marginB" style="background-color: #f0f0f0;">
+        <div class="w" style="background-color: #f0f0f0;">
+            <div class="" style=" border-radius: 2px; background-color: #ef2828; color: #fff; padding: 10px 20px;">
+                <h3 style="font-size: 18px; line-height: 30px;">计算结果</h3>
+                <p style="color: #fff; line-height: 20px;">[ 时间排列值之和 ÷ 商品所需人次 ] 取余数+10000001</p>
+            </div>
+        </div>
+        <div class="w b1">
+            <p>截止该商品最后购买时间（<span class="endTime"></span>）</p>
+            <p>全站商品最后100条购买时间排列值之和</p>
+            <p style="overflow: hidden;">
+                <span class="orange fl">=<span class="result"></span></span>
+                <a class="jisuan_more fr" href="javascript:;">
+                    <span>收起</span>
+                    <cite class="cBtns up"><b></b></cite>
+                </a>
+            </p>
+        </div>
+
+        <div>
+            <div class="calCon clearfix">
+                <dl class="dl1">
+                    <dt>
+                        <span>夺宝时间</span>
+                        <span></span>
+                        <span>转换数据</span>
+                        <span>用户账户</span>
+                    </dt>
+                </dl>
+                <dl id="dl_nginner" class="dl2">
+                </dl>
+            </div>
+            <div class="w">
+                <p>排列值之和 %<span class="price"></span>（该商品所需人次）的余数</p>
+                <p style="color: #ef2828">=<span class="remainder"></span></p>
+            </div>
+        </div>
+        <div class="w" style="margin-top: 10px;">
+            <p>计算结果</p>
+            <p><span  class="remainder"></span>+10000001<apan style="color: #ef2828;font-weight: bold;">=<span class="lucky_code"></span></apan></p>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+        var neednum;
+        var apiBaseUrl = 'http://api.'+getHost();
+        $('.jisuan_more').children('span').text('展开');
+        $('.jisuan_more').children('cite').toggleClass('up');
+        $('.calCon').hide();
+        $('.jisuan_more').click(function(){
+            $(this).children('cite').toggleClass('up');
+            if(!$(this).children('cite').hasClass('up')){
+                $(this).children('span').text('展开');
+                $('.calCon').hide();
+            }else{
+                $(this).children('span').text('收起');
+                $('.calCon').show();
+            }
+        })
+        $.getJSON(apiBaseUrl+"/period/info?id="+getUrlParam('pid')+"&callback=?",function(data){
+            if (data.periodInfo) {
+                neednum = data.periodInfo.price.split('.')[0];
+                $(".endTime").text(data.periodInfo.end_time);
+                $(".price").text(neednum);
+                $.getJSON(apiBaseUrl+"/period/compute?pid="+getUrlParam('pid')+"&pno="+getUrlParam('pnum')+"&callback=?",function(data){
+                    if (data.total > 10000000 && data.list.length > 0) {
+                        $.each(data.list,function(i,v){
+                            var time = v.buy_time.split(" ");
+                            var hList = "<dd>";
+                            hList += "<span>"+time[0]+"</span>";
+                            hList += "<span>"+time[1]+"</span>";
+                            hList += "<span><i></i>"+v.data+"</span>";
+                            hList += "<span>"+v.username+"</span>";
+                            hList += "</dd>";
+                            $("#dl_nginner").append(hList);
+                        })
+                        var remainder = data.total%neednum;
+                        $(".result").text(data.total);
+                        $(".remainder").text(remainder);
+                        $(".lucky_code").text(parseInt(remainder+10000001));
+                    };
+                })
+            };
+        })
+    })
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
+    function getHost(url) {
+        var host = "null";
+        if (typeof url == "undefined"
+                || null == url)
+            url = window.location.href;
+        var regex = /.*\:\/\/([^\/|:]*).*/;
+        var match = url.match(regex);
+        if (typeof match != "undefined"
+                && null != match) {
+            host = match[1];
+        }
+        if (typeof host != "undefined"
+                && null != host) {
+            var strAry = host.split(".");
+            if (strAry.length > 1) {
+                host = strAry[strAry.length - 2] + "." + strAry[strAry.length - 1];
+            }
+        }
+        return host;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}购物车{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/cartList.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/cart.js?v=160216" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div id="loadingPicBlock">
+    <input name="hidUserID" type="hidden" id="hidUserID" value="-1" />
+    <div id="divDownApp" class="app-icon-wrapper divDownApp2"  style="display: none; position: inherit; bottom: auto;">
+      <div class="app-icon"  onclick="javascript:location.href='http://www.{{constant("DOMAIN")}}/app/down'">
+      <a href="javascript:;" class="close-icon"><i class="set-icon"></i></a>
+      <a class="info-icon">
+        <i class="set-icon"></i>
+        <div class="info">
+          <h6>下载伙购APP</h6>
+          <p>快速开奖，公平公正，签到即送福利。</p>
+        </div>
+      </a>
+      <a id="downLink" href="http://www.{{constant('DOMAIN')}}/app/down" target="_blank" class="down-icon">立即下载</a>
+    </div>
+  </div>
+
+
+<div class="wrapper">
+      <div class="g-Cart-list">
+        <ul id="cartBody">
+
+        </ul>
+        <div id="divNone" class="empty" style="display: none;">
+          <s></s> 购物车为空
+          <p>您当前购物车为空，赶紧去伙购吧</p>
+          <a href="/" class="orangeBtn" >去伙购</a>
+        </div>
+      </div>
+      <div id="divBtmMoney" class="g-Total-bt">
+
+      </div>
+
+
+      {% include '@mobileModule/views/footer.html' %}
+    </div>
+  </div>
+{% endblock %}

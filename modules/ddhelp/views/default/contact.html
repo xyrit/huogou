@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>联系我们_滴滴夺宝</title>
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/jquery.fullPage.css">
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/style.css">
+    <link href="/favicon_dd.ico" type="image/x-icon" rel="shortcut icon">
+<script src="{{ app.params.skinUrl }}/dddb/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+  })
+</script>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+<body>
+<div class="fixtop"><div class="main">
+    <a class="logo" href="{{ url(['/']) }}"><img src="{{ app.params.skinUrl }}/dddb/images/logo.png" /></a>
+    <div class="rignav">
+        <a  href="{{ url(['/']) }}">下载APP</a>
+        <a  href="{{ url(['/ddhelp/default/wechat'])}}">关注微信</a>
+        <a  href="{{ url(['/ddhelp/default/about']) }}">关于我们</a>
+        <a class="active" href="{{ url(['/ddhelp/default/contact'])}}">联系我们</a>
+    </div>
+    <div class="clear"></div>
+</div></div>
+<div class="main" style="padding:90px 0 30px 0;">
+    <div class="xl_right xl_back_white xl_fot_nr">
+        <div class="xl_p40">
+            <div class="xl_title1">
+                <h1>联系我们</h1>
+            </div>
+            <div class="xl_back_white xl_con1 pt20">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td width="53%"><div class="leftmap"><div id="map"></div></div></td>
+                            <td width="47%"><div style="font-size:16px; line-height:36px;">
+                                    <h1 style="margin-bottom:20px; font-size:24px; color:#ff500b;">联系我们</h1>
+                                    <p style="font-size:16px; color:#666;"><span style="display:block; font-size:18px; color:#333;">深圳市橙果网络科技有限公司（<span style="font-size: 16px;">旗下首个购物平台“滴滴夺宝”</span>）</span> 热 线：400-006-7060<br>
+                                        邮 箱：service@dddb.com<br>
+                                        地 址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼<br>
+                                        邮 编：518100</p>
+                                </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="xl_back_white xl_con3">
+                <ul>
+                    <li> <img src="./dddb/images/about01.png" class="about-icon">
+                        <h2>投诉建议</h2>
+                        <p class="xl_info1">电 话：400-006-7060</p>
+                        <p class="xl_info2">邮 箱：service@dddb.com</p>
+                    </li>
+                    <li> <img src="./dddb/images/about02.png" class="about-icon">
+                        <h2>商务合作</h2>
+                        <p class="xl_info1">滴滴夺宝网拥有国内庞大的消费群体及专业高效的电子商务平台，诚意邀请各品牌供应商与我们达成商务合作，共同创造中国电子商务的美好明天。</p>
+                        <p class="xl_info2">邮 箱：sw@dddb.com</p>
+                    </li>
+                    <li> <img src="./dddb/images/about03.png" class="about-icon">
+                        <h2>市场推广</h2>
+                        <p class="xl_info1">随着滴滴夺宝发展壮大以及全国各地市场的开拓，欢迎拥有市场推广、广告合作资源的您与我们携手共进，共同发展。 携手共进。</p>
+                        <p class="xl_info2">邮 箱：sc@dddb.com</p>
+                    </li>
+                    <li style="border:none;"> <img src="./dddb/images/about04.png" class="about-icon">
+                        <h2>媒体关注</h2>
+                        <p class="xl_info1">随着滴滴夺宝的发展，欢迎各类媒体前来沟通指导，同时欢迎各类内容合作策划传播，你们的关注和支持，采访，将成为滴滴夺宝成长历程不可或缺的一部分。</p>
+                        <p class="xl_info2">邮 箱：mt@dddb.com </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% include '@app/views/dd_footer.html' %}
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5a3ac451ae5ee05db20ca3fa4e8b0ac3"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+<script type="text/javascript">
+    var map = new BMap.Map('map');
+    var poi = new BMap.Point(113.917973,22.58158); //经纬度
+    map.centerAndZoom(poi, 16);
+    map.enableScrollWheelZoom();
+
+    var content = '<div style="margin:0;line-height:20px;padding:2px;">地址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼<br>电话 (Tel) : 400-006-7060<br>邮箱 (Email) : service@dddb.com<br></div>';
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "深圳市橙果网络科技有限公司",      //标题
+			width  : 290,             //宽度
+			height : 85,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+    var marker = new BMap.Marker(poi); //创建marker对象
+    marker.enableDragging(); //marker可拖拽
+    marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+    })
+    map.addOverlay(marker); //在地图中添加marker
+    //searchInfoWindow.open(marker); //在marker上打开检索信息串口
+    $("close").onclick = function(){
+        searchInfoWindow.close();
+    }
+    $("open").onclick = function(){
+		var enableSendToPhone = false;
+        if ($("enableSendToPhone").checked) {
+            enableSendToPhone = true;
+        }
+		searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "深圳市橙果网络科技有限公司",      //标题
+			width  : 290,             //宽度
+			height : 85,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			enableSendToPhone: enableSendToPhone, //是否启用发送到手机
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+      
+        searchInfoWindow.open(marker);
+    }
+    $("show").onclick = function(){
+        searchInfoWindow.show();
+    }
+    $("hide").onclick = function(){
+        searchInfoWindow.hide();
+    }
+ 
+    function $(id){
+        return document.getElementById(id);
+    }   
+</script>
+
+</body>
+</html>

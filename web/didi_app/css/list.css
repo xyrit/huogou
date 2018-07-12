@@ -1,0 +1,33 @@
+/*土豪榜页面样式*/
+.ranking-box{ background-color: #fff; border-top: 1px solid #e2e2e2; padding: 25px 20px; }
+.ranking-box h3{ color: #333; font-size: 16px; padding-bottom: 10px; font-weight: bold;}
+.ranking-box .r-p{ font-size: 15px; color: #666; }
+.ranking-box ul{ padding-top: 10px;}
+.ranking-box ul li p{ font-size: 15px; color: #666; line-height: 24px;}
+.ranking-box ul .r-ol{ padding-left: 20px;}
+.ranking-box ul .r-ol li{ font-size: 14px; color: #999; line-height: 24px; }
+.ranking-box ul .r-img{ padding-top: 10px;}
+.ranking-box ul .r-img img{margin-right: 2%; width: 13.94%; float: left; border: 1px solid #e2e2e2;}
+.ranking-box ul dl{ display: block; padding: 10px 0;}
+.ranking-box ul dl dd{ font-size: 14px; color: #999; line-height: 24px;}
+.ranking-box ul dl dd span{ color: #ff500b;}
+
+/*0元购商品详情页面部分*/
+.free_desc{ background-color: #fff; padding: 10px;}
+.free_desc h5{ font-size: 16px; color: #333; line-height: 30px;}
+.free_desc ul li{ font-size: 14px; color: #666; line-height: 24px;}
+.free_desc div{ padding-bottom: 20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

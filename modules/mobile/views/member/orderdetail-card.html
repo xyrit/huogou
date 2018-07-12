@@ -1,0 +1,73 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}订单详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/orderdetail_card.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+<input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+<input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+<input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+
+<input type="hidden" id="hidOrderId" value="{{orderId}}">
+
+<div class="wrapper">
+    <div class="clearfix g-adrsnav">
+        <div class="m-adrs-lst ">
+            <em>恭喜中奖</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst">
+            <em>选择运营商</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst">
+            <em>派发奖品</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+    </div>
+    <div class="clearfix g-member g-address marginB">
+        <div class="clearfix m-round m-address-ct">
+            <!-- 选择运营商 -->
+            <section class="mode" style="display: none">
+                <div class="selectMode">
+                    <label class="modeIcon" for="yidong"><img src="{{ app.params.skinUrl }}/mobile/images/recharge02.jpg" alt="">中国移动<span>(充值卡密)</span></label><article class="mode_input"><input type="checkbox" value="yd" id="yidong" name="mode" checked="checked"/><label for="yidong" class="checked"></label></article>
+                </div>
+                <div class="selectMode">
+                    <label class="modeIcon" for="liantong"><img src="{{ app.params.skinUrl }}/mobile/images/recharge03.jpg" alt="">中国联通<span>(充值卡密)</span></label><article class="mode_input"><input type="checkbox" value="lt" id="liantong" name="mode" /><label for="liantong"></label></article>
+                </div>
+                <div class="selectMode">
+                    <label class="modeIcon" for="dianxin"><img src="{{ app.params.skinUrl }}/mobile/images/recharge04.jpg" alt="">中国电信<span>(充值卡密)</span></label><article class="mode_input"><input type="checkbox" value="dx" id="dianxin" name="mode" /><label for="dianxin"></label></article>
+                </div>
+                <div style="padding: 2% 5%;">
+                    <a href="javascript:;" id="getCardBtn"  class="orgBtn">确 定</a>
+                </div>
+            </section>
+
+            <!-- 获得卡密 -->
+            <section class="send" style="display: none">
+
+            </section>
+        </div>
+
+        <!-- 商品信息 -->
+        <div class="clearfix mt10 m-round g-goods-info">
+            <h3> 商品信息</h3>
+            <ul id="loadingPicBlock">
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

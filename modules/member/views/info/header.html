@@ -1,0 +1,32 @@
+<div class="member_sub">
+  <div class="present">
+    <a href="{{ url(['/']) }}">首页</a><i></i>
+    <a href="{{ url(['/member/info/modify']) }}">个人中心</a>
+  </div>
+  {% include '@memberModule/views/nav.html' %}
+</div>
+<section id="safety-b-con">
+  <div class="safety-b-box">
+    <i class="safety-b-close"></i>
+    <h3></h3>
+  </div>
+</section>
+<!--侧栏缩减-->
+<section id="quick-links">
+  <ul>
+    <li class="quick-a">
+      <a href=""></a>
+    </li>
+    <li class="quick-b">
+      <p><img src="{{ app.params.skinUrl }}/img/pic04.jpg" alt=""><br>下载手机端</p>
+    </li>
+    <li class="quick-c">
+      <p><img src="{{ app.params.skinUrl }}/img/pic04.jpg" alt=""><br>关注官方微信</p>
+    </li>
+    <li class="quick-d">
+      <a href=""></a>
+    </li>
+    <li id="get_top" class="quick-e"></li>
+  </ul>
+</section>
+<!--侧栏缩减-->

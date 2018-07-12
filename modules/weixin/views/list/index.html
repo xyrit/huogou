@@ -1,0 +1,49 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}所有商品{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/goods.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/goodslist.js?v=160314" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div id="loadingPicBlock">
+    <input name="hidOrderFlag" type="hidden" id="hidOrderFlag" value="10" />
+    <input name="hidCateId" type="hidden" id="hidCateId" value="0" />
+    <input name="hidPage" type="hidden" id="hidPage" value="1" />
+    <div class="wrapper">
+      <div class="column">
+        <a href="javascript:;" class="entry-list">全部分类<span></span><b class="fr"></b></a>
+        <div class="sort_list merchandise-sort" id="sort_list_cate" style="display: none;">
+
+        </div>
+        <a href="javascript:;" class="ann-publicly">即将揭晓<span></span><b class="fl"></b></a>
+        <div class="sort_list" id="sort_list_order"  style="display: none;">
+          <ul>
+            <li order="10"><a href="javascript:;" class="hover">即将揭晓<i></i></a></li>
+            <li order="20"><a href="javascript:;">人气<i></i></a></li>
+            <li order="30"><a href="javascript:;">剩余人次<i></i></a></li>
+            <li order="40"><a href="javascript:;">最新<i></i></a></li>
+            <li order="51"><a href="javascript:;">价格<em>(由高到低)</em><i></i></a></li>
+            <li order="50"><a href="javascript:;">价格<em>(由低到高)</em><i></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="goodList">
+
+
+      </div>
+      <div id="divGoodsLoading" class="loading" style="display: block;">
+        <b></b>正在加载
+      </div>
+      <div class="load_more" id="btnLoadMore" style="display: block">
+      </div>
+
+      {% include '@weixinModule/views/footer.html' %}
+    </div>
+  </div>
+
+{% endblock %}

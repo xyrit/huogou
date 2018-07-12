@@ -1,0 +1,78 @@
+/*公共样式*/
+*{ margin: 0;padding: 0;list-style: none;border: none}
+body,html{ font-size: 14px;font-family: '微软雅黑';color: #333}
+a{ text-decoration: none}
+.main{ max-width:640px; margin:  0 auto;}
+.conterBox{ width: 100%; padding:0px 15px;box-sizing: border-box;}
+.conterBox .topTitle img{ width:100%;padding: 10px 0px 10px 0px}
+.footer,.pkuser,.usergoods{background: #fffacd}
+.footer img{ display: inline-block;max-width: 640px;}
+.pkuser{border: 1px solid #ff2828;padding: 25px 20px 20px;overflow: hidden;}
+.pkuser .pkleft,.pkcenter,.pkright{float: left;text-align: center;color: #fff; box-sizing: border-box;overflow: hidden;}
+.pkuser .pkleft{ width: 30%}
+.pkuser .pkcenter{ width: 40%;}
+.pkuser .pkright{ width: 30%;}
+.clocr666{ color:#666 !important;}/*灰色字体*/
+.color{ color: #ef2828 !important;}/*主色 红色*/
+.colorBlur{ color:#009eef !important;}/*蓝色*/
+.division{ width: 100%; height: 30px; background: url(../img/division.png)no-repeat center center;background-size: 100%;padding: 3px 0px}
+.usergoods{ width: 100%;text-align: center;border: 1px solid #ff2828;    padding:0 5% 5% 5%; box-sizing: border-box;}
+.ugtitle{ color:#666;font-size: 16px;line-height: 70px}
+.shoprs{ font-size: 16px}
+.footer{ width: 100%;height: 85px; position: fixed;bottom:0;left: 0;border-top: 1px solid #ff2828;text-align: center;padding: 8px 12px; overflow: hidden; box-sizing: border-box;}
+.footer p{margin-bottom: 10px;color:#666}
+.footer a{ color: #666}
+.pkState { text-align: center}
+.pkState span{width: 25px;height: 25px;border-radius: 50%;display: block;background: #ef2828;text-align: center;line-height: 25px;margin: 5px auto 0px;}
+.pkStateMin span{background: #019fef}
+.userImg img{ width: 60px;height: 60px;border-radius: 50%;overflow: hidden;margin-top: 6px;}
+.userImgBj{ width: 72px;height: 72px;background: url(../img/dduserImg.png)no-repeat center center;background-size: cover;padding: 10px;margin: 0 auto;}
+.userImgBjred{ width: 72px;height: 72px;background: url(../img/userImgred.png)no-repeat center center;background-size: cover;padding: 10px;margin: 0 auto;}
+.userImgDefault{ width: 72px;height: 72px;background: url(../img/userImgmo.png)no-repeat center center;background-size: cover;padding: 10px;margin: 0 auto;}
+
+.shade{ width: 100%;height: 100%;position: fixed;left:0;top:0;background: rgba(0,0,0,0.7);z-index: 100;display: none}
+.shade .tenterImg{ width:100%;position: absolute;top:50%;left: 50%;text-align: center;margin-left: -50%;margin-top: -50%}
+.shade .tenterImg img{ width: 100%;margin: 0 auto}
+.pkUrl{display: block}
+.errorInc{ position: absolute; right:22px;top:10%;display: block}
+.errorInc{ width: 6%;}
+.shade .tenterImg img.regImg{width: 95% }
+@media screen and (max-width: 375px) { /*当屏幕尺寸小于375px时，应用下面的CSS样式*/
+    .userImgBj {
+        width: 50px;
+        height: 50px;
+        background: url(../img/dduserImg.png)no-repeat center center;
+        background-size: cover;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .userImgBjred {
+        width: 50px;
+        height: 50px;
+        background: url(../img/userImgred.png)no-repeat center center;
+        background-size: cover;
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    .userImg img {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: 2px;
+    }
+
+    .userImgDefault {
+        width: 50px;
+        height: 50px;
+        background: url(../img/userImgmo.png)no-repeat center center;
+        background-size: cover;
+        padding: 10px;
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width: 640px) { /*当屏幕尺寸大于640px时，应用下面的CSS样式*/
+    .footer{ height:95px }
+    .footerBut img{ height: 45px;}
+}

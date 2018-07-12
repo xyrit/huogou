@@ -1,0 +1,5 @@
+CREATE TABLE `confirm_fail_reasons` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` VARCHAR(25) NOT NULL DEFAULT '' COMMENT '驳回理由',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单确认失败原因';

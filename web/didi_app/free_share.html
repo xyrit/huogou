@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>滴滴夺宝-0元夺宝</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/comm.js?v=160325"></script>
+</head>
+<body>
+	<!--<section id="nav" class="two">-->
+		<!--<a class="act" href="">0元夺宝</a><a href="">往期揭晓</a><a href="">获奖晒单</a>-->
+	<!--</section>-->
+	<ul class="share-list">
+	</ul>
+
+	<div class="reload-fixed">
+		<a class="reload-fixed-a regBtn" href="javascript:;">立即0元夺宝</a>
+	</div>
+</body>
+<script>
+
+	$(function() {
+		var url = apiBaseUrl+'/free-buy/product-list';
+		var data = {};
+		$.getJsonp(url,data,function(json) {
+			var html = '';
+			$.each(json.list, function(i,v) {
+				var goodsStatus = v.goods_status;
+				var leftTime = v.left_time;
+				var startTime = v.start_time;
+				var goodsName = v.goods_name;
+				var price = v.price;
+				var salesNum = v.sales_num;
+				var goodsPic = v.goods_picture;
+				var goodsPicUrl = createPicUrl(goodsPic, 'small');
+
+				if (goodsStatus=='1') {
+					var buttonText = startTime;
+					var descText = '开始时间';
+				} else {
+					var buttonText = '0元夺宝';
+					var descText = '剩余时间';
+
+					salesNum = parseInt(salesNum) + parseInt(price) + parseInt(price/8) *3;
+				}
+
+
+				html += '<li>';
+				html += '<div class="share-title">';
+				html += '<article>';
+				html += '<p>'+descText+'：<span class="timmer" left-time="'+leftTime+'">00天00时00分00秒</span></p>';
+				html += '<p><i>'+salesNum+'</i>人已参与</p>';
+				html += '</article>';
+				html += '</div>';
+				html += '<div class="share-con">';
+				html += '<picture><a href="javascript:;" class="regBtn"><img src="'+goodsPicUrl+'"></a></picture>';
+				html += '<article>';
+				html += '<h3><a href="javascript:;" class="regBtn">'+goodsName+'</a></h3>';
+				html += '<aside>';
+				html += '<span>原价：￥'+price+'</span>';
+				if (goodsStatus=='1') {
+					html+='<a href="javascript:;" class="regBtn cls">'+buttonText+'</a>';
+				} else {
+					html+='<a href="javascript:;" class="regBtn">'+buttonText+'</a>';
+				}
+				html += '</aside>';
+				html += '</article>';
+				html += '</div>';
+				html += '</li>';
+			});
+
+			$('.share-list').html(html);
+			$('.timmer').each(function(i,v) {
+				var obj = $(v);
+				leftTime(new Date().getTime(),obj,completeLeftTime);
+			});
+
+			$('.regBtn').on('click',function() {
+				location.href = 'http://www.'+baseHost+'/dd_spread/list_reg/register.html';
+			});
+		});
+	});
+
+	function createPicUrl(basename, size) {
+		var url = 'http://img.'+baseHost+'/active/'+size+'/'+basename;
+		return url;
+	}
+
+	function completeLeftTime(obj) {
+		location.reload();
+	}
+
+	function leftTime(time, obj, func) {
+		var curTime = new Date().getTime();
+		var curTimeLeft = parseFloat((curTime - time) / 1000 - parseFloat(1 / 100));
+		var seconds = obj.attr("left-time");
+		seconds -= curTimeLeft;
+
+		d= Math.floor((seconds/3600)/24);
+		h= Math.floor((seconds/3600)%24);
+		m= Math.floor((seconds/60)%60);
+		s= Math.floor(seconds%60);
+		d = checkTime(d);
+		h = checkTime(h);
+		m = checkTime(m);
+		s = checkTime(s);
+		if (seconds <= 0) {
+			func(obj);
+			return;
+		} else {
+			obj.html(d +'天'+ h +'时'+ m +'分'+ s +'秒');
+		}
+		obj.attr("left-time", parseFloat(seconds - parseFloat(1 / 100)));
+
+		setTimeout(function () {
+			leftTime(curTime, obj, func);
+		}, 1000);
+	}
+
+	function checkTime(i){
+		if (i<10)
+		{i="0" + i}
+		return i
+	}
+
+</script>
+
+</html>

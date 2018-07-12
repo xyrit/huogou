@@ -1,0 +1,85 @@
+{% extends '@helpModule/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block main %}
+<div class="xl_right xl_back_white xl_fot_nr">
+    <div class="xl_p40">
+        <div class="xl_title1"><h1>常见问题</h1></div>
+        <div class="xl_faq">
+            <div class="hr_lb">
+                <ul>
+                    <li class="hover">
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">1、怎样查看我参与的商品有没有获得？</h1></div>
+                        <div class="hr_lb3">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">2、我获得了商品，我还需要支付其他费用吗？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">3、当我获得商品以后我该做什么？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">4、伙购网的商品是正品吗？怎么保证？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">5、如何晒单分享？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">6、我收到的商品可以换货或者退货吗？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">7、参与伙购需要注意什么？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+                    <li>
+                        <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">8、网上银行充值未及时到帐怎么办？</h1></div>
+                        <div class="hr_lb3 xl_display_no">
+                            在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        //常见问题
+        $('.hr_lb ul li .hr_lb2').click(function(){
+            $(this).parent().addClass('hover').siblings().removeClass('hover');
+            $('.hr_lb3').slideUp();
+            $(this).siblings('.hr_lb3').slideDown();
+        });
+    })
+</script>
+{% endblock %}
+
+
+

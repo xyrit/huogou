@@ -1,0 +1,56 @@
+@charset "utf-8";
+/* CSS Document */
+/*reset*/
+*{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,iframe{margin:0;padding:0;border:0; word-wrap: break-word; -webkit-text-size-adjust:none; -webkit-tap-highlight-color:rgba(0,0,0,0);}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body,button,input,select,textarea{font:12px/1.5 tahoma,arial}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:500}
+input,select,textarea{font-size:100%; vertical-align:middle; border:0;background:none;box-shadow:none; -moz-appearance:none; appearance:none; outline:none; -webkit-outline:none}
+input:focus,textarea:focus{outline:none}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0 none}
+img, object {max-width: 100%;}
+em,i,code,cite,address,th{font-style:normal;font-weight:500}
+.clear{clear:both;line-height:0;font-size:0}
+.clearfix{*zoom:1;_height:1px}
+.clearfix:after{content:" ";display:block;height:0;clear:both;visibility:hidden}
+q:before,q:after{ content:''}
+abbr,acronym{ border:0}
+a{text-decoration:none;-webkit-user-select:none;}
+.none{ display:none;}
+.hr_10{clear:both;height:10px;line-height:1px;font-size:1px}
+.hr_5{clear:both;height:5px;line-height:1px;font-size:1px}
+.hr_1{clear:both;height:1px;line-height:1px;font-size:0}
+.wb{clear:both; border:none; height:1px; line-height:1px; background:#FFF; font-size:0; overflow:hidden}
+a:link,a:visited,a:hover,a:active{color:#999;text-shadow:none}
+.w320{ width:320px; margin:0 auto; clear:both; position:relative;}
+.w360{ width:360px; margin:0 auto; clear:both; position:relative;}
+.w480{ width:480px; margin:0 auto; clear:both; position:relative;}
+/*reset end*/
+.reg_share{ width:100%; background:url(../img/bg.png) center 0 #ffde89 no-repeat; background-size:cover; box-sizing:border-box; min-height:100%;}
+.u_msg{ width:92.19%; margin:15px auto 0;}
+.u_msg .u_f{ float:left; width:60px; margin:5px 10px 0 0; border-radius:100%; border:2px #fff solid}
+.u_msg .u_name{ color:#40454c; font-size:12px; margin:0 0 5px 0}
+.u_msg .u_info{ border-radius:8px; background:#fff; color:#40454c; font-size:12px; padding:6px 8px; position:relative; margin-left:75px}
+.share_hb img{ width:79.69%}
+.share_hb b.money{ top:33%;}
+.share_hb b.money img{ display:block; margin:0 auto; width:23%;}
+.share_hb .reg_btn{ position:absolute; bottom:24%; left:0; width:100%;}
+.share_hb .reg_btn a{ display:block; width:53.59%; margin:0 auto; height:35px; line-height:35px; text-align:center; color:#a40000; border-radius:5px; font-size:16px; background:#fbea5e; font-weight:bold;-moz-box-shadow:2px 2px 3px rgba(0,0,0,0.3); -webkit-box-shadow:2px 2px 3px rgba(0,0,0,0.3); box-shadow:2px 2px 3px rgba(0,0,0,0.3);}
+
+
+.reg_hb18{ display:block; margin:44px auto 20px; width:33.44%; }
+.reg_suc_txt .s_fb{ display:block; text-align:center; font-size:26px; color:#40454c; font-weight:bold; line-height:1; margin-bottom:10px}
+.reg_suc_txt .s1{ display:block; text-align:center; font-size:12px; color:#40454c; line-height:1;margin-bottom:10px}
+.reg_suc_txt .s1 .sb1{ color:#c01920; font-weight:normal}
+.reg_suc_txt .s2{ display:block; text-align:center; font-size:16px; color:#40454c; line-height:1}
+.reg_share .down_get{ display:block; margin:30px auto; width:84%; height:35px; line-height:35px; background:#c01920; color:#fff; font-size:16px; text-align:center; border-radius:5px;}
+
+.mask_layer{background: rgba(0, 0, 0, 0.4);bottom: 0; left: 0; position: fixed; right: 0; top: 0; z-index: 98;}
+.mask_layer .pop_layer{ margin:-75px 0 0 -107.5px; width:215px; height:150px; border-radius:5px; border:2px #c11920 solid; background:#fff; position:absolute; left:50%; top:50%}
+.pop_layer .t_cont{ font-size:15px; color:#40454c; line-height:24px; text-align:center; margin:25px auto 10px; padding:0 10px}
+.pop_layer .f_box{ bottom:20px; clear: both; left: 0; overflow: hidden; position: absolute; width: 100%; font-size:0; text-align:center}
+.pop_layer .f_box .r_btn,.pop_layer .f_box .g_btn{ display:inline-block; margin:0 auto; width:75px; height:30px; line-height:30px; font-size:15px; color:#fff; background:#c11920; border-radius:5px; text-align:center;}
+.pop_layer .f_box .g_btn{ background:#ddd; color:#666; margin-right:10px}

@@ -1,0 +1,59 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增品牌</strong></div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+                <div class="am-form-group">
+                    <label for="brand-name" class="am-u-sm-3 am-form-label">品牌名称</label>
+
+                    <div class="am-u-sm-9">
+                        <input type="text" id="brand-name" name="Brand[name]" placeholder="品牌名称" value="{{ model.name }}">
+                        {{ html.error(model, 'name', {'class':'am-alert am-alert-danger'}) | raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="brand-alias" class="am-u-sm-3 am-form-label">品牌别名</label>
+
+                    <div class="am-u-sm-9">
+                        <input type="text" id="brand-alias" name="Brand[alias]" placeholder="品牌别名" value="{{ model.alias }}">
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="brand-url" class="am-u-sm-3 am-form-label">品牌网址</label>
+
+                    <div class="am-u-sm-9">
+                        <input type="text" id="brand-url" name="Brand[url]" placeholder="品牌网址" value="{{ model.url }}">
+                        {{ html.error(model, 'url', {'class':'am-alert am-alert-danger'}) | raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="brand-intro" class="am-u-sm-3 am-form-label">品牌介绍</label>
+
+                    <div class="am-u-sm-9">
+                        <textarea rows="5" id="brand-intro" name="Brand[intro]" placeholder="品牌介绍">{{ model.intro }}</textarea>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}

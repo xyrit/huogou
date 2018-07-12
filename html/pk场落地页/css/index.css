@@ -1,0 +1,34 @@
+/*公共样式*/
+*{ margin: 0;padding: 0;list-style: none;border: none}
+body,html{ font-size: 14px;font-family: '微软雅黑';color: #333}
+a{ text-decoration: none}
+.main{ max-width:640px; margin:  0 auto;}
+.conterBox{ width: 100%; padding:0px 15px;box-sizing: border-box;}
+.conterBox .topTitle{ width:100%;height:85px;background: url(../img/topTitle.png) no-repeat center;background-size: 100%}
+.footer,.pkuser,.usergoods{background: #fffacd}
+.footer img{ display: inline-block;max-width: 640px;}
+.pkuser{border: 1px solid #ff2828;padding-top: 25px; height: 145px;overflow: hidden;}
+.pkuser .pkleft,.pkcenter,.pkright{float: left;text-align: center;color: #fff; box-sizing: border-box;}
+.pkuser .pkleft{ width: 30%}
+.pkuser .pkcenter{ width: 40%;}
+.pkuser .pkright{ width: 30%}
+.morenFont{ color: #666}
+.color{ color: #ff2828}
+.division{ width: 100%; height: 45px; background: url(../img/division.png)no-repeat center center;background-size: 100%}
+.usergoods{ width: 100%;text-align: center;border: 1px solid #ff2828;    padding:0 5% 5% 5%; box-sizing: border-box;}
+.ugtitle{ color:#666;font-size: 16px;line-height: 70px}
+.goddname{ line-height: 35px}
+.shoprs{ font-size: 16px}
+.footer{ width: 100%; position: fixed;bottom:0;left: 0;border-top: 1px solid #ff2828;text-align: center;padding: 8px 12px; overflow: hidden; box-sizing: border-box;}
+.footer p{margin-bottom: 10px;color:#666}
+.pkState { text-align: center}
+.pkState span{width: 25px;height: 25px;border-radius: 50%;display: block;background: red;text-align: center;line-height: 25px;margin: 5px auto 0px;}
+.pkStateMin span{background: #019fef}
+.userImg img{ width: 75px;height: 75px;border-radius: 50%;overflow: hidden}
+.shade{ width: 100%;height: 100%;position: fixed;left:0;top:0;background: rgba(0,0,0,0.7);z-index: 100;display: none}
+.shade .tenterImg{ width:100%;position: absolute;top:50%;left: 50%;text-align: center;margin-left: -50%;margin-top: -50%}
+.shade .tenterImg img{ width: 100%;margin: 0 auto}
+.pkUrl{display: block}
+.errorInc{ position: absolute; right:22px;top:10%;display: block}
+.errorInc{ width: 6%;}
+.shade .tenterImg img.regImg{width: 95% }

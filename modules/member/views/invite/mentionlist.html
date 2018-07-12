@@ -1,0 +1,105 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}提现记录_{{ app.name }}{% endblock %}
+
+{% block main %}
+
+
+    <div class="member_con_rl">
+        <div class="find-friends">
+            <h1 class="present-record">提现记录</h1>
+
+            <div class="screening">
+                <summary>
+                    <a href="{{ url(['invite/mention-list']) }}" {% if not app.request.get('type') %}class="act"{% endif %}>全部</a>
+                    <a href="{{ url('invite/mention-list', {'type':1}) }}" {% if app.request.get('type')==1 %}class="act"{% endif %}>今天</a>
+                    <a href="{{ url('invite/mention-list', {'type':2}) }}" {% if app.request.get('type')==2 %}class="act"{% endif %}>本周</a>
+                    <a href="{{ url('invite/mention-list', {'type':3}) }}" {% if app.request.get('type')==3 %}class="act"{% endif %}>本月</a>
+                    <a href="{{ url('invite/mention-list', {'type':4}) }}" {% if app.request.get('type')==4 %}class="act"{% endif %}>最近三个月</a>
+                </summary>
+                <div class="search-vip">
+                    <em>选择时间段：</em>
+                    <input type="text" id="J-xl" value="2015-10-21">
+                    <i>-</i>
+                    <input type="text" id="J-xl-2" value="2015-10-23">
+                    <input type="submit" value="搜索" id="submit">
+                </div>
+            </div>
+
+            <table class="get">
+                <thead>
+                <tr>
+                    <td width="25%" class="left padding">申请时间</td>
+                    <td width="25%" class="left">银行账户信息</td>
+                    <td width="15%">提现金额(元)</td>
+                    <td width="35%">审核状态</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% if withdrawList %}
+                {% for withdraw in withdrawList %}
+                <tr>
+                    <td class="left padding">
+                        {{ withdraw.apply_time | date('Y-m-d H:i:s') }}
+                    </td>
+                    <td class="left">
+                        {{ withdraw.bank_number }}
+                    </td>
+                    <td class="orange">
+                        {{ withdraw.money }}
+                    </td>
+                    <td>
+                        {% if withdraw.status == 0 %}
+                            <span style="color: #ff6600;">审核中</span>
+                        {% elseif withdraw.status == 1 %}
+                            <span style="color: #00b4ff;">处理中</span>
+                        {% elseif withdraw.status == 2 or withdraw.status == 4 %}
+                        <span style="color: #000;">失败（{{ withdraw.fail_reason }}）</span>
+                        {% elseif withdraw.status == 3 %}
+                        <span style="color: #999;">成功</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr style="border-bottom: 0;">
+                    <td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            {{ use('/app/widgets/LinkPager') }}
+            {{ link_pager_widget({pagination: pagination}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script src="{{ app.params.skinUrl }}/js/jquery.masonry.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            //日历调取
+            var startDate = laydate({
+                elem: '#J-xl'
+            });
+            var endDate = laydate({
+                elem: '#J-xl-2'
+            });
+        })
+
+        $('#submit').on('click', function() {
+            start = $('#J-xl').val();
+            end = $('#J-xl-2').val();
+            window.location.href=memberBaseUrl + '/invite/mention-list?start=' + start + '&end=' + end;
+        })
+    </script>
+{% endblock %}

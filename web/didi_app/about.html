@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>关于我们</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="css/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="css/security.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js?v=160325"></script>
+</head>
+<body style="background-color: #f0f0f0;">
+<div>
+    <div class="wrapper" style="background-color: #f0f0f0;">
+        <div style="text-align: center; width: 90%; height: auto; overflow: hidden; padding: 5%;">
+            <a class="m_logo" href=""><img src="images/m_logo.png" width="30%"></a>
+            <p style="padding: 10px 0; font-size: 14px; color: #666;" id="appversion"></p>
+            <div>
+                <a href=""><img src="images/m_app.png" width="40%"></a>
+            </div>
+            <p style="font-size: 16px; color: #666; padding: 2% 0 4%;">扫描二维码，您的朋友也可下载滴滴夺宝</p>
+            <a class="a_share" href="app_share" style="background:#ef2828">分享给好友</a>
+        </div>
+        <ul class="wUl">
+            <li>
+                <a href="introduction.html">了解滴滴夺宝</a>
+                <b></b>
+            </li>
+            <li style="display: none">
+                <a href="declare.html">特别声明</a>
+                <b></b>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<footer style="width: 100%; padding-bottom: 10px; position: fixed; bottom:0;">
+    <p style="text-align: center; color: #888; font-size: 12px;">Copyright &copy; 2015 - 2020, 版权所有 dddb.com
+        <br />
+        粤ICP备15087800号-1
+    </p>
+</footer>
+<script type="text/javascript">
+    $(function(){
+        var version = getUrlParam('vname');
+        version = version ? version : 'V1.0.0';
+        if (browser.versions.ios) {
+            $(".wUl li:eq(1)").show();
+            $("#appversion").text("滴滴夺宝 iOS "+version);
+        }else{
+            $("#appversion").text("滴滴夺宝 Android "+version);
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>结算支付</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css?v=130715" rel="stylesheet" type="text/css" />
+    <link href="CSS/cartList.css?v=150707" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <input name="hidShopMoney" type="hidden" id="hidShopMoney" value="3.00" />
+    <input name="hidBalance" type="hidden" id="hidBalance" value="0.00" />
+    <input name="hidPoints" type="hidden" id="hidPoints" value="6" />
+    <input name="hidPayPoints" type="hidden" id="hidPayPoints" value="0" />
+    <input name="hidPaylBalance" type="hidden" id="hidPaylBalance" value="0" />
+    <input name="hidPayWx" type="hidden" id="hidPayWx" value="0" />
+    <input name="hidPayWy" type="hidden" id="hidPayWy" value="0" />
+    <input name="hidCmbChina" type="hidden" id="hidCmbChina" value="0" />
+    <div class="wrapper">
+        <div class="g-pay-lst">
+            <ul>
+                <li style="display: ">
+                    <a href="/product/1619262.html">
+                        <span>
+                            <img src="http://mskin.1yyg.com/images/loading.gif" src2="http://mimg.1yyg.com/GoodsPic/pic-200-200/20140910144439506.jpg" border="0" alt="" />
+                        </span>
+                    <dl>
+                        <dt>
+                            <em style="display: none" class="purchase-icon">限购</em> (第54098云)苹果（Apple）iPhone 6 A1586 16G版 4G手机
+                        </dt>
+                        <dd>
+                            <em>3</em>人次/
+                            <em>￥3.00</em>
+                        </dd>
+                    </dl> </a> </li>
+            </ul>
+            <a style="display: none;" id="a_exp" href="javascript:;" class="pay_open pay_pack">
+                <s></s></a>
+            <p class="gray9">总需支付金额：<em class="orange"><i>￥</i>3.00</em></p>
+        </div>
+        <div class="other_pay marginB">
+            <a href="javascript:;"><i></i>福分支付：<em class="orange"><b>￥</b>0.00</em><span class="gray9">可用福分6</span></a>
+            <a href="javascript:;"><i></i>余额支付：<em class="orange"><b>￥</b>0.00</em><span class="gray9">余额￥0.00</span></a>
+            <a href="javascript:;" class="wzf checked"><i></i>微信支付：<em class="orange"><b>￥</b>0.00</em></a>
+            <a href="javascript:;"><i></i>京东支付：<em class="orange"><b>￥</b>0.00</em></a>
+            <a href="javascript:;"><i></i>招商银行：<em class="orange"><b>￥</b>0.00</em></a>
+        </div>
+        <div class="g-Total-bt">
+            <dd>
+                <a id="btnPay" href="javascript:;" class="orangeBtn fr w_account">立即支付</a>
+            </dd>
+        </div>
+        <input id="hidPageType" type="hidden" value="-1" />
+        <div class="footer" style="display: none;">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="/list/m1.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="/member/index.do" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

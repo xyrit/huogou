@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg">修改历史</strong>
+        <button class="am-btn am-btn-default" value="返回" onclick="history.back();">返回</button>
+    </div>
+</div>
+<hr>
+{{        GridView_widget({
+                'dataProvider': dataProvider,
+               "tableOptions":{"class":"am-table am-table-striped am-table-hover table-main"},
+                'columns' : [
+                        {'class' : 'yii\\grid\\SerialColumn'},
+                        'msg_name',
+                        'time',
+                        'system',
+                       'msg_do',
+                        'status',
+                        {'class' : 'yii\\grid\\ActionColumn', "template" : '<a class="action_column" data-pjax="0" data-method="post" data-confirm="您确定要删除此项吗？" aria-label="删除" title="删除" href="/app/delete-log"><span class="glyphicon glyphicon-trash"></span></a>  <a href="/ap/push-test" title="推送数据" class="action_column"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>',   
+                     },
+                ]
+            })
+ }}
+</div>
+{% endblock %}

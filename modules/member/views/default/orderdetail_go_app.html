@@ -1,0 +1,88 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}订单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+{% include '@app/views/nav.html' %}
+
+<section class="wrap clear">
+
+    <div class="present">
+        <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">我的伙购</a><i></i><a href="{{ url(['/default/order-list']) }}">获得的商品</a><i></i><a href="">订单详情</a>
+    </div>
+</section>
+
+<section class="appbanBox">
+    <!-- 引导下载 app 下载图片 开始-->
+    <div class="appbanImg">
+        <div class="wrap cler">
+            <img class="appLeft" src='{{ app.params.skinUrl }}/img/app_imgLeft.png'>
+            <div class="ewm_right">
+                <img src="{{ app.params.skinUrl }}/img/interact/interact_icon02.png">
+                <p class="font_text">手机扫描二维码下载</p>
+            </div>
+
+            <div class="but_right">
+                <a href="https://itunes.apple.com/cn/app/huo-gou-wang/id1076141712"><img src='{{ app.params.skinUrl }}/img/Strore_inc.png'/>App Strore版下载</a>
+                <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.huogou.app"><img src='{{ app.params.skinUrl }}/img/Android_inc.png'/>Android版下载</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- 引导下载 app 下载图片 结束-->
+
+<!-- 获得的商品 开始-->
+<section class="gainGoods">
+    <div class="wrap">
+        <div class="gain_title"><img src="{{ app.params.skinUrl }}/img/gain_title.png"/></div>
+        <div class="order-goods">
+            <table class="get record_con">
+                <thead style="background:none">
+                <tr>
+                    <td width="55%">商品</td>
+                    <td width="15%">价值</td>
+                    <td width="15%">数量</td>
+                    <td width="15%">订单号</td>
+                </tr>
+                </thead>
+                <tbody style="background:#faf7e1">
+                <!-- 循环 tr -->
+                <tr>
+                    <td>
+                        <figure>
+                            <picture>
+                                <a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}"><img src="{{ periodInfo.goods_picture_url }}"></a>
+                            </picture>
+                            <figcaption>
+                                <h3><a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a></h3>
+                                <p>幸运伙购码：{{ periodInfo.lucky_code }}</p>
+                                <p>揭晓时间：{{ periodInfo.raff_time }}</p>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>￥{{ periodInfo.price }}</td>
+                    <td>1</td>
+                    <td>{{ orderId }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+<!-- 获得的商品 结束-->
+
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

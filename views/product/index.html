@@ -1,0 +1,140 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ detail.keywords }}{% endblock %}
+{% block description %}{{ detail.brief }}{% endblock %}
+
+{% block title %}{{ detail.name }}{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/jquery.mCustomScrollbar.css" />
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/style.css" />
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/scroll.js"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/goodsdetail_comm.js?v=160301"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/goodsdetail.js?v=160510" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/fly.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/requestAnimationFrame.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+	<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
+	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+	{% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+	<section class="wrap clear">
+        <div class="present">
+            <a href="/">首页</a><i></i><a href="/list.html">全部商品</a>
+        </div>
+        <div class="phase_con noborder">
+            <div class="phase_fl phase_fl_2">
+                <picture><img id="pic" src="" alt=""></picture>
+                <ul id="phase_pic" class="clearfix"></ul>
+                <ol class="safe clearfix">
+                    <li class="safe_1">公平公正公开</li>
+                    <li class="safe_2">正品保障</li>
+                    <li class="safe_3">权益保障</li>
+                </ol>
+                <article>
+                    <a class="guanzhu" href="">关注</a>
+                    <div class="bshare-custom">
+                        <span>分享到：</span>
+                        <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                        <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                        <a title="分享到QQ空间" class="bshare-qzone"></a>
+                        <a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a>
+                        <a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a>
+                    </div>
+                </article>
+            </div>
+            <div class="phase_centre phase_centre_2">
+                <div class="phase_centre_title"></div>
+                <div class="renshu"></div>
+                <div class="renci">
+                    <em>我要参加</em>
+                    <div id="buynum">
+                        <span class="mius" id="hg_less">-</span><input id="renci_value" value="10" type="text"><span
+                            class="add" id="hg_add">+</span>
+                    </div>
+                    <!--<b class="renci_sz">30</b>
+                    <b class="renci_sz">50</b>
+                    <b class="renci_sz">100</b>
+                    <i>人次</i>-->
+                </div>
+                <div class="renci_gw">
+                    <a class="renci_gw_a" href="">立即一元伙购</a><a class="car" href="javascript:;">+加入购物车</a>
+                </div>
+
+                <article class="renci_pic renci_pic_2">
+
+                </article>
+                <div class="viw_me" id="mybuy"></div>
+
+            </div>
+            <!--原来右侧参与记录--已删除-->
+        </div>
+
+        <div class="con_cut">
+            <ul class="con_title">
+                <li><i></i>商品详情</li>
+                <li><i></i>参与记录</li>
+                <li><i></i>晒 单</li>
+                <li><i></i>往期揭晓</li>
+                <li class="gouw"><a href="">加入购物车</a></li>
+            </ul>
+
+            <div class="con_box" id="contentInfo"></div>
+            <div class="con_box jisuan_box" id="canyu">
+                <table class="canyu">
+                    <thead>
+                    <tr>
+                        <td>伙购时间</td>
+                        <td>会 员</td>
+                        <td>参与人次</td>
+                        <td>IP地址</td>
+                        <td>来源</td>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="pagination1" id="canyunew"></div>
+            </div>
+            <div class="con_box jisuan_box">
+                <ul class="shaidan clear"></ul>
+            </div>
+            <div class="con_box jisuan_box" id="announced"></div>
+        </div>
+	</section>
+
+	<figure id="hg-ma-box">
+		<em><em></em></em>
+		<section>
+			<i class="hg-ma-del">X</i>
+			<div class="hg-ma-title" id="hg-box-codes-title">
+					<span class="w">
+						<a href="" target="_blank"><b class="hg-ma-img"><img src="" width="22" height="22" ></b>中大奖</a>
+					</span>
+					本次参与<span class="s">4</span>人次
+			</div>
+			<div class="hg-ma-con">
+				<div  id="content" class="content mCustomScrollbar light" data-mcs-theme="minimal-dark">
+					<ul id="hg-box-codes-ul">
+						<li class="act">1000471</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</figure>
+
+<div class="view-alertbg" id="attend_code"></div>
+{% include '@app/views/footer.html' %}
+<!--我的参与码--弹出层-->
+    <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+</div>
+{% endblock %}

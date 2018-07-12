@@ -1,0 +1,7 @@
+<div class="individual-list">
+    <a {% if(app.controller.action.id == 'modify') %}class="act"{% endif %} href="/info/modify">个人资料</a>
+    <a {% if(app.controller.action.id == 'photo') %}class="act"{% endif %} href="/info/photo">修改头像</a>
+    <a {% if(app.controller.action.id == 'address') %}class="act"{% endif %}  href="/info/address">收货地址</a>
+    <a {% if(app.controller.action.id == 'settings') %}class="act"{% endif %}  href="/info/settings">隐私设置</a>
+    <!--<a {% if(app.controller.action.id == 'notice') %}class="act"{% endif %}  href="/info/notice">消息设置</a>-->
+</div>

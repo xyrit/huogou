@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html data-use-rem="" lang="en">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>注册</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/register.js?v=160411"></script>
+    <script>
+        $(function () {
+            //关闭弹层
+            $('.close').on('click',function () {
+                $(this).parent().hide();
+                $('.footer').addClass('hide');
+               // $(this).parent().parent().parent().hide();
+            })
+        })
+    </script>
+</head>
+<body style="max-width: 640px;margin: auto;background: #f0f0f0;">
+<img class="w100" src="img/reg.jpg">
+<section id="step1">
+    <div class="registerCon">
+        <ul>
+            <li class="accAndPwd">
+                <dl>
+                    <input class="ipt" id="userMobile" maxlength="11" type="tel" placeholder="请输入您的手机号码" />
+                </dl>
+            </li>
+            <li>
+                <input style="width:63.5%;float: left;" class="ipt" id="mobileCode" type="text" value="" placeholder="6位验证码">
+                <a class="sendCode" href="javascript:void(0);">获取验证码</a>
+            </li>
+            <li class="accAndPwd">
+                <dl>
+                    <input class="ipt" id="userPassword" maxlength="20" type="password" placeholder="请输入8-25位密码" />
+                </dl>
+            </li>
+            <li><a id="regSubmit" href="javascript:;" class="orangeBtn ">同意协议并注册</a></li>
+            <li>
+                <!--<span id="isCheck">
+                 <label name="nba" class="checkedDbut">
+                     <input type="radio" checked="checked">
+                 </label>我已阅读并同意
+                </span>-->
+                <!--<a href="./terms.html" class="blue">滴滴夺宝用户服务协议</a>-->
+            </li>
+        </ul>
+    </div>
+</section>
+<div class="m_popUp" style="display: none;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/reg-sueccess.png" style="width: 90%">
+        <a class="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+
+<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_before" style="display: none;">
+            <button type="button" class="close">关闭</button>
+            <!--<p>温馨提示</p>-->
+            <p class="two">您手机号已经注册，请下载APP参与夺宝</p>
+            <p><span style="padding: 0.2em 1em; background-color: #ef2828;" class="off"><a style="color: #fff;" href="http://down.cgyyg.com/down.php">立即下载APP</a></span></p>
+        </div>
+        <div class="wrap wrap_r reg_notice" style="display: none;">
+            <button type="button" class="close">关闭</button>
+            <!--<p>注册提示</p>-->
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

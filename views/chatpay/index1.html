@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0033)http://cart.1yyg.com/weixinpay.do -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>微信扫码支付</title>
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/Comm.css">
+<!--[if IE 6]>
+     <script type="text/javascript" src="http://skin.1yyg.com/js/iepng.js"></script>
+     <script type="text/javascript">
+     EvPNG.fix('.search a.seaIcon i,.m-menu-all h3 em,.nav-cart-btn i.f-cart-icon,a.u-cart s,.u-mui-tab a.u-menus s,.u-mui-tab li.f-cart a.u-menus i,.u-mui-tab li.f-both-top a.u-menus,.u-mui-tab li.f-both-bottom a.u-menus,.i-ctrl a s,.g-list li cite,.f-list-sorts li.m-value s,.nav-main li.f-nav-thanks span,.u-float-list a i,.cartEmpty i,.transparent-png');
+     </script>
+ <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/WeixinPay.css">
+    <script language="javascript" type="text/javascript" src="{{ app.params.skinUrl }}/frontend/js/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ app.params.skinUrl }}/js/common.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        setInterval(function () {
+              $.getContent( apiBaseUrl + '/chatpay?o={{order.id}}','','chatpayresult');
+          }, 3000);
+      })
+      function success_chatpayresult(json){
+          if (json.result == 1) {
+            window.location.href = '/pay.html?o={{order.id}}'
+          };
+        }
+    </script>
+</head>
+<body class="">
+    <input name="hidIsBuyPay" type="hidden" id="hidIsBuyPay" value="{{order.paytype}}">
+    <div class="wx_header">
+        <div class="wx_logo">
+            <img title="微信支付" alt="微信支付标志" src="{{ app.params.skinUrl }}/frontend/images/wxlogo_pay.png"></div>
+    </div>
+    <div class="weixin">
+        <div class="weixin2">
+            <b class="wx_box_corner left pngFix"></b><b class="wx_box_corner right pngFix"></b>
+            <div class="wx_box pngFix">
+                <div class="wx_box_area">
+                    <div class="pay_box qr_default">
+                        <div class="area_bd"><span class="wx_img_wrapper" id="qr_box">
+                            <img id="payQRImg" class="qrcode" src="chatpay/qrcode.html?o={{order.id}}" alt="二维码" style="border-width:0px;">
+                            <img style="left: 50%; opacity: 0; display: none; margin-left: -101px;" class="guide pngFix" src="{{ app.params.skinUrl }}/frontend/images/wxwebpay_guide.png" alt="" id="guide">
+                        </span>
+                            <div class="msg_default_box"><i class="icon_wx pngFix"></i>
+                                <p>
+                                    请使用微信<br>
+                                    扫一扫完成支付
+                                </p>
+                            </div>
+                            <div class="msg_box"><i class="icon_wx pngFix"></i>
+                                <p><strong>扫描成功</strong>请在手机确认支付</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wx_hd">
+                    <div class="wx_hd_img icon_wx"></div>
+                </div>
+                <div class="wx_money"><span>￥</span>{{order.post_money}}.00</div>
+                <!--支付订单号-->
+                <div class="wx_pay">
+                    <p><span class="wx_left">支付订单号</span><span class="wx_right">{{order.id}}</span></p>
+                    <!--p><span class="wx_left">支付订单号</span><span class="wx_right"></span></p-->
+                </div>
+                <div class="wx_kf">
+                    <div class="wx_kf_img icon_wx"></div>
+                    <div class="wx_kf_wz">
+                        <p>客服</p>
+                        <p>400-000-5000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--版权-->
+    <section class="footer_d">
+        <div class="wrap clear">
+            <article>
+                <a href="{{ url(['/help/default/about']) }}">关于伙购</a><i>|</i><a href="{{ url(['/help/default/privacy']) }}">隐私声明</a><i>|</i><a href="{{ url(['/help/info/business'])}}">合作专区</a><i>|</i><a href="{{ url(['/help/default/jobs']) }}">加入伙购</a><i>|</i><a href="{{ url(['/help/default/contactus']) }}">联系我们</a>
+            </article>
+            <aside>Copyright © 2015 - 2020, 版权所有 huogou.com 粤ICP备15087800号-1</aside>
+            <summary>
+                <a class="ity01" href="https://credit.szfw.org/CX20151027011761130180.html" target="_blank"></a>
+                <a class="ity02" href="https://ss.knet.cn/verifyseal.dll?sn=e15102844030061182mvdq000000&ct=df&a=1&pa=0.8931514616124332" target="_blank"></a>
+                <a class="ity03" href="" target="_blank">
+                    <iframe src="http://ss.51honest.org///detail.credit?action=credcode&axbCode=SRG052885&logo=logo_4" frameborder="0" scrolling="no" width="88" height="28" style="margin:0 -2px 3px 0"></iframe>
+                </a>
+                <a class="ity04" href="http://szcert.ebs.org.cn/1bd62efa-4a6b-4be5-9378-1f6582a6d5dc" target="_blank">
+                </a>
+                <a class="ity05" href="http://www.ectrustprc.org.cn/certificate.id/certificateb.php?id=20053253" target="_blank">
+                </a>
+                <a class="ity06" href="http://www.itrust.org.cn/Home/Index/itrust_certifi?wm=1342684780" target="_blank">
+                </a>
+            </summary>
+        </div>
+    </section>
+
+
+
+</body></html>

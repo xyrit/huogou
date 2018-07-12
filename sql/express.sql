@@ -1,0 +1,9 @@
+CREATE TABLE `express` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR (255) NOT NULL COMMENT '快递名称',
+  `keyword` VARCHAR (50)  NOT NULL COMMENT '快递代号',
+  `admin_id` INT(10) UNSIGNED NOT NULL COMMENT '添加人',
+  `created_at` INT(10) UNSIGNED NOT NULL COMMENT '创建时间',
+  `updated_at` INT(10) UNSIGNED NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

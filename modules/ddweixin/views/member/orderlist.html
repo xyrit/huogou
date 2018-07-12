@@ -1,0 +1,34 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}获得的商品{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/orderlist.js?v=160428" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div>
+    <input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+    <div class="m_buylist m_get">
+        <ul id="ul_list">
+
+
+        </ul>
+
+        <div id="divLoading" class="loading clearfix g-acc-bg">
+            <b></b>正在加载
+        </div>
+        <div class="g-suggest clearfix">
+            请下载“滴滴夺宝”APP查看更多、
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

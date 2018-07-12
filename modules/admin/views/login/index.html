@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{{ app.name }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="image/png" href="{{ app.getAlias('skinUrl') }}/backend/i/favicon.png">
+    <link rel="stylesheet" href="{{ app.getAlias('skinUrl') }}/backend/css/amazeui.min.css"/>
+    <style>
+        .header {
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 200%;
+            color: #333;
+            margin-top: 30px;
+        }
+
+        .header p {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="am-g">
+            <h1>{{ app.name }}</h1>
+            <p>深圳市橙果网络科技有限公司</p>
+        </div>
+        <hr/>
+    </div>
+    <div class="am-g">
+        <div class="am-u-lg-3 am-u-md-8 am-u-sm-centered">
+            {{ html.beginForm('', 'post', {'class':'am-form'})|raw }}
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'username')|raw }}
+                    {{ html.activeTextInput(model, 'username', {'placeholder':'输入用户名'})|raw }}
+                    {{ html.error(model, 'username', {'class':'am-alert am-alert-danger'})|raw }}
+                </div>
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'password')|raw }}
+                    {{ html.activePasswordInput(model, 'password', {'placeholder':'输入密码'})|raw }}
+                    {{ html.error(model, 'password', {'class':'am-alert am-alert-danger'})|raw }}
+                </div>
+                <div class="am-form-group">
+                    {{ html.activeCheckbox(model, 'rememberMe')|raw }}
+                </div>
+                <div class="am-cf">
+                    {{ html.submitButton('登 录', {'class':'am-btn am-btn-primary am-btn-sm am-fl'})|raw }}
+                </div>
+            {{ html.endForm()|raw }}
+        </div>
+        {{ linkpage }}
+    </div>
+
+</body>
+</html>

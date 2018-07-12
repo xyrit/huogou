@@ -1,0 +1,73 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}分享赚钱{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/sharelist.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div id="loadingPicBlock">
+    <input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+    <input name="hidInviteLink" type="hidden" id="hidInviteLink" value="{{inviteUrl}}" />
+    <div class="wrapper m_share">
+        <div class="shareCon">
+            <div class="m_banner">
+                <img src="{{ app.params.skinUrl }}/weixin/images/inv-ad.jpg?2016527">
+            </div>
+            <dl>
+                <dt style="margin: 0 0 10px 0">
+                    <!--邀请好友成功参与伙购后，即可获得6%的佣金！-->
+                <p>领取规则<a style="color:blue;margin-left: 15px;" href="javascript:shou();">查看详情</a></p>
+                <div style="display: none;" class="guizeBox">
+                    <img width='100%' src="{{ app.params.skinUrl }}/mobile/images/invite-rule-m.jpg" />
+                    <a style="float: right;margin:5px 15px 0px 0px;color:blue;font-size: 15px;" href="javascript:hide();">缩起</a>
+                </div>
+                </dt>
+                <dd>
+                    <!--<a id="btnShare" href="javascript:;" class="orangeBtn">立即赚钱</a>-->
+                    <p class="shareP">长按复制以下链接发送给好友</p>
+                    <span class="shareSpan">1元就能买iPhone 6S，一种很有意思的购物方式，快来看看吧！{{inviteUrl}}</span>
+                </dd>
+                <dd>
+                    邀请好友：
+                    <em class="orange"> {{ inviteCount }}</em>
+                    <b></b>佣金：
+                    <em class="orange" id="price">￥{{ "%.2f"|format(commission/100) }}</em>
+                </dd>
+            </dl>
+        </div>
+        <div class="sub_nav marginB">
+            <a href="invitelist.html">邀请记录<i></i></a>
+            <a href="commission.html">佣金明细<i></i></a>
+          <a href="mention-list.html">提现记录<i></i></a>
+        </div>
+
+         <div class="pro_foot">
+            <ul>
+                <li id="liMention" class="border-orange-Btn"><a href="mention-apply.html">佣金提现</a></li>
+                <li id="liRechagre"><a href="javascript:;" class="orangeBtn">一键转入伙购账户</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function shou(){
+        $('.guizeBox').fadeIn();
+    }
+    function hide(){
+        $('.guizeBox').fadeOut();
+    }
+</script>
+{% endblock %}

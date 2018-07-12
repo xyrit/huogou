@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta property="qc:admins" content="655147777760577756375" />
+    {{ html.csrfMetaTags() | raw }}
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block css %}
+        <link rel="stylesheet" href="{{ app.params.httpsSkinUrl }}/css/global.css"/>
+        <link rel="stylesheet" href="{{ app.params.httpsSkinUrl }}/css/member.css">
+    {% endblock %}
+    <!--[if IE]>
+    <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/html5.js"></script>
+    <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/html5media.min.js"></script>
+    <![endif]-->
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/DD_belatedPNG_0.0.8a.min.js"></script>
+    <script>
+        DD_belatedPNG.fix('*');
+    </script>
+    <![endif]-->
+
+</head>
+
+<body>
+{% block body %}{% endblock %}
+<script src="{{ app.params.httpsSkinUrl }}/js/jquery-1.11.2.min.js"></script>
+<script>
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+</script>
+{% block js %}{% endblock %}
+{% block script %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}佣金提现{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/invite.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/mention-apply.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+    <div class="commission-con gray6">
+        <p class="gray6">佣金余额：<em class="orange" id="emCurrMoney">{{ "%.2f"|format(app.user.identity.commission/100) }}</em>元<i class="colorbbb">需满100元才可以申请哦</i></p>
+        <ul class="gray9">
+            <!--js控制文本框默认提示颜色是 bbbbbb, 输入之后的颜色是 666666-->
+            <li> <span>提现金额：</span> <input id="txtMoney" type="text" placeholder="请输入大于100正整数" /> </li>
+            <li> <span>开&nbsp;&nbsp;户&nbsp;&nbsp;人：</span> <input id="txtUserName" type="text" placeholder="如：张三" /> </li>
+            <li> <span>银行名称：</span> <input id="txtBank" type="text" placeholder="如：中国工商银行" /> </li>
+            <li>
+                <span>开户城市：</span>
+                <select id="selAreaA">
+                    <option value="1">选择省</option>
+                </select>
+                <b></b>
+                <select id="selAreaB">
+                    <option value="1">选择市</option>
+                </select>
+            </li>
+            <li> <span>支行名称：</span> <input id="txtSubBank" type="text" placeholder="请输入支行名称" /> </li>
+            <li> <span>银行账号：</span> <input id="txtAccount" type="text" maxlength="19" /> </li>
+            <li> <span>联系电话：</span> <input id="txtPhone" type="text" maxlength="15" /> </li>
+        </ul>
+        <a id="btnSure"href="javascript:;" class="orangeBtn">确认</a>
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}收货地址{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/addresslist.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<input type="hidden" id="hidAddressId" >
+<div id="div_confirm" >
+    <div class="addre-wapper">
+        <ul class="addre-list">
+
+        </ul>
+        <a id="btnAddAddr" href="addressadd.html" class="addre-btn">添加新地址</a>
+        <div class="opt-wrapper clearfix">
+            <a id="btnUpdateAddr" href="javascript:;" class="opt-btn addnew"><span>修改</span></a>
+            <a id="btnConfimAddr" href="javascript:;" class="opt-btn change"><span>设为默认地址</span></a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

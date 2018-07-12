@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>帮助中心_滴滴夺宝</title>
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/jquery.fullPage.css">
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/style.css">
+    <link href="/favicon_dd.ico" type="image/x-icon" rel="shortcut icon">
+<script src="{{ app.params.skinUrl }}/dddb/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.hr_lb ul li').click(function(){
+      $(this).addClass('hover').siblings().removeClass('hover');
+      $(this).find('.hr_lb3').slideDown().parent().siblings().find('.hr_lb3').slideUp();
+    });
+  })
+</script>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+<body>
+<div class="fixtop"><div class="main">
+    <a class="logo" href="{{ url(['/']) }}"><img src="{{ app.params.skinUrl }}/dddb/images/logo.png" /></a>
+    <div class="rignav">
+        <a  href="{{ url(['/']) }}">下载APP</a>
+        <a  href="{{ url(['/ddhelp/default/wechat'])}}">关注微信</a>
+        <a  href="{{ url(['/ddhelp/default/about']) }}">关于我们</a>
+        <a  href="{{ url(['/ddhelp/default/contact'])}}">联系我们</a>
+    </div>
+    <div class="clear"></div>
+</div></div>
+<div class="main" style="padding:90px 0 30px 0;">
+<div class="xl_right xl_back_white xl_fot_nr">
+  <div class="xl_p40">
+    <div class="xl_title1"><h1>常见问题</h1></div>
+    <div class="xl_faq">
+      <div class="hr_lb">
+        <ul>
+          <li class="hover">
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">1、什么是滴滴夺宝？</h1></div>
+            <div class="hr_lb3">
+              滴滴夺宝是一种新型的网购模式，只需1夺宝币就有可能买到一件商品。滴滴夺宝把一件商品平分成若干“等份”出售，每份1夺宝币，当一件商品所有“等份”售出后抽出一名幸运者，该幸运者即可获得此商品。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">2、滴滴夺宝的规则是什么？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              第一，每件商品参考市场价平分成相应“等份”，每份1夺宝币，1份对应1个夺宝号码。<br />
+              第二，同一件商品可以购买多次或一次购买多份。<br />
+              第三，当一件商品所有“等份”全部售出后计算出“幸运号码”，拥有“幸运号码”者即可获得此商品。
+              <p>
+                幸运号码计算方法：<br>
+                1）商品的最后一个号码分配完毕后，将公示截止该时间点本站全部商品的最后50个参与时间。<br>
+                2）将这50个时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如20:15:25.362则为201525362）。<br>
+                3）为保证公平公正公开，系统还会等待一小段时间，取最近下一期中国福利彩票“老时时彩”的揭晓结果（一个五位数值B）。
+				4）（数值A+数值B）除以该商品总需人次得到的余数 + 原始数 10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该商品。<br>
+								
+				注：如遇福彩中心通讯故障，无法获取上述期数的中国福利彩票“老时时彩”揭晓结果，则默认“老时时彩”揭晓结果为00000。<br>
+				凌晨1:55到上午10:00开奖规则如下：<br>
+				 1）B值固定：由于凌晨1:55到上午10:00老时时彩不开奖，默认“老时时彩“开奖结果为”00000“，即数值B=00000<br>
+				 2）即时开奖：该段时间，商品凑满后即可开奖（倒计时30秒即揭晓结果）
+
+
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">3、滴滴夺宝的流程是怎样的？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              <span class="orange">1、挑选商品</span>
+              <p>分类浏览或直接搜索商品，点击“立即夺宝”。</p>
+              <span class="orange">2、支付1 夺宝币</span>
+              <p>通过在线支付平台，支付1夺宝币即购买1人次，获得1个“夺宝号码”。同一件商品可购买多次或一次购买多份，购买的“夺宝号码”越多，获得商品的几率越大。</p>
+              <span class="orange">3、揭晓获得者</span>
+              <p>
+                当一件商品达到总参与人次，抽出1名商品获得者，滴滴夺宝会通过手机短信或邮件通知您领取商品。<br>
+                <b class="gray9">注：<br>
+                  1）商品揭晓后您可登录"我的"查询详情，未获得商品的用户不会收到短信或邮件通知；
+                  <br>
+                  2）商品揭晓后，请及时登录"我的"完善个人资料，以便我们能够准确无误地为您配送商品。
+                  <br>
+                  3）所有已揭晓商品均不给予退款
+                </b>
+              </p>
+              <span class="orange">4、晒单分享</span>
+              <p>
+                晒出您收到的商品实物图片甚至您的靓照，说出您的夺宝心得，让大家一起分享您的快乐。
+                <br>
+                在您收到商品后，您只需登录网站完成晒单，并通过审核，即可获得400-1500福分奖励。在您成功晒单后，您的晒单会出现在网站"晒单分享"专区，与大家分享喜悦。
+              </p>
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">4、怎样查看我参与的商品有没有获得？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              每件商品揭晓结果公布之后，登录滴滴夺宝，进入"我的"，在"夺宝记录"中即可查询揭晓情况。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">5、我获得了商品，我还需要支付其他费用吗？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              不需要支付其他任何费用。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">6、当我获得商品以后我该做什么？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">7、滴滴夺宝的商品是正品吗？怎么保证？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              滴滴夺宝承诺，所有商品100%正品，可享受厂家所提供的全国联保服务，享受商品的保修、换货和退货的义务（国家三包政策）。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">8、如何晒单分享？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              在您收到商品后，登录滴滴夺宝，进入"我的-获得的商品“确定收货并发布晒单信息，通过审核后，您还可获得400-1500福分奖励。在您成功晒单后，您的晒单会出现在网站“晒单分享”专区，与大家分享喜悦。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">9、我收到的商品可以换货或者退货吗？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              非质量问题，不在三包范围内，不给予退换货。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">10、参与夺宝需要注意什么？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              请务必正确填写真实有效的联系电话、收货地址以便在您获得商品时能及时与您取得联系。
+            </div>
+          </li>
+          <li>
+            <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">11、网上银行充值未及时到帐怎么办？</h1></div>
+            <div class="hr_lb3 xl_display_no">
+              网上支付未及时到帐可能有以下几个原因造成：<br />
+              第一，由于网速或者支付接口等问题，支付数据没有及时传送到支付系统造成的；<br />
+              第二，网速过慢，数据传输超时，使银行后台支付信息不能成功对接，导致银行交易成功而支付后台显示失败；<br />
+              第三，在网上支付如果使用某些防火墙软件，有时会屏蔽银行接口的弹出窗口，这时会造成在银行那边被扣费，但在我们网站上显示尚没支付。<br />
+              但请您放心，每天我们都会根据银行系统的帐务明细清单对前一天的订单进行逐笔核对，如遇问题订单，我们会做手工添加。
+              如您对我们“帮助中心”的说明有任何疑问或建议请告诉我们
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</div></div>
+{% include '@app/views/dd_footer.html' %}
+</body>
+</html>

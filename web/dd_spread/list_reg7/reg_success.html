@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/layout_sub.css?v=060607">
+    <title>滴滴夺宝-注册成功</title>
+</head>
+<body style="background:#f0f0f0;font-family: '微软雅黑">
+    <div class="download suec_box">
+        <div class="success_box">
+            <p><img src="img/success.png"/>恭喜您注册成功！</p>
+        </div>
+    </div>
+    <div class="download suec_box" style="margin-top: 10px;">
+        <div>
+            <img src="img/success_img1.jpg"/>
+        </div>
+    </div>
+
+    <div class="download" style="background: #f0f0f0">
+        <a href="javascript:;" class="downloadBut">下载滴滴夺宝APP参与夺宝<br/>(免手机流量)</a>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+    <script style="text/javascript">
+        $(function() {
+            var url = 'http://down.cgyyg.com/down.php';//跳转地址
+            url += '?c='+getUrlParam('did');
+            $('body').click(function(){
+                window.location.href=url;//点击任何地方 跳转下载页面
+            });
+        });
+    </script>
+</body>
+</html>

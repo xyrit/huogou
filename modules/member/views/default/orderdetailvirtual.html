@@ -1,0 +1,283 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}订单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+<section class="confirm-address-fixed">
+    <div class="address-fixed-con">
+        <i class="address-fixed-close"></i>
+        <div id="address-submit">
+            <h3>确认信息后将不可修改，是否确认提交信息？</h3>
+            <p></p>
+            <p></p>
+            <div class="tijiao"><a href="javascript:;" class="btn-submit">确认</a><a href="javascript:;" class="btn-cancle">取消</a></div>
+        </div>
+        <div id="order-share">
+            <h4><img src="{{ app.params.skinUrl }}/img/o_pic3.png"> 信息已提交，请您耐心等待</h4>
+            <p>向朋友们炫耀一下吧！</p>
+            <div id="bdshare" class="bdsharebuttonbox" data-tag="share_1">
+                <a class="bds_weixin" data-cmd="weixin" href="javascript:;"></a>
+                <a class="bds_tqq" data-cmd="sqq" href="javascript:;"></a>
+                <a class="bds_tsina" data-cmd="tsina" href="javascript:;"></a>
+                <a class="bds_qzone" data-cmd="qzone" href="javascript:;"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">我的伙购</a><i></i><a href="{{ url(['/default/order-list']) }}">获得的商品</a><i></i><a href="">订单详情</a>
+        </div>
+        <div class="order-detail2">
+            <h2>获得的商品 - 订单详情</h2>
+            <ul class="order-detail2-nav">
+                <li class="pass"><span>获得商品</span><em></em></li>
+                <li {% if orderInfo.status == 0 %}class="act"{% else %}class="pass"{% endif %}><span>确认账号信息</span><i></i><em></em></li>
+                <li {% if orderInfo.status >= 1 and orderInfo.status <= 4 %}class="act"{% elseif orderInfo.status == 8 %}class="pass"{% endif %}><span>商家发货</span><i></i><em></em></li>
+                <li {% if orderInfo.status == 8 %}class="last"{% endif %}><span>交易完成</span><i></i></li>
+            </ul>
+            <div class="order-detail2-box">
+                <div class="order-detail2-status">
+                    {% if orderInfo.status == 0 or orderInfo.status == 6 %}
+                    <h3>当前状态：等待提交账号信息</h3>
+                    {% elseif orderInfo.status >= 1 and orderInfo.status <= 4 %}
+                    <h3>当前状态：账号信息审核中</h3>
+                    {% else %}
+                    <h3>当前状态：已完成</h3>
+                    {% endif %}
+                    <p>客服工作时间为（周一至周日 09:00-18:30），在此期间您可以致电 400-000-5000 客服热线随时咨询订单相关信息。</p>
+                    {% if orderInfo.status == 6 and orderInfo.fail_info != '' %}
+                    <h3>您的地址信息不完整，请重新填写。驳回原因：{{ orderInfo.fail_info }}</h3>
+                    {% endif %}
+                </div>
+
+                <div class="confirm-address">
+                    {% if orderInfo.status == 0 %}
+                    {% if delivery_id == 5 %}
+                    <h2>提示信息：请填写您的支付宝账号信息，以便工作人员及时为您充值！</h2>
+                    <div class="order-detail2-info">
+                        <form>
+                            <div>
+                                <label for="">支付宝账号：</label>
+                                <input type="text" name="account" id="tb_account"><span>&lt;必填&gt;</span>
+                                <span id="tb_tips" style="color:red"></span>
+                            </div>
+                            <div>
+                                <label for="">姓名：</label>
+                                <input type="text" name="name" id="tb_name"><span>&lt;必填&gt;</span>
+                            </div>
+                            <input type="hidden" name="type" value="tb">
+                        </form>
+                    </div>
+                    {% elseif delivery_id == 6 or delivery_id == 9 %}
+                    <h2>提示信息：请填写您的QQ号，以便工作人员及时为您充值！</h2>
+                    <div class="order-detail2-info">
+                        <form>
+                            <div>
+                                <label for="">QQ号：</label>
+                                <input type="text" name="account" id="qb_account"><span>&lt;必填&gt;</span>
+                                <span id="qb_tips" style="color:red"></span>
+                            </div>
+                            <input type="hidden" name="name" value="">
+                            <input type="hidden" name="type" value="xqtqb">
+                        </form>
+                    </div>
+                    {% elseif delivery_id == 7%}
+                    <h2>提示信息：请填写您的手机号，以便工作人员及时为您充值！</h2>
+                    <div class="order-detail2-info">
+                        <form>
+                            <div>
+                                <label for="">手机号：</label>
+                                <input type="text" name="account" id="dh_account"><span>&lt;必填&gt;</span>
+                                <span id="dh_tips" style="color:red"></span>
+                            </div>
+                            <input type="hidden" name="name" value="">
+                            <input type="hidden" name="type" value="dh">
+                        </form>
+                    </div>
+                    {% elseif delivery_id == 10%}
+                    <h2>提示信息：请填写您的手机号，以便工作人员及时为您充值！</h2>
+                    <div class="order-detail2-info">
+                        <form>
+                            <div>
+                                <label for="">手机号：</label>
+                                <input type="text" name="account" id="dh_account"><span>&lt;必填&gt;</span>
+                                <span id="dh_tips" style="color:red"></span>
+                            </div>
+                            <input type="hidden" name="name" value="">
+                            <input type="hidden" name="type" value="mobile_online">
+                        </form>
+                    </div>
+                    {% endif %}
+                    <input type="hidden" name="id" value="{{ orderId }}">
+                    <input type="submit" class="confirm-address-submit" value="确认提交">
+                    {% elseif orderInfo.status >= 1 and orderInfo.status <= 4 %}
+                    {% if delivery_id == 5 %}
+                    <div class="order-detail2-info">
+                        <div>
+                            <label for="">支付宝账号：</label>{{ virtual_hand.account }}
+                        </div>
+                        <div>
+                            <label for="">姓名：</label>{{ virtual_hand.name }}
+                        </div>
+                    </div>
+                    {% elseif delivery_id == 6 %}
+                    <div class="order-detail2-info">
+                        <div>
+                            <label for="">QQ号：</label>{{ virtual_hand.account }}
+                        </div>
+                    </div>
+                    {% elseif delivery_id == 7 or delivery_id == 10 %}
+                    <div class="order-detail2-info">
+                        <div>
+                            <label for="">手机号：</label>{{ virtual_hand.account }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="order-goods">
+                <h2>获得的商品</h2>
+                <table class="get record_con">
+                    <thead>
+                    <tr>
+                        <td width="55%">商品</td>
+                        <td width="15%">价值</td>
+                        <td width="15%">数量</td>
+                        <td width="15%">订单号</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <figure>
+                                <picture>
+                                    <a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}"><img src="{{ periodInfo.goods_picture_url }}"></a>
+                                </picture>
+                                <figcaption>
+                                    <h3><a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a></h3>
+                                    <p>幸运伙购码：{{ periodInfo.lucky_code }}</p>
+                                    <p>揭晓时间：{{ periodInfo.raff_time }}</p>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>￥{{ periodInfo.price }}</td>
+                        <td>1</td>
+                        <td>{{ orderId }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% include '@memberModule/views/default/footer.html' %}
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_area.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    window._bd_share_config = {
+        common : {
+            bdText : "哇塞，我在伙购网花了{{ periodInfo.user_buy_num }}元购买的这件商品， 一起来伙购吧~~",
+            bdDesc : "{{ periodInfo.goods_name }}",
+            bdUrl : "{{ url('/product', {'pid': periodInfo.goods_id}) }}",
+            bdPic: "{{ periodInfo.goods_picture_url  }}"
+        },
+        share : [{
+            "bdSize" : 82
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+
+    $(function() {
+        $('.address-fixed-close').on('click',function(){
+            $('.confirm-address-fixed').stop().fadeOut('fast');
+            window.location.reload();
+        })
+
+        $('.confirm-address-submit').on('click', function() {
+            var deliverId = "{{ delivery_id }}";
+            if (deliverId == 5) {
+                var account = $('#tb_account').val();
+                var name = $('#tb_name').val();
+                if (!account || !name) {
+                    $('#tb_tips').html("请输入正确的淘宝账号");
+                    setTimeout(function(){
+                        $('#tb_tips').html("");
+                    },1000)
+                    return false;
+                }
+            } else if (deliverId == 6) {
+                var reg = /^[1-9]\d{4,11}$/;
+                var qq = $('#qb_account').val();
+                if (qq && qq != 0 && !reg.test(qq)) {
+                    $('#qb_tips').html("请输入正确的QQ号");
+                    setTimeout(function(){
+                        $('#qb_tips').html("");
+                    },1000)
+                    return false;
+                }
+            } else if (deliverId == 7) {
+                if (!checkPhone($('#dh_account').val())) {
+                    $('#dh_tips').html("请输入正确的手机号");
+                    setTimeout(function(){
+                        $('#dh_tips').html("");
+                    },1000)
+                    return false;
+                }
+            }
+
+            $('.confirm-address-fixed').stop().fadeIn();
+            $('#address-submit').find('p').eq(0).html($('.add-con.act').find('h4').html());
+            $('#address-submit').find('p').eq(1).html($('.add-con.act').find('p').html());
+            $('#address-form2').hide();
+            $('#address-submit').fadeIn();
+        });
+
+        $('#address-submit').find('.btn-submit').on('click',function(){
+            var params = {
+                'id': $("input[name='id']").val(),
+                'type': $("input[name='type']").val(),
+                'account': $("input[name='account']").val(),
+                'name': $("input[name='name']").val(),
+                'token': token
+            };
+            console.log(params);
+            $.ajax({
+                async: false,
+                url: apiBaseUrl + '/record/submit-address-virtual',
+                type: "POST",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: params,
+                success: function (data) {
+                    console.log(data);
+                    if (data.code == 100) {
+                        $('#address-submit').hide();
+                        $('#order-share').fadeIn();
+                    } else {
+
+                    }
+                }
+            });
+        })
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,8 @@
+CREATE TABLE `order_manage_groups` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` VARCHAR(30) NOT NULL COMMENT '小组名称',
+  `by_uid` INT(10) NOT NULL COMMENT '创建人',
+  `created_at` INT(10) UNSIGNED NOT NULL COMMENT '创建时间',
+  `updated_at` INT(10) UNSIGNED NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单处理小组表';

@@ -1,0 +1,206 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">充值订单</strong></div>
+        </div>
+
+        {{ html.beginForm('', 'get', {}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" name="id" class="am-form-field" placeholder="订单号" value="{{ condition.id }}">
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    金额：{{ list.money }}元
+                </div>
+            </div>
+        </div>
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <select name="payment" id="payment" data-am-selected>
+                        <option value="-1" {% if condition.payment == -1 %}selected{% endif %}>支付方式</option>
+                        <option value="1" {% if condition.payment == 1 %}selected{% endif %}>储蓄卡</option>
+                        <option value="2" {% if condition.payment == 2 %}selected{% endif %}>信用卡</option>
+                        <option value="3" {% if condition.payment == 3 %}selected{% endif %}>充值平台</option>
+                        <option value="4" {% if condition.payment == 4 %}selected{% endif %}>佣金</option>
+                        <option value="5" {% if condition.payment == 5 %}selected{% endif %}>充值卡</option>
+                        <option value="6" {% if condition.payment == 6 %}selected{% endif %}>兑换伙购币</option>
+                        <option value="7" {% if condition.payment == 7 %}selected{% endif %}>平台赠送</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2" {% if condition.payment != 3 %}style="display: none;"{% endif %} id="source">
+                <div class="am-form-group">
+                    <select name="source" data-am-selected>
+                        <option value="0" {% if condition.source == 0 %}selected{% endif %}>支付平台</option>
+                        <option value="zhifukachat" {% if condition.source == 'zhifukachat' %}selected{% endif %}>微信支付</option>
+                        <option value="jd" {% if condition.source == 'jd' %}selected{% endif %}>京东支付</option>
+                        <option value="zhifukaqq" {% if condition.source == 'zhifukaqq' %}selected{% endif %}>手q支付</option>
+                        <option value="iapp" {% if condition.source == 'iapp' %}selected{% endif %}>爱贝支付</option>
+                        <option value="kq" {% if condition.source == 'kq' %}selected{% endif %}>快钱</option>
+                        <option value="chinaBank" {% if condition.source == 'chinaBank' %}selected{% endif %}>网银在线</option>
+                        <option value="union" {% if condition.source == 'union' %}selected{% endif %}>银联在线</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <select name="status" id="status" data-am-selected>
+                        <option value="-1" {% if condition.status == -1 %}selected{% endif %}>支付状态</option>
+                        <option value="1" {% if condition.status == 1 %}selected{% endif %}>已支付</option>
+                        <option value="0" {% if condition.status == 0 %}selected{% endif %}>未支付</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-form-group">
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+                    </div>
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" name="account" class="am-form-field" placeholder="请输入手机号/邮箱" value="{{ condition.account }}">
+                      <span class="am-input-group-btn">
+                          <button class="am-btn am-btn-default" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <button class="am-btn am-btn-default"><a href="{{ url }}">导出</a></button>
+            </div>
+        </div>
+        {{ html.endForm() | raw }}
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>流水号</th>
+                            <th>会员</th>
+                            <th>金额</th>
+                            <th class="am-hide-sm-only">支付方式</th>
+                            <th class="am-hide-sm-only">来源</th>
+                            <th class="am-hide-sm-only">状态</th>
+                            <th class="am-hide-sm-only">充值时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list.list %}
+                            <tr>
+                                <td><a href="javascript:;" class="link" data-id="{{ item.id }}">{{ item.id }}</a></td>
+                                <td>{{ item.result }}</td>
+                                <td>{{ item.user_id.phone }}<br />{{ item.user_id.email }}</td>
+                                <td>{{ item.post_money }}</td>
+                                <td class="am-hide-sm-only">{{ item.payment.name }}</td>
+                                <td class="am-hide-sm-only">{{ item.source.name }}</td>
+                                <td class="am-hide-sm-only">{% if(item.status == 1) %}已支付{% elseif(item.status == 0) %}未支付{% endif %}</td>
+                                <td class="am-hide-sm-only">{{ item.pay_time }}</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button">
+                                                <a href="javascript:;" class="link" data-id="{{ item.id }}">查看</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <div class="am-fr">
+                            <div class="am-cf">
+                                <p class="am-fl">共 {{ list.pagination.totalCount }} 条记录</p>
+
+                                <div class="am-fr">
+                                    {{ use('/app/widgets/BackendLinkPager') }}
+                                    {{ backend_link_pager_widget({'pagination': list.pagination}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script>
+    $('#status').selected({
+        btnWidth: '100px',
+    });
+    $('#payment').selected({
+        btnWidth: '100px',
+    });
+
+    laydate({
+        elem: '#my-start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    laydate({
+        elem: '#my-end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    $('.link').click(function(){
+        var id = $(this).attr('data-id');
+        var urls = '{{ url('/order/recharge-detail') }}' + '?id=' + id;
+        layer.open({
+            type: 2,
+            area: ['700px', '530px'],
+            fix: false, //不固定
+            shade: false,
+            maxmin: true,
+            content: urls
+        });
+    })
+
+    $('#payment').change(function(){
+        var val = $(this).val();
+        var ui = document.getElementById("source");
+        if(val == 3){
+            ui.style.display="block";
+        }else{
+            ui.style.display="none";
+        }
+    })
+</script>
+{% endblock %}

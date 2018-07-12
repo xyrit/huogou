@@ -1,0 +1,38 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}提现记录{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/invite.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/tpl.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div id="wrapper" >
+     <div class="withdrawDetails">
+         
+         <dl>
+            <dt>
+                <span>申请时间</span>
+                <span>提现金额</span>
+                <span>提现状态</span>
+            </dt>
+         </dl>
+        <dl id="mentionList" class="gray9" ajax="/invite/mention-list" onajax='if(json.totalCount==0) $(".g-suggest").hide(); '>
+            <dd>
+                <span>{var d=new Date; d.setTime($apply_time*1000); d.toLocaleString()}</span>
+                <span class="orange">￥{money}</span>   
+                <span style="color: {statusColor};">{statusText}</span>
+                <span></span>
+            </dd>
+        </dl>
+
+    </div>
+        <div class="g-suggest clearfix">
+            请下载“滴滴夺宝”APP查看更多
+        </div>
+</div>
+
+{% endblock %}

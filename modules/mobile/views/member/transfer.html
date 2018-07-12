@@ -1,0 +1,37 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}转账{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/comm.css?v=160328" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/mobile/css/accounts.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/transfer.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+    <input  type="hidden" id="isSetPayPassword" value="{{ app.user.identity.pay_password!='' }}" />
+    <input  type="hidden" id="isSetPhone" value="{{ app.user.identity.phone!='' }}" />
+    <input  type="hidden" id="totel" value="{{ app.user.identity.money }}" />
+    
+    <div class="tips-con">
+        <p>温馨提示：转帐申请处理成功后，系统会自动将款项转入对方帐户并将转账结果通知收款人。</p>
+        <h4 class="gray9">您的当前余额：<em class="orange">￥{{ "%.2f"|format(app.user.identity.money) }}</em></h4>
+    </div>
+    <div class="recharge-con clearfix">
+        <ul>
+            <li> <input id="txtMoney" type="text" placeholder="请输入正整数金额" /><i>转账金额：</i><cite>元</cite></li>
+            <li> <input id="txtAccount" type="text" placeholder="请输入对方手机号或邮箱" /><i>收款账号：</i></li>
+            <li> <input id="txtMemo" type="text" placeholder="选填" maxlength="20" /><i>备<em>注：</em></i></li>
+            <li> <input id="txtPaypwd" type="password" placeholder="请输入6位支付密码" maxlength="6" /><i>支付密码：</i></li>
+            <li class="z-rec-a"><a id="btnForget" href="/member/paypwdcheck.html?update=1" class="gray9">忘记支付密码？</a></li>
+            <li class="z-rec-a"><a id="btnSubmit" href="javascript:;" class="orangeBtn">确认提交</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+{% endblock %}

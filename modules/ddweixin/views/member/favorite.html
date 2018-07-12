@@ -1,0 +1,52 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}我的关注{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/tpl.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/favorite.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+    <input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+    <div class="goodList">
+        <ul id="ul_list" ajax='/record/collect-list'  onajax="$('#ul_list li[is_sale=0]').find('.gRate').toggle();">
+            <li periodid="{period_id}" product_id="{goods_id}" is_sale='{is_sale}' goodsname="{goods_name}" goodspic="{goods_picture}"><span class="gList_l fl"><a href="{createGoodsUrl($goods_id)}"><img src="/img/e.gif" data-src="{createGoodsImgUrl($goods_picture,photoSize[1],photoSize[1])}" /></a></span>
+                <div class="gList_r">
+                    <h3 class="gray6">{goods_name}</h3>
+                    <div class="gRate clearfix">
+                        <a  class="now_btn" href="{createGoodsUrl($goods_id)}">第<span class="orange">{period_number}</span>期进行中<span class="dotting">...</span></a>
+                        <div class="fr">
+                            <a href="javascript:;" class="car-btn" >
+                                <s></s></a>
+                            <div class="share">
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <span class="s-dot"></span>
+                                <div class="option" style="display:none;">
+                                    <a href="javascript:;"  class="z-del o-btn"><i></i>删除</a>
+                                    <a href="javascript:;"  class="z-share o-btn"><i class="z-set"></i>分享</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gRate clearfix" style='display: none;'><a href="javascript:;" class="now_btn">已结束</a><div class="fr"><a goodsid="22610" href="javascript:;" class="z-del"><i></i></a></div></div>
+                </div>
+            </li>
+          
+        </ul>        
+        
+    </div>
+
+
+
+
+{% endblock %}

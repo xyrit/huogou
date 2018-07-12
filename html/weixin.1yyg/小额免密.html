@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>安全设置 - 1元云购</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="weixin/CSS/security.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="secrityBg">
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="SmallPayMoneyCheck.do" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>小额免密设置</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <input name="hidOldMoney" type="hidden" id="hidOldMoney" />
+        <input name="hidSmallMoney" type="hidden" id="hidSmallMoney" value="0" />
+        <div class="login-protection small-money clearfix">
+            <cite class="gray9">请选择免密支付额度</cite>
+            <ul id="ul_smallmoney">
+                <li money="50" class="hover"><a href="javascript:;">≤ 50元/单笔<b class="member-icon"></b></a></li>
+                <li money="100"><a href="javascript:;">≤ 100元/单笔<b class="member-icon"></b></a></li>
+                <li money="200"><a href="javascript:;">≤ 200元/单笔<b class="member-icon"></b></a></li>
+                <li money="500"><a href="javascript:;">≤ 500元/单笔<b class="member-icon"></b></a></li>
+                <li money="0">≤<input id="txtCustomMoney" type="text" placeholder="自定义" maxlength="5" class="gray9" /><em>元/单笔</em><b class="member-icon"></b></li>
+            </ul>
+            <span class="btn-margin"><a id="btnSubmit" href="javascript:;" class="orgBtn">保存</a></span>
+        </div>
+    </section>
+    <input id="hidPageType" type="hidden" value="-1" />
+    <div class="footer clearfix" style="display:none;">
+        <ul>
+            <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+            <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+            <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+            <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+            <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

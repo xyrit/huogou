@@ -1,0 +1,88 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block title %}邀请好友_伙购网{% endblock %}
+
+{% block main %}
+
+    <section id="invite_tishi">
+        <p></p>
+        <b></b>
+    </section>
+
+
+    <div class="member_con_rl">
+        <div class="find-friends">
+            <h1 class="invite-friends">邀请好友</h1>
+
+            <div class="invite-friends-act">
+                <aside>复制链接邀请好友，现金奖励等你拿！<a href="{{ url(['/invite']) }}">详情>></a></aside>
+                <p id="invite_title">1元就能买IPhone 6哦，快去看看吧！{{ inviteUrl }}</p>
+                <a class="invite_act" onclick="copyText(document.all.invite_title)" href="javascript:;">复制链接</a>
+            </div>
+            <div class="invite-friends-xx">
+                <p>成功邀请<i>{{ totalCount }}</i>位会员注册，已有<i>{{ inviteConsumeUserCount }}</i>位会员参与伙购，您通过邀请获得奖励：<i>{{ invitePointsCount }}</i>福分</p>
+            </div>
+
+            <table class="invite-friends-table">
+                <thead>
+                <tr>
+                    <td width="40%" class="left padding">用户名</td>
+                    <td width="20%">时间</td>
+                    <td width="20%">邀请编号</td>
+                    <td width="20%">消费状态</td>
+                </tr>
+                </thead>
+                <tbody>
+                {% if invite %}
+                {% for info in invite %}
+                <tr>
+                    <td class="left padding name">
+                        <a href="{{ url('/user', {'id':info.user_home_id}) }}" target="_blank">
+                            <picture><img src="{{ info.user_avatar }}" alt="{{ info.user_nickname }}"></picture>
+                        </a>
+                        <a href="{{ url('/user', {'id':info.user_home_id}) }}" target="_blank">{{ info.user_nickname }}</a>
+                    </td>
+                    <td>
+                        {{ info.invite_time|date('Y-m-d H:i:s') }}
+                    </td>
+                    <td>
+                        {{ info.user_home_id }}
+                    </td>
+                    <td>
+                        {% if info.status == 0 %}
+                            未参与伙购
+                        {% elseif info.status == 1 %}
+                            已参与伙购
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr style="border-bottom: 0;">
+                    <td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            {{ use('/app/widgets/LinkPager') }}
+            {{ link_pager_widget({pagination: pagination}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#invite_tishi').find('b').on('click', function(){
+                $('#invite_tishi').fadeOut();
+            });
+        })
+    </script>
+{% endblock %}

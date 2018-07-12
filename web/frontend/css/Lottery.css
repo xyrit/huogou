@@ -1,0 +1,729 @@
+@charset "utf-8";
+
+.g-main-con {
+    clear: both;
+    padding-bottom: 50px;
+    background: #fff;
+}
+
+.g-lottery-part1 {
+    width: 1160px;
+    padding: 0 14px;
+    margin: 10px auto;
+    border: 1px solid #e4e4e4;
+}
+
+.m-lottery-title {
+    width: 1160px;
+    height: 35px;
+    line-height: 35px;
+    padding: 5px 0;
+    color: #333;
+}
+
+.m-lottery-title .fl em {
+    font-size: 18px;
+}
+
+.m-lottery-title .fl em,.m-lottery-title .fl i,.m-lottery-title .fl a {
+    float: left;
+}
+
+.m-lottery-title .fl i {
+    width: 0;
+    height: 17px;
+    font-size: 0;
+    display: inline-block;
+    border-left: 1px solid #e4e4e4;
+    overflow: hidden;
+    margin: 8px 15px;
+}
+
+.m-lottery-title .fl a img {
+    display: block;
+    margin-top: 0;
+}
+
+.m-lottery-title .fr span {
+    font-size: 14px;
+}
+
+.m-lottery-title .fr b {
+    margin: 0 3px;
+}
+
+.m-lott-menu {
+    clear: both;
+    width: 100%;
+    height: 40px;
+    border-top: 1px solid #eee;
+    display: inline-block;
+}
+
+.m-lott-menu ul {
+    height: 40px;
+    margin: 0 -27px;
+    display: block;
+}
+
+.m-lott-menu li {
+    float: left;
+    margin: 0 26px;
+    display: inline;
+    padding-top: 9px;
+    overflow: hidden;
+}
+
+.m-lott-menu li a {
+    color: #666;
+    font-size: 14px;
+    height: 29px;
+}
+
+.m-lott-menu li a:hover,.m-lott-menu li.current a {
+    color: #f60;
+}
+
+.m-lott-menu li.current a {
+    display: inline-block;
+    height: 30px;
+    border-bottom: 2px solid #f60;
+    padding-left: 1px;
+}
+
+.g-lottery-part2 {
+    border-left: 1px solid #e4e4e4;
+    border-top: 1px solid #e4e4e4;
+    display: inline-block;
+    *display: inline;
+}
+
+.m-lottery-list {
+    float: left;
+    width: 395px;
+    height: 236px;
+    border: 1px solid #e4e4e4;
+    border-top: 0 none;
+    margin-left: -1px;
+    display: inline-block;
+}
+
+.m-lottery-special {
+    width: 396px;
+}
+
+.m-lottery-list li {
+    float: left;
+}
+
+.m-lottery-list li.f-lott-comm {
+    padding-left: 10px;
+    padding-top: 15px;
+    position: relative;
+}
+
+.m-lottery-list li.f-lott-comm img {
+    width: 150px;
+    height: 150px;
+    display: block;
+}
+
+.m-lottery-list li.f-lott-comm i {
+    width: 39px;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 5;
+    overflow: hidden;
+    background-position: -75px -110px;
+}
+
+.m-lottery-list li.f-lott-detailed {
+    width: 210px;
+    padding-left: 13px;
+    color: #999;
+}
+
+.m-lottery-list li.f-lott-detailed dt {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.m-lottery-list li.f-lott-detailed dt a:hover {
+    text-decoration: underline;
+}
+
+.m-lottery-list li.f-lott-detailed dd {
+    font-size: 12px;
+}
+
+.m-lottery-list .u-user-info,.m-lottery-list .u-comm-info {
+    float: left;
+    width: 210px;
+}
+
+.m-lottery-list .u-user-info {
+    height: 84px;
+    line-height: 20px;
+    padding: 15px 0 3px;
+    border-bottom: 1px dotted #e4e4e4;
+    display: inline-block;
+}
+
+.m-lottery-list .u-user-info p {
+    display: block;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+.m-lottery-list .u-user-info p a {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.m-lottery-list .u-user-info p img {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+}
+
+.m-lottery-list .u-user-info p s {
+    display: block;
+    background: url(http://skin.1yyg.com/DataServer/images/lottery-head.png?v=141202) no-repeat;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    _display: none;
+}
+
+.m-lottery-list .u-user-info dl {
+    padding-left: 10px;
+}
+
+.m-lottery-list .u-user-info dt {
+    display: block;
+    height: 18px;
+    padding-bottom: 3px;
+}
+
+.m-lottery-list .u-user-info dt em,.m-lottery-list .u-user-info dt span {
+    display: block;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+}
+
+.m-lottery-list .u-user-info dt span {
+    max-width: 82px;
+    _width: 82px;
+    word-break: break-all;
+}
+
+.m-lottery-list .u-user-info dt span a {
+    color: #2af;
+}
+
+.m-lottery-list .u-user-info dd {
+    clear: both;
+    display: block;
+    line-height: 21px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.m-lottery-list .u-user-info dd.z-lott-lz {
+    width: 138px;
+    height: 16px;
+    line-height: 16px;
+}
+
+.m-lottery-list .u-comm-info {
+    padding-top: 10px;
+    _padding-top: 8px;
+}
+
+.m-lottery-list .u-comm-info dt {
+    height: 39px;
+    overflow: hidden;
+    margin-bottom: 3px;
+    *margin-bottom: 4px;
+    _margin-bottom: 3px;
+}
+
+.m-lottery-list .f-lott-detailed dt a {
+    color: #333;
+    line-height: 18px;
+    *line-height: 19px;
+}
+
+.m-lottery-list .u-comm-info dt a:hover {
+    color: #f60;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn {
+    padding-top: 5px;
+    _padding-top: 4px;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn span,.m-lottery-list .u-comm-info dd.z-lott-btn p {
+    display: block;
+    float: left;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn span a,.m-lottery-list .u-comm-info dd.z-lott-btn p {
+    border-radius: 2px;
+    text-align: center;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn span {
+    font-size: 14px;
+    padding-right: 12px;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn span a {
+    display: block;
+    width: 98px;
+    height: 24px;
+    line-height: 24px;
+    line-height: 22px\9;
+    *line-height: 23px;
+    _height: 22px;
+    _line-height: 22px;
+    _padding-top: 2px;
+    border: 1px solid #ffad77;
+    color: #f60;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn span a:hover {
+    background: #f60;
+    border: 1px solid #f60;
+    color: #fff;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p {
+    width: 80px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #e4e4e4;
+    position: relative;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p em {
+    margin-right: 3px;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p a {
+    color: #666;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p cite {
+    border-style: solid;
+    border-width: 4px 0 4px;
+    border-color: #fff;
+    border-right: 4px solid rgb(221,221,221);
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    left: -5px;
+    top: 8px;
+}
+
+.m-lottery-list .u-comm-info dd.z-lott-btn p cite i {
+    border-style: solid;
+    _border-style: dashed;
+    border-width: 4px;
+    border-color: transparent;
+    border-right-width: 0;
+    border-right: 4px solid #fff;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: -4px;
+    left: -2px;
+}
+
+.m-lottery-anning {
+    width: 394px;
+    height: 234px;
+    border: 2px solid #f60;
+    border-right: 0 none;
+    position: relative;
+    left: 0;
+    margin-top: -1px;
+}
+
+.m-lottery-anning b {
+    background: url(http://skin.1yyg.com/images/announced-2014.png?v=141202) no-repeat;
+    width: 74px;
+    height: 74px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.m-lottery-anning ul {
+    display: block;
+    height: 226px;
+    border: 4px solid #ffe9c7;
+}
+
+.m-lottery-anning li.f-lott-comm {
+    padding-top: 38px;
+}
+
+.m-lottery-anning li.f-lott-comm i {
+    top: 30px;
+    left: 30px;
+}
+
+.m-lottery-anning li.f-lott-detailed {
+    padding-top: 27px;
+}
+
+.m-lottery-anning li.f-lott-detailed dt {
+    height: 39px;
+    overflow: hidden;
+    margin-bottom: 3px;
+}
+
+.m-lottery-anning li.f-lott-detailed dt a:hover {
+    color: #f60;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-ymy {
+    width: 62px;
+    height: 26px;
+    line-height: 26px;
+    _line-height: 27px;
+    overflow: hidden;
+    text-align: center;
+    background: #e4e4e4;
+    margin: 3px 0 10px;
+    font-size: 14px;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time {
+    display: block;
+    width: 180px;
+    height: 72px;
+    overflow: hidden;
+    background: #f60;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time p {
+    font-size: 14px;
+    padding: 3px 0;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time cite {
+    display: block;
+    width: 131px;
+    height: 36px;
+    margin: 0 auto;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time strong {
+    line-height: 45px;
+    font-size: 16px;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time span,.m-lottery-anning li.f-lott-detailed dd.z-jx-time em {
+    float: left;
+    height: 36px;
+    font-size: 24px;
+    text-align: center;
+    overflow: hidden;
+    display: block;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time span {
+    width: 34px;
+    background: #fff;
+    color: #f60;
+    border-radius: 2px;
+    line-height: 36px;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-time em {
+    display: block;
+    width: 14px;
+    line-height: 30px;
+}
+
+.m-lottery-anning li.f-lott-detailed dd.z-jx-now {
+    width: 130px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 14px;
+    background: #f60;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.m-lottery-bor-rb {
+    border-right: 2px solid #f60;
+}
+
+.m-anning-wh393 {
+    width: 393px;
+}
+
+.m-anning-wh395 {
+    width: 395px;
+}
+
+.m-anning-height {
+    height: 235px;
+    margin-top: -2px;
+}
+
+.m-anning-height ul {
+    height: 227px;
+}
+
+.m-lottery-hover {
+    position: relative;
+}
+
+.m-lottery-hover ul {
+    width: 395px;
+    height: 236px;
+    display: inline-block;
+    border: 1px solid #f60;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    -moz-box-shadow: 3px 3px 3px #d8d8d8;
+    -webkit-box-shadow: 3px 3px 3px #d8d8d8;
+    box-shadow: 3px 3px 3px #d8d8d8;
+}
+
+.m-lottery-hover2 ul {
+    width: 396px;
+}
+
+.g-lott-noRecord {
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    padding: 50px 0;
+    font-size: 18px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width:1190px) {
+    .g-lottery-part1 {
+        width: 960px;
+    }
+
+    .m-lottery-title {
+        width: 960px;
+    }
+
+    .m-lott-menu ul {
+        margin: 0 -18px;
+    }
+
+    .m-lott-menu li {
+        margin: 0 18px;
+    }
+
+    .m-lottery-list {
+        width: 328px;
+    }
+
+    .m-lottery-special {
+        width: 330px;
+    }
+
+    .m-lottery-list li.f-lott-detailed {
+        width: 192px;
+        padding-left: 9px;
+    }
+
+    .m-lottery-list .u-user-info,.m-lottery-list .u-comm-info {
+        width: 192px;
+    }
+
+    .m-lottery-list li.f-lott-comm img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .m-lottery-list .u-user-info p {
+        width: 40px;
+        height: 40px;
+    }
+
+    .m-lottery-list .u-user-info p img {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 40px;
+    }
+
+    .m-lottery-list .u-user-info p s {
+        background: url(http://skin.1yyg.com/DataServer/images/lottery-head40.png?v=141205) no-repeat;
+        width: 40px;
+        height: 40px;
+    }
+
+    .m-lottery-list .u-comm-info dd.z-lott-btn span {
+        padding-right: 8px;
+    }
+
+    .m-lottery-list .u-comm-info dd.z-lott-btn span a {
+        width: 88px;
+    }
+
+    .m-lottery-anning {
+        width: 327px;
+    }
+
+    .m-lottery-anning li.f-lott-detailed {
+        width: 185px;
+    }
+
+    .m-anning-wh326 {
+        width: 326px;
+    }
+
+    .m-anning-wh328 {
+        width: 328px;
+    }
+
+    .m-anning-wh329 {
+        width: 329px;
+    }
+
+    .m-lottery-hover ul {
+        width: 328px;
+    }
+
+    .m-lottery-hover2 ul {
+        width: 330px;
+    }
+}
+
+body.f-width-change .g-lottery-part1 {
+    width: 960px;
+}
+
+body.f-width-change .m-lottery-title {
+    width: 960px;
+}
+
+body.f-width-change .m-lott-menu ul {
+    margin: 0 -18px;
+}
+
+body.f-width-change .m-lott-menu li {
+    margin: 0 18px;
+}
+
+body.f-width-change .m-lottery-list {
+    width: 328px;
+}
+
+body.f-width-change .m-lottery-special {
+    width: 330px;
+}
+
+body.f-width-change .m-lottery-list li.f-lott-detailed {
+    width: 192px;
+    padding-left: 9px;
+}
+
+body.f-width-change .m-lottery-list .u-user-info,body.f-width-change .m-lottery-list .u-comm-info {
+    width: 192px;
+}
+
+body.f-width-change .m-lottery-list li.f-lott-comm img {
+    width: 110px;
+    height: 110px;
+}
+
+body.f-width-change .m-lottery-list .u-user-info p {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+body.f-width-change .m-lottery-list .u-user-info p a {
+    width: 40px;
+    height: 40px;
+}
+
+body.f-width-change .m-lottery-list .u-user-info p img {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+body.f-width-change .m-lottery-list .u-user-info p s {
+    background: url(http://skin.1yyg.com/DataServer/images/lottery-head40.png?v=141205) no-repeat;
+    width: 40px;
+    height: 40px;
+    _display: none;
+}
+
+body.f-width-change .m-lottery-list .u-comm-info dd.z-lott-btn span {
+    padding-right: 8px;
+}
+
+body.f-width-change .m-lottery-list .u-comm-info dd.z-lott-btn span a {
+    width: 88px;
+}
+
+body.f-width-change .m-lottery-anning {
+    width: 327px;
+}
+
+body.f-width-change .m-lottery-anning li.f-lott-detailed {
+    width: 185px;
+}
+
+body.f-width-change .m-anning-wh326 {
+    width: 326px;
+}
+
+body.f-width-change .m-anning-wh328 {
+    width: 328px;
+}
+
+body.f-width-change .m-anning-wh329 {
+    width: 329px;
+}
+
+body.f-width-change .m-lottery-hover ul {
+    width: 328px;
+}
+
+body.f-width-change .m-lottery-hover2 ul {
+    width: 330px;
+}

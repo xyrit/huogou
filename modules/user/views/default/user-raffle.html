@@ -1,0 +1,62 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+  <h1 class="record-title">获得的商品</h1>
+  {% if(arr) %}
+  <div class="record-list-con clear">
+    <b class="record-line"></b>
+    <ul class="record-list clear">
+      {% for item in arr %}
+      <li class="clear">
+        <i class="record-arrow"></i>
+        <picture>
+          <a href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank"><img src="{{ item.goods_picture }}" alt=""></a>
+        </picture>
+        <summary>
+          <h3><a href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">(第{{ item.period_number }}期){{ item.goods_name }}</a></h3>
+          <p>总需：{{ item.price }}人次</p>
+          <p>幸运伙购码：<i>{{ item.lucky_code }}</i></p>
+        </summary>
+        <figure>
+          参与<i>{{ item.buy_num }}</i>人次
+        </figure>
+        <a class="record-link" href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">查看详情</a>
+
+        <div class="record-time">
+          <p>{{ item.user_buy_time.third }}</p>
+          <p>{{ item.user_buy_time.second }}</p>
+          <p>{{ item.user_buy_time.first }}</p>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% if total > 0 %}
+<p id='tips'><i class="leftI"></i>当前用户只允许查看近{{ total }}条记录<i class="leftR"></i></p>
+{% endif %}
+    {{ use('/app/widgets/LinkPager') }}
+    {{ link_pager_widget({pagination: pagination}) }}
+{% elseif ucenter_sharelist == 0 and app.user.id == user_id %}
+<div class="notHave">
+  <span class="notHave_icon"></span>
+  <p class="notHave_txt">还没有中奖的商品哦！</p>
+</div>
+{% else %}
+<div class="notHave">
+  <span class="notHave_icon"></span>
+  <p class="notHave_txt">TA没有公开的中奖记录哦！</p>
+</div>
+{% endif %}
+{% endblock %}
+{% block js %}
+<script>
+  total = "{{ total }}";
+  if ($('.pagination').length > 0) {
+    if ($('.next').hasClass('disabled') && total > 0) {
+      $('#tips').show();
+    }
+  } else {
+    $('#tips').show();
+  }
+</script>
+{% endblock %}

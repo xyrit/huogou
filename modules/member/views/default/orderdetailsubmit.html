@@ -1,0 +1,110 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}订单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">我的伙购</a><i></i><a href="{{ url(['/default/order-list']) }}">获得的商品</a><i></i><a href="">订单详情</a>
+        </div>
+        <div class="order-detail2">
+            <h2>{% if(ex_view == 'exchange') %}换货的商品 - 订单详情{% else %}获得的商品 - 订单详情{% endif %}</h2>
+            <ul class="order-detail2-nav">
+                <li class="pass"><span>获得商品</span><em></em></li>
+                <li class="pass"><span>确认收货地址</span><i></i><em></em></li>
+                <li class="pass"><span>商家发货</span><i></i><em></em></li>
+                <li class="act"><span>确认收货</span><i></i><em></em></li>
+                {% if orderInfo.allow_share == 1 %}
+                <li class="last"><span>晒单拿奖励</span><i></i></li>
+                {% else %}
+                <li class="last"><span>交易完成</span><i></i></li>
+                {% endif %}
+            </ul>
+            <div class="order-detail2-info">
+                <div class="order-detail2-status">
+                    <h3>当前状态：商家已发货，等待收货</h3>
+                    <p>客服工作时间为（周一至周日 09:00-18:30），在此期间您可以致电 400-000-5000 客服热线随时咨询订单物流信息。</p>
+                    <input type="hidden" value="{{ orderId }}" id="orderId">
+                    <a href="javascript:;" id="btnSubmitGoods">确认收货</a>
+                </div>
+                <div class="merchant-shipping">
+                    <div class="distribution-info">
+                        {% if addressInfo == '' %}
+                        <p><em>快递信息：</em>{{ orderInfo.ship_name }} {{ orderInfo.ship_mobile }} {{ orderInfo.ship_area }} {{ orderInfo.ship_addr }}  {{ orderInfo.ship_zip }}<a style="display: none;" href="javascript:;">查看物流</a></p>
+                        <p><em>配送时间：</em>{{ orderInfo.ship_time }}</p>
+                        <p><em>备注：</em>{{ orderInfo.mark_text }}</p>
+                        {% else %}
+                        <p><em>配送信息：</em>{{ addressInfo.account }}</p>
+                        <p><em>联系方式：</em>{% if addressInfo.contact %}{{ addressInfo.contact }}{% endif %}</p>
+                        <p><em>备注：</em>{{ addressInfo.note }}</p>
+                        {% endif %}
+                    </div>
+                    <ul class="distribution-info-list">
+                        {% for detail in orderInfo.detail %}
+                        <li>
+                            <span>{{ detail.time }}</span>
+                            <b><i></i></b>
+                            <p>{{ detail.content }}</p>
+                            <em>{{ detail.name }}</em>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="order-goods">
+                <h2>获得的商品</h2>
+                <table class="get record_con">
+                    <thead>
+                    <tr>
+                        <td width="55%">商品</td>
+                        <td width="15%">价值</td>
+                        <td width="15%">数量</td>
+                        <td width="15%">订单号</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <figure>
+                                <picture>
+                                    <a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}"><img src="{{ periodInfo.goods_picture_url }}"></a>
+                                </picture>
+                                <figcaption>
+                                    <h3><a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a></h3>
+                                    <p>{% if(ex_view != 'exchange') %}幸运伙购码：{{ periodInfo.lucky_code }}{% endif %}</p>
+                                    <p>{% if(ex_view != 'exchange') %}揭晓时间：{{ periodInfo.raff_time }}{% endif %}</p>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>￥{{ periodInfo.price }}</td>
+                        <td>1</td>
+                        <td>{% if(ex_view != 'exchange') %}{{ orderId }}{% else %}{{ exchange.id }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% include '@memberModule/views/default/footer.html' %}
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+</script>
+{% endblock %}

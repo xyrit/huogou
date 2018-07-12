@@ -1,0 +1,33 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/safesetting.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<form name="ctl00" method="post" action="" id="ctl00">
+    <div class="h5-1yyg-v11">
+        <!-- 内页顶部 -->
+        <header class="g-header">
+            <div class="head-l">
+                <a href="index.html" class="z-HReturn"><i class="z-arrow"></i></a>
+            </div>
+            <h2>安全设置</h2>
+            <div class="head-r">
+            </div>
+        </header>
+        <section>
+            <div class="security-con clearfix">
+
+            </div>
+        </section>
+
+        {% include '@weixinModule/views/footer.html' %}
+    </div>
+</form>
+{% endblock %}

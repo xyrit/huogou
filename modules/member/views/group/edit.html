@@ -1,0 +1,22 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}加入的圈子_伙购网{% endblock %}
+
+{% block main %}
+<div class="member_con_rl">
+  <div class="find-friends">
+    <h1 class="circle">修改话题</h1>
+
+    <div id="divTopic0" class="list-tab topic" style="display: block;">
+      {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+      话题：<input type="text" name="Topic[title]" value="{{ topic.subject.subject }}"><br/>
+      内容：<textarea rows="5" name="Topic[content]" id="editor_id">{{ topic.content.message }}</textarea>
+      <button type="submit">保存</button>
+      {{ html.endForm() | raw }}
+    </div>
+  </div>
+</div>
+{% endblock %}

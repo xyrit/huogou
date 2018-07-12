@@ -1,0 +1,74 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/help.css" />
+{% endblock %}
+
+{% block body %}
+
+  {% include '@app/views/topbar.html' %}
+
+
+  {% include '@app/views/nav.html' %}
+
+<section class="wrap clear">
+  <div class="present">
+    <a href="">首页</a><i></i><a href="">联系我们</a>
+  </div>
+  <div class="xl_back_white xl_nav1"><a href="{{ url(['about']) }}">伙购介绍</a><a href="javascript:;" class="on">联系我们</a></div>
+  <div class="xl_back_white xl_con1">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tbody><tr>
+        <td width="53%"><img src="./img/xl_img3.gif"></td>
+        <td width="47%">
+          <div style="font-size:16px; line-height:36px;">
+            <h1 style="margin-bottom:20px; font-size:24px; color:#ff500b;">联系我们</h1>
+            <p style="font-size:16px; color:#666;"><span style="display:block; font-size:18px; color:#333;">深圳市橙果网络科技有限公司（<span style="font-size: 16px;">旗下首个购物平台“伙购网”</span>）</span>
+              热 线：400-000-5000<br>
+              邮 箱：service@huogou.com<br>
+              地址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼<br>
+              邮 编：518100</p>
+          </div>
+        </td>
+      </tr>
+      </tbody></table>
+  </div>
+  <div class="xl_back_white xl_con3">
+    <ul>
+      <li>
+        <img src="img/about01.png" class="about-icon">
+        <h2>投诉建议</h2>
+        <p class="xl_info1">电 话：400-000-5000转3</p>
+        <p class="xl_info2">邮 箱：service@huogou.com</p>
+      </li>
+      <li>
+        <img src="img/about02.png" class="about-icon">
+        <h2>商务合作</h2>
+        <p class="xl_info1">伙购网拥有国内庞大的消费群体及专业高效的电子商务平台，诚意邀请各品牌供应商与我们达成商务合作，共同创造中国电子商务的美好明天。</p>
+        <p class="xl_info2">邮 箱：hz@huogou.com</p>
+      </li>
+      <li>
+        <img src="img/about03.png" class="about-icon">
+        <h2>市场推广</h2>
+        <p class="xl_info1">随着伙购发展壮大以及全国各地市场的开拓，欢迎拥有市场推广、广告合作资源的您与我们携手共进，共同发展。 携手共进。</p>
+        <p class="xl_info2">电 话：400-000-5000转3<br>邮 箱：tg@huogou.com</p>
+      </li>
+      <li style="border:none;">
+        <img src="img/about04.png" class="about-icon">
+        <h2>媒体关注</h2>
+        <p class="xl_info1">随着伙购的发展，欢迎各类媒体前来沟通指导，同时欢迎各类内容合作策划传播，你们的关注和支持，采访，将成为伙购成长历程不可或缺的一部分。</p>
+        <p class="xl_info2">电 话：400-000-5000转3<br>邮 箱：mt@huogou.com </p>
+      </li>
+    </ul>
+  </div>
+
+</section>
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}

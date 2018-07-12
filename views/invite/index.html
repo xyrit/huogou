@@ -1,0 +1,180 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}伙购网,夺宝,伙购官网,伙购网,伙购{% endblock %}
+{% block description %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}
+
+{% block title %}伙购网 - 欢乐伙购 惊喜无限!{% endblock %}
+
+{% block css%}
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/index.css" />
+{% endblock %}
+
+
+{% block body %}
+
+  {% include '@app/views/topbar.html' %}
+  {% include '@app/views/nav.html' %}
+  {% include '@app/views/cart.html' %}
+  {% if app.user.isGuest %}
+  <!--内容区-->
+  <section class="hg-invite"></section>
+  <section class="hg-invite-detail">
+    <!--<dl class="hg-invite-gift">
+      <dd>
+        <img src="img/gift_02.jpg">
+        <div>
+          <p>成功邀请好友加入并参与伙购</p>
+          <span>可得50福分奖励（等于0.5元）</span>
+        </div>
+      </dd>
+      <dd class="m">
+        <img src="img/gift_03.jpg">
+        <div>
+          <p>邀请的好友参与伙购</p>
+          <span>即可得6%的现金提成</span>
+        </div>
+      </dd>
+    </dl>
+    <h2>立即登录邀请好友获取奖励！ 没账号？马上注册立享邀请特权！</h2>-->
+    <a href="{{ url('/passport/default/login', {'forward':app.request.absoluteUrl}) }}" class="invite-btn1">登陆</a><a href="{{ url(['/passport/default/register']) }}" class="invite-btn2">注册</a>
+    <dl class="hg-invite-rule">
+      <dt>相关规则<a style="color:blue;font-size: 15px;margin-left: 15px;" href="javascript:shou();">查看详情</a></dt>
+        <div style="display: none" class="guizeBox">
+          <dd>1、每成功邀请一位好友注册并参与伙购后，最多可获得188元现金奖励。在邀请有礼>邀请历史可随时查看佣金明细及邀请记录。</dd>
+          <dd>奖励规则</dd>
+          <dd class="padd_left">新用户累计消费满50元，获得佣金1元;</dd>
+          <dd class="padd_left">新用户累计消费满100元，获得佣金2元；<dd>
+          <dd class="padd_left">新用户累计消费满200元，获得佣金3元；</dd>
+          <dd class="padd_left">新用户累计消费满500元，获得佣金4元；</dd>
+          <dd class="padd_left">新用户累计消费满600元，获得佣金5元；</dd>
+          <dd class="padd_left">新用户累计消费满1000元，获得佣金6元；</dd>
+          <dd class="padd_left">新用户累计消费满1200元，获得佣金7元；</dd>
+          <dd class="padd_left">新用户累计消费满1500元，获得佣金10元；</dd>
+          <dd class="padd_left">新用户累计消费满1800元，获得佣金20元；</dd>
+          <dd class="padd_left">新用户累计消费满2500元，获得佣金30元；</dd>
+          <dd class="padd_left">新用户累计消费满3500元，获得佣金40元；</dd>
+          <dd class="padd_left">新用户累计消费满5000元以上，获得佣金60元。</dd>
+          <dd class="padd_left">故每成功邀请一位好友注册并参与伙购后，累计最多可获得188元现金奖励。</dd>
+          <dd>2、佣金永久有效，满1元即可充值到伙购账户，满100元即可申请提现。</dd>
+          <dd>3、推荐您将专属邀请链接分享至微博，微信朋友圈，QQ空间等社交平台，也可直接复制邀请链接发送给您的好友。</dd>
+          <dd>4、严禁利用非法手段恶意获取佣金，一经查实，将立即冻结账号，扣除所有佣金。</dd>
+          <dd>声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</dd>
+            <a style="float: right;margin-right:15px;color:blue;font-size: 15px;" href="javascript:hide();">缩起</a>
+        </div>
+    </dl>
+  </section>
+  {% else %}
+  <!--内容区-->
+    <section id="invite_tishi">
+      <p></p>
+      <b></b>
+    </section>
+  <section class="hg-invite"></section>
+
+  <!--<dl class="hg-invite-gift">
+    <dt></dt>
+    <dd>
+      <img src="img/gift_02.jpg">
+      <div>
+        <p>成功邀请好友加入并参与伙购</p>
+        <span>可得50福分奖励（等于0.5元）</span>
+      </div>
+    </dd>
+    <dd class="m">
+      <img src="img/gift_03.jpg">
+      <div>
+        <p>邀请的好友参与伙购</p>
+        <span>即可得6%的现金提成</span>
+      </div>
+    </dd>
+  </dl>-->
+
+  <section class="hg-invite-share clearfix">
+    <div class="invite-share-left clearfix">
+      <h3>您可以使用以下方式邀请好友，成功率更高哦！</h3>
+      <div id="bdshare" class="bdsharebuttonbox inviteshare" data-tag="share_1">
+        <ul class="clearfix">
+          <li>
+            <a class="bds_sqq" data-cmd="sqq"></a>
+          </li>
+          <li>
+            <a class="bds_tsina" data-cmd="tsina" href="#"></a>
+          </li>
+          <li>
+            <a class="bds_weixin" data-cmd="weixin"></a>
+          </li>
+          <li>
+            <a class="bds_tqq" data-cmd="tqq"></a>
+          </li>
+          <li>
+            <a class="bds_qzone" data-cmd="qzone"></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="invite-share-right clearfix">
+      <h3>您也可以复制专属邀请链接发送给好友！</h3>
+      <textarea name="" id="invitetextarea">1元就能买iPhone 6S，一种很有意思的购物方式，快来看看吧！{{ inviteUrl }}</textarea>
+      <a href="javascript:;" onclick="copyText(document.all.invitetextarea)" id="invite-textarea-btn">复制</a>
+    </div>
+  </section>
+  <section class="hg-invite-detail">
+    <dl class="hg-invite-rule">
+      <dt>相关规则</dt>
+      <dd>1、每成功邀请一位好友注册并参与伙购后，最多可获得188元现金奖励。在邀请有礼>邀请历史可随时查看佣金明细及邀请记录。</dd>
+      <dd>奖励规则</dd>
+      <dd class="padd_left">新用户累计消费满50元，获得佣金1元;</dd>
+      <dd class="padd_left">新用户累计消费满100元，获得佣金2元；<dd>
+      <dd class="padd_left">新用户累计消费满200元，获得佣金3元；</dd>
+      <dd class="padd_left">新用户累计消费满500元，获得佣金4元；</dd>
+      <dd class="padd_left">新用户累计消费满600元，获得佣金5元；</dd>
+      <dd class="padd_left">新用户累计消费满1000元，获得佣金6元；</dd>
+      <dd class="padd_left">新用户累计消费满1200元，获得佣金7元；</dd>
+      <dd class="padd_left">新用户累计消费满1500元，获得佣金10元；</dd>
+      <dd class="padd_left">新用户累计消费满1800元，获得佣金20元；</dd>
+      <dd class="padd_left">新用户累计消费满2500元，获得佣金30元；</dd>
+      <dd class="padd_left">新用户累计消费满3500元，获得佣金40元；</dd>
+      <dd class="padd_left">新用户累计消费满5000元以上，获得佣金60元。</dd>
+      <dd class="padd_left">故每成功邀请一位好友注册并参与伙购后，累计最多可获得188元现金奖励。</dd>
+      <dd>2、佣金永久有效，满1元即可充值到伙购账户，满100元即可申请提现。</dd>
+      <dd>3、推荐您将专属邀请链接分享至微博，微信朋友圈，QQ空间等社交平台，也可直接复制邀请链接发送给您的好友。</dd>
+      <dd>4、严禁利用非法手段恶意获取佣金，一经查实，将立即冻结账号，扣除所有佣金。</dd>
+      <dd>声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</dd>
+    </dl>
+  </section>
+  <script>
+    window._bd_share_config = {
+      common : {
+        bdText : document.title,
+        bdDesc : '1元就能买iPhone 6S，一种很有意思的购物方式，快来看看吧！',//document.getElementById("invitetextarea").innerHTML,
+        bdUrl : '{{ inviteUrl }}'
+      },
+      share : [{
+        "bdSize" : 32
+      }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  </script>
+
+  {% endif %}
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}
+
+
+{% block js %}
+  <script type="text/javascript" src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#invite_tishi').find('b').on('click', function(){
+        $('#invite_tishi').fadeOut();
+      });
+    });
+      function shou(){
+          $('.guizeBox').fadeIn();
+      }
+      function hide(){
+            $('.guizeBox').fadeOut();
+        }
+  </script>
+{% endblock %}

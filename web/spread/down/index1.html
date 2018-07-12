@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>产品列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/reg.js"></script>
+</head>
+	<script>
+	$(document).ready(function(){
+		
+	})
+	</script>
+<body>
+	<section class="pro">
+		<img src="img/extension/extension01.jpg">
+		<img src="img/extension/extension02.jpg">
+		<img src="img/extension/extension03.jpg">
+		<img src="img/extension/extension04.jpg">
+		<img src="img/extension/extension05.jpg">
+		<img src="img/extension/extension06.jpg">
+		<img src="img/extension/extension07.jpg">
+	</section>
+	<section class="pro-fixed">
+		<a href="javascript:;">立即下载</a>
+	</section>
+	<div class="register">
+		<div class="awards-tip-box">
+			<div class="awards-tip-title">注册账号</div>
+			<div class="login-con">
+				<div class="login-input">
+					<div class="input-phone">
+						<input placeholder="手机号码" type="text">
+					</div>
+					<div class="input-verify">
+						<input placeholder="短信验证码" type="text"><a class="act" href="javascript:;">获取验证码</a>
+					</div>
+					<div class="input-password">
+						<input placeholder="8-20位数字+字母组合密码" type="password" >
+					</div>
+				</div>
+				<input id="register-submit" class="login-submit" type="submit" value="确 定">
+			</div>
+		</div>
+	</div>
+	<div class="popUp"></div>
+	<div id="dialog" class="mgp-dialog-alert" style="">
+		<div class="mgp-dialog-alert-title"></div>
+		<div class="mgp-dialog-alert-cont">请重新输入</div>
+		<div class="mgp-dialog-alert-close j_alert_button" d-tap="0" onclick="closePop()">确定</div>
+	</div>
+</body>
+</html>

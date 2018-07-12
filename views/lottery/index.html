@@ -1,0 +1,41 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}最新揭晓_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/lotterylist.js?v=160315" ></script>
+{% endblock %}
+
+{% block body %}
+  {% include '@app/views/topbar.html' %}
+  {% include '@app/views/nav.html' %}
+  {% include '@app/views/cart.html' %}
+
+  <section class="wrap clear">
+    <div class="present">
+      <a href="">首页</a><i></i><a href="">最新揭晓</a>
+    </div>
+    <div class="announce">
+      <div class="announce_title">
+        <h2>最新揭晓</h2><a href="">进入地图模式</a><aside>截至目前共揭晓商品<i></i>个</aside>
+      </div>
+      <div class="announce_sub"></div>
+    </div>
+
+      <div class="p_list">
+
+      </div>
+      <div style="clear: both"></div>
+      <div class="pagination">
+      </div>
+  </section>
+
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}

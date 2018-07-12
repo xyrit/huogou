@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/comm.css?v=160328" rel="stylesheet" type="text/css" />
+  {% block css %}{% endblock %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/jquery.min.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+{% block body %}{% endblock %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/jquery.jsonp.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/comm.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/global.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/pageDialog.js" language="javascript" type="text/javascript"></script>
+{% block js %}{% endblock %}
+{% block script %}{% endblock %}
+{% if (constant('DOMAIN')=='huogou.com') %}
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256933303'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/q_stat.php%3Fid%3D1256933303' type='text/javascript'%3E%3C/script%3E"));</script>
+{% endif %}
+</body>
+</html>

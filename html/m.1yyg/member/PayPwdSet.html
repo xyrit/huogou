@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>安全设置 - 1元云购触屏版</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/security.css" rel="stylesheet" type="text/css" />
+    <script src="../JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v11">
+    <!-- 栏目页面顶部 -->
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="PayPwdCheck.html" class="z-HReturn">
+                <s></s><b>返回</b></a>
+        </div>
+        <h2>支付密码设置</h2>
+        <div class="head-r">
+            <a href="index.html" class="z-Member"></a>
+        </div>
+    </header>
+    <input name="hidFlag" type="hidden" id="hidFlag" value="0" />
+    <input name="hidForward" type="hidden" id="hidForward" />
+    <section class="secrityBg">
+        <div class="pay-password clearfix">
+            <dl>
+                <dt class="gray6">
+                    支付密码由6位数字组成
+                    <span id="showPwd" class="noCheck"><b></b>显示密码</span>
+                </dt>
+                <dd class="bor-top">
+                    <input id="txtPayPwd1" type="password" maxlength="6" placeholder="请输入6位数字支付密码" class="rText" />
+                    <input id="txtPayPwd" type="text" style="display:none;" maxlength="6" placeholder="请输入6位数字支付密码" class="rText" />
+                </dd>
+                <dd class="bor-bottom">
+                    <input id="txtConPayPwd1" type="password" maxlength="6" placeholder="确认支付密码" class="rText" />
+                    <input id="txtConPayPwd" type="text" style="display:none;" maxlength="6" placeholder="确认支付密码" class="rText" />
+                </dd>
+                <dd>
+                    <a id="btnSubmit" href="javascript:;" class="orgBtn">确认</a>
+                </dd>
+            </dl>
+        </div>
+    </section>
+    <footer id="pageBottom_footer" class="footer">
+        <div class="u-ft-nav" id="fLoginInfo">
+            <span><a href="../index.html">首页</a><b></b></span>
+            <span><a href="../about.html">新手指南</a><b></b></span>
+            <span>
+                <a href="index.html" class="Member">云狗骗子</a>
+                <a href="../index.html" class="Exit">退出</a>
+            </span>
+        </div>
+        <p class="m-ftA">
+            <a href="http://m.1yyg.com/">触屏版</a>
+            <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+            <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+        </p>
+        <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    </footer>
+</div>
+<script>
+    $('#showPwd').click(function(){
+        if($(this).hasClass('noCheck')){
+            $(this).removeClass('noCheck');
+            $('#txtPayPwd1').hide();
+            $('#txtPayPwd').show();
+            $('#txtConPayPwd1').hide();
+            $('#txtConPayPwd').show();
+        }else{
+            $(this).addClass('noCheck');
+            $('#txtPayPwd').hide();
+            $('#txtPayPwd1').show();
+            $('#txtConPayPwd').hide();
+            $('#txtConPayPwd1').show();
+        }
+    })
+</script>
+</body>
+</html>

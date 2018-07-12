@@ -1,0 +1,207 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block keywords %}伙购网,夺宝,伙购官网,伙购网,伙购{% endblock %}
+{% block description %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}
+
+{% block title %}伙购网 - 欢乐伙购 惊喜无限!{% endblock %}
+
+
+
+{% block body %}
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return orange" href="{{ url(['/passport/default/login']) }}"><i>想起来了？</i>立即登陆</a>
+  </section>
+
+  <input type="hidden" id="hidAccount" value="{{ account }}">
+  <input type="hidden" id="hidKey" value="{{ key }}">
+  <section class="binding_box">
+    <div class="con padding">
+      <h1 class="yanzhen">重置密码</h1>
+      <div class="con-box">
+        <div class="binding">
+          <ul>
+            <li style="padding-bottom: 5px;">
+              <input class="gl_code" type="password" maxlength="20" autocomplete="off">
+              <span>使用8-20位字母、数字或符号两种或以上组合</span>
+              <i></i>
+              <em class="input_arr">登录密码</em>
+              <summary class="p_strength">
+                <em>密码强度</em><p><b></b></p><i></i>
+              </summary>
+            </li>
+            <li>
+              <input class="re_code" type="password" maxlength="20" autocomplete="off">
+              <span>两次输入的密码不一样，请重新确认</span>
+              <i></i>
+              <em class="input_arr">确认登录密码</em>
+            </li>
+          </ul>
+          <input class="margin" type="submit" value="确认" id="submit">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include '@passportModule/views/footer.html' %}
+
+{% endblock %}
+
+
+{% block script %}
+
+  <script>
+    var submit = true;
+    var accountVal = $("#hidAccount").val();
+    var keyVal = $('#hidKey').val();
+
+    function passwordCheck() {
+      var password = $('.gl_code').val();
+      var re = new RegExp("[a-zA-Z]");
+      var letter = re.test(password);
+      re = new RegExp("[0-9]");
+      var number = re.test(password);
+      re = new RegExp("((?=[\x21-\x7e]+)[^A-Za-z0-9])");
+      var word = re.test(password);
+      $('.p_strength').hide();
+      if (((letter && number) || (letter && word) || (number && word)) && password.length >= 8 && password.length <= 16) {
+        $('.gl_code').siblings('i').show().siblings('span').hide();
+        submit = true;
+      } else {
+        submit = false;
+        $('.gl_code').siblings('span').show().siblings('i').hide();
+      }
+    }
+
+    function checkPassword(password) {
+      $("#newPwd").text('');
+      var re = new RegExp("[a-zA-Z]");
+      var letter = re.test(password);
+      re = new RegExp("[0-9]");
+      var number = re.test(password);
+      re = new RegExp("((?=[\x21-\x7e]+)[^A-Za-z0-9])");
+      var word = re.test(password);
+      if (password.length >= 8 && password.length <=20) {
+        if (letter && number && word) {
+          $('.p_strength').show();
+          $('.gl_code').siblings('span').hide();
+          $('.binding summary').find('b').css('width','100%');
+          $('.binding summary').find('i').html('强');
+          validPassword = true;
+        }else if (letter && word) {
+          $('.p_strength').show();
+          $('.gl_code').siblings('span').hide();
+          $('.binding summary').find('b').css('width','66.66%');
+          $('.binding summary').find('i').html('中');
+          validPassword = true;
+        } else if (number && word) {
+          $('.p_strength').show();
+          $('.gl_code').siblings('span').hide();
+          $('.binding summary').find('b').css('width','66.66%');
+          $('.binding summary').find('i').html('中');
+          validPassword = true;
+        } else if (letter && number) {
+          $('.p_strength').show();
+          $('.gl_code').siblings('span').hide();
+          $('.binding summary').find('b').css('width','66.66%');
+          $('.binding summary').find('i').html('中');
+          validPassword = true;
+        } else {
+          $('.p_strength').show();
+          $('.gl_code').siblings('span').hide();
+          $('.binding summary').find('b').css('width','33.33%');
+          $('.binding summary').find('i').html('弱');
+          validPassword = false;
+        }
+      } else {
+        validPassword = false;
+        $('.p_strength').hide();
+        $('.gl_code').siblings('span').show();
+      }
+    }
+
+    $(function(){
+      if($('.gl_code').val() != ""){
+        $('.gl_code').siblings('.input_arr').hide();
+      }else if($('.gl_code').val() == ""){
+        $('.gl_code').siblings('.input_arr').show();
+      }
+
+      if($('.re_code').val() != ""){
+        $('.re_code').siblings('.input_arr').hide();
+      }else if($('.re_code').val() == ""){
+        $('.re_code').siblings('.input_arr').show();
+      }
+
+      $('.gl_code').keyup(function(){
+        var password = $(this).val();
+        checkPassword(password);
+      })
+
+    })
+
+    function repasswordCheck() {
+      $('.p_strength').hide();
+      if ($('.re_code').val() && ($('.re_code').val() == $('.gl_code').val())) {
+        $('.re_code').siblings('i').show().siblings('span').hide();
+        submit = true;
+      } else {
+        $('.re_code').siblings('span').show().siblings('i').hide();
+        submit = false;
+      }
+    }
+
+    $(document).ready(function () {
+
+      $('.binding input').keydown(function(){
+        $(this).siblings('.input_arr').hide();
+      }).blur(function(){
+        if($(this).val() == ""){
+          $(this).siblings('.input_arr').show();
+        }
+      })
+
+      $('.gl_code').on('blur',function(){
+        var value = $(this).val();
+        if(value.length > 0){
+          passwordCheck(value);
+        }
+      });
+
+      $('.re_code').on('blur',function(){
+        var value = $(this).val();
+        if(value.length > 0){
+          repasswordCheck(value);
+        }
+      });
+
+      $('#submit').on('click', function () {
+        passwordCheck();
+        if (!submit) {
+          $(".gl_code").focus();
+          return false;
+        }
+        repasswordCheck();
+        if (!submit) {
+          $(".re_code").focus();
+          return;
+        }
+        var url = window.location.href;
+        var data = {
+          'account': accountVal,
+          'key': keyVal,
+          'password': $('.gl_code').val(),
+          'confirmPassword': $('.re_code').val()
+        }
+        $(this).val('正在提交...');
+        $.post(url, data, function (e) {
+          if (e.error == 0) {
+            window.location.href = e.url;
+          }
+        });
+      });
+    })
+  </script>
+{% endblock %}
+
+

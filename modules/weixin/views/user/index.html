@@ -1,0 +1,50 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}用户主页{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/star.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/userpage.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <input name="hidHomeID" type="hidden" id="hidHomeID" value="{{userBaseInfo.home_id}}" />
+    <div class="mainCon">
+        <div class="mBanner">
+            <ul>
+                <li class="mUserHead"><img src="{{userBaseInfo.avatarUrl}}" /></li>
+                <li class="mUserInfo"><p>{{userBaseInfo.username}}</p><br />经验值：{{userBaseInfo.experience}}<span class="z-class-icon0{{userBaseInfo.level.num}}">
+        <s></s>{{userBaseInfo.level.name}}</span></li>
+            </ul>
+        </div>
+        <div class="g-snav" id="divMidNav">
+            <span class="g-snav-lst mCurr" id="BuyRecord"><a href="javascript:void(0);">伙购记录<em></em></a></span>
+            <span class="g-snav-lst" id="GetGoods"><a href="javascript:void(0);">获得的商品<em></em></a></span>
+            <span class="g-snav-lst" id="Single"><a href="javascript:void(0);">晒单<em></em></a></span>
+        </div>
+        <!--伙购记录-->
+        <div id="divBuyRecord" class="mBuyRecord m_lst">
+
+
+
+        </div>
+        <!--获得商品-->
+        <div id="divGetGoods" class="mBuyRecord m_lst marginB" style="display: none;">
+
+        </div>
+        <!--晒单-->
+        <div id="divSingle" class="mSingle m_lst marginB" style="display: none">
+
+        </div>
+        <div id="divLoading" class="loading">
+            <b></b>正在加载
+        </div>
+        <div class="load_more" id="btnLoadMore">
+            <a href="javascript:;" title="加载更多">加载更多</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

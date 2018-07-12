@@ -1,0 +1,72 @@
+{% extends '@adminModule/views/base.html' %}
+
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">余额调整</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        会员名：{{ model.user_id.username }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        操作：{% if(model.type == 0) %}增加{% else %}减少{% endif %}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        调整原因：{{ model.reason }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        原始单号：{{ model.order }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        调整前余额：{{ model.before_money }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        调整金额：{{ model.money }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        调整后金额：{{ model.final_money }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        操作人：{{ model.admin_id.real_name }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10">
+                        操作时间：{{ model.created_at|date('Y-m-d H:i:s') }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

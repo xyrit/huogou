@@ -1,0 +1,52 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/paypwdupdate.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+
+
+    <!-- 内页顶部 -->
+
+    <header class="g-header">
+        <div class="head-l">
+            <a href="paypwdcheck.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>{% if flag==2 %}支付密码设置{% elseif flag==1 %}修改支付密码{% endif %}</h2>
+        <div class="head-r">
+        </div>
+    </header>
+
+
+    <input name="hidFlag" type="hidden" id="hidFlag" value="{{flag}}" />
+    <section>
+        <div class="pay-password clearfix">
+            <dl>
+                <dt class="gray3">支付密码由6位数字组成
+                </dt>
+                <dd class="bor-top">
+                    <input id="txtPayPwd" type="password" maxlength="6" placeholder="请输入6位数字支付密码" class="rText">
+                </dd>
+                <dd class="bor-bottom">
+                    <input id="txtConPayPwd" type="password" maxlength="6" placeholder="确认支付密码" class="rText">
+                </dd>
+                <dd><a id="btnSubmit" href="javascript:;" class="orgBtn">确认</a></dd>
+            </dl>
+        </div>
+    </section>
+
+
+    {% include '@ddweixinModule/views/footer.html' %}
+
+</div>
+
+{% endblock %}
+

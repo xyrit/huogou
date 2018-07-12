@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg">消息推送</strong>
+    </div>
+    <div class="am-fl am-cf">
+                <strong style="margin-left: 20px;" class=""><a href="/app/log?type=push_log">历史</a></strong>
+            </div>
+</div>
+<hr>
+
+<div class="am-u-sm-12">
+            {% set form=ActiveForm_begin({"options":{"class":"am-form am-form-horizontal"}}) %}
+            {{ html.activeHiddenInput(model, "id") | raw }}
+            {{ form.field(model,'msg_name').textInput()| raw }}
+            {{ form.field(model,'msg_des').textarea()| raw }}
+            {{ form.field(model,'msg_do').listBox({"":'启动app',"product":"打开商品页面","search":"打开搜索页",'app':"下载app","url":"打开链接"},{"size":1,'id':"open"})| raw }}
+            <div class="msg_id" id="msg_id" style='display: none;'>  {{ form.field(model,'msg_id').textInput()| raw }}</div>
+            {{ form.field(model,'msg_type').checkboxList({'isRing':"通知响铃",'isVibrate':"通知震动","isClearable":"是否可擦除"})| raw }}
+            {{ form.field(model,'os').checkboxList({'4':"Android",'3':"IOS"})| raw }}
+            {{ form.field(model,'status').checkbox()| raw }}
+            {{ form.field(model,'msg_log').checkbox()| raw }}
+            {{ html.submitButton('保存',{'class':'am-btn am-btn-primary'})| raw }}
+            {{ ActiveForm.end()| raw }}
+</div>
+
+<script>
+    $(function(){
+        $('#apppush-msg_type').find('input').eq(2).attr('checked', true);
+    })
+
+
+    $("#open").change(function(){
+            $(".msg_id").hide();
+            
+            if(this.value)
+            {
+                switch(this.value)
+                {
+                    case "url": 
+                        $("#msg_id").find("input[type=text]").attr("placeholder","http://");
+                    case "product":
+                    case "search":
+                    case "app":
+                    default: 
+                        var map = {"product":"商品id","search":"搜索关键字","app":"下载地址","url":"链接地址"};
+                        $("#msg_id").find("label").text(map[this.value]);
+                        $("#msg_id").show();
+                }
+            }
+    });
+    </script>
+</div>
+    {% endblock %}

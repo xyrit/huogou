@@ -1,0 +1,112 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="referrer" content="always" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+    <title>微信支付</title>
+    <style type="text/css">
+        /**{ margin: 0; padding: 0;}*/
+        strong {font-weight: 700;}
+        body p {margin: 0;}
+        button{font-family: inherit;font-size: 100%;margin: 0;-webkit-tap-highlight-color: transparent;-webkit-appearance: none;-moz-appearance: none;}
+        .block.border-top-0{border-top: 0px none;}
+        .block{overflow: hidden;border-top: 1px solid #e5e5e5;border-bottom: 1px solid #e5e5e5;margin: 10px 0;background-color: #fff;display: block;position: relative;font-size: 14px;}
+        body .order-total {font-size: 14px;text-align: center;}
+        .block-item {border-top-width: 1px;}
+        .block-item {position: relative;display: block;padding: 10px;line-height: 22px;border: 0px none;border-top: 1px solid #e5e5e5;overflow: hidden;}
+        .block p {overflow: hidden;}
+        body .order-total>strong {vertical-align: middle;}
+        .c-orange {color: #f60!important;}
+        .action-container {padding: 0 10px;text-align: center;margin-top: 20px;margin-bottom: 20px;font-size: 0;}
+        .btn-pay {position: relative;}
+        .btn {display: inline-block;background-color: #fff;border: 1px solid #e5e5e5;border-radius: 3px;padding: 5px 4px;margin: 0;font-size: 12px;cursor: pointer;line-height: 18px;-webkit-appearance: none;}
+        .btn.btn-block {width: 100%;padding: 11px 10px;font-size: 16px;line-height: 16px;border-radius: 4px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; color: #333;}
+        .btn.btn-white {color: #333;background-color: #fff;border-color: #e5e5e5;}
+        .btn, .btn.btn-block{text-align: center;}
+        .action-tip {font-size: 12px;line-height: 16px;padding: 0 15px;margin: 10px 0;color: #999; text-align: center;}
+        .dimension{ width: 100%; height:auto; border: 1px solid #e5e5e5; background-color: #fff; margin-bottom: 10px; border-radius: 4px;}
+        .dimension p{padding: 11px 10px; text-align: center; color: #666;}
+        .dimension p.sm{font-size: 16px;line-height: 16px; margin: 0 10px; border-bottom: 1px solid #e5e5e5; color: #333;}
+        .dimension p.yw{ font-size: 12px; line-height: 12px;}
+        .dimension p.ew{ font-size: 14px; line-height: 14px;}
+        .dimension div.dimension_pic{ width: 220px; height: 220px; margin: auto;}
+
+        /*其他支付方式弹窗样式*/
+        .confirm-pay-way-opts-popup div {
+            margin: 0;
+            padding: 0;
+        }
+        .font-size-12 {
+            font-size: 12px!important;
+        }
+        .c-gray-dark {
+            color: #999!important;
+        }
+        .btn.btn-green {
+            color: #fff;
+            background-color: #06bf04;
+            border-color: #03b401;
+        }
+    </style>
+
+    <script src="{{ app.params.skinUrl }}/mobile/js/jquery.min.js" language="javascript" type="text/javascript"></script>
+    <script src="{{ app.params.skinUrl }}/mobile/js/jquery.jsonp.js" language="javascript" type="text/javascript"></script>
+    <script src="{{ app.params.skinUrl }}/mobile/js/comm.js" language="javascript" type="text/javascript"></script>
+    <script src="{{ app.params.skinUrl }}/mobile/js/global.js" language="javascript" type="text/javascript"></script>
+    <script src="{{ app.params.skinUrl }}/mobile/js/pageDialog.js" language="javascript" type="text/javascript"></script>
+    <script>
+        $(function() {
+            var url = apiBaseUrl + '/chatpay/index?o=' + '{{newOrder}}';
+            if (url && url.length > 0) {
+                var t = function() {
+                    $.getJsonp(url,{},function(json) {
+                        if (typeof json.type != 'undefined') {
+                            clearInterval(s);
+                            if (json.type==1) {
+                                $.PageDialog.ok('充值成功',function() {
+                                    window.location.href = mobileBaseUrl+'/member/consumption.html';
+                                });
+                            } else if(json.type==2) {
+                                window.location.href = mobileBaseUrl+'/shopok.html?o='+json.order;
+                            }
+                        }
+                    });
+                };
+                t();
+                var s = setInterval(t,1000);
+
+            }
+        });
+    </script>
+</head>
+
+<body class=" " style="min-width: 200px; background-color: #f8f8f8;">
+<div class="container" style="background-color: #f8f8f8;" id="qrContent">
+    <div class="content" style="min-height: 0;width: auto; color: #444; padding: 0;" >
+        <div class="js-step-topay" style="margin-top: 10px;">
+            <div class="block border-top-0">
+                <div class="js-order-total block-item order-total">
+                    <strong class="js-real-pay c-orange js-real-pay-temp"> 需付：￥{{payMoney}}.00 </strong>
+                </div>
+            </div>
+            <div class="action-container" id="confirm-pay-way-opts">
+                <div class="dimension">
+                    <p class="sm">微信扫码支付</p>
+                    <p class="yw">遇到不允许跨号支付？</p>
+                    <div class="dimension_pic"><img id="qrImg" src="{{qrUrl}}" style="width: 160px;height: 160px;z-index:999;margin: 10px auto;"></div>
+                    <p class="ew">长按二维码图片[识别二维码]付款</p>
+                </div>
+            </div>
+            <div class="center action-tip js-pay-tip">
+                本订单享受保险公司全程消费保障
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

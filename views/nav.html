@@ -1,0 +1,129 @@
+<header class="clearfix">
+    <section class="clearfix">
+        <a class="logo" href="{{ url(['/']) }}" target="_blank"></a>
+
+        <div class="add" id="totalbuy" style="display: none;">
+            <img class="add_pic" src="{{ app.params.skinUrl }}/img/pic05.gif" alt="">
+            <span>累计参与</span>
+            <a href="{{url(['/historybuylist'])}}">
+                <ul id="counts">
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="nobor">,</li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="nobor">,</li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                    <li class="num">
+                        <aside>
+                            <em>0</em>
+                        </aside>
+                    </li>
+                </ul>
+            </a>
+            <span class="arrow">人次</span>
+        </div>
+        <div class="search">
+            <div>
+                {% set words = app.request.get('q') %}
+                {% if words %}
+                <input id="search_input" value="{{ words }}" type="text">
+                {% else %}
+                <input id="search_input" value="请输入要搜索的商品" type="text">
+                <span id="search_span">
+                    <a href="javascript:;">电脑</a>
+                    <a href="javascript:;">手机</a>
+                </span>
+                {% endif %}
+            </div>
+            <input type="submit" value="">
+        </div>
+    </section>
+    <section class="clearfix" style="height: 42px;">
+        <div class="sort clearfix">
+            <a class="sort_title" href="{{ url(['/list']) }}">全部商品分类</a>
+            <div id="sort_list_div">
+                <dl class="sort_list">
+                    <dt><a href="http://www.huogou.com/list-1-0-1.html">手机平板</a></dt>
+                    <dd>
+                        <a href="http://www.huogou.com/list-2-1-1.html">苹果手机</a><a href="http://www.huogou.com/list-1-3-1.html">小米</a><a href="http://www.huogou.com/list-3-0-1.html">平板</a>
+                    </dd>
+                </dl>
+                <dl class="sort_list_b" style="background-color: rgb(243, 243, 243);">
+                    <dt><a href="http://www.huogou.com/list-4-0-1.html">电脑办公</a></dt>
+                    <dd>
+                        <a href="http://www.huogou.com/list-5-0.html">笔记本</a><a href="http://www.huogou.com/list-56-0.html">一体机</a><a href="http://www.huogou.com/list-7-0.html">外设</a><a href="http://www.huogou.com/list-6-0.html">网络</a>
+                    </dd>
+                </dl>
+                <dl class="sort_list_c">
+                    <dt><a href="http://www.huogou.com/list-8-0-1.html">数码影音</a></dt>
+                    <dd>
+                        <a href="http://www.huogou.com/list-14-0.html">相机</a><a href="http://www.huogou.com/list-55-0.html">耳机</a><a href="http://www.huogou.com/list-53-0.html">影音</a>
+                    </dd>
+                </dl>
+                <dl class="sort_list_e" style="background-color: rgb(243, 243, 243);">
+                    <dt><a href="http://www.huogou.com/list-10-0-1.html">钟表首饰</a></dt>
+                    <dd>
+                        <a href="http://www.huogou.com/list-16-0.html">金条银条</a><a href="http://www.huogou.com/list-17-0.html">珠宝</a><a href="http://www.huogou.com/list-15-0.html">手表</a>
+                    </dd>
+                </dl>
+                <dl class="sort_list_f">
+                    <dt><a href="http://www.huogou.com/list-28-0-1.html">食品饮料</a><i>
+                    <dd>
+                        <a href="http://www.huogou.com/list-29-0.html">休闲食品</a><a href="http://www.huogou.com/list-31-0.html">生鲜</a><a href="http://www.huogou.com/list-32-0.html">粮油</a>
+                    </dd>
+                </dl>
+                <dl class="sort_list_g" style="background-color: rgb(243, 243, 243);">
+                    <dt><a href="http://www.huogou.com/list-12-0-1.html">虚拟专区</a> / <a href="http://www.huogou.com/list-47-0-1.html">其他</a><i>
+                    <dd>
+                        <a href="http://www.huogou.com/list-12-95-1.html">购物卡</a><a href="http://www.huogou.com/list-12-36-1.html">充值卡</a>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <ul class="nav clearfix">
+            <li {% if this.context.uniqueId == 'site' %}class="act"{% endif %}><a href="{{ url(['/']) }}">首页</a></li>
+            <li {% if this.context.uniqueId == 'lottery' %}class="act"{% endif %}><a href="{{ url(['/lottery']) }}">最新揭晓</a></li>
+            <li {% if this.context.uniqueId == 'ten' %}class="act"{% endif %}><a href="{{ url(['/ten']) }}">十元专区</a></li>
+            <li {% if this.context.uniqueId == 'limitbuy' %}class="act"{% endif %}><a href="{{ url(['/limitbuy']) }}">限购专区</a></li>
+            <li {% if this.context.module.uniqueId == 'share' %}class="act"{% endif %}><a href="{{ url(['/share']) }}">晒单分享</a></li>
+            <li {% if this.context.module.uniqueId == 'group' %}class="act"{% endif %}><a href="{{ url(['/group']) }}">伙购圈</a></li>
+            <li class="invite {% if this.context.uniqueId == 'invite'%}act{% endif %}"><a href="{{ url(['/invite']) }}">邀请有礼</a></li>
+        </ul>
+        <a class="shop" target="_blank" href="{{ url(['/cart']) }}">
+            <span class="shopCart_icon"></span>
+            <span class="shopCart_txt">购物车&nbsp;&nbsp;（<i class="shopCart_total">0</i>）</span>
+        </a>
+    </section>
+</header>
+

@@ -1,0 +1,43 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}我的晒单{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/sharemenu.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/tpl.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="m-single-inner">
+    <ul id="ul_list" class="m-single-list" ajax="/record/topic-list" onajax='if(json.totalCount==0) $(".g-suggest").hide(); ' style="display:none;">
+        <li >
+            <span class="u-pic">
+                <div class="img-wrap">
+                    <a href="{createUserCenterUrl($user_home_id)}" class="blue"><img data-src="{createUserFaceImgUrl($user_avatar,avatarSize[1])}" src="/img/e.gif"> </a>
+                </div>
+            </span>
+            <p class="goods-name"><a href="{createPostDetailUrl($id)}" class="blue">{title}</a></p>
+            <p class="gray9">{content}</p>
+            <p class="share-time colorbbb">晒单时间：{created_at}</p>
+            <p class="red" style="display:{$is_pass==2?  'block': 'none'}">未通过审核：{note}</p>
+            <p class="red" style="display:{$is_pass==0 ? 'block':'none'}">审核中</p>
+            <div class="txt" style="display:{$is_pass ==1 ? 'none':'block'}">
+                <a href="/member/post-{id}.html" class="flag btn update">修改</a>
+            </div>
+            <a postcontent="{content}" posttitle="{title}" postpic="{createUserFaceImgUrl($user_avatar,avatarSize[1])}" postid="{id}" postlink="{createGoodsUrl($id)}" href="javascript:;" class="z-set-wrap" onclick="$('.m_popUp').show();">
+                <div class="z-set"></div>分享
+            </a>
+        </li>
+    </ul>
+        <div class="g-suggest clearfix">
+            请下载“滴滴夺宝”APP查看更多
+        </div>
+</div>
+
+<!--分享弹窗-->
+<div class="m_popUp" style="display: none"><div class="m_guide"></div><cite></cite><script>    $(document).on('click','.m_popUp',function(){    $(this).hide();   })</script></div>
+
+{% endblock %}

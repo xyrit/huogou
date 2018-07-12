@@ -1,0 +1,20 @@
+CREATE TABLE `group_topics` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `group_id` INT(10) UNSIGNED NOT NULL COMMENT '圈子ID',
+  `subject` CHAR(80) NOT NULL DEFAULT '' COMMENT '标题',
+  `user_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '发布者ID',
+  `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '0未审核，1通过，2不通过',
+  `view_count` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '浏览次数',
+  `comment_count` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '回复次数',
+  `last_comment_time` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '最后回复时间',
+  `last_comment_uid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' COMMENT '最后回复者ID',
+  `is_top` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否置顶',
+  `is_digest` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否精华',
+  `created_at` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '发布时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_user_id` (`user_id`,`created_at`),
+  KEY `idx_group_id` (`group_id`,`last_comment_time`),
+  KEY `idx_created_time` (`created_at`),
+  KEY `idx_is_digest` (`is_digest`,`created_at`),
+  KEY `idx_is_top` (`is_top`,`created_at`)
+) ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci  COMMENT='圈子话题表';

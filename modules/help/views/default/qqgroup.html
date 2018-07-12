@@ -1,0 +1,76 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/help.css" />
+{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<!--内容区-->
+<div class="xl_qqb"></div>
+<section class="wrap clear">
+    <div class="xl_jlq1">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><h4>官方QQ交流群</h4></td>
+                <td>为打造更具公平、透明的伙购平台，伙购特成立各地QQ交流群（可在选择框查找本地群），欢迎广大伙友加入。<br>另外，伙购正在招募各地群主加盟，也可自建群，具体待遇和要求请咨询QQ:4000067060</td>
+            </tr>
+        </table>
+    </div>
+    <div class="xl_jlq2 xl_back_white">
+
+        <!--暂无记录-->
+        <div class="notHaveB" style="display: none;">
+            <span class="notHaveB_icon"></span>
+            <p class="notHaveB_txt">查无记录！</p>
+        </div>
+        <!--暂无记录-->
+
+
+        <div class="xl_title2"><h1>官方群</h1></div>
+        <ul class="clear">
+            <li>
+                <div class="xl_img"><img src="./img/xl_img.gif"></div>
+                <div class="xl_info">伙购官方1群<br><span>364218153</span></div>
+            </li>
+        </ul>
+        <!--<div class="xl_title2 xl_title3">-->
+            <!--<table width="100%" border="0" cellspacing="0" cellpadding="0">-->
+                <!--<tr>-->
+                    <!--<td width="46%"><h1>地方群</h1></td>-->
+                    <!--<td width="54%" align="right">筛选：-->
+                        <!--<select name="select" id="select">-->
+                            <!--<option>&#45;&#45; 请选择 &#45;&#45;</option>-->
+                        <!--</select>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<select name="select" id="select">-->
+                            <!--<option>&#45;&#45; 请选择 &#45;&#45;</option>-->
+                        <!--</select>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                        <!--<select name="select" id="select">-->
+                            <!--<option>&#45;&#45; 请选择 &#45;&#45;</option>-->
+                        <!--</select>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
+        <!--</div>-->
+        <!--<ul class="clear">-->
+            <!--<li>-->
+                <!--<div class="xl_img"><img src="./img/xl_img.gif"></div>-->
+                <!--<div class="xl_info">伙购官方001群<br><span>140771465</span></div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+
+</section>
+
+{% include '@app/views/footer.html' %}
+{% endblock %}

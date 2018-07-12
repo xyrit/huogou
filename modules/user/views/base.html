@@ -1,0 +1,38 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}{{ user_title }}_个人主页_伙购网{% endblock %}
+
+{% block body %}
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section id="homepage">
+  <div class="wrap clear">
+    {% include '@userModule/views/top.html' %}
+
+    <div class="wrap clear">
+      <div class="home_fl">
+        {% block main %}
+
+        {% endblock %}
+      </div>
+
+      <div class="home_rl">
+        {% include '@userModule/views/sidebar.html' %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/user.js"></script>
+{% endblock %}

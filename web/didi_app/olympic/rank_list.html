@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>奥运积分榜</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bgcolor3">
+
+<div class="jfbtopimg"><img src="images/jfbtopimg.jpg" /></div>
+<a class="jfbjfgz" href="integral.html">积分规则</a>
+<div class="oyjfbdiv">
+	<div class="oyjfbarr1"><span></span></div>
+    <div class="scocontent">
+        <span class="pm">排名：<em>0</em></span>
+        <span class="jf">积分：<em>0</em></span>
+    </div>
+    <div class="oyjfbarr2"><span></span></div>
+</div>
+<div class="clear"></div>
+<div class="jfblist">
+
+    
+</div>
+
+<input type="hidden" id="userpm" value="100" value2="0" /><!-- value用户排名，排名大于20不弹出,value2是判断是否已领取，0未领取，1已领取 -->
+<div class="fixljtx">
+	<div class="ljtxcon">
+        <div class="txzjcon">
+        	<div class="txtop"><img src="images/txzjtit.png" /><a class="guanbitx" href="javascript:void(0);"></a></div>
+            <div class="xxcon">
+            	<p>您进入积分榜的第x名，</p>
+                <p>有神秘奖励哦！</p>
+            </div>
+            <div class="txbottom"><a class="lqjpan" href="javascript:void(0);">领取奖励</a></div>
+        </div>
+        
+        <div class="txlqcgcon">
+        	<div class="txtop"><img src="images/lqcgimg.png" /><a class="guanbitx" href="javascript:void(0);"></a></div>
+            <div class="xxcon">
+            	<p>前5名大奖用户可联系客服</p>
+                <p>领取专属奖励哦!</p>
+                <p class="topline">第6-20名用户前往</p>
+                <p>【我的】-【我的红包】花红包吧！</p>
+            </div>
+            <div class="txbottom"><a class="wzdl" href="javascript:void(0);">我知道啦！</a></div>
+        </div>
+        
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/comm.js"></script>
+<script>
+function dialogReward() {
+    var pm = $("#userpm").val();
+    if(pm<=20 && $("#userpm").attr("value2")==0){
+        $(".fixljtx").fadeIn(500);
+    }else{
+        $(".fixljtx").hide();
+    }
+    $(".fixljtx .xxcon p:eq(0)").text('您进入积分榜的第'+pm+'名，');
+    $(".fixljtx .lqjpan").click(function(){
+        $(".fixljtx .txzjcon").hide();
+        $(".fixljtx .txlqcgcon").fadeIn(500);
+    })
+    $(".fixljtx .guanbitx").click(function(){
+        $(".fixljtx").fadeOut(500);
+    })
+    $(".fixljtx .wzdl").click(function(){
+        $(".fixljtx").fadeOut(500);
+    })
+    $(".jfbjfgz").css("right",($(window).width()-$('.jfbtopimg').width())/2);
+}
+window.onresize = function(){
+	$(".jfbjfgz").css("right",($(window).width()-$('.jfbtopimg').width())/2);
+}
+</script>
+<script>
+    $(function() {
+        var myRankInfoUrl = '/olympic/my-rank-info';
+        $.getJsonp(apiBaseUrl + myRankInfoUrl, {}, function(json) {
+            var rankNum = json.rowno;
+            var score = json.score;
+            if (typeof json.rowno == 'undefined') {
+                rankNum = '没有参加';
+                score = '0';
+            }
+            var html = '';
+            html += '<span class="pm">排名：<em>'+rankNum+'</em></span>';
+            html += '<span class="jf">积分：<em>'+score+'</em></span>';
+            $('.scocontent').html(html);
+            $("#userpm").val(parseInt(json.rowno))
+            if (json.dialog_reward == '1') {
+                dialogReward();
+            }
+        });
+
+        var rankListUrl = '/olympic/rank-list';
+        $.getJsonp(apiBaseUrl + rankListUrl, {num : 20}, function(json) {
+
+            var html = '';
+            $.each(json.list, function(i,v) {
+                var rank = i + 1;
+                var rankClass = 'win';
+                if (rank<4) {
+                    rankClass = 'win' + rank;
+                    var rankStr = '';
+                } else {
+                    var rankStr = rank;
+                }
+                var userId = v.user_id;
+                var homeId = v.home_id;
+                var nickname = v.nickname;
+                var goldNum = v.gold;
+                var silverNum = v.silver;
+                var bronzeNum = v.bronze;
+                var score = v.score;
+                var avatarUrl = createUserFaceImgUrl(v.avatar, 80);
+                html += '<div class="list">';
+                html += '<span class="win '+rankClass+'">'+rankStr+'</span>';
+                html += '<span class="name"><a href="http://www.'+baseHost+'?type=5&home_id=' + homeId + '&user_id=' + userId + '"><img src="'+avatarUrl+'" /><em>'+nickname+'</em></a></span>';
+                html += '<span class="winpai"><em><i>'+goldNum+'</i><br>金</em> <em><i>'+silverNum+'</i><br>银</em> <em><i>'+bronzeNum+'</i><br>铜</em></span>';
+                html += '<span class="jifen"><i>'+score+'</i><br>积分</span>';
+                html += '</div>';
+            });
+
+            $('.jfblist').html(html);
+        });
+    });
+</script>
+</body>
+</html>

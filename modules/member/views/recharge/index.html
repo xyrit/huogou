@@ -1,0 +1,278 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}账户充值_伙购网{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section id="invite_tishi">
+        <p></p>
+        <b></b>
+    </section>
+
+    <section class="succeed_con" style="display: none;">
+        <div class="succeed_box">
+            <i class="close"></i>
+            <div class="succeed_nr">
+                <h2><i></i>请在新开窗口完成支付！</h2>
+                <article>
+                    <aside>如您的浏览器不支持，请复制以下链接到IE浏览器打开，完成付款后跟据您的情况进行以下操作！</aside>
+                    <a href="">http://www.huogou.com/cart.html</a>
+                </article>
+                <summary>
+                    <a href="" class="pay">完成支付</a><a href="{{ url(['/member/recharge/index']) }}" class="wenti">支付遇到问题？返回重新选择</a>
+                </summary>
+            </div>
+        </div>
+    </section>
+
+    <section class="member">
+        <div class="wrap clear">
+            <div class="member_sub">
+                {% include '@memberModule/views/nav.html' %}
+            </div>
+
+            <div class="account-recharge">
+                <!--<h2>账户充值</h2>
+                <div class="account-recharge-list">
+                    <summary>
+                        <a class="act" href="{{ url(['/member/recharge/index']) }}">网银充值</a><a href="{{ url(['/member/recharge/card']) }}">充值卡充值</a>
+                    </summary>
+                    <a class="acc01" href="{{ url(['/member']) }}">返回我的账户</a>
+                </div>-->
+
+                <div class="account-recharge-list" style="margin-top: 0;">
+                    <h2 style="display: inline;">账户充值</h2>
+                    <a class="acc01" href="{{ url(['/member']) }}" style="height: 31px;line-height: 31px">返回我的账户</a>
+                </div>
+
+                <div class="safety-password acc">
+                    <h3 class="hui">请输入充值金额</h3>
+                    <ul class="password-list">
+                        <li money="50" class="">
+                            <input type="radio" id="password01" name="password">
+                            <label for="password01">50元</label>
+                        </li>
+                        <li money="100" class="act">
+                            <input type="radio" id="password02" name="password" checked="checked">
+                            <label for="password02">100元</label>
+                        </li>
+                        <li money="200" class="">
+                            <input type="radio" id="password03" name="password">
+                            <label for="password03">200元</label>
+                        </li>
+                        <li money="500" class="">
+                            <input type="radio" id="password04" name="password">
+                            <label for="password04">500元</label>
+                        </li>
+                        <li money="0" class="password-input">
+                            <input type="radio" id="password05" name="password">
+                            <label for="password05"><input id="password-jine" maxlength="5" type="text" value="输入其他金额"></label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="cyber-bank-con">
+                    <h3>请选择支付方式</h3>
+                    <ul class="cyber-bank-title-list">
+                        <li class="act" data-id="platform"><b></b>支付平台支付</li>
+                        <li class="" data-id="debit"><b></b>储蓄卡支付</li>
+                        <li class="" data-id="credit"><b></b>信用卡支付</li>
+                    </ul>
+                    <div class="cyber-bank-con-box">
+                        <ul class="cyber-bank-con-list" style="display: block;">
+                            <li class="act">
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_02.jpg" alt=""><input type="radio" name="bank" value="zhifukachat" checked="checked"></label>
+                            </li>
+                            <!--<li>-->
+                                <!--<i></i>-->
+                                <!--<label for=""><img src="{{ app.params.skinUrl }}/img/terrace_01.jpg" alt=""><input type="radio" name="bank" value="jd"></label>-->
+                            <!--</li>-->
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_08.jpg" alt=""><input type="radio" name="bank" value="zhifukaqq"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_07.jpg" alt=""><input type="radio" name="bank" value="iapp"></label>
+                            </li>
+                         <!--   <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_05.jpg" alt=""><input type="radio" name="bank" value="kq"></label>
+                            </li>-->
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_04.jpg" alt=""><input type="radio" name="bank" value="chinaBank"></label>
+                            </li>
+                          <!--  <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/terrace_06.jpg" alt=""><input type="radio" name="bank" value="union"></label>
+                            </li>-->
+                        </ul>
+                        <ul class="cyber-bank-con-list" style="display: none;">
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_gs.jpg" alt=""><input type="radio" name="bank" value="1025"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_jh.jpg" alt=""><input type="radio" name="bank" value="1051"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_ly.jpg" alt=""><input type="radio" name="bank"  value="103"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zg.jpg" alt=""><input type="radio" name="bank" value="104"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_pa.jpg" alt=""><input type="radio" name="bank" value="307"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zs.jpg" alt=""><input type="radio" name="bank" value="3080"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_yz.jpg" alt=""><input type="radio" name="bank" value="3230"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_ms.jpg" alt=""><input type="radio" name="bank" value="305"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_xy.jpg" alt=""><input type="radio" name="bank" value="309"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zx.jpg" alt=""><input type="radio" name="bank" value="313"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_hx.jpg" alt=""><input type="radio" name="bank" value="311"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_pf.jpg" alt=""><input type="radio" name="bank" value="314"></label>
+                            </li>
+
+
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_jt.jpg" alt=""><input type="radio" name="bank" value="3407"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_sh.jpg" alt=""><input type="radio" name="bank" value="326"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_bj.jpg" alt=""><input type="radio" name="bank" value="310"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_gd.jpg" alt=""><input type="radio" name="bank" value="312"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_gf.jpg" alt=""><input type="radio" name="bank" value="3061"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_hz.jpg" alt=""><input type="radio" name="bank" value="324"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_qd.jpg" alt=""><input type="radio" name="bank" value="3341"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_nj.jpg" alt=""><input type="radio" name="bank" value="316"></label>
+                            </li>
+                        </ul>
+                        <ul class="cyber-bank-con-list" style="display: none;">
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_gs.jpg" alt=""><input type="radio" name="bank" value="1027"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_jh.jpg" alt=""><input type="radio" name="bank" value="1054"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_ly.jpg" alt=""><input type="radio" name="bank" value="1031"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zg.jpg" alt=""><input type="radio" name="bank" value="106"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_pa.jpg" alt=""><input type="radio" name="bank" value="3071"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zs.jpg" alt=""><input type="radio" name="bank" value="308"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_yz.jpg" alt=""><input type="radio" name="bank" value="3231"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_ms.jpg" alt=""><input type="radio" name="bank" value="3051"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_xy.jpg" alt=""><input type="radio" name="bank" value="3091"></label>
+                            </li>
+                            <li>
+                                <i></i>
+                                <label for=""><img src="{{ app.params.skinUrl }}/img/bank_zx.jpg" alt=""><input type="radio" name="bank" value="3131"></label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                {{ html.beginForm(url(['/pay']), 'post', {'target':'_blank'}) | raw }}
+
+                <input type="hidden" id="hidPayType" name="payType" value="recharge">
+                <input type="hidden" name="payName" value="debit">
+                <input type="hidden" name="payBank">
+                <input type="hidden" name="payMoney">
+                <input type="hidden" id="userSource" name="userSource" value="1">
+
+                <div class="payable-money">
+                    <p>应付金额：<i class="tMoney">100.00</i></p>
+                    <input type="submit" value="确认支付" id="subBtn">
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+
+        </div>
+    </section>
+
+    {% include '@app/views/footer.html' %}
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i id="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/recharge.js"></script>
+{% endblock %}
+

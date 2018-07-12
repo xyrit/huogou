@@ -1,0 +1,78 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+    <h1 class="single">晒单</h1>
+
+  {% if(shareTopics) %}
+    <div class="record-list-con clear">
+      <b class="record-line"></b>
+
+      <ul class="record-list clear">
+        {% for topic in shareTopics %}
+        <li class="clear">
+          <i class="record-arrow"></i>
+
+          <div class="single-con">
+            <h3><a href="{{ url('/share/default/detail', {'id': topic.id}) }}" target="_blank">{{ topic.title }}</a></h3>
+            <article>
+              {% if topic.content | length > 42 %}{{ topic.content | slice(0, 42) }}...{% else %}{{ topic.content }}{% endif %}
+            </article>
+            <dl class="shaidan_con_pic clear">
+              <dd>
+                <picture><i></i><img src="{{ topic.one }}" alt=""></picture>
+                <p><img src="{{ topic.onebig }}" alt=""></p>
+              </dd>
+              <dd>
+                <picture><i></i><img src="{{ topic.two }}" alt=""></picture>
+                <p><img src="{{ topic.twobig }}" alt=""></p>
+              </dd>
+              <dd>
+                <picture><i></i><img src="{{ topic.three }}" alt=""></picture>
+                <p><img src="{{ topic.threebig }}" alt=""></p>
+              </dd>
+            </dl>
+          </div>
+
+          <div class="record-time">
+            <p>{{ topic.created_at.third }}</p>
+            <p>{{ topic.created_at.second }}</p>
+            <p>{{ topic.created_at.first }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+{% if total > 0 %}
+<p id='tips'><i class="leftI"></i>当前用户只允许查看近{{ total }}条记录<i class="leftR"></i></p>
+{% endif %}
+    {% elseif ucenter_sharelist == 0 and app.user.id == user_id %}
+    <div class="notHave">
+      <span class="notHave_icon"></span>
+      <p class="notHave_txt">还没有任何晒单记录哦！</p>
+    </div>
+    {% else %}
+    <div class="notHave">
+      <span class="notHave_icon"></span>
+      <p class="notHave_txt">TA没有公开的晒单记录哦！</p>
+    </div>
+    {% endif %}
+
+  {% if(pagination) %}
+  {{ use('/app/widgets/LinkPager') }}
+  {{ link_pager_widget({pagination: pagination}) }}
+  {% endif %}
+{% endblock %}
+{% block js %}
+<script>
+  total = "{{ total }}";
+  if ($('.pagination').length > 0) {
+    if ($('.next').hasClass('disabled') && total > 0) {
+      $('#tips').show();
+    }
+  } else {
+    $('#tips').show();
+  }
+</script>
+{% endblock %}
+
+

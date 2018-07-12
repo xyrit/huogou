@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script>
+		var baseUrl = "http://api.huogou.com";
+		var wwwBaseUrl = 'http://www.huogou.com';
+		var photoSize = ['58', '200', '400', 'org'];
+		var shareType = 'qzone';//qzone
+
+		$(function () {
+			if (getCookie('come')==1) {
+				$('.m_popUp').hide();
+			}
+			setCookie('come',1);
+
+
+			$(".buy,.winning-list li,.register-pro-list li").click(function(e){
+				stopBubble(e)
+//				$(".winning-fixed").toggleClass("on")
+
+				location.href = './register.html';
+
+			})
+
+			$(".winning-fixed").bind("click", function (e) {
+				stopBubble(e)
+				var target = $(e.target);
+				if (target.closest(".wrap_r").length == 0) {
+					$(".winning-fixed").removeClass("on")
+				}
+			})
+
+			$('.close').on('click',function(e) {
+				stopBubble(e)
+				$(".winning-fixed").removeClass("on")
+			});
+
+
+			$('.register').on('click',function(e) {
+				stopBubble(e)
+				location.href = './register.html';
+			});
+
+		});
+
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return decodeURI(r[2]);
+			return null;
+		}
+
+		function createGoodsImgUrl(name, width, height) {
+			return 'http://img.huogou.com/pic-' + width + '-' + height + '/' + name;
+		}
+		function createPeriodUrl(periodId) {
+			return wwwBaseUrl+'/lottery/'+periodId+'.html';
+		}
+
+	</script>
+</head>
+<body style="max-width: 640px;margin: auto;">
+<div class="winning-fixed">
+    <section>
+        <div class="wrap_r">
+            <h2>温馨提示</h2>
+            <p>立即注册，1元领取奖品</p>
+            <a class="close" href="javascript:;">痛心放弃</a><a class="act register" href="javascript:;">前往领取</a>
+        </div>
+    </section>
+</div>
+
+<!--<a href="javascript:;"><img class="w100 register" src="img/register03.png"></a>-->
+
+<div id="focus" class="page-item banner-item">
+    <img style="display: inline;" src="img/invite-benner.jpg" class="lazy">
+</div>
+
+<div class="fontRader">
+    <a href="javascript:;">只需<span>1</span>元就有机会获得以下商品</a>
+</div>
+
+<ul class="register-pro-list">
+    <li>
+        <a href="javascript:;">
+            <picture><img src="img/register1.jpg"></picture>
+            <h3>Apple iPhone6S Plus 64G颜色随机 处处不同..</h3>
+        </a>
+        <p><em>原价：￥6199</em><span>￥<i>1</i></span></p>
+        <article>
+            <div>
+                <aside>开奖进度 <i>92%</i></aside>
+                <b><i style="width: 89%;"></i></b>
+            </div>
+            <a class="buy" href="javascript:;">立即抢购</a>
+        </article>
+    </li>
+    <li>
+        <a href="javascript:;">
+            <picture><img src="img/register2.jpg"></picture>
+            <h3>外星人（Alienware）AL-W15ER-3718...</h3>
+        </a>
+        <p><em>原价：￥15999</em><span>￥<i>1</i></span></p>
+        <article>
+            <div>
+                <aside>开奖进度 <i>99%</i></aside>
+                <b><i style="width: 98%;"></i></b>
+            </div>
+            <a class="buy" href="javascript:;">立即抢购</a>
+        </article>
+    </li>
+    <li>
+        <a href="javascript:;">
+            <picture><img src="img/register3.jpg"></picture>
+            <h3>Apple iPad Air 2平板电脑9.7英寸（64G...</h3>
+        </a>
+        <p><em>原价：￥3288</em><span>￥<i>1</i></span></p>
+        <article>
+            <div>
+                <aside>开奖进度 <i>87%</i></aside>
+                <b><i style="width: 78%;"></i></b>
+            </div>
+            <a class="buy" href="javascript:;">立即抢购</a>
+        </article>
+    </li>
+    <li>
+        <a href="javascript:;">
+            <picture><img src="img/register4.jpg"></picture>
+            <h3>Apple iMac 苹果一体机 462ZP/A 四核..</h3>
+        </a>
+        <p><em>原价：￥14588</em><span>￥<i>1</i></span></p>
+        <article>
+            <div>
+                <aside>开奖进度<i>71%</i></aside>
+                <b><i style="width: 39%;"></i></b>
+            </div>
+            <a class="buy" href="javascript:;">立即抢购</a>
+        </article>
+    </li>
+</ul>
+<img class="w100" src="img/invite-middle.jpg">
+<ul class="winning-list">
+    <li>
+        <picture class="picture"><img src="img/register14.jpg"></picture>
+        <div>
+            <h3>爱生活</h3><i>12：04</i>
+        </div>
+        <p>(第368期)IPHONE 6S 128G玫瑰金</p>
+        <summary>
+            想到这么幸运不错不错棒棒的。。最爱滴滴夺宝啦，总之收到手机好开心！！
+            <script src="http://s11.cnzz.com/z_stat.php?id=1256325825&web_id=1256325825" language="JavaScript"></script>
+        </summary>
+        <article>
+            <picture><img src="img/register07.jpg"></picture>
+            <picture><img src="img/register08.jpg"></picture>
+            <picture><img src="img/register09.jpg"></picture>
+        </article>
+    </li>
+    <li>
+        <picture class="picture"><img src="img/register13.jpg"></picture>
+        <div>
+            <h3>138****2514</h3><i>11：23</i>
+        </div>
+        <p>(第245期)苹果（Apple）iMac 21.5 英寸</p>
+        <summary>
+            哈哈哈哈以前都是玩充值卡 然后玩了一下这个没想到一次就中了。问题是快递速度真特么快，昨天下午4点中的今天就特么到货了。！
+        </summary>
+        <article>
+            <picture><img src="img/register15.jpg"></picture>
+            <picture><img src="img/register16.jpg"></picture>
+            <picture><img src="img/register17.jpg"></picture>
+        </article>
+    </li>
+    <li>
+        <picture class="picture"><img src="img/register15.jpg"></picture>
+        <div>
+            <h3>不中不玩了</h3><i>08：34</i>
+        </div>
+        <p>(第268期)（Apple）Apple Watch Sport 38 毫米银色</p>
+        <summary>
+            嘿嘿，只是抱着试一试的想法没想到还真中了。。。还真是幸运呢！！！！只花了十块钱，还挺划算了。。。！
+        </summary>
+        <article>
+            <picture><img src="img/register18.jpg"></picture>
+            <picture><img src="img/register19.jpg"></picture>
+            <picture><img src="img/register20.jpg"></picture>
+        </article>
+    </li>
+</ul>
+<div class="reload-fixed register">
+    <a id="urlBut" class="reload-fixed-a" href="javascript:;">立即注册</a>
+</div>
+<script>
+    $(function(){
+
+
+
+
+
+
+
+        //判断安卓  还是 ios
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            // iPhone
+            $('body').click(function(){
+                window.location=regiUrl;
+            });
+            $('#urlBut').text('立即注册');
+            $('#urlBut').attr('href',regiUrl);//跳转 注册页面
+
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+            //Android ;
+            $('#urlBut').text('立即下载');
+            $('#urlBut').attr('href',url);//调整到滴滴夺宝下载页面
+            $('body').click(function(){
+                window.location=url;
+            });
+        } else {
+            //pc
+            //Android ;
+            $('#urlBut').text('立即下载');
+            $('#urlBut').attr('href',url);//调整到滴滴夺宝下载页面
+            $('body').click(function(){
+                window.location=url;
+            });
+        };
+    });
+</script>
+</body>
+</html>

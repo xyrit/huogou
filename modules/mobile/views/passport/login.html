@@ -1,0 +1,46 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block header %}登录{% endblock %}
+{% block title %}会员登录_伙购网{% endblock %}
+{% block description %}{% endblock %}
+{% block keywords %}{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/login.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <div class="registerCon">
+      <div class="binSuccess5">
+        <ul>
+          <li class="accAndPwd">
+            <dl>
+              <input id="txtAccount" type="text" placeholder="请输入您的手机号码/邮箱" value="{{ model.username }}"/>
+              <i></i>
+              <span class="i-icon-remove"></span>
+            </dl>
+            <dl>
+              <input id="txtPassword" type="password" placeholder="密码" />
+              <b></b>
+              <span class="i-icon-remove"></span>
+            </dl> </li>
+        </ul>
+        <a id="btnLogin" href="javascript:;" class="orangeBtn loginBtn">登录</a>
+      </div>
+      <div class="forget">
+          <a href="findpassword.html">忘记密码？</a>
+          <b></b>
+          <a href="register.html">新用户注册</a>
+      </div>
+    </div>
+    <div class="oter_operation gray9">
+      <p>登录伙购账号后，可在微信进行以下操作：</p> 1、查看您的伙购记录、获得商品信息、余额等
+      <br /> 2、随时掌握最新晒单、最新揭晓动态信息
+    </div>
+
+  </div>
+{% endblock %}

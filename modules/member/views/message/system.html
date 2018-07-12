@@ -1,0 +1,74 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的消息-系统消息{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/message/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <div class="message-list">
+                        <b class="message-line"></b>
+                        <ul class="clear">
+                            {% for key,item in list.list %}
+                                <li class="clear">
+                                    <summary>
+                                        {{ item.created_at }}
+                                        <i></i>
+                                    </summary>
+                                    <div>
+                                        <i><em></em></i>
+                                        {% if(item.status == 0) %}<span>NEW</span>{% endif %}
+                                        {% autoescape true %}
+                                        {{ item.message | raw }}
+                                        {% endautoescape %}
+                                        <b data-id="{{ item.id }}" class="close-sys"></b>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% if(list.pagination.totalCount) %}
+                        <div class="pagination">
+                            <span id="message-empty" class="close-sys" sysall="all">全部清空</span>
+                        </div>
+                    {{ use('/app/widgets/LinkPager') }}
+                    {{ link_pager_widget({pagination: list.pagination}) }}
+                    {% else %}
+                        <div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">你还没有系统消息哦！</p></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include '@app/views/footer.html' %}
+
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i class="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+    <script>
+        $(function(){
+            $.get('/message/update', {}, function(data){
+
+            });
+        })
+    </script>
+{% endblock %}

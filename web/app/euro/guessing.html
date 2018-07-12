@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的竞猜</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+<body>
+    <div class="nocailist" >
+        <div class="caitips">
+            <p>暂无竞猜</p>
+            <p>立即参与赢取海量巨额红包~</p>
+        </div>
+        <a class="wyjc" href="index.html">我要竞猜</a>
+    </div>
+    <!-- 列表 -->
+    <div class="guessingBox" style="display: none;margin-bottom: 75px;">
+        <ul id="orderListUl">
+
+        </ul>
+    </div>
+    <!--底部按钮-->
+    <div class="footerBut" style="display: none">
+        <div class="main">
+            <a href="index.html">继续竞猜</a>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js"></script>
+    <script>
+        $(function () {
+            var myOrderUrl = '/euro-cup/my-order';
+            $.getJsonp(apiBaseUrl+myOrderUrl, {}, function(json) {
+                if (json.list.length>0) {
+                    $('.nocailist').hide();
+                    $('.guessingBox').show();
+                    $('.footerBut').show();
+                }
+
+                var html = '';
+                $.each(json.list, function(i,v) {
+                    var desc_text = v.desc_text;
+                    var pay_money = v.pay_money;
+                    var pay_time = v.pay_time;
+                    var result_text = v.result_text;
+
+                    html += '<li>';
+                    html += '<a href="guessingText.html?id='+ v.order_id +'">';
+                    html += '<p>'+ desc_text +'<span class="textRight">'+result_text+'</span></p>';
+                    html += '<p class="text666"><span>'+pay_time+'</span><span class="textRight">投入金额：<font>'+pay_money+'</font>元</span></p>';
+                    html += '</a>';
+                    html += '<i></i>';
+                    html += '</li>';
+                });
+
+                $('#orderListUl').html(html);
+
+            });
+
+
+        });
+
+    </script>
+</body>
+</html>

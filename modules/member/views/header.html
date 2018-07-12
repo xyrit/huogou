@@ -1,0 +1,104 @@
+<div class="member_sub">
+  {% include '@memberModule/views/nav.html' %}
+</div>
+<div class="hg_top clear">
+  <div class="hg_main">
+    <picture>
+      <a class="UserPhoto" href="{{ url(['info/photo']) }}">
+        <img src="{{ app.user.avatar }}" alt="">
+        <span>
+          <cite>修改头像</cite>
+          <em></em>
+        </span>
+      </a>
+    </picture>
+    <p class="hg_main_name">{% if h < 11 %}早上{% elseif h < 13 %}中午{% elseif h < 17 %}下午{% else %}晚上{% endif %}好，{{ username }}</p>
+    <summary>
+      <p class="phone">{% if s_phone == '' %}<a href="{{ url(['/member/info/phone']) }}">未绑定</a>{% else %}{{ s_phone }}{% endif %}</p>
+      <p class="site" title="{% if level.next_level != '' %}还差{{ level.remain_expr }}经验达到{{ level.next_level }}{% else %}已达顶级{% endif %}"><img class="site_icon" src="{{ app.params.skinUrl }}/img/{{ level.pic|replace({'xl_': ''}) }} " alt=""/>{{ level.name }}</p>
+      <p class="home"><a href="{{ url('/user', {'id':app.user.identity.home_id}) }}">我的主页</a></p>
+    </summary>
+  </div>
+  <div class="assets_box">
+    <div class="assets">
+      <h3>账户余额<i>(伙购币)</i></h3>
+      <p>{{ app.user.identity.money }}</p>
+      <summary>
+        <a class="pay" href="{{ url(['/member/recharge/index']) }}">充 值</a><a href="javascript:;" id="m_Taccounts">转 账</a><a href="{{  url(['/member/recharge/money-log']) }}">明 细</a>
+      </summary>
+    </div>
+    <div class="integral">
+      <h3>我的福分</h3>
+      <p><a href="{{ url(['/member/points']) }}"><span>{{ app.user.identity.point }}<i>分</span></i></a></p>
+    </div>
+    <div class="exp">
+      <h3>安全设置</h3>
+      <summary>
+        {% if app.user.identity.email == '' %}
+        <a class="wbd wbdHover" href="{{ url(['/member/info/email']) }}"><b>未绑定</b></a>
+        {% else %}
+        <a class="wbd" href="javascript:;"><b>已绑定</b></a>
+        {% endif %}
+
+        {% if app.user.identity.phone == '' %}
+        <a class="phone phoneHover" href="{{ url(['/member/info/phone']) }}"><b>未绑定</b></a>
+        {% else %}
+        <a class="phone" href="javascript:;"><b>已绑定</b></a>
+        {% endif %}
+      </summary>
+    </div>
+  </div>
+</div>
+
+<!--账户转账-->
+<section class="acc-fixed-box">
+  <div class="acc-info acc-fixed">
+    <i class="acc-fixed-n"></i>
+    <h2>账户转账<a href="{{url('recharge/money-log', {'index': 2})}}" id="transfer" target="_blank">转账记录</a></h2>
+    <div class="acc-info-balance">
+      <em>温馨提示：</em><p>转帐申请处理成功后，系统会自动将款项转入对方帐户并将转账结果通知收款人。</p>
+    </div>
+    <div style="display: none;">
+      <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>
+    </div>
+    <div class="acc-zz">
+      {{ html.beginForm(url(['/recharge/transfer']), 'post', {'id':'recharge-form', 'target':'upFrame'}) | raw }}
+      <summary>
+        <label for="">收款账号：</label>
+        <input type="text" name="username" value="">
+        <span class="input_arr">邮箱/手机号码</span>
+      </summary>
+      <summary>
+        <label for="">转账金额：</label>
+        <input type="text" name="UserTransferAccount[account]" value="">
+        <em>账户余额：<i>{{ app.user.identity.money }}</i>伙购币</em>
+        <span class="input_arr">整数金额</span>
+      </summary>
+      <summary class="w360">
+        <label for="">转账说明：</label>
+        <input type="text" name="UserTransferAccount[comment]" value="" autocomplete="off">
+        <span class="input_arr">选填</span>
+      </summary>
+      <input type="password" style="display: none;">
+      <summary>
+        <label for="">支付密码：</label>
+        <input type="password" name="paypwd" maxlength="6" value="">
+        <span class="input_arr">支付密码</span>
+      </summary>
+      <summary>
+        <input type="submit" value="提交" id="rechargeSubmit">
+      </summary>
+      {{ html.endForm() | raw }}
+    </div>
+  </div>
+</section>
+
+<section class="global-fixed" style="display: none" id="showPay">
+  <div class="global-con">
+    <p class="Note"><i></i><em>请先设置支付密码</em></p>
+    <summary>
+      <a href="javascript:;" id="cancel">取 消</a><a class="determine" href="javascript:;" id="set-pay-pwd">立即设置</a>
+    </summary>
+  </div>
+</section>
+

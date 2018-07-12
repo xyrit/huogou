@@ -1,0 +1,53 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的消息-伙购圈消息{% endblock %}
+
+{% block body %}
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/message/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <ul class="pl-info">
+                        {% if list %}
+                        {% for item in list %}
+                        <li>
+                            <summary><a href="{{ url('/user', {'id':item.user_id.home_id}) }}" target="_blank">{{ item.user_id.username }}</a>
+                                回复了您发表的{% if(app.user.id == item.user_id.id) %}话题：{% else %}评论：{% endif %}<a href="{{ url('/group/topic/view', {'id':item.topic_id}) }}" target="_blank">{% autoescape true %}{{ item.subject | raw }}{% endautoescape %}</a>{% autoescape true %}{{ item.message | raw }}{% endautoescape %}</summary>
+                            <aside>{{ item.created_at }}</aside>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无伙购圈消息</p></div>
+                        {% endif %}
+                    </ul>
+                    {{ use('/app/widgets/LinkPager') }}
+                    {{ link_pager_widget({pagination: pagination}) }}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include '@app/views/footer.html' %}
+
+<section id="safety-b-con">
+    <div class="safety-b-box">
+        <i class="safety-b-close"></i>
+        <h3></h3>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/keditor/kindeditor.js" ></script>
+
+{% endblock %}

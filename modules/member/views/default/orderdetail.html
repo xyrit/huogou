@@ -1,0 +1,350 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}订单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+<section class="confirm-address-fixed">
+    <div class="address-fixed-con">
+        <i class="address-fixed-close"></i>
+        <div id="address-form">
+            <input type="hidden" value="0" id="addressId">
+            <h2>修改收货地址</h2>
+            <div class="clearfix">
+                <label for="">所在地区：</label>
+                <div class="select_box">
+                    <div class="select_ck">
+                        <a>---请选择---</a>
+                        <i></i>
+                    </div>
+                    <div class="select_o" id="prov" name="prov"></div>
+                </div>
+                <div class="select_box">
+                    <div class="select_ck">
+                        <a>---请选择---</a>
+                        <i></i>
+                    </div>
+                    <div class="select_o" id="city" name="city"></div>
+                </div>
+                <div class="select_box">
+                    <div class="select_ck">
+                        <a>---请选择---</a>
+                        <i></i>
+                    </div>
+                    <div class="select_o" id="area" name="area"></div>
+                </div>
+                <span><i>*</i></span>
+            </div>
+            <div class="clearfix">
+                <label for="">详细地址：</label>
+                <input class="w368" type="text" id="address">
+                <span><i>*</i>无需重复填写所在地区</span>
+            </div>
+            <div class="clearfix">
+                <label for="">邮政编码：</label>
+                <input type="text" id="code">
+            </div>
+            <div class="clearfix">
+                <label for="">收货人：</label>
+                <input type="text" id="name">
+                <span><i>*</i>填写真实有效的姓名，否则将无法进行配送</span>
+            </div>
+            <div class="clearfix">
+                <label for="">固定电话：</label>
+                <input type="text" id="telephone">
+            </div>
+            <div class="clearfix">
+                <label for="">手机号码：</label>
+                <input type="text" id="mobilephone">
+                <span><i>*</i>填写有效的手机号码，否则将无法联系您</span>
+            </div>
+            <input type="hidden" id="pro_code" name="prov">
+            <input type="hidden" id="city_code" name="city">
+            <input type="hidden" id="area_code" name="area">
+            <p><input id="default-address" type="checkbox" value="1"><label for="default-address">设为默认地址</label></p>
+            <div class="tijiao clearfix"><a href="javascript:;" class="btn-submit" id="btnSave">保存</a><a href="javascript:;" class="btn-cancle">取消</a></div>
+        </div>
+        <div id="address-submit">
+            <h3>确认地址后将不可修改，是否确认提交地址？</h3>
+            <p></p>
+            <p></p>
+            <div class="tijiao"><a href="javascript:;" class="btn-submit">确认</a><a href="javascript:;" class="btn-cancle">取消</a></div>
+        </div>
+        <div id="order-share">
+            <h4><img src="{{ app.params.skinUrl }}/img/o_pic3.png"> 地址已提交，请您耐心等待发货</h4>
+            <p>向朋友们炫耀一下吧！</p>
+            <div id="bdshare" class="bdsharebuttonbox" data-tag="share_1">
+                <a class="bds_weixin" data-cmd="weixin" href="javascript:;"></a>
+                <a class="bds_tqq" data-cmd="sqq" href="javascript:;"></a>
+                <a class="bds_tsina" data-cmd="tsina" href="javascript:;"></a>
+                <a class="bds_qzone" data-cmd="qzone" href="javascript:;"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">我的伙购</a><i></i><a href="{{ url(['/default/order-list']) }}">获得的商品</a><i></i><a href="">订单详情</a>
+        </div>
+        <div class="order-detail2">
+            <h2>获得的商品 - 订单详情</h2>
+            <ul class="order-detail2-nav">
+                <li class="pass"><span>获得商品</span><em></em></li>
+                <li class="act"><span>确认收货地址</span><i></i><em></em></li>
+                <li><span>商家发货</span><i></i><em></em></li>
+                <li><span>确认收货</span><i></i><em></em></li>
+                {% if orderInfo.allow_share == 1 %}
+                <li class="last"><span>晒单拿奖励</span><i></i></li>
+                {% else %}
+                <li class="last"><span>交易完成</span><i></i></li>
+                {% endif %}
+            </ul>
+            <div class="order-detail2-box">
+                <div class="order-detail2-status">
+                    <h3>当前状态：等待提交收货地址</h3>
+                    <p>客服工作时间为（周一至周日 09:00-18:30），在此期间您可以致电 400-000-5000 客服热线随时咨询订单相关信息。</p>
+                    {% if orderInfo.status == 6 and orderInfo.fail_info != '' %}
+                    <h3>您的地址信息不完整，请重新填写。驳回原因：{{ orderInfo.fail_info }}</h3>
+                    {% endif %}
+                </div>
+
+                <div class="confirm-address">
+                    <h3 class="confirm-address-title">请您确认收货地址</h3>
+                    <div class="confirm-address-list">
+                        {% for address in addressList.list %}
+                        <div class="add-con {% if address.default_address_status == 1 %}act{% endif %}">
+                            <h4>{{ address.name }} {{ address.mobilephone }}</h4>
+                            <p>{{ address.provName }} {{ address.cityName }} {{ address.areaName }} {{ address.address }}</p>
+                            <input type="hidden" name="id" value="{{ address.id }}">
+                            <a href="javascript:;" class="address-modify">修改</a>
+                            <i></i>
+                        </div>
+                        {% endfor %}
+                        <div class="xin-add">
+                            <a href="javascript:;"><p>+</p>使用新地址</a>
+                        </div>
+                    </div>
+                    <h3 class="confirm-address-title">配送时间<span>请选择送货上门的时间</span></h3>
+                    <div class="confirm-address-select clearfix">
+                        <!--<select name="ship_time" id="ship_time">-->
+                            <!--&lt;!&ndash;<option value="">时间不限</option>&ndash;&gt;-->
+                            <!--<option value="周一至周五">周一至周五</option>-->
+                            <!--<option value="周六及公众假期">周六及公众假期</option>-->
+                            <!--<option value="时间不限" selected>时间不限</option>-->
+                        <!--</select>-->
+
+                        <div class="select_box">
+                            <div class="select_ck" name="ship_time" id="ship_time">
+                                <a value="时间不限">时间不限</a>
+                                <i></i>
+                            </div>
+                            <div class="select_o">
+                                <a value="周一至周五">周一至周五</a>
+                                <a value="周六及公众假期">周六及公众假期</a>
+                                <a value="时间不限" selected>时间不限</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <h3 class="confirm-address-title">添加备注信息<!--<span>请填写商品的信息，如商品为手机充值卡可以填写要充值的手机号码等</span>--></h3>
+                    <div class="confirm-address-textarea">
+                        <textarea id="mark_text" name="mark_text"></textarea>
+                    </div>
+                    <input type="hidden" id="orderId" value="{{ orderId }}">
+                    <input type="submit" class="confirm-address-submit" value="确认提交">
+                </div>
+            </div>
+
+            <div class="order-goods">
+                <h2>获得的商品</h2>
+                <table class="get record_con">
+                    <thead>
+                    <tr>
+                        <td width="55%">商品</td>
+                        <td width="15%">价值</td>
+                        <td width="15%">数量</td>
+                        <td width="15%">订单号</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <figure>
+                                <picture>
+                                    <a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}"><img src="{{ periodInfo.goods_picture_url }}"></a>
+                                </picture>
+                                <figcaption>
+                                    <h3><a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a></h3>
+                                    <p>{% if(ex_view == 'exchange') %}幸运伙购码：{{ periodInfo.lucky_code }}{% endif %}</p>
+                                    <p>{% if(ex_view == 'exchange') %}揭晓时间：{{ periodInfo.raff_time }}{% endif %}</p>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>￥{{ periodInfo.price }}</td>
+                        <td>1</td>
+                        <td>{% if(ex_view != 'exchange') %}{{ orderId }}{% else %}{{ exchange.id }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% include '@memberModule/views/default/footer.html' %}
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_area.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    $('.select_ck').click(function(e){
+        $('.select_o').hide();
+        $(this).siblings('.select_o').show();
+    })
+    $(document).click(function(e) {
+        if(!$(e.target).parent().siblings().is('.select_o') && !$(e.target).parent().is('.select_ck')){
+            $('.select_o').hide();
+        }
+    });
+    $('.select_o').on('click','a',function(){
+        $(this).parent('.select_o').siblings('.select_ck').find('a').text($(this).text());
+        $(this).parent('.select_o').siblings('.select_ck').find('a').attr('value',$(this).attr('value'));
+        $(this).parent('.select_o').siblings('.select_ck').find('a').addClass($(this).attr('class'));
+        $(this).parent('.select_o').hide();
+        $('.select_o').find('a').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).parent().val($(this).text());
+    })
+
+
+    window._bd_share_config = {
+        common : {
+            bdText : "{{ periodInfo.goods_name }}",
+            bdDesc : "哇塞，我在伙购网花了{{ periodInfo.user_buy_num }}元购买的这件商品， 一起来伙购吧~~",
+            bdUrl : "{{ url('/product', {'pid': periodInfo.goods_id}) }}",
+            bdPic: "{{ periodInfo.goods_picture_url }}"
+        },
+        share : [{
+            "bdSize" : 82
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+
+    $(document).ready(function(){
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){ // enter 键
+                if (e.srcElement.id=='address' || e.srcElement.id=='code' || e.srcElement.id=='name' || e.srcElement.id=='telephone' || e.srcElement.id=='mobilephone' || e.srcElement.id=='default-address')
+                $('#btnSave').click();
+            }
+        };
+        $('.xin-add').on('click',function(){
+            resetAddressForm();
+            getAreaList(0, 'prov');
+            $('#address-form').siblings('div').hide();
+            $('#address-form').show().find('h2').html('添加收货地址');
+            $('.confirm-address-fixed').stop().fadeIn();
+        })
+
+        $('.address-modify').on('click',function(){
+            resetAddressForm();
+            $('#address-form').siblings('div').hide();
+            $('#address-form').show().find('h2').html('修改收货地址');
+            $('.confirm-address-fixed').stop().fadeIn();
+            getAddress($(this).parent().find('input[name=id]').val());
+        })
+
+        $('.address-fixed-close').on('click',function(){
+            $('.confirm-address-fixed').stop().fadeOut('fast');
+            window.location.reload();
+        })
+
+        $('#address-form').find('.btn-cancle').on('click',function(){
+            $('.confirm-address-fixed').stop().fadeOut('fast');
+        })
+
+        $('#address-submit').find('.btn-cancle').on('click',function(){
+            $('.confirm-address-fixed').hide();
+        })
+
+        $('#prov').click(function(){
+            pid = $(this).find('.selected').attr('value');
+            getAreaList(pid, 'city');
+            $('#pro_code').val(pid);
+            $('#city').siblings('.select_ck').html('<a>---请选择---</a><i></i>');
+            $('#area').siblings('.select_ck').html('<a>---请选择---</a><i></i>');
+        });
+
+        $('#city').click(function(){
+            pid = $(this).find('.selected').attr('value');
+            getAreaList(pid, 'area');
+            $('#city_code').val(pid);
+            $('#area').siblings('.select_ck').html('<a>---请选择---</a><i></i>');
+        });
+        $('#area').click(function(){
+            pid = $(this).find('.selected').attr('value');
+            $('#area_code').val(pid);
+        });
+
+        $(".add-con").each(function(){
+            $(this).click(function(){
+                $(this).addClass('act').siblings().removeClass('act');
+            })
+        });
+        $('.confirm-address-submit').click(function() {
+            if ($('.add-con.act').length == 0) {
+                $('.safety-b-box').html('<i id="safety-b-close"></i><h4>请选择收货地址</h4>');
+                $('#safety-b-con').fadeIn();
+                setTimeout(function(){
+                    $('#safety-b-con').fadeOut();
+                },1000);
+                return false;
+            }
+            $('.confirm-address-fixed').stop().fadeIn();
+            $('#address-submit').find('p').eq(0).html($('.add-con.act').find('h4').html());
+            $('#address-submit').find('p').eq(1).html($('.add-con.act').find('p').html());
+            $('#address-form').hide();
+            $('#address-submit').fadeIn();
+        });
+
+        $('#address-submit').find('.btn-submit').on('click',function(){
+            var params = {
+                'useraddressid': $(".act").find('input[name="id"]').val(),
+                'ship_time': $('#ship_time').children('a').attr('value'),
+                'mark_text': $('#mark_text').val(),
+                'orderId': $('#orderId').val(),
+                'token': token
+            };
+            $.ajax({
+                async: false,
+                url: apiBaseUrl + '/record/submit-address',
+                type: "POST",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: params,
+                success: function (data) {
+                    if (data.code == 100) {
+                        $('#address-submit').hide();
+                        $('#order-share').fadeIn();
+                    } else {
+
+                    }
+                }
+            });
+        })
+    })
+</script>
+{% endblock %}

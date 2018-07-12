@@ -1,0 +1,162 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block keywords %}伙购网,夺宝,伙购官网,伙购网,伙购{% endblock %}
+{% block description %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}
+
+{% block title %}伙购网 - 欢乐伙购 惊喜无限!{% endblock %}
+
+{% block body %}
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return orange" href="{{ url(['/passport/default/login']) }}"><i>想起来了？</i>立即登陆</a>
+  </section>
+
+  <section class="binding_box">
+    <div class="con padding">
+      <h1 class="yanzhen">找回密码</h1>
+      <div class="con-box">
+        <div class="binding">
+          <ul>
+            <li>
+              <input class="gl_id" type="text">
+              <span>请输入正确的手机号或邮箱地址</span>
+              <i></i>
+              <em class="input_arr">手机号/邮箱地址</em>
+            </li>
+          </ul>
+          <summary>
+            <input class="gl_verify" type="text" maxlength="6">
+            <img src="{{ url(['/passport/api/captcha']) }}" alt="" id="imgCode" />
+            <span></span>
+            <em class="input_arr">验证码</em>
+          </summary>
+          <input type="submit" id="nextStep" value="下一步">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include '@passportModule/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+  <script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+{% endblock %}
+
+{% block script %}
+
+  <script>
+    $(document).ready(function () {
+
+      $('.gl_id').on('blur',function(){
+        var value = $(this).val();
+        if(value.length > 0){
+          checkUserName(value);
+        }
+      });
+      $('.gl_verify').on('blur',function(){
+        var value = $(this).val();
+        if(value.length > 0){
+          checkVcode(value);
+        }
+      });
+
+      $('#nextStep').on('click', function () {
+        checkUserName();
+        if (!checkUserNameSuccess) {
+          $(".gl_id").focus();
+          return false;
+        }
+        checkVcode();
+        if (!checkVcodeSuccess) {
+          $(".gl_verify").focus();
+          return false;
+        }
+
+
+        if (checkUserNameSuccess && checkVcodeSuccess) {
+          var verifyCodeInput = $('.gl_verify');
+          var code = verifyCodeInput.val();
+          var userNameObj = $('.gl_id');
+          var userName = $('.gl_id').val();
+          data = {'account':userName,'vcode':code};
+          $(this).val('正在提交...');
+          var url = window.location.href;
+          $.post(url, data, function(e) {
+            if (e.error==0) {
+              window.location.href = e.url;
+            } else {
+              $('.gl_verify').siblings('span').text(e.message).show();
+            }
+          });
+        }
+      });
+
+      $('#imgCode').on('click', function() {
+        $('#imgCode').attr('src', passportBaseUrl +'/api/captcha?v='+Math.random())
+      });
+    });
+    var checkUserNameSuccess = false;
+    var checkVcodeSuccess = false;
+    function checkVcode() {
+      var verifyCodeInput = $('.gl_verify');
+      var code = verifyCodeInput.val();
+      var url = passportBaseUrl + '/api/verify-code';
+      var data = {'code': code};
+      $.getContent(url, data, 'verifyCode', false);
+    }
+
+    function userNameCheck(checkVal) {
+      var reTel = /^1[34578]\d{9}$/;
+      var reMail = /^[a-zA-Z0-9!#$%&\'*+\\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&\'*+\\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
+      if (!reTel.test(checkVal) && !reMail.test(checkVal)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    function checkUserName() {
+      var userNameObj = $('.gl_id');
+      var userName = $('.gl_id').val();
+      if (!userNameCheck(userName)) {
+        userNameObj.siblings('span').show().siblings('i').hide();
+        checkUserNameSuccess = false;
+      } else {
+        var url = passportBaseUrl + '/api/check-account';
+        var data = {'account': userName};
+        $.getContent(url, data, 'validateUsername', false);
+      }
+    }
+
+    function success_validateUsername(json) {
+      var userNameObj = $('.gl_id');
+      var state = json.state;
+      if (state == 1) {
+        checkUserNameSuccess = true;
+        userNameObj.siblings('i').show().siblings('span').hide();
+      } else if (state == 0) {
+        checkUserNameSuccess = false;
+        userNameObj.siblings('span').text('账号不存在').show().siblings('i').hide();
+      } else {
+        checkUserNameSuccess = false;
+        userNameObj.siblings('span').text('请输入正确的手机号或邮箱地址').show().siblings('i').hide();
+      }
+    }
+
+    function success_verifyCode(json) {
+      var verifyCodeInput = $('.gl_verify');
+      var state = json.state;
+      if (state == 1) {
+        checkVcodeSuccess = true;
+        verifyCodeInput.siblings('span').text('').hide();
+      } else {
+        checkVcodeSuccess = false;
+        verifyCodeInput.siblings('span').text('验证码错误').show();
+      }
+    }
+  </script>
+{% endblock %}
+
+

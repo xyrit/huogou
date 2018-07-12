@@ -1,0 +1,132 @@
+{{ this.beginPage() }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    {{ html.csrfMetaTags() | raw }}
+    <title>{% block title %}{% endblock %}</title>
+    {% block css %}   
+        <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+        <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+        <link rel="stylesheet" href="{{ app.params.skinUrl }}/frontend/css/member_ui.css" />
+        <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/member.css">
+        <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+        {% set asset = this.registerAssetBundle('app\\modules\\admin\\assets\\AppAsset') %}
+         <!--set asset = this.registerAssetBundle('yii\\bootstrap\\BootstrapAsset') -->
+    {% endblock %}
+    {{ this.head() }}
+</head>
+
+<body>
+{{ this.beginBody() }}
+{% if(app.session.hasFlash('success')) %}
+    <div class="alert alert-success" id='success_flash'>
+        <b>{{ app.session.getFlash('success') }}</b>
+        <script>$('#success_flash').fadeOut(2000); </script>
+    </div>
+{% endif %}
+<div class="am-cf admin-main">
+    
+    {% set os = app.request.get("os") %}
+    {% if os %}
+            <ul class="nav nav-tabs" id="site-settings" >
+                <li class="{{ os == "android" ? "active": "" }}" ><a href="?os=android" data-toggle="tab2">Android</a></li>
+                <li class="{{ os == "ios" ? "active": "" }}"><a href="?os=ios" data-toggle="tab2">IOS</a></li>
+            </ul>
+     {% endif %}
+     
+    {% block main %}{% endblock %}
+</div>
+
+<a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+    <span class="am-icon-btn am-icon-th-list"></span>
+</a>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">警告</div>
+        <div class="am-modal-bd" id="errmsg"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
+
+<!--[if lt IE 9]>
+<script src="{{ app.params.skinUrl }}/backend/js/jquery-1.11.1.min.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/modernizr.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<script src="{{ app.params.skinUrl }}/backend/js/amazeui.min.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/app.js"></script>
+<script src="{{ app.params.skinUrl }}/js/common.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script>
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    });
+
+     $(function(){
+         var laydate_index = 1;
+         //日期输入框
+         $('.laydate').each(function(){
+                  if(! $(this).attr("id"))  $(this).attr("id","laydate"+laydate_index++) ;
+                laydate({
+                   elem: "#"+$(this).attr("id"),
+                   format: 'YYYY/MM/DD hh:mm:ss',
+                   //min: laydate.now(), //设定最小日期为当前日期
+                   max: '2099-06-16 23:59:59', //最大日期
+                   istime: true,
+                   istoday: false,
+                   choose: function(datas){
+                       end.min = datas; //开始日选好后，重置结束日的最小日期
+                       end.start = datas //将结束日的初始值设定为开始日
+                   }
+               });
+         });
+         
+       //列表操作按钮添加 id字段
+        $(".action_column").each(function(){
+                var id = $(this).parents("tr").attr("data-key");
+                $(this).attr("href",$(this).attr("href")+"?id="+id);
+        })
+        //列表操作按钮添加 refer字段
+        $(".glyphicon").each(function(){
+            var refer= encodeURIComponent(document.URL);
+            var a = $(this).parent();
+            a.attr("href",a.attr("href")+"&refer="+refer);
+        })
+        
+        //必填字段添加星号
+        $("form div.required label.control-label").each(function(){
+            $(this).append("<em style='color:red'>*</em>");
+        })
+        
+        // form 表单位置修整
+        $("form.am-form p.help-block-error").each(function(){
+            $(this).parent().addClass("am-form-group").find("label.control-label").addClass("am-u-sm-2 am-form-label");
+            $(this).prev().wrap("<div class='am-u-sm-10'></div>")
+            $(this).attr("style","margin-left: 18%;");
+        })
+        
+        $("form.am-form div.checkbox").find(".am-u-sm-10").before('<label class=" am-u-sm-2 am-form-label"> </label>');
+        if($("form.am-form button").parents(".am-form-group").length == 0)
+        $("form.am-form button.am-btn-primary").wrap("<div class='am-form-group'></div>").before('<label class=" am-u-sm-2 am-form-label"> </label>');
+     })
+                   
+    </script>
+{% block script %}{% endblock %}
+{{ this.endBody() }}
+</body>
+</html>
+{{ this.endPage() }}

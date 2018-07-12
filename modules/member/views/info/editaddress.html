@@ -1,0 +1,202 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}编辑收货地址_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="receiving-con">
+                    {{ html.beginForm('', 'post', {'id':'edit-address-form'}) | raw }}
+                    <div class="receiving-input clear">
+                        <b>收货人：</b>
+                        <input type="text" value="{{ addressInfo.name }}" name="name" id="name">
+                        <span id="name_tips" style="color:red"></span>
+                    </div>
+                    <div class="receiving-input clear">
+                        <b>联系电话：</b>
+                        <input type="text" value="{{ addressInfo.mobilephone }}" name="mobilephone" id="mobilephone">
+                        <span id="mobilephone_tips" style="color:red"></span>
+                    </div>
+                    <div class="receiving-input clear birthday">
+                        <b>收货地址：</b>
+                        <div class="select_box">
+                            <div class="select_ck">
+                                {% if addressInfo.prov %}
+                                <a value="{{ addressInfo.prov }}">{{ addressInfo.provName }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o" id="prov" name="prov"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck">
+                                {% if addressInfo.city %}
+                                <a value="{{ addressInfo.city }}">{{ addressInfo.cityName }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o" id="city" name="city"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck">
+                                {% if addressInfo.area %}
+                                <a value="{{ addressInfo.area }}">{{ addressInfo.areaName }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o" id="area" name="area"></div>
+                        </div>
+                        <span id="area_tips" style="color:red"></span>
+                    </div>
+                    <div class="receiving-input w420 clear">
+                        <b>详细地址：</b>
+                        <input type="text" value="{{ addressInfo.address }}" name="address" id="address">
+                        <span id="address_tips" style="color:red"></span>
+                    </div>
+                    <div class="receiving-input w150 clear">
+                        <b>邮政编码：</b>
+                        <input type="text" value="{{ addressInfo.code }}" name="code" id="code">
+                    </div>
+                    <input type="hidden" id="pro_code" name="prov" value="{{ addressInfo.prov }}">
+                    <input type="hidden" id="city_code" name="city" value="{{ addressInfo.city }}">
+                    <input type="hidden" id="area_code" name="area" value="{{ addressInfo.area }}">
+                    <input class="receiving-submit" value="保 存" type="submit" id="btnModify">
+                    {{ html.endForm() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_area.js"></script>
+<script type="text/javascript">
+    $('.select_ck').click(function(e){
+        $('.select_o').hide();
+        $(this).siblings('.select_o').show();
+    })
+    $(document).click(function(e) {
+        if(!$(e.target).parent().siblings().is('.select_o') && !$(e.target).parent().is('.select_ck')){
+            $('.select_o').hide();
+        }
+    });
+    $('.select_o').on('click','a',function(){
+        $(this).parent('.select_o').siblings('.select_ck').find('a').text($(this).text());
+        $(this).parent('.select_o').siblings('.select_ck').find('a').attr('value',$(this).attr('value'));
+        $(this).parent('.select_o').siblings('.select_ck').find('a').addClass($(this).attr('class'));
+        $(this).parent('.select_o').hide();
+        $('.select_o').find('a').removeClass('selected');
+        $(this).addClass('selected');
+        $(this).parent().val($(this).text());
+    })
+
+
+
+
+    editAreaList("{{ addressInfo.prov }}", "{{ addressInfo.city }}", "{{ addressInfo.area }}");
+
+    $('#prov').click(function(){
+        pid = $(this).find('.selected').attr('value');
+        getAreaList(pid, 'city');
+        $('#pro_code').val(pid);
+        $('#city_code').val('');
+        $('#area_code').val('');
+        $('#city').siblings('.select_ck').html('<a value="">---请选择---</a><i></i>');
+        $('#area').siblings('.select_ck').html('<a value="">---请选择---</a><i></i>');
+    });
+
+    $('#city').click(function(){
+        pid = $(this).find('.selected').attr('value');
+        getAreaList(pid, 'area');
+        $('#city_code').val(pid);
+        $('#area_code').val('');
+        $('#area').siblings('.select_ck').html('<a value="">---请选择---</a><i></i>');
+    });
+    $('#area').click(function(){
+        pid = $(this).find('.selected').attr('value');
+        $('#area_code').val(pid);
+    });
+
+    document.onkeydown=function(event){
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==13){ // enter 键
+            if (e.srcElement.id=='address' || e.srcElement.id=='code' || e.srcElement.id=='name' || e.srcElement.id=='mobilephone')
+                $('#btnModify').click();
+        }
+    };
+
+    $('#btnModify').on('click', function() {
+        if ($('#name').val() == '') {
+            $('#name_tips').html("收货人不能为空");
+            setTimeout(function(){
+                $('#name_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if ($('#mobilephone').val() == '') {
+            $('#mobilephone_tips').html("联系电话不能为空");
+            setTimeout(function(){
+                $('#mobilephone_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if (!checkPhone($('#mobilephone').val())) {
+            $('#mobilephone_tips').html("联系电话格式不正确");
+            setTimeout(function(){
+                $('#mobilephone_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if ($('#pro_code').val() == '' || $('#city_code').val() == '' || $('#area_code').val() == '') {
+            $('#area_tips').html("请选择完整的收货地址");
+            setTimeout(function(){
+                $('#area_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if ($('#address').val() == '') {
+            $('#address_tips').html("详细地址不能为空");
+            setTimeout(function(){
+                $('#address_tips').html("");
+            },1000)
+            return false;
+        }
+
+        $('#edit-address-form').submit();
+        return false;
+    });
+
+</script>
+
+{% endblock %}

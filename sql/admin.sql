@@ -1,0 +1,21 @@
+CREATE TABLE `admin` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '后台用户ID',
+  `username` VARCHAR (20) NOT NULL COMMENT '用户名',
+  `real_name` VARCHAR (20) NOT NULL DEFAULT '' COMMENT '真实姓名',
+  `password` VARCHAR (255) NOT NULL COMMENT '密码',
+  `email` VARCHAR(255) NULL COMMENT '邮箱',
+  `phone` CHAR(11) NULL COMMENT '手机',
+  `job_number` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '工号',
+  `department` VARCHAR (50) NOT NULL DEFAULT '' COMMENT '部门',
+  `avatar` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '头像，图片ID',
+  `password_reset_token` VARCHAR(255) DEFAULT NULL COMMENT '重置密码token',
+  `role` SMALLINT (6) UNSIGNED NOT NULL DEFAULT '0' COMMENT '后台用户所属角色',
+  `super` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否超级管理员',
+  `status` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否启用，0启用，1禁用',
+  `created_at` INT(10) UNSIGNED NOT NULL,
+  `updated_at` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY (`username`),
+  UNIQUE KEY (`email`),
+  UNIQUE KEY (`phone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='后台用户表';

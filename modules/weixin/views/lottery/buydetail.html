@@ -1,0 +1,36 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}伙购详情{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/goodsbuydetail.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <div id="div_test"></div>
+      <div class="m_buylistDet">
+      <div id="div_title" style="" class="g-statistics gray9">幸运得主总共参与<em class="orange">{{ buyNumber }}</em>人次</div>
+      </div>
+      <div class="g-Record-ctlst marginB">
+        <ul>
+
+          {% for detail in buyDetail %}
+            <li>
+              <p>{{ detail.buy_time }}<span>{{ detail.buy_num }}人次</span></p>
+              {% for code in detail.codes %}
+                <b {% if periodInfo.lucky_code == code %} class="orange"{% endif %}>{{ code }}</b>
+              {% endfor %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% include '@weixinModule/views/footer.html' %}
+    </div>
+  </div>
+{% endblock %}

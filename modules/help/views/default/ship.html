@@ -1,0 +1,41 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/help.css" />
+{% endblock %}
+
+{% block body %}
+
+  {% include '@app/views/topbar.html' %}
+
+  {% include '@app/views/nav.html' %}
+
+  <div class="help-main w1190">
+
+    <div id="ltlContents" class="help-right-part"><div class="help-right-part">
+        <div class="help-in-rihgt-part">
+          <h2>商品配送</h2>
+          <style>
+            .help-nav ul li a.cur08{color:#f60;  position:relative; font-weight:bold;}
+            .help-nav ul li a.cur08 b{width:4px; height:4px; overflow:hidden; background:#f60; display:inline-block; position:absolute; left:-10px; top:5px;}
+          </style>
+          <div class="help-content">
+            <p class="textindent">
+              在您获得商品后，伙购网将在第一时间内免费为你寄出，一般采用签约快递，均为服务好，覆盖网点非常广泛的全国性快递公司或者邮政的EMS，以最大限度保证商品安全。如快递公司无法达到的地方，则使用邮政EMS为您寄送商品。</p>
+            <p class="textindent">
+              若遇商品暂时缺货或者是有其他方面的问题，伙购网客服将会及时与您沟通处理。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include '@helpModule/views/sidebar.html' %}
+  </div>
+  {% include '@app/views/footer.html' %}
+{% endblock %}

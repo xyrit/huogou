@@ -1,0 +1,79 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}伙购记录_伙购网{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1 class="record">伙购记录</h1>
+
+        <div class="remind">
+            <em>伙购提醒：</em>
+            <a href="javascript:;">进行中的商品<i id="tips1"></i></a>
+            <a href="javascript:;">已揭晓商品<i id="tips2"></i></a>
+            <a href="javascript:;">已退购商品<i id="tips3"></i></a>
+        </div>
+
+        <div class="screening">
+            <summary>
+                <a class="act" href="javascript:void(0);">全部</a>
+                <a href="javascript:void(0);">今天</a>
+                <a href="javascript:void(0);">本周</a>
+                <a href="javascript:void(0);">本月</a>
+                <a href="javascript:void(0);">最近三个月</a>
+            </summary>
+            <div class="search-vip">
+                <em>选择时间段：</em>
+                <input type="text" id="J-xl" value="2015-10-21">
+                <i>-</i>
+                <input type="text" id="J-xl-2" value="2015-10-23">
+                <input type="submit" value="搜索">
+            </div>
+        </div>
+
+        <table class="get record_con" id="record_con">
+            <thead>
+            <tr>
+                <td width="16%">商品图片</td>
+                <td width="44%" class="left">商品名称</td>
+                <td width="13%">伙购状态</td>
+                <td width="18%">参与人次/伙购码</td>
+                <td width="13%">查 看</td>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="pagination" style="margin: 20px auto"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //日历调取
+        laydate({
+            elem: '#J-xl'
+        });
+        laydate({
+            elem: '#J-xl-2'
+        });
+    });
+    getBuyList();
+    filt(condition, getBuyList);
+
+</script>
+
+{% endblock %}

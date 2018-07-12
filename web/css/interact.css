@@ -1,0 +1,306 @@
+body,html{background:#fff; position:relative; height:100%; min-width:1200px;}
+
+#interact-box{width: 100%; height: 100%; position: relative; overflow: hidden;}
+#interact-con{width: 100%; height:100%;position:absolute; left:0; top:0;}
+
+#indicator{position: fixed; top:50%; right: 20px; z-index: 9; width: 16px;}
+#indicator li{border-radius:50%; border:1px solid #fff; position:relative; width:10px; height:10px; margin:10px 0; overflow:hidden; cursor:pointer;}
+#indicator li i{position:absolute; left:50%; top:50%; margin-left:-6px; margin-top:-6px; width:12px; height:12px; background:#fff; -webkit-transition:0.3s; -moz-transition:0.3s; transition:0.3s; -webkit-transform:scale(0); -moz-transform:scale(0); transform:scale(0); border-radius:50%;}
+#indicator li:hover i, #indicator li.act i{background:#fff; -webkit-transform:scale(1); -moz-transform:scale(1); transform:scale(1);}
+
+
+.interact-fixed-box{width:1200px; margin:auto; position:relative;}
+#interact-fixed{position:absolute; right:60px; top:140px; z-index:10; width:460px;}
+#interact-fixed h2{color:#fff; font-size:50px; text-align:right; -webkit-animation:textIn 0.7s 0.3s both; -moz-animation:textIn 0.7s 0.3s both; animation:textIn 0.7s 0.3s both;}
+#interact-fixed aside{font-size:24px; color:#fff; text-align:right; -webkit-animation:textIn 0.7s 0.45s both; -moz-animation:textIn 0.7s 0.45s both; animation:textIn 0.7s 0.45s both;}
+#interact-fixed article{width:316px; background:#fff; border-radius:5px; overflow:hidden; float:right; margin-top:25px; -webkit-animation: fixedIn 1s 0.1s both; -moz-animation: fixedIn 1s 0.1s both; animation: fixedIn 1s 0.1s both;}
+#interact-fixed article picture{overflow:hidden; margin-top:36px;}
+#interact-fixed article picture img{ height:100%; display:block; margin:auto;}
+#interact-fixed article p{text-align:center; font-size:16px; margin:8px 0 20px;}
+#interact-fixed article a.ios{display:block; width:210px; height:50px; line-height:50px; background:#3ea0e1 url(../img/interact/interact_icon01.png) no-repeat 10px -61px; color:#fff; font-size:16px; border-radius:5px; margin:auto; text-indent:60px;}
+#interact-fixed article a.android{display:block; width:210px; height:50px; line-height:50px; background:#9fbb48 url(../img/interact/interact_icon01.png) no-repeat 10px -111px; color:#fff; font-size:16px; border-radius:5px; margin:15px auto 30px; text-indent:60px;}
+#interact-fixed article a.ios:hover{background-color:#2a82bd;}
+#interact-fixed article a.android:hover{background-color:#8da837;}
+
+
+
+#interact-01{width:100%; height:25%; overflow:hidden; position:relative;}
+
+.head{width:1200px; overflow:hidden; margin:auto; -webkit-animation: headIn 1s 0.1s both; -moz-animation:headIn 1s 0.1s both; animation: headIn 1s 0.1s both; position:relative;}
+.wLogo{float: left; height:80px; padding: 20px 10px 0;}
+.head .logo{ width: 136px; height: 53px; display: inline-block; background-image: url("../img/wechatLogo.png"); float: left; }
+
+
+.wLogo .w_line{ height: 58px; line-height: 58px; width: 1px; margin: 0 20px; background-color: #e5e5e5; display: block; float: left;}
+.wLogo .wechatTxt{color: #ccc;font-size: 24px;font-family: "微软雅黑"; font-weight: bold; display: inline-block; height: 30px; line-height: 30px; float: left; padding-top: 12px;}
+
+.head ul{float:left; margin-left:40px; line-height:100px; margin-left:120px; margin-top:40px;}
+.head ul li{float:left; line-height:20px; margin-left:120px;}
+.head ul li a{float:left; font-size: 16px;}
+.head ul li i{float:left; width:24px; height:20px; background:url(../img/interact/interact_icon01.png) no-repeat; margin-right:5px; -webkit-transition:0.3s; -moz-transition:0.3s; transition:0.3s;}
+.head ul li:hover i{background-position:-24px 0;}
+.head ul li.mobile i{background-position:0 -21px;}
+.head ul li.mobile:hover i{background-position:-24px -21px;}
+.head ul li.mobile.act i{background-position:-24px -21px;}
+.head ul li.wechat i{background-position:0 -41px;}
+.head ul li.wechat:hover i{background-position:-25px -41px;}
+.head ul li.wechat.act i{background-position:-25px -41px;}
+.head ul li.act a{ color: #ff500b;}
+
+.interact-am01{ position:absolute; top:100px; right:0; left:0; bottom:0; background:#aedafc;}
+.interact-am01-animated{position:absolute; left:50%; top:50%; margin-left:-551px; margin-top:-283px; width:551px; height:566px;}
+
+.am01-bg{position:absolute; left:50%; top:50%; margin-left:-243px; margin-top:-168px; width:487px; height:396px; background:url(../img/interact/interact_01_icon8.png) no-repeat; -webkit-animation:fadeIn 0.6s 0.2s both; -moz-animation:fadeIn 0.6s 0.2s both; animation:fadeIn 0.6s 0.2s both;}
+
+.am01-yun1{position:absolute; left:0; top:160px; width:108px; height:33px; background:url(../img/interact/interact_01_yun1.png); -webkit-animation:yunIn 12s 0.7s infinite both; -moz-animation:yunIn 12s 0.7s infinite both; animation:yunIn 12s 0.7s infinite both;}
+.am01-yun2{position:absolute; right:30px; top:0; width:143px; height:43px; background:url(../img/interact/interact_01_yun2.png); -webkit-animation:yunIn 14s 1s infinite both; -moz-animation:yunIn 14s 1s infinite both; animation:yunIn 14s 1s infinite both;}
+
+.am01-phone{position:absolute; left:50%; bottom:0; margin-left:-148px; width:296px; height:545px; background:url(../img/interact/interact_01_icon7.png); -webkit-animation:phoneIn 1s 0.5s both; -moz-animation:phoneIn 1s 0.5s both; animation:phoneIn 1s 0.5s both;}
+
+.am01-icon1{position:absolute; left:100px; top:213px; width:56px; height:55px; background:url(../img/interact/interact_01_icon1.png); -webkit-animation:bounceIn 0.5s 1s backwards; -moz-animation:bounceIn 0.5s 1s backwards; animation:bounceIn 0.5s 1s backwards;}
+.am01-icon2{position:absolute; right:86px; top:105px; width:56px; height:56px; background:url(../img/interact/interact_01_icon2.png); -webkit-animation:bounceIn 0.5s 1.2s backwards; -moz-animation:bounceIn 0.5s 1.2s backwards; animation:bounceIn 0.5s 1.2s backwards;}
+.am01-icon3{position:absolute; right:20px; top:175px; width:85px; height:85px; background:url(../img/interact/interact_01_icon3.png); -webkit-animation:bounceIn 0.5s 1.4s backwards; -moz-animation:bounceIn 0.5s 1.4s backwards; animation:bounceIn 0.5s 1.4s backwards;}
+.am01-icon4{position:absolute; left:30px; top:300px; width:66px; height:66px; background:url(../img/interact/interact_01_icon4.png); -webkit-animation:bounceIn 0.5s 1.6s backwards; -moz-animation:bounceIn 0.5s 1.6s backwards; animation:bounceIn 0.5s 1.6s backwards;}
+.am01-icon5{position:absolute; left:155px; top:330px; width:76px; height:76px; background:url(../img/interact/interact_01_icon5.png); -webkit-animation:bounceIn 0.5s 1.2s backwards; -moz-animation:bounceIn 0.5s 1.2s backwards; animation:bounceIn 0.5s 1.2s backwards;}
+.am01-icon6{position:absolute; right:90px; top:240px; width:145px; height:145px; background:url(../img/interact/interact_01_icon6.png); -webkit-animation:bounceIn 0.5s 1.6s backwards; -moz-animation:bounceIn 0.5s 1.6s backwards; animation:bounceIn 0.5s 1.6s backwards;}
+
+
+
+#interact-02{ width:100%; height:25%; overflow:hidden; position:relative; background:#d1ace0; min-width:1200px;}
+#interact-02 section{ position:absolute; left:50%; top:50%; margin:-262px 0 0 -550px; width:1100px; height:545px;}
+.zp_bg{width:647px; height:264px; background:url(../img/interact/zp_icon02.png) no-repeat; position:absolute; left:0; bottom:70px; -webkit-animation:zpbgIn 0.6s 0.2s both; -moz-animation:zpbgIn 0.6s 0.2s both; animation:zpbgIn 0.6s 0.2s both;}
+.zp_phone{width:266px; height:545px; background:url(../img/interact/zp_icon01.png) no-repeat; position:absolute; left:164px; top:0; -webkit-animation:phoneIn 1s 0.4s both; -moz-animation:phoneIn 1s 0.4s both; animation:phoneIn 1s 0.4s both;}
+
+.zp_icon01{width:110px; height:110px; background:url(../img/interact/zp_icon03.png) no-repeat; position:absolute; left:46px; top:105px; animation:zpiconIn 0.5s 0.6s backwards, shiftIn 1.4s 1.4s infinite alternate; -webkit-animation:zpiconIn 0.5s 0.6s backwards, shiftIn 1.4s 1.4s infinite alternate; -moz-animation:zpiconIn 0.5s 0.6s backwards, shiftIn 1.4s 1.4s infinite alternate;}
+
+.zp_icon02{width:131px; height:131px; background:url(../img/interact/zp_icon04.png) no-repeat; position:absolute; left:470px; top:80px; animation:zpicon2In 0.7s 0.8s backwards, shift2In 1.4s 1.4s infinite alternate; -webkit-animation:zpicon2In 0.7s 0.8s backwards, shift2In 1.4s 1.4s infinite alternate; -moz-animation:zpicon2In 0.7s 0.8s backwards, shift2In 1.4s 1.4s infinite alternate;}
+
+.zp_icon03{width:69px; height:71px; background:url(../img/interact/zp_icon05.png) no-repeat; position:absolute; left:442px; top:5px; animation:zpicon2In 0.5s 0.6s backwards, shift2In 1.4s 1s infinite alternate; -webkit-animation:zpicon2In 0.5s 0.6s backwards, shift2In 1.4s 1s infinite alternate; -moz-animation:zpicon2In 0.5s 0.6s backwards, shift2In 1.4s 1s infinite alternate;}
+
+#interact-03{ width:100%; height:25%; overflow:hidden; position:relative; background:#fdbb2f; min-width:1200px;}
+#interact-03 section{ position:absolute; left:50%; top:50%; margin:-262px 0 0 -575px; width:1150px; height:526px;}
+.zf_phone{position:absolute; bottom:0; left:0; width:689px; height:114px; background:url(../img/interact/zf_icon08.png) no-repeat; -webkit-animation:fixedIn 0.9s 0.2s both; -moz-animation:fixedIn 0.9s 0.2s both; animation:fixedIn 0.9s 0.2s both;}
+.bank{width:368px; height:165px; position:absolute; left:138px; top:0;}
+.bank01{background:url(../img/interact/zf_icon01.png) no-repeat center; display:block; width:72px; height:17px; margin:auto; -webkit-animation:bounceIn 0.5s 1.6s backwards; -moz-animation:bounceIn 0.5s 1.6s backwards; animation:bounceIn 0.5s 1.6s backwards;}
+
+.bank02{background:url(../img/interact/zf_icon02.png) no-repeat; width:103px; height:53px; position:absolute; left:40px; top:30px; -webkit-animation:bounceIn 0.5s 1.2s backwards; -moz-animation:bounceIn 0.5s 1.2s backwards; animation:bounceIn 0.5s 1.2s backwards;}
+
+.bank03{background:url(../img/interact/zf_icon03.png) no-repeat; width:93px; height:38px; position:absolute; right:56px; top:28px; -webkit-animation:bounceIn 0.5s 1.4s backwards; -moz-animation:bounceIn 0.5s 1.4s backwards; animation:bounceIn 0.5s 1.4s backwards;}
+
+.bank04{background:url(../img/interact/zf_icon04.png) no-repeat; width:87px; height:55px; position:absolute; left:50%; top:65px; margin-left:-44px; -webkit-animation:bounceIn 0.5s 1.3s backwards; -moz-animation:bounceIn 0.5s 1.3s backwards; animation:bounceIn 0.5s 1.3s backwards;}
+
+.bank05{background:url(../img/interact/zf_icon05.png) no-repeat; width:114px; height:84px; position:absolute; left:0; top:88px; -webkit-animation:bounceIn 0.5s 1.6s backwards; -moz-animation:bounceIn 0.5s 1.6s backwards; animation:bounceIn 0.5s 1.6s backwards;}
+
+.bank06{background:url(../img/interact/zf_icon06.png) no-repeat; width:122px; height:62px; position:absolute; right:0; top:80px; -webkit-animation:bounceIn 0.5s 1.5s backwards; -moz-animation:bounceIn 0.5s 1.5s backwards; animation:bounceIn 0.5s 1.5s backwards;}
+
+
+.car01{position:absolute; left:70px; bottom:32px; width:521px; height:316px; background:url(../img/interact/zf_icon07.png) no-repeat; -webkit-animation:zpbgIn 1.5s 0.5s both; -moz-animation:zpbgIn 1.5s 0.5s both; animation:zpbgIn 1.5s 0.5s both;}
+
+.star{position:absolute; bottom:310px; left:170px; width:86px; height:35px;}
+.star01{position:absolute; right:0; top:0; width:9px; height:13px; background:url(../img/interact/zf_icon09.png) no-repeat; -webkit-animation:starIn 1.55s 2s infinite alternate both; -moz-animation:starIn 1.55s 2s infinite alternate both; animation:starIn 1.55s 2s infinite alternate both;}
+.star02{position:absolute; right:12px; top:0; width:7px; height:10px; background:url(../img/interact/zf_icon11.png) no-repeat; -webkit-animation:starIn 1.65s 2.2s infinite alternate both; -moz-animation:starIn 1.65s 2.2s infinite alternate both; animation:starIn 1.65s 2.2s infinite alternate both;}
+.star03{position:absolute; left:0; bottom:0; width:8px; height:12px; background:url(../img/interact/zf_icon10.png) no-repeat; -webkit-animation:starIn 1.4s 2.3s infinite alternate both; -moz-animation:starIn 1.4s 2.3s infinite alternate both; animation:starIn 1.4s 2.3s infinite alternate both;}
+
+#interact-04{ width:100%; height:25%; overflow:hidden; position:relative; background:#72cfde;}
+
+
+#interact-04{ width:100%; height:25%; overflow:hidden; position:relative; background:#72cfde; min-width:1200px;}
+#interact-04 section{position:absolute; left:50%; top:50%; margin:-300px 0 0 -575px; width:1150px; height:599px;}
+
+.ren01{background:url(../img/interact/jx_icon01.png) no-repeat; width:400px; height:191px; position:absolute; bottom:183px; left: 0; -webkit-animation:starIn 0.5s 0.8s both; -moz-animation:starIn 0.5s 0.8s both; animation:starIn 0.5s 0.8s both;}
+.ren02{background:url(../img/interact/jx_icon02.png) no-repeat; width:319px; height:185px; position:absolute; bottom:190px; left:360px; -webkit-animation:starIn 0.6s 1s both; -moz-animation:starIn 0.6s 1s both; animation:starIn 0.6s 1s both;}
+.jx_phone{background:url(../img/interact/jx_icon05.png) no-repeat; width:266px; height:545px; position:absolute; bottom:55px; left:218px; -webkit-animation:phoneIn 1s 0.3s both; -moz-animation:phoneIn 1s 0.3s both; animation:phoneIn 1s 0.3s both;}
+.jx_phone div{position:absolute; left:27px; top:77px; width:216px; height:378px; overflow:hidden; background:#000;}
+.jx_phone div .jx_bai{position:absolute; left:50%; top:50%; width:216px; height:378px; margin:-189px 0 0 -108px; -webkit-animation:backIn 0.6s 2s both; -moz-animation:backIn 0.6s 2s both; animation:backIn 0.6s 2s both; background:#ed6331;}
+.jx_phone div .jx_logo{width:136px; height:57px; background:url(../img/interact/jx_icon03.png); margin:53px auto 0; display:block; -webkit-animation:headIn 0.8s 2.35s both; -moz-animation:headIn 0.8s 2.35s both; animation:headIn 0.8s 2.35s both;}
+.jx_phone div .jx_phone_ren{width:209px; height:212px; background:url(../img/interact/jx_icon04.png); position:absolute; left:4px; bottom:30px; -webkit-animation:zpbgIn 1s 2.65s both; -moz-animation:zpbgIn 1s 2.65s both; animation:zpbgIn 1s 2.65s both;}
+.jx_hz{width:272px; height:252px; background:url(../img/interact/jx_icon06.png);  position:absolute; left:83px; bottom:0; -webkit-animation:starIn 1s 1.4s both; -moz-animation:starIn 1s 1.4s both; animation:starIn 1s 1.4s both;}
+.jx_jb{width:165px; height:69px; background:url(../img/interact/jx_icon07.png);  position:absolute; left:389px; bottom:25px; -webkit-animation:starIn 0.8s 1.6s both; -moz-animation:starIn 0.8s 1.6s both; animation:starIn 0.8s 1.6s both;}
+#interact-01 .interact-am01-animated, #interact-02 section,#interact-03 section,#interact-04 section{display:none;}
+#interact-01.animated .interact-am01-animated, #interact-02.animated section,#interact-03.animated section,#interact-04.animated section{display:block;}
+
+
+@-webkit-keyframes headIn{
+	from{opacity:0; -webkit-transform:translate3d(0,-30px,0);}
+}
+@-moz-keyframes headIn{
+	from{opacity:0; -moz-transform:translate3d(0,-30px,0);}
+}
+@keyframes headIn{
+	from{opacity:0; transform:translate3d(0,-30px,0);}
+}
+
+
+@-webkit-keyframes fixedIn{
+	from{opacity:0; -webkit-transform:translate3d(0,30px,0);}
+}
+@-moz-keyframes fixedIn{
+	from{opacity:0; -moz-transform:translate3d(0,30px,0);}
+}
+@keyframes fixedIn{
+	from{opacity:0; transform:translate3d(0,30px,0);}
+}
+
+
+@-webkit-keyframes textIn{
+	from{opacity:0; -webkit-transform:translate3d(-40px,0,0);}
+}
+@-moz-keyframes textIn{
+	from{opacity:0; -moz-transform:translate3d(-40px,0,0);}
+}
+@keyframes textIn{
+	from{opacity:0; transform:translate3d(-40px,0,0);}
+}
+
+
+
+@-webkit-keyframes fadeIn{
+	from{opacity:0; -webkit-transform:scale(0);}
+}
+@-moz-keyframes fadeIn{
+	from{opacity:0; -moz-transform:scale(0);}
+}
+@keyframes fadeIn{
+	from{opacity:0; transform:scale(0);}
+}
+
+
+@-webkit-keyframes phoneIn{
+	from{opacity:0; -webkit-transform:translateY(-100px);}
+}
+@-moz-keyframes phoneIn{
+	from{opacity:0; -moz-transform:translateY(-100px);}
+}
+@keyframes phoneIn{
+	from{opacity:0; transform:translateY(-100px);}
+}
+
+
+
+@-webkit-keyframes bounceIn {
+  0% {opacity:0; -webkit-transform:scale3d(.3, .3, .3);}
+  60% {opacity:1; -webkit-transform:scale3d(1.03, 1.03, 1.03);}
+  80% {-webkit-transform:scale3d(.97, .97, .97);}
+  100% {opacity:1; -webkit-transform:scale3d(1, 1, 1);}
+}
+@-moz-keyframes bounceIn {
+  0% {opacity:0; -moz-transform:scale3d(.3, .3, .3);}
+  60% {opacity:1; -moz-transform:scale3d(1.03, 1.03, 1.03);}
+  80% {-moz-transform:scale3d(.97, .97, .97);}
+  100% {opacity:1; -moz-transform:scale3d(1, 1, 1);}
+}
+@keyframes bounceIn {
+  0% {opacity:0; transform:scale3d(.3, .3, .3);}
+  60% {opacity:1; transform:scale3d(1.03, 1.03, 1.03);}
+  80% {transform:scale3d(.97, .97, .97);}
+  100% {opacity:1; transform:scale3d(1, 1, 1);}
+}
+
+
+@-webkit-keyframes yunIn{
+	0%{opacity:0; -webkit-transform:translateX(-50px);}
+	50%{opacity:1;}
+	100%{opacity:0; -webkit-transform:translateX(100px);}
+}
+@-moz-keyframes yunIn{
+	0%{opacity:0; -moz-transform:translateX(-50px);}
+	50%{opacity:1;}
+	100%{opacity:0; -moz-transform:translateX(100px);}
+}
+@keyframes yunIn{
+	0%{opacity:0; transform:translateX(-50px);}
+	50%{opacity:1;}
+	100%{opacity:0; transform:translateX(100px);}
+}
+
+@-webkit-keyframes zpbgIn{
+	from{opacity:0; -webkit-transform:translate3d(-60px,0,0);}
+}
+@-moz-keyframes zpbgIn{
+	from{opacity:0; -moz-transform:translate3d(-60px,0,0);}
+}
+@keyframes zpbgIn{
+	from{opacity:0; transform:translate3d(-60px,0,0);}
+}
+
+@-webkit-keyframes zpiconIn{
+	0%{opacity:0; -webkit-transform:translate3d(-30px,-30px,0);}
+	100%{opacity:1; -webkit-transform:translate3d(0,0,0);}
+}
+@-moz-keyframes zpiconIn{
+	0%{opacity:0; -moz-transform:translate3d(-30px,-30px,0);}
+	100%{opacity:1; -moz-transform:translate3d(0,0,0);}
+}
+@keyframes zpiconIn{
+	0%{opacity:0; transform:translate3d(-30px,-30px,0);}
+	100%{opacity:1; transform:translate3d(0,0,0);}
+}
+
+@-webkit-keyframes shiftIn{
+	0%{ -webkit-transform:translate3d(0,0,0);}
+	100%{ -webkit-transform:translate3d(-10px,-10px,0);}
+}
+@-moz-keyframes shiftIn{
+	0%{ -moz-transform:translate3d(0,0,0);}
+	100%{ -moz-transform:translate3d(-10px,-10px,0);}
+}
+@keyframes shiftIn{
+	0%{ transform:translate3d(0,0,0);}
+	100%{ transform:translate3d(-10px,-10px,0);}
+}
+
+
+@-webkit-keyframes zpicon2In{
+	0%{opacity:0; -webkit-transform:translate3d(30px,-30px,0);}
+	100%{opacity:1; -webkit-transform:translate3d(0,0,0);}
+}
+@-moz-keyframes zpicon2In{
+	0%{opacity:0; -moz-transform:translate3d(30px,-30px,0);}
+	100%{opacity:1; -moz-transform:translate3d(0,0,0);}
+}
+@keyframes zpicon2In{
+	0%{opacity:0; transform:translate3d(30px,-30px,0);}
+	100%{opacity:1; transform:translate3d(0,0,0);}
+}
+
+@-webkit-keyframes shift2In{
+	0%{ -webkit-transform:translate3d(0,0,0);}
+	100%{ -webkit-transform:translate3d(10px,-10px,0);}
+}
+@-moz-keyframes shift2In{
+	0%{ -moz-transform:translate3d(0,0,0);}
+	100%{ -moz-transform:translate3d(10px,-10px,0);}
+}
+@keyframes shift2In{
+	0%{ transform:translate3d(0,0,0);}
+	100%{ transform:translate3d(10px,-10px,0);}
+}
+
+@-webkit-keyframes starIn{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+@-moz-keyframes starIn{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+@keyframes starIn{
+	0%{opacity:0;}
+	100%{opacity:1;}
+}
+
+@-webkit-keyframes backIn{
+	0%{background:#000;}
+	25%{background:#fff;}
+	50%{background:#ed6331;}
+}
+@-moz-keyframes backIn{
+	0%{background:#000;}
+	25%{background:#fff;}
+	50%{background:#ed6331;}
+}
+@keyframes backIn{
+	0%{background:#000;}
+	25%{background:#fff;}
+	50%{background:#ed6331;}
+}

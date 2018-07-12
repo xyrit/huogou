@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>PK场落地页</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!--<link rel="stylesheet" href="css/reset.css">-->
+    <!--<link rel="stylesheet" href="css/layout_sub.css">-->
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+	<script>
+		$(function () {
+            //判断安卓  还是 ios
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                // iPhone
+                $(function(){
+                    $('.footerBut').click(function(){
+                        $('.shade').fadeIn(200);
+                        $('.pkUrl').attr('href',regiUrl);//跳转 注册页面
+                    });
+                });
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                //Android ;
+                $('.footerBut').click(function(){
+                    $(this).attr('href',url);//有安装app 打开 app
+                    window.setTimeout(function() {
+                        window.location.href = downurl; /***下载app的地址***/
+                    }, 2000);
+                });
+            } else {
+                //pc
+                $(function(){
+                    $('.footerBut').attr('href',downurl);//下载APP
+                });
+            };
+
+		});
+	</script>
+</head>
+<body style="max-width: 640px;margin: auto;background: #0f3769">
+
+    <div class="main">
+        <div class="conterBox">
+            <!-- 标题 -->
+            <div class="topTitle"></div>
+            <!-- pk场 用户信息 -->
+            <div class="pkuser">
+                <div class="pkleft">
+                    <div class="userImg"><img src="img/xnuser.png" width="60%"/></div>
+                    <p class="color">加州扛把子</p>
+                    <p class="pkState"><span>大</span></p>
+                </div>
+                <div class="pkcenter "><img src="img/pkdesk.png" width="85%"/></div>
+                <div class="pkright userImg">
+                    <img src="img/xnuser.png" width="60%"/>
+                    <p class="morenFont">等待PK</p>
+                    <p class="pkState pkStateMin"><span>小</span></p>
+                </div>
+            </div>
+
+            <!-- 分割符-->
+            <div class="division"></div>
+
+            <!--猜中获得商品-->
+            <div class="usergoods">
+                <p class="ugtitle">猜中者将获得以下商品</p>
+                <div class="goodsImg"><img src="img/goods.jpg" width="50%" alt=""></div>
+                <p class="ugtitle goddname">苹果（Apple）iPhone 6s Plus 64G版 ...</p>
+                <p class="color shoprs">价值：7588</p>
+            </div>
+
+            <!-- 分割符-->
+            <div class="division" style="margin-bottom: 105px"></div>
+        </div>
+
+        <!--底部按钮-->
+        <div class="footer">
+            <p><span>用户名称</span> 赠送<span class="color">10元红包</span>1邀请您来PK</p>
+            <a class="footerBut" href="javascript:;"><img src="img/butInc.png" width="100%" alt=""></a>
+        </div>
+
+    </div>
+
+<!-- 弹窗提示 -->
+<div class="shade">
+    <div class="tenterImg">
+        <span class="errorInc"><img src="img/error.png" alt=""></span>
+        <a class="pkUrl" href="javascript:;">
+            <img src="img/iosImg.png" alt=""/>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

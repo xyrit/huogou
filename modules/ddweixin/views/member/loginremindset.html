@@ -1,0 +1,33 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/loginremindset.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>登录保护</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <input name="hidFlag" type="hidden" id="hidFlag" value="{{flag}}" />
+        <div class="login-protection clearfix">
+            <p class="gray6"> 登录保护 <a id="a_switch"><b></b></a> </p>
+            <span class="gray9"> 关注官方微信后，登录您的账号时，将使用微信的方式提醒您，防止盗号。 </span>
+        </div>
+    </section>
+    {% include '@ddweixinModule/views/footer.html' %}
+</div>
+{% endblock %}

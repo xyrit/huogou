@@ -1,0 +1,226 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}常见问题{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/help.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/openApp.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.helpInfo dt').on('click',function(){
+            if($(this).siblings('.helpBox').css('display') == "none"){
+                $('.helpInfo dt').siblings('.helpBox').hide();
+                $('.helpInfo dt').children().children('i').removeClass('iOpen').addClass('iCollapse');
+                $(this).siblings('.helpBox').show();
+                $(this).children().children('i').removeClass('iCollapse').addClass('iOpen');
+            }else{
+                $(this).siblings('.helpBox').hide();
+                $(this).children().children('i').removeClass('iOpen').addClass('iCollapse');
+            }
+        })
+
+        $('#service_qq_a').click(function() {
+            location.href = 'http://share.mp.qq.com/cgi/share.php?uin=938004123&account_flag=0&jumptype=1&card_type=crm';
+        });
+        $('#service_tel').attr('ios-url','tel://4000067060');
+        $('#service_tel').attr('android-url','tel://4000067060');
+        openApp($('#service_tel'),true);
+    })
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <input name="hidIndex" type="hidden" id="hidIndex" value="0" />
+    <div class="help-inner">
+        <ul class="icon-list clearfix">
+            <li id="service_tel"> <span class="icon tel"></span> <p class="gray9">唯一官方客服热线</p> <p class="gray6">400-000-5000</p> </li>
+            <li id="service_qq_a"> <span class="icon qq"></span> <p class="gray9">唯一官方客服QQ</p> <p class="gray6">4000067060</p> </li>
+        </ul>
+        <dl class="q-list">
+            <dt>
+                <span class="icon question"></span>常见问题
+            </dt>
+        </dl>
+        <div class="helpCon marginB">
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>01.</em>什么是伙购网？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none;">
+                    伙购网是一种新型的网购模式，只需1伙购币就有可能买到一件商品。伙购网把一件商品平分成若干“等份”出售，每份1伙购币，当一件商品所有“等份”售出后抽出一名幸运者，该幸运者即可获得此商品。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>02.</em>伙购网的规则是什么？</h3>
+                </dt>
+                <ul class="helpBox stepTwo" style="display: none;">
+                    <li>
+                        <p>每件商品参考市场价平分成相应“等份”，每份1伙购币，1份对应1个伙购码。</p>
+                    </li>
+                    <li>
+                        <p>同一件商品可以购买多次或一次购买多份。</p>
+                    </li>
+                    <li>
+                        <p>当一件商品所有“等份”全部售出后计算出“幸运伙购码”，拥有“幸运伙购码”者即可获得此商品。</p>
+                    </li>
+
+                   <li>
+                        <p>幸运伙购码计算方法：<br>
+						1）商品的最后一个号码分配完毕后，将公示截止该时间点本站全部商品的最后50个参与时间；</p>
+                    </li>
+                    <li>
+                        <p>2）将这50个时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如20:15:25.362则为201525362）；</p>
+                    </li>
+                    <li>
+                        <p>3）为保证公平公正公开，系统还会等待一小段时间，取最近下一期中国福利彩票“老时时彩”的揭晓结果（一个五位数值B）；</p>
+                    </li>
+					<li>
+                        <p>4）（数值A+数值B）除以该商品总需人次得到的余数 + 原始数 10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该商品。</p>
+                    </li>
+					<li>
+                        <p>注：如遇福彩中心通讯故障，无法获取上述期数的中国福利彩票“老时时彩”揭晓结果，则默认“老时时彩”揭晓结果为00000。</p>
+                    </li>
+					<li>
+                        <p>凌晨1:55到上午10:00开奖规则如下：<br>
+						1）B值固定：由于凌晨1:55到上午10:00老时时彩不开奖，默认“老时时彩“开奖结果为”00000“，即数值B=00000;<br>
+						2）即时开奖：该段时间，商品凑满后即可开奖（倒计时30秒即揭晓结果）<br>
+						</p>
+                    </li>	
+                </ul>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>03.</em>伙购网的流程是怎样的？</h3>
+                </dt>
+                <dd class="helpBox stepThree" style="display: none;">
+                    <span class="orange">1、挑选商品</span>
+                    <p>分类浏览或直接搜索商品，点击“立即伙购”。</p>
+                    <span class="orange">2、支付1 伙购币</span>
+                    <p>通过在线支付平台，支付1伙购币即购买1人次，获得1个“伙购码”。同一件商品可购买多次或一次购买多份，购买的“伙购码”越多，获得商品的几率越大。</p>
+                    <span class="orange">3、揭晓获得者</span>
+                    <p>
+                        当一件商品达到总参与人次，抽出1名商品获得者，伙购网会通过手机短信或邮件通知您领取商品。<br>
+                        <b class="gray9">注：<br>
+                            1、商品揭晓后您可登录"我的伙购"查询详情，未获得商品的用户不会收到短信或邮件通知；
+                            <br>
+                            2、商品揭晓后，请及时登录"我的伙购"完善个人资料，以便我们能够准确无误地为您配送商品。
+                            <br>
+                            3、所有已揭晓商品均不给予退款
+                        </b>
+                    </p>
+                    <span class="orange">4、晒单分享</span>
+                    <p>
+                        晒出您收到的商品实物图片甚至您的靓照，说出您的伙购心得，让大家一起分享您的快乐。
+                        <br>
+                        在您收到商品后，您只需登录网站完成晒单，并通过审核，即可获得400-1500福分奖励。在您成功晒单后，您的晒单会出现在网站"晒单分享"区，与大家分享喜悦。
+                    </p>
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>04.</em>怎样查看参与的商品是否获得？</h3>
+                </dt>
+                <dd id="dd1" class="helpBox" style="display: none;">
+                    每件商品揭晓结果公布之后，登录伙购网，进入"我的伙购"，在"伙购记录"中即可查询揭晓情况。
+                </dd>
+            </div>
+            <!--<div class="helpInfo">-->
+            <!--<dt>-->
+            <!--<h3><i class="fr iCollapse"></i><em>02.</em>我获得了商品，我还需要支付其他费用吗？</h3>-->
+            <!--</dt>-->
+            <!--<dd class="helpBox" style="display: none">-->
+            <!--不需要支付其他任何费用。-->
+            <!--</dd>-->
+            <!--</div>-->
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>05.</em>当我获得商品以后我该做什么？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none">
+                    在您获得商品后您会收到站内信、短信和电子邮件的通知。在这之后，您必须在“我的伙购”正确填写、真实的收货地址，完善或确认您的个人信息。我们会在您获得商品后3个工作日内通过电话方式与您取得联系。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>06.</em>商品是正品吗？怎么保证？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none">
+                    伙购网承诺，所有商品100%正品，可享受厂家所提供的全国联保服务，享受商品的保修、换货和退货的义务（国家三包政策）。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>07.</em>如何晒单分享？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none">
+                    在您收到商品后，登录伙购网，进入"我的伙购"，在“晒单分享”区发布晒单信息，通过审核后，您还可获得400-1500福分奖励。在您成功晒单后，您的晒单会出现在网站“晒单分享”区，与大家分享喜悦。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>08.</em>商品可以换货或者退货吗？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none">
+                    非质量问题，不在三包范围内，不给予退换货。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>09.</em>参与伙购需要注意什么？</h3>
+                </dt>
+                <dd class="helpBox" style="display: none">
+                    请务必正确填写真实有效的联系电话、收货地址以便在您获得商品时能及时与您取得联系。
+                </dd>
+            </div>
+            <div class="helpInfo">
+                <dt>
+                <h3><i class="fr iCollapse"></i><em>10.</em>网上银行充值未及时到帐怎么办？</h3>
+                </dt>
+                <ul class="helpBox stepTwo" style="display: none;">
+                    <li>
+                        <p>网上支付未及时到帐可能有以下几个原因造成：</p>
+                    </li>
+                    <li>
+                        <p>第一，由于网速或者支付接口等问题，支付数据没有及时传送到支付系统造成的；</p>
+                    </li>
+                    <li>
+                        <p>第二，网速过慢，数据传输超时，使银行后台支付信息不能成功对接，导致银行交易成功而支付后台显示失败；</p>
+                    </li>
+                    <li>
+                        <p>
+                            当一件商品所有“等份”全部售出后计算出“幸运伙购码”，拥有“幸运伙购码”者即可获得此商品。<p>
+                    </li>
+                    <li>
+                        <p>第三，在网上支付如果使用某些防火墙软件，有时会屏蔽银行接口的弹出窗口，这时会造成在银行那边被扣费，但在我们网站上显示尚没支付。</p>
+                    </li>
+                    <li>
+                        <p>但请您放心，每天我们都会根据银行系统的帐务明细清单对前一天的订单进行逐笔核对，如遇问题订单，我们会做手工添加。<br />
+                            如您对我们“帮助中心”的说明有任何疑问或建议请告诉我们。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="help-share">
+            <a href="/suggestion.html" class="btn">意见反馈</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+{% endblock %}

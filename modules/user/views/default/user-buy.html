@@ -1,0 +1,80 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+<h1 class="record-title">伙购记录</h1>
+<div class="record-list-con clearfix">
+
+    {% if arr %}
+    <b class="record-line"></b>
+    <ul class="record-list clearfix">
+        {% for item in arr %}
+        <li class="clear">
+            <i class="record-arrow"></i>
+            <picture>
+                <a  {% if(item.status == 2) %} href="{{ url('/product/lottery', {'pid':item.period_id}) }}" {% else %} href="{{ url('/product', {'pid':item.product_id}) }}"{% endif %} target="_blank">
+                <img src="{{ item.goods_picture }}" alt="">
+                    {% if(item.status == 0) %}<i>正在进行</i>{% elseif(item.status == 1) %}<i class="grey">正在揭晓</i>{% elseif(item.status == 2) %}<i class="grey">已揭晓</i>{% endif %}</a>
+
+             </picture>
+            <summary>
+                <h3><a href="{{ url('/product', {'pid':item.product_id}) }}" target="_blank">(第{{ item.period_number }}期){{ item.goods_name }}</a></h3>
+                <p>总需：{{ item.code_price }}人次</p>
+                {% if(item.status == 2) %}
+                    <p>获得者：{{ item.user_name }}</p>
+                    <p>揭晓时间：{{ item.raff_time }}</p>
+                 {% elseif(item.status == 1) %}
+                     <p>已满员：正在开奖</p>
+                {% endif %}
+            </summary>
+            <figure>
+                参与<i>{{ item.user_buy_num }}</i>人次
+            </figure>
+            {% if(item.status == 0) %}
+                <a class="record-link act" href="{{ url('/product', {'pid':item.product_id}) }}" target="_blank">跟随伙购</a>
+            {% else %}
+                <a class="record-link" href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">查看详情</a>
+            {% endif %}
+
+            <div class="record-time">
+                <p>{{ item.user_buy_time.third }}</p>
+                <p>{{ item.user_buy_time.second }}</p>
+                <p>{{ item.user_buy_time.first }}</p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% elseif ucenter_buylist == 0 and app.user.id == user_id %}
+    <div class="notHave">
+        <span class="notHave_icon"></span>
+        <p class="notHave_txt">还没有任何购买记录哦！</p>
+    </div>
+    {% else %}
+    <div class="notHave">
+        <span class="notHave_icon"></span>
+        <p class="notHave_txt">TA没有公开的伙购记录哦！</p>
+    </div>
+    {% endif %}
+</div>
+{% if total > 0 %}
+<p id='tips'>
+    <i class="leftI"></i>当前用户只允许查看近{{ total }}条记录<i class="leftR"></i>
+</p>
+{% endif %}
+
+
+
+    {{ use('/app/widgets/LinkPager') }}
+    {{ link_pager_widget({pagination: pagination}) }}
+{% endblock %}
+{% block js %}
+<script>
+    total = "{{ total }}";
+    if ($('.pagination').length > 0) {
+        if ($('.next').hasClass('disabled') && total > 0) {
+            $('#tips').show();
+        }
+    } else {
+        $('#tips').show();
+    }
+</script>
+{% endblock %}

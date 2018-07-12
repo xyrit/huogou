@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="keywords" content="{% block keywords %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}" />
+    <meta name="description" content="{% block description %}伙购网,伙购夺宝,伙购官网{% endblock %}" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <link href="{{ app.params.skinUrl }}/mobile/images/touch-icon.png" rel="apple-touch-icon-precomposed" />
+  <link href="{{ url(['/']) }}/favicon.ico"  rel="shortcut icon"/>
+  <link href="{{ app.params.skinUrl }}/mobile/css/comm.css?v=160328" rel="stylesheet" type="text/css" />
+  {% block css %}{% endblock %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/jquery.min.js" language="javascript" type="text/javascript"></script>
+
+</head>
+<body>
+    
+{% block head %}
+ <header class="g-header"><div class="head-l"><a class="z-HReturn" onclick="history.go(-1)" href="javascript:;"><s></s><b>返回</b></a></div><h2>{% block header %}{% endblock %}</h2><div class="head-r"><a class="z-Home" href="/"></a> <a class="z-Member" href="/member/index.html"></a></div></header>
+{% endblock %}
+
+{% block body %}{% endblock %}
+<script src="{{ app.params.skinUrl }}/mobile/js/jquery.jsonp.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/mobile/js/comm.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/mobile/js/global.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/mobile/js/pageDialog.js" language="javascript" type="text/javascript"></script>
+{% block js %}{% endblock %}
+{% block script %}{% endblock %}
+{% if (constant('DOMAIN')=='huogou.com') %}
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1257004576'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "w.cnzz.com/q_stat.php%3Fid%3D1257004576' type='text/javascript'%3E%3C/script%3E"));</script>
+{% endif %}
+</body>
+
+</html>

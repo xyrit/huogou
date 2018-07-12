@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>其它方式快捷登录用户完善信息_1元云购</title>
+    <meta name="Description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" href="https://skin.1yyg.com/passport/CSS/sslComm.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="js/iepng.js"></script>
+    <script type="text/javascript">
+        try{
+            if(EvPNG!=null&&EvPNG!=undefined){
+                EvPNG.fix('.transparent-png');
+            }
+        }
+        catch(e){}
+    </script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    <script language="javascript" type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <input name="hidToken" type="hidden" id="hidToken" value="Ja8KPRtVT54g34Bij8pjavhSGNmSEW5NHfjM3NrS1xZxkr0ikQETBb5bMb1yE0iDZUA9Gw28ha8pttUslcMMGzR9LcGtM5BTBpPk7AvIdPVM0bkAieEf84VWgvs3LUq6V2oLSVFKwwGsk.jW77dW6t8aXufmAUa08DL9F.dFTi17MVW2IOXqIYUh*a0pngti0IV3pezIcgE0E5MGBv*k9mca6V7i2WTi1KJVTEymo.osmGsOV.LKglRMwN7ydr.eWns26R0NFn42Jd4.1dnPw5yrTe.daEndxqXnlh5ALVo=" />
+    <input name="hidUserInfo" type="hidden" id="hidUserInfo" value="3.TjVVWiuezIDksVCngWTQ8doDCRNjSuLXOSJj.sZipumUk0SpIHlOAiapDqO1A174WCXI8N1eyx8Hw4dVFybemYY3rBCf6cRvy6*LXPx2rNf*2hMe3PXXKju4*oQ1h57bq4pe61e8Yrnf6PYLv6wRpc*x1dWcgvxV05EMVRMU138056M8xvGkrhqzLuK9YH" />
+    <div class="g-logo-top">
+        <a href="http://www.1yyg.com" class="transparent-png fl">
+            <img alt="" src="https://skin.1yyg.com/Passport/images/logo.png"/>
+        </a>
+    </div>
+
+    <div class="g-contentCon g-binding clrfix">
+        <div class="m-main clrfix">
+            <div class="binding-con">
+                <span>
+                    <img src="http://wx.qlogo.cn/mmopen/XCiaa7yQ0GkrFHeGrl1ORketk6ibrf7mZgv7icAIlhEfTXZh91aH17wLQjZSppc5AdmPnj3VEPchkic1Ed9N3fL30Zw8NkVtC3Wp/0" alt="han"/>
+                    <i class="transparent-png"></i>
+                </span>
+                <p class="gray6">
+                    <em class="orange">
+                        欢迎您，han
+                    </em>
+                    完善账号信息，下次可通过账号或微信登录1元云购
+                </p>
+            </div>
+            <div class="register-form-con clrfix">
+                <ul>
+                    <li>
+                        <input id="txtUserName" type="text" maxlength="100" />
+                        <b class="passport-icon user-name transparent-png"></b>
+                        <em>手机号/邮箱地址</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                    </li>
+                    <li>
+                        <input id="txtPwd" type="password" maxlength="20" />
+                        <b class="passport-icon login-password transparent-png"></b>
+                        <em>登录密码</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                        <span id="pwdStrength" style="display: none;"></span>
+
+                    </li>
+                    <li id="li_conpwd" style="display: none;">
+                        <input id="txtConPwd" type="password" maxlength="20" />
+                        <b class="passport-icon login-password transparent-png"></b>
+                        <em style="display: none;">确认密码</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                    </li>
+                    <li id="li_Code" style="display: none;">
+                        <div class="z-code clrfix">
+                            <input id="txtCode" type="text" maxlength="6"/>
+                            <b class="passport-icon verification-code transparent-png"></b>
+                            <em style="display:none;">验证码</em>
+                            <img src="/api/regsn.html" alt="" id="imgCode" />
+                            <a href="javascript:;" id="btnChangeCode">换一张</a>
+                        </div>
+                        <span class="orange"></span>
+                    </li>
+                </ul>
+                <ul class="j-tips-wrap" id="j-tips-wrap"></ul>
+            </div>
+            <div class="link-con clrfix">
+                <a id="btnBind" href="javascript:;" class="z-agreeBtn">绑定</a>
+            </div>
+        </div>
+    </div>
+
+    <!--版权-->
+    <div class="g-copyrightCon clrfix">
+        <div class="g-links">
+            <a target="_blank" href="http://www.1yyg.com/" title="首页">首页</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-about.html" title="关于云购">关于云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-privacy.html" title="隐私声明">隐私声明</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-business.html">合作专区</a><s></s>
+            <a target="_blank" href="http://www.1yyg.com/link.html">友情链接</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-jobs.html" title="加入云购">加入云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-contactus.html" title="联系我们">联系我们</a>
+        </div>
+        <div class="g-copyright">
+            Copyright &copy; 2011 - 2015, 版权所有 1yyg.com 粤ICP备09213115号-1
+        </div>
+    </div>
+
+    <link type="text/css" rel="stylesheet" href="css/pageDialog.css" />
+    <div class="pageDialogBG" id="pageDialogBG"></div>
+    <div class="pageDialogBorder" id="pageDialogBorder"></div>
+    <div class="pageDialog" id="pageDialog">
+        <div class="pageDialogClose" id="pageDialogClose" title="关闭"></div>
+        <div class="pageDialogMain" id="pageDialogMain"> </div>
+    </div>
+</div>
+</body>
+</html>

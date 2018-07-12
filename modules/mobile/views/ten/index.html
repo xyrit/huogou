@@ -1,0 +1,46 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}十元专区{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/purchase.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/ten.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  {% block head %}{% endblock %}
+  {% include '@mobileModule/views/header.html' %}
+
+  <section class="pur-page-wrap" style="background-color: #fff;">
+    <!--banner start-->
+    <article class="purchase-banner-wrap">
+      <a href="javascript:;"> <img src="{{app.params.skinUrl}}/mobile/images/ten-banner.jpg" alt="" /></a>
+    </article>
+    <!--banner end-->
+    <!--main start-->
+    <section class="purchase-main">
+      <!--幸运中奖者开始-->
+      <input type="hidden" id="hidLastMaxSecond" value="" />
+      <section class="purchase-people" id="st_newlottery" style="display: none;">
+        <ul class="purchase-ul">
+        </ul>
+      </section>
+      <!--幸运中奖者结束-->
+      <!--商品列表开始-->
+      <section class="purchase-shoping">
+        <ul class="purchase-list purchaseB clearfix" id="ul_purchaselist">
+
+
+        </ul>
+      </section>
+      <!--商品列表结束-->
+    </section>
+    <!--main end-->
+
+
+    {% include '@mobileModule/views/footer.html' %}
+  </section>
+
+{% endblock %}

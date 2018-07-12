@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0033)http://cart.1yyg.com/weixinpay.do -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>微信扫码支付</title>
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/Comm.css">
+<!--[if IE 6]>
+     <script type="text/javascript" src="http://skin.1yyg.com/js/iepng.js"></script> 
+     <script type="text/javascript">
+     EvPNG.fix('.search a.seaIcon i,.m-menu-all h3 em,.nav-cart-btn i.f-cart-icon,a.u-cart s,.u-mui-tab a.u-menus s,.u-mui-tab li.f-cart a.u-menus i,.u-mui-tab li.f-both-top a.u-menus,.u-mui-tab li.f-both-bottom a.u-menus,.i-ctrl a s,.g-list li cite,.f-list-sorts li.m-value s,.nav-main li.f-nav-thanks span,.u-float-list a i,.cartEmpty i,.transparent-png');
+     </script>
+ <![endif]-->
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/WeixinPay.css">
+    <script language="javascript" type="text/javascript" src="{{ app.params.skinUrl }}/frontend/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{{app.params.skinUrl}}/frontend/js/common.js"></script>
+    <script type="text/javascript">
+    var timer;
+    function getResult(){
+      $.getContent("/chatpay/result.html",{"order":{{order}}},"result");
+    }
+    $(function(){
+      timer = SetInterval(getResult,2000);
+    })
+    function result(json){
+      clearInterval(timer);
+      // window.location.href = '/pay/result?o={{order}}';
+    }
+    </script>
+</head>
+<body class="">
+    <input name="hidShopID" type="hidden" id="hidShopID" value="{{order}}">
+    <input name="hidIsBuyPay" type="hidden" id="hidIsBuyPay" value="1">
+    <div class="wx_header">
+        <div class="wx_logo">
+            <img title="微信支付" alt="微信支付标志" src="{{ app.params.skinUrl }}/frontend/images/wxlogo_pay.png"></div>
+    </div>
+    <div class="weixin">
+        <div class="weixin2">
+            <b class="wx_box_corner left pngFix"></b><b class="wx_box_corner right pngFix"></b>
+            <div class="wx_box pngFix">
+                <div class="wx_box_area">
+                    <div class="pay_box qr_default">
+                        <div class="area_bd"><span class="wx_img_wrapper" id="qr_box">
+                            <img id="payQRImg" class="qrcode" src="chatpay/qrcode.html?o={{order}}" alt="二维码" style="border-width:0px;">
+                            <img style="left: 50%; opacity: 0; display: none; margin-left: -101px;" class="guide pngFix" src="{{ app.params.skinUrl }}/frontend/images/wxwebpay_guide.png" alt="" id="guide">
+                        </span>
+                            <div class="msg_default_box"><i class="icon_wx pngFix"></i>
+                                <p>
+                                    请使用微信<br>
+                                    扫一扫完成支付
+                                </p>
+                            </div>
+                            <div class="msg_box"><i class="icon_wx pngFix"></i>
+                                <p><strong>扫描成功</strong>请在手机确认支付</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wx_hd">
+                    <div class="wx_hd_img icon_wx"></div>
+                </div>
+                <div class="wx_money"><span>￥</span>{{orderInfo.post_money}}.00</div>
+                <!--支付订单号-->
+                <div class="wx_pay">
+                    <p><span class="wx_left">支付订单号</span><span class="wx_right">{{orderInfo.id}}</span></p>
+                    <!--p><span class="wx_left">支付订单号</span><span class="wx_right"></span></p-->
+                </div>
+                <div class="wx_kf">
+                    <div class="wx_kf_img icon_wx"></div>
+                    <div class="wx_kf_wz">
+                        <p>客服</p>
+                        <p>400-850-8080</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--版权-->
+  <div class="g-copyrightCon">
+      <div class="w1190">
+          <div class="g-links">
+              <a href="http://www.1yyg.com/" target="_blank" title="首页">首页</a><s></s>
+              <a href="http://help.1yyg.com/htm-about.html" target="_blank" title="关于伙购">关于伙购</a><s></s>
+              <a href="http://help.1yyg.com/htm-privacy.html" target="_blank" title="隐私声明">隐私声明</a><s></s>
+              <a href="http://help.1yyg.com/info/htm-business.html" target="_blank" title="合作专区">合作专区</a><s></s>
+              <a href="http://www.1yyg.com/link.html" target="_blank" title="友情链接">友情链接</a><s></s>
+              <a href="http://help.1yyg.com/htm-jobs.html" target="_blank" title="加入伙购">加入伙购</a><s></s>
+              <a href="http://help.1yyg.com/htm-contactus.html" target="_blank" title="联系我们">联系我们</a>
+          </div>
+          <div class="g-copyright">Copyright © 2011 - 2015, 版权所有 1yyg.com 粤ICP备09213115号-1</div>
+          <div class="g-authentication">
+              <a href="http://www.1yyg.com/url.html?t=7" target="_blank" class="fi_ectrustchina"></a>
+              <a href="http://www.1yyg.com/url.html?t=1" target="_blank" class="fi_315online"></a>
+              <a href="http://www.1yyg.com/url.html?t=2" target="_blank" class="fi_qh"></a>
+              <a href="http://www.1yyg.com/url.html?t=3" target="_blank" class="fi_cnnic"></a>
+              <a href="http://www.1yyg.com/url.html?t=6" target="_blank" class="fi_anxibao"></a>
+              <a href="http://www.1yyg.com/url.html?t=4" target="_blank" class="fi_pingan"></a>
+              <a href="http://www.1yyg.com/url.html?t=8" target="_blank" class="fi_yangshi"></a>
+          </div>
+      </div>
+  </div>
+  
+  <!--通栏购物车-->
+  <div id="rightTool" class="g-outer">
+      <div class="g-status-standard">
+          <div class="m-banner-list">
+              <div class="u-sentence"><span></span></div>
+              <!--工具项-->
+              <div class="u-shortcut">
+                  <ul id="ulRToolList">
+                      <li class="f-shopping-cart">
+                          <!--购物车-->
+                          <div class="u-float-list">
+                              <a href="http://cart.1yyg.com/CartList.do" target="_blank">
+                                  <i></i>
+                                  <em style="display: none;">0</em>
+                                  <span>购物车</span>
+                              </a>
+                              <b class="curr-arrow"></b>
+                          </div>
+                      </li>
+                      <li class="f-attention">
+                          <!--关注-->
+                          <div class="u-float-list">
+                              <a href="http://member.1yyg.com/CollectList.do" target="_blank">
+                                  <i></i>
+                                  <cite>我的关注</cite>
+                              </a>
+                              <b class="curr-arrow" style="display: none;"></b>
+                          </div>
+                      </li>
+                      <li class="f-customer-service">
+                          <!--客服-->
+                          <div class="u-float-list">
+                              <a id="btnRigQQ" href="javascript:;" class="z-customer-off"><i></i><cite>在线客服</cite></a>
+                          </div>
+                      </li>
+                      <li class="f-client">
+                          <!--客户端-->
+                          <div class="u-float-list">
+                              <a href="javascript:;"><i></i><cite>手机APP</cite></a>
+                              <b class="curr-arrow"></b>
+                          </div>
+                          <div class="u-activate">
+                              <a href="http://info.1yyg.com/app/mobile.html" target="_blank">
+                                  <img src="./微信扫码支付_files/andriod.jpg">
+                                  下载客户端
+                              </a>
+                          </div>
+                      </li>
+                      <li class="f-weixin">
+                          <!--微信-->
+                          <div class="u-float-list">
+                              <a href="javascript:;"><i></i><cite>官方微信</cite></a>
+                              <b class="curr-arrow"></b>
+                          </div>
+                          <div class="u-activate">
+                              <a href="http://info.1yyg.com/app/microchannel.html" target="_blank">
+                                  <img src="./微信扫码支付_files/1yyg-wx.png">
+                                  关注官方微信
+                              </a>
+                          </div>
+                      </li>
+                      <li class="f-feedback">
+                          <!--意见反馈-->
+                          <div class="u-float-list">
+                              <a href="http://help.1yyg.com/htm-suggestion.html" target="_blank"><i></i><cite>意见反馈</cite></a>
+                          </div>
+                      </li>
+                      <li class="f-back-to">
+                          <!--Top-->
+                          <div class="u-float-list">
+                              <a href="javascript:;"><i></i><cite>置顶</cite></a>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <!--购物车列表-->
+          <div id="divRTCartMain" class="m-unfold-cart clrfix">
+              <!--头部-->
+              <div class="f-unfold-title">
+                  <span class="fl">购物车</span>
+                  <cite class="fr"><a href="http://cart.1yyg.com/CartList.do" target="_blank" title="全屏查看">全屏查看</a></cite>
+              </div>
+              <!--列表-->
+              <div id="cart_container" class="f-unfold-con clrfix">
+                  <div id="cart_box" class="scrollcontent">
+                      <div id="cart_shower" class="unfold-list"></div>
+                  </div>
+              </div>
+              <!--加载-->
+              <div class="loading-2015 clrfix"><em></em></div>
+              <!--购物车为空-->
+              <div class="cartEmpty clrfix"><i></i>您的购物车为空 !</div>
+              <!--支付-->
+              <div class="f-unfold-pay clrfix"></div>
+          </div>
+          <!--登录-->
+          <div id="divRTLogin" class="m-cart-login clrfix"></div>
+          <!--关注-->
+          <div id="divRTColect" class="m-unfold-cart clrfix" style="display: none; bottom: 0;">
+              <!--头部-->
+              <div class="f-unfold-title" style="display: block;">
+                  <span class="fl">我的关注</span>
+                  <cite class="fr"><a href="http://member.1yyg.com/CollectList.do" target="_blank" title="全屏查看">全屏查看</a></cite>
+              </div>
+              <!--列表-->
+              <div id="colect_container" class="f-unfold-con clrfix">
+                  <div id="colect_box" class="scrollcontent" style="display: block;">
+                      <div id="colect_shower" class="attentionCon"></div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  <!--无购物车页面版-->
+  <div id="divRTool" class="g-narrow-con" style="display: none;">
+      <div class="m-narrow-list">
+          <ul>
+              <li class="f-attention">
+                  <!--关注-->
+                  <div class="u-float-list">
+                      <a href="http://member.1yyg.com/CollectList.do" target="_blank">
+                          <i></i>
+                          <cite>我的关注</cite>
+                      </a>
+                  </div>
+              </li>
+              <li class="f-customer-service">
+                  <!--客服-->
+                  <div class="u-float-list">
+                      <a id="btnRigQQ2" href="javascript:;" class="z-customer-on"><i></i><cite>在线客服</cite></a><!-- z-customer-off 客服不在线时 -->
+                  </div>
+              </li>
+              <li class="f-client">
+                  <!--客户端-->
+                  <div class="u-float-list">
+                      <a href="http://info.1yyg.com/app/mobile.html" target="_blank"><i></i><cite>手机APP</cite></a>
+                      <b class="curr-arrow"><s></s></b>
+                  </div>
+                  <div class="activateCon">
+                      <div class="u-activate">
+                          <a href="http://info.1yyg.com/app/mobile.html" target="_blank">
+                              <img src="./微信扫码支付_files/andriod(1).jpg">
+                              下载客户端
+                          </a>
+                      </div>
+                  </div>
+              </li>
+              <li class="f-weixin">
+                  <!--微信-->
+                  <div class="u-float-list">
+                      <a href="http://info.1yyg.com/app/microchannel.html" target="_blank"><i></i><cite>官方微信</cite></a>
+                      <b class="curr-arrow"><s></s></b>
+                  </div>
+                  <div class="activateCon">
+                      <div class="u-activate">
+                          <a href="http://info.1yyg.com/app/microchannel.html" target="_blank">
+                              <img src="./微信扫码支付_files/1yyg-wx(1).png">
+                              关注官方微信
+                          </a>
+                      </div>
+                  </div>
+              </li>
+              <li class="f-feedback">
+                  <!--意见反馈-->
+                  <div class="u-float-list">
+                      <a href="http://help.1yyg.com/htm-suggestion.html" target="_blank"><i></i><cite>意见反馈</cite></a>
+                  </div>
+              </li>
+              <li class="f-back-to">
+                  <!--Top-->
+                  <div class="u-float-list">
+                      <a href="javascript:;"><i></i><cite>置顶</cite></a>
+                  </div>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+
+
+</body></html>

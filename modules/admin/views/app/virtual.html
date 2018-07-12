@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/virtual?os={{ app.request.get("os") }}" target="_black">虚拟物品设置</a></strong>
+    </div>
+</div>
+<hr>
+
+
+<div class="am-u-sm-12">
+    {% set  form=ActiveForm_begin({"options":{"class":"am-form am-form-horizontal"}}) %}
+    {{  html.activeHiddenInput(model, "id")|raw }}
+    {{   form.field(model,'virtual_name').textInput()|raw }}
+    {{   form.field(model,'virtual_icon').textInput() |raw }}
+    {{   form.field(model,'virtual_type').textInput()|raw }}
+    
+    {{   form.field(model,'system').radioList({'android':"Android",'ios':"IOS"})|raw }}
+    {{   form.field(model,'status').checkbox()|raw }}
+    {{  html.submitButton('保存',{'class':'am-btn am-btn-primary'})|raw }}
+    {{  ActiveForm_end()|raw }}
+</div>
+
+</div>
+{% endblock %}

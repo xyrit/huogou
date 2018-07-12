@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>限购专区 - 1元云购触屏版</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="Purchase/CSS/purchase.css" rel="stylesheet" type="text/css" />
+    <script src="JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body id="loadingPicBlock">
+<section class="pur-page-wrap">
+    <!-- 栏目页面顶部 -->
+    <header class="header">
+        <h1 class="fl"><span>一元云购</span><a href="/"></a></h1>
+        <div class="fl u-slogan"></div>
+        <div class="fr head-r">
+            <a href="passport/login.html" class="z-Member"></a>
+            <a id="btnCart" href="/mycart/index.do" class="z-shop"></a>
+        </div>
+    </header>
+    <!-- 栏目导航 -->
+    <nav class="g-snav u-nav">
+        <div class="g-snav-lst">
+            <a href="index.html">首页</a>
+        </div>
+        <div class="g-snav-lst">
+            <a href="list/m1.html">所有商品</a>
+        </div>
+        <div class="g-snav-lst">
+            <a href="LimitBuyList.html" class="nav-crt">限购专区</a>
+            <s class="z-arrowh"></s>
+        </div>
+        <div class="g-snav-lst">
+            <a href="lottery.html">最新揭晓</a>
+        </div>
+        <div class="g-snav-lst">
+            <a href="post.html">晒单</a>
+        </div>
+    </nav>
+    <!-- 内页顶部 -->
+    <!--banner start-->
+    <article class="purchase-banner-wrap">
+        <a href="javascript:;"><img src="images/purchase-banner-1.jpg" alt="" /></a>
+        <a href="javascript:;"><img src="images/purchase-banner-2.jpg" alt="" /></a>
+        <a href="javascript:;"><img src="images/purchase-banner-3.jpg" alt="" /></a>
+    </article>
+    <!--banner end-->
+    <section class="pur-rule-txt">
+        每个商品每位会员参与人次设置上限，揭晓规则不变。
+    </section>
+    <!--main start-->
+    <section class="purchase-main">
+        <!--幸运中奖者开始-->
+        <input type="hidden" id="hidLastMaxSecond" value="" />
+        <section class="purchase-people" id="st_newlottery" style="display:none;">
+            <ul class="purchase-ul">
+            </ul>
+        </section>
+        <!--幸运中奖者结束-->
+        <!--商品列表开始-->
+        <section class="purchase-shoping">
+            <ul class="purchase-list clearfix" id="ul_purchaselist">
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+                <li codeid="1613707">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <a href="product/1595147.html">
+                                <img src="GoodsPic/Pic-200-200/20150623170747765.jpg" width="136" height="136" />
+                            </a>
+                        </div>
+                        <div class="product-price clearfix">
+                            <span class="pri">价值&nbsp;:&nbsp;
+                                <ins class="p-num">29888.00</ins>
+                            </span>
+                        </div>
+                        <div class="Pro-bar-wrap">
+                            <div class="Progress-bar">
+                                <p class="u-progress" title="55%">
+                                    <span class="pgbar" style="width: 55%;">
+                                        <span class="pging"></span>
+                                    </span>
+                                </p>
+                                <ul class="Pro-bar-li clearfix">
+                                    <li class="P-bar01"><em>16649</em>已参与</li>
+                                    <li class="P-bar02"><em>29888</em>总需人次</li>
+                                    <li class="P-bar03"><em>13239</em>剩余</li>
+                                </ul>
+                            </div>
+                            <div class="buy-wrap clearfix">
+                                <a href="mycart.html" class="buy-btn">立即1元云购</a>
+                                <a href="javascript:;" class="shopcar-btn">
+                                    <img src="Purchase/Images/shopcar-btn.png" alt="加入购物车" width="30" height="30" />
+                                </a>
+                            </div>
+                        </div>
+                        <span class="flag">限购5人次</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <!--商品列表结束-->
+    </section>
+    <!--main end-->
+</section>
+<footer id="pageBottom_footer" class="footer">
+    <div class="u-ft-nav" id="fLoginInfo">
+        <span><a href="index.html">首页</a><b></b></span>
+        <span><a href="about.html">新手指南</a><b></b></span>
+        <span><a href="passport/login.html">登录</a><b></b></span>
+        <span><a href="passport/register.html">注册</a></span>
+    </div>
+    <p class="m-ftA">
+        <a href="http://m.1yyg.com/">触屏版</a>
+        <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+        <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+    </p>
+    <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+    <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+</footer>
+</body>
+</html>

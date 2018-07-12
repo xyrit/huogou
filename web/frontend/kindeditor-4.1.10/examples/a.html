@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>kindeditor 评论回复 </title>
+<link rel="stylesheet" href="../themes/default/default.css" />
+<script charset="utf-8" src="../kindeditor-min.js"></script>
+<script charset="utf-8" src="../lang/zh_CN.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+editor = K.create('textarea[name="content"]', {
+resizeType : 0,
+allowPreviewEmoticons : false,
+allowImageUpload : false,
+width:"100%",
+items : [
+'emoticons']
+});
+});
+</script>
+</head>
+<body>
+<style>
+.comment{
+position: relative;
+width: 330px;
+padding: 10px;
+}
+.comment .ke-toolbar{
+position: absolute;
+bottom: -18px;
+    background-color:#fff;
+    border-bottom:0px solid #CCC;
+    padding:0
+}
+.ke-statusbar {height:0}
+#submit {
+display: block;
+float: right;
+}
+</style>
+<div class="comment">
+<textarea name="content" ></textarea>
+<input type="submit" value="提交" name="submit" id="submit"/>
+</div>
+</body>
+</html>

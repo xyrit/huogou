@@ -1,0 +1,44 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}十元专区_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+<script src="{{ app.params.skinUrl }}/js/fly.js"></script>
+<script src="{{ app.params.skinUrl }}/js/requestAnimationFrame.js"></script>
+<script src="{{ app.params.skinUrl }}/js/ten.js?v=160216"></script>
+{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+{% include '@app/views/nav.html' %}
+{% include '@app/views/cart.html' %}
+
+
+<section class="sbei-banner">
+  <div class="sbei-newest">
+    <div class="sbei-title">
+      最新购买
+    </div>
+    <div class="sbei_ul">
+      <ul class="clearfix" id="sbei-newest-list">
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+<ul class="quota_list clear">
+
+</ul>
+
+
+{% include '@app/views/footer.html' %}
+{% endblock %}

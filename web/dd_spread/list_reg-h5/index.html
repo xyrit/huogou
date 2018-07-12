@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>年度盛惠•1元专场</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+
+    <style>
+    .swipe-tip {
+        /*content: " ";*/
+        position: absolute;
+        width: 24px;
+        height: 18px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        bottom: .5rem;
+        background: url(img/web-swipe-tip.png) no-repeat;
+        background-size: 100% 100%;
+        animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+        -webkit-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+        -moz-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+        -o-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+        z-index: 100;
+    }
+</style>
+
+</head>
+<body style="max-width: 640px;margin: auto;">
+<div class="loading-bg" id="loading-bg"></div>
+<div class="loading" id="loading">
+    <div class="loading-pic">
+
+    </div>
+    <canvas id="loadingCanvas" width="60" height="30"></canvas>
+</div>
+
+<!--<canvas id="loadingCanvas" width="60" height="30"></canvas>-->
+<div class="swiper-container" id="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="head swiper-slide">
+            <img src="img/section1/se1.png" class="ani resize" style="width:80px;height:45px;left:0;top:0;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se5.png" class="ani resize" style="width:320px;height:193px;left:0;top:300px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+
+            <img src="img/section1/se2.png" class="ani resize" style="width:280px;height:79px;left:25px;top:35px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se3.png" class="ani resize" style="width:156px;height:101px;left:80px;top:125px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se4.png" class="ani resize" style="width:230px;height:73px;left:35px;top:240px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+        </div>
+        <div class="sub-content sub-list1 swiper-slide">
+
+            <img src="img/section2/se1.png" class="resize ani" style="width:140px;height:184px;left:90px;top:20px;z-index:5;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"/>
+            <img src="img/section2/se2.png" class="resize ani" style="width:220px;height:198px;left:80px;top:210px;z-index:5;" swiper-animate-effect="rollIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s"/>
+
+            <a href="#" class="link-btn"><img src="img/section2/se3.png" class="resize ani"  swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div>
+        <div class="sub-content sub-list2 swiper-slide">
+            <img src="img/section3/se1.png" class="resize ani" swiper-animate-effect="rubberBand" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section3/se2.png" class="resize ani" swiper-animate-effect="swing" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="#" class="link-btn"><img src="img/section3/se3.png" class="resize ani" swiper-animate-effect="rubberBand" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div >
+        <div class="sub-content sub-list3 swiper-slide">
+            <img src="img/section4/se1.png" class="resize ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section4/se2.png" class="resize ani" swiper-animate-effect="bounceInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="#" class="link-btn"><img src="img/section4/se3.png" class="resize ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:35px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div>
+        <div class="sub-content sub-list4 swiper-slide">
+            <img src="img/section5/se1.png" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section5/se2.png" class="resize ani" swiper-animate-effect="rotateIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="#" class="link-btn"><img src="img/section5/se3.png" class="resize ani" swiper-animate-effect="slideInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+        </div>
+    </div>
+    <!--<div class="swiper-pagination"></div>-->
+    <div class="swipe-tip"></div>
+</div>
+<!--音乐控制-->
+<div id="music" class="music stopped cmp">
+    <audio id="music_audio" class="audio" loop=""  preload="" src=""></audio>
+    <div class="control" id="control">
+        <div class="control-after"></div>
+    </div>
+</div>
+
+<!--安卓弹出层-->
+<div id="m_popUp" class="m_popUp" style="display: none;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/android.png" style="width: 90%;margin: 0 auto" id="pic">
+        <a class="m_middle" id="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+<!--苹果注册弹出框-->
+<div id="m_popUp_ios" class="m_popUp" style="display:none;">
+    <div class="m_guide"></div>
+    <div class="m_con m_con_ios">
+        <ul>
+            <li class="accAndPwd">
+                <input class="ipt" id="userMobile" maxlength="11" type="tel" placeholder="请输入您的手机号码" />
+            </li>
+            <li>
+                <input style="width:63.5%;float: left;" class="ipt" id="mobileCode" type="text" value="" placeholder="6位验证码">
+                <button type="button" class="sendCode" href="javascript:void(0);">获取验证码</button>
+            </li>
+            <li class="accAndPwd">
+                <input class="ipt" id="userPassword" maxlength="20" type="password" placeholder="请输入8-25位密码" />
+            </li>
+            <li>
+                <img src="img/section6/alerttop.png" style="width: 100%;position: absolute;bottom: 90%;left: 0;"/>
+                <button type="button" id="regSubmit" href="javascript:;" class="orangeBtn">一键注册</button>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<!--注册成功后弹出-->
+<div class="m_popUpTip m_popUp" style="display: none;margin: 0 auto">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/reg-sueccess.png" style="width: 90%">
+        <a class="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+
+<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_before" style="display: none;">
+            <button type="button" class="close">关闭</button>
+            <!--<p>温馨提示</p>-->
+            <p class="two">您手机号已经注册，请下载APP参与夺宝</p>
+            <p><span style="padding: 0.2em 1em; background-color: #ef2828;" class="off"><a style="color: #fff;" href="http://down.cgyyg.com/down.php">立即下载APP</a></span></p>
+        </div>
+        <div class="wrap wrap_r reg_notice" style="display: none;">
+            <!--<button type="button" class="close">关闭</button>-->
+            <!--<p>注册提示</p>-->
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+<script>
+
+    var inWidth=window.innerWidth;
+    var inHeight=window.innerHeight;
+    var scaleW,
+            scaleH;
+
+    var inBi=320/480;
+    if((inWidth/inHeight)>inBi){
+        var w=inHeight*inBi;
+        document.body.style.width=w+'px';
+        // document.getElementById("m_popUp_ios").style.width=w+'px';
+        document.body.style.margin='0 auto';
+        //document.getElementById("m_popUp_ios").style.margin='0 auto';
+        scaleW=document.body.clientWidth/320;
+        scaleH=inHeight/480;
+    }
+    else{
+        var h=inWidth/inBi;
+        document.body.style.height=h+'px';
+        //document.getElementById("m_popUp_ios").style.height=h+'px';
+        document.body.style.marginTop=(inHeight-h)/2+'px';
+        // document.getElementById("m_popUp_ios").style.marginTop=(inHeight-h)/2+'px';
+        scaleW=inWidth/320;
+        scaleH=document.body.clientHeight/480;
+    }
+    var resizes = document.querySelectorAll('.resize');
+    for (var j=0; j<resizes.length; j++) {
+        resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+        resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+        resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+        resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px';
+    }
+
+    $(function () {
+
+        /*var mySwiper = new Swiper('.swiper-container',{
+         onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+         swiperAnimateCache(swiper);
+         swiperAnimate(swiper);
+         },
+         onSlideChangeStart: function(swiper){
+         //滑动开始前执行图片居中
+         // checkheight();
+         //给每一页不同的slide的body换背景
+         checkBg();
+         },
+         onSlideChangeEnd: function(swiper){
+         //滑入动画
+         swiperAnimate(swiper);
+         //检查是否到了最后一页，屏蔽提示
+         //checkEnd();
+         //检测是安卓还是ios
+         /!*if(mySwiper.isEnd){
+         //checkAlert();
+         //mySwiper.slideTo(0, 3000, true);//切换到第一个slide，速度为1秒
+         }*!/
+         },
+         /!*onReachBeginning: function(swiper){
+         //到了第一页
+         $('.swipe-tip').show();
+         },*!/
+         onReachEnd: function(swiper){
+         //到了最后一页
+         // $('.swipe-tip').hide();
+
+         },
+         onTouchEnd:function(){   /!*手指滑动时，判断手指滑动的方向*!/
+         /!*if(mySwiper.isEnd){
+         var   m_popUp=$("#m_popUp_ios"),
+         m_con=$('.m_con_ios');
+         m_popUp.css('display','block');
+         }*!/
+
+         },
+         direction: 'vertical',
+         //pagination: '.swiper-pagination',
+         mousewheelControl : true,
+         loop:true,
+         //autoHeight: true, //高度随内容变化
+         });
+
+         //判断是否是结尾
+         function checkEnd() {
+         if(mySwiper.isEnd){
+         $('.swipe-tip').hide();
+         }else{
+         $('.swipe-tip').show();
+         }
+         }
+         var acIndex=mySwiper.activeIndex;
+         //图片居中
+         function checkheight() {
+         var imgStr=$('.swiper-slide-active .resize');
+         var swiperHeight=mySwiper.height;
+         var imgHeight=imgStr.height();
+         var curHeight=(swiperHeight-imgHeight)/2;
+
+         imgStr.css('margin-top',curHeight);
+         alert(swiperHeight+'*'+imgHeight);
+         alert(imgStr.css('margin-top'));
+         }
+         //checkheight();
+
+         function checkBg(){
+         var acIndex=$('.swiper-slide.swiper-slide-active').attr('data-swiper-slide-index');
+
+         console.log(acIndex);
+         if(acIndex==0){
+         document.body.style.backgroundColor='#4294f1';
+         document.body.style.backgroundImage='url(img/section1/se-bg.png)';
+         }
+         else if(acIndex==1){
+         document.body.style.backgroundColor='#814ec7';
+         document.body.style.backgroundImage='none';
+         }
+         else if(acIndex==2){
+         document.body.style.backgroundColor='#4ea9c7';
+         document.body.style.backgroundImage='none';
+         }
+         else if(acIndex==3){
+         document.body.style.backgroundColor='#c74eba';
+         document.body.style.backgroundImage='none';
+         }
+         else{
+         document.body.style.backgroundColor='#34b989';
+         document.body.style.backgroundImage='none';
+         }
+         }*/
+        /*检测设备启用不同弹出框*/
+        if(isIos() || is_weixn() ){
+            // iPhone
+            $('.link-btn').click(function(){
+                // window.location=regiUrl;
+                var pic=$("#pic"),
+                        m_popUp=$("#m_popUp_ios"),
+                        m_con=$('.m_con_ios');
+
+                m_popUp.css('display','block');
+
+                var winHight=$(window).height();
+                var conHeight=m_con.height();
+
+                pic.attr('src','img/ios.png');
+                //m_middle.attr({'href':'./register.html','target':'_parent'});
+                /*if(winHight>conHeight){
+                 var curHeight=(winHight-conHeight)/2;
+                 m_con.css('margin-top',curHeight);
+                 }*/
+
+
+            });
+            $('#urlBut').text('立即注册');
+
+        }else{
+            //Android ;
+
+            $('.link-btn').click(function(){
+                //window.location=url;
+                var m_con=$('.m_con');
+                var m_popUp=$("#m_popUp");
+                m_popUp.css('display','block');
+                //m_popUp.show();
+                var winHight=$(window).height();
+                var conHeight=m_con.height();
+                if(winHight>conHeight){
+                    var curHeight=(winHight-conHeight)/2;
+                    m_con.css('margin-top',curHeight);
+                }
+            });
+        }
+        //关闭弹层
+        $('.m_guide').on('click',function () {
+            $(this).parent('.m_popUp').css('display','none');
+        })
+        //控制音乐
+        /*$('.control').on('click',function(){
+         var obj=$(this);
+         var audioEle = $("#music_audio")[0];//jquery选择器获得的是jquery对象，0对象的才是对应的节点对象
+         var flag_music=$('#music');
+         if(flag_music.hasClass('stopped')){
+         audioEle.pause();	//暂停
+         flag_music.removeClass('stopped');
+         obj.css('background','transparent');
+         obj.find('.control-after').css('animation','none');
+         }else{
+         audioEle.play();	//播放
+         flag_music.addClass('stopped');
+         obj.css({'background':'url(img/music.gif) transparent no-repeat center center','background-size':'contain'});
+         obj.find('.control-after').css('animation','rotate2d 1.2s linear infinite');
+         }
+         });*/
+    });
+
+</script>
+<script src="http://cdn.gbtags.com/EaselJS/0.7.1/easeljs.min.js"></script>
+<script src="http://cdn.gbtags.com/PreloadJS/0.4.1/preloadjs.min.js"></script>
+<script src="http://cdn.gbtags.com/SoundJS/0.5.2/soundjs.min.js"></script>
+<script>
+    var canvas = document.getElementById("loadingCanvas");
+    var stage = new createjs.Stage(canvas);
+    var manifest;
+    var preload;
+    var progressText = new createjs.Text("", "12px Arial", "#FFA737");
+    progressText.x = 15 - progressText.getMeasuredWidth() / 2;
+    progressText.y = 10;
+    stage.addChild(progressText);
+    stage.update();
+    //window.onload=init;
+
+    //定义相关JSON格式文件列表
+    function setupManifest() {
+        /*manifest = [{
+         src:  "css/style.css",
+         id: "indexstyle"
+         }, {
+         src: "js/swiper-3.3.1.jquery.min.js",
+         id: "swiperjs"
+         }
+         ];*/
+    }
+    /*function init() {
+     preload = new createjs.LoadQueue(true);
+     //注意加载音频文件需要调用如下代码行
+     preload.installPlugin(createjs.Sound);
+     preload.on("fileload", handleFileLoad);
+     preload.on("progress", handleFileProgress);
+     preload.on("complete", loadComplete);
+     preload.on("error", loadError);
+     //preload.loadManifest(manifest);
+     preload.loadManifest("manifest.json");
+     }*/
+
+    //开始预加载
+    //function startPreload() {
+    preload = new createjs.LoadQueue(true);
+    //注意加载音频文件需要调用如下代码行
+    preload.installPlugin(createjs.Sound);
+    //设置并发数
+    preload.setMaxConnections(100);
+    // 关键！---一定要将其设置为 true, 否则不起作用。
+    preload.maintainScriptOrder=true;
+
+    preload.on("fileload", handleFileLoad);
+    preload.on("progress", handleFileProgress);
+    preload.on("complete", loadComplete);
+    preload.on("error", loadError);
+    //preload.loadManifest(manifest);
+     preload.loadFile({id:"mysound", src:"song.mp3"});
+
+    createjs.Sound.registerPlugins([ createjs.HTMLAudioPlugin]);
+    console.log(createjs.Sound.activePlugin.toString());
+    createjs.Sound.alternateExtensions = ["ogg"];
+   // var mySound = createjs.Sound.play("song.mp3");
+
+
+
+    preload.loadManifest("manifest.json");
+    // }
+
+    //处理单个文件加载
+    function handleFileLoad(event) {
+        /*console.log("文件类型: " + event.item.type);
+         if(event.item.id == "logo"){
+         console.log("logo图片已成功加载");
+         }*/
+    }
+
+    //处理加载错误：大家可以修改成错误的文件地址，可在控制台看到此方法调用
+    function loadError(evt) {
+        console.log("加载出错！",evt.text);
+    }
+
+    //已加载完毕进度
+    function handleFileProgress(event) {
+        progressText.text = (preload.progress*100|0) + " %";
+        stage.update();
+
+    }
+
+    //全度资源加载完毕
+    function loadComplete(event) {
+        console.log("已加载完毕全部资源");
+        //关闭弹层
+        document.getElementById("loading-bg").style.display='none';
+        document.getElementById("loading").style.display='none';
+        document.getElementById("swiper-container").style.display='block';
+
+        //加载完成后执行swiper
+        var mySwiper = new Swiper('.swiper-container',{
+            onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+                swiperAnimateCache(swiper);
+                swiperAnimate(swiper);
+            },
+            onSlideChangeStart: function(swiper){
+
+                //给每一页不同的slide的body换背景
+                checkBg();
+            },
+            onSlideChangeEnd: function(swiper){
+                //滑入动画
+                swiperAnimate(swiper);
+            },
+            /*onReachBeginning: function(swiper){
+             //到了第一页
+             $('.swipe-tip').show();
+             },*/
+            onReachEnd: function(swiper){
+                //到了最后一页
+            },
+            onTouchEnd:function(){   /*手指滑动时，判断手指滑动的方向*/
+            },
+            direction: 'vertical',
+            //pagination: '.swiper-pagination',
+            mousewheelControl : true,
+            loop:true,
+            //autoHeight: true, //高度随内容变化
+        });
+        //document.getElementById("music_audio").play();
+        //加载完成后播放音乐
+        createjs.Sound.play("mysound",{loop:999});
+        var mysound= preload.getResult("mysound");
+        //alert(mysound.src);
+        console.log(mysound);
+        //当资源列表为外部json文件时，无法直接取ID，只能循环json文件得到相应的内容
+        console.log(preload.getResult("manifest.json"));
+        //写入页面audio元素
+        //控制音乐-原生js控制
+        var audioStr=document.getElementById("music_audio");
+        var control=document.getElementById("control");
+        var flag_music=document.getElementById("music");
+        audioStr.src=mysound.src;
+        var palyFlag=0;
+        control.onclick=function () {
+
+            if(palyFlag==0){
+                createjs.Sound.stop("mysound");
+                palyFlag++;
+                this.style.background="transparent";
+            }
+            else{
+                createjs.Sound.play("mysound",{loop:999});
+                palyFlag=0;
+                this.style.background="url(img/music.gif) transparent no-repeat center center";
+                this.style.backgroundSize="contain";
+            }
+        }
+        //jquery控制
+        /*$('.control').on('click',function(){
+         var obj=$(this);
+         var audioEle = $("#music_audio")[0];//jquery选择器获得的是jquery对象，0对象的才是对应的节点对象
+         var flag_music=$('#music');
+         if(flag_music.hasClass('stopped')){
+         audioEle.pause();	//暂停
+         flag_music.removeClass('stopped');
+         obj.css('background','transparent');
+         obj.find('.control-after').css('animation','none');
+         }else{
+         audioEle.play();	//播放
+         flag_music.addClass('stopped');
+         obj.css({'background':'url(img/music.gif) transparent no-repeat center center','background-size':'contain'});
+         obj.find('.control-after').css('animation','rotate2d 1.2s linear infinite');
+         }
+         });*/
+    }
+
+    //setupManifest();
+    // startPreload();
+    //swiper配置
+
+    function checkBg(){
+        var acIndex=$('.swiper-slide.swiper-slide-active').attr('data-swiper-slide-index');
+
+        if(acIndex==0){
+            document.body.style.backgroundColor='#4294f1';
+            document.body.style.backgroundImage='url(img/section1/se-bg.png)';
+        }
+        else if(acIndex==1){
+            document.body.style.backgroundColor='#814ec7';
+            document.body.style.backgroundImage='none';
+        }
+        else if(acIndex==2){
+            document.body.style.backgroundColor='#4ea9c7';
+            document.body.style.backgroundImage='none';
+        }
+        else if(acIndex==3){
+            document.body.style.backgroundColor='#c74eba';
+            document.body.style.backgroundImage='none';
+        }
+        else{
+            document.body.style.backgroundColor='#34b989';
+            document.body.style.backgroundImage='none';
+        }
+    }
+</script>
+
+<!--<script>
+    window.onload=init;
+
+    var stage;
+    var loader;
+
+    function init()
+    {
+        stage=new createjs.Stage("canvas");
+
+        var manifestLoader=new createjs.LoadQueue();
+        manifestLoader.on("fileload",function(e)
+        {
+            loader=new createjs.LoadQueue();
+            loader.on("complete",onComplete);
+            loader.on("error",onError);
+            loader.on("progress",onProgress);
+            loader.on("fileload",onFileLoad);
+            loader.on("fileprogress",onFileProgress);
+            loader.loadManifest(e.result);
+        },this,true);
+        manifestLoader.loadManifest("manifest.json");
+    }
+
+    function onComplete(e)
+    {
+        console.log("complete+加载完成");
+
+
+        var image1=loader.getResult("se1");
+        var bitmap1=new createjs.Bitmap(image1);
+        stage.addChild(bitmap1);
+        stage.update();
+        console.log(image1);
+
+        document.getElementById("loading-bg").style.display='none';
+        document.getElementById("loading").style.display='none';
+        document.getElementById("swiper-container").style.display='block';
+
+        //加载完成后执行swiper
+        var mySwiper = new Swiper('.swiper-container',{
+            onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+                swiperAnimateCache(swiper);
+                swiperAnimate(swiper);
+            },
+            onSlideChangeStart: function(swiper){
+
+                //给每一页不同的slide的body换背景
+                checkBg();
+            },
+            onSlideChangeEnd: function(swiper){
+                //滑入动画
+                swiperAnimate(swiper);
+            },
+            /*onReachBeginning: function(swiper){
+             //到了第一页
+             $('.swipe-tip').show();
+             },*/
+            onReachEnd: function(swiper){
+                //到了最后一页
+            },
+            onTouchEnd:function(){   /*手指滑动时，判断手指滑动的方向*/
+            },
+            direction: 'vertical',
+            //pagination: '.swiper-pagination',
+            mousewheelControl : true,
+            loop:true,
+            //autoHeight: true, //高度随内容变化
+        });
+
+    }
+    function onError(e)
+    {
+        console.log("error");
+    }
+
+    function onProgress(e)
+    {
+        console.log("progress");
+    }
+
+    function onFileLoad(e)
+    {
+        console.log("fileload");
+    }
+
+    function onFileProgress(e)
+    {
+        console.log("fileprogress");
+    }
+
+
+
+    //swiper配置
+
+    function checkBg(){
+        var acIndex=$('.swiper-slide.swiper-slide-active').attr('data-swiper-slide-index');
+
+        console.log(acIndex);
+        if(acIndex==0){
+            document.body.style.backgroundColor='#4294f1';
+            document.body.style.backgroundImage='url(img/section1/se-bg.png)';
+        }
+        else if(acIndex==1){
+            document.body.style.backgroundColor='#814ec7';
+            document.body.style.backgroundImage='none';
+        }
+        else if(acIndex==2){
+            document.body.style.backgroundColor='#4ea9c7';
+            document.body.style.backgroundImage='none';
+        }
+        else if(acIndex==3){
+            document.body.style.backgroundColor='#c74eba';
+            document.body.style.backgroundImage='none';
+        }
+        else{
+            document.body.style.backgroundColor='#34b989';
+            document.body.style.backgroundImage='none';
+        }
+    }
+</script>-->
+</body>
+</html>

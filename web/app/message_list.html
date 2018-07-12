@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>消息列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset2.css">
+	<link rel="stylesheet" href="css/layout_sub.css?v=160324">
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/comm.js?v=160325"></script>
+</head>
+<body>
+	<div class="notice-record" style="display: none;">
+		<img src="images/icon01.png">
+		<p>暂时无消息通知记录!</p>
+	</div>
+	<ul class="message-classify">
+
+	</ul>
+</body>
+<script>
+	$(function() {
+		var url = apiBaseUrl+'/app/lottery-msg-list';
+		var data = {page:1,perpage:20};
+		$.getJsonp(url,data,function(json) {
+			if (typeof json.list =='undefined' || json.list.length==0) {
+				$('.notice-record').show();
+				$('.message-classify').hide();
+				return;
+			}
+			createListHtml(json);
+		});
+
+		var isLoading = false;
+		$.onSrollBottom(function() {
+			if (isLoading) {
+				return;
+			}
+			isLoading = true;
+			data.page += 1;
+			$.getJsonp(url, data, function (json) {
+				var t = function() {
+					createListHtml(json,true);
+                    if (data.page<json.totalPage) {
+                        isLoading = false;
+                    } else {
+                        isLoading = true;
+                    }
+				}
+				setTimeout(t,1000);
+			});
+		});
+	});
+
+	function  createListHtml(json,append) {
+		var html = '';
+		$.each(json.list,function(i,v) {
+			var id = v.id;
+			var title = v.title;
+			var content = v.content;
+			var time = v.time;
+			var view = v.view;
+			if (view==1) {
+				html += '<li>';
+			}else {
+				html += '<li class="act">';
+			}
+			html += '<a href="message_detail.html?id='+id+'">';
+			html += '<div>';
+			html += '<article>';
+			html += '<h2>'+title+'</h2>';
+			html += '<span>'+time+'</span>';
+			html += '</article>';
+			html += '<p>'+content+'</p>';
+			html += '</div>';
+			html += '</a>';
+			html += '</li>';
+		});
+		if (append) {
+			$('.message-classify').append(html);
+		} else {
+			$('.message-classify').html(html);
+		}
+	}
+</script>
+</html>

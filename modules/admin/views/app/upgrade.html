@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/update?os={{ app.request.get("os") }}" target="_black">升级提醒</a></strong>
+    </div>
+</div>
+<hr>
+
+<div class="am-u-sm-12">
+            {% set  form = ActiveForm_begin({"options":{"class":"am-form am-form-horizontal"}})   %}
+            {{  html.activeHiddenInput(model, "id") |raw }}
+            {{   form.field(model, 'up_code').textInput() |raw }}
+            {{   form.field(model, 'up_name').textInput() |raw }}
+            {{   form.field(model, 'up_des').textarea() |raw }}
+            {% if app.request.get("os") != "ios" %}
+            {{   form.field(model, 'up_file').textInput() |raw }}
+            {{  form.field(model, 'up_isauto').checkbox()  |raw }}
+            {% endif %}
+            {{   form.field(model, 'status').checkbox() |raw }}
+            
+            <div class="am-form-group">
+                  <div class="am-u-sm-9 am-u-sm-push-3">
+             <button type="submit" class="am-btn am-btn-primary">保存</button>
+            {% if app.request.get("os") == "ios" %}
+            <a href="{{ url('app/push-upmsg',{'id':model.id}) }}" class="am-btn am-btn-primary" >推送</a>
+            {% endif %}
+                  </div>
+            </div>
+            {{  ActiveForm_end() |raw }}
+</div>
+
+</div>
+{% endblock %}

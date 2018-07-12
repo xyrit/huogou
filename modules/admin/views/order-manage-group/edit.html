@@ -1,0 +1,92 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">编辑订单处理小组</strong>
+      </div>
+    </div>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12">
+        {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'order-manage-group-form'}) | raw }}
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'name', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextInput(model, 'name', {'placeholder':'填写小组'})|raw }}
+            {{ html.error(model, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          <label class="am-u-sm-2 am-form-label">多选框</label>
+          <div class="am-u-sm-2">
+            <h6>已添加</h6>
+            <select multiple name="OrderManageGroupForm[userIds][]" id="user-selected" style="height: 300px;">
+              {% for uid in groupUserIds %}
+                <option value="{{ users[uid].id }}" selected>{{ users[uid].username }}</option>
+              {% endfor %}
+            </select>
+            {{ html.error(model, 'userIds', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+          <div class="am-btn-group am-u-sm-2" style="padding-left: 68px;padding-top: 60px;">
+            <button type="button" id="add-group" class="am-btn am-btn-primary am-round"><i class="am-icon-arrow-left"></i></button>
+            <button type="button" id="remove-group" class="am-btn am-btn-primary am-round"><i class="am-icon-arrow-right"></i></button>
+          </div>
+          <div class="am-u-sm-2">
+            <h6>未添加</h6>
+            <select multiple class="" id="user-unselected"  style="height: 300px;">
+              {% for uid in unSelectedUserIds %}
+                <option value="{{ users[uid].id }}">{{ users[uid].username }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="am-u-sm-4">
+          </div>
+        </div>
+
+
+        <div class="am-form-group">
+          <div class="am-u-sm-10 am-u-sm-push-2">
+            <button type="submit" class="am-btn am-btn-primary">保存</button>
+          </div>
+        </div>
+
+        {{ html.endForm() | raw }}
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+
+  <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+    <span class="am-icon-btn am-icon-th-list"></span>
+  </a>
+
+{% endblock %}
+
+{% block script %}
+  <script>
+
+
+    $(function () {
+      $('#add-group').on('click', function() {
+        $('#user-selected').append($('#user-unselected option:selected'));
+      });
+      $('#remove-group').on('click', function() {
+        $('#user-unselected').append($('#user-selected option:selected'));
+      });
+
+      $('#order-manage-group-form').on('submit', function() {
+        $('#user-selected option').attr('selected', true);
+        return true;
+      });
+
+    });
+  </script>
+{% endblock %}

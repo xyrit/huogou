@@ -1,0 +1,557 @@
+@charset "utf-8";
+
+.secrityBg {
+    background: #f7f7f7;
+}
+
+.member-icon {
+    background: url(../images/m_set.png);
+    background-size: 18px auto;
+}
+
+.pd20 {
+    padding-top: 20px;
+}
+
+input.rText {
+    width: 100%;
+    height: 45px;
+    padding: 0 5px;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #666;
+    border-radius: 5px;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+}
+
+.security-con {
+    padding-bottom: 30px;
+}
+
+.security-con li {
+    max-height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    border-bottom: 1px solid #efefef;
+    overflow: hidden;
+    position: relative;
+}
+
+.security-con a {
+    display: block;
+    padding-left: 10px;
+    background: #fff;
+}
+
+.security-con a span {
+    color: #666;
+}
+
+.security-con span b.member-icon {
+    background-position: 0 0;
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: -4px;
+    margin-right: 3px;
+}
+
+.security-con span b.gth {
+    background-position: 0 -19px;
+}
+
+.security-con a em {
+    color: #999;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.security-con em .z-arrow {
+    width: 6px;
+    height: 6px;
+    border-width: 2px 2px 0 0;
+    margin: 18px 0 0 1px;
+}
+
+.registerCon {
+    padding: 15px 10px 0;
+}
+
+.registerCon li {
+    padding-bottom: 20px;
+}
+
+.securityCode {
+    padding: 15px 10px 15px;
+}
+
+.securityCode li {
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+
+.securityCode li.gray3 {
+    padding-bottom: 10px;
+}
+
+.securityCode li a.againBtn {
+    display: block;
+    width: 100%;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    color: #fff;
+    background: #ddd;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    margin-left: 0;
+    font-size: 16px;
+    box-shadow: 1px 1px 2px #e0e0e0;
+}
+
+.recharge-nav {
+    width: 164px;
+    height: 30px;
+    margin: 0 auto;
+    padding-top: 6px;
+}
+
+.recharge-nav a {
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    float: left;
+    color: #fff;
+    text-align: center;
+    border: 1px solid #fff;
+    font-size: 14px;
+}
+
+.recharge-nav a.btn-left {
+    border-radius: 30px 0 0 30px;
+}
+
+.recharge-nav a.btn-right {
+    border-radius: 0 30px 30px 0;
+}
+
+.recharge-nav a.curr {
+    background: #fff;
+    color: #f60;
+}
+
+.g-Total {
+    background: #f4f4f4;
+    border-bottom: 1px solid #dcdcdc;
+    line-height: 30px;
+    padding: 5px 10px 0;
+    font-size: 14px;
+}
+
+.recharge-con li {
+    position: relative;
+    font-size: 16px;
+    color: #666;
+}
+
+.recharge-con input {
+    padding-left: 80px;
+    font-size: 14px;
+}
+
+.recharge-con em {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    line-height: 45px;
+}
+
+.recharge-con li.gray3 {
+    padding: 10px 0;
+}
+
+.login-protection {
+    padding-bottom: 20px;
+}
+
+.login-protection p {
+    display: block;
+    height: 43px;
+    line-height: 43px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    background: #fff;
+    margin-top: 15px;
+    padding: 0 10px;
+    font-size: 14px;
+    position: relative;
+}
+
+.login-protection p a {
+    display: block;
+    width: 49px;
+    height: 28px;
+    border-radius: 28px;
+    border: 2px solid #dedede;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+}
+
+.login-protection p a b {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    border: 1px solid #dfdfdf;
+    position: absolute;
+    left: -1px;
+    top: -1px;
+}
+
+.login-protection span {
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+.login-protection p a.open-pay {
+    border: 2px solid #f60;
+    background: #f60;
+}
+
+.login-protection p a.open-pay b {
+    border: 1px solid #f60;
+    background: #fff;
+    left: auto;
+    right: -1px;
+}
+
+.update-pwd {
+    padding-top: 20px;
+}
+
+.update-pwd dt {
+    font-size: 14px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.update-pwd dd {
+    display: block;
+    height: 44px;
+    font-size: 14px;
+    position: relative;
+}
+
+.update-pwd input {
+    width: 100%;
+    height: 45px;
+    padding-left: 110px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    color: #666;
+    display: block;
+    -webkit-box-sizing: border-box;
+}
+
+.update-pwd dd em {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    line-height: 45px;
+    color: #666;
+}
+
+.update-pwd p {
+    padding: 20px 10px;
+}
+
+.update-pwd span {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    padding-bottom: 30px;
+}
+
+.update-pwd span a,.update-pwd span a:hover {
+    color: #999;
+}
+
+.set-con a {
+    display: block;
+    height: 43px;
+    line-height: 43px;
+    border-top: 1px solid #dedede;
+    border-bottom: 1px solid #dedede;
+    padding-left: 10px;
+    position: relative;
+    margin-top: 15px;
+    font-size: 14px;
+    background: #fff;
+    color: #666;
+}
+
+.set-con a:hover {
+    color: #666;
+}
+
+.set-con em {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.set-con a i {
+    width: 6px;
+    height: 6px;
+    margin: 18px 0 0 1px;
+    position: absolute;
+    right: 12px;
+    top: 0;
+    border-width: 2px 2px 0 0;
+}
+
+.authentication-con {
+    padding: 0 10px 20px;
+}
+
+.authentication-con li {
+    position: relative;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+.authentication-con li.enter-word {
+    padding-bottom: 25px;
+}
+
+.authentication-con li.enter-word input {
+    font-size: 14px;
+}
+
+.authentication-con li.enter-word a {
+    width: 35%;
+    height: 45px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 5px 5px 0;
+    border: 0 none;
+    font-size: 14px;
+}
+
+.authentication-con li.gray9 {
+    text-align: left;
+    font-size: 12px;
+}
+
+.small-money cite {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #dedede;
+}
+
+.small-money ul {
+    padding-bottom: 20px;
+}
+
+.small-money li {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 1px solid #dedede;
+    padding: 0 30px 0 10px;
+    font-size: 16px;
+    background: #fff;
+    webkit-box-sizing: border-box;
+    color: #666;
+}
+
+.small-money li a,.small-money li a:hover {
+    color: #666;
+}
+
+.small-money b.member-icon {
+    width: 16px;
+    height: 11px;
+    background-position: 0 -38px;
+    position: absolute;
+    right: 10px;
+    top: 16px;
+    display: none;
+}
+
+.small-money li.hover b.member-icon {
+    display: block;
+}
+
+.small-money li input {
+    display: block;
+    width: 70px;
+    height: 43px;
+    font-size: 16px;
+    position: absolute;
+    left: 23px;
+    top: 0;
+    color: #666;
+}
+
+.small-money li em {
+    position: absolute;
+    left: 90px;
+    top: 0;
+}
+
+.small-money span.btn-margin {
+    padding: 0 10px;
+}
+
+.pay-password {
+    padding: 20px 10px;
+}
+
+.pay-password dt {
+    font-size: 14px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.pay-password dt span {
+    position: absolute;
+    right: 0;
+}
+
+.pay-password dt span b {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: 0 -6px;
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+.pay-password dt span.noCheck b {
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    background: #fff;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    top: -1px;
+}
+
+.pay-password dd {
+    position: relative;
+}
+
+.pay-password dd.bor-top input {
+    border-radius: 5px 5px 0 0;
+}
+
+.pay-password dd.bor-bottom input {
+    border-radius: 0 0 5px 5px;
+    border-top: 0 none;
+}
+
+.pay-password dd a {
+    margin-top: 20px;
+}
+
+.pop-pay-pwd {
+    padding: 15px 0 5px;
+    background: #fff;
+    text-align: center;
+}
+
+.pop-pay-pwd dl {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.pop-pay-pwd dt {
+    font-size: 14px;
+    padding-bottom: 15px;
+}
+
+.pop-pay-pwd dd {
+    clear: both;
+    font-size: 14px;
+    display: -webkit-box;
+    margin-left: 1px;
+}
+
+.pop-pay-pwd span {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    font-size: 18px;
+    border: 1px solid #bcbcbc;
+    margin-left: -1px;
+    background: #fff;
+    display: block;
+    -webkit-box-flex: 1;
+}
+
+.pop-pay-pwd em {
+    display: block;
+    width: 30px;
+    margin: 0 auto;
+}
+
+.pop-pay-pwd p {
+    padding-top: 15px;
+}
+
+.pop-pay-pwd ul {
+    clear: both;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 15px;
+    overflow: hidden;
+}
+
+.pop-pay-pwd li {
+    float: left;
+    margin: 5px 0;
+    width: 33.3%;
+    padding-right: 10px;
+    -webkit-box-sizing: border-box;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.pop-pay-pwd li:nth-of-type(3n+0) {
+    padding-right: 0;
+    width: 33.4%;
+}
+
+.pop-pay-pwd li a {
+    display: block;
+    border: 1px solid #dbdbdb;
+    height: 40px;
+    line-height: 40px;
+    background: #fff;
+    color: #666;
+}
+
+.pop-pay-pwd li.enter a {
+    background: #f2f2f2;
+}

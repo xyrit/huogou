@@ -1,0 +1,44 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}{{ app.name }}_友情链接{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/link.css" />
+{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <!--内容区-->
+    <section class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="">友情链接</a>
+        </div>
+        <div id="link">
+            <h1>友情链接</h1>
+            <ul>
+                {% for item in list %}
+                <li><a href="{{ item.link }}" target="_blank">&gt; {{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <div class="link-con">
+                <h2>联系我们</h2>
+                <p>热 线：400-000-5000</p>
+                <p>邮 箱：service@huogou.com</p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    {% include '@app/views/footer.html' %}
+{% endblock %}

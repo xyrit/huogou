@@ -1,0 +1,76 @@
+
+{% extends '@mobileModule/views/base.html' %}
+
+{% block header %}账户明细{% endblock %}
+{% block title %}账户明细_伙购网{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/comm.css?v=160328" rel="stylesheet" type="text/css" />
+  <link href="{{ app.params.skinUrl }}/mobile/css/accounts.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/tpl.js" language="javascript" type="text/javascript"></script>
+  <script src="{{ app.params.skinUrl }}/mobile/js/accounts.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div>
+    <div id="divNav" class="acc-menu">
+        <a href="javascript:;" class="z-checked">消费明细</a>
+        <a href="javascript:;">充值明细</a>
+        <a href="javascript:;">转账记录</a>
+    </div>
+    <div id="divConsumption" class="g-accounts-details g-consumption clearfix">
+        <h4 class="gray9 bgColor-white">消费总额：0 伙购币</h4>
+        <dl>
+            <dt>
+                <span>消费时间</span>
+                <span>消费金额</span>
+            </dt>
+        </dl>
+
+    </div>
+    <div id="divRechage" class="g-accounts-details g-recharge-details clearfix" style="display: none;">
+        <h4 class="gray9 bgColor-white">充值总额：0 伙购币</h4>
+        <dl>
+            <dt>
+                <span>充值时间</span>
+                <span>金额</span>
+                <span>渠道</span>
+            </dt>
+        </dl>
+           
+    </div>
+    <div id="divTransfer" class="g-accounts-details g-transfers-details clearfix" style="display: none;">
+        <h4 class="gray9 bgColor-white">转入总额：0 伙购币<cite>转出总额：0 伙购币</cite></h4>
+        <dl>
+            <dt>
+                <span>时间</span>
+                <span>金额</span>
+                <span>对方账号[状态]</span>
+            </dt>
+        </dl>
+        
+    </div>
+                
+      
+      <div id="tools">
+          <div id="divLoading" class="loading clearfix g-acc-bg" style="display: none;"><b></b>正在加载 </div>
+         <div class="noRecords colorbbb clearfix" style="display:none;" id="nohave"><s></s>最近三个月无记录 <div class="z-use">请使用电脑访问www.huogou.com查看更多</div> </div>
+         <div style="display: none;" id="btnLoadMore" class="load_more"><a title="加载更多" href="javascript:void(0);">点击加载更多</a><b></b> </div>
+      </div>
+      
+      <div class="pro_foot">
+        <ul>
+                <input  type="hidden" id="isSetPayPassword" value="{{ app.user.identity.pay_password!='' }}" />
+                <input  type="hidden" id="isSetPhone" value="{{ app.user.identity.phone!='' }}" />
+                <input  type="hidden" id="totel" value="{{ app.user.identity.money }}" />
+            <!--<li id="btnTransfer" class="border-orange-Btn"><a href="javascript:void(0);">转账</a></li>-->
+            <li style="width: 99.9%;"><a href="recharge.html" class="orangeBtn">去充值</a></li>
+        </ul>
+    </div>
+
+  <div class="mobile-mask" style="display: none;"></div>
+      
+</div>
+{% endblock %}

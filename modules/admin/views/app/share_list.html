@@ -1,0 +1,34 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/share" target="_black">分享列表</a></strong>
+    </div>
+</div>
+<hr>
+
+<div class="am-u-sm-12">
+<p>{{  html.a('新建', {0:'create','tpl':"share",'refer':app.getRequest().getUrl()}, {'class' : 'am-btn am-btn-default'})  |raw }}  </p>
+{{
+               GridView_widget({
+                'dataProvider' : dataProvider,
+                "tableOptions":{"class":"am-table am-table-striped am-table-hover table-main"},
+                'columns' : [
+                    {'class' : 'yii\\grid\\SerialColumn'},
+                        'share_name',
+                        'share_type',
+                        'share_link',
+                        'system',
+                        'status',
+                    {'class' : 'yii\\grid\\ActionColumn', "template" : ' {update} {delete} <a href="/app/sort" title="上移" class="action_column"><span class="glyphicon glyphicon-arrow-up"></span></a>',   
+                      },
+                ]
+           })
+}}
+</div>
+</div>
+{% endblock %}

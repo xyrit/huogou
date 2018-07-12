@@ -1,0 +1,173 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">用户日志</strong>
+            </div>
+        </div>
+
+        {{ html.beginForm('', 'get', {'class':'am-form am-form-horizontal'}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-3">&nbsp;</div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-form-group">
+                    <select name="type">
+                        <option value="all">全部</option>
+                        <option value="1" {% if(condition.type == 1) %}selected{% endif %}>手机</option>
+                        <option value="2" {% if(condition.type == 2) %}selected{% endif %}>邮箱</option>
+                        <option value="3" {% if(condition.type == 3) %}selected{% endif %}>站内信</option>
+                        <option value="4" {% if(condition.type == 4) %}selected{% endif %}>微信</option>
+                        <option value="4" {% if(condition.type == 5) %}selected{% endif %}>APP</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1"  id="my-start-2" name="startTime" value="{{ condition.start }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1" id="my-end-2"  name="endTime" value="{{ condition.end }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" class="am-form-field" placeholder="用户邮箱或手机" name="content" value="{{ condition.content }}">
+                      <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-default" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+            {{ html.endForm() | raw }}
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form" id="product-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th class="table-title">序号</th>
+                            <th class="table-type">会员名</th>
+                            <th class="table-type">发送方式</th>
+                            <th class="table-type">类型</th>
+                            <th class="table-type" style="width: 50%;">内容</th>
+                            <th class="table-type" >ip</th>
+                            <th class="table-type">发送状态</th>
+                            <th class="table-type">操作时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{% if item.user_info %}{{ item.user_info.phone }}<br />{{ item.user_info.email }}{% else %}{{item.user_id}}<span style="color:red;">(未注册)</span>{% endif %}</td>
+                                <td>{% if(item.mode == 1) %}手机{% elseif(item.mode == 2) %}邮箱{% elseif(item.mode == 3) %}站内信{% elseif(item.mode == 4) %}微信{% elseif(item.mode == 5) %}APP{% else %}未知{% endif %}</td>
+                                <td>{{ item.type_name }}</td>
+                                <td  style="cursor:pointer;"><span class="short_msg">{{ item.message|slice(0,100) }}</span><span class="full_msg" style="display: none;">{{ item.message }}</span></td>
+                                <td>{{ item.ip }}</td>
+                                <td>{% if(item.status == 0) %}发送成功{% elseif(item.status == 1) %}发送失败{% else %}发送中{% endif %}</td>
+                                <td>{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+
+    <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+        <span class="am-icon-btn am-icon-th-list"></span>
+    </a>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $(function() {
+            laydate({
+                elem: '#my-start-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+
+            laydate({
+                elem: '#my-end-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+            $('.link').click(function(){
+                var urls = '{{ url(['finance/adjust-point']) }}';
+                layer.open({
+                    type: 2,
+                    area: ['700px', '530px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: false,
+                    content: urls
+                });
+            });
+
+            $('.click').click(function(){
+                var id = $(this).attr('data-id');
+                var urls = '{{ url('finance/point-view') }}'+'?id='+id;
+                layer.open({
+                    type: 2,
+                    area: ['500px', '430px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: false,
+                    content: urls
+                });
+            });
+
+            $('.short_msg').click(function() {
+                var cont = $(this).next().html();
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim', //加上边框
+                    area: ['60%', '60%'], //宽高
+                    content: cont
+                });
+            });
+        })
+    </script>
+{% endblock %}

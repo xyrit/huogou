@@ -1,0 +1,117 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的红包_伙购网{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <div class="find_bt_list">
+            <a class="act" href="会员中心首页-我的红包.html">可使用</a><a href="会员中心首页-我的红包-已使用.html">已使用/过期</a>
+        </div>
+        <ul class="hb-list">
+            <li>
+                <div class="hb-icon">
+                    <div class="fold">
+                        <p>8.5</p>
+                        <span>折</span>
+                    </div>
+                </div>
+                <article>
+                    <h3>支付立享：8.5折</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+            <li>
+                <div class="hb-icon">
+                    <div class="fold">
+                        <p>1</p>
+                        <span>伙购币</span>
+                    </div>
+                </div>
+                <article>
+                    <h3>余额：1伙购币</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+            <li>
+                <div class="hb-icon">
+                    <div class="full">
+                        <p>满5<br>减2</p>
+                    </div>
+                </div>
+                <article>
+                    <h3>支付立享：满5减2</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+            <li>
+                <div class="hb-icon">
+                    <div class="fold">
+                        <p>300</p>
+                        <span>福分</span>
+                    </div>
+                </div>
+                <article>
+                    <h3>余额：300福分</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+            <li>
+                <div class="hb-icon">
+                    <div class="fold">
+                        <p>5</p>
+                        <span>伙购币</span>
+                    </div>
+                </div>
+                <article>
+                    <h3>余额：5伙购币</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+            <li>
+                <div class="hb-icon">
+                    <div class="fold">
+                        <p>300</p>
+                        <span>福分</span>
+                    </div>
+                </div>
+                <article>
+                    <h3>余额：300福分</h3>
+                    <p>有效期至：2016-05-06</p>
+                    <p>充值大礼包</p>
+                    <p>全场通用</p>
+                </article>
+                <a class="hb-use" href="">立即使用</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    getCollectList();
+</script>
+{% endblock %}

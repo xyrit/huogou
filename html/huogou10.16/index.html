@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/index.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/fly.js"></script>
+	<script src="js/requestAnimationFrame.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+	<script>
+	$(document).ready(function(){
+
+		$('.sort').find('dl').each(function(index){
+			if ((index + 1) % 2 == 0){
+				$(this).css('backgroundColor','#f3f3f3');
+			}
+		})
+		$('.recommend_list dt').find('a').each(function(index){
+			if ((index + 1) % 2 == 0){
+				$(this).css('float','right');
+			}
+		})
+
+		var iNow = 0,
+	    aMain = $('#banner_main').find('li'),
+	    num = aMain.size(),
+	    timer = null;
+
+	    var indicatorStr = '';
+	    for (var i = 0; i < num; i++) {
+	    	indicatorStr += "<li></li>"
+	    };
+	    $('#indicator').append(indicatorStr);
+	    var aIndicator = $('#indicator').find('li');
+
+	    aIndicator.hover(function(){
+	        iNow = $(this).index();
+	        change();
+	        clearInterval(timer);
+	    },function(){
+	        if (num > 1) autoPlay();
+	    })
+
+	    function change(){
+	        aIndicator.eq(iNow).addClass('act').siblings('li').removeClass('act');
+	        aMain.eq(iNow).stop().fadeIn().siblings('li').stop().fadeOut();
+	    }
+
+	    function autoPlay(){
+	        timer = setInterval(function(){
+	            iNow++;
+	            if (iNow > num - 1) {
+	                iNow = 0;
+	            }
+	            change();
+	        },6000)
+	    }
+
+	    change();
+	    if (num > 1) autoPlay();
+
+
+	    var iNowB = 0,
+	    aMainB = $('.share_con').find('li'),
+	    numB = aMainB.size(),
+	    timerB = null;
+
+	    var indicatorStrB = '';
+	    for (var i = 0; i < numB; i++) {
+	    	indicatorStrB += "<li><i></i></li>"
+	    };
+	    $('.share_cut').append(indicatorStrB);
+	    var aIndicatorB = $('.share_cut').find('li');
+
+	    aIndicatorB.hover(function(){
+	        iNowB = $(this).index();
+	        changeB();
+	        clearInterval(timerB);
+	    },function(){
+	        if (numB > 1) autoPlayB();
+	    })
+
+	    function changeB(){
+	        aIndicatorB.eq(iNowB).addClass('act').siblings('li').removeClass('act');
+	        aMainB.eq(iNowB).stop().fadeIn().siblings('li').stop().fadeOut();
+	    }
+
+	    function autoPlayB(){
+	        timerB = setInterval(function(){
+	            iNowB++;
+	            if (iNowB > numB - 1) {
+	                iNowB = 0;
+	            }
+	            changeB();
+	        },3000)
+	    }
+
+	    changeB();
+	    if (numB > 1) autoPlayB();
+	   
+
+
+	    var liLen = $('.recommend_list').find('dd').size();
+		var aRow = Math.ceil(liLen / 5);
+		$('.recommend_list').find('dd').each(function(index){
+			if ((index+1) > (aRow - 1) * 4){
+				$(this).css('borderTop',0);
+			}
+		})
+		$('.recommend_list dd:last-of-type,.recommend_list dd:nth(3)').each(function(index){
+			$(this).css('width',242);
+		})
+
+		$('.sort').find('div').css('display','block');
+	    $('.sort').on('mouseenter', function(){
+			$(this).find('div').stop().fadeIn();
+		}).on('mouseleave', function(){
+			$(this).find('div').stop().fadeIn();
+		})
+
+		$('.car').on('click', function(){
+			productImg = $(this).parents('dd').find('img').attr('src');
+			addProduct(event);
+		});
+
+		var flyer = "";
+		var productImg = "";
+		function addProduct(event){
+		  var offset = $(".sidebar_shop").offset(),
+		    flyer = $('<img class="u-flyer" src="' + productImg + '"/>');
+		    console.log(event);
+		  flyer.fly({
+		    start: {
+		      left: event.pageX,
+		      top: event.pageY
+		    },
+		    end:{
+		      left: offset.left,
+		      top: offset.top, 
+		      width: 20,height: 20
+		    },
+		    onEnd:function(){
+		    	setTimeout(function(){
+		    		flyer.remove();
+		    	},100)
+		    }
+		  });
+		}
+	})
+	</script>
+</head>
+<body>
+	<section class="sidebar">
+		<article>
+			<a class="sidebar_shop" href="">购<br>物<br>车<br><b>(1)</b></a>
+			<a class="sidebar_01" href="javascript:;">
+				
+				<p>400-000-5000</p>
+			</a>
+			<a class="sidebar_02" href=""></a>
+			<a class="sidebar_03" href="javascript:;">
+				<i></i>
+				<p><img src="img/pic04.jpg" alt=""><br>下载手机端</p>
+			</a>
+			<a class="sidebar_04" href=""></a>
+			<a id="get_top" class="sidebar_05" href="javascript:;"></a>
+		</article>
+	</section>
+	<section class="log clear">
+		<article>
+			<div class="log_lf"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a><i>|</i><a id="mobile" href="javascript:;"><b></b><span>手机伙购</span><p><img src="img/pic04.jpg" alt="">下载手机端</p></a></div>
+			<ul class="log_rl">
+				<li>hi , 欢迎您来到伙购网！</li>
+				<li><a href="">登录</a></li>
+				<li><a href="">注册</a></li>
+				<li><i>|</i></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">我的一元乐购</a>
+					<div>
+						<a href="">云购记录</a>
+						<a href="">获得的商品</a>
+						<a href="">个人设置</a>
+					</div>
+				</li>
+				<li><a href="">充值</a></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">帮助中心</a>
+					<div class="help">
+						<a href="">新手指南</a>
+						<a href="">服务保障</a>
+						<a href="">商品配送</a>
+					</div>
+				</li>
+				<li class="service"><a href="">在线客服</a></li>
+			</ul>
+		</article>
+	</section>
+	<header>
+		<section class="clear">
+			<a class="logo" href=""></a>
+			<div class="add">
+				<img class="add_pic" src="img/pic05.gif" alt="">
+				<span>累计参与</span>
+				<ul>
+					<li class="num">5</li>
+					<li class="num">4</li>
+					<li class="nobor">,</li>
+					<li class="num">8</li>
+					<li class="num">3</li>
+					<li class="num">6</li>
+					<li class="nobor">,</li>
+					<li class="num">2</li>
+					<li class="num">6</li>
+					<li class="num">8</li>
+				</ul>
+				<span>人次</span>
+			</div>
+			<div class="search">
+				<div>
+					<input id="search_input" value="请输入要搜索的商品" type="text">
+					<span id="search_span">
+						<a href="">汽车</a>
+						<a href="">手机</a>
+					</span>
+				</div>
+				<input type="submit" value="">
+			</div>
+		</section>
+		<section class="clear">
+			<div class="sort">
+				<a class="sort_title" href="">全部商品分类</a>
+				<div>
+					<dl class="sort_list">
+						<dt><a href="">手机数码</a></dt>
+						<dd>
+							<a href="">手机</a><a href="">数码</a><a href="">影音</a><a href="">苹果手机</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_b">
+						<dt><a href="">电脑办公</a></dt>
+						<dd>
+							<a href="">笔记本</a><a href="">平板电脑</a><a href="">外设</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_c">
+						<dt><a href="">家电汽车</a></dt>
+						<dd>
+							<a href="">大家电</a><a href="">厨房</a><a href="">家电汽车</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_d">
+						<dt><a href="">化妆个护</a></dt>
+						<dd>
+							<a href="">面部护理</a><a href="">美发护发</a><a href="">香水</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_e">
+						<dt><a href="">钟表首饰</a></dt>
+						<dd>
+							<a href="">珠宝首饰</a><a href="">金条银条</a><a href="">手表</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_f">
+						<dt><a href="">食品饮料</a><i> / </i><a href="">其他</a></dt>
+						<dd>
+							<a href="">美食</a><a href="">粮油</a><a href="">酒类</a><a href="">饮料</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="act"><a href="">首页</a></li>
+				<li><a href="">最新揭晓</a></li>
+				<li><a href="">限购专区</a></li>
+				<li><a href="">晒单分享</a></li>
+				<li><a href="">乐购圈</a></li>
+				<li class="invite"><a href="">邀请有礼</a></li>
+			</ul>
+			<a class="shop" href="">购物车（0）</a>
+		</section>
+	</header>
+
+	<section class="banner">
+		<ul id="banner_main">
+			<li style="background-image:url(img/banner.jpg)"><a href=""></a></li>
+			<li style="background-image:url(img/banner.jpg)"><a href=""></a></li>
+		</ul>
+		<ul id="indicator"></ul>
+	</section>
+
+	<section class="wrap clear">
+		<div class="publish">
+			<div class="publish_title">
+				<h2>最新揭晓</h2><a href="">看看附近都有谁获得了商品</a>
+				<i></i>
+			</div>
+			<ul class="publish_list clear">
+				<li>
+					<a href="">
+						<b class="publish_ico">正在<br>揭晓</b>
+						<article>
+							<h3 title="天梭(TISSOT)手表 俊雅系列石英男表">天梭(TISSOT)手表 俊雅系列石英男表</h3>
+							<aside>总需: 6088人次</aside>
+							<p>揭晓倒计时:</p>
+							<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+						</article>
+						<picture><img src="img/pic21.jpg" alt=""></picture>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<b class="publish_ico">正在<br>揭晓</b>
+						<article>
+							<h3 title="天梭(TISSOT)手表 俊雅系列石英男表">天梭(TISSOT)手表 俊雅系列石英男表</h3>
+							<aside>总需: 6088人次</aside>
+							<p>揭晓倒计时:</p>
+							<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+						</article>
+						<picture><img src="img/pic21.jpg" alt=""></picture>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<b class="publish_ico publish_ico_h">已经<br>揭晓</b>
+						<article>
+							<h3 title="天梭(TISSOT)手表 俊雅系列石英男表">天梭(TISSOT)手表 俊雅系列石英男表</h3>
+							<aside>总需: 6088人次</aside>
+							<summary>
+								<p><i class="blue">恭喜我的心在等待</i>(河北省衡水市)获得该商品</p>
+								<p>来自：<i class="grey">江苏省苏州市</i></p>
+								<p>幸运伙购码：<i class="orange">10001447</i></p>
+								<p>本云参与：<i class="orange">3人次</i></p>
+								<p>揭晓时间：<i class="grey">2015-09-11 18:03:00</i></p>
+							</summary>
+						</article>
+						<picture><img src="img/pic21.jpg" alt=""></picture>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<b class="publish_ico publish_ico_h">已经<br>揭晓</b>
+						<article>
+							<h3 title="天梭(TISSOT)手表 俊雅系列石英男表">天梭(TISSOT)手表 俊雅系列石英男表</h3>
+							<aside>总需: 6088人次</aside>
+							<summary>
+								<p><i class="blue">恭喜我的心在等待</i>(河北省衡水市)获得该商品</p>
+								<p>来自：<i class="grey">江苏省苏州市</i></p>
+								<p>幸运伙购码：<i class="orange">10001447</i></p>
+								<p>本云参与：<i class="orange">3人次</i></p>
+								<p>揭晓时间：<i class="grey">2015-09-11 18:03:00</i></p>
+							</summary>
+						</article>
+						<picture><img src="img/pic21.jpg" alt=""></picture>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="publish_rl">
+			<a class="play" href=""><img src="img/pic22.jpg" alt=""></a>
+			<div class="safety">
+				<a class="ico01" href="">可信网站</a>
+				<a class="ico02" href="">诚信网站</a>
+				<a class="ico03" href="">电商诚信</a>
+				<a class="ico04" href="">安信宝</a>
+				<a class="ico05" href="">监督管理局</a>
+				<a class="ico06" href="">更多</a>
+			</div>
+			<div class="notice">
+				<h3>最新公告</h3>
+				<article>
+					<a href="">伙购网全场产品大优惠！</a>
+					<a href="">为什么我总是没有好运气？</a>
+					<a href="">中奖机率分析……</a>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<section class="wrap clear">
+		<div class="eredar_title">
+			<h2>最新伙购达人</h2><a href=""></a>
+		</div>
+		<ul class="eredar_list">
+			<li>
+				<a href="">
+				<picture><i></i><img src="img/pic27.jpg" alt=""></picture>
+				<article>
+					<h3>185****6868</h3>
+					<p>苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机</p>
+					<aside>09-14  04:36</aside>
+				</article>
+				</a>
+			</li>
+			<li>
+				<a href="">
+				<picture><i></i><img src="img/pic27.jpg" alt=""></picture>
+				<article>
+					<h3>185****6868</h3>
+					<p>苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机</p>
+					<aside>09-14  04:36</aside>
+				</article>
+				</a>
+			</li>
+			<li>
+				<a href="">
+				<picture><i></i><img src="img/pic27.jpg" alt=""></picture>
+				<article>
+					<h3>185****6868</h3>
+					<p>苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机</p>
+					<aside>09-14  04:36</aside>
+				</article>
+				</a>
+			</li>
+			<li>
+				<a href="">
+				<picture><i></i><img src="img/pic27.jpg" alt=""></picture>
+				<article>
+					<h3>185****6868</h3>
+					<p>苹果（Apple）iPhone 6 Plus A1524 16G版 4G手机</p>
+					<aside>09-14  04:36</aside>
+				</article>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+	<section class="wrap clear">
+		<div class="recommend">
+			<h2>最热推荐</h2><a href=""></a>
+		</div>
+		<dl class="recommend_list">
+			<dt>
+				<article>
+					<a href="">IPHONE</a><a href="">化妆品</a><a href="">汽车</a><a href="">手表</a>
+				</article>
+			</dt>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+		</dl>
+	</section>
+
+	<section class="wrap clear">
+		<div class="announce">
+			<h2>即将揭晓</h2><a href=""></a>
+		</div>
+		<dl class="announce_list">
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+			<dd>
+				<picture><img src="img/pic32.jpg" alt=""></picture>
+				<h3>苹果（Apple）iMac </h3>
+				<aside>总需：8080.00人次 </aside>
+				<p><i></i></p>
+				<summary>
+					<span class="fl"><i>480</i>已参与</span>
+					<span class="rl">剩余<i>7600</i></span>
+				</summary>
+				<article>
+					<a class="buy" href="">立即一元伙购</a><a class="car" href="javascript:;"></a>
+				</article>
+			</dd>
+		</dl>
+	</section>
+
+	<section class="wrap clear">
+		<div class="share">
+			<h2>晒单分享</h2><a href=""></a>
+		</div>
+		<div class="share_box">
+			<div class="share_fl">
+				<ul class="share_con">
+					<li>
+						<a href="">
+							<img class="share_pic" src="img/pic38.jpg" alt="">
+							<div class="share_fixed">
+								<article>
+									<h3>很高大上的一款手机</h3>
+									<p>看准这个手机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+								</article>
+								<summary>
+									<picture><img src="img/pic27.jpg" alt=""></picture>
+									<p>cosonlui</p>
+								</summary>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img class="share_pic" src="img/pic38.jpg" alt="">
+							<div class="share_fixed">
+								<article>
+									<h3>很高大上的一款手机</h3>
+									<p>看准这个手机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+								</article>
+								<summary>
+									<picture><img src="img/pic27.jpg" alt=""></picture>
+									<p>cosonlui</p>
+								</summary>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img class="share_pic" src="img/pic38.jpg" alt="">
+							<div class="share_fixed">
+								<article>
+									<h3>很高大上的一款手机</h3>
+									<p>看准这个手机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+								</article>
+								<summary>
+									<picture><img src="img/pic27.jpg" alt=""></picture>
+									<p>cosonlui</p>
+								</summary>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img class="share_pic" src="img/pic38.jpg" alt="">
+							<div class="share_fixed">
+								<article>
+									<h3>很高大上的一款手机</h3>
+									<p>看准这个手机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+								</article>
+								<summary>
+									<picture><img src="img/pic27.jpg" alt=""></picture>
+									<p>cosonlui</p>
+								</summary>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<img class="share_pic" src="img/pic38.jpg" alt="">
+							<div class="share_fixed">
+								<article>
+									<h3>很高大上的一款手机</h3>
+									<p>看准这个手机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+								</article>
+								<summary>
+									<picture><img src="img/pic27.jpg" alt=""></picture>
+									<p>cosonlui</p>
+								</summary>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div class="share_list">
+					<b></b>
+					<ul class="share_cut"></ul>
+				</div>
+			</div>
+
+			<ul class="share_rl">
+				<li>
+					<a href="">
+						<picture><img src="img/pic39.jpg" alt=""></picture>
+						<article>
+							<h3>很高大上的一款耳机</h3>
+							<p>看准这个耳机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+							<summary>
+								<div>
+									<span><b></b><img src="img/pic27.jpg" alt=""></span><i>cosonlui</i>
+								</div>
+								<aside>2015-04-21</aside>
+							</summary>
+						</article>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<picture><img src="img/pic39.jpg" alt=""></picture>
+						<article>
+							<h3>很高大上的一款耳机</h3>
+							<p>看准这个耳机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+							<summary>
+								<div>
+									<span><b></b><img src="img/pic27.jpg" alt=""></span><i>cosonlui</i>
+								</div>
+								<aside>2015-04-21</aside>
+							</summary>
+						</article>
+					</a>
+				</li>
+				<li>
+					<a href="">
+						<picture><img src="img/pic39.jpg" alt=""></picture>
+						<article>
+							<h3>很高大上的一款耳机</h3>
+							<p>看准这个耳机好久了，一直就想拿下，可都没机会，现在终于被搞到手啦…</p>
+							<summary>
+								<div>
+									<span><b></b><img src="img/pic27.jpg" alt=""></span><i>cosonlui</i>
+								</div>
+								<aside>2015-04-21</aside>
+							</summary>
+						</article>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<footer>
+		<section class="footer_a">
+			<div class="footer_a_list">
+				<dl>
+					<dt>新手指南</dt>
+					<dd><a href="">常见问题</a></dd>
+					<dd><a href="">会员福分经验值</a></dd>
+				</dl>
+				<dl>
+					<dt>权益保障</dt>
+					<dd><a href="">伙购保障体系</a></dd>
+					<dd><a href="">安全支付</a></dd>
+					<dd><a href="">投诉建议</a></dd>
+				</dl>
+				<dl>
+					<dt>商品配送</dt>
+					<dd><a href="">配送费用</a></dd>
+					<dd><a href="">商品验货与签收</a></dd>
+					<dd><a href="">长时间未收到商品</a></dd>
+				</dl>
+				<dl>
+					<dt>关于伙购</dt>
+					<dd><a href="">伙购介绍</a></dd>
+					<dd><a href="">云购公益</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				<dl>
+					<dt>伙购合作</dt>
+					<dd><a href="">商务合作</a></dd>
+					<dd><a href="">友情链接</a></dd>
+					<dd><a href="">官方QQ群交流</a></dd>
+				</dl>
+			</div>
+			<div class="service">
+				<summary>
+					<h3>服务热线</h3>
+					<p>(7*24小时为您服务)</p>
+				</summary>
+				<aside>400-000-5000</aside>
+				<a class="service_qq" href="">在线咨询</a>
+			</div>
+		</section>
+
+		<section class="footer_b">
+			<div class="wrap clear">
+				<article class="footer_b_01">
+					<summary>
+						<p>下载手机客户端</p>
+						<a href="">立即下载</a>
+					</summary>
+				</article>
+				<article class="footer_b_02">
+				</article>
+				<article class="footer_b_03">
+					<summary>
+						<p>服务器时间</p>
+						<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+					</summary>
+				</article>
+				<article class="footer_b_04">
+					<summary>
+						<p>伙购公益基金</p>
+						<span>￥180600.08</span>
+					</summary>
+				</article>
+			</div>
+		</section>
+
+		<section class="footer_c">
+			<div class="wrap clear">
+				<ul>
+					<li class="footer_c_01">
+						<h3>100%公平公正</h3>
+						<aside>参与过程公开透明，用户可随时查看</aside>
+					</li>
+					<li class="footer_c_02">
+						<h3>100%正品保证</h3>
+						<aside>精心挑选优质产品，100%品牌正品</aside>
+					</li>
+					<li class="footer_c_03">
+						<h3>全国免运费</h3>
+						<aside>全场商品全国包邮（港澳台地区除外）</aside>
+					</li>
+					<li class="footer_c_04">
+						<h3>100%权益保障</h3>
+						<aside>多重保障，让用户无忧伙购</aside>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="footer_d">
+			<div class="wrap clear">
+				<article>
+					<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+				</article>
+				<aside>Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备082120500号</aside>
+				<summary>
+					<a href=""><img src="img/pic51.jpg" alt=""></a><a href=""><img src="img/pic52.jpg" alt=""></a><a href=""><img src="img/pic53.jpg" alt=""></a><a href=""><img src="img/pic54.jpg" alt=""></a>
+				</summary>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

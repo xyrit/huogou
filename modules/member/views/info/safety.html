@@ -1,0 +1,85 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}安全设置_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                <div class="safety-list">
+                    <h3 class="safety-a">登录密码</h3>
+                    <span class="rgb">建议您定期更改密码以保护账户安全。</span>
+                    <summary><a href="/info/edit-pwd">修 改</a></summary>
+                </div>
+                <div class="safety-list">
+                    <h3 class="safety-b">支付密码</h3>
+                    <span>用于使用账户余额、福分支付和转账时使用。</span>
+                    {% if pay_password == '' %}
+                    <summary><a class="act" href="/info/pay-valid?flag=1">开 启</a></summary>
+                    {% else %}
+                    <summary><a href="/info/pay-valid?flag=0">关 闭</a><a href="/info/pay-valid?flag=2">修 改</a></summary>
+                    {% endif %}
+                </div>
+                <div class="safety-list">
+                    <h3 class="safety-c">小额免密码设置</h3>
+                    <span>{% if micro_pay == 0 %}开启后支付金额小于设置额度时，无需输入支付密码。{% else %}支付单笔金额≤{{ micro_pay }}元时，免密码支付。{% endif %}</span>
+                    {% if micro_pay == 0 %}
+                    <summary><a class="act" href="javascript:;" id="micro">开 启</a></summary>
+                    {% else %}
+                    <summary><a href="/info/micro-send-sms?flag=0">关 闭</a><a href="/info/micro-send-sms?flag=2">修 改</a></summary>
+                    {% endif %}
+                </div>
+                <div class="safety-list">
+                    <h3 class="safety-d">手机绑定</h3>
+                    {% if phone != '' %}
+                    <span>您当前绑定的手机号{{ phone }}，若已丢失或更换，请立即修改。</span>
+                    <summary><a href="/info/edit-phone">修 改</a></summary>
+                    {% else %}
+                    <span>您当前未绑定手机号</span>
+                    <summary><a href="/info/phone">绑 定</a></summary>
+                    {% endif %}
+                </div>
+                <div class="safety-list">
+                    {% if email != '' %}
+                    <h3 class="safety-e">邮箱绑定</h3>
+                    <span>您当前绑定的邮箱地址{{ email }}，若已停用，请立即修改。</span>
+                    <summary><a href="/info/edit-email">修 改</a></summary>
+                    {% else %}
+                    <h3 class="safety-e">邮箱绑定</h3>
+                    <span>您当前未绑定邮箱</span>
+                    <summary><a href="/info/email">绑 定</a></summary>
+                    {% endif %}
+                </div>
+                <div class="safety-list">
+                    <h3 class="safety-f">登录保护</h3>
+                    <span>关注官网微信后，登录您的账号时，将使用微信的方式提醒您，防止盗号。</span>
+                    <summary><a {% if protected_status==0 %}class="act"{% endif %} id="Login-protection" href="javascript:;">{% if protected_status==0 %}开 启{% else %}关 闭{% endif %}</a></summary>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+
+{% endblock %}

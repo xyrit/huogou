@@ -1,0 +1,68 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}订单详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/orderdetail_address.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+<input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+<input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+<input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+<!-- 完善收货地址 -->
+<!-- 完善地址 -->
+<input type="hidden" id="hidOrderId" value="{{orderId}}">
+<input type="hidden" id="hidAddressId" >
+<div id="div_confirm" >
+    <div class="addre-wapper">
+        <ul class="addre-list">
+
+        </ul>
+        <a id="btnAddAddr" href="addressadd-{{orderId}}.html" class="addre-btn">添加新地址</a>
+        <div class="opt-wrapper clearfix">
+            <a id="btnUpdateAddr" href="javascript:;" class="opt-btn addnew"><span>修改</span></a>
+            <a id="btnConfimAddr" href="javascript:;" class="opt-btn change"><span>确认地址</span></a>
+        </div>
+    </div>
+    <div class="suc-pro-wrapper">
+        <p class="gray6"> 获得的商品信息 </p>
+        <div class="suc-about">
+
+        </div>
+    </div>
+</div>
+<!-- 完善地址成功分享 -->
+<div id="div_share" class="suc-add-inner" style="display: none;">
+    <div class="suc-add-head">
+        <div class="tip">
+            <i></i> 已确认提交成功
+        </div>
+        <p class="gray9">请耐心等待商家发货</p>
+    </div>
+    <div class="suc-add-info">
+        <div class="title" id="div_addr">
+        </div>
+        <div class="suc-protail">
+            <p class="gray9"> 获得的商品信息 </p>
+            <div class="suc-about">
+
+            </div>
+        </div>
+    </div>
+    <div class="suc-add-share">
+        <p class="gray9">和朋友一起分享喜悦</p>
+        <div class="btn-wrapper">
+            <a id="btnShare" href="javascript:;" class="btn share">分享微信好友</a>
+            <a href="{{url(['/ddweixin/member'])}}" class="btn return">返回我的夺宝</a>
+        </div>
+    </div>
+</div>
+<!-- 订单详情 -->
+
+{% endblock %}

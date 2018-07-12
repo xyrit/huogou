@@ -1,0 +1,33 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/registerbind.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <input name="hidAccount" type="hidden" id="hidAccount" value="{{ account }}" />
+    <input name="hidKey" type="hidden" id="hidKey" value="{{ key }}" />
+    <div class="registerCon">
+      <ul>
+        <li class="accAndPwd">
+          <dl>
+            <input id="userPassword" maxlength="20" type="password" placeholder="请输入登录密码" />
+          </dl>
+        </li>
+        <li class="accAndPwd">
+          <dl>
+            <input id="userRepassword" maxlength="20" type="password" placeholder="请输入重复登录密码" />
+          </dl>
+        </li>
+        <li><a id="btnNext" href="javascript:;" class="orangeBtn ">提交</a></li>
+      </ul>
+    </div>
+
+  </div>
+{% endblock %}

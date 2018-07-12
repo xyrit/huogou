@@ -1,0 +1,67 @@
+<!-- sidebar start -->
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="{{ url(['/admin']) }}">首页</a></li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">订单管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">
+                    <li><a href="javascript:void(0)">待支付</a></li>
+                    <li><a href="{{ url(['/admin/order']) }}">已支付</a></li>
+                    <li><a href="{{ url(['/admin/order/delivery']) }}">待发货</a></li>
+                    <li><a href="{{ url(['/admin/order/replace']) }}">需换货</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">商品管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+                    <li><a href="{{ url(['/admin/product']) }}">商品列表</a></li>
+                    <li><a href="{{ url(['/admin/product-category']) }}">商品分类</a></li>
+                    <li><a href="{{ url(['/admin/brand']) }}">商品品牌</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#collapse-nav3'}">会员管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="collapse-nav3">
+                    <li><a href="{{ url(['/admin/member']) }}">会员列表</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#am-collapse4'}">伙购圈 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse4">
+                    <li><a href="{{ url(['/admin/group']) }}">圈子列表</a></li>
+                    <li><a href="{{ url(['/admin/group/topic']) }}">话题列表</a></li>
+                    <li><a href="{{ url(['/admin/group/comment']) }}">回帖列表</a></li>
+                    <li><a href="{{ url(['/admin/group/keywords']) }}">关键字过滤</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">晒单分享 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">
+                    <li><a href="{{ url(['/admin/share']) }}">晒单列表</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">投诉列表 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">
+                    <li><a href="{{ url(['/admin/suggestion']) }}">投诉列表</a></li>
+                </ul>
+            </li>
+            <li class="admin-parent">
+                <a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">banner管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                <ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">
+                    <li><a href="{{ url(['/admin/banner']) }}">图片轮换</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="am-panel am-panel-default admin-sidebar-panel">
+            <div class="am-panel-bd">
+                <p><span class="am-icon-bookmark"></span> 公告</p>
+
+                <p>时光静好，与君语；细水流年，与君同。</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- sidebar end -->

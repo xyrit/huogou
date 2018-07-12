@@ -1,0 +1,93 @@
+<style>
+    .am-tabs-nav li {
+        position: relative;
+        z-index: 1;
+    }
+</style>
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员信息</strong></div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">会员ID：{{ userInfo.id }}</div> <div class="am-u-sm-5">消费总额：￥{{ userInfo.totalPayment|default(0) }}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">用户名：{% if userInfo.email and userInfo.phone %}{{ userInfo.phone }}  {{ userInfo.email }}{% else %}{{ userInfo.phone|default(userInfo.email) }}{% endif %}</div> <div class="am-u-sm-5">账户总额：￥{{ userInfo.money|default(0) }}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">昵称：{{ userInfo.nickname|default('空') }}</div> <div class="am-u-sm-5">佣金余额：￥{{ userInfo.commission / 100|number_format(2) }}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">性别：{% if userInfo.sex == 1 %}男{% elseif userInfo.sex == 2 %}女{% else %}保密{% endif %}</div> <div class="am-u-sm-5">福分：{{ userInfo.point|default(0) }}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">经验：{{ userInfo.experience|default(0) }}</div> <div class="am-u-sm-5">私信：{% if(limit.private_letter == 2 or limit.id is null) %}仅限好友{% else %}禁止{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">邀请人：{{ userInfo.invite }}</div> <div class="am-u-sm-5">地理位置：{% if(limit.position == 1 or userInfo.limit.id is null) %}允许{% else %}禁止{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">手机：{{ userInfo.phone|default('空') }}</div> <div class="am-u-sm-5">好友搜索：{% if(limit.friend_search == 1 or userInfo.limit.id is null) %}允许{% else %}禁止{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">邮箱：{{ userInfo.email|default('空') }}</div> <div class="am-u-sm-5">个人主页-伙购记录：{% if(limit.id) %}{% if(limit.ucenter_buylist == 1) %}全部 ({{ limit.buylist_number|default('所有') }}){% elseif(limit.ucenter_buylist == 2) %}好友可见{% else %}自己可见{% endif %}{% else %}全部{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">QQ：{{ userInfo.qq|default('空') }}</div> <div class="am-u-sm-5">个人主页-获得商品：{% if(limit.id) %}{% if(limit.ucenter_orderlist == 1) %}全部 ({{ limit.orderlist_number|default('所有') }}){% elseif(limit.ucenter_orderlist == 2) %}好友可见{% else %}自己可见{% endif %}{% else %}全部{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">微信昵称：</div> <div class="am-u-sm-5">个人主页-晒单：{% if(limit.id) %}{% if(limit.ucenter_sharelist == 1) %}全部 ({{ limit.sharelist_number|default('所有') }}){% elseif(limit.ucenter_sharelist == 2) %}好友可见{% else %}自己可见{% endif %}{% else %}全部{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">现居住地：{{ userInfo.live_city|default('空') }}</div> <div class="am-u-sm-5">接收系统消息：{% if(notice.id is null or notice.receive_sysinfo == 1) %}允许{% else %}禁止{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">个性签名：{{ userInfo.intro|default('空') }}</div> <div class="am-u-sm-5">接收微信或邮件消息：{% if(notice.id is null or notice.receive_wchat == 1) %}允许{% else %}禁止{% endif %}</div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">注册时间：{{ userInfo.created_at|date('Y-m-d H:i:s') }}</div> <div class="am-u-sm-5"></div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">注册IP：{{ userInfo.reg_ip|default('空') }}</div> <div class="am-u-sm-5"></div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">最后登录时间：{{ userInfo.updated_at|date('Y-m-d H:i:s') }}</div> <div class="am-u-sm-5"></div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-5">最后登录IP：{{ userInfo.last_login_ip }}</div> <div class="am-u-sm-5"></div>
+</div>
+
+
+<div class="am-tabs">
+    <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+        <li {% if this.context.action.id=="view" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/view', {'id': id}) }}" target="_self">伙购记录</a></li>
+        <li {% if this.context.action.id=="winning" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/winning', {'id': id}) }}" target="_self">中奖记录</a></li>
+        <li {% if this.context.action.id=="share" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/share', {'id': id}) }}" target="_self">晒单记录</a></li>
+        <li {% if this.context.action.id=="account" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/account', {'id': id}) }}" target="_self">账户明细</a></li>
+        <li {% if this.context.action.id=="commission" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/commission', {'id': id}) }}" target="_self">佣金明细</a></li>
+        <li {% if this.context.action.id=="point" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/point', {'id': id}) }}" target="_self">福分明细</a></li>
+        <li {% if this.context.action.id=="invite" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/invite', {'id': id}) }}" target="_self">邀请列表</a></li>
+        <li {% if this.context.action.id=="friend" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/friend', {'id': id}) }}" target="_self">好友列表</a></li>
+        <li {% if this.context.action.id=="address" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/address', {'id': id}) }}" target="_self">收货地址</a></li>
+        <li {% if this.context.action.id=="group" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/group', {'id': id}) }}" target="_self">圈子</a></li>
+        <li {% if this.context.action.id=="topic" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/topic', {'id': id}) }}" target="_self">话题</a></li>
+        <li {% if this.context.action.id=="message" %}class="am-active"{% endif %}><a href="{{ url('/admin/member/message', {'id': id}) }}" target="_self">消息</a></li>
+    </ul>
+</div>
+
+

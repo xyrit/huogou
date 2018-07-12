@@ -1,0 +1,48 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑商品分类</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'name', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'name', {'placeholder':'输入分类名称'})|raw }}
+                        {{ html.error(formModel, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'parent_id', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        <input type="text" value="{{ parentName }}" disabled>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'list_order', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'list_order', {'placeholder':'输入排序,整数 （数字越小越靠前）'})|raw }}
+                        {{ html.error(formModel, 'list_order', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

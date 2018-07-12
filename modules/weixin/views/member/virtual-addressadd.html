@@ -1,0 +1,61 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}添加虚拟收货地址{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/virtual_addressadd.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<input type="hidden" id="hidOrderId" value="{{orderId}}">
+<div class="wrapper">
+    <div class="g-member">
+        <div class="m-address-form">
+            <ul>
+                <li>
+                    <dl>
+                        <dt>
+                            类型
+                        </dt>
+                        <dd>
+                            <select id="selType" class="z-select"> <option value="1">话费充值</option></select>
+                            <b class="z-arrow"></b>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            充值账号
+                        </dt>
+                        <dd>
+                            <input id="txtAccount" type="text" maxlength="11" class="z-input" placeholder="请填写充值账号" />
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>
+                            联系方式
+                        </dt>
+                        <dd>
+                            <input id="txtContact" type="text" class="z-input" placeholder="联系方式" />
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+            <div class="u-Btn">
+                <div class="u-Btn-li">
+                    <a href="javascript:;" id="btnCancel" class="z-CloseBtn">取 消</a>
+                </div>
+                <div class="u-Btn-li">
+                    <a href="javascript:;" id="btnSure" class="z-DefineBtn">确 定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

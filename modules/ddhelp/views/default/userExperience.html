@@ -1,0 +1,209 @@
+{% extends '@helpModule/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block main %}
+<div class="xl_right xl_back_white xl_fot_nr">
+    <div class="xl_p40">
+        <div class="xl_title1"><h1>福分经验值明细表</h1></div>
+        <div class="xl_table_a">
+            <br>
+            <h1 class="xl_f16 xl_cs">等级明细</h1><br>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <th>等级</th>
+                    <th>等级名称</th>
+                    <th>身份标识</th>
+                    <th>所需经验值</th>
+                    <th>备注</th>
+                </tr>
+                <tr>
+                    <td>一级</td>
+                    <td>伙购新兵</td>
+                    <td><img src="./img/xl_v1.png"></td>
+                    <td>10000以下</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>二级</td>
+                    <td>伙购少将</td>
+                    <td><img src="./img/xl_v2.png"></td>
+                    <td>10000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>三级</td>
+                    <td>伙购中将</td>
+                    <td><img src="./img/xl_v3.png"></td>
+                    <td>50000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>四级</td>
+                    <td>伙购上将</td>
+                    <td><img src="./img/xl_v4.png"></td>
+                    <td>200000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>五级</td>
+                    <td>伙购大将</td>
+                    <td><img src="./img/xl_v5.png"></td>
+                    <td>500000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>六级</td>
+                    <td>伙购元帅</td>
+                    <td><img src="./img/xl_v6.png"></td>
+                    <td>1000000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </tbody></table>
+            <br><br>
+            <h1 class="xl_f16 xl_cs">福分经验值明细</h1>
+            <br>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <th colspan="2">项目 </th>
+                    <th width="17%">获得福分</th>
+                    <th width="16%">获得经验值</th>
+                    <th width="31%">备注</th>
+                </tr>
+                <tr>
+                    <td colspan="2">参与伙购每消费1伙购币</td>
+                    <td class=" xl_cs">1</td>
+                    <td class=" xl_cs">10</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">每成功邀请1位好友并消费</td>
+                    <td class=" xl_cs">10</td>
+                    <td class=" xl_cs">10</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">成功晒单</td>
+                    <td class=" xl_cs">400-1500</td>
+                    <td class=" xl_cs">500</td>
+                    <td>限时揭晓商品除外</td>
+                </tr>
+                <tr>
+                    <td colspan="2">晒单评论</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">10</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">发表话题</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">50</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">话题加精</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">50</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">回复话题</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">10</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">加好友</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">5</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">圈主</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">1000</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">管理员</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td class=" xl_cs">500</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width="21%" rowspan="10">完善个人资料</td>
+                    <td width="15%">手机验证</td>
+                    <td class=" xl_cs">20</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>邮箱验证</td>
+                    <td class=" xl_cs">10</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>昵称</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>性别</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>生日</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>现居地</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>家乡</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>QQ</td>-->
+                    <!--<td class=" xl_cs">5</td>-->
+                    <!--<td class=" xl_cs">&nbsp;</td>-->
+                    <!--<td>&nbsp;</td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>月收入</td>
+                    <td class=" xl_cs">5</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>签名</td>
+                    <td class=" xl_cs">10</td>
+                    <td class=" xl_cs">&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="5" bgcolor="#fffbe2" class=" xl_cs">注：恶意灌水发表回复话题，将会扣除相应双倍经验值！</td>
+                </tr>
+                </tbody></table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+

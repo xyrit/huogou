@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg">支付方式</strong>
+        <button value="返回" class="am-btn am-btn-default" onclick="history.back();">返回</button>
+    </div>
+</div>
+<hr>
+
+
+<div class="am-u-sm-12">
+                       {% set form=ActiveForm_begin({"options":{"class":"am-form am-form-horizontal"}}) %}
+                    {{ html.activeHiddenInput(model, "id") | raw }}
+                    {{  form.field(model,'sdk_name').textInput() | raw }}
+                    {{  form.field(model,'sdk_type').textinput({"placeholder":"例如: abay"}) | raw }}
+                    {{  form.field(model,'sdk_des').textarea() | raw }}
+                    {{  form.field(model,'sdk_limit').textInput({"placeholder":"0 表示没有限额"}) | raw }}
+                    {{  form.field(model,'sdk_limit_title').textInput() | raw }}
+                    {{  form.field(model,'system').radioList({'android':"Android",'ios':"IOS"}) | raw }}
+                    {{  form.field(model,'status').checkbox() | raw }}
+                    {{ html.submitButton('保存',{'class':'am-btn am-btn-primary'}) | raw }}
+                    {{ ActiveForm_end() | raw }}
+</div>
+
+</div>
+{% endblock %}

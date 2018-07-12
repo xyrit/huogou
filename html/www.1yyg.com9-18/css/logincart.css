@@ -1,0 +1,535 @@
+@charset "utf-8";
+
+html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,fieldset,button,input,textarea,th,td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FFF;
+}
+
+body,button,input,select,textarea,fieldset,label {
+    font: 12px/1.5 "\5FAE\8F6F\96C5\9ED1",Arial;
+    color: #666;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+ul,ol {
+    list-style: none;
+}
+
+fieldset,img {
+    border: 0 none;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+    color: #999;
+}
+
+cite,strong,em,i,dfn,address,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input,select,textarea,button {
+    font-size: 100%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+button,input[type=button],input[type=submit] {
+    cursor: pointer;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+}
+
+textarea {
+    overflow-y: auto;
+    resize: vertical;
+}
+
+.clear,.clrfix {
+    zoom: 1;
+}
+
+.clear:after,.clrfix:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.hidden,.hide {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+}
+
+a:focus {
+    outline: none;
+    -moz-outline: none;
+}
+
+*html,*html body {
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.orange {
+    color: #f60;
+}
+
+.gray3 {
+    color: #333;
+}
+
+.gray6 {
+    color: #666;
+}
+
+.gray9 {
+    color: #999;
+}
+
+.blue {
+    color: #2af;
+}
+
+.red {
+    color: #d00;
+}
+
+a.letter-noSpac {
+    letter-spacing: normal!important;
+}
+
+.passport-icon {
+    background-image: url(../images/passport-icon.png);
+    background-repeat: no-repeat;
+}
+
+a.z-agreeBtn {
+    display: block;
+    width: 340px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    color: #fff;
+    background: #f60;
+    border-radius: 2px;
+    text-align: center;
+    margin-bottom: 13px;
+}
+
+a.z-agreeBtn:hover {
+    background: #f40;
+}
+
+.register-form-con {
+    padding-top: 80px;
+    position: relative;
+}
+
+.register-form-con li {
+    float: left;
+    width: 340px;
+    height: 72px;
+    position: relative;
+    color: #bbb;
+}
+
+.register-form-con li b {
+    display: block;
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+}
+
+.register-form-con li b.user-name {
+    width: 18px;
+    height: 18px;
+    background-position: 0 0;
+    top: 11px;
+}
+
+.register-form-con li b.login-password {
+    width: 18px;
+    height: 20px;
+    background-position: 0 -25px;
+    top: 10px;
+}
+
+.register-form-con li input {
+    width: 298px;
+    height: 20px;
+    padding: 10px 0 10px 40px;
+    font-size: 14px;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    -moz-box-shadow: 0 1px 0 #fafafa;
+    -webkit-box-shadow: 0 1px 0 #fafafa;
+    box-shadow: 0 1px 0 #fafafa;
+    overflow: hidden;
+    outline: none;
+}
+
+.register-form-con li.enter-focus input {
+    border: 1px solid #f60;
+    -moz-box-shadow: 0 1px 0 #ffdfc9;
+    -webkit-box-shadow: 0 1px 0 #ffdfc9;
+    box-shadow: 0 1px 0 #ffdfc9;
+}
+
+.register-form-con li em {
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    position: absolute;
+    left: 42px;
+    top: 11px;
+    *top: 12px;
+    font-size: 14px;
+}
+
+.g-login-con {
+    width: 100%;
+    height: 455px;
+    background: #f1f1f1;
+}
+
+.m-login-screen {
+    width: 990px;
+    margin: 0 auto;
+}
+
+.screen-right {
+    width: 390px;
+    height: 407px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-panel {
+    width: 308px;
+    margin: 0 41px;
+    position: relative;
+}
+
+.login-panel dl {
+    height: 227px;
+    padding-top: 27px;
+}
+
+.login-panel dt {
+    display: block;
+    height: 25px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.login-panel dt a {
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.login-panel dt a:hover {
+    text-decoration: underline;
+}
+
+.login-panel dt a i {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background-position: 0 -177px;
+    vertical-align: middle;
+    margin-left: 3px;
+    margin-top: -2px;
+    margin-top: -2px\9;
+    *margin-top: 1px;
+}
+
+.login-panel dd {
+    clear: both;
+}
+
+.login-panel dd .register-form-con {
+    padding-top: 0;
+    margin-bottom: 5px;
+}
+
+.login-panel dd .register-form-con li {
+    height: 42px;
+    margin-top: 20px;
+}
+
+.login-panel dd .register-form-con li input {
+    width: 266px;
+}
+
+.login-panel dd a:hover {
+    color: #f60;
+}
+
+.login-panel dd.text-alignR {
+    text-align: right;
+}
+
+.login-panel dd.error-message {
+    height: 28px;
+    line-height: 28px;
+    margin-top: 7px;
+    background: #fff2c5;
+}
+
+.login-panel dd.error-message i {
+    display: block;
+    float: left;
+    width: 18px;
+    height: 18px;
+    background-position: 0 -52px;
+    vertical-align: middle;
+    position: relative;
+    top: 6px;
+    margin-right: 3px;
+    margin-left: 8px;
+}
+
+.login-panel p a.z-agreeBtn {
+    width: 308px;
+    letter-spacing: 10px;
+    font-size: 18px;
+}
+
+.login-panel .other-login {
+    clear: both;
+    width: 308px;
+    height: 23px;
+    line-height: 23px;
+    margin-top: 32px;
+    padding-top: 29px;
+    border-top: 1px dashed #eee;
+    color: #bbb;
+    font-size: 14px;
+}
+
+.login-panel .other-login span,.other-login a {
+    float: left;
+}
+
+.login-panel .other-login span {
+    margin-right: -7px;
+}
+
+.login-panel .other-login a {
+    display: block;
+    width: 60px;
+    height: 23px;
+    border-radius: 2px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+    *top: 0;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.login-panel .other-login a b {
+    display: block;
+    width: 60px;
+    height: 23px;
+}
+
+.login-panel .other-login a.qq-icon {
+    background: #7accff;
+}
+
+.login-panel .other-login a.qq-icon:hover {
+    background: #44b7ff;
+}
+
+.login-panel .other-login a.qq-icon b {
+    background-position: 9px -123px;
+}
+
+.login-panel .other-login a.wx-icon {
+    background: #97db84;
+}
+
+.login-panel .other-login a.wx-icon:hover {
+    background: #51c332;
+}
+
+.login-panel .other-login a.wx-icon b {
+    background-position: 8px -149px;
+}
+
+.login-panel .register-form-con li.enter-focus input {
+    border: 1px solid #ffa664;
+}
+
+.login-panel .register-form-con li.enter-focus b.user-name {
+    width: 18px;
+    height: 18px;
+    background-position: -25px -177px;
+    top: 11px;
+}
+
+.login-panel .register-form-con li.enter-focus b.login-password {
+    width: 18px;
+    height: 20px;
+    background-position: -25px -201px;
+    top: 10px;
+}
+
+.j-tips-wrap {
+    width: 304px;
+    padding: 1px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    background: #fff;
+    position: absolute;
+    top: 126px;
+    left: 0;
+    z-index: 50;
+    *zoom: 1;
+    display: none;
+}
+
+.j-tips-wrap .j-tips {
+    display: block;
+    width: 304px;
+    height: 30px;
+    color: #999;
+    font-size: 12px;
+    line-height: 30px;
+    cursor: pointer;
+    text-indent: 39px;
+}
+
+.j-tips-wrap .j-tips:hover,.j-tips-wrap .j-tips.selected {
+    color: #333;
+    background: #eee;
+}
+
+.wx-login {
+    width: 390px;
+    height: 377px;
+    padding-top: 30px;
+    text-align: center;
+    background: #fff;
+    position: absolute;
+    right: -390px;
+    top: 0;
+    z-index: 15;
+}
+
+.wx-login h2 {
+    font-size: 18px;
+}
+
+.wx-login p {
+    width: 205px;
+    height: 205px;
+    margin: 25px auto 30px;
+    border: 1px solid #eee;
+    position: relative;
+}
+
+.wx-login span {
+    display: block;
+    font-size: 18px;
+}
+
+.wx-login a img {
+    display: none;
+}
+
+.wx-login a {
+    display: block;
+    width: 173px;
+    height: 61px;
+    background: url(../images/return_03.gif);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.wx-login a:hover {
+    background: url(../images/return_04.gif);
+}
+
+iframe {
+    margin: -20px 0 0 -48px;
+    height: 290px;
+}
+
+body {
+    background: #fff;
+}
+
+.impowerBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.impowerBox .qrcode {
+    width: 203px;
+    margin-top: 5px;
+}
+
+.impowerBox .title {
+    display: none;
+}
+
+.impowerBox .info {
+    width: 205px;
+    margin: 0 auto;
+}
+
+.status_icon {
+    display: none;
+}
+
+.impowerBox .status {
+    text-align: center;
+    padding: 7px 0;
+}
+
+.impowerBox .status_txt h4 {
+    color: #00a800;
+    font-weight: bold;
+}
+
+.impowerBox .icon38_msg {
+    display: none;
+}

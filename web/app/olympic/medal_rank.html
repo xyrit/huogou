@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>奥运奖牌榜</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/idangerous.swiper.css">
+</head>
+<body class="bgcolor">
+
+
+<div class="clear pkdiv">
+    <div class="swiper-container bannerdiv">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><a href="javacript:;"><img src="images/jpbbanner.png" /></a></div>
+        </div>
+    </div>
+
+    <div class="srollgg">
+        <div class="srollgg_bg">
+            <div id="hottitle" class="hot">
+                <ul id="ulid">
+                    <li><a href="javascript:void(0)">赛事预告：今日产生奖牌xx枚，还剩x枚，明日将产生xx枚。</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pagination"></div>
+</div>
+
+<div class="hastitdiv">
+	<div class="title">
+    	<div class="tit"><p class="name riqidate" id="curDate">xxxx-xx-xx</p></div>
+        <a class="day1" href="javascript:void(0);">前一天</a>
+        <a class="day2" href="javascript:void(0);">后一天</a>
+    </div>
+    <div class="bgcontents">
+    	<div class="swiper-container paiqidiv">
+            <div class="swiper-wrapper" id="medalRankList">
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+<script type="text/javascript" src="js/MSClass.js"></script>
+<script type="text/javascript" src="js/comm.js"></script>
+<script>
+
+    function swiperMedalRank () {
+        var windowHeight = $(".swiper-slide:eq(0) img:eq(0)").height();
+        $(".pkdiv").css("height",windowHeight+"px");
+        window.onresize = function(){
+            var windowHeight = $(".swiper-slide:eq(0) img:eq(0)").height();
+            $(".pkdiv").css("height",windowHeight+"px");
+        }
+
+        var mypaiqi = new Swiper('.paiqidiv',{
+            loop:false,
+            grabCursor: true,
+            paginationClickable: true,
+            onTouchEnd: function(swiper){
+                jisunsay();
+            }
+        })
+
+        $('.day1').on('click', function(e){
+            e.preventDefault();
+            mypaiqi.swipePrev();
+            jisunsay();
+        })
+        $('.day2').on('click', function(e){
+            e.preventDefault();
+            mypaiqi.swipeNext();
+            jisunsay();
+        })
+        function jisunsay(){
+            var riqi=$(".paiqidiv .swiper-slide-active").attr("date");
+            $(".riqidate").html(riqi);
+            $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide-active .dayjfb").height()+10);
+        }
+
+        $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide:eq(0) .dayjfb").height()+10);
+
+        $(".jptab span").click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var sub_chindex = $(this).index();
+            $(this).parents(".dayjfb").find(".jptabcon:eq("+sub_chindex+")").show().siblings(".jptabcon").hide();
+            jisunsay();
+        })
+    }
+
+</script>
+
+<script>
+    $(function() {
+
+        var todayMedalInfoUrl = '/olympic/today-medal-info';
+        $.getJsonp(apiBaseUrl + todayMedalInfoUrl, {}, function(json) {
+
+            var medalInfo = json.medalInfo;
+            $('#ulid li a').html('赛事预告：今日产生奖牌'+medalInfo.today.total+'枚，还剩'+medalInfo.today.left+'枚，明日将产生'+medalInfo.tomorrow+'枚。');
+
+            new Marquee(["hottitle","ulid"],2,1,null,30,20,0,0);
+        });
+
+        var medalRankList = '/olympic/medal-rank-list';
+        $.getJsonp(apiBaseUrl + medalRankList, {num : 20}, function(json) {
+
+
+            var html = '';
+            var dateNum = 0;
+            $.each(json.list, function(date,rankList) {
+
+                if (dateNum==0) {
+                    $('#curDate').text(date);
+                }
+                html += '<div class="swiper-slide" date="'+date+'">';
+                html += '<div class="dayjfb">';
+                html += '<div class="jptab">';
+                html += '<span class="active">金牌</span>';
+                html += '<span>银牌</span>';
+                html += '<span>铜牌</span>';
+                html += '</div>';
+
+                var curMedalIdx = 0;
+                $.each(rankList, function(medal, list) {
+
+                    if (curMedalIdx==0) {
+                        html += '<div class="jptabcon active">';
+                    } else {
+                        html += '<div class="jptabcon">';
+                    }
+
+                    $.each(list, function(i,v) {
+                        var userId = v.user_id;
+                        var homeId = v.home_id;
+                        var nickname = v.nickname;
+                        var time = v.time;
+
+                        html += '<div class="list">';
+                        html += '<span class="win win3"></span>';
+                        html += '<span class="name">'+nickname+'</span>';
+                        html += '<span class="time">'+time+'</span>';
+                        html += '</div>';
+                    });
+
+                    html += '</div>';
+                    curMedalIdx ++;
+                });
+
+                html += '</div></div>';
+
+                dateNum ++;
+            });
+            $('#medalRankList').html(html);
+            swiperMedalRank();
+        });
+    });
+</script>
+</body>
+</html>

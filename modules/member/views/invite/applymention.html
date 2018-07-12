@@ -1,0 +1,144 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}提现申请_{{ app.name }}{% endblock %}
+
+{% block main %}
+
+    <section id="apply-fixed">
+        <div class="apply-fixed-con">
+            <b id="apply-no"></b>
+            <h3>充值到我的伙购账户</h3>
+            <article>
+                <p>佣金金额：<i >￥<span id="commissionPrice">{{ "%.2f"|format(app.user.identity.commission/100) }}</span></i></p>
+                <summary>
+                    <em>充值金额：</em><input value="1" type="text" id="commission"><em>元</em><span>以整数为单位</span>
+                </summary>
+                <input type="submit" value="确定充值" id="commissionSubmit">
+            </article>
+        </div>
+    </section>
+
+    <div class="member_con_rl">
+        <div class="find-friends">
+            <div class="find_bt_list">
+                <a class="act" href="">提现申请</a><a id="hg-cz" href="javascript:;">充值到伙购账户</a>
+            </div>
+
+            <div class="application-for">
+                <p>为确保您申请的金额能够正确无误的转入您的账户，请填写真实有效的账户信息，以下信息均为必填项！</p>
+            </div>
+            {{ html.beginForm('', 'post', {'id':'apply-form'}) | raw }}
+            <div class="application-for-con">
+                <p>佣金余额：<span>{{ "%.2f"|format(app.user.identity.commission/100) }}</span>元<i>余额满100元时才可以申请提现</i></p>
+
+                <div>
+                    <em>申请提现金额：</em>
+                    <input class="w132" name="Withdraw[money]" value="{{ model.money }}" type="text" id="withraw-money"><span>&nbsp;&nbsp;元</span>
+                    <i>{{ model.firstErrors.money }}</i>
+                </div>
+                <div>
+                    <em>开户人：</em>
+                    <input type="text" name="Withdraw[account]" value="{{ model.account }}" placeholder="姓名 如：张三" id="withraw-account">
+                    <i>{{ model.firstErrors.account }}</i>
+                </div>
+                <div>
+                    <em>银行名称：</em>
+                    <input type="text" name="Withdraw[bank]" value="{{ model.bank }}" placeholder="银行 如：中国工商银行" id="withraw-bank">
+                    <i>{{ model.firstErrors.bank }}</i>
+                </div>
+                <div>
+                    <em>开户支行：</em>
+                    <input type="text" name="Withdraw[branch]" value="{{ model.branch }}" placeholder="需具体到省市" id="withraw-branch">
+                    <i>{{ model.firstErrors.branch }}</i>
+                </div>
+                <div>
+                    <em>银行帐号：</em>
+                    <input type="text" name="Withdraw[bank_number]" value="{{ model.bank_number }}" placeholder="如：1234 5618 1234 5678 123" id="withraw-bank_number">
+                    <i>{{ model.firstErrors.bank_number }}</i>
+                </div>
+                <div>
+                    <em>联系电话：</em>
+                    <input type="text" name="Withdraw[phone]" value="{{ model.phone }}" placeholder="如：138****678" id="withraw-phone">
+                    <i>{{ model.firstErrors.phone }}</i>
+                </div>
+                <input class="apply" type="submit" value="申请提现" id="apply-submit">
+            </div>
+            {{ html.endForm() | raw }}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+
+
+    <script src="{{ app.params.skinUrl }}/js/jquery.masonry.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#hg-cz').on('click',function(){
+                var commssionPrice = parseFloat($('#commissionPrice').text());
+                if (commssionPrice<1) {
+                    $('.safety-b-box').html('<i id="safety-b-close"></i><h3>佣金余额需满1元</h3>');
+                    $('#safety-b-con').fadeIn();
+                    var t = setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        clearTimeout(t);
+                    },1000);
+                    return false;
+                }
+                $('#apply-fixed').stop().fadeIn('fast');
+            });
+
+            $('#commissionSubmit').on('click', function() {
+                var url = '{{ url('invite/recharge') }}';
+                var price = $('#commission').val();
+                if (!price) {
+                    return false;
+                }
+                var data = {'price':price};
+                $.post(url, data, function(e) {
+                    e = JSON.parse(e);
+                    $('#apply-fixed').stop().fadeOut('fast');
+                    if (e.error==0) {
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h4>充值成功</h4>');
+                    } else {
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h3>充值失败</h3>');
+                    }
+                    $('#safety-b-con').fadeIn();
+                    var t = setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        clearTimeout(t);
+                        window.location.reload();
+                    },1000);
+                });
+            });
+
+            $('#commission').on('keyup', function() {
+                var commssionPrice = parseFloat($('#commissionPrice').text());
+                var price = $('#commission').val();
+                if (!price) {
+                    return false;
+                }
+                price = parseInt(price);
+                if (price >1) {
+                    if (commssionPrice<price) {price = parseInt(commssionPrice)}
+                    $('#commission').val(price);
+                } else {
+                    $('#commission').val(1);
+                }
+            });
+
+            $('#apply-no').on('click',function(){
+                $('#apply-fixed').stop().fadeOut('fast');
+            });
+
+        });
+    </script>
+{% endblock %}

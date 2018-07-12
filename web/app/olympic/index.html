@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>奥运会活动专场首页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css?v=160809"/>
+    <link rel="stylesheet" href="css/idangerous.swiper.css">
+</head>
+<body class="bgcolor" style="display: none;">
+
+<div class="user_head">
+    <div class="user_img">
+        <a href="user.html" id="userAvatar"><img src="http://img.huogou.com/userface/80/000000000000.jpg"/></a>
+        <span>
+            <p><a href="user.html" class="name" id="nickname"></a></p>
+            <p><a href="user.html" >个人中心</a></p>
+        </span>
+        <a class="kdlhb" href="red.html">兑领红包</a>
+    </div>
+    <a class="share" href="http://www.huogou.com?type=9&share_title=%E3%80%90%E7%82%B9%E5%87%BB%E9%A2%86%E5%8F%96%E3%80%91%E6%82%A8%E6%9C%89%E4%B8%80%E6%9E%9A%E5%A5%A5%E8%BF%90%E9%87%91%E7%89%8C%E6%9C%AA%E8%AE%A4%E9%A2%86%EF%BC%81&share_img=http%3A%2F%2Fwww.huogou.com%2Fapp%2Folympic%2Fimages%2Fshare.png&share_desc=%E5%8F%82%E4%B8%8E%E5%A5%A5%E8%BF%90%E6%B4%BB%E5%8A%A8%EF%BC%8C%E4%B8%80%E5%85%83%E6%8A%A2%E9%87%91%E7%89%8C%EF%BC%8C%E8%BF%98%E6%9C%89%E6%9C%BA%E4%BC%9A%E6%8B%BF3%E4%B8%87%E5%A5%96%E9%87%91%E5%92%8CiPhone+6s%E3%80%82%E5%8F%AA%E9%9C%80%E2%80%A6%E2%80%A6&share_url=http%3A%2F%2Fwww.huogou.com%2Fspread%2Fgames%2Findex.html&share_callback=http%3A%2F%2Fapi.huogou.com%2Folympic%2Fshare%3Ftype%3D1" >转发</a>
+</div>
+<a class="guizean" href="rules.html">比赛规则</a>
+<div class="clear pkdiv">
+    <div class="swiper-container bannerdiv">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><a href="javascript:;"><img src="images/banner1.png" /></a></div>
+            <div class="swiper-slide"><a href="javascript:;"><img src="images/banner2.png" /></a></div>
+            <!--<div class="swiper-slide"><a href=""><img src="images/banner.jpg" /></a></div>-->
+            <!--<div class="swiper-slide"><a href=""><img src="images/banner.jpg" /></a></div>-->
+        </div>
+    </div>
+
+    <div class="srollgg">
+        <div class="srollgg_bg">
+            <div id="hottitle" class="hot">
+                <ul id="ulid">
+                    <li><a href="javascript:void(0)"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pagination"></div>
+</div>
+<div class="inggsroll">
+    <div class="scoarr1"><span></span></div>
+    <div class="scocontent">
+        <div id="hottitle2">
+            <ul id="ulid2">
+
+            </ul>
+        </div>
+    </div>
+    <div class="scoarr2"><span></span></div>
+</div>
+
+<div class="hastitdiv">
+    <div class="title">
+        <div class="tit"><p class="name">奥运积分榜</p></div>
+    </div>
+    <div class="bgcontents">
+        <div class="indexjfb">
+
+        </div>
+    </div>
+</div>
+
+<div class="hastitdiv">
+    <div class="title">
+        <div class="tit">
+            <p class="name riqidate" id="curDate">xxxx-xx-xx</p>
+            <p>点击奖牌即可购买</p>
+        </div>
+        <a class="day1" href="javascript:void(0);">前一天</a>
+        <a class="day2" href="javascript:void(0);">后一天</a>
+    </div>
+    <div class="bgcontents">
+        <div class="swiper-container paiqidiv">
+            <div class="swiper-wrapper" id="scheduleList">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hastitdiv">
+    <div class="title">
+        <div class="tit"><p class="name">奖牌榜单</p></div>
+    </div>
+    <div class="bgcontents">
+        <div class="inbangdan" id="newestMedalList">
+
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="inlookmore"><a href="medal_rank.html">查看完整奖牌榜</a></div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+<script type="text/javascript" src="js/MSClass.js"></script>
+<script type="text/javascript" src="js/comm.js?v=xxxx"></script>
+<script>
+
+    function swiperSchedule() {
+        var windowHeight = $(".swiper-slide:eq(0) img:eq(0)").height();
+        $(".pkdiv").css("height",windowHeight+"px");
+        window.onresize = function(){
+            var windowHeight = $(".swiper-slide:eq(0) img:eq(0)").height();
+            $(".pkdiv").css("height",windowHeight+"px");
+            $(".guizean").css("right",($(window).width()-$('.pkdiv').width())/2);
+        }
+        var mySwiper = new Swiper('.bannerdiv',{
+            pagination: '.pagination',
+            loop:true,
+            grabCursor: true,
+            paginationClickable: true
+        })
+        var mypaiqi = new Swiper('.paiqidiv',{
+            loop:false,
+            grabCursor: true,
+            paginationClickable: true,
+            onTouchEnd: function(swiper){
+                var riqi=$(".paiqidiv .swiper-slide-active").attr("date");
+                $(".riqidate").html(riqi);
+                $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide-active .inpaiqi").height()+10);
+            }
+        })
+        $('.day1').on('click', function(e){
+            e.preventDefault();
+            mypaiqi.swipePrev();
+            var riqi=$(".paiqidiv .swiper-slide-active").attr("date");
+            $(".riqidate").html(riqi);
+            $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide-active .inpaiqi").height()+10);
+        })
+        $('.day2').on('click', function(e){
+            e.preventDefault();
+            mypaiqi.swipeNext();
+            var riqi=$(".paiqidiv .swiper-slide-active").attr("date");
+            $(".riqidate").html(riqi);
+            $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide-active .inpaiqi").height()+10);
+        })
+
+
+        $(".paiqidiv").css("height",$(".paiqidiv .swiper-slide:eq(0) .inpaiqi").height()+10);
+        $(".guizean").css("right",($(window).width()-$('.pkdiv').width())/2);
+    }
+
+</script>
+<script>
+    $(function() {
+        var userInfoUrl = '/info/user-info';
+        $.getJsonp(apiBaseUrl + userInfoUrl, {}, function(json) {
+            if (json.code == 201) {
+                $('a').not('.guizean').not('.inlookmore a').attr('href', 'http://www.' + baseHost + '?type=11');
+                $('#nickname').text('未登录');
+                $('#userAvatar img').attr('src', 'http://img.'+baseHost+'/userface/80/000000000000.jpg');
+                $('body').show();
+            } else {
+                var userInfo = json.userinfo;
+                var nickname = userInfo.username;
+                var avatar = userInfo.avatar;
+                $('#nickname').text(nickname);
+                $('#userAvatar img').attr('src', createUserFaceImgUrl(avatar, 80));
+                $('body').show();
+            }
+        });
+
+        var marqueeUrl = '/olympic/marquee-info';
+        $.getJsonp(apiBaseUrl + marqueeUrl, {}, function(json) {
+            var html = '';
+            $.each(json.buyList, function(i,v) {
+
+                var nickname = v.nickname;
+                var medal = v.medal;
+                var money = v.nums;
+                html += '<li><a href="javascript:void(0)">'+nickname+'充值'+money+'元，参与'+medal+'比赛！</a></li>';
+            });
+            $('#ulid2').html(html);
+
+            new Marquee(["hottitle","ulid"],2,1,null,30,20,0,0);
+            new Marquee(["hottitle2","ulid2"],2,1,null,30,20,0,0);
+        });
+
+        var todayMedalInfoUrl = '/olympic/today-medal-info';
+        $.getJsonp(apiBaseUrl + todayMedalInfoUrl, {}, function(json) {
+
+            var medalInfo = json.medalInfo;
+            $('#ulid li a').html('赛事预告：今日产生奖牌'+medalInfo.today.total+'枚，还剩'+medalInfo.today.left+'枚，明日将产生'+medalInfo.tomorrow+'枚。');
+        });
+
+        var rankUrl = apiBaseUrl + '/olympic/rank-list';
+        var data = {num:3};
+        $.getJsonp(rankUrl, data, function(json) {
+            var html = '';
+            $.each(json.list, function(i,v) {
+                var userId = v.user_id;
+                var homeId = v.home_id;
+                var nickname = v.nickname;
+                var goldNum = v.gold;
+                var silverNum = v.silver;
+                var bronzeNum = v.bronze;
+                var score = v.score;
+
+                var rank = i + 1;
+                html += '<div class="list">';
+                html += '<span class="win win'+rank+'"></span>';
+                html += '<span class="name"><a href="http://www.'+baseHost+'?type=5&home_id=' + homeId + '&user_id=' + userId + '">'+nickname+'</a></span>';
+                html += '<span class="winpai"><em>'+goldNum+'金</em> <em>'+silverNum+'银</em> <em>'+bronzeNum+'铜</em></span>';
+                html += '<span class="jifen">'+score+'积分</span>';
+                html += '</div>';
+            });
+            html += '<div class="clear"></div>';
+            html += '<div class="inlookmore"><a href="rank_list.html">查看完整积分榜</a></div>';
+            $('.indexjfb').html(html);
+        });
+
+        var scheduleListUrl = apiBaseUrl + '/olympic/schedule-list';
+        var data = {};
+        $.getJsonp(scheduleListUrl, data, function(json) {
+
+            var html = '';
+            var dateNum = 0;
+            $.each(json.list, function(date,schedules) {
+                if (dateNum==0) {
+                    $('#curDate').text(date);
+                }
+                html += '<div class="swiper-slide" date="'+date+'">';
+                html += '<div class="inpaiqi">';
+
+                console.log(schedules)
+
+                $.each(schedules, function(i,v) {
+                    var scheduleName = v.name;
+                    var goldUrl = 'http://www.huogou.com?type=12&goods_id='+ v.goldProduct;
+                    var silverUrl = 'http://www.huogou.com?type=12&goods_id='+ v.silverProduct;
+                    var bronzeUrl = 'http://www.huogou.com?type=12&goods_id='+ v.bronzeProduct;
+                    if (dateNum == 0) {
+                        if (v.goldStatus == '0') {
+                            if (json.process_list.gold == '0') {
+                                var goldCls = '';
+                            } else {
+                                var goldCls = 'fn' + json.process_list.gold;
+                            }
+                        } else {
+                            var goldCls = 'over';
+                        }
+
+                        if (v.silverStatus == '0') {
+                            if (json.process_list.silver == '0') {
+                                var silverCls = '';
+                            } else {
+                                var silverCls = 'fn' + json.process_list.silver;
+                            }
+                        } else {
+                            var silverCls = 'over';
+                        }
+
+                        if (v.bronzeStatus == '0') {
+                            if (json.process_list.bronze == '0') {
+                                var bronzeCls = '';
+                            } else {
+                                var bronzeCls = 'fn' + json.process_list.bronze;
+                            }
+                        } else {
+                            var bronzeCls = 'over';
+                        }
+                    } else {
+                        var goldCls = 'frue';
+                        var silverCls = 'frue';
+                        var bronzeCls = 'frue';
+                    }
+
+                    if (goldCls == 'frue' || goldCls == 'over') {
+                        goldUrl = 'javascript:;';
+                    }
+                    if (silverCls == 'frue' || silverCls == 'over') {
+                        silverUrl = 'javascript:;';
+                    }
+                    if (bronzeCls == 'frue' || bronzeCls == 'over') {
+                        bronzeUrl = 'javascript:;';
+                    }
+
+                    html += '<div class="list">';
+                    html += '<span class="tit">'+scheduleName+'</span>';
+                    html += '<span class="link win1"><a class="'+goldCls+'" href="'+goldUrl+'"></a></span>';
+                    html += '<span class="link win2"><a class="'+silverCls+'" href="'+silverUrl+'"></a></span>';
+                    html += '<span class="link win3"><a class="'+bronzeCls+'" href="'+bronzeUrl+'"></a></span>';
+                    html += '</div>';
+                });
+                html += '</div>';
+                html += '</div>';
+
+                dateNum ++;
+            });
+            $('#scheduleList').html(html);
+            swiperSchedule();
+        });
+
+        var newestMedalUrl = apiBaseUrl + '/olympic/newest-medal-users';
+        var data = {};
+        $.getJsonp(newestMedalUrl, data, function(json) {
+            var html = '';
+            $.each(json.list, function(i,v) {
+                var nickname = v.nickname;
+                var medal = v.medal;
+                var avatar = v.avatar;
+
+                html += '<div class="list">';
+                html += '<div class="img"><a href="javascript:;"><img src="'+avatar+'" /></a></div>';
+                html += '<p><a href="">'+nickname+'</a></p>';
+                html += '<p>获得'+medal+'</p>';
+                html += '</div>';
+            });
+            $('#newestMedalList').html(html);
+        });
+    });
+
+</script>
+</body>
+</html>

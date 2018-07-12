@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>京东E卡正确使用姿势</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-1.8.0.min.js"></script>
+    <script src="js/comm.js"></script>
+</head>
+
+<body>
+<div class="main">
+    <div class="center">
+        <img src="images/jdek_02.jpg" width="100%"/>
+        <img src="images/jdek_03.jpg" width="100%"/>
+        <img src="images/jdek_04.jpg" width="100%"/>
+        <img src="images/jdek_05.jpg" width="100%"/>
+        <!-- 跳转到app pk场页面-->
+        <a href="javascript:;" onclick="returnRul('pk-product','list','10')">
+            <img src="images/jdek_06.jpg" width="100%"/>
+        </a>
+    </div>
+</div>
+
+<script>
+    var id = getUrlParam('id');
+    function returnRul(md,req, type)
+    {
+        var id = getUrlParam('id');
+        window.location.href = 'http://api.' + baseHost + '/'+ md +'/' + req + '?id=' + id + '&type=' + type;
+    }
+
+</script>
+</body>
+</html>

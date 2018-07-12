@@ -1,0 +1,62 @@
+<div class="member_con_fl">
+    <h2><a href="{{ url(['/member']) }}">个人中心</a><i></i></h2>
+
+    <h3>我的伙购</h3>
+    <ul>
+        <li {% if this.context.id == 'default' and this.context.action.id=='buy-list' %}class="act"{% endif %}>
+            <a href="/default/buy-list">伙购记录</a>
+        </li>
+        <li {% if this.context.id == 'default' and this.context.action.id=='order-list' %}class="act"{% endif %}>
+            <a href="/default/order-list">获得的商品</a>
+        </li>
+        <li {% if this.context.id == 'default' and this.context.action.id=='topic-list' %}class="act"{% endif %}>
+            <a href="/default/topic-list">我的晒单</a>
+        </li>
+        <li {% if this.context.id == 'default' and this.context.action.id=='active-list' %}class="act"{% endif %}>
+            <a href="/default/active-list">活动订单</a>
+        </li>
+        <li {% if this.context.id == 'default' and this.context.action.id=='collect-list' %}class="act"{% endif %}>
+            <a href="/default/collect-list">我的关注</a>
+        </li>
+        <!--红包-->
+        <!--<li {% if this.context.id == 'default' and this.context.action.id=='collect-list' %}class="act"{% endif %}>-->
+            <!--<a href="/default/collect-list">我的红包</a>-->
+        <!--</li>-->
+    </ul>
+    <h3 class="yaoqing">邀请管理</h3>
+    <ul>
+        <li {% if this.context.id == 'invite' and this.context.action.id=='index' %}class="act"{% endif %}>
+            <a href="{{ url(['/member/invite']) }}">邀请好友</a>
+        </li>
+        <li {% if this.context.id == 'invite' and this.context.action.id=='commission-list' %}class="act"{% endif %}>
+            <a href="{{ url(['/member/invite/commission-list']) }}">佣金明细</a>
+        </li>
+        <li {% if this.context.id == 'invite' and this.context.action.id=='apply-mention' %}class="act"{% endif %}>
+            <a href="{{ url(['/member/invite/apply-mention']) }}">提现申请</a>
+        </li>
+        <li {% if this.context.id == 'invite' and this.context.action.id=='mention-list' %}class="act"{% endif %}>
+            <a href="{{ url(['/member/invite/mention-list']) }}">提现记录</a>
+        </li>
+    </ul>
+    <h3 class="guanli">好友管理</h3>
+    <ul>
+        <li {% if this.context.id == 'friend' and this.context.action.id=='index' %}class="act"{% endif %}>
+            <a href="{{ url(['friend/index']) }}">我的好友</a>
+        </li>
+        <li {% if this.context.id == 'friend' and this.context.action.id=='search-friend' %}class="act"{% endif %}>
+            <a href="{{ url(['friend/search-friend']) }}">查找好友</a>
+        </li>
+        <!--<li {% if this.context.id == 'friend' and this.context.action.id=='friend-apply' %}class="act"{% endif %}>-->
+            <!--<a href="{{ url(['friend/friend-apply']) }}">好友请求</a>-->
+        <!--</li>-->
+    </ul>
+    <h3 class="quanzi">我的圈子</h3>
+    <ul>
+        <li {% if this.context.id == 'group' and this.context.action.id=='index' %}class="act"{% endif %}>
+            <a href="{{ url(['group/index']) }}">加入的圈子</a>
+        </li>
+        <li {% if this.context.id == 'group' and this.context.action.id=='topic' %}class="act"{% endif %}>
+            <a href="{{ url(['group/topic']) }}">圈子话题</a>
+        </li>
+    </ul>
+</div>

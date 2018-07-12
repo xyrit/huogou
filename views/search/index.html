@@ -1,0 +1,46 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ detail.keywords }}{% endblock %}
+{% block description %}{{ detail.brief }}{% endblock %}
+
+{% block title %}{{ keyWords }}_商品搜索_伙购网{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/fly.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/goodslist.js" ></script>
+{% endblock %}
+
+{% block body %}
+
+	{% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+    <section class="wrap clear">
+        <div class="whole" style="margin-top: 20px;">
+            <div class="whole_title" style="border-bottom:0;">
+                <a href=""><h2>商品搜索-"{{ keyWords }}"</h2></a>
+                <span>（共<a href=""><i></i></a>件相关商品）</span>
+            </div>
+        </div>
+
+        <div class="option clear">
+            <article>
+                <a class="act" href="/list.html" ><i></i>即将揭晓</a>
+                <a class="renqi" href="/list.html?r=20" flag="20"><i></i>人 气</a>
+                <a class="" href="/list.html?r=30" flag="30"><i></i>剩余人次</a>
+                <a class="" href="/list.html?r=40" flag="40"><i></i>最 新</a>
+                <a href="/list.html?r=51" class="jiage " flag="50"><i></i>价 值</a>
+                <a class="" href="/list.html?tag=10" class="xiangou" limit="1"><i></i>限 购</a>
+            </article>
+        </div>
+
+        <ul class="quota_list all_list clearfix"></ul>
+
+        <div class="pagination"></div>
+    </section>
+    {% include '@app/views/footer.html' %}
+
+    <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+
+</div>
+{% endblock %}

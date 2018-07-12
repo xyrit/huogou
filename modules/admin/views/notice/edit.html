@@ -1,0 +1,100 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">编辑通知模板</strong>
+      </div>
+    </div>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12">
+        {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'order-manage-group-form'}) | raw }}
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'desc', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextInput(model, 'desc')|raw }}
+            {{ html.error(model, 'desc', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'notice_way', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeCheckboxList(model, 'notice_way', {'1':'短信', '2':'邮件', '3':'站内信', '4':'微信', '5':'APP'})|raw }}
+            {{ html.error(model, 'notice_way', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'status', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeRadioList(model, 'status', {'1':'启用', '0':'停用'})|raw }}
+            {{ html.error(model, 'status', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'sms_content', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'sms_content')|raw }}
+            {{ html.error(model, 'sms_content', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'email_content', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'email_content')|raw }}
+            {{ html.error(model, 'email_content', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'sysmsg_content', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'sysmsg_content')|raw }}
+            {{ html.error(model, 'sysmsg_content', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'wechat_content', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'wechat_content')|raw }}
+            {{ html.error(model, 'wechat_content', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'app_content', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'app_content')|raw }}
+            {{ html.error(model, 'app_content', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          <div class="am-u-sm-10 am-u-sm-push-2">
+            <button type="submit" class="am-btn am-btn-primary">保存</button>
+            <a href="{{ url(['notice/params']) }}" target="_blank">参数说明</a>
+          </div>
+        </div>
+        {{ app.session.getFlash('success') }}
+        {{ html.endForm() | raw }}
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+
+  <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+    <span class="am-icon-btn am-icon-th-list"></span>
+  </a>
+
+{% endblock %}
+
+{% block script %}
+  <script>
+
+
+  </script>
+{% endblock %}

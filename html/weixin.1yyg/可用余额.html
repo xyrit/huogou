@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>账户明细</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="weixin/CSS/accounts.css" rel="stylesheet" type="text/css" />
+    <script src="weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body fnav="1" class="g-acc-bg">
+<input name="hidShowData" type="hidden" id="hidShowData" value="0" />
+<input name="hidHasMobile" type="hidden" id="hidHasMobile" value="1" />
+<input name="hidHasPaypwd" type="hidden" id="hidHasPaypwd" value="1" />
+<input name="hidHasMoney" type="hidden" id="hidHasMoney" value="1" />
+<div>
+    <div id="divNav" class="acc-menu">
+        <a id="Consumption" href="javascript:;" class="z-checked">消费明细</a>
+        <a id="Rechage" href="javascript:;">充值明细</a>
+        <a id="Transfer" href="javascript:;">转账记录</a>
+    </div>
+    <div id="divConsumption" class="g-accounts-details g-consumption clearfix">
+        <h4 class="gray9 bgColor-white">消费总额：￥2458.00</h4>
+        <dl>
+            <dt>
+                <span>消费时间</span>
+                <span>消费金额</span>
+            </dt>
+            <dd><span>2015-12-05 15:21:26</span><span>￥10.00</span></dd>
+        </dl>
+        <div class="loading clearfix g-acc-bg" style="display: none;">
+            <b></b>正在加载
+        </div>
+    </div>
+    <div id="divRechage" class="g-accounts-details g-recharge-details clearfix" style="display: none;">
+        <h4 class="gray9 bgColor-white">充值总额：￥2457.00</h4>
+        <dl>
+            <dt>
+                <span>充值时间</span>
+                <span>金额</span>
+                <span>渠道</span>
+            </dt>
+            <dd><span>2015-12-05 <br />  15:20:20</span><span>￥10.00</span><span>佣金充值</span></dd>
+            <dd><span>2015-10-21 <br />  14:01:40</span><span>￥1.00</span><span>微信支付</span></dd>
+        </dl>
+
+        <div class="loading clearfix g-acc-bg" style="display: none;">
+            <b></b>正在加载
+        </div>
+    </div>
+    <div id="divTransfer" class="g-accounts-details g-transfers-details clearfix" style="display: none;">
+        <h4 class="gray9 bgColor-white">转入总额：￥2.00<cite>转出总额：￥0.00</cite></h4>
+        <dl>
+            <dt>
+                <span>时间</span>
+                <span>金额</span>
+                <span>对方账号[状态]</span>
+            </dt>
+            <dd><span>2015-12-14 <br /> 16:23:59</span><span class="green">+￥1.00</span><span>13751****13<br>[转账成功]</span></dd>
+        </dl>
+
+        <div class="loading clearfix g-acc-bg" style="display: none;">
+            <b></b>正在加载
+        </div>
+    </div>
+    <div class="g-suggest clearfix">请使用电脑访问www.huogou.com查看更多</div>
+    <div class="pro_foot">
+        <ul>
+            <li id="btnTransfer" class="border-orange-Btn"><a href="javascript:;">转账</a></li>
+            <li><a href="Recharge.do" class="orangeBtn">去充值</a></li>
+        </ul>
+    </div>
+    <div class="weixin-mask" style="display: none;"></div>
+    <input id="hidPageType" type="hidden" value="-1" />
+    <div class="footer clearfix" style="display:none;">
+        <ul>
+            <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+            <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+            <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+            <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+            <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+        </ul>
+    </div>
+</div>
+<script>
+    //    消费明细
+    $('#divNav a').click(function(){
+        var navId = $(this).attr('id');
+        $(this).addClass('z-checked').siblings('a').removeClass('z-checked');
+        $('.g-accounts-details').hide();
+        $('#div'+navId).show();
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加员工</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'group-form'}) | raw }}
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'job_number', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'job_number', {})|raw }}
+                        {{ html.error(model, 'job_number', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'real_name', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'real_name', {})|raw }}
+                        {{ html.error(model, 'real_name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'username', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'username', {})|raw }}
+                        {{ html.error(model, 'username', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'password', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activePasswordInput(model, 'password', {})|raw }}
+                        {{ html.error(model, 'password', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'department', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'department', {})|raw }}
+                        {{ html.error(model, 'department', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'phone', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'phone', {})|raw }}
+                        {{ html.error(model, 'phone', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'email', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'email', {})|raw }}
+                        {{ html.error(model, 'email', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'role', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        <select data-am-selected name="Admin[role]">
+                            {% for item in roles %}
+                                <option value="{{ item.id }}" {% if(item.id == 1) %}selected{% endif %}>{{ item.name }}</option>
+                            {% endfor %}
+                        </select>
+                        {{ html.error(model, 'role', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'status', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'status', {'0':'启用','1':'禁用'})|raw }}
+                        {{ html.error(model, 'status', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10 am-u-sm-push-2">
+                        <button type="submit" class="am-btn am-btn-primary">添加</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

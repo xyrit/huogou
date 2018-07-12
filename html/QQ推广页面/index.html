@@ -1,0 +1,444 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>娱乐圈圣诞红包群</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script>
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                var phoneScale = parseInt(window.screen.width)/640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        }else{
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi" />
+    <script>
+        var _czc = _czc || [];
+        //绑定siteid，请用您的siteid替换下方"XXXXXXXX"部分
+        _czc.push(["_setAccount", "1257033556"]);
+    </script>
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/TweenLite.min.js"></script>
+    <script type="text/javascript" src="js/TimelineLite.min.js"></script>
+    <script src="js/base.js"></script>
+    <script type="text/javascript" src="js/weixin.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <style type="text/css">
+        .ui-btn-group,.ui-btn-group-tiled {
+            display: -webkit-box;
+            width: 100%;
+            box-sizing: border-box
+        }
+
+        .ui-btn-group button,.ui-btn-group-tiled button {
+            display: block;
+            -webkit-box-flex: 1
+        }
+
+        .ui-btn-group-tiled .ui-btn:first-child {
+            margin-right: 15px
+        }
+
+        .ui-btn-group button {
+            color: #00a5e0;
+            line-height: 50px;
+            height: 48px;
+            text-align: center;
+            font-size: 16px;
+            border-right: 1px #c8c7cc solid;
+            width: 100%;
+            border-top: 1px solid #c8c7cc
+        }
+
+        .ui-btn-group button:active {
+            background-color: rgba(0,0,0,0.1)
+        }
+
+        .ui-btn-group button:last-child {
+            border-right: none
+        }
+
+        .ui-btn-group-bottom {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            z-index: 10;
+            background-color: #fff
+        }
+
+        .ui-btn-group-bottom button {
+            color: #00a5e0;
+            background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f9f9f9), to(#e0e0e0))
+        }
+
+        .ui-btn-group-bottom button:active {
+            background-color: none;
+            color: rgba(0,165,224,0.4)
+        }
+
+        @media screen and (-webkit-min-device-pixel-ratio: 2) {
+            .ui-btn-group button {
+                position: relative;
+                border: 0
+            }
+
+            .ui-btn-group button:before {
+                content: "";
+                position: absolute;
+                -webkit-transform-origin: right top;
+                width: 0;
+                border-right: 1px solid #c8c7cc;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                -webkit-transform: scaleX(0.5)
+            }
+
+            .ui-btn-group button:after {
+                content: "";
+                position: absolute;
+                -webkit-transform-origin: right top;
+                left: 0;
+                right: 0;
+                height: 0;
+                border-top: 1px solid #c8c7cc;
+                top: 0;
+                -webkit-transform: scaleY(0.5)
+            }
+
+            .ui-btn-group button:last-child:before {
+                border-right: none
+            }
+        }
+
+        .adapter-ui-dialog {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            color: #000
+        }
+
+        .adapter-ui-dialog-notice {
+            background: transparent
+        }
+
+        .adapter-ui-dialog.show {
+            display: -webkit-box;
+            display: box
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-cnt {
+            border-radius: 6px;
+            width: 270px;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            outline: none;
+            pointer-events: auto;
+            background-color: rgba(253,253,253,0.95);
+            position: relative
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-bd {
+            min-height: 71px;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            padding: 18px;
+            font-size: 16px;
+            display: -webkit-box;
+            display: box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            -webkit-box-orient: vertical
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-bd h4 {
+            margin-bottom: 4px;
+            font-size: 16px;
+            width: 100%;
+            text-align: center
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-bd div {
+            width: 100%
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-ft {
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-ft button {
+            height: 42px;
+            line-height: 42px;
+            background: transparent
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-ft button:active {
+            background: rgba(0,0,0,0.1)
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-ft button:first-child {
+            border-bottom-left-radius: 6px;
+            background-image: none
+        }
+
+        .adapter-ui-dialog .adapter-ui-dialog-ft button:last-child {
+            border-bottom-right-radius: 6px
+        }
+
+        .adapter-ui-dialog-notice .adapter-ui-dialog-cnt {
+            width: 130px;
+            height: 110px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            text-align: center;
+            background: rgba(0,0,0,0.65);
+            border-radius: 6px;
+            color: #fff
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="js/qqapi.js"></script>
+<script type="text/javascript" src="js/zepto.min.js="></script>
+<!--<script type="text/javascript" id="mqqadapt" src="js/adapt-2.0.min.js"></script>-->
+<script type="text/javascript"> mqqAdapter.init({ ios : true,
+    and : true, andVersion: "5.9.0",
+    iosVersion: "5.9.0",
+    msg : { "0":"请用手 Q 参与活动" }, //自定义提示语
+    success : function(result){ //Page.init();
+    },
+    fail : function(result){
+        //result.callBack();
+//处理方式一:立即执行回调 result.callBack(); //提示或跳转
+//处理方式二:如点击后执行回调 document.getElementById("a1").addEventListener("mousedown",function(){
+    } });
+</script>
+<div class="groupinfo hide" id="yaoqing">
+    <div class="cont">
+        王铮亮邀请张靓颖、陈思诚、佟丽娅、杜江、霍思燕、你加入群聊
+    </div>
+</div>
+<div id="msg1" class="massge hide" style="height: 170px;">
+    <div class="headimg"><img src="images/head4.png"></div>
+    <div class="mname">佟丽娅</div>
+    <div class="mcontent">
+        <div class="mcla">什么情况？这是看颜值给拉入群的吗？<img src="images/bq1.png"></div>
+        <div class="jb"><img src="images/pdj.png"></div>
+    </div>
+</div>
+<div id="msg2" class="massge hide" style="height: 160px;">
+    <div class="headimg"><img src="images/head3.png"></div>
+    <div class="mname">陈思诚</div>
+    <div class="mcontent">
+        <div class="mcla">不，我猜是为了庆祝《唐人街探案》即将上映吧</div>
+        <div class="jb"><img src="images/pdj.png"></div>
+    </div>
+</div>
+<div id="msg3" class="massge hide" style="height: 130px;">
+    <div class="headimg"><img src="images/head2.png"></div>
+    <div class="mname">张靓颖</div>
+    <div class="mcontent">
+        <div class="mcla">你俩这是在搞笑吗？<img src="images/bq2.png"></div>
+        <div class="jb"><img src="images/pdj.png"></div>
+    </div>
+</div>
+<div id="msg4" class="massge hide" style="height: 160px;">
+    <div class="headimg"><img src="images/head1.png"></div>
+    <div class="mname">王铮亮</div>
+    <div class="mcontent">
+        <div class="mcla">嘿嘿，其实是我的火锅店开业啦，大家都来光顾啊</div>
+        <div class="jb"><img src="images/pdj.png"></div>
+    </div>
+</div>
+<div id="msg5" class="massge hide" style="height: 300px;">
+    <div class="headimg">
+        <img src="images/head1.png" />
+    </div>
+    <div class="mname">
+        王铮亮
+    </div>
+    <div class="mcontent" id="falsePic">
+        <img class="hongbao" src="images/redpick.jpg" />
+        <div class="jb">
+            <img src="images/pdj2.png" />
+        </div>
+        <div class="shandong"></div>
+    </div>
+</div>
+<div id="msg6" class="massge hide" style="height: 140px;">
+    <div class="headimg">
+        <img src="images/head4.png" />
+    </div>
+    <div class="mname">
+        佟丽娅
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            什么都没抢到
+            <img src="images/bq3.png" />
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg7" class="massge hide" style="height: 170px;">
+    <div class="headimg">
+        <img src="images/head2.png" />
+    </div>
+    <div class="mname">
+        张靓颖
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            哈哈，我是不是该唱首《依赖》
+            <img src="images/bq4.png" />安慰一下没抢到的同学
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg8" class="massge hide" style="height: 160px;">
+    <div class="headimg">
+        <img src="images/head6.png" />
+    </div>
+    <div class="mname">
+        霍思燕
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            老公手气不错啊，看来你《高跟鞋先生》要大卖
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg9" class="massge hide" style="height: 120px;">
+    <div class="headimg">
+        <img src="images/head3.png" />
+    </div>
+    <div class="mname">
+        陈思诚
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            哎呦，那杜江更得发个大红包了
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg10" class="massge hide" style="height: 130px;">
+    <div class="headimg">
+        <img src="images/head5.png" />
+    </div>
+    <div class="mname">
+        杜江
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            <img src="images/bq5.png" />
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg11" class="massge hide" style="height: 160px;">
+    <div class="headimg">
+        <img src="images/head5.png" />
+    </div>
+    <div class="mname">
+        杜江
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            您所呼叫的用户，已去陪嗯哼过圣诞节
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg12" class="massge hide" style="height: 160px;">
+    <div class="headimg">
+        <img src="images/head6.png" />
+    </div>
+    <div class="mname">
+        霍思燕
+    </div>
+    <div class="mcontent">
+        <div class="mcla">
+            哈哈，老公发一个，这次看谁手最快
+        </div>
+        <div class="jb">
+            <img src="images/pdj.png" />
+        </div>
+    </div>
+</div>
+<div id="msg13" class="massge hide" style="height: 300px;">
+    <div class="headimg">
+        <img src="images/head5.png" />
+    </div>
+    <div class="mname">
+        杜江
+    </div>
+    <div class="mcontent">
+        <img id="urlPic" class="hongbao" src="images/redpick.jpg" />
+        <div class="jb">
+            <img src="images/pdj2.png" />
+        </div>
+    </div>
+</div>
+<div class="massge" style="height: 153px;"></div>
+<div class="di">
+    <img src="images/di.png" />
+</div>
+<div class="falsePic hide" style="height: 1138px; margin: -569px 0px 0px -320px;">
+    <img src="images/red.png" />
+    <div class="btn1"></div>
+    <div class="btn2"></div>
+</div>
+<div class="nonPic hide" style="height: 1138px; margin: -569px 0px 0px -320px;">
+    <div class="non1">
+        <img src="images/red1.jpg" />
+    </div>
+    <div class="non2">
+        <div class="shandong1"></div>
+        <img src="images/red2.png" />
+    </div>
+    <div class="non3">
+        <img src="images/red3.jpg" />
+    </div>
+</div>
+<div class="falsePic2 hide" style="height: 1138px; margin: -569px 0px 0px -320px;">
+    <img src="images/redng.png" />
+</div>
+<div style="display: none;">
+    <script src="http://s11.cnzz.com/z_stat.php?id=1257033556&amp;web_id=1257033556" language="JavaScript"></script>
+    <script src="http://c.cnzz.com/core.php?web_id=1257033556&amp;t=z" charset="utf-8" type="text/javascript"></script>
+    <a href="http://www.cnzz.com/stat/website.php?web_id=1257033556" target="_blank" title="站长统计">站长统计</a>
+</div>
+</body>
+</html>

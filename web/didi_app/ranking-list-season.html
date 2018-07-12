@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>土豪大pk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout_sub.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/comm.js?v=160408"></script>
+    <script type="text/javascript" src="js/ranking.js?v=160478"></script>
+</head>
+<body>
+
+<div class="tuhao_box">
+    <section class="tuhao-banner" >
+        <img src="images/season_banner3.png?v=060713">
+        <a class="tuhao-bd" href="/app/ranking_season_past.html?t=0"><img src="images/tuhao_icon01.png"></a>
+        <a class="tuhao-jl" href="/app/ranking_season_past.html?t=1">中奖记录</a>
+    </section>
+    <ul class="tuhao-list">
+    </ul>
+
+    <div class="tuhao-prepaid" style="display: none">
+
+    </div>
+
+    <div class="tuhao-info" >
+        <h2>第三季土豪榜说明：</h2>
+        <aside>为回报广大小伙伴对滴滴夺宝的支持与厚爱，特推出“第三季土豪冲级赛”，前一百名皆有奖励！</aside>
+        <p>1、活动时间：<span>8月4日至8月31日</span></p>
+        <p>2、活动要求：</p>
+        <article class="tuhao-info01">
+            <p>a. 活动期间，按照用户消费的金额进行排名,10分钟更新一次排行榜。</p>
+            <p>b. 活动结束后，排名前100名的用户均可获得对应的奖品（下个月1号公布最终结果）;</p>
+            <p>c. 严禁使用任何违规手段，一经发现，封号处理。</p>
+        </article>
+        <p>3、奖项设置</p>
+        <img class="w100" src="images/tuhao_jiangping.png">
+        <article class="tuhao-info02">
+            <p><span>第1名：</span>iPhone6S 64G (￥5788)</p>
+            <p><span>第2名：</span>Apple ipad mini 4 (16G WLAN) (￥2888)</p>
+            <p><span>第3名：</span>小米note3(16g) (￥899)</p>
+            <p><span>第4-10名：</span>288元直减红包</p>
+            <p><span>第11-50名：</span>58元直减红包</p>
+            <p><span>第51-100名：</span>28元直减红包</p>
+        </article>
+        <p>4、请获奖用户及时在【中奖记录】中，点击【领取】进入完善收货地址或领取夺宝币。</p>
+        <p>5、实物奖品将在完善收货地址后7个工作日内发出，详细的物流信息请在“我的”—“活动奖品”中进行查看。超过七天无法联系视为主动放弃。</p>
+        <p>6、请非手机注册的用户及时绑定手机，以便客服第一时间与您取得联系。</p>
+        <p>7、该活动的解释权在法律规定的范围内归滴滴夺宝所有。</p>
+        <p class="apple" style="display: none;">声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $(function() {
+        var isiOS = isIos();
+        if (isiOS) {
+            $(".apple").show();
+        }
+
+        //季土豪
+        seasonUrl = apiBaseUrl+'/rich/detail?t=season';
+        $.getJsonp(seasonUrl,{},function(json) {
+            if(json.append != ''){
+                createSelf(json.append, 1);
+            }
+            createListHtml(json, '消费');
+        });
+
+    });
+
+
+    //未上榜，则增加
+    function createSelf(append, ex)
+    {
+        var html = '';
+        html += '<div class="tuhao-inner">';
+        html += '<img class="tuhao-icon" src="images/tuhao_icon07.png">';
+        html += '<picture><img src="' + append.avatar + '"></picture>';
+        html += '<h3>' + append.username + '</h3>';
+        html += '<a href="/app/ranking?type=4">充值</a>';
+        if(ex == 1){
+            html += '<span>消费：' + append.money + '</span>';
+        }else{
+            html += '<span>单笔消费：' + append.money + '</span>';
+        }
+        html += '</div>';
+        $('.tuhao-prepaid').html(html);
+    }
+
+    function  createListHtml(json, append) {
+        var html = '';
+        $.each(json.list, function (i, v) {
+            n = v.id + 1;
+            if (i < 3) {
+                html += '<li class="tuhao-act0'+ n +'">';
+            } else if(i<10) {
+                html += '<li>';
+            } else {
+                html += '<li style="display:none;">';
+            }
+
+            if(n.length<2) n = '0' + n;
+            html += '<i>' + n + '</i>';
+            html += '<a href="/app/ranking?type=5&home_id=' + v.home_id + '&user_id=' + v.user_id + '">';
+            html += '<picture><img src="' + v.avatar + '"></picture>';
+            html += '<h3>' + v.username + '</h3>';
+            if(append == '消费'){
+                html += '<span style="width: 86px;">' + append + '：' + v.money + '</span>';
+            }else{
+                html += '<span>' + append + '：' + v.money + '</span>';
+            }
+            html += '</a>';
+            html += '</li>';
+        });
+        html += '<a href="javascript:;" class="view-more"><span>查看剩余排名</span></a>';//上下箭头切换，去掉active即可
+
+        $('.tuhao-list').html(html);
+
+        $('.view-more').on('click',function() {
+            if ($('.view-more span').hasClass('active')) {
+                $('.tuhao-list li:gt(9)').hide();
+                $('.view-more span').removeClass('active');
+            } else {
+                $('.tuhao-list li:gt(9)').show();
+                $('.view-more span').addClass('active');
+            }
+        });
+    }
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% extends '@app/views/base.html' %}
+
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/weixinPay.css" />
+{% endblock %}
+{% block title %}手Q扫码支付{% endblock %}
+{% block body %}
+<script language="javascript" type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery-1.11.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="{{ app.params.skinUrl }}/js/common.js"></script>
+<script type="text/javascript">
+    $(function(){
+        setInterval(function () {
+            $.getContent( apiBaseUrl + '/recharge/result?o={{order.id}}','','payresult');
+        }, 1000);
+
+        $('#qr_box').mouseover(function(){
+            $('.guide').css('display','block').stop().animate({marginLeft:160,opacity:1},1000,function(){
+                $('.guide').stop().animate({marginLeft:140},500);
+            });
+        }).mouseout(function(){
+            $('.guide').stop().animate({marginLeft:-101,opacity:0,'display':'none'},300);
+        })
+    })
+    function success_payresult(json){
+        if (typeof json.url != 'undefined') {
+            window.location.href = json.url;
+        };
+    }
+</script>
+<!--内容区-->
+<input name="hidIsBuyPay" type="hidden" id="hidIsBuyPay" value="{{order.paytype}}">
+<div class="wx_header">
+    <div class="wx_logo">
+        <img title="手Q支付" alt="手Q支付标志" src="{{ app.params.skinUrl }}/frontend/images/qqlogo_pay.png"></div>
+</div>
+<div class="weixin">
+    <div class="weixin2">
+        <b class="wx_box_corner left pngFix"></b><b class="wx_box_corner right pngFix"></b>
+        <div class="wx_box pngFix">
+            <div class="wx_box_area">
+                <div class="pay_box qr_default">
+                    <div class="area_bd"><span class="wx_img_wrapper" id="qr_box">
+                            <img id="payQRImg" class="qrcode" src="{{qrcode}}" alt="二维码" style="border-width:0px;">
+                            <img class="guide pngFix" src="{{ app.params.skinUrl }}/frontend/images/qqwebpay_guide.png" alt="" id="guide">
+                        </span>
+                        <div class="msg_default_box"><i class="icon_wx pngFix"></i>
+                            <p>
+                                请使用手机QQ<br>
+                                扫一扫完成支付
+                            </p>
+                        </div>
+                        <div class="msg_box"><i class="icon_wx pngFix"></i>
+                            <p><strong>扫描成功</strong>请在手机确认支付</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wx_hd">
+                <div class="wx_hd_img icon_wx"></div>
+            </div>
+            <div class="wx_money"><span>￥</span>{{order.post_money}}.00</div>
+            <!--支付订单号-->
+            <div class="wx_pay">
+                <p><span class="wx_left">支付订单号</span><span class="wx_right">{{order.id}}</span></p>
+                <!--p><span class="wx_left">支付订单号</span><span class="wx_right"></span></p-->
+            </div>
+            <div class="wx_kf">
+                <div class="wx_kf_img icon_wx"></div>
+                <div class="wx_kf_wz">
+                    <p>客服</p>
+                    <p>400-000-5000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <section class="footer_d">
+        <div class="wrap clear">
+            <article>
+                <a href="{{ url(['/help/default/about']) }}">关于伙购</a><i>|</i><a href="{{ url(['/help/default/privacy']) }}">隐私声明</a><i>|</i><a href="{{ url(['/help/info/business'])}}">合作专区</a><i>|</i><a href="{{ url(['/help/default/jobs']) }}">加入伙购</a><i>|</i><a href="{{ url(['/help/default/contactus']) }}">联系我们</a>
+            </article>
+            <aside>Copyright © 2015 - 2020, 版权所有 huogou.com 粤ICP备15087800号-1</aside>
+            <summary>
+                <a class="ity01" href="https://credit.szfw.org/CX20151027011761130180.html" target="_blank"></a>
+                <a class="ity02" href="https://ss.knet.cn/verifyseal.dll?sn=e15102844030061182mvdq000000&ct=df&a=1&pa=0.8931514616124332" target="_blank"></a>
+                <a class="ity03" href="" target="_blank">
+                    <iframe src="http://ss.51honest.org///detail.credit?action=credcode&axbCode=SRG052885&logo=logo_4" frameborder="0" scrolling="no" width="88" height="28" style="margin:0 -2px 3px 0"></iframe>
+                </a>
+                <a class="ity04" href="http://szcert.ebs.org.cn/1bd62efa-4a6b-4be5-9378-1f6582a6d5dc" target="_blank">
+                </a>
+                <a class="ity05" href="http://www.ectrustprc.org.cn/certificate.id/certificateb.php?id=20053253" target="_blank">
+                </a>
+                <a class="ity06" href="http://www.itrust.org.cn/Home/Index/itrust_certifi?wm=1342684780" target="_blank">
+                </a>
+            </summary>
+        </div>
+    </section>
+</footer>
+
+{% endblock %}

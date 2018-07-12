@@ -1,0 +1,199 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">佣金管理</strong></div>
+    </div>
+
+    <div class="am-g">
+      {{ html.beginForm('', 'post', {}) | raw }}
+      <div class="am-u-sm-12 am-u-md-2">
+        <div class="am-form-group">
+          状态：
+          <select name="status" id="status" data-am-selected>
+            <option value="-1" {% if condition.status == -1 %}selected{% endif %}>全部</option>
+            <option value="0" {% if condition.status == 0 %}selected{% endif %}>新建</option>
+            <option value="1" {% if condition.status == 1 %}selected{% endif %}>运营审核成功</option>
+            <option value="2" {% if condition.status == 2 %}selected{% endif %}>运营审核失败</option>
+            <option value="3" {% if condition.status == 3 %}selected{% endif %}>财务审核成功</option>
+            <option value="4" {% if condition.status == 3 %}selected{% endif %}>财务审核失败</option>
+          </select>
+        </div>
+      </div>
+      <div class="am-u-sm-12 am-u-md-6">
+        <div class="am-form-group">
+          <div class="am-u-sm-2">
+            操作时间：
+          </div>
+          <div class="am-u-sm-5">
+            <input type="text" class="am-form-field" id="my-start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+          </div>
+          <div class="am-u-sm-5">
+            <input type="text" class="am-form-field" id="my-end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+          </div>
+        </div>
+      </div>
+      <div class="am-u-sm-12 am-u-md-2">
+        <div class="am-input-group am-input-group-sm">
+          <input type="text" name="account" class="am-form-field" placeholder="请输入手机号/邮箱" value="{{ condition.account }}">
+          <span class="am-input-group-btn">
+              <button class="am-btn am-btn-default" type="submit">搜索</button>
+          </span>
+        </div>
+      </div>
+      <div class="am-u-sm-12 am-u-md-1">
+        <div class="am-input-group am-input-group-sm">
+          <button class="am-btn am-btn-default" type="button"><a href="{{ url }}" >导出全部</a></button>
+        </div>
+      </div>
+      {{ html.endForm() | raw }}
+    </div>
+
+    <div class="am-tabs am-u-sm-4" id="doc-my-tabs">
+      <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+        <li class="am-active"><a href="{{ url('commission/withdraw') }}">提现到银行卡</a></li>
+        <li ><a href="{{ url('commission/recharge') }}">充值到账户</a></li>
+      </ul>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+            <tr>
+              <th>编号</th>
+              <th>会员</th>
+              <th>提现金额</th>
+              <th class="am-hide-sm-only">开户行</th>
+              <th class="am-hide-sm-only">户名</th>
+              <th class="am-hide-sm-only">账号</th>
+              <th class="am-hide-sm-only">联系电话</th>
+              <th class="am-hide-sm-only">状态</th>
+              <th class="am-hide-sm-only">时间</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td><a href="javascript:;" class="user_invite" id="{{ item.user_id }}" target="_self">{% if item.user_phone and item.email %}{{ item.user_phone }}<br>{{ item.email }}{% else %}{{ item.user_phone|default(item.email) }}{% endif %}</a></td>
+                <td>{{ item.money }}</td>
+                <td class="am-hide-sm-only"> {{ item.bank }}</td>
+                <td class="am-hide-sm-only"> {{ item.account }}</td>
+                <td class="am-hide-sm-only"> {{ item.bank_number }}</td>
+                <td class="am-hide-sm-only"> {{ item.phone }}</td>
+                <td class="am-hide-sm-only">
+                  {% if item.status ==0 %}
+                  新建
+                  {% elseif item.status==1 %}
+                  运营审核成功
+                  {% elseif item.status==2 %}
+                  运营审核失败
+                  {% elseif item.status==3 %}
+                    财务审务成功
+                  {% elseif item.status==3 %}
+                  财务审务失败
+                  {% endif %}
+                </td>
+                <td class="am-hide-sm-only"> {{ item.apply_time|date('Y-m-d H:i:s') }}</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                        {% if item.status==0 %}
+                        <a href="javascript:;" data-id="{{ item.id }}" class="link"> 审核</a>
+                        {% else %}
+                          <a href="javascript:;" data-id="{{ item.id }}" class="link"> 查看</a>
+                        {% endif %}
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <div class="am-cf">
+            <div class="am-fr">
+              <div class="am-cf">
+                <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                <div class="am-fr">
+                  {{ use('/app/widgets/BackendLinkPager') }}
+                  {{ backend_link_pager_widget({'pagination': pagination}) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+{% endblock %}
+
+{% block script %}
+  <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+  <script>
+    $('#status').selected({
+      btnWidth: '100px',
+    });
+    laydate({
+      elem: '#my-start',
+      format: 'YYYY/MM/DD hh:mm:ss',
+      //min: laydate.now(), //设定最小日期为当前日期
+      max: '2099-06-16 23:59:59', //最大日期
+      istime: true,
+      istoday: false,
+      choose: function(datas){
+        end.min = datas; //开始日选好后，重置结束日的最小日期
+        end.start = datas //将结束日的初始值设定为开始日
+      }
+    });
+
+    laydate({
+      elem: '#my-end',
+      format: 'YYYY/MM/DD hh:mm:ss',
+      //min: laydate.now(), //设定最小日期为当前日期
+      max: '2099-06-16 23:59:59', //最大日期
+      istime: true,
+      istoday: false,
+      choose: function(datas){
+        end.min = datas; //开始日选好后，重置结束日的最小日期
+        end.start = datas //将结束日的初始值设定为开始日
+      }
+    });
+    $('.link').click(function(){
+      var id = $(this).attr('data-id');
+      var urls = '{{ url('commission/withdraw-view') }}' + '?id=' + id;
+      layer.open({
+        type: 2,
+        area: ['700px', '530px'],
+        fix: false, //不固定
+        maxmin: true,
+        shade: false,
+        content: urls
+      });
+    });
+    $('.user_invite').click(function(){
+      var id = $(this).attr('id');
+      var urls = "{{ url(['/admin/member/invite']) }}" + '?id=' + id;
+      var index = layer.open({
+        type: 2,
+        area: ['700px', '530px'],
+        fix: false, //不固定
+        maxmin: true,
+        shade: false,
+        content: urls
+      });
+      layer.full(index);
+    });
+  </script>
+{% endblock %}
+

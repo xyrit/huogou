@@ -1,0 +1,161 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ detail.name }},伙购网,1元购手机,1元购电脑,1元购笔记本电脑,1元购物,伙购{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}{{ detail.name }}_伙购圈{% endblock %}
+
+{% block body %}
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+
+    {% include '@app/modules/group/views/groupheader.html' %}
+    <section class="hgq-content globe-m">
+
+        <div class="hg-circle">
+        <div class="hg-circle-title">
+            <div class="left">
+                <picture>
+                    <img src="{{ app.params.skinUrl }}/img/finda{{ detail.id }}.png" alt="">
+                </picture>
+                <summary>
+                    <h2>{{ detail.name }}
+                        {% if (app.user.id != '') %}
+                            {% if (isJoin.id != '') %}
+                                <a href="javascript:;" class="group-quit" data-id="{{ detail.id }}">退出</a>
+                            {% else %}
+                                {% if(detail.group_closed == '0') %}
+                                    <a href="javascript:;" class="group-join" data-id="{{ detail.id }}">申请加入</a>
+                                {% endif %}
+                                {% endif %}
+                        {% endif %}
+                    </h2>
+                    <aside>成员：{{ detail.user_count }} &nbsp;&nbsp;&nbsp; 话题：{{ detail.topic_count }} &nbsp;&nbsp;&nbsp; 精华：{{ detail.digest_count }} &nbsp;&nbsp;&nbsp; 创建时间：{{ detail.created_at }}</aside>
+                    <p>{{ detail.intro }} </p>
+                </summary>
+            </div>
+            <div class="right">
+                <i class="floor"></i>
+                <picture><img src="{{ avatar }}" alt=""></picture>
+                {% if(detail.adminuser.home_id) %}
+                    <a href="{{ url('/user', {'id':detail.adminuser.home_id}) }}" target="_blank">{{ detail.adminuser.username }}</a>
+                {% else %}
+                    <a href="" target="_blank">伙购</a>
+                {% endif %}
+                <aside><b><img src="{{ app.params.skinUrl }}/img/g_circles03.png" alt=""></b>伙购官方</aside>
+            </div>
+        </div>
+
+        <div class="hg-notice">
+            <h2>圈子公告：</h2>
+            <p>{{ detail.notice|default('暂无') }}{{ topic_closed }}</p>
+        </div>
+
+        {% if ((detail.topic_closed == 0) or (detail.adminuser.id == app.user.id)) %}
+            {{ html.beginForm('default/add-topic', 'post', {'class':'am-form-horizontal'}) | raw }}
+                <div class="hg-neweditor-wrap">
+                    <div class="hg-neweditor-ipt">
+                        <input type="text" value="点击展开" name="Topic[title]" maxlength="80" data-id="{{ app.user.id }}" join-id="{{ isJoin.id }}" autocomplete="off">
+                        <input type="password" style="display: none;">
+                        <a href="javascript:;" class="topicBtn">发表话题</a>
+                    </div>
+                    <div class="hg-neweditor-container">
+                        <textarea name="Topic[content]" id="hg-neweditor"></textarea>
+                    </div>
+                </div>
+            <input type="hidden" name="Topic[groupId]" value="{{ detail.id }}">
+            {{ html.endForm() | raw }}
+        {% endif %}
+
+        <ul class="hg-con-title clear">
+        {% if (topicId == '1') %}
+            <li class="act"><a href="{{ url('default/view', {'id':detail.id}) }}">话 题</a></li>
+            <li><a href="{{ url('default/view', {'id':detail.id, 't':3}) }}">精 华</a></li>
+        {% else %}
+            <li><a href="{{ url('default/view', {'id':detail.id}) }}">话 题</a></li>
+            <li class="act"><a href="{{ url('default/view', {'id':detail.id, 't':3}) }}">精 华</a></li>
+        {% endif %}
+        </ul>
+        <ul class="hg-con-list">
+            {% for item in topic %}
+                {% if (item.status == 1) %}
+                    <li>
+                        <summary>
+                            <picture><img src="{{ item.user_avatar }}" alt=""></picture>
+                            <a href="{{ url('/user', {'id':item.username.home_id}) }}" target="_blank">{{ item.username.username }}</a>
+                            <p><i><img src="{{ app.params.skinUrl }}/img/{{ item.username.level.pic }}" alt=""></i>{{ item.username.level.name }}</p>
+                        </summary>
+                        <div class="hg-con-list-a">
+                            <i class="arrow"></i>
+                            <h3>
+                                <a href="{{ url('topic/view', {'id':item.id}) }}">{{ item.subject[:30] }}
+                                    {% if(item.subject|length > 30) %}...{% endif %}</a>
+                                {% if(item.top == 1)%}<img src="{{ app.params.skinUrl }}/img/o_pic32.png">{% endif %}
+                                {% if(item.digest) %}<img src="{{ app.params.skinUrl }}/img/o_pic30.png">{% endif %}
+                                {% if(item.img) %}<img src="{{ app.params.skinUrl }}/img/o_pic31.png">{% endif %}<span>{% if(item.created_at == '0分钟前') %}刚刚{% else %}{{ item.created_at}}{% endif %}</span>
+                            </h3>
+                            <div class="hg-con-list-a-nr">
+                                {% autoescape true %}{{ item.message.content[:145]|striptags }}{% endautoescape %}
+                                {% if(item.message.content|length >= 140) %}...{% endif %}
+                            </div>
+                            <ul class="post-pic clearfix" style="overflow: hidden">
+                                {% for val in item.message.images  %}
+                                    <li style="float: left;margin-right:15px;">{% autoescape true %}{{ val|replace({'/grouppic/org': '/grouppic/small'})|raw }}{% endautoescape %}</li>
+                                {% endfor %}
+                            </ul>
+                            <article>
+                                <p>最后回复：
+                                    {% if (item.last_comment_time) %}
+                                        <a href="{{ url('/user', {'id':item.commentuser.home_id}) }}" target="_blank">{{ item.commentuser.username }}</a>{{ item.last_comment_time}}</p>
+                                {% else %}
+                                    暂无回复
+                                {% endif %}
+                                <aside>
+                                    <span class="reply"><a href="{{ url('topic/view', {'id':item.id}) }}" target="_blank">回复({{ item.comment_count }})</a></span> <em>/</em> <span class="like"><a href="{{ url('topic/view', {'id':item.id}) }}" target="_blank">人气({{ item.view_count }})</a></span>
+                                </aside>
+                            </article>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+            {{ use('/app/widgets/LinkPager') }}
+            {{ link_pager_widget({pagination: pagination}) }}
+    </div>
+
+        <div class="hgq-content-right">
+            <div class="hot-member clear">
+                <div class="hot-title">
+                    <h2>最新加入</h2>
+                </div>
+                <ul class="newJoin">
+                </ul>
+            </div>
+            <div class="hot-theme clear" style="border:0;">
+                <div class="hot-title">
+                    <h2>圈子动态</h2>
+                </div>
+                <ul class="newTopic">
+
+                </ul>
+            </div>
+        </div>
+
+    </section>
+    {% include '@app/views/footer.html' %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/group.js" ></script>
+<script charset="utf-8" src="{{ app.params.skinUrl }}/frontend/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="{{ app.params.skinUrl }}/js/group_topic.js"></script>
+    <script charset="utf-8" src="{{ app.params.skinUrl }}/js/group_new.js"></script>
+    <script>
+        $(function(){
+            var groupid = {{ detail.id }};
+            newJoin(groupid);
+            groupNew(groupid);
+        })
+    </script>
+{% endblock %}

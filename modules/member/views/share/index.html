@@ -1,0 +1,116 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block css%}
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/layout-Frame.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/layout-topic.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/layout-commodity.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/Comm.css" />
+{% endblock %}
+
+{% block title %}晒单_伙购网{% endblock %}
+
+{% block main %}
+    <div class="R-content">
+        <div class="subMenu">
+            <a href="javascript:void();" title="已晒单" class="current">已晒单<span id="postCount"></span></a>
+            <a href="javascript:void();" title="未晒单" class="" id="notShare">未晒单<span id="unPostCount">({{ notShareOrderCount }})</span></a>
+        </div>
+        <div class="single-titR">成功晒单并通过审核即可获得相应福分（限时商品除外）</div>
+        <div id="PostList0" class="single-C list-tab" style="display: block;">
+            <ul class="listTitle">
+                <li class="single-img">晒单图片</li>
+                <li class="single-xx-has">晒单信息</li>
+                <li class="sdzt">晒单状态</li>
+                <li class="single-Control">操作</li>
+            </ul>
+            {% for item in list %}
+            <ul>
+                <li class="single-img">
+                    <a href="{% if item.is_pass == 1 %}{{ url('/share/default/detail', {'id': item.id}) }}{% else %}/share/detail-{{ item.id }}.html{% endif %}">
+                        <img alt="" src="{{ item.url }}" />
+                    </a>
+                </li>
+                <li class="single-xx-has">
+                    <p>
+                        <a href="{% if item.is_pass == 1 %}{{ url('/share/default/detail', {'id': item.id}) }}{% else %}/share/detail-{{ item.id }}.html{% endif %}" class="blue">{{ item.title }}</a>
+                        <span class="gray02">{{ item.created_at|date('Y-m-d H:i:s') }}</span>
+                    </p>
+                    {{ item.content | slice(0, 40) }}...
+                </li>
+                <li class="sdzt">
+                    <p class="gray02">{% if item.is_pass == 0 %}审核中{% elseif item.is_pass == 1 %}审核通过{% else %}审核未通过{% endif %}</p>
+                </li>
+                <li class="single-Control">
+                    <a href="{% if item.is_pass == 1 %}{{ url('/share/default/detail', {'id': item.id}) }}{% else %}/share/detail-{{ item.id }}.html{% endif %}" class="blue" title="详情">详情</a>
+                </li>
+            </ul>
+            {% endfor %}
+            <!--没有晒单显示无记录-->
+            {% if(list) %}
+            {% else %}
+            <div class="tips-con">
+                <i></i>暂无记录！
+            </div>
+            {% endif %}
+
+        </div>
+        <div id="PostList1" class="single-C list-tab" style="display: none;">
+            <ul class="single-tit listTitle">
+                <li class="single-img">商品图片</li>
+                <li class="single-xx-not">商品信息</li>
+                <li class="single-Control">操作</li>
+            </ul>
+        </div>
+        <div id="divPageNav0" class="page_nav" style="display: block;"></div>
+        <div id="divPageNav1" class="page_nav" style="display: none;"></div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    function createShareAddUrl(periodId) {
+        return 'http://member.'+baseHost+'/share/add-'+periodId+'.html';
+    }
+    var isLoaded = false;
+    $("#notShare").bind('click', function() {
+        if (isLoaded == true) {
+            return false;
+        }
+        $.ajax({
+            async: false,
+            url: apiBaseUrl + '/share/not-share-order',
+            type: "GET",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: {'t': 1},
+            success: function (msg) {
+                if (msg.length != 0) {
+                    var list = msg.list;
+                    $("#PostList1").append('<ul>');
+                    for (var i in list) {
+                        goodsUrl = createGoodsUrl( list[i].goods_id);
+                        goodsPicUrl = createGoodsImgUrl(list[i].goods_picture, photoSize[0], photoSize[0]);
+                        shareAddUrl = createShareAddUrl(list[i].period_id);
+                        var strHtml = '<li class="single-img"><a href="'+goodsUrl+'" target="_blank">';
+                        strHtml += '<img alt="" src="'+goodsPicUrl+'" /></a></li>';
+                        strHtml += '<li class="single-xx-not"><p class="get-name">';
+                        strHtml += '<a target="_blank" href="'+goodsUrl+'" class="blue">(第'+list[i].period_number+'云)'+list[i].goods_name+'</a>';
+                        strHtml += '</p><p class="buy-money">价值：<span class="money"><i class="rmb"></i>'+list[i].price+'</span></p>';
+                        strHtml += '<p class="buy-code">幸运伙购码：'+list[i].lucky_code+'</p><p class="buy-time">揭晓时间：'+list[i].raff_time+'</p>';
+                        strHtml += '</li><li class="single-Control"><a href="'+shareAddUrl+'" class="blue">立即晒单</a></li></ul>';
+                        $("#PostList1").append(strHtml);
+                    }
+                    $("#PostList1").append('</ul>');
+                } else {
+                    $("#PostList1").append('<div class="tips-con"><i></i>暂无记录！</div>');
+                }
+                isLoaded = true;
+            }
+        });
+    });
+</script>
+{% endblock %}

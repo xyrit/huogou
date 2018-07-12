@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>消息详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/comm.js?v=160325"></script>
+</head>
+<body>
+	<section class="message-detail">
+
+	</section>
+</body>
+<script>
+	$(function() {
+		var url = apiBaseUrl+'/app/lottery-msg-info';
+		var msgId = getUrlParam('id');
+		var data = {'id':msgId};
+		$.getJsonp(url,data,function(json) {
+			var info = json.info;
+			var id = info.id;
+			var title = info.title;
+			var content = info.content;
+			var time = info.time;
+			var view = info.view;
+
+			var html = '';
+			html += '<div class="message-detail-title">';
+			html += '<h2>'+title+'</h2>';
+			html += '<p>'+time+'</p>';
+			html += '</div>';
+			html += '<div class="message-detail-con">';
+			html += '<article>';
+			html += '<p>'+content+'</p>';
+			html += '</article>';
+			html += '</div>';
+			$('.message-detail').html(html);
+		});
+	});
+</script>
+</html>

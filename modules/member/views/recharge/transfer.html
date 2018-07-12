@@ -1,0 +1,69 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}账户转账_伙购网{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section id="invite_tishi">
+        <p></p>
+        <b></b>
+    </section>
+
+    <section class="member">
+        <div class="wrap clear">
+            <div class="member_sub">
+                {% include '@memberModule/views/nav.html' %}
+            </div>
+
+            <div class="acc-info">
+                <h2>账户转账<a href="">转账记录</a></h2>
+                <div class="acc-info-balance">
+                    <em>温馨提示：</em><p>转帐申请处理成功后，系统会自动将款项转入对方帐户并将转账结果通知收款人。<br></p>
+                </div>
+
+                <div class="acc-zz">
+                    <summary>
+                        <label for="">收款账号：</label><input placeholder="邮箱/手机号码" type="text" name="username"> <em><i id="msg" style="font-size: 14px;;"></i></em>
+                    </summary>
+                    <summary>
+                        <label for="">转账金额：</label><input placeholder="整数金额" type="text" name="account"><em>账户余额：<i>{{ userInfo.money }}</i>元</em>
+                    </summary>
+                    <summary class="w360">
+                        <label for="">转账说明：</label><input placeholder="选填" type="text" name="account">
+                    </summary>
+                    <!--<summary>
+                        <label for="">支付密码：</label><input type="password" name="paypwd" placeholder="支付密码" ><em><i style="font-size: 14px;;"></i>
+                    </summary>-->
+                    <summary>
+                        <input type="submit" id="sub">
+                    </summary>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    {% include '@app/views/footer.html' %}
+
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i id="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block js %}
+ <script type="text/javascript" src="{{ app.params.skinUrl }}/js/recharge.js"></script>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}验证身份{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/registercheck.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <div class="registerCon">
+      <input type="hidden" id="inpMobile" value="{{ phone }}" />
+      <ul>
+        <li>
+          <input id="mobileCode" type="text" placeholder="请输入系统发送给您的6位验证码"></li>
+        <li><a id="btnPostCode" href="javascript:void(0);" class="orangeBtn">确认，下一步</a></li>
+        <li>如未收到验证短信，请在150秒后点击重新发送</li>
+        <li><a id="btnGetCode" href="javascript:;" class="resendBtn">重新发送</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+{% endblock %}

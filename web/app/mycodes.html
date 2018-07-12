@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link href="css/newcomm.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js"></script>
+    <style>
+        .mycodes li.mycodes_li{ background-color: #fff; border-bottom: 1px solid #dfdfdf; font-size: 14px;}
+        .mycodes li.mycodes_li a:active.mycodes_a{ background-color: #ebebeb;}
+        .date_li{ padding: 0 2%; color: #666; line-height: 48px;}
+        .date_li_l{ width: 60%;}
+        .date_li_r{ width: 40%; position:relative;}
+        .date_li_r span{ margin-left: 20px;}
+        .date_li_r i.date_num{ color: #fe500b;}
+        .date_li_r b.codes_btn{ width: 12px; height: 12px; background: url("images/codes_btnb.png") no-repeat center; background-size: 100%; font-style: normal; position: absolute; right: 10px; top:17px; display: inline-block;}
+        .date_li_r b.codes_btn.codes_btnt{ background: url("images/codes_btnt.png") no-repeat center; background-size: 100%; }
+        .date_list{ background-color: #fff; color: #666; display: none; border-top: 1px solid #dfdfdf; padding:4% 2%; width: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}
+        .date_list ul li{ float: left; width: 25%; line-height: 180%; text-align: center;}
+    </style>
+</head>
+<body>
+    <ul class="mycodes clearfix">
+
+    </ul>
+
+    <script>
+        $(function() {
+            var periodId = getUrlParam('period_id');
+
+            var url = apiBaseUrl + '/record/buy-detail';
+            var data = {id:periodId};
+            $.getJsonp(url,data,function(json) {
+                var luckCode = json.periodInfo.lucky_code;
+                var html = '';
+                $.each(json.buyDetail, function(i,v) {
+                    var buyTime = v.buy_time;
+                    var codes = v.codes;
+                    var codesNum = codes.length;
+
+                    html += '<li class="mycodes_li clearfix">';
+                    html += '<a class="mycodes_a">';
+                    html += '<div class="date_li clearfix">';
+                    html += '<div class="date_li_l fl">';
+                    html += '<span>'+buyTime+'</span>';
+                    html += '</div>';
+                    html += '<div class="date_li_r fr">';
+                    html += '<span>共<i class="date_num">'+codesNum+'</i>人次</span>';
+                    html += '<b class="codes_btn"></b>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '<div class="date_list">';
+                    html += '<ul class="clearfix">';
+                    $.each(codes,function(i,v) {
+                        if (luckCode==v) {
+                            html += '<li style="color: #fe500b;">'+v+'</li>';
+                        }else{
+                            html += '<li>'+v+'</li>';
+                        }
+                    });
+                    html += '</ul>';
+                    html += '</div>';
+                    html += '</a>';
+                    html += '</li>';
+
+                });
+
+                $('.mycodes').html(html);
+
+            });
+
+
+
+            $('.mycodes').on('click','li',function(){
+                $(this).find('.date_list').toggle();
+                $(this).find('.codes_btn').toggleClass('codes_btnt');
+            });
+        });
+
+    </script>
+</body>
+</html>

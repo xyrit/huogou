@@ -1,0 +1,37 @@
+<section class="sidebar">
+<div id="car-inner">
+      <div class="car-inner-top">
+        <h2>购物车</h2>
+        <a href="{{ url(['/cart']) }}">全屏查看</a>
+      </div>
+      <div class="car-list-wrap">
+        <div id="car-list"></div>
+      </div>
+      <div class="car-inner-bottom">
+        <p></p>
+        <a href="{{ url(['/payment']) }}" class="topay-btn">去结算</a>
+      </div>
+    </div>
+  <article>
+    <a class="sidebar_shop" target="_blank" href="{{ url(['/cart']) }}"><i></i><b>(0)</b>购<br />物<br />车<br /></a>
+    <a class="sidebar_01" href="javascript:;">
+      <i></i>
+      <p>400-000-5000</p>
+        <span>联系<br />电话</span>
+    </a>
+    <a id="service_qq_c" class="sidebar_02" href="javascript:;">
+        <span>在线<br />客服</span>
+    </a>
+    <a class="sidebar_03" href="{{ url(['/help/default/app']) }}" target="_blank">
+      <i></i>
+      <p><img src="{{ app.params.skinUrl }}/img/interact/interact_icon02.png" width="71" height="71" alt=""><br>下载手机端</p>
+        <span>手机<br />APP</span>
+    </a>
+    <a class="sidebar_04" href="{{ url(['/member/recharge']) }}" target="_blank">
+        <span>在线<br />充值</span>
+    </a>
+    <a id="get_top" class="sidebar_05" href="javascript:;">
+        <span>置<br />顶</span>
+    </a>
+  </article>
+</section>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>往期土豪榜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout_sub.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js?v=160325"></script>
+    <script src="js/ranking.js"></script>
+    <style>
+        .nav_ul .act_color{color:#ef2828}
+    </style>
+</head>
+
+<body>
+
+<section id="tuhao-nav">
+    <ul class="nav_ul">
+        <li class="act">
+            <a class="act_color" href="javascript:">往期榜单</a>
+        </li>
+        <li>
+            <a href="javascript:;">中奖记录</a>
+        </li>
+    </ul>
+</section>
+<div class="tuhao_box">
+    <ul class="tuhao-wq">
+    </ul>
+
+    <div class="notice-record-1" style="display: none;">
+        <img src="images/icon03.png">
+        <p>暂无记录!</p>
+    </div>
+</div>
+<div class="tuhao_box">
+    <div class="tuhao-title">
+        <span class="tuhao-title-m">名次</span><span class="tuhao-title-s">时间</span><span class="tuhao-title-p">奖品</span>
+    </div>
+    <ul class="tuhao-zj">
+    </ul>
+
+    <div class="notice-record-2" style="display: none;">
+        <img src="images/icon03.png">
+        <p>暂无记录!</p>
+    </div>
+</div>
+
+<div class="tuhao-fixed">
+    <section>
+        <h2>领取奖励</h2>
+        <i id="no-tuhao"></i>
+        <div>
+            <h3>恭喜您，领取成功</h3>
+            <p id="msg">进入“我的”>“账户明细”查收</p>
+            <a class="closebtn" href="javascript:;">确定</a>
+        </div>
+    </section>
+</div>
+
+</body>
+
+<script type="text/javascript">
+    var param = getUrlParam('t');
+    var data = {page:1,perpage:20};
+    var pastUrl = apiBaseUrl+'/rich/past-list?t=month';
+    var lotteryUrl = apiBaseUrl+'/rich/lottery?t=month';
+    var a = getCookie('a');
+    var h = $(window).height(); //禁止弹出窗口body滑动效果
+
+    if(a == 3) param = 0;
+    delCookie("a");
+    setCookie('b', 3);
+
+    var i = 0;
+    var j= 0;
+    $(function(){
+        $.getJsonp(pastUrl,data,function(json) {
+            if (typeof json.list =='undefined' || json.list.length==0) {
+                i = 1;
+                $('.notice-record-1').show();
+                return;
+            }
+            createListHtml(json);
+        });
+
+        $.getJsonp(lotteryUrl,data,function(json) {
+            if (typeof json.list =='undefined' || json.list.length==0) {
+                j = 2;
+                $('.tuhao-title').hide();
+                $('.notice-record-2').show();
+                return;
+            }
+            createLotteryListHtml(json);
+        });
+    })
+
+    //切换tab数据
+    $('#tuhao-nav .nav_ul').find('li').on('click', function(){
+        var index = $(this).index();
+        $('.act a').removeClass('act_color');
+        $(this).addClass('act').siblings().removeClass('act');
+        $(this).children('a').addClass('act_color');
+        $('.tuhao_box').hide().eq(index).show();
+
+        if(i == 1 ){
+            $('.notice-record-1').show();
+        }
+        if(j == 2){
+            $('.tuhao-title').hide();
+            $('.notice-record-2').show();
+        }
+
+        var isLoading = false;
+        $.onSrollBottom(function() {
+            if (isLoading) {
+                return;
+            }
+            isLoading = true;
+            data.page += 1;
+            if(index == 0){
+                var url = pastUrl;
+            }else if(index == 1){
+                var url = lotteryUrl;
+            }
+            $.getJsonp(url, data, function (json) {
+                var t = function() {
+                    createListHtml(json,true);
+                    if (json.list.length==0) {
+                        data.page -= 1;
+                    } else {
+                        data.page += 1;
+                    }
+                    isLoading = false;
+                }
+                setTimeout(t,1000);
+            });
+        });
+    }).eq(param).trigger('click');
+
+    //匹配url后的参数
+    function getUrlParam(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r!=null) return unescape(r[2]); return null; //返回参数值
+    }
+
+    function createLotteryListHtml(json, append) {
+        var html = '';
+        $.each(json.list,function(i,v) {
+            html += '<li>';
+            html += '<i>第' + v.rank + '名</i>';
+            html += '<div><p>' + v.time + '</p><p>00:00:00</p></div>';
+            html += '<article>';
+            html += '<p>' + v.name + '</p>';
+            if(v.status == 0){
+                if(v.type == 1){
+                    if(v.order == 0){
+                        html += '<a href="/app/rich?type=richlottery&id=' + v.orderId + '">领取</a>';
+                    }else if(v.order == 9){
+                        html += '<a class="alipay" href="javascript:;">已过期</a>';
+                    }else{
+                        html += '<a class="alipay" href="javascript:;">发放中</a>';
+                    }
+                }else{
+                    html += '<a class="alipay" href="javascript:;" data-id="' + v.id + '">领取</a>';
+                }
+            }else if(v.status == 1){
+                html += '<a class="act" href="javascript:;">已领取</a>';
+            }
+            html += '</article>';
+            html += '</li>';
+        })
+        if (append) {
+            $('.tuhao-zj').append(html);
+        } else {
+            $('.tuhao-zj').html(html);
+        }
+        //$('.tuhao-zj').html(html);
+
+        $('.alipay').click(function(){
+            var id = $(this).attr('data-id');
+            var url = apiBaseUrl+'/rich/get-lottery';
+            $.getJsonp(url,{'id': id},function(data) {
+                //alert(typeof(data));return false;
+                if(data.code == 0){
+                    if(data.total == 1){
+                        $('#msg').html('进入“我的”>“账户明细”查收');
+                    }else{
+                        $('#msg').html('进入“我的”>“我的福分”查收');
+                    }
+                    $('.tuhao-fixed').fadeIn();
+                    $('body').css({'height':h,'overflow-y':'hidden'})
+                    $('.closebtn,#no-tuhao').click(function(){
+                        $('.tuhao-fixed').fadeOut();
+                        $('body').css({'height':'100%','overflow-y':'visible'});
+                        location.reload();
+                    })
+                }else{
+                    alert(data.message);
+                }
+            });
+        })
+    }
+
+    function createListHtml(json, append)
+    {
+        var html = '';
+        $.each(json.list,function(i,v) {
+            var url = '/app/ranking_month_past_detail.html?time=' + v.time;
+            html += '<li><a href="' + url + '">月榜单(' + v.time + ')</a></li>';
+        })
+        if (append) {
+            $('.tuhao-wq').append(html);
+        } else {
+            $('.tuhao-wq').html(html);
+        }
+    }
+</script>
+</html>

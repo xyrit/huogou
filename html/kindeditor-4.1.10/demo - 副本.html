@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+   
+    <!--引用路径正确与否决定kindeditor是否被成功引用-->
+
+    <script charset="utf-8" src="kindeditor.js"></script>
+   <script>
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#editor_id',{
+            	items:[ "emoticons"]
+            });
+        });
+
+    </script>
+
+    <!--end kindeditor-->
+</head>
+<body class="">
+
+            <!--编辑器editor 这个id="editor_id"是上面KindEditor.ready(function(K));函数创建一个
+            文本编辑框来替换textarea需要用到的id-->
+        <textarea id="editor_id">
+        </textarea>
+</html>

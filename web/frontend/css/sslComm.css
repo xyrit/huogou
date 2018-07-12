@@ -1,0 +1,197 @@
+@charset "utf-8";
+
+html,body,h1,h2,h3,h4,h5,h6,hr,p,iframe,dl,dt,dd,ul,ol,li,pre,form,fieldset,button,input,textarea,th,td {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #FFF;
+}
+
+body,button,input,select,textarea,fieldset,label {
+    font: 12px/1.5 "\5FAE\8F6F\96C5\9ED1",Arial;
+    color: #666;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+ul,li {
+    list-style: none;
+}
+
+fieldset,img {
+    border: 0 none;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+    color: #999;
+}
+
+cite,strong,em,i,dfn,address,var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+input,select,textarea,button {
+    color: #bbb;
+    font-size: 100%;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+button,input[type=button],input[type=submit] {
+    cursor: pointer;
+}
+
+input[type=search] {
+    -webkit-appearance: textfield;
+}
+
+textarea {
+    overflow-y: auto;
+    resize: vertical;
+}
+
+.clear,.clrfix {
+    zoom: 1;
+}
+
+.clear:after,.clrfix:after {
+    content: ' ';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.hidden,.hide {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+}
+
+a:focus {
+    outline: none;
+    -moz-outline: none;
+}
+
+*html,*html body {
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.orange {
+    color: #f60;
+}
+
+.gray3 {
+    color: #333;
+}
+
+.gray6 {
+    color: #666;
+}
+
+.gray9 {
+    color: #999;
+}
+
+.blue {
+    color: #2af;
+}
+
+.red {
+    color: #d00;
+}
+
+.passport-icon {
+    background-image: url(../images/passport-icon.png);
+    background-repeat: no-repeat;
+}
+
+.g-logo-top {
+    width: 960px;
+    height: 63px;
+    margin: 0 auto 10px;
+    padding-top: 35px;
+}
+
+.g-logo-top span {
+    padding-top: 44px;
+    font-size: 14px;
+}
+
+.g-logo-top span a:hover {
+    color: #f60;
+}
+
+.g-logo-top span a.blue:hover {
+    color: #2af;
+    text-decoration: underline;
+}
+
+.g-logo-width {
+    width: 990px;
+}
+
+.g-logo-width span a {
+    color: #bbb;
+}
+
+.g-copyrightCon {
+    padding-top: 30px;
+}
+
+.g-links {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.g-links a {
+    color: #666;
+}
+
+.g-links a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.g-links s {
+    border-left: 1px solid #ddd;
+    width: 0;
+    height: 12px;
+    margin: 0 11px 0 15px;
+    overflow: hidden;
+    font-size: 0;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+}
+
+.g-copyright {
+    text-align: center;
+    color: #999;
+}

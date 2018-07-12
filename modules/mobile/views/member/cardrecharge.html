@@ -1,0 +1,35 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}充值卡充值{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/cardrecharge.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="g-rechargeNav">
+        <ul>
+            <li><a href="recharge.html">网银充值</a>
+                <s></s></li>
+            <li class="z-curr"><a href="cardrecharge.html">充值卡充值</a></li>
+        </ul>
+    </div>
+    <div class="g-Total gray9">
+        您的当前余额：
+        <span class="orange arial">{{money}}.00</span>元
+    </div>
+    <div class="recharge-con clearfix">
+        <ul>
+            <li> <input id="txtCard" type="text" maxlength="12" placeholder="请输入12位纯数字卡号" class="rText" /><i>充值卡号</i></li>
+            <li> <input id="txtPwd" type="text" maxlength="8" placeholder="请输入8位充值卡密码" class="rText" /><i>充值密码</i></li>
+            <li id="li_info" class="gray3"></li>
+            <li><a id="btnSubmit" href="javascript:;" class="grayBtn">确认充值</a></li>
+        </ul>
+    </div>
+    {% include '@mobileModule/views/footer.html' %}
+</div>
+{% endblock %}

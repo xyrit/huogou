@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>XX球队铁杆球迷排行榜</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hong.css">
+    <style>
+        .shade_box{ width: 100%;height: 100%;position: fixed;top:0px;left:0;background: rgba(0,0,0,0.5);display: none;}
+        .shade_boxText{ width: 100%;height: 100%;position: fixed;top:0px;left:0;background: rgba(0,0,0,0.5);display: none;}
+        .centershade{width: 68%;position:absolute;top:50%;left:50%;margin-left: -34%;margin-top: -75px;text-align: center}
+        .centershadeText{width: 85%;height:266px;position:absolute;top:50%;left:50%;margin-left: -42.5%;margin-top: -133px;text-align: center}
+        .popup_box{ width: 100%;background: #fff;padding:25px 15px;box-sizing:border-box;border-radius: 5px;overflow: hidden}
+        .popupText{width: 100%;background: #fff;padding:10px 10px 0px 10px;box-sizing:border-box;border-radius: 2px;overflow: hidden}
+        .text_left{text-align: left}
+        .popupText p{line-height: 25px;}
+        .popup_box p{ line-height: 25px;}
+        .popup_boxBut{width: 100%; height:45px;background: #ef2828;box-sizing:border-box;border-radius: 5px;text-align: center;margin-top: 10px;line-height: 45px;font-size: 15px;}
+        .hidePopupText{ width:100%; height: 45px;border-top:1px solid #eee;display: block;line-height: 45px;margin-top: 15px;}
+        .popup_boxBut a{color:#fff; display: block;width: 100%}
+    </style>
+</head>
+<body>
+<div class="top-title">
+    可领取红包金额：<span class="text-red">100元</span>
+</div>
+<ul class="red-list clearfix">
+    <li>
+       <div class="red-inside">
+           <img src="images/red1.png">
+           <a href="#" class="get-red"></a>
+       </div>
+    </li>
+    <li>
+        <div class="red-inside">
+            <img src="images/red2.png">
+            <a href="#" class="get-red"></a>
+        </div>
+    </li>
+    <li>
+        <div class="red-inside">
+            <img src="images/red3.png">
+            <a href="#" class="get-red"></a>
+        </div>
+    </li>
+    <li>
+        <div class="red-inside">
+            <img src="images/red4.png">
+            <a href="#" class="get-red"></a>
+        </div>
+    </li>
+</ul>
+<div class="shade_box">
+    <div class="centershade">
+        <div class="popup_box">
+            <p>恭喜您领取奖金成功~</p>
+        </div>
+        <div class="popup_boxBut">
+            <a class="hidePopup" href="javascript:;">确定</a>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function(){
+        $('.get-red').click(function(){
+            showPopup(3000);
+        });
+    });
+    /*
+     * 提示弹窗
+     * timeFont  自动隐藏时间 int
+     * url   点击按钮 需要跳转地址 可不传
+     */
+    function showPopup(timeFont,url){
+        url?url:null;
+        $('.shade_box').fadeIn();
+        window.setTimeout(function(){
+            $('.shade_box').fadeOut();
+        },timeFont);
+        $('.hidePopup').click(function(){
+            if(!url){
+                $('.shade_box').fadeOut();
+            }else{
+                window.location=url;
+            }
+        });
+    }
+</script>
+</body>
+</html>

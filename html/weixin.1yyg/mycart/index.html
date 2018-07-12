@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>购物车</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css?v=130715" rel="stylesheet" type="text/css" />
+    <link href="CSS/cartList.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <input name="hidUserID" type="hidden" id="hidUserID" value="-1" />
+    <div class="wrapper">
+        <div class="g-Cart-list marginB">
+            <ul id="cartBody">
+                <li>
+                    <a class="fl u-Cart-img" href="../products/1619178.html">
+                        <img src="../weixin/images/loading.gif" src2="http://mimg.1yyg.com/GoodsPic/pic-200-200/20140910144439506.jpg" border="0" alt="" />
+                    <div class="pTitle pPurchase" style="display:none">
+                        限购
+                    </div> </a>
+                    <div class="u-Cart-r">
+                        <a href="../products/1619178.html" target="_blank" class="gray6">(第54088云)苹果（Apple）iPhone 6 A1586 16G版 4G手机</a>
+                        <span class="gray9"> <em> 剩余4527人次</em> <em style="display:none;">/</em> <em class="gray9" style="margin:0;"></em> </span>
+                        <input id="txtNum1619220" name="pnum" maxlength="7" type="number" class="gray6" value="1" min="0" />
+                        <input id="oldshopNum1619220" type="hidden" value="1" />
+                        <input id="suplus1619220" type="hidden" value="4527" />
+                        <input id="goodsTag1619220" type="hidden" value="0" />
+                        <input id="limitBuyNum1619220" type="hidden" value="0" />
+                        <input id="haveBuyNum1619220" type="hidden" value="0" />
+                        <input id="codeState1619220" type="hidden" value="1" />
+                        <a href="javascript:;" name="delLink" cid="1619220" class="z-del">
+                            <s></s>
+                        </a>
+                    </div>
+                </li>
+                <li class="m-list-shelves">
+                    <a class="fl u-Cart-img" href="../products/1619178.html">
+                        <img src="../weixin/images/loading.gif" src2="http://mimg.1yyg.com/GoodsPic/pic-200-200/20140910144439506.jpg" border="0" alt="" />
+                    <div class="pTitle pPurchase" style="display:none">
+                        限购
+                    </div>
+                    </a>
+                    <div class="u-Cart-r">
+                        <a href="../products/1619178.html" target="_blank" class="gray6">(第54079云)苹果（Apple）iPhone 6 A1586 16G版 4G手机</a>
+                        <span class="gray9"> <em> 剩余0人次</em> <em style="display:none;">/</em> <em class="gray9" style="margin:0;"></em> </span>
+                        <input style="display:none;" id="txtNum1619179" name="pnum" maxlength="7" type="number" class="gray6" value="2" />
+                        <span class="gray9">已失效</span>
+                        <input id="oldshopNum1619179" type="hidden" value="2" />
+                        <input id="suplus1619179" type="hidden" value="0" />
+                        <input id="goodsTag1619179" type="hidden" value="0" />
+                        <input id="limitBuyNum1619179" type="hidden" value="0" />
+                        <input id="haveBuyNum1619179" type="hidden" value="0" />
+                        <input id="codeState1619179" type="hidden" value="3" />
+                        <a href="javascript:;" name="delLink" cid="1619179" class="z-del">
+                            <s></s>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div id="divNone" class="empty" style="display: none;">
+                <s></s> 购物车为空
+            </div>
+        </div>
+        <div id="mycartpay" class="g-Total-bt">
+            <dl>
+                <dt class="gray6">
+                    <span>共<em class="orange">2</em>个商品</span>合计
+                    <em class="orange">3.00</em>元
+                </dt>
+                <dd>
+                    <a href="javascript:;" id="a_payment" class="orangeBtn w_account">去结算</a>
+                </dd>
+            </dl>
+        </div>
+        <input id="hidPageType" type="hidden" value="2" />
+        <div class="footer" style="display: none">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="/list/m1.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="index.html" class="hover" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="/member/index.do" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../weixin/JS/pageDialogBG.js"></script>
+<script>
+    $('#a_payment').click(function(){
+        pageDialogBG();
+        var pageCon = "";
+        pageCon+='  <div class="clearfix m-round u-tipsEject">' +
+                '<div class="u-tips-txt">部分商品已失效，继续云购？</div> ' +
+                '<div class="u-Btn"> ' +
+                '<div class="u-Btn-li"> ' +
+                '<a href="javascript:;" id="btnMsgCancel" onclick="btnMsgCancel()" class="z-CloseBtn">取消</a> ' +
+                '</div> <div class="u-Btn-li"> ' +
+                '<a id="btnMsgOK" href="javascript:;" onclick="btnMsgOK()" class="z-DefineBtn">确定</a> ' +
+                '</div> ' +
+                '</div> ' +
+                '</div>';
+        $('#pageDialog').append(pageCon);
+    })
+
+//    点击确定跳转到支付页面
+    function btnMsgOK(){
+        self.location = 'Payment.html';
+    }
+//    点击取消弹窗消失
+    function btnMsgCancel(){
+        $('#pageDialogBG').remove();
+        $('#pageDialog').remove();
+    }
+
+</script>
+</body>
+</html>

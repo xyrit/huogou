@@ -1,0 +1,88 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}伙购网-快乐伙购，惊喜无限{% endblock %}
+
+{% block css %}
+    <link href="{{ app.params.skinUrl }}/mobile/css/index.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+    <script src="{{ app.params.skinUrl }}/mobile/js/flexSlider.js" language="javascript" type="text/javascript"></script>
+    <script src="{{ app.params.skinUrl }}/mobile/js/index.js?v=160314" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+    
+    {% block head %}{% endblock %} {% include '@mobileModule/views/header.html' %}
+
+    <input type="hidden" id="hidOrderFlag" value="10">
+    <input type="hidden" id="hidPage" value="1" />
+    <div class="" id="loadingPicBlock">
+        <!--app广告-->
+        <input name="hidAppType" type="hidden" id="hidAppType" value="1" />
+        <div id="divDownApp" class="app-icon-wrapper"  style="display: none;">
+            <div class="app-icon"  onclick="javascript:location.href='http://www.{{constant("DOMAIN")}}/app/down'">
+                <a href="javascript:;" class="close-icon"><i class="set-icon"></i></a>
+                <a class="info-icon">
+                    <i class="set-icon"></i>
+                    <div class="info">
+                        <h6>下载伙购APP</h6>
+                        <p>快速开奖，公平公正，签到即送福利。</p>
+                    </div>
+                </a>
+                <a id="downLink" href="http://www.{{constant('DOMAIN')}}/app/down" target="_blank" class="down-icon">立即下载</a>
+            </div>
+        </div>
+
+        <!-- 焦点图 -->
+        <div class="hotimg-wrapper">
+            <div class="hotimg-top"></div>
+            <section id="sliderBox" class="hotimg">
+                <div class="loading clearfix"><b></b>正在加载</div>
+            </section>
+        </div>
+
+        <!--导航-->
+        <nav id="goodsNav" class="nav-wrapper">
+            <div class="nav-inner">
+                <ul id="ulOrder" class="nav-list clearfix">
+                    <li order="10" class="current"><a href="javascript:;"><span>即将揭晓</span></a></li>
+                    <li order="40"><a href="javascript:;"><span>最新</span></a></li>
+                    <li order="20"><a href="javascript:;"><span>人气</span></a></li>
+                    <li order="51"><a href="javascript:;"><span>价值</span></a></li>
+                </ul>
+            </div>
+            <!--点击添加或移除current-->
+            <div id="divSort" class="select-btn">
+                <span class="select-icon"> <i></i><i></i><i></i><i></i> </span> 分类
+            </div>
+            <!--分类-->
+            <div class="select-total" style="display: none">
+                <ul class="sort_list">
+                    <li sortid="0" class="all"><a href="javascript:;">全部分类</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!--商品列表-->
+        <div class="goods-wrap">
+            <ul id="ulGoodsList" class="goods-list clearfix">
+
+            </ul>
+
+            <!--列表加载-->
+            <div class="loading clearfix">
+                <b></b>正在加载
+            </div>
+            <!--列表加载-->
+            <!--点击加载更多-->
+            <div id="btnLoadMore" class="load_more">
+                <a title="加载更多" href="javascript:void(0);">点击加载更多</a><b></b>
+            </div>
+            <!--点击加载更多-->
+        </div>
+
+        <!--底部-->
+        {% include '@mobileModule/views/footer.html' %}
+        <img src=" {{ cnzz }}" width="0" height="0"/>
+
+</div>
+{% endblock %}

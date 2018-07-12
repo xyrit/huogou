@@ -1,0 +1,63 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}网银充值{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/recharge.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<input type="hidden" id="hidRechargeMoney" value="10">
+<input type="hidden" id="hidRechargeWay" value="zhifukachat">
+<div id="loadingPicBlock">
+    <div class="wrapper">
+        <div class="g-Total gray9">
+            您的当前余额：
+            <span class="orange arial">{{money}}.00</span>元
+        </div>
+        <section class="clearfix g-member">
+            <div class="g-Recharge">
+                <ul id="ulOption">
+                    <li money="20"><a href="javascript:;">20元
+                        <s></s></a></li>
+                    <li money="50"><a href="javascript:;">50元
+                        <s></s></a></li>
+                    <li money="100"><a href="javascript:;" class="z-sel">100元
+                        <s></s></a></li>
+                    <li money="200"><a href="javascript:;">200元
+                        <s></s></a></li>
+                    <li money="500"><a href="javascript:;">500元
+                        <s></s></a></li>
+                    <li  money="0"><b> <input type="text" class="z-init" placeholder="输入金额" value="" maxlength="7" />
+                        <s></s></b></li>
+                </ul>
+            </div>
+            <article class="clearfix mt10 g-pay-ment g-bank-ct">
+                <ul id="ulBankList">
+                    <li class="gray6">充值金额<em class="orange" id="rechargeMoney">10.00</em>元</li>
+                    <li class="gray9 checked" bank="zhifukachat">
+                        <s></s>微信支付
+                    </li>
+                    <li class="gray9" bank="jd">
+                        <s></s>京东支付
+                    </li>
+                    <!--<li class="gray9" bank="union">
+                        <s></s>银联支付
+                    </li>-->
+                    <li class="gray9" bank="iapp">
+                        <s></s>爱贝支付(支付宝、财付通)
+                    </li>
+                </ul>
+            </article>
+            <div class="mt10 f-Recharge-btn">
+                <a id="btnSubmit" href="javascript:;" class="z-Btn">支付充值</a>
+            </div>
+        </section>
+        {% include '@ddweixinModule/views/footer.html' %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/layout_sub.css?v=060607">
+    <title>伙购网-注册成功</title>
+</head>
+<body style="background:#f0f0f0;font-family: '微软雅黑">
+    <div class="download suec_box">
+        <div class="success_box">
+            <p><img src="img/success.png"/>恭喜您注册成功！</p>
+        </div>
+    </div>
+
+    <div class="download suec_box" style="margin-top: 10px;">
+        <div>
+            <img src="img/success_img1.jpg"/>
+        </div>
+    </div>
+
+    <!--<div class="download suec_box" style="margin-top: 10px;padding-bottom:5px;border-bottom:none;position: relative" id="iphoneList">-->
+        <!--<div class="goods_tite">已有<span class="ddColor">173</span>人一元购获得iPhone 6s Plus 64G版</div>-->
+    <!--</div>-->
+
+    <!--<div id="gundong_box" class="download suec_box" >-->
+        <!--<ul>-->
+            <!--&lt;!&ndash; 循环 li &ndash;&gt;-->
+        <!--</ul>-->
+    <!--</div>-->
+
+    <div class="download" style="background: #f0f0f0">
+        <a href="http://ld.cacn360.cn/down.php" class="downloadBut">下载伙购APP参与伙购<br/>(免手机流量)</a>
+        <!--<div class="goods_titeFor">已有<span class="ddColor">173</span>人参与伙购码，仅剩<span class="ddColor">2</span>个机会</div>-->
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+//        jQuery.extend({
+//            getJsonp: function (url, data, sucfunc) {
+//                $.ajax({
+//                    async: false,
+//                    url: url,
+//                    type: "GET",
+//                    dataType: 'jsonp',
+//                    jsonp: 'callback',
+//                    data: data,
+//                    cache: false,
+//                    success: function (json) {
+//                        if (typeof sucfunc == "function") {
+//                            sucfunc(json);
+//                        }
+//                    }
+//                });
+//            },
+//            onSrollBottom: function(bottomFuc, notBottomFuc) {
+//                $(window).on('scroll', function (e) {
+//
+//                    var scrollTop = $(this).scrollTop();
+//                    var scrollHeight = $(document).height();
+//                    var windowHeight = $(this).height();
+//                    if (scrollTop + windowHeight == scrollHeight){
+//                        if (typeof bottomFuc =='function') {
+//                            bottomFuc();
+//                        }
+//                    } else {
+//                        if (typeof notBottomFuc =='function') {
+//                            notBottomFuc();
+//                        }
+//                    }
+//
+//                });
+//            }
+//        });
+    </script>
+    <script style="text/javascript">
+        $(function() {
+            var apiBaseUrl = 'http://api.huogou.com';
+            var url = 'http://ld.cacn360.cn/down.php';//跳转地址
+            var time = 2000;//滚动时间
+            $('body').click(function(){
+                window.location.href=url;//点击任何地方 跳转下载页面
+            });
+            var $this = $("#gundong_box");
+            var scrollTimer;
+            $this.hover(function() {
+                clearInterval(scrollTimer);//停止滚动 定时器
+            }, function() {
+                scrollTimer = setInterval(function() {
+                    scrollNews($this);
+                }, time);//2秒执行一次
+            }).trigger("mouseleave");
+
+            //滚动执行函数
+            function scrollNews(obj) {
+                var $self = obj.find("ul");
+                var lineHeight = $self.find("li:first").height();
+                $self.animate({
+                    "marginTop": -lineHeight + "px"
+                }, 600, function() {
+                    $self.css({
+                        marginTop: 0
+                    }).find("li:first").appendTo($self);
+                })
+            }
+
+            var reUrl = apiBaseUrl + '/product/new-buy-list';
+//            $.getJsonp(reUrl, {num:20},function(json) {
+//                var html = '';
+//                $.each(json,function(i,v){
+//                    html += '<li><span class="addColorA">'+ v.username+'</span>&nbsp;1一元购获得'+v.name+'</li>';
+//
+//                });
+//                $('#gundong_box ul').html(html);
+//            });
+        });
+    </script>
+</body>
+</html>

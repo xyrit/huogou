@@ -1,0 +1,41 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">关键字过滤</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">类型</label>
+                    <div class="am-selected am-dropdown">
+                        <select name="Keywords[type]">
+                            <option value="0" {% if(model.type == 2) %} selected{% endif %}>昵称</option>
+                            <option value="1" {% if(model.type == 1) %} selected{% endif %}>话题和回复</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label">关键字</label>
+                    <div class="am-u-sm-9">
+                        <textarea name="Keywords[content]">{{ model.content }}</textarea>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

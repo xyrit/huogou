@@ -1,0 +1,28 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+<h1 class="circle">圈子</h1>
+<div class="home_fl_margin">
+    {% if(joinGroups) %}
+        <ul class="circle_con_list">
+            {% for item in joinGroups %}
+                <li class="feedback">
+                    <div>
+                        <article class="group-class-0{{ item.id }}">
+                            <h2><a href="{{ url('/group/default/view', {'id':item.id}) }}">{{ item.name }}</a></h2>
+                            <aside><i>成员：{{ item.user_count }}</i><i>话题：{{ item.topic_count }}</i></aside>
+                            <p>{% if item.intro | length > 42 %}{{ item.intro | slice(0, 42) }}...{% else %}{{ item.intro }}{% endif %}</p>
+                        </article>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        <div class="notHave">
+            <span class="notHave_icon"></span>
+            <p class="notHave_txt">还没有加入任何圈子哦！</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

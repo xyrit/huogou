@@ -1,0 +1,220 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+<div class="admin-content">
+  <div class="am-cf am-padding">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">晒单详情</strong>
+    </div>
+  </div>
+
+  <div class="am-g">
+    <div class="am-u-sm-12"><div class="am-u-sm-12">订单号：{{ orderInfo.order_no }}</div> </div>
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">商品名称：{{ productInfo.name }}</div></div>
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">商品分类：{{ categoryInfo.name }}</div></div>
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">伙购价格：￥{{ productInfo.price }}</div></div>
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">会员名：{% if userInfo.phone and userInfo.email %}{{ userInfo.phone }}  {{ userInfo.email }}{% else %}{{ userInfo.phone|default(userInfo.email) }}{% endif %}</div></div>
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">状态：{% if shareTopicInfo.is_pass == 0 %}待审核</a>{% elseif shareTopicInfo.is_pass == 1 %}完成{% elseif shareTopicInfo.is_pass == 2 %}未通过{% endif %}</div></div>
+    {% if shareTopicInfo.is_pass == 2 %}
+    <div class="am-u-sm-12"><div class="am-u-sm-12">原因：{{ shareTopicInfo.note }}</div></div>
+    {% endif %}
+
+    <div class="am-u-sm-12"><div class="am-u-sm-12">晒单时间：{{ shareTopicInfo.created_at|date('Y-m-d H:i:s') }}</div></div>
+
+    {% if shareTopicInfo.is_pass != 0 %}
+    <div class="am-u-sm-12"><div class="am-u-sm-12">审核人：{{ shareTopicInfo.admin_id }}</div></div>
+    <div class="am-u-sm-12"><div class="am-u-sm-12">审核时间：{{ shareTopicInfo.checked_at|date('Y-m-d H:i:s') }}</div></div>
+    {% endif %}
+
+    <div class="am-u-sm-12"><hr/></div>
+
+    <div class="am-u-sm-12" style="width: 900px">
+      <div class="am-u-sm-1">晒单图片：</div>
+      {% for pic in pictures %}
+      <div style=" display: inline-block; padding-bottom: 30px; position: relative;">
+        <img src="{{ pic.url }}" class="picture" style="width: 200px; display:inline-block" share_topic_id="{{ shareTopicInfo.id }}" basename="{{ pic.basename }}">
+                <span style="position: absolute; left:80px; bottom:12px;">
+                {% if pic.main == 1 %}主图{% endif %}
+                {% if pic.roll == 1 %} 滚动图{% endif %}
+                {% if pic.recommend == 1 %} 推荐图{% endif %}
+                </span>
+      </div>
+
+      {% endfor %}
+    </div>
+    <div class="am-u-sm-12"><hr/></div>
+    <div class="am-u-sm-12"><div class="am-u-sm-12">获奖感言：{{ shareTopicInfo.content }}</div></div>
+    {% if shareTopicInfo.is_pass == 0 or shareTopicInfo.is_pass == 2 %}
+    <div class="am-u-sm-12"><br/></div>
+    <div class="am-u-sm-12">
+      <div class="am-u-sm-1" style="width: 100px;">审核：</div>
+      <div class="am-u-sm-11">
+        <div class="am-btn-toolbar">
+          <div class="am-btn-group doc-js-btn-1" data-am-button>
+            <label class="am-btn am-btn-primary">
+              <input type="radio" name="options" value="pass" id="option1"> 通过
+            </label>
+            <label class="am-btn am-btn-primary">
+              <input type="radio" name="options" value="reject" id="option2"> 拒绝
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: none;" id="is_pass">
+      <div class="am-u-sm-12">
+        <div class="am-u-sm-1" style="width: 150px;">奖励积分：</div>
+        <div class="am-u-sm-11">
+          <select name="point" id="point" data-am-selected>
+            <option value="400" {% if shareTopicInfo.point == 400 or shareTopicInfo.point == 0 %}selected{% endif %}>400</option>
+            <option value="500" {% if shareTopicInfo.point == 500 %}selected{% endif %}>500</option>
+            <option value="600" {% if shareTopicInfo.point == 600 %}selected{% endif %}>600</option>
+            <option value="700" {% if shareTopicInfo.point == 700 %}selected{% endif %}>700</option>
+            <option value="800" {% if shareTopicInfo.point == 800 %}selected{% endif %}>800</option>
+            <option value="900" {% if shareTopicInfo.point == 900 %}selected{% endif %}>900</option>
+            <option value="1000" {% if shareTopicInfo.point == 1000 %}selected{% endif %}>1000</option>
+            <option value="1100" {% if shareTopicInfo.point == 1100 %}selected{% endif %}>1100</option>
+            <option value="1200" {% if shareTopicInfo.point == 1200 %}selected{% endif %}>1200</option>
+            <option value="1300" {% if shareTopicInfo.point == 1300 %}selected{% endif %}>1300</option>
+            <option value="1400" {% if shareTopicInfo.point == 1400 %}selected{% endif %}>1400</option>
+            <option value="1500" {% if shareTopicInfo.point == 1500 %}selected{% endif %}>1500</option>
+          </select>
+        </div>
+      </div>
+      <div class="am-u-sm-12">
+        <div class="am-u-sm-1" style="width: 150px;">推荐：</div>
+        <div class="am-u-sm-11">
+          <select name="is_recommend" id="is_recommend" data-am-selected>
+            <option value="0" {% if shareTopicInfo.is_recommend == 0 %}selected{% endif %}>否</option>
+            <option value="1" {% if shareTopicInfo.is_recommend == 1 %}selected{% endif %}>是</option>
+          </select>
+        </div>
+      </div>
+      <div class="am-u-sm-12">
+        <div class="am-u-sm-1" style="width: 150px;">精华：</div>
+        <div class="am-u-sm-11">
+          <select name="is_digest" id="is_digest" data-am-selected>
+            <option value="0" {% if shareTopicInfo.is_digest == 0 %}selected{% endif %}>否</option>
+            <option value="1" {% if shareTopicInfo.is_digest == 1 %}selected{% endif %}>是</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="display: none;" id="is_not_pass">
+      <div class="am-u-sm-12">
+        <div class="am-u-sm-1" style="width: 150px;">拒绝原因：</div>
+        <div class="am-u-sm-11">
+          <select name="note" id="note" data-am-selected>
+            <option value="图片不清晰" selected>图片不清晰</option>
+            <option value="获奖感言与获奖商品不一致">获奖感言与获奖商品不一致</option>
+            <option value="图片与获奖商品不一致">图片与获奖商品不一致</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="am-u-sm-12">
+      <input type="hidden" value=0 id="status">
+      <button type="button" class="am-btn am-btn-primary am-btn-xs" id="submit">提交保存</button>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script>
+  // 获取选中的值
+  $(function() {
+    var $radios = $('[name="options"]');
+    $radios.on('change',function() {
+      if ($radios.filter(':checked').val() == 'pass') {
+        $('#status').val(1);
+        $('#is_not_pass').fadeOut();
+        setTimeout(function() {
+          $('#is_pass').fadeIn();
+        }, 10);
+      } else {
+        $('#status').val(2);
+        $('#is_pass').fadeOut();
+        setTimeout(function() {
+          $('#is_not_pass').fadeIn();
+        }, 10);
+      }
+    });
+  });
+
+  $('select[name=note]').change(function(){
+    var value = $('select[name=note] option:selected').val();
+    $('input[name=other]').remove();
+    if(value == '其他'){
+      $(this).after('<div><input type="text" name="other"></div>');
+    }
+  })
+
+  var flag = 1;
+  $('#submit').on('click', function() {
+    if (flag == 0) {
+      return false;
+    }
+    flag = 0;
+    is_pass = $('#status').val();
+    if (is_pass == 0) {
+      alert('请选择审核状态');
+      flag = 1;
+      return false;
+    }
+    if (is_pass == 1) {
+      params = {
+        is_pass: is_pass,
+        is_recommend: $('select[name=is_recommend] option:selected').val(),
+        is_digest: $('select[name=is_digest] option:selected').val(),
+        point: $('select[name=point] option:selected').val()
+      };
+    } else {
+      var value = $('select[name=note] option:selected').val();
+      params = {
+        is_pass: is_pass,
+        note: value
+      };
+      if(value == '其他' && $('input[name=other]').val() == ''){
+        alert('请输入拒绝原因');
+        return false;
+      } else if (value == '其他' && $('input[name=other]').val() != '') {
+        params.note = $('input[name=other]').val();
+      }
+    }
+
+    $.post('http://admin.' + baseHost + '/share/view?id=' + "{{ shareTopicInfo.id }}", params, function (data) {
+      if (data.code == 100) {
+        alert('保存成功');
+        parent.location.reload();
+      } else {
+        alert(data.msg);
+        flag = 1;
+      }
+    }, 'json');
+  });
+
+  $('.picture').on('click', function() {
+    var id = $(this).attr('share_topic_id');
+    var basename = $(this).attr('basename');
+    var urls = 'http://admin.' + baseHost + "/share/show-picture?id=" + id + '&basename=' + basename;
+    layer.open({
+      type: 2,
+      area: ['700px', '800px'],
+      fix: false, //不固定
+      shade: false,
+      maxmin: true,
+      content: urls,
+      end: function() {window.location.reload()}
+    });
+  })
+</script>
+{% endblock %}

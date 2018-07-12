@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>帮助中心</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="css/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="css/list.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<div class="free_desc">
+    <div>
+        <h5>活动规则：</h5>
+        <ul>
+            <li>即日起，伙购网注册用户可参与“0元伙购”。</li>
+            <li>1、可领取1个伙购码，点击【立即参与】将默认领取并参与成功。</li>
+            <li>2、每个分享平台成功分享可各获得1个伙购码，如好友通过您的分享链接手机号成功注册伙购网，即可再获得3个伙购码。邀请好友成功注册最多可获得30个伙购码。</li>
+            <li>3、每30福分可兑换一个伙购码，可在【查看我的伙购码】-【福分兑换伙购码】进行福分兑换。福分兑换伙购码数量不限。</li>
+            <li>4、活动时间：<span class="startTime"></span>-<span class="endTime"></span></li>
+            <li>5、开奖时间：<span class="endTime"></span></li>
+            <li>6、公布开奖结果在【发现】-【0元伙购】-【往期揭晓】中查看。</li>
+            <li>7、在公布开奖结果后拥有幸运号码的用户在7天内，请前往【我的伙购】-【活动奖品】进行完善收货地址，超过七天无法联系视为主动放弃。</li>
+            <li style="color: #ff500c;">注：用户需绑定手机号，填写收货地址，才能参与活动。</li>
+            <li>8、奖品将在完善收货地址后7个工作日内发出。</li>
+            <li>9、该活动的解释权在法律规定的范围内归伙购网所有。</li>
+            <li id="apple" style="display: none;">
+                <p style="color: #ff500c;">声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</p>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h5>抽奖规则：</h5>
+        <ul>
+            <li>抽奖号码计算规则绝对公平公正，计算规则如下：</li>
+            <li>1、数值A为奖品开奖时间，按年、月、日、时的顺序组合，如2016年11月15日10:00:00则为2016111510；</li>
+            <li>2、数值B为截止奖品开奖时间的总参与人次；</li>
+            <li>3、数值A除以数值B得到的余数+原始数10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该奖品；</li>
+            <li>4、余数是指整数除法中被除数未被除尽部分，如7÷3=2.....1,1就是余数</li>
+        </ul>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function(){
+        var isiOS = isIos();
+        if (isiOS) {
+            $("#apple").show();
+        }
+        $('.startTime').text(getUrlParam('s'));
+        $('.endTime').text(getUrlParam('e'));
+    })
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>商品图文详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <style type="text/css">
+        html,body,div,p,img{ margin: 0; padding: 0;}
+        #goodsIntro img{ width: 100%; margin-top: -6px;}
+        #goodsIntro p{ text-align: left !important; padding: 0 2%;}
+
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js"></script>
+    <script>
+        $(function() {
+            var goodsId = getUrlParam('id');
+            var url = apiBaseUrl+'/free-buy/product-intro';
+            var data = {'id':goodsId};
+            $.ajax({
+                async: false,
+                url: url,
+                type: "GET",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: data,
+                cache: false,
+                success: function (json) {
+                    $('#goodsIntro').html(json.intro);
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="goodsimgDesc">
+    <div id="goodsIntro" style="max-width: 800px; min-width: 320px; margin:0px auto; padding:0px; text-align: center;">
+
+    </div>
+</div>
+</body>
+
+</html>

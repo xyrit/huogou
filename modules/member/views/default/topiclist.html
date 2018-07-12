@@ -1,0 +1,42 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的晒单_伙购网{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <div class="find_bt_list">
+            <a class="act" href="{{ url(['/member/default/topic-list']) }}">已晒单({{ totalTopic }})</a>
+            <a href="{{ url('/member/default/topic-list', {t: 1}) }}">未晒单({{ notShareOrderCount }})</a>
+            <aside>成功晒单并通过审核即可获得相应福分（限时商品除外）</aside>
+        </div>
+
+        <table class="get" id="topicList">
+            <thead>
+            <tr>
+                <td width="18%">晒单图片</td>
+                <td width="56%" class="left">晒单信息</td>
+                <td width="13%">晒单状态</td>
+                <td width="13%">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="pagination" style="margin: 20px auto"></div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    getTopicList();
+</script>
+{% endblock %}

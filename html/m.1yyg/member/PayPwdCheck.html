@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>安全设置 - 1元云购触屏版</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../CSS/comm.css?v=130715" rel="stylesheet" type="text/css" />
+    <link href="CSS/security.css?v=130726" rel="stylesheet" type="text/css" />
+    <script src="../JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v11">
+    <!-- 栏目页面顶部 -->
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesettings.html" class="z-HReturn">
+                <s></s><b>返回</b></a>
+        </div>
+        <h2>支付密码设置</h2>
+        <div class="head-r">
+            <a href="index.html" class="z-Member"></a>
+        </div>
+    </header>
+    <section class="secrityBg">
+        <input name="hidIdentity" type="hidden" id="hidIdentity" value="13798338705" />
+        <input name="hidIdentityType" type="hidden" id="hidIdentityType" value="0" />
+        <input name="hidIsOpen" type="hidden" id="hidIsOpen" value="0" />
+        <input name="hidForward" type="hidden" id="hidForward" />
+        <input name="hidIsUpdate" type="hidden" id="hidIsUpdate" />
+        <div class="login-protection clearfix">
+            <p class="gray6">支付密码<a id="a_switch"><b></b></a></p>
+            <div id="div_update" class="set-con clearfix">
+                <ul>
+                    <li> </li>
+                </ul>
+            </div>
+        </div>
+        <div id="div_auth" style="display: none;" class="authentication-con clearfix">
+            <ul>
+                <li class="gray3"> 验证手机号: 13798****05</li>
+                <li class="enter-word">
+                    <input id="txtCode" maxlength="6" type="text" placeholder="请输入6位验证码" class="rText" />
+                    <a id="btnSend" href="javascript:;" class="orgBtn">获取验证码</a>
+                </li>
+                <li>
+                    <a id="btnSubmit" href="PayPwdSet.html" class="grayBtn">确认</a>
+                </li>
+                <li class="gray9">换了手机号或遗失？请致电客服申诉解除绑定<br /> 400-850-8080</li>
+            </ul>
+        </div>
+    </section>
+    <footer id="pageBottom_footer" class="footer">
+        <div class="u-ft-nav" id="fLoginInfo">
+            <span><a href="../index.html">首页</a><b></b></span>
+            <span><a href="../about.html">新手指南</a><b></b></span>
+            <span>
+                <a href="index.html" class="Member">云狗骗子</a>
+                <a href="../index.html" class="Exit">退出</a>
+            </span>
+        </div>
+        <p class="m-ftA">
+            <a href="http://m.1yyg.com/">触屏版</a>
+            <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+            <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+        </p>
+        <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    </footer>
+</div>
+<script>
+    $('#a_switch').click(function(){
+        if(!$(this).hasClass('open-pay')){
+            $(this).addClass('open-pay');
+            $('#div_auth').show();
+            $('#div_update').show();
+        }else{
+            $(this).removeClass('open-pay');
+            $('#div_update').hide();
+            $('#div_auth').hide();
+        }
+    })
+</script>
+</body>
+</html>

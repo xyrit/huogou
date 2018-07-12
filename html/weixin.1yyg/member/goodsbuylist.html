@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>我的云购记录</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/newmember.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <div class="wrapper">
+        <div class="m_buylist_nav" id="navBox">
+            <p>
+                <a href="javascript:;" state="-1" class="hover">全部<em>23</em></a>
+                <a href="javascript:;" state="1">进行中<em></em></a>
+                <a href="javascript:;" state="3">已揭晓<em>23</em></a>
+            </p>
+        </div>
+        <div id="divBuyList" class="m_buylist">
+            <ul>
+                <li codeid="2083221" class="in_progress">
+                    <a href="goodsbuydetail-2083221.do">
+                        <cite>
+                            <img src="http://mimg.1yyg.com/GoodsPic/pic-200-200/20150910181542405.jpg" />
+                            <i>已满员</i>
+                        </cite>
+                        <dl>
+                            <dt>
+                                (第13039云)苹果（Apple）iPhone 6s Plus 64G版 4G手机
+                            </dt>
+                            <dd>
+                                已参与
+                                <em class="orange">1</em>人次
+                            </dd>
+                            <dd>
+                                <span class="z-announced-btn">正在揭晓...</span>
+                            </dd>
+                        </dl>
+                    </a>
+                </li>
+
+                <li codeid="2095803" class="in_progress">
+                    <a href="javascript:;">
+                        <cite>
+                            <img src="http://mimg.1yyg.com/GoodsPic/pic-200-200/20150910150825965.jpg" />
+                            <i>进行中</i>
+                        </cite>
+                        <dl>
+                            <dt>
+                                (第10475云)苹果（Apple）iPhone 6s 16G版 4G手机
+                            </dt>
+                            <dd>
+                                已参与
+                                <em class="orange">1</em>人次
+                            </dd>
+                            <dd>
+                                <div class="gRate short">
+                                    <div class="Progress-bar">
+                                        <p class="u-progress"><span style="width:42.48265227447957%;" class="pgbar"><span class="pging"></span></span></p>
+                                        <ul class="Pro-bar-li">
+                                            <li class="P-bar01"><em>2204</em>已参与</li>
+                                            <li class="P-bar02"><em>5188</em>总需人次</li>
+                                            <li class="P-bar03"><em>2984</em>剩余</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </a>
+                    <a href="javascript:;" goodsname="苹果（Apple）iPhone 6s 16G版 4G手机" goodspic="http://mimg.1yyg.com/GoodsPic/pic-200-200/20150910150825965.jpg" codeid="2095803" class="z-set-wrap">
+                    <div class="z-set"></div>分享
+                    </a>
+                </li>
+                <li>
+                    <cite>
+                        <a href="goodsbuyDetail-1506400.html">
+                            <img src="../GoodsPic/pic-200-200/20150504113949911.jpg" />
+                        </a>
+                        <i>已揭晓</i>
+                    </cite>
+                    <dl>
+                        <dt>
+                            <a href="goodsbuyDetail-1506400.html" class="gray6">(第949云)小米（MIUI）小米电视 2 40英寸</a>
+                        </dt>
+                        <dd>
+                            获得者：
+                            <a href="http://weixin.1yyg.com/userpage/1009639699" class="blue">13556****78</a>
+                        </dd>
+                        <dd>
+                            揭晓时间：
+                            <em>2015-10-10 18:00:35.262</em>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+
+            <div id="divGoodsLoading" class="loading" style="display: none">
+                <b></b>正在加载
+            </div>
+        </div>
+        <div class="load_more" id="btnLoadMore" style="display: block">
+            <a href="javascript:;" title="加载更多">加载更多</a>
+        </div>
+        <input id="hidPageType" type="hidden" value="3" />
+        <div class="footer">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="index.html" class="hover" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $('#navBox a').click(function(){
+        $(this).addClass('hover').siblings('a').removeClass('hover');
+        var iLength = $('#divBuyList cite i');
+        for(var i=0;i<iLength.length;i++){
+            var iHtml = $('#divBuyList cite i').html();
+        }
+    })
+</script>
+</body>
+</html>

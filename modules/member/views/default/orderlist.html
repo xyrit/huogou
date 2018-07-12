@@ -1,0 +1,76 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}获得的商品_伙购网{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <div class="remind">
+            <em>获得的商品提醒：</em>
+            <a href="javascript:;">全部<i>({{ totalProduct }})</i></a>
+            <a href="javascript:;">待确认地址<i>({{ tips.0 }})</i></a>
+            <a href="javascript:;">待发货<i>({{ tips.1 }})</i></a>
+            <a href="javascript:;">待收货<i>({{ tips.2 }})</i></a>
+            <a href="javascript:;">待晒单<i>({{ tips.3 }})</i></a>
+        </div>
+        <div class="screening">
+            <summary>
+                <a class="act" href="javascript:void(0);">全部</a>
+                <a href="javascript:void(0);">今天</a>
+                <a href="javascript:void(0);">本周</a>
+                <a href="javascript:void(0);">本月</a>
+                <a href="javascript:void(0);">最近三个月</a>
+            </summary>
+            <div class="search-vip">
+                <em>选择时间段：</em>
+                <input type="text" id="J-xl" value="2015-10-21">
+                <i>-</i>
+                <input type="text" id="J-xl-2" value="2015-10-23">
+                <input type="submit" value="搜索">
+            </div>
+        </div>
+
+        <div class="find_bt_list">
+            <a class="act" href="{{ url(['/member/default/order-list']) }}" id="orderCount">获得的商品({{ totalProduct }})</a><a href="{{ url(['/member/default/exchange-order-list']) }}">换货商品({{ totalExchangeProduct }})</a>
+        </div>
+        <table class="get" id="orderList">
+            <thead>
+            <tr>
+                <td width="18%">商品图片</td>
+                <td width="56%" class="left">商品名称</td>
+                <td width="13%">订单号</td>
+                <td width="13%">查 看</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="pagination" style="margin: 20px auto"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //日历调取
+        laydate({
+            elem: '#J-xl'
+        });
+        laydate({
+            elem: '#J-xl-2'
+        });
+    });
+    getOrderList();
+    filt(orderlist_condition, getOrderList);
+</script>
+{% endblock %}

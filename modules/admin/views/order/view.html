@@ -1,0 +1,551 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单详情</strong>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12"><div class="am-u-sm-12">订单号：{{ detail.id }}</div> </div>
+
+            <div class="am-u-sm-12"><div class="am-u-sm-12">商品名称：{{ goodInfo.name }}</div></div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">商品分类：{{ catName[periodInfo.cat_id] }}</div>
+                <div class="am-u-sm-6">商品来源：{{ periodTable.source.name }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">伙购价格：￥{{ periodInfo.price }}</div>
+                <div class="am-u-sm-6">状态：{{ status.name }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">会员：{{ detail.user_id.username }}</div>
+                <div class="am-u-sm-6">伙购时间：{{ periodTable.buy_time }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">伙购码：{{ periodInfo.lucky_code }}</div>
+                <div class="am-u-sm-6">订单生成时间：{{ detail.create_time|date('Y-m-d H:i:s') }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">当期购买次数：{{ consume.total }}次</div>
+                <div class="am-u-sm-6">发货方式：第三方发货</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">实际购买金额：{{ consume.money }}元</div>
+                <div class="am-u-sm-6">支付福分：{{ consume.point }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">开奖期数：第{{ periodInfo.period_number }}期</div>
+                <div class="am-u-sm-6">商品编码：{{ goodInfo.bn }}</div>
+            </div>
+
+            <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                <ul class="am-tabs-nav am-nav am-nav-tabs">
+                    <li class="am-active"><a href="#tab1">收货地址</a></li>
+                    <li><a href="#tab2">发货信息</a></li>
+                    <li><a href="#tab3">晒单信息</a></li>
+                    <li><a href="#tab4">换货信息</a></li>
+                </ul>
+
+                <div class="am-tabs-bd">
+                    <div class="am-tab-panel am-active" id="tab1">
+                        {% if(detail.status == 0) %}
+                            无信息
+                        {% endif %}
+                        {% if(detail.status >= 1) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">提交时间：{{ detail.confirm_addr_time|date('Y-m-d H:i:s') }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">收货人：{% if(virtual) %}{{ virtual.account }} {{ virtual.name }}{% else %}{{ detail.ship_name }}{% endif %}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">联系方式：{{ detail.ship_mobile }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-12">收货地址：{{ detail.ship_area }}{{ detail.ship_addr }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-12">配送时间：{{ detail.ship_time }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">备注信息：{{ detail.mark_text }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                        {% if(virtual) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">虚拟物品：{{ virtual.type }} {{ virtual.account }} {{ virtual.name }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                        {% endif %}
+
+                        {% endif %}
+
+                        <p>&nbsp;</p>
+                        {% if(detail.status >= 2) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">确认人：{{ person[deliverInfo.confirm_userid] | default('暂无') }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">确认时间：{% if(deliverInfo.confirm_time) %}{{ deliverInfo.confirm_time|date('Y-m-d H:i:s') }}{% else %}无{% endif %}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                        {% endif %}
+                        <p>&nbsp;</p>
+                        <div class="am-u-sm-12">
+                            备注：{{ detail.remark }}
+                        </div>
+                    </div>
+
+                    <div class="am-tab-panel" id="tab2">
+                        {% if(detail.status == 0) %}无信息{% endif %}
+
+                        {% if(detail.status >= 3) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">备货人：{{ person[deliverInfo.prepare_userid] }}</div>
+                                <div class="am-u-sm-6">发票：{{ deliverInfo.bill }}&nbsp;&nbsp;<input type="button" value="时间" data-am-modal="{target: '#doc-modal-6', closeViaDimmer: 0, width: 300, height: 225}"></div>
+                            </div>
+                            {% if(deliverInfo.bill_num) %}        
+                            <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">发票时间：{{ deliverInfo.bill_time|date('Y-m-d H:i:s') }}&nbsp;&nbsp;</div>
+                            <div class="am-u-sm-6">发票号码：{{ deliverInfo.bill_num }}&nbsp;&nbsp;</div>
+                            </div>
+                            {% endif %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">备货时间：{{ deliverInfo.prepare_time|date('Y-m-d H:i:s') }}</div>
+                                <div class="am-u-sm-6">成本：{{ deliverInfo.price }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">发货平台：{{ deliverInfo.platform }}</div>
+                                <div class="am-u-sm-6">规格：{{ deliverInfo.standard }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">第三方订单号：{{ deliverInfo.third_order }}</div>
+                                <div class="am-u-sm-6">备注：{{ deliverInfo.mark_text }}</div>
+                            </div>
+                        {% endif %}
+
+                        {% if(newVirtual) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">卡类型：{{ cardType }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">卡号：{{ newVirtual }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                        {% endif %}
+
+                        <p>&nbsp;</p>
+                        {% if(detail.status >= 4) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">发货人：{{ person[deliverInfo.deliver_userid] }}</div>
+                                <div class="am-u-sm-6">{% if(goodInfo.delivery_id != 2) %}快递公司：{{ deliverInfo.deliver_company }}{% endif %}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">发货时间：{% if(deliverInfo.deliver_time) %}{{ deliverInfo.deliver_time|date('Y-m-d H:i:s') }}{% else %}无{% endif %}</div>
+                                <div class="am-u-sm-6">{% if(goodInfo.delivery_id != 2) %}快递单号：{{ deliverInfo.deliver_order }}{% endif %}</div>
+                            </div>
+                        {% endif %}
+
+                        <p>&nbsp;</p>
+                        {% if(detail.status == 5) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">收货时间：{{ detail.confirm_goods_time|date('Y-m-d H:i:s') }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                        {% elseif(detail.status == 6 or detail.status == 7) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">异常原因：{{ detail.fail_id }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="am-tab-panel" id="tab3">
+                        {% if(detail.status == 8) %}
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">晒单时间：{{ shareTopic.created_at|date('Y-m-d H:i:s') }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-12">晒单图片：
+                                {% for item in shareImg %}
+                                    <img src="{{ item.basename }}" width="200px" height="200px">
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-12">获奖感言：{{ shareTopic.content }}</div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">奖励积分：{{ shareTopic.point }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">审核人：{{ person[shareTopic.admin_id] }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">审核时间：{{ shareTopic.checked_at|date('Y-m-d H:i:s') }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">状态：{% if shareTopic.is_pass == 1 %}已通过{% elseif shareTopic.is_pass == 0 %}待审核{% elseif shareTopic.is_pass == 2 %}未通过{% endif %}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+                        {% if shareTopic.is_pass == 1 %}
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">推荐：{% if(shareTopic.is_recommend) %}是{% else %}否{% endif %}</div>
+                            <div class="am-u-sm-6">精华：{% if(shareTopic.is_digest) %}是{% else %}否{% endif %}</div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+
+                    <div class="am-tab-panel" id="tab4">
+                        {% if(exchange.admin_id) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">新单号：{{ exchange.id }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">审核换货人：{{ exchange.admin_id.real_name }}</div>
+                                <div class="am-u-sm-6">审核时间：{{ exchange.created_time|date('Y-m-d H:i:s') }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">&nbsp;</div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">快递公司：{{ exchange.deliver_company }}</div>
+                                <div class="am-u-sm-6">快递单号：{{ exchange.deliver_order }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">发货人：{{ exchange.deliver_userid.real_name }}</div>
+                                <div class="am-u-sm-6">发货时间：{{ exchange.deliver_time|date('Y-m-d H:i:s') }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">收货时间：{{ exchange.confirm_goods_time|date('Y-m-d H:i:s') }}</div>
+                                <div class="am-u-sm-6"></div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if(detail.status == 1) %}
+                    <div class="am-g doc-am-g">
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"><input type="button" value="确认" id="confirm" data-id="{{ detail.id }}"></div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-2"><input type="button" value="驳回" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}"></div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                    </div>
+                {% endif %}
+
+                {% if(detail.status == 4) %}
+                    <div class="am-g doc-am-g">
+                        <!--<div class="am-u-sm-6 am-u-md-4 am-u-lg-2"><input type="button" value="确认收货" id="success" data-id="{{ detail.id }}"></div>-->
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-1"><input type="button" value="申请换货" data-am-modal="{target: '#exchange', closeViaDimmer: 0, width: 400, height: 225}"></div>
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-1"><input type="button" value="无法送达" data-am-modal="{target: '#send', closeViaDimmer: 0, width: 400, height: 225}"></div>
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-1"><input type="button" value="修改订单" class="modifyOrder"></div>
+                    </div>
+                {% endif %}
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"></div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-2"><input type="button" value="备注" data-am-modal="{target: '#doc-modal-5', closeViaDimmer: 0, width: 400, height: 425}"></div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+
+                <input type="hidden" name="id" value="{{ detail.id }}">
+            </div>
+        </div>
+    </div>
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-5">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">后台备注
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <textarea style="width:300px;height: 300px;" class="remark_content">{{ detail.remark }}</textarea><br />
+            <input  type="submit"  value="提交" class="remark_admin">
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-6">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">发票时间
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            类型：<select name="bill">
+            <option value="无">无</option>
+            <option value="普通发票" {% if(deliverInfo.bill == "普通发票" ) %}selected{% endif %}>普通发票</option>
+            <option value="专业发票" {% if(deliverInfo.bill == "专业发票" ) %}selected{% endif %}>专业发票</option>
+            <option value="其他" {% if(deliverInfo.bill == "其他" ) %}selected{% endif %}>其他</option>
+        </select><br />
+            发票时间: <input type="text" name="billtime" {% if(deliverInfo.bill_time) %} value="{{ deliverInfo.bill_time|date('Y-m-d H:i:s') }}" {% endif %} id="bill"><br />
+            发票号码: <input type="text" name="billnum" value="{{ deliverInfo.bill_num }}" id="billnum"><br />
+            <input  type="submit"  value="提交" class="bill_time">
+        </div>
+    </div>
+</div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">驳回理由
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <select data-am-selected name="confirm_reason">
+                    <option value="电话号码不正确">电话号码不正确</option>
+                    <option value="收货地址不详细">收货地址不详细</option>
+                    <option value="联系人请使用全名">联系人请使用全名</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input  type="submit"  value="提交" class="confirm_fail">
+            </div>
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="exchange">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">换货理由
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <select data-am-selected name="exchange_reason">
+                    <option value="物品有损坏">物品有损坏</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input  type="submit"  value="提交" class="change_fail">
+            </div>
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="send">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">无法送达理由
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <select data-am-selected name="send_reason">
+                    <option value="填写地址不详细">填写地址不详细</option>
+                    <option value="无快递公司运送">无快递公司运送</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input  type="submit"  value="提交" class="send_fail">
+            </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $('.modifyOrder').click(function(){
+            var id = $('input[name=id]').val();
+            var urls = '{{ url('/deliver/modify-send') }}' + '?id=' + id;
+            layer.open({
+                type: 2,
+                area: ['550px', '500px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade: false,
+                content: urls
+            });
+        })
+
+        $('.remark_admin').click(function(){
+            var remark = $('.remark_content').val();
+            var id = $('input[name=id]').val();
+
+            $.post('/order/remark', {'id':id, 'remark':remark}, function(data){
+                if(data == 1){
+                    alert('操作成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }else{
+                    alert('操作失败');
+                    return false;
+                }
+            })
+        })
+
+        $(function(){
+            var id = $('input[name=id]').val();
+
+            $('.confirm_fail').click(function(){
+                var confirm_reason = $('select[name=confirm_reason]').val();
+                var other = $('input[name=other]').val();
+
+                $.post('/order/confirm', {'id':id, 'confirm_reason':confirm_reason, 'other':other}, function(data){
+                    if(data == 1){
+                        alert('操作成功');
+                        window.location.reload();
+                        parent.location.reload();
+                    }else{
+                        alert('操作失败');
+                        return false;
+                    }
+                })
+            })
+
+            $('.change_fail').click(function(){
+                var exchange_reason = $('select[name=exchange_reason]').val();
+                var other = $('input[name=other]').val();
+
+                $.post('/order/confirm', {'id':id, 'exchange_reason':exchange_reason, 'other':other}, function(data){
+                    if(data == 1){
+                        alert('操作成功');
+                        window.location.reload();
+                        parent.location.reload();
+                    }else{
+                        alert('操作失败');
+                        return false;
+                    }
+                })
+            })
+
+            $('.send_fail').click(function(){
+                var send_reason = $('select[name=send_reason]').val();
+                var other = $('input[name=other]').val();
+
+                $.post('/order/confirm', {'id':id, 'send_reason':send_reason, 'other':other}, function(data){
+                    if(data == 1){
+                        alert('操作成功');
+                        window.location.reload();
+                        parent.location.reload();
+                    }else{
+                        alert('操作失败');
+                        return false;
+                    }
+                })
+            })
+        })
+
+        $('#confirm').click(function(){
+            var id = $(this).attr('data-id');
+            $.post('{{ url(['/admin/order/confirm-order']) }}', {id: id}, function (data) {
+                if(data == 1){
+                    alert('确认失败，请重试');
+                }else{
+                    alert('确认成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }
+            })
+        })
+
+        $('#success').click(function(){
+            var id = $(this).attr('data-id');
+            $.post('{{ url(['/admin/order/confirm']) }}', {'success_id': id, 'id':id}, function (data) {
+                if(data == 0){
+                    alert('确认收货成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }else{
+                    alert('确认收货失败，请重试');
+                }
+            })
+        })
+
+        $('select[name=confirm_reason]').change(function(){
+            var value = $('select[name=confirm_reason] option:selected').val();
+            $('input[name=other]').remove();
+            if(value == '其他'){
+                $(this).after('<div><input type="text" name="other"></div>');
+            }
+        })
+
+        $('select[name=exchange_reason]').change(function(){
+            var value = $('select[name=exchange_reason] option:selected').val();
+            $('input[name=other]').remove();
+            if(value == '其他'){
+                $(this).after('<div><input type="text" name="other"></div>');
+            }
+        })
+
+        $('select[name=send_reason]').change(function(){
+            var value = $('select[name=send_reason] option:selected').val();
+            $('input[name=other]').remove();
+            if(value == '其他'){
+                $(this).after('<div><input type="text" name="other"></div>');
+            }
+        })
+
+        laydate({
+            elem: '#bill',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+
+        $('.bill_time').click(function(){
+            var time = $('input[name=billtime]').val();
+            var num = $('input[name=billnum]').val();
+            var id = $('input[name=id]').val();
+            var bill = $('select[name=bill] option:selected').val();
+
+            $.post('/order/bill', {'billtime':time,'id':id, 'num':num, 'bill':bill}, function(data){
+                if(data == 1){
+                    alert('操作成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }else{
+                    alert('操作失败');
+                    return false;
+                }
+            })
+        })
+
+        $('.btnclose').click(function(){
+            parent.location.reload();
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,208 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}keywords{% endblock %}
+{% block description %}description{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/jquery.mCustomScrollbar.css" />
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/style.css" />
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/scroll.js?v=160216" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/goodsdetail_comm.js?v=160301" ></script>
+
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/fly.js?v=160216" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/lottery.js?v=160527" ></script>
+	<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+	<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
+	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+{% endblock %}
+
+{% block body %}
+
+	{% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+	<section class="wrap clear">
+        <div class="present">
+            <a href="/">首页</a><i></i><a href="/list.html">全部商品</a>
+        </div>
+        <div class="phase_con noborder">
+            <div class="phase_fl phase_fl_2">
+                <picture><img id="pic" src="" alt=""></picture>
+                <ul id="phase_pic" class="clearfix"></ul>
+                <ol class="safe clearfix">
+                    <li class="safe_1">公平公正公开</li>
+                    <li class="safe_2">正品保障</li>
+                    <li class="safe_3">权益保障</li>
+                </ol>
+                <article>
+                    <a class="guanzhu" href="">关注</a>
+                    <div class="bshare-custom">
+                        <span>分享到：</span>
+                        <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                        <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+                        <a title="分享到QQ空间" class="bshare-qzone"></a>
+                        <a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a>
+                        <a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a>
+                    </div>
+                </article>
+            </div>
+            <div class="phase_centre phase_centre_2">
+                <div class="phase_centre_title"></div>
+                <div class="calculation">
+                    <p class="how">如何计算？</p>
+                    <p class="howis"><span class="text-green">变化数值</span>是取下面公式的余数</p>
+                    <p class="rule-item-1">
+						<span class="q_mask-1" style="width: 100px;">
+						    <i class="lottery-num text-red-2" id="time_total">?</i>
+
+				    	</span>
+						<span class="e_mask">
+							=
+						</span>
+						<span class="fixed text-red-2">
+							10000001
+						</span>
+                        <span class="e_mask" style="width: 30px;text-align: center;">+</span>
+						<span class="q_mask-2 text-red-2" id="surplus">
+							?
+						</span>
+                    </p>
+                    <p class="rule-item-2">
+
+                        <span class="mask">(</span>
+						<span class="sum" style="width: 108px">
+							      ?
+					    </span>
+                        <span class="e_mask" style="width: 50px;text-align: center">+</span>
+                        <span class="q_mask" style="width: 60px">?</span>
+                        <span style="width: 40px;text-align: center">)&nbsp;%</span>
+						<span class="" id="total">
+							6480
+						</span>
+                    </p>
+                    <p class="text-gray last-text-1">
+                        <span class="last-text-item-1">本期幸运号码</span>
+                        <span class="last-text-item-2" style="margin-left: 40px;">固定数值</span>
+                        <span class="last-text-item-3 text-green">变化数值</span>
+                    </p>
+                    <p class="text-gray last-text-2">
+                        <span class="last-text-item-1">50个时间求和</span>
+                        <span class="last-text-item-2" style="margin-left: 30px;">“老时时彩”幸运号码</span>
+                        <span class="last-text-item-3">总需人次</span>
+                    </p>
+                    <i style="height: 80px;width:2px;display: block;position: absolute;left: 340px;border-left:1px dashed #e2e2e2;top: 25px"></i>
+                </div>
+                <div class="viw_me" id="mybuy"></div>
+                <div class="the_new" id="percent">
+                   <!-- <h2>(最新一期) 正在火热进行中...</h2>
+                    <p class="progress">
+                        <i style="width: 20%"></i>
+                    </p>
+                    <p>已完成<span class="text-red" id="percent">45%</span>，剩余<span class="text-red" id="remain">3450
+                    </span>人次</p>
+                    <a href="#" class="nowto-btn">立即前往</a>-->
+                </div>
+                <!--原来的文字规则---已删除-->
+
+            </div>
+            <!--原来右侧参与记录--已删除-->
+        </div>
+
+        <div class="con_cut">
+            <ul class="con_title">
+                <li><i></i>计算结果</li>
+                <li><i></i>商品详情</li>
+                <li><i></i>参与记录</li>
+                <li><i></i>晒 单</li>
+                <li><i></i>往期揭晓</li>
+                <li class="gouw"><a href="">加入购物车</a></li>
+            </ul>
+            <div class="con_box jisuan_box" id="periodCon">
+                <div class="rule clearfix">
+                    <div class="rule-left pull-left">
+                        <img src="{{ app.params.skinUrl }}/img/rule.png" class="img" style="margin-top: 70px"/>
+                        <span class="rule-l-title">幸运号码<br>计算规则</span>
+                    </div>
+                    <div class="rule-right pull-left">
+                        <ol>
+                            <li class="order-1">商品的最后一个号码分配完毕后，将公示截止该时间点本站全部商品的最后50个参与时间；</li>
+                            <li class="order-2">将这50个时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如20:15:25.362则为201525362）；</li>
+                            <li class="order-3">为保证公平公正公开，系统还会等待一小段时间，取最近下一期中国福利彩票“老时时彩”的揭晓结果（一个五位数值B）；</li>
+                            <li class="order-4">（数值A+数值B）除以该商品总需人次得到的余数 + 原始数 10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该商品。</li>
+                        </ol>
+                        <p class="text-red" style="margin-top: 10px">注：如遇福彩中心通讯故障，无法获取上述期数的中国福利彩票“老时时彩”揭晓结果，则默认“老时时彩”揭晓结果为00000。
+                        </p>
+                        <dl>
+                            <dt>凌晨1:55到上午10:00开奖规则如下：</dt>
+                            <dd>（1）B值固定：由于凌晨1:55到上午10:00老时时彩不开奖，默认“老时时彩“开奖结果为”00000“，即数值B=00000</dd>
+                            <dd>（2）即时开奖：该段时间，商品凑满后即可开奖（倒计时30秒即揭晓结果）</dd>
+                        </dl>
+                    </div>
+                </div>
+                <ul class="jisuan_title">
+                    <li class="title01">伙购时间</li>
+                    <li class="title02">转换数据</li>
+                    <li class="title03">会员名称</li>
+                    <li class="title04">参与人次</li>
+                    <li class="title05">商品名称</li>
+                </ul>
+                <div class="jisuan_detail">
+                </div>
+            </div>
+            <div class="con_box" id="contentInfo"></div>
+            <div class="con_box jisuan_box">
+                <table class="canyu">
+                    <thead>
+                    <tr>
+                        <td>伙购时间</td>
+                        <td>会 员</td>
+                        <td>参与人次</td>
+                        <td>IP地址</td>
+                        <td>来源</td>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="pagination1" id="canyunew"></div>
+            </div>
+            <div class="con_box jisuan_box">
+                <ul class="shaidan clear"></ul>
+            </div>
+            <div class="con_box jisuan_box" id="announced"></div>
+        </div>
+	</section>
+
+	<figure id="hg-ma-box">
+		<em><em></em></em>
+		<section>
+			<i class="hg-ma-del">×</i>
+			<div class="hg-ma-title" id="hg-box-codes-title">
+					<span class="w">
+						<a href="" target="_blank"><b class="hg-ma-img"><img src="" width="22" height="22" ></b>伙购取名中大奖</a>
+					</span>
+					本次参与<span class="s">4</span>人次
+			</div>
+			<div class="hg-ma-con">
+				<div  id="content" class="content mCustomScrollbar light" data-mcs-theme="minimal">
+					<ul id="hg-box-codes-ul">
+						<li class="act">1000471</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</figure>
+
+<div class="view-alertbg" id="attend_code"></div>
+<div class="view-alertbg" id="attend_code2"></div>
+<div class="modal-backdrop"></div>
+{% include '@app/views/footer.html' %}
+<div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+</div>
+
+{% endblock %}

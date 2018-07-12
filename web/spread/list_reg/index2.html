@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>	
+    <script type="text/javascript" src="js/register.js?v=160605"></script>
+	<script>
+		var baseUrl = "http://api.huogou.com/";
+		var wwwBaseUrl = 'http://www.huogou.com';
+		var photoSize = ['58', '200', '400', 'org'];
+		var shareType = 'qzone';//qzone
+
+
+		$(function () {
+			if (getCookie('come')==1) {
+				$('.m_popUp').hide();
+			}
+			setCookie('come',1);
+
+
+			$(".buy,.winning-list li,.register-pro-list li").click(function(e){
+				stopBubble(e)
+//				$(".winning-fixed").toggleClass("on")
+
+				location.href = './register.html';
+
+			})
+
+			$(".winning-fixed").bind("click", function (e) {
+				stopBubble(e)
+				var target = $(e.target);
+				if (target.closest(".wrap_r").length == 0) {
+					$(".winning-fixed").removeClass("on")
+				}
+			})
+
+			$('.close').on('click',function(e) {
+				stopBubble(e)
+				$(".winning-fixed").removeClass("on")
+			});
+
+
+			$('.register').on('click',function(e) {
+				stopBubble(e)
+				location.href = './register.html';
+			});
+
+		});
+
+		function getUrlParam(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return decodeURI(r[2]);
+			return null;
+		}
+
+		function createGoodsImgUrl(name, width, height) {
+			return 'http://img.huogou.com/pic-' + width + '-' + height + '/' + name;
+		}
+		function createPeriodUrl(periodId) {
+			return wwwBaseUrl+'/lottery/'+periodId+'.html';
+		}
+
+
+
+
+	</script>
+</head>
+<body>
+	<div class="winning-fixed">
+		<section>
+			<div class="wrap_r">
+				<h2>温馨提示</h2>
+				<p>立即注册，1元领取奖品</p>
+				<a class="close" href="javascript:;">痛心放弃</a><a class="act register" href="javascript:;">前往领取</a>
+			</div>
+		</section>
+	</div>
+
+	<a href="javascript:;"><img class="w100 register" src="img/register03.jpg"></a>
+	
+	<ul class="register-pro-list" style="padding-top:15px;">
+		<li>
+			<a href="javascript:;">
+				<picture><img src="img/register04.jpg"></picture>
+				<h3>戴尔（Dell）Alienware 17 英寸i7外星人笔记本4核...</h3>
+			</a>
+			<p><em>原价：￥27498</em><span>￥<i>1</i></span></p>
+			<article>
+				<div>
+					<aside>开奖进度 <i>89%</i></aside>
+					<b><i style="width: 89%;"></i></b>
+				</div>
+				<a class="buy" href="javascript:;">立即抢购</a>
+			</article>
+		</li>
+		<li>
+			<a href="javascript:;">
+				<picture><img src="img/register10.jpg"></picture>
+				<h3>Apple iPhone6s Plus 64G 颜色随机 处处不同...</h3>
+			</a>
+			<p><em>原价：￥7688</em><span>￥<i>1</i></span></p>
+			<article>
+				<div>
+					<aside>开奖进度 <i>98%</i></aside>
+					<b><i style="width: 98%;"></i></b>
+				</div>
+				<a class="buy" href="javascript:;">立即抢购</a>
+			</article>
+		</li>
+		<li>
+			<a href="javascript:;">
+				<picture><img src="img/register11.jpg"></picture>
+				<h3>Apple Watch Sport 38 毫米银色铝金属表壳搭配白色运动型表...</h3>
+			</a>
+			<p><em>原价：￥2638</em><span>￥<i>1</i></span></p>
+			<article>
+				<div>
+					<aside>开奖进度 <i>78%</i></aside>
+					<b><i style="width: 78%;"></i></b>
+				</div>
+				<a class="buy" href="javascript:;">立即抢购</a>
+			</article>
+		</li>
+		<li>
+			<a href="javascript:;">
+				<picture><img src="img/register12.jpg"></picture>
+				<h3>佳能（Canon）EOS 70D 单反套机 EF-S 18-200mm“全像素双核CMOSAF”..</h3>
+			</a>
+			<p><em>原价：￥9288</em><span>￥<i>1</i></span></p>
+			<article>
+				<div>
+					<aside>开奖进度<i>39%</i></aside>
+					<b><i style="width: 39%;"></i></b>
+				</div>
+				<a class="buy" href="javascript:;">立即抢购</a>
+			</article>
+		</li>
+	</ul>
+
+	<img class="w100" src="img/register05.jpg">
+
+	<ul class="winning-list" style="padding-bottom:0px">
+		<li>
+			<picture class="picture"><img src="img/register14.jpg"></picture>
+			<div>
+				<h3>爱生活</h3><i>12：04</i>
+			</div>
+			<p>(第245伙)IPHONE 6S 128G玫瑰金</p>
+			<summary>
+				想到这么幸运不错不错棒棒的。。最爱伙购啦，总之收到手机好开心！！
+			</summary>
+			<article>
+				<picture><img src="img/register07.jpg"></picture>
+				<picture><img src="img/register08.jpg"></picture>
+				<picture><img src="img/register09.jpg"></picture>
+			</article>
+		</li>
+		<li>
+			<picture class="picture"><img src="img/register06.jpg"></picture>
+			<div>
+				<h3>138****2514</h3><i>11：23</i>
+			</div>
+			<p>(第245伙)苹果（Apple）iMac 21.5 英寸</p>
+			<summary>
+				哈哈哈哈以前都是玩充值卡 然后玩了一下这个没想到一次就中了。问题是快递速度真特么快，昨天下午4点中的今天就特么到货了。！
+			</summary>
+			<article>
+				<picture><img src="img/register15.jpg"></picture>
+				<picture><img src="img/register16.jpg"></picture>
+				<picture><img src="img/register17.jpg"></picture>
+			</article>
+		</li>
+		<li>
+			<picture class="picture"><img src="img/register13.jpg"></picture>
+			<div>
+				<h3>不中不玩了</h3><i>08：34</i>
+			</div>
+			<p>(第245伙)（Apple）Apple Watch Sport 38 毫米银色</p>
+			<summary>
+				嘿嘿，只是抱着试一试的想法没想到还真中了。。。还真是幸运呢！！！！只花了十块钱，还挺划算了。。。！
+			</summary>
+			<article>
+				<picture><img src="img/register18.jpg"></picture>
+				<picture><img src="img/register19.jpg"></picture>
+				<picture><img src="img/register20.jpg"></picture>
+			</article>
+		</li>
+	</ul>
+	
+	<img class="w100 register" src="img/register006.jpg">
+	
+	<section id="step1" style="background:#fff">
+    <div class="registerCon" style="margin:0 auto;padding:10px 5px;">
+        <ul>
+            <li class="accAndPwd">
+                <dl>
+                    <input class="ipt" id="userMobile" maxlength="11" type="tel" placeholder="请输入您的手机号码" />
+                </dl>
+            </li>
+
+            <li>
+                <dl>
+                    <input class="ipt" id="userPassword" maxlength="20" type="password" placeholder="请输入8-25位密码" />
+                </dl>
+            </li>
+
+            <li>
+                <input style="width:50%;float: left;" class="ipt" id="mobileCode" type="tel" value="" placeholder="6位验证码">
+                <a class="sendCode" href="javascript:void(0);">发送验证码</a>
+            </li>
+
+            <div style="clear:both;"></div>
+
+            <li><a id="regSubmit" href="javascript:;" class="orangeBtn ">提交</a></li>
+            <li><span id="isCheck"><input type="radio" checked="checked">我已阅读并同意</span><a href="./terms.html" class="blue">伙购网用户服务协议</a></li>
+        </ul>
+    </div>
+</section>
+	
+	
+	<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_before" style="display: none;">
+            <p>温馨提示</p>
+            <p class="two">您手机号已经注册啦，请下载APP参与伙购</p>
+            <p><span style="padding: 0.2em 1em; background-color: #fe500b;" class="off"><a style="color: #fff;" href="http://www.huogou.com/app/down">立即下载APP</a></span></p>
+        </div>
+        <div class="wrap wrap_r reg_notice" style="display: none;">
+            <p>注册提示</p>
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

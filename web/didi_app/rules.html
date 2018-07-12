@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>我的红包</title>
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="css/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="css/security.css" rel="stylesheet" type="text/css" />
+    <link href="css/help.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+</head>
+<body class="secrityBg">
+<div>
+    <div class="helpCon marginB">
+        <div class="helpInfo">
+            <dt>
+            <h3><i class="fr iCollapse"></i>什么是夺宝红包？</h3>
+            </dt>
+            <dd id="dd1" class="helpBox" style="display: none;">
+                夺宝红包是滴滴夺宝发行并认可的优惠券类型，可在滴滴夺宝及夺宝APP下单支付时使用，可抵扣相应的金额。<br />
+                夺宝红包有多种类型，具体类型可查看获得的红包详情。
+            </dd>
+        </div>
+        <div class="helpInfo">
+            <dt>
+            <h3><i class="fr iCollapse"></i>如何获取夺宝红包？</h3>
+            </dt>
+            <dd class="helpBox" style="display: none;">
+                滴滴夺宝会在线上不定期的举办各种活动，滴滴夺宝注册用户参与活动即有机会赢取红包奖励。
+            </dd>
+        </div>
+        <div class="helpInfo">
+            <dt>
+            <h3><i class="fr iCollapse"></i>夺宝红包的使用条件?</h3>
+            </dt>
+            <dd class="helpBox" style="display: none;">
+                不同的红包有相应的使用条件，如使用时限，使用订单金额等。
+            </dd>
+        </div>
+        <div class="helpInfo">
+            <dt>
+            <h3><i class="fr iCollapse"></i>夺宝红包找零兑换吗？</h3>
+            </dt>
+            <dd class="helpBox" style="display: none;">
+                夺宝红包不找零，不兑换，过期失效。
+            </dd>
+        </div>
+        <div class="helpInfo">
+            <dt>
+            <h3><i class="fr iCollapse"></i>订单超过多少元，可以使用红包？</h3>
+            </dt>
+            <dd class="helpBox" style="display: none;">
+                可使用的金额条件，以红包上实际金额条件为准。
+            </dd>
+        </div>
+
+        <div class="helpInfo" style="display:none">
+            <dt>
+            <h3><i class="fr iCollapse"></i>特别声明</h3>
+            </dt>
+            <dd class="helpBox" style="display: none;">
+                滴滴夺宝在此声明，您通过本软件参与的任何购物活动与苹果公司（Apple Inc.）无关。
+            </dd>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(".helpInfo dt:eq(0)").siblings('.helpBox').show();
+    $(".helpInfo dt:eq(0)").children().children('i').removeClass('iCollapse').addClass('iOpen');
+    $('.helpInfo dt').on('click',function(){
+        if($(this).siblings('.helpBox').css('display') == "none"){
+            $('.helpInfo dt').siblings('.helpBox').hide();
+            $('.helpInfo dt').children().children('i').removeClass('iOpen').addClass('iCollapse');
+            $(this).siblings('.helpBox').show();
+            $(this).children().children('i').removeClass('iCollapse').addClass('iOpen');
+        }else{
+            $(this).siblings('.helpBox').hide();
+            $(this).children().children('i').removeClass('iOpen').addClass('iCollapse');
+        }
+    })
+    $(function(){
+        var isiOS = isIos();
+        if (isiOS) {
+            $(".helpInfo:last").show();
+        }
+    })
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

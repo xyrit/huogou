@@ -1,0 +1,32 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}参与记录{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/goods.css" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/ddweixin/css/jquery.jscrollpane.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/buyrecords.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block body %}
+  <!-- 夺宝记录 -->
+  <input name="hidPage" type="hidden" id="hidPage" value="1" />
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <!--去掉#divRecordList中 .marginB 隐藏#divBuyLoading  添加li-->
+      <div class="buy_records">
+        <ul id="divRecordList" >
+
+        </ul>
+
+        <div id="divBuyLoading" class="loading" style="display: none">
+          <b></b>正在加载
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

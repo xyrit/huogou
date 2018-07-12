@@ -1,0 +1,126 @@
+.Pub-tit{
+    position: relative;
+    height: 32px;
+}
+.Pub-tit b{
+    width: 678px;
+    border-bottom: 1px solid #DBDBDB;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    left: 1px;
+    top: 0;
+    z-index: 9;
+}
+.Pub-tit input{
+    width: 673px;
+    font-size: 14px;
+    color: #333;
+    line-height: 32px;
+    padding-left: 5px;
+    height: 30px;
+    border: 1px solid #C2C2C2;
+    vertical-align: top;
+    _margin-top: -1px;
+}
+.ke-container-default .ke-toolbar-icon {
+    background-repeat: no-repeat;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+}
+.ke-container-default .ke-icon-image{
+    background-position: 0 -36px;
+    width: 65px;
+    height: 17px;
+}
+.ke-container-default .ke-toolbar-icon-url, .upImgBtn a {
+    background-image: url(../../default.png);
+}
+.ke-container-default .ke-icon-emoticons {
+    background-position: 0 0;
+    width: 43px;
+    height: 17px;
+}
+.ke-container-default .ke-icon-insertfile {
+    background-position: 0 -72px;
+    width: 42px;
+    height: 17px;
+}
+.ke-container-default .ke-icon-bold {
+    background-position: 0 -108px;
+    width: 42px;
+    height: 17px;
+}
+.ke-container-default .ke-toolbar .ke-on .ke-icon-image{
+    background-position: 0 -54px;
+}
+.ke-container-default .ke-toolbar .ke-on .ke-icon-emoticons{
+    background-position: 0 -18px;
+    width: 43px;
+    height: 17px;
+}
+.ke-container-default .ke-toolbar .ke-on .ke-icon-insertfile{
+     background-position: 0 -90px;
+ }
+.ke-container-default .ke-toolbar .ke-on .ke-icon-bold{
+      background-position: 0 -126px;
+  }
+.ke-toolbar .ke-selected{
+    border-color: #c2c2c2;
+    background-color: #fff;
+}
+
+
+
+/*发表取消按钮*/
+.Pub-btn-r {
+    width: 678px;
+    margin-top: 6px;
+    text-align: right;
+}
+.Pub-btn-r a {
+    margin-left: 5px;
+    text-decoration: none;
+}
+.button06 {
+    height: 23px;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 23px;
+    line-height: 26px\9;
+    _line-height: 25px;
+    display: inline-block;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+.button06 {
+    width: 58px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    color: #747474;
+}
+.button04, .button05 {
+    height: 23px;
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 23px;
+    line-height: 26px\9;
+    _line-height: 25px;
+    display: inline-block;
+    color: #fff;
+    overflow: hidden;
+    text-align: center;
+}
+.button05 {
+    width: 88px;
+    background: #F60;
+    border: 1px solid #f65802;
+    color: #fff;
+}
+.ke-container-default{
+   width: 678px!important;
+}
+

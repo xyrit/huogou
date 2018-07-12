@@ -1,0 +1,196 @@
+/*ÅÅÐÐ°ñ*/
+.clearfix:before,.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+img{
+    border: 0;
+    display: block;
+}
+.text-red{
+    color:#ef2828;
+}
+section.rank-banner{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+/*section.rank-banner .black{
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+}*/
+section.rank-banner p{
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 0 5px #004a8f;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 0;
+}
+.rank-list {
+    padding: 0 3.5%;
+    background: #fff;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.rank-list li {
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e2e2;
+    overflow: hidden;
+    position: relative;
+}
+.rank-list li i {
+    height: 25px;
+    width: 25px;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -10px;
+    font-size: 15px;
+    color: #666;
+    overflow: hidden;
+    font-style: normal;
+    text-align: center;
+}
+.rank-list li:nth-of-type(1) i {
+    margin-top: -12px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background: no-repeat center;
+    background-size: cover;
+    background-image: url(../images/one@2x.png);
+    text-indent: 200px;
+}
+.rank-list li:nth-of-type(2) i {
+    margin-top: -12px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background: no-repeat center;
+    background-size: cover;
+    background-image: url(../images/two@2x.png);
+    text-indent: 200px;
+}
+.rank-list li:nth-of-type(3) i {
+    margin-top: -12px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    background: no-repeat center;
+    background-size: cover;
+    background-image: url(../images/three@2x.png);
+    text-indent: 200px;
+}
+.rank-list li a {
+    display: block;
+    overflow: hidden;
+    margin-left: 30px;
+}
+.rank-list li picture {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    float: left;
+    border-radius: 4px;
+}
+.rank-list li picture img {
+    height: 100%;
+    display: block;
+}
+.rank-list li h3 {
+    font-weight: 100;
+    float: left;
+    color: #666;
+    line-height: 35px;
+    margin-left: 2%;
+    width: 43%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.rank-list li:nth-of-type(1) h3, .rank-list li:nth-of-type(1) span {
+    color: #ff0b0b;
+}
+.rank-list li:nth-of-type(2) h3, .rank-list li:nth-of-type(2) span {
+    color: #fe6b09;
+}
+.rank-list li:nth-of-type(3) h3, .rank-list li:nth-of-type(3) span {
+    color: #ffb032;
+}
+.rank-list li span {
+    float: right;
+    color: #666;
+    line-height: 35px;
+    width: 110px;
+    overflow: hidden;
+    display: inline-block;
+    height: 35px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.view-more {
+    border: none;
+    background-color: #fff;
+    padding: 10px;
+    display: block;
+    margin: 0 -3.5%;
+
+}
+.view-more>span {
+    width: 105px;
+    display: block;
+    background-image: url(../images/arrow-u-d.png);
+    background-repeat: no-repeat;
+    background-position: right 7px;
+    background-size: 15px;
+    margin: 0 auto;
+}
+/*ºì°ü*/
+.top-title{
+    border-bottom: solid 1px #e0e0e0;
+    /*border-top: solid 1px #e0e0e0;*/
+    background-color: #fff;
+    padding: 10px 3.5%;
+}
+.red-list{
+    background-color: #fff;
+    margin: 3.5% 0;
+    width: 100%;
+    border-top: 1px solid #cccccc;
+}
+.red-list li{
+    width: 50%;
+    background-color: #fff;
+    float: left;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+.red-list li .red-inside{
+    width: 75%;
+    margin: 8% auto;
+    position: relative;
+}
+.red-list li .red-inside img{
+    width: 100%;
+}
+.red-list li .red-inside .get-red{
+    position: absolute;
+    bottom: 10%;
+    display: block;
+    height: 30%;
+    width: 100%;
+}

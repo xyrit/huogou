@@ -1,0 +1,52 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}结算支付{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/cartList.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/payment.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+    <input name="hidShopMoney" type="hidden" id="hidShopMoney" value="0" />
+    <input name="hidBalance" type="hidden" id="hidMoney" value="0" />
+    <input name="hidPoints" type="hidden" id="hidPoints" value="0" />
+    <input name="hidPayPoints" type="hidden" id="hidPayPoints" value="0" />
+    <input name="hidPaylBalance" type="hidden" id="hidPayMoney" value="0" />
+    <input name="hidPayBank" type="hidden" id="hidPayBank" value="0" />
+
+    <input name="hidPayWay" type="hidden" id="hidPayWay" value="iapp" />
+    <input name="hidPayName" type="hidden" id="hidPayName" value="platform" />
+
+    <input name="hidPpwd" type="hidden" id="hidPpwd" value="1" />
+    <input name="hidPfree" type="hidden" id="hidPfree" value="1" />
+
+    <div>
+        <div class="g-pay-lst">
+            <ul>
+
+
+            </ul>
+            <a style="display: none;" id="a_exp" href="javascript:;" class="pay_open pay_pack"><s></s></a>
+            <p class="gray9">总需支付金额：<em class="orange"><i>￥</i>0.00</em></p>
+        </div>
+
+        <div class="other_pay marginB">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;" class="wzf"><b class="z-set"></b>第三方支付<em class="orange fr"></em></a>
+            <div class="net-pay" style="display: none;">
+                <a href="javascript:;" bank="zhifukachat" payName="platform">微信支付<b class="z-set"></b></a>
+                <!--<a href="javascript:;" bank="jd" payName="platform">京东支付<b class="z-set"></b></a>-->
+             <!--   <a href="javascript:;" bank="union" payName="platform">银联支付<b class="z-set"></b></a>-->
+                <a href="javascript:;" bank="iapp" payName="platform">爱贝支付(财付通)<b class="z-set"></b></a>
+            </div>
+        </div>
+        <div class="g-Total-bt">
+            <dd><a id="btnPay" href="javascript:;" class="orangeBtn fr w_account">立即支付</a></dd>
+        </div>
+    </div>
+
+{% endblock %}

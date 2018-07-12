@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        发布晒单
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="member/CSS/newmember.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="loadingPicBlock" class="g-acc-bg">
+<div>
+    <input name="hidCodeID" type="hidden" id="hidCodeID" value="1933186" />
+    <input name="hidBack" type="hidden" id="hidBack" value="0" />
+    <div class="clearfix g-member g-Single">
+        <div class="m-single-tt">
+            <input id="txtTitle" type="text" class="z-input" value="晒单标题" />
+        </div>
+        <div class="m-single-ct">
+            <textarea id="txtContent" name="comment" rows="3" class="z-comment-txt">晒单感言</textarea>
+        </div>
+        <div style="display: none;">
+            <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>
+        </div>
+        <input id="hidPicAll" type="hidden" value="" name="hidPicAll" />
+        <div class="m-single-img">
+            <ul id="ulPicBox">
+                <li> <img src="http://mskin.1yyg.com/member/images/single_pic.png" border="0" alt="" width="50" />
+                    <form id="pageForm" name="pageForm" method="post" target="upFrame" enctype="multipart/form-data" action="PostSingleUploadImg.do">
+                        <input id="btnUpload" type="file" name="upload" class="Upload" hidefocus="true" data-hook="fileBtn" />
+                    </form> </li>
+                <li>添加照片</li>
+            </ul>
+        </div>
+        <div class="u-Btn">
+            <div class="u-Btn-li">
+                <a id="btnSubmit" href="javascript:;" class="z-DefineBtn">确认发布</a>
+            </div>
+        </div>
+        <div class="m-single-exp mt10 gray9">
+            <p>1、晒单内容越详细，获得的福分奖励就越多（限时商品除外）；</p>
+            <p>2、您的文字描述应不少于100字，高清的商品实拍照不少于3张；</p>
+            <p>3、请避免晒单内容中文字与图片的大量重复；</p>
+            <p>4、为提高晒单的真实性，您可以展示真实有效的快递单号；</p>
+            <p>5、建议晒出您与商品的合照，您的手机短信、邮件通知及云购网上的交易详情页面截图等；</p>
+            <p>6、注意保持晒单内容与获得商品的关联性，请勿使用其他网站的图片，请勿违反国家相关规定，否则我们有权删除并冻结账号，且保留追究其法律责任的权利</p>
+            <p>7、如果晒单内容非常新颖，那么您有可能会获得更高的奖励！</p>
+        </div>
+    </div>
+    <div id="prePicBox" class="m-single-editor">
+        <div class="m-single-pic">
+            <span id="imgLoad"> <img src="http://mskin.1yyg.com/member/images/m-loading.gif" border="0" alt="" width="30" height="30" /> </span>
+            <span style="display: none;"> <img id="imgBig" src="http://mskin.1yyg.com/member/images/m-loading.gif" border="0" alt="" width="30" height="30" /> </span>
+        </div>
+        <div class="g-snav z-editor-Btnbg">
+            <div class="g-snav-lst z-Btn-del">
+                <a id="btnDelete" href="javascript:;"><b></b>删除</a>
+            </div>
+            <div class="g-snav-lst z-Btn-Rotation">
+                <a id="btnRotate" href="javascript:;"><b></b>旋转</a>
+            </div>
+            <div class="g-snav-lst z-Btn-Close">
+                <a id="btnClose" href="javascript:;"><b></b>关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="hidPageType" type="hidden" value="-1" />
+<div class="footer clearfix" style="display:none;">
+    <ul>
+        <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+        <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+        <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+        <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+        <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+    </ul>
+</div>
+</body>
+</html>

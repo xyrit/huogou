@@ -1,0 +1,95 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的消息-好友请求{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/message/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <div class="sx-info-title">
+                        <h3>我和<i>{{ toUser.username }}</i>的对话 共<i>{{ list.pagination.totalCount }}</i>条私信</h3>
+                        <a href="{{ url(['/message/user-priv-msg']) }}">&lt; 返回私信列表</a>
+                    </div>
+                    <div class="sx-info-details">
+                        <p class="system-reminder" data-id="{{ toUser.home_id }}">系统提醒：伙购网不会以私信方式向伙友索取任何相关信息，以防诈骗。</p>
+                        <div class="sx-reply clear">
+                            <div class="editor-wrap">
+                                <textarea id="editor"></textarea>
+                            </div>
+
+                            <picture>
+                                <img src="{{ userAvatar }}">
+                            </picture>
+                        </div>
+                    </div>
+                    <ul class="sx-info-con">
+                        {% for item in list.data %}
+                            <li {% if(item.user.id == app.user.id) %}class="right"{% endif %}>
+                                <b onclick="gotoClick();" class="close-msg" data-id="{{ item.id }}" name="{{ item.user.home_id }}"></b>
+                                <i><em></em></i>
+                                <picture><img src="{{ item.user_avatar }}" alt=""></picture>
+                                <p style="word-wrap:break-word; word-break:break-all; overflow: hidden;">{% if(item.user.id == app.user.id) %}我{% else %}
+                                    <a href="{{ url('/user/default/index', {'id':item.user.home_id}) }}" target="_blank">{{ item.user.username }}</a>
+                                    {% endif %}：{% autoescape true %}{{ item.content|raw }}{% endautoescape %}</p>
+                                <aside>{{ item.created_at }}</aside>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {{ use('/app/widgets/LinkPager') }}
+                    {{ link_pager_widget({pagination: list.pagination}) }}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include '@app/views/footer.html' %}
+
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i class="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/keditor/kindeditor.js" ></script>
+    <script>
+        $(function(){
+            editor = KindEditor.create('#editor', {
+                resizeType : 0,
+                allowPreviewEmoticons : true,
+                allowImageUpload : false,
+                items : ['emoticons'],
+                themeType : 'simple',
+                pasteType : 1,
+                width : '690px',
+                height : '130px',
+                afterChange : function(){
+                    var textNum = this.count('text');
+                    if (textNum > 150) {
+                        $('#edit-submit').addClass('dis');
+                        KindEditor('#edit-count').html('<span>已超过' + (textNum - 150) + '个字了，请适当删除部分内容</span>');
+                    }else{
+                        $('#edit-submit').removeClass();
+                        KindEditor('#edit-count').html('<span>' + this.count('text') + '</span>/150');
+                    }
+                },
+                layout: '<div class="container"><i><em></em></i><div class="edit"></div><div class="toolbar"></div><div class="edit-info"><div id="edit-count">0/150</div><a href="javascript:;" id="edit-submit" onclick="comment()">立即发送</a></div><div class="statusbar"></div></div>'
+            });
+
+        })
+    </script>
+{% endblock %}

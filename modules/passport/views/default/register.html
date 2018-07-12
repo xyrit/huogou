@@ -1,0 +1,103 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block title %}会员注册_{{ app.name }}{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/common.js" ></script>
+<script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/register.js" ></script>
+{% endblock %}
+
+
+{% block body %}
+    <section class="wrap clear">
+        <a class="logo" href="{{ url(['/']) }}"></a>
+        <a class="return orange" href="{{ url(['/passport/default/login']) }}"><i>已有账号？</i>立即登录</a>
+    </section>
+
+    <section class="register">
+        <div class="register_box">
+            {{ html.beginForm('', 'post', {'id':'register-form','autocomplete':'off'}) | raw }}
+            <input type="text" name="" style="display: none;"/>
+            <input type="password" name="" style="display: none;"/>
+            <div class="con">
+                <h2 class="title">新用户注册</h2>
+                <div class="register_input">
+                    <div class="log_ipts">
+                        <label for="" class="log_id_icon"></label>
+                        <input class="txtreg re_id" id="account" name="RegisterForm[username]" type="text" tabindex="1" autocomplete="off">
+                        <s ></s>
+                        <em class="input_arr">手机号/邮箱地址</em>
+                    </div>
+                    <span class="orange" id="usererror">{{ model.firstErrors.username }}</span>
+                    <input type="password" style="display: none;"/>
+                    <div class="log_ipts">
+                        <label for="" class="log_code_icon"></label>
+                        <input class="txtreg re_code" id="password" name="RegisterForm[password]" type="password" tabindex="3" maxlength="20" autocomplete="off">
+                        <s ></s>
+                        <em class="input_arr">登录密码</em>
+                    </div>
+                    <summary class="p_strength">
+                        <em>密码强度</em><p><b></b></p><i>弱</i>
+                    </summary>
+                    <span class="orange" id="pwderror">{{ model.firstErrors.password }}</span>
+                    <div class="log_ipts">
+                        <label for="" class="log_code_icon"></label>
+                        <input class="txtreg re_code" name="RegisterForm[confirmPassword]"  type="password" id="repassword" tabindex="4" maxlength="20" autocomplete="off">
+                        <s ></s>
+                        <em class="input_arr">重复登录密码</em>
+                    </div>
+                    <span class="orange" id="repwderror">{{ model.firstErrors.confirmPassword }}</span>
+                    <summary class="log_ipts">
+                        <label for="" class="gl_verify_icon"></label>
+                        <input class="txtreg gl_verify" name="RegisterForm[verifyCode]"  value="{{ model.verifyCode }}" type="text" id="verify" tabindex="5" maxlength="6">
+                        <img src="{{ url(['/passport/api/captcha']) }}" height="48" alt="" id="imgCode" />
+                        <em class="input_arr">验证码</em>
+                    </summary>
+                    <span class="orange" id="verifyerror">{{ model.firstErrors.verifyCode }}</span>
+                    <input id="btnAgreeBtn" type="submit" value="同意协议并注册">
+                    <a id="btnAgreement" class="xieyi" href="{{ url(['/help/default/agreement']) }}" target="_blank">《伙购网服务协议》</a>
+                </div>
+            </div>
+            {{ html.endForm() | raw }}
+        </div>
+    </section>
+
+    {% include '@passportModule/views/footer.html' %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+
+    $('#imgCode').on('click', function() {
+        $('#imgCode').attr('src', passportBaseUrl +'/api/captcha?v='+Math.random())
+    });
+
+    //    注册框获取焦点变色换图
+    function logImg(par1){
+        $(par1).on('focus',function (){
+            $(this).parent().addClass('log_hover');
+        });
+        $(par1).on('blur',function (){
+            $(this).parent().removeClass('log_hover');
+        });
+    }
+    logImg('.re_id')
+    logImg('.gl_phone')
+    logImg('.re_code')
+    logImg('.log_id')
+    logImg('.gl_verify')
+
+    $('#account').focus(function(){
+        $(this).siblings('.input_arr').text('推荐使用手机注册');
+    }).blur(function(){
+        $(this).siblings('.input_arr').text('手机号/邮箱地址');
+    })
+    $('#password').focus(function(){
+        $(this).siblings('.input_arr').text('8-20位字母、数字或符号两种组合');
+    }).blur(function(){
+        $(this).siblings('.input_arr').text('登录密码');
+    })
+
+
+
+</script>
+{% endblock %}

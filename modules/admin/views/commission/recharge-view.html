@@ -1,0 +1,61 @@
+{% extends '@adminModule/views/base.html' %}
+
+
+{% block main %}
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">订单详情</strong>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">编号：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ info.id }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">会员ID：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6">{{ info.user_id }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-4"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">充值金额：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ info.money }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+        </div>
+
+
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">状态：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+            {% if info.status ==0 %}
+              未完成
+            {% elseif info.status==1 %}
+              完成
+            {% endif %}
+          </div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">申请时间：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.pay_time|date('Y-m-d H:i:s') }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

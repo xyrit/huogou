@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="{% block keywords %}{% endblock %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    {{ html.csrfMetaTags() | raw }}
+    <title></title>
+    <link rel="stylesheet" href="/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+</head>
+
+<body>
+{% include '@adminModule/views/header.html' %}
+
+<div data-am-widget="tabs" id="admin-tabs" class="am-tabs am-tabs-d2" style="margin: 0px;">
+    <ul class="am-tabs-nav am-cf">
+        <!--<li><a href="">仓储管理</a></li>-->
+        <!--<li class=""><a href="{{ url(['/admin/purchase/']) }}">采购管理</a></li>-->
+        <!--<li class=""><a href="">运营管理</a></li>-->
+        <!--<li class=""><a href="{{url(['/admin/deliver'])}}">发货管理</a></li>-->
+        <!--<li class=""><a href="{{url(['/admin/order'])}}">订单管理</a></li>-->
+        <!--<li class="am-active"><a href="{{url(['/admin/default/index-page'])}}" >首页</a></li>-->
+        <!--<li class=""><a href="{{url(['/admin/group'])}}" >圈子管理</a></li>-->
+        <!--<li class=""><a href="{{ url(['/admin/member']) }}">会员管理</a></li>-->
+        <!--<li class=""><a href="">移动管理</a></li>-->
+        <!--<li class=""><a href="{{url(['/admin/product'])}}">商品管理</a></li>-->
+        <!--<li class=""><a href="">报表管理</a></li>-->
+        <li class=""><a href="{{ url(['/admin/group/keywords']) }}">系统设置</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+        <!--<div class="am-tab-panel " style="padding: 0"></div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">申请列表 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">-->
+                                <!--<li><a href="{{ url(['/admin/purchase/virtual-add']) }}" target="admin-main">虚拟物品</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">采购记录 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">-->
+                                <!--<li><a href="{{ url(['/admin/purchase/']) }}" target="admin-main">采购记录</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">投诉列表 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">-->
+                                <!--<li><a href="{{ url(['/admin/suggestion']) }}" target="admin-main">投诉列表</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#am-collapse5'}">banner管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse5">-->
+                                <!--<li><a href="{{ url(['/admin/banner']) }}" target="admin-main">图片轮换</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#deliver'}">发货管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="deliver">-->
+                                <!--<li><a href="{{url(['/admin/deliver'])}}" target="admin-main">第三方平台发货</a></li>-->
+                                <!--<li><a href="{{url(['/admin/deliver/virtual'])}}" target="admin-main">虚拟物品发货</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#collapse-nav1'}">订单管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav1">-->
+                                <!--<li><a href="{{ url(['/admin/order']) }}" target="admin-main">中奖订单</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/order/all-order']) }}" target="admin-main">伙购订单</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/order/recharge']) }}" target="admin-main">充值订单</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/share']) }}" target="admin-main">晒单管理</a></li>-->
+                                <!--&lt;!&ndash;<li><a href="{{ url(['/admin/commission/withdraw']) }}" target="admin-main">佣金管理</a></li>&ndash;&gt;-->
+                                <!--<li><a href="{{ url(['/admin/point/index']) }}" target="admin-main">福分流水</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/point/count']) }}" target="admin-main">支付订单</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel am-active" style="padding: 0">-->
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li><a href="{{ url(['/admin/default/index-page']) }}" target="admin-main">首页</a></li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#am-collapse-huogou-group'}">伙购圈 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="am-collapse-huogou-group">-->
+                                <!--<li><a href="{{ url(['/admin/group']) }}" target="admin-main">圈子列表</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/group/topic']) }}" target="admin-main">话题列表</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/group/comment']) }}" target="admin-main">回帖列表</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#member-manage'}">会员管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="member-manage">-->
+                                <!--<li><a href="{{ url(['/admin/member']) }}" target="admin-main">会员列表</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/member/sysmsg']) }}" target="admin-main">站内信列表</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0"></div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">商品管理<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">-->
+                                <!--<li><a href="{{ url(['/admin/product']) }}" target="admin-main">商品列表</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/product-category']) }}" target="admin-main">商品分类</a></li>-->
+                                <!--<li><a href="{{ url(['/admin/brand']) }}" target="admin-main">商品品牌</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <!--<div class="am-tab-panel " style="padding: 0">-->
+            <!--&lt;!&ndash; sidebar start &ndash;&gt;-->
+            <!--<div class="admin-sidebar am-offcanvas" >-->
+                <!--<div class="am-offcanvas-bar admin-offcanvas-bar">-->
+                    <!--<ul class="am-list admin-sidebar-list">-->
+
+                        <!--<li class="admin-parent">-->
+                            <!--<a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}">推广数据<span class="am-icon-angle-right am-fr am-margin-right"></span></a>-->
+                            <!--<ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">-->
+                                <!--<li><a href="{{ url(['/admin/spread/index']) }}" target="admin-main">推广数据</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="am-panel am-panel-default admin-sidebar-panel">-->
+                        <!--<div class="am-panel-bd">-->
+                            <!--<p><span class="am-icon-bookmark"></span> 公告</p>-->
+
+                            <!--<p>时光静好，与君语；细水流年，与君同。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; sidebar end &ndash;&gt;-->
+        <!--</div>-->
+        <div class="am-tab-panel " style="padding: 0">
+
+
+            <!-- sidebar start -->
+            <div class="admin-sidebar am-offcanvas" >
+                <div class="am-offcanvas-bar admin-offcanvas-bar">
+                    <ul class="am-list admin-sidebar-list">
+
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#order-manage-group'}">订单处理小组<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="order-manage-group">
+                                <li><a href="{{ url(['/admin/order-manage-group']) }}" target="admin-main">小组列表</a></li>
+                                <li><a href="{{ url(['/admin/employee']) }}" target="admin-main">员工列表</a></li>
+                                <li><a href="{{ url(['/admin/banner/friend-link']) }}" target="admin-main">友情链接</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#notice-template'}">通知模板<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="notice-template">
+                                <li><a href="{{ url(['/admin/notice/index']) }}" target="admin-main">通知模板</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#notice-template3'}">日志查询<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="notice-template3">
+                                <li><a href="{{ url(['/admin/log/backstage-log']) }}" target="admin-main">后台操作日志</a></li>
+                                <li><a href="{{ url(['/admin/log/message-log']) }}" target="admin-main">通知发送日志</a></li>
+                                <li><a href="{{ url(['/admin/log/login-log']) }}" target="admin-main">用户登录日志</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#notice-template2'}">关键字过滤<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="notice-template2">
+                                <li><a href="{{ url(['/admin/group/keywords']) }}" target="admin-main">关键字过滤</a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="admin-parent">
+                            <a class="am-cf" data-am-collapse="{target: '#app-seting'}">App设置<span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+                            <ul class="am-list am-collapse admin-sidebar-sub am-in" id="app-seting">
+                                <li><a href="{{ url(['/admin/app/image-list']) }}" target="admin-main">开机图片</a></li>
+                                <li><a href="{{ url(['/admin/app/sdk-list']) }}" target="admin-main">支付设置</a></li>
+                                <li><a href="{{ url('/admin/app/upgrade',{"os":'android'}) }}" target="admin-main">升级提醒</a></li>
+                                <li><a href="{{ url('/admin/app/push',{'tpl':'msg'}) }}" target="admin-main">消息推送</a></li>
+                                <li><a href="{{ url(['/admin/app/share-list']) }}" target="admin-main">分享设置</a></li>
+                                <li><a href="{{ url('/admin/app/login',{"os":"android"}) }}" target="admin-main">第三方登录</a></li>
+                               <li><a href="{{ url(['/admin/app/virtual-list']) }}" target="admin-main">虚拟支付</a></li>
+                               <li><a href="{{ url(['/admin/app/h5pay']) }}" target="admin-main">网页支付</a></li>
+                            </ul>
+                        </li>
+                        
+	
+                    </ul>
+
+                    <div class="am-panel am-panel-default admin-sidebar-panel">
+                        <div class="am-panel-bd">
+                            <p><span class="am-icon-bookmark"></span> 公告</p>
+
+                            <p>时光静好，与君语；细水流年，与君同。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- sidebar end -->
+        </div>
+    </div>
+</div>
+
+
+
+{% include '@adminModule/views/footer.html' %}
+
+<!--[if lt IE 9]>
+<script src="{{ app.params.skinUrl }}/backend/js/jquery-1.11.1.min.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/modernizr.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="{{ app.params.skinUrl }}/backend/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="{{ app.params.skinUrl }}/backend/js/amazeui.min.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/app.js"></script>
+
+<script>
+    $(function () {
+        var $tab = $('#admin-tabs');
+        var $nav = $tab.find('.am-tabs-nav');
+        var $bd = $tab.find('.am-tabs-bd');
+
+        $nav.find('a').on('click', function(e) {
+            var $item = $(this).closest('li');
+            var index = $nav.children('li').index($item);
+            var $href = $item.find('a').eq(0).attr('href');
+            $bd.find('.am-tab-panel iframe').remove();
+            var $iframe = '<iframe id="admin-main-iframe" name="admin-main" style="width:80%;height:900px;" src="'+$href+'"></iframe>';
+            $bd.find('.am-tab-panel').eq(index).append($iframe);
+        });
+        $nav.find('a').eq(6).click();
+    });
+</script>
+</body>
+</html>

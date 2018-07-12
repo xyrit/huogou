@@ -1,0 +1,35 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}所有期数{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/goods.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/moreperiod.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<!-- 更多期数 -->
+<input name="hidProductID" type="hidden" id="hidProductID" value="{{productId}}" />
+<div class="g-winner-con clearfix">
+    <!--<div class="m-search gray9">-->
+        <!--<span class="fl">直达第</span>-->
+        <!--<span class="fr"><a id="btnGo" href="javascript:;">期<i class="z-set"></i></a></span>-->
+        <!--<div class="f-search-text">-->
+            <!--<input id="txtPeriod" type="text" value="请输入数字" maxlength="8" />-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <div class="m-win-list clearfix">
+        <ul id="winList">
+
+        </ul>
+    </div>
+    <div id="divLoading" class="loading clearfix g-acc-bg">
+        <b></b>正在加载
+    </div>
+    <div id="div_footer" class="pro_foot conduct-ing" style="display: none;"></div>
+</div>
+{% endblock %}

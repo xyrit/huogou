@@ -1,0 +1,210 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}佣金明细_{{ app.name }}{% endblock %}
+
+{% block main %}
+
+    <section id="apply-fixed">
+        <div class="apply-fixed-con">
+            <b id="apply-no"></b>
+            <h3>充值到我的伙购账户</h3>
+            <article>
+                <p>佣金金额：<i >￥<span id="commissionPrice">{{ "%.2f"|format(app.user.identity.commission/100) }}</span></i>当佣金余额满1元即可充值</p>
+                <summary>
+                    <em>充值金额：</em><input value="1" type="text" id="commission"><em>元</em><span>以整数为单位</span>
+                </summary>
+                <input type="submit" value="确定充值" id="commissionSubmit">
+            </article>
+        </div>
+    </section>
+
+    <div class="member_con_rl">
+        <div class="find-friends">
+            <h1 class="commission">佣金明细</h1>
+
+            <div class="commission-xx">
+                <div>
+                    <span>累计收入：<i>{{ "%.2f"|format(payCommissionSum/100) }}</i>元</span>
+                    <span>累计(提现/充值)：<i>{{ "%.2f"|format(otherCommissionSum/100*-1) }}</i>元</span>
+                    <span>佣金余额：<i>{{ "%.2f"|format(app.user.identity.commission/100) }}</i>元</span>
+                    <a class="blue" href="{{ url(['invite/apply-mention']) }}">申请提现</a>
+                    <a class="orange" href="javascript:void(0);" id="hg-cz">充值到伙购账户</a>
+                </div>
+                <aside>佣金余额可实时充值到您的伙购帐户，满100元时才可申请提现。</aside>
+            </div>
+
+            <div class="screening">
+                <summary>
+                    <a href="{{ url(['invite/commission-list']) }}" {% if not app.request.get('type') %}class="act"{% endif %}>全部</a>
+                    <a href="{{ url('invite/commission-list', {'type':1}) }}" {% if app.request.get('type')==1 %}class="act"{% endif %}>今天</a>
+                    <a href="{{ url('invite/commission-list', {'type':2}) }}" {% if app.request.get('type')==2 %}class="act"{% endif %}>本周</a>
+                    <a href="{{ url('invite/commission-list', {'type':3}) }}" {% if app.request.get('type')==3 %}class="act"{% endif %}>本月</a>
+                    <a href="{{ url('invite/commission-list', {'type':4}) }}" {% if app.request.get('type')==4 %}class="act"{% endif %}>最近三个月</a>
+                </summary>
+                <div class="search-vip">
+                    <em>选择时间段：</em>
+                    <input type="text" id="J-xl" value="2015-10-21">
+                    <i>-</i>
+                    <input type="text" id="J-xl-2" value="2015-10-23">
+                    <input type="submit" value="搜索" id="submit">
+                </div>
+            </div>
+
+            <table class="invite-friends-table">
+                <thead>
+                <tr>
+                    <td width="25%" class="left padding">用户名</td>
+                    <td width="18%" class="left">时间</td>
+                    <td width="27%" class="left">描述</td>
+                    <td width="10%">伙购金额(元)</td>
+                    <td width="10%">佣金(元)</td>
+                    <td width="10%" class="type_select">
+                        <div class="type_select_box">
+                            操作类型
+                            <b></b>
+                            <ul>
+                                <li><a href="{{ url('invite/commission-list', {'commissionType':1}) }}">收&nbsp;&nbsp;&nbsp;&nbsp;入</a></li>
+                                <li><a href="{{ url('invite/commission-list', {'commissionType':2}) }}">提&nbsp;&nbsp;&nbsp;&nbsp;现</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                {% if commissionList %}
+                {% for commission in commissionList %}
+                <tr>
+                    <td class="left padding name">
+                        <a href="{{ url('/user', {'id':commission.user_home_id}) }}" target="_blank">
+                            <picture><img src="{{ commission.user_avatar }}" alt="{{ commission.user_nickname }}"></picture>
+                        </a>
+                        <a href="{{ url('/user', {'id':commission.user_home_id}) }}" target="_blank">{{ commission.user_nickname }}</a>
+                    </td>
+                    <td class="left">
+                        {{ commission.created_time|date('Y-m-d H:i:s') }}
+                    </td>
+                    <td class="left" >
+                        {{ commission.desc|raw }}
+                    </td>
+                    <td>
+                        {{ commission.money }}
+                    </td>
+                    <td class="orange">
+                        {% if commission.commission > 0 %}
+                        +{{ commission.commission }}
+                        {% else %}
+                        {{ commission.commission }}
+                        {% endif %}
+                    </td>
+                    <td class="orange">
+                        {{ commission.type }}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr style="border-bottom: 0;">
+                    <td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+
+            {{ use('/app/widgets/LinkPager') }}
+            {{ link_pager_widget({pagination: pagination}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <script src="{{ app.params.skinUrl }}/js/jquery.masonry.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            //日历调取
+            laydate({
+                elem: '#J-xl'
+            });
+            laydate({
+                elem: '#J-xl-2'
+            });
+        })
+        $('#submit').on('click', function() {
+            start = $('#J-xl').val();
+            end = $('#J-xl-2').val();
+            window.location.href=memberBaseUrl + '/invite/commission-list?start=' + start + '&end=' + end;
+        })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+            $('#hg-cz').on('click',function(){
+                var commssionPrice = parseFloat($('#commissionPrice').text());
+                if (commssionPrice<1) {
+                    $('.safety-b-box').html('<i id="safety-b-close"></i><h3>佣金余额需满1元</h3>');
+                    $('#safety-b-con').fadeIn();
+                    var t = setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        clearTimeout(t);
+                    },1000);
+                    return false;
+                }
+                $('#apply-fixed').stop().fadeIn('fast');
+            });
+
+            $('#commissionSubmit').on('click', function() {
+                var url = '{{ url('invite/recharge') }}';
+                var price = $('#commission').val();
+                var data = {'price':price};
+                $.post(url, data, function(e) {
+                    e = JSON.parse(e);
+                    $('#apply-fixed').stop().fadeOut('fast');
+                    if (e.error==0) {
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h4>充值成功</h4>');
+                    } else {
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h3>充值失败</h3>');
+                    }
+                    $('#safety-b-con').fadeIn();
+                    var t = setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        clearTimeout(t);
+                        window.location.reload();
+                    },1000);
+                });
+            });
+
+            $('#commission').on('keyup', function() {
+                var commssionPrice = parseFloat($('#commissionPrice').text());
+                var price = $('#commission').val();
+                if (!price) {
+                    return false;
+                }
+                price = parseInt(price);
+                if (price >1) {
+                    if (commssionPrice<price) {price = parseInt(commssionPrice)}
+                    $('#commission').val(price);
+                } else {
+                    $('#commission').val(1);
+                }
+            });
+
+            $('#apply-no').on('click',function(){
+                $('#apply-fixed').stop().fadeOut('fast');
+            });
+
+       //类型select
+            $('.invite-friends-table').on('mouseenter','.type_select',function(){
+                $(this).addClass('s_hover');
+            }).on('mouseleave','.type_select',function(){
+                $(this).removeClass('s_hover');
+            })
+
+        })
+    </script>
+{% endblock %}

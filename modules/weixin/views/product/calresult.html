@@ -1,0 +1,66 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}参与记录{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/lottery.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/calresult.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block body %}
+  <input name="hidBaseNum" type="hidden" id="hidBaseNum" value="14085378608" />
+
+  <div id="calResult" class="wrapper">
+    <div class="g-formula clearfix">
+      <div class="for-con1 z-oval clearfix">
+        <em class="orange">xxxxx</em>
+        <i class="colorbbb">最终计算结果</i>
+      </div>
+      <p></p>
+      <div class="for-con2 clearfix">
+        <cite>(</cite>
+        <span class="z-oval"><em class="orange">xxxxx</em><i class="colorbbb">时间取值之和</i></span>
+        <cite>%</cite>
+        <span class="z-oval"><em class="orange">xxxxx</em><i class="colorbbb">商品总需人次</i></span>
+        <cite>)</cite>
+        <cite>+</cite>
+        <span class="z-oval"><em class="orange">10000001</em><i class="colorbbb">固定数值</i></span>
+      </div>
+      <div class="orange z-and">
+        截止该商品最后购买时间【xxxxx】
+        <br />网站所有商品的最后100条购买时间取值之和
+        <a id="a_showway" href="javascript:;" class="orange">如何计算<i class="z-set"></i></a>
+      </div>
+    </div>
+    <div class="calCon clearfix">
+      <dl class="dl1">
+        <dt>
+          <span>伙购时间</span>
+          <span></span>
+          <span>转换数据</span>
+          <span>会员</span>
+        </dt>
+      </dl>
+      <dl id="dl_nginner" class="dl2">
+        <dd>
+          <span>xxxx-xx-xx<b></b></span>
+          <span>xx:xx:xx.xxx<s></s></span>
+          <span><i><em></em></i>xxxx<s></s></span>
+          <span>xxxx</span>
+        </dd>
+      </dl>
+      <dl class="dl3">
+        <dt id="dt_showmore">
+          展开全部100条数据
+          <cite><b></b></cite>
+        </dt>
+      </dl>
+    </div>
+  </div>
+
+
+
+{% endblock %}

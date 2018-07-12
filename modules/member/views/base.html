@@ -1,0 +1,104 @@
+{% extends '@app/views/base.html' %}
+
+{% block body %}
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/header.html' %}
+            <div class="member_con">
+                {% include '@memberModule/views/sidebar.html' %}
+                {% block main %}
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+
+
+
+    {% include '@app/views/footer.html' %}
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/recharge.js"></script>
+<script type="text/javascript">
+    $('#m_Taccounts').on('click',function(){
+        //转账弹窗提示文字
+        var t = $('.acc-zz summary input');
+        t.each(function(){
+            if(t.val() == ""){
+                t.siblings('.input_arr').show();
+            }else{
+                t.siblings('.input_arr').hide();
+            }
+        });
+
+        $.ajax({
+            async: false,
+            url: apiBaseUrl + '/info/check-pay-pwd',
+            type: "POST",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: {'token': token},
+            success: function (data) {
+                if (data.code == 100) {
+                    $('.acc-fixed-box').fadeIn();
+                } else {
+                    $('#showPay').fadeIn();
+                    return false;
+                }
+            }
+        });
+    })
+    $('#cancel').on('click', function() {
+        $('#showPay').fadeOut();
+    });
+    $('#set-pay-pwd').on('click', function() {
+        self.location = 'http://member.' + baseHost + '/info/pay-valid?flag=1';
+    })
+    $('.acc-fixed-n').on('click',function(){
+        $('.acc-fixed-box').fadeOut();
+    })
+    $('#rechargeSubmit').on('click', function() {
+        $(this).attr('disabled', true);
+        $('#recharge-form').submit();
+    })
+    function result(json) {
+        if (json.code == 100) {
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>转账成功</h4>');
+            $('#safety-b-con').fadeIn();
+            $('#safety-b-close').on('click',function(){
+                $('#safety-b-con').fadeOut();
+            });
+            setTimeout(function(){
+                self.location = 'http://member.' + baseHost + '/recharge/money-log?index=2';
+                return true;
+            },1000)
+        } else {
+            $.each(json.msg, function(i, v) {
+                $('.safety-b-box h3').css('width', '140px');
+                if (v.length > 8) {
+                    $('.safety-b-box h3').css('width', 'auto');
+                    $('.safety-b-box h3').html(v);
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        $('#rechargeSubmit').removeAttr("disabled");
+                        return true;
+                    },1000)
+                } else {
+                    $('.safety-b-box h3').html(v);
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        $('#rechargeSubmit').removeAttr("disabled");
+                        return true;
+                    },1000)
+                }
+            })
+        }
+    }
+</script>
+{% endblock %}
+

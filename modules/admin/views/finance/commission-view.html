@@ -1,0 +1,233 @@
+{% extends '@adminModule/views/base.html' %}
+
+
+{% block main %}
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">提现申请详情</strong>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">单号：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ info.id }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">会员名：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6">{{ info.user_id }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-4"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">提现金额：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ info.money }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">开户行：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.bank }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">支行：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.branch }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">账号：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.bank_number }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">联系电话：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.phone }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">申请时间：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">{{ info.apply_time|date('Y-m-d H:i:s') }}</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">状态：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+            {% if info.status ==0 %}
+              新建
+            {% elseif info.status==1 %}
+              待处理
+            {% elseif info.status==2 %}
+              完成
+            {% elseif info.status==3 %}
+              驳回
+            {% endif %}
+          </div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">审核人：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+            {{ info.audit_user }}
+          </div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">审核时间：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+            {{ info.audit_time|date('Y-m-d H:i:s') }}
+          </div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        <div class="am-g doc-am-g">
+          <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">备注：</div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+            {{ info.fail_reason }}
+          </div>
+          <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+        </div>
+
+        {% if info.status==2 %}
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">支付方式：</div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+              {{ info.payment }}
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">支付单号：</div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+              {{ info.payment_no }}
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">处理人：</div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+              {{ info.pass_user }}
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">处理时间：</div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-2">
+              {{ info.pass_time|date('Y-m-d H:i:s') }}
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+        {% endif %}
+
+        {% if info.status==0 %}
+          {{ html.beginForm(url(['finance/commission-audit']), 'post', {}) | raw }}
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              <input type="hidden" name="id" value="{{ info.id }}">
+              <input type="hidden" name="pass" value="1">
+              <input type="submit"  id="" value="通过">
+              <input type="button"  id="reject" value="驳回" data-am-modal="{target: '#withdraw-reject', closeViaDimmer: 0, width: 400, height: 225}">
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+          {{ html.endForm() | raw }}
+        {% endif %}
+
+
+
+        {% if info.status==1 %}
+          {{ html.beginForm(url(['finance/commission-audit']), 'post', {}) | raw }}
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              支付方式：
+            </div>
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              <input type="hidden" name="id" value="{{ info.id }}">
+              <select data-am-selected name="payment">
+                <option value="1">银行转账</option>
+              </select>
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              支付单号：
+            </div>
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              <input type="text" name="payment_no" value="">
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+          <div class="am-g doc-am-g">
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+            </div>
+            <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">
+              <input type="submit"  id="" value="提交">
+              <input type="button"  id="reject" value="驳回" data-am-modal="{target: '#withdraw-deal-reject', closeViaDimmer: 0, width: 400, height: 225}">
+            </div>
+            <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+          </div>
+          {{ html.endForm() | raw }}
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="am-modal am-modal-no-btn" tabindex="-1" id="withdraw-deal-reject">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">佣金提现-处理-驳回
+        <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+      </div>
+      {{ html.beginForm(url(['finance/commission-audit']), 'post', {'id': 'submitFrom'}) | raw }}
+      <div class="am-modal-bd">
+        <select data-am-selected name="reject_reason">
+          {% for val,reason in rejectReason %}
+          <option value="{{ val }}">{{ reason }}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="id" value="{{ info.id }}">
+        <input  type="submit"  value="提交" id="submit">
+      </div>
+      {{ html.endForm() | raw }}
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+  $('select[name=reject_reason]').change(function(){
+    var value = $('select[name=reject_reason] option:selected').val();alert(value)
+    $('input[name=other]').remove();
+    if(value == '其它'){
+      $(this).after('<div><input type="text" name="other"></div>');
+    }
+  })
+  $('#submit').on('click', function() {
+    var value = $('select[name=reject_reason] option:selected').val();
+    if(value == '其它' && $('input[name=other]').val() == ''){
+      alert('请输入驳回原因');
+      return false;
+    }
+    $('#submitFrom').submit();
+  });
+</script>
+{% endblock %}

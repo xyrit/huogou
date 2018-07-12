@@ -1,0 +1,38 @@
+<h1>最近访客</h1>
+<ul>
+  {% if visitors is not empty %}
+    {% for item in visitors %}
+      <li class="show-card">
+        <picture><a href="{{ url('/user', {'id':item.userinfo.home_id}) }}"> <img src="{{ item.avatar }}" alt=""></a></picture>
+        <summary>
+          <a href="{{ url('/user', {'id':item.userinfo.home_id}) }}">{{ item.userinfo.username }}</a>
+          <p>{% if(item.created_at == '0分钟前') %}刚刚{% else %}{{ item.created_at }}{% endif %}</p>
+          <aside>{{ item.live|default('') }}</aside>
+        </summary>
+
+        <figure class="member-infocard">
+          <em><em></em></em>
+          <picture>
+            <img src="{{ item.avatar }}">
+            <i></i>
+          </picture>
+          <figcaption>
+            <h2><a href="{{ url('/user', {'id':item.userinfo.home_id}) }}">{{ item.userinfo.username }}</a></h2>
+            <span class="member-infocard-level">{{ item.userinfo.level.name }}</span>{% if(item.live != '') %} <span class="member-infocard-location">{{ item.live }}</span>{% endif %}
+            <p>{{ item.allinfo.intro[:20]|default('这家伙很懒，什么都没留下。') }}{% if(item.allinfo.intro|length > 20) %}...{% endif %}</p>
+            {% if(item.userinfo.id != app.user.id) %}
+            {% if(item.isFriend == '0' or app.user.id == '') %}<a href="javascript:;" class="add-friend" data-id={{ item.userinfo.home_id }}>+ 加好友</a>{% endif %}
+            <a href="javascript:;" class="send-message letter" data-id="{{ item.userinfo.home_id }}">发私信</a>
+            {% endif %}
+          </figcaption>
+        </figure>
+      </li>
+    {% endfor %}
+  {% else %}
+  <div class="notHave">
+    <span class="notHave_icon"></span>
+    <p class="notHave_txt">暂无访客记录！</p>
+  </div>
+  {% endif %}
+
+</ul>

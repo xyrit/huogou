@@ -1,0 +1,49 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/loginpwdupdate.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="h5-1yyg-v1">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>登录密码修改</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <div class="update-pwd clearfix">
+            <dl>
+                <dt class="gray6">
+                    账户名： {{account}}
+                </dt>
+                <dd>
+                    <input id="txtOldPwd" type="password" maxlength="20" placeholder="请输入原密码" />
+                    <em>当前密码</em>
+                </dd>
+                <dd>
+                    <input id="txtNewPwd" type="password" maxlength="20" placeholder="8-20位字母,数字或符号两种或以上组合" />
+                    <em>新密码</em>
+                </dd>
+                <dd>
+                    <input id="txtConNewPwd" type="password" maxlength="20" placeholder="重复输入新密码" />
+                    <em>确认新密码</em>
+                </dd>
+            </dl>
+            <p><a id="btnSubmit" href="javascript:;" class="orgBtn">保 存</a></p>
+        </div>
+    </section>
+
+
+    {% include '@weixinModule/views/footer.html' %}
+</div>
+{% endblock %}

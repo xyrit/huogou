@@ -1,0 +1,46 @@
+<!--头部-->
+<section class="log clear">
+    <article>
+        <div class="log_lf">
+            <a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a>
+            <i>|</i><a id="mobile" href="{{ url(['/help/default/app']) }}" target="_blank">
+                <b></b><span>手机伙购</span>
+            <p><img src="{{ app.params.skinUrl }}/img/interact/interact_icon02.png" alt="">下载手机端</p>
+            </a>
+        </div>
+        <ul class="log_rl">
+            {% if app.user.isGuest %}
+                <!--<li>hi , 欢迎您来到伙购网！</li>-->
+                <li><a href="{{ url(['/passport/default/login']) }}">登录</a></li>
+                <li><a href="{{ url(['/passport/default/register']) }}">注册</a></li>
+            {% else %}
+                <li class="picId">
+                    <picture>
+                        <a href="{{ url(['/member']) }}">
+                            <img src="{{ app.user.getAvatar(80) }}" alt=""/>
+                        </a>
+                    </picture>
+                    <a href="{{ url(['/member']) }}">{{ app.user.nickname }}</a>
+                </li>
+                <li><a href="{{ url(['/passport/default/logout']) }}" title="退出">[退出]</a></li>
+            {% endif %}
+            <li><i>|</i></li>
+            <li class="log_arr">
+                <a class="my_lg" href="{{ url(['/member']) }}">我的伙购&nbsp;&nbsp;<b></b></a>
+                <div>
+                    <a href="{{ url(['/member/default/buy-list']) }}">伙购记录</a>
+                    <a href="{{ url(['/member/default/order-list']) }}">获得的商品</a>
+                    <a href="{{ url(['/member/info/modify']) }}">个人设置</a>
+                </div>
+            </li>
+            <li><i>|</i></li>
+            <li><a href="{{ url(['/member/recharge/index']) }}">充值</a></li>
+            <li><i>|</i></li>
+            <li><a href="{{ url(['/help/default/question-detail']) }}">帮助</a></li>
+            <li><i>|</i></li>
+            <li><a href="{{ url(['/help/default/suggestion']) }}">投诉</a></li>
+            <li><i>|</i></li>
+            <li class="service"><a class="service_qq" id="service_qq_b" href="javascript:;">在线客服</a></li>
+        </ul>
+    </article>
+</section>

@@ -1,0 +1,37 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的关注_伙购网{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1 class="my-attention">我的关注</h1>
+        <ul class="my-attention-list" id="collectList">
+
+        </ul>
+        <div class="pagination" style="margin: 20px auto"></div>
+    </div>
+</div>
+<section class="balance_con">
+    <div class="balance_box">
+        <i class="close"></i>
+        <article>
+            您确定要删除吗？
+        </article>
+        <a href="javascript:;" id="del-cancle">取 消</a><a class="determine" href="javascript:;" id="del-sure">确定</a>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    getCollectList();
+</script>
+{% endblock %}

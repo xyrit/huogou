@@ -1,0 +1,149 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+<div class="admin-content" >
+    {% include '@adminModule/views/member/top.html' %}
+    <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <a href="{{ url('/admin/member/winning', {'id': id, 'region': 0}) }}">全部</a>
+                <a href="{{ url('/admin/member/winning', {'id': id, 'region': 1}) }}">今天</a>
+                <a href="{{ url('/admin/member/winning', {'id': id, 'region': 2}) }}">本周</a>
+                <a href="{{ url('/admin/member/winning', {'id': id, 'region': 3}) }}">本月</a>
+                <a href="{{ url('/admin/member/winning', {'id': id, 'region': 4}) }}">近三个月</a>
+            </div>
+        </div>
+
+        {{ html.beginForm('', 'get', {}) | raw }}
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                中奖状态：
+                <select name="status">
+                    <option value="-1" {% if condition.status == -1 %}selected{% endif %}>全部</option>
+                    <option value="0" {% if condition.status == 0 %}selected{% endif %}>已中奖</option>
+                    <option value="1" {% if condition.status == 1 %}selected{% endif %}>待确认</option>
+                    <option value="2" {% if condition.status == 2 %}selected{% endif %}>待备货</option>
+                    <option value="3" {% if condition.status == 3 %}selected{% endif %}>待发货</option>
+                    <option value="4" {% if condition.status == 4 %}selected{% endif %}>待收货</option>
+                    <option value="5" {% if condition.status == 5 %}selected{% endif %}>待晒单</option>
+                    <option value="8" {% if condition.status == 6 %}selected{% endif %}>完成</option>
+                    <option value="7" {% if condition.status == 7 %}selected{% endif %}>异常订单</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            <div class="am-form-group" style="width: 100px">
+                选择时间段：
+            </div>
+        </div>
+
+        <div class="am-u-sm-6 am-u-md-2" style="width: 200px;">
+            <div class="am-input-group am-input-group-sm">
+                <input type="text" class="am-form-field" id="start" name="start_time" value="{{ condition.start_time }}"/>
+            </div>
+        </div>
+
+
+        <div class="am-u-sm-6 am-u-md-2" style="float: left;">
+            <div class="am-input-group am-input-group-sm">
+                <input type="text" class="am-form-field" id="end" name="end_time" value="{{ condition.end_time }}"/>
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-default" type="submit">搜索</button>
+                </span>
+            </div>
+        </div>
+        {{ html.endForm() | raw }}
+    </div>
+
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>商品名称</th>
+                        <th>分类</th>
+                        <th>伙购价格</th>
+                        <th>期数</th>
+                        <th>伙购码</th>
+                        <th>状态</th>
+                        <th>发货方式</th>
+                        <th class="am-hide-sm-only">中奖时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for value in list %}
+                        <tr>
+                            <td>{{ value.payment_order_id }}</td>
+                            <td>{{ value.goods_name }}</td>
+                            <td>{{ value.category_name }}</td>
+                            <td>{{ value.goods_price }}</td>
+                            <td>{{ value.period_number }}</td>
+                            <td>{{ value.lucky_code }}</td>
+                            <td>{{ value.status_name }}</td>
+                            <td>{{ value.delivery }}</td>
+                            <td>{{ value.user_order_time|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                       {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <div class="am-fr">
+                        <div class="am-cf">
+                            <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                            <div class="am-fr">
+                                {{ use('/app/widgets/BackendLinkPager') }}
+                                {{ backend_link_pager_widget({'pagination': pagination}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+    var startDate = new Date();
+    var endDate = new Date();
+    laydate({
+        elem: '#start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+    laydate({
+        elem: '#end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    $(function() {
+        $('#doc-my-tabs').tabs();
+    })
+
+</script>
+{% endblock %}

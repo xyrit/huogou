@@ -1,0 +1,85 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}商品列表_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+	<script src="{{ app.params.skinUrl }}/js/fly.js"></script>
+	<script src="{{ app.params.skinUrl }}/js/requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/goodslist.js?v=160216" ></script>
+{% endblock %}
+
+{% block body %}
+
+	{% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+	<section class="wrap clear">
+		<div class="present">
+			<a href="/">首页</a><i></i><a href="/list.html">全部商品</a><i></i>
+		</div>
+		
+		<div class="whole">
+			<div class="whole_title">
+				<h2><a href="{{ url(['/list']) }}">全部商品</a></h2>
+				<span>（共<i></i>件相关商品）</span>
+			</div>
+			<ul class="whole_list clear"></ul>
+		</div>
+
+		<div class="option clear">
+			<article>
+				{% set getR = app.request.get('r') %}
+				{% if getR==10 or getR=='' and app.request.get('tag')!=10 %}
+		 		<a class="act" href="/list.html" ><i></i>即将揭晓</a>
+				{% else %}
+				<a class="" href="/list.html" ><i></i>即将揭晓</a>
+				{% endif %}
+				{% if getR==20 %}
+				<a class="renqi act" href="/list.html?r=20"><i></i>人 气</a>
+				{% else %}
+				<a class="renqi" href="/list.html?r=20"><i></i>人 气</a>
+				{% endif %}
+				{% if getR==30 %}
+				<a class="act" href="/list.html?r=30"><i></i>剩余人次</a>
+				{% else %}
+				<a href="/list.html?r=30"><i></i>剩余人次</a>
+				{% endif %}
+				{% if getR==40 %}
+				<a class="act" href="/list.html?r=40"><i></i>最 新</a>
+				{% else %}
+				<a href="/list.html?r=40"><i></i>最 新</a>
+				{% endif %}
+				{% if getR==50 %}
+				<a href="/list.html?r=51" class="jiage act"><i></i>价 值</a>
+				{% elseif getR==51 %}
+				<a href="/list.html?r=50" class="jiage_desc act"><i></i>价 值</a>
+				{% else %}
+				<a href="/list.html?r=50" class="jiage"><i></i>价 值</a>
+				{% endif %}
+				{% if app.request.get('tag')==10 %}
+				<a class="act xiangou" href="/list.html?tag=10"><i></i>限 购</a>
+				{% else %}
+				<a href="/list.html?tag=10" class="xiangou"><i></i>限 购</a>
+				{% endif %}
+			</article>
+			<summary>
+			</summary>
+		</div>
+
+		<ul class="quota_list all_list clear"></ul>
+		<div class="pagination"></div>
+	</section>
+
+{% include '@app/views/footer.html' %}
+
+    <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+
+</div>
+{% endblock %}

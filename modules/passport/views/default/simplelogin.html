@@ -1,0 +1,40 @@
+{% extends '@passportModule/views/base.html' %}
+{% block body %}
+<div class="simplelogin">
+	<h3>登 录</h3>
+	{{ html.beginForm('', 'post', {'id':'login-form'}) | raw }}
+	<div class="log_ipts">
+		<label for="" class="log_id_icon"></label>
+		<input class="log_id" type="text" id="username" name="LoginForm[username]" value="{{ model.username }}" maxlength="100" autocomplete="off">
+		<em class="input_arr">手机号/邮箱地址</em>
+	</div>
+	<input type="password" style="display: none;">
+	<div class="log_ipts">
+		<label for="" class="log_code_icon"></label>
+		<input class="log_code" type="password" id="pwd" name="LoginForm[password]" maxlength="20" autocomplete="off">
+		<em class="input_arr">密码</em>
+	</div>
+	{{ html.endForm() | raw }}
+	<summary>
+		<a class="fl" href="{{ url(['/passport/findpassword']) }}" onclick="window.parent.location.href=this.href;">忘记密码？</a>
+		<a class="rl" href="{{ url(['default/register']) }}" onclick="window.parent.location.href=this.href;">没有账号？前往注册 >></a>
+	</summary>
+	<div class="error-message orange" style="display: none;" id="dd_error_msg"></div>
+	<input type="submit" value="登  录" id="btnSubmitLogin">
+	<article>
+		使用其他方式登录：<a class="ico_qq" href="javascript:;" id="qq_login_btn" data-url="{{ url('/passport/oauth/auth', {'authclient':'qq'}) }}">腾讯QQ</a>
+		<a class="ico_wx" href="javascript:;" id="wx_login_btn" data-url="{{ url('/passport/oauth/auth', {'authclient':'wechat'}) }}">微信</a>
+	</article>
+	<div class="fixed_wx" id="wx_div">
+		<h2>微信登录</h2>
+		<div id="wx_qrcode">
+			<img src="img/wx_m.jpg" alt="">
+		</div>
+		<b class="fixed_wx_act"></b>
+	</div>
+</div>
+{% endblock %}
+{% block script %}
+	<script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	<script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/login.js" ></script>
+{% endblock %}

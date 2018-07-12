@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>会员登录_1元云购</title>
+    <meta name="Description" content="" />
+    <link rel="stylesheet" type="text/css" href="css/sslComm.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+</head>
+<body>
+<div class="wrapper">
+    <div class="g-logo-top g-logo-width">
+        <a rel="nofollow" href="http://www.1yyg.com" class="transparent-png fl"><img src="images/logo.png"></a>
+        <span class="fr"><a href="http://www.1yyg.com">返回首页</a></span>
+    </div>
+    <input name="hidLoginForward" type="hidden" id="hidLoginForward" value="http://member.1yyg.com/" />
+    <input name="hidQQAppID" type="hidden" id="hidQQAppID" value="100511748" />
+    <input name="hidWxAppID" type="hidden" id="hidWxAppID" value="wxe61d43f2e02a5b10" />
+    <input name="hidAccount" type="hidden" id="hidAccount" />
+    <div class="g-login-con clrfix" id="g_login" style="background:#5fd2a7 url(images/20150710114222431.jpg) top center no-repeat;">
+        <div class="m-login-screen clrfix">
+            <div id="loadingPicBlock" class="screen-left fl"></div>
+            <div class="screen-right fr clrfix">
+                <div class="login-panel" id="LoginForm">
+                    <dl>
+                        <dt>
+                            <em class="fl">登录</em>
+                            <a id="hylinkRegisterPage" tabindex="7" class="fr orange" href="register.html?forward=http%3a%2f%2fmember.1yyg.com%2f">免费注册<i class="passport-icon"></i></a>
+                        </dt>
+                        <dd>
+                            <div class="register-form-con clrfix">
+                                <ul>
+                                    <li>
+                                        <input id="username" type="text" maxlength="100" tabindex="1" autocomplete="off" />
+                                        <b class="passport-icon user-name transparent-png"></b>
+                                        <em>手机号/邮箱地址</em>
+                                    </li>
+                                    <li>
+                                        <input id="pwd" type="password" maxlength="20" tabindex="2" value="" />
+                                        <b class="passport-icon login-password transparent-png"></b>
+                                        <em>密码</em>
+                                    </li>
+                                </ul>
+                            </div>
+                        </dd>
+                        <dd class="text-alignR">
+                            <a id="hylinkGetPassPage" tabindex="3" class="gray9" href="findpassword.html?forward=http%3a%2f%2fmember.1yyg.com%2f">忘记密码？</a>
+                        </dd>
+                        <dd class="error-message orange" style="display: none;" id="dd_error_msg"></dd>
+                    </dl>
+                    <p><a id="btnSubmitLogin" href="javascript:;" class="z-agreeBtn" tabindex="4">登录</a></p>
+                    <div class="other-login">
+                        <span>使用其它方式快捷登录：</span>
+                        <a id="qq_login_btn" href="javascript:;" class="qq-icon" tabindex="5"><b class="passport-icon transparent-png"></b></a>
+                        <a id="wx_login_btn" href="javascript:;" class="wx-icon" tabindex="6"><b class="passport-icon transparent-png"></b></a>
+                    </div>
+                    <ul id="j-tips-wrap" class="j-tips-wrap j-login-page">
+                    </ul>
+                </div>
+                <div class="wx-login clrfix" id="wxLogin" style="display: none;">
+                    <h2 class="gray3">微信登录</h2>
+                    <p id="p_code"></p>
+                    <a id="a_return" href="javascript:;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部版权 -->
+    <div class="g-copyrightCon clrfix">
+        <div class="g-links">
+            <a target="_blank" href="http://www.1yyg.com/" title="首页">首页</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-about.html" title="关于云购">关于云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-privacy.html" title="隐私声明">隐私声明</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-business.html">合作专区</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-jobs.html" title="加入云购">加入云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-contactus.html" title="联系我们">联系我们</a>
+        </div>
+        <div class="g-copyright">
+            Copyright &copy; 2011 - 2015, 版权所有 1yyg.com 粤ICP备09213115号-1
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //点击em文本使input获得焦点
+    $('.register-form-con ul li em').click(function(){
+        $(this).siblings('input').focus();
+    })
+    //点击input改变本身样式
+    function userPsd(par1,par2){
+        $(par1).focus(function(){
+            $(this).parent().addClass("enter-focus");
+            $('#dd_error_msg').css('display','none');
+        }).blur(function(){
+            $(this).parent().removeClass("enter-focus");
+            $('#dd_error_msg').css('display','block').html('<i class="passport-icon transparent-png"></i>'+par2 );
+            if($(this).val() == ''){
+                $(this).siblings('em').css('display','block');
+            }
+        }).keydown(function(){
+            $(this).css('color','rgb(51, 51, 51)');
+            $(this).siblings('em').css('display','none');
+        })
+    }
+    userPsd('#username','请输入正确的手机号或邮箱地址')
+    userPsd('#pwd','登录密码为6-20长度的字符')
+
+
+
+
+
+
+</script>
+</body>
+</html>

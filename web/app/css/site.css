@@ -1,0 +1,142 @@
+/* common */
+body{
+	font-family: 'microsoft yahei', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143; 
+}
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+.widthfull{width: 100%;}
+img{vertical-align:middle;}
+.noliststyle,ul,li{ list-style: none;margin: 0; padding: 0; }
+ 
+
+.popcover{  display: none;  position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: #000; opacity: 0.6; z-index: 100;}
+
+/*抽奖*/
+.choujiang{  background: #fcd876;  }
+.choujiang .top{ position: relative; }
+.choujiang .top .click{ position: absolute; right: 8%; top:2%; font-size: 12px; color: #a5842b; font-weight: 700;  text-decoration: none; line-height: 30px;}
+.choujiang .pan{ position: relative; }
+.choujiang .pan .items{ width: 100%; height: 100%; position: absolute; top: 0; left:0;  /*box-sizing:border-box;*/ }   
+.choujiang .pan .items ul{ padding: 5.8% 9% 0 9% ;}
+.choujiang .pan .items ul li{ width: 33.33333%;  float: left;   }
+.choujiang .pan .items ul li .act{ position: absolute; top: -2px; left: 0; z-index: 100; width: 98%;  display: none;}
+.choujiang .pan .items ul li.active .act{ display: block; }
+.choujiang .pan .items ul li .img img{ width: 98%; }
+.choujiang .pan .items ul li .img p{ position: absolute; left: 0; right: 0; bottom: 0.2%; text-align: center; font-size: 12px; color: #c9ac5f;}
+.choujiang .pan .items ul li .img { position: relative; overflow: hidden;}
+.choujiang .pan .items ul li .img .txt{ width: 90%; position: absolute; bottom:22%; color: #beb051;text-align: center;  font-size: 12px; padding: 0 5%; }
+.choujiang .pan .items ul li .start{ }
+.choujiang .pan .items ul li .start.act{ }
+.choujiang .message {   margin:4% 0; font-size: 12px; color:#d9b656; }
+.choujiang .message .list{ width: 93%; height: 30px; overflow: hidden; margin:0 auto; border-radius: 8px;  background:#ffffbf url(../img/lottery/img6.png) no-repeat 15px; background-size: 20px;  }
+.choujiang .message ul{ }
+.choujiang .message ul li span{ color: #d74945; }
+.choujiang .message ul li { padding-left: 45px; padding-right: 10px; line-height: 30px; }
+.choujiang .buttons{   margin:4% 0;  }
+.choujiang .buttons .btn1{ width: 40%; float: left; display: block; margin-left: 3.5%; }
+.choujiang .buttons .btn1 img{width: 100%;}
+.choujiang .buttons .btn2{ width: 40%; float: right; display: block; margin-right: 3.5%;}
+.choujiang .buttons .btn2 img{width: 100%;} 
+.choujiang .footer{   margin-top: 5%; margin-bottom: 3%;   padding:0 3.5%;}
+.choujiang .footer .title{ line-height: 28px; font-size: 18px; color: #a5842b; text-align: center; font-weight: bold; border-top: 1px solid #e2bf5f; margin-top: 40px; }
+.choujiang .footer p.bt{margin-bottom: -10px; font-weight: bold;}
+.choujiang .footer .title .line{  margin-top: -15px;  }
+.choujiang .footer .title .line .txt{ display: inline-block;  background: #fcd876;  }
+.choujiang .footer .title i{ width: 6px; height: 6px; line-height: 28px;display: inline-block; border: 1px solid #a5842b; transform: rotate(45deg); -moz-transform: rotate(45deg); -webkit-transform: rotate(45deg); -o-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg);   /*margin: 0 10px; */  margin-bottom: 2px; }
+.choujiang .footer .title i:first-child{ margin-right: 10px; }
+.choujiang .footer .title i:last-child{ margin-left: 10px; }
+.choujiang .footer .title span{   }
+.choujiang .footer  p{color: #a5842b;   }
+.choujiang_result { display: none;  position: fixed; left: 5%; right: 5%; top: 0;  z-index: 110;  }
+.choujiang_result .info{ width: 100%;   position: absolute; top: 20%; text-align: center;}
+.choujiang_result .info .title{ width: 100%; text-align: center;  color: #fc6c11; font-size: 20px;   }
+.choujiang_result .info .s_title{ width: 100%; text-align: center;  color: #fc6c11; font-size: 20px;   }
+.choujiang_result .info .img{  width: 100%;  text-align: center; margin: 2% 0;  }
+.choujiang_result .info .img img{ width: 20%; margin:auto; display:block;  }
+.choujiang_result .info .msg{  font-size: 16px; color: #927d28;margin-bottom: 2%; }
+.choujiang_result .info .descr{ font-size: 14px; color: #927d28;opacity: .4;  margin-bottom: 2%; }
+.choujiang_result .info .submit{ width: 60%; border: none;  margin:2% 0; background: #fc6c11;  color: #fff; border-radius: 3px; font-size: 15px; height: 40px; line-height: 40px;  }
+
+/*提示样式*/
+.buy_box{width:80%; position:fixed; top: 0; left:10%; right: 10%; background:#fff; z-index: 200; display: none;}
+.buy_box .close{position:absolute; right:0; top:0; width:50px; height:50px; background:url(../img/gb_01.png) no-repeat; -webkit-transition:0.3s; -moz-transition:0.3s; transition:0.3s; cursor:pointer;}
+.buy_box .close:hover{background:url(../img/gb_01_a.png) no-repeat;}
+.buy_box .buy_con{width:100%; margin:30px auto; position: relative; text-align: center;}
+.buy_box .buy_con p{padding-left:15px; text-align:center; font-size:16px;}
+.buy_box .z-btn-determine,.buy_box .z-btn-cancel {display: inline-block;padding: 0 27px;text-align: center; text-decoration: none; border-radius: 2px;height: 35px;line-height: 35px;overflow: hidden;font-size: 16px;}
+.buy_box .z-btn-cancel{height: 33px;line-height: 33px;border: 1px solid #ddd;color: #666; margin-right: 10px;background: #fff;}
+.buy_box .z-btn-determine {background: #f60;color: #fff;border: 0 none;}
+
+.reward_img img{width:35%;vertical-align:middle}
+
+/* helper class */
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  clear: both;
+}
+* html .clearfix {
+  zoom: 1;
+}
+*:first-child + html .clearfix {
+  zoom: 1;
+}
+.hidden {
+  border: 0 !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px !important;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px;
+}
+.display-block {
+  display: block;
+}
+.display-none,
+.display-hide {
+  display: none;
+}
+.bold {
+  font-weight: 600 !important;
+}
+.border {
+  border: 1px solid red;
+}
+.inline {
+  display: inline;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.pull-left {
+  float: left !important;
+}
+.pull-right {
+  float: right !important;
+}

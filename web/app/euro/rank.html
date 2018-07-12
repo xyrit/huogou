@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>铁杆球迷排行榜</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hong.css">
+</head>
+<body>
+<section class="rank-banner">
+    <img width='100%' src="images/rank-benner.jpg">
+    <!--<div class="black"></div>-->
+    <p>每只球队投注最高的3名球迷将奖励399大礼包一份</p>
+</section>
+<ul class="rank-list">
+
+
+    <!--<a href="javascript:;" class="view-more"><span class="">查看剩余排名</span></a>-->
+</ul>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/comm.js"></script>
+<script>
+    $(function() {
+
+
+        var team = getUrlParam('team');
+        if (team) {
+            $('.rank-banner img').attr('src', 'images/banner_'+team+'.jpg');
+            var getTeamRankUrl = '/euro-cup/order-rank-by-team';
+            var data = {'team':team};
+
+            $.getJsonp(apiBaseUrl+getTeamRankUrl, data, function(json) {
+                var html = '';
+                var docTitle = '';
+                $.each(json.list, function(i,v) {
+                    var avatar = v.user_avatar;
+                    var homeId = v.user_homeid;
+                    var userId = v.user_id;
+                    var nickname = v.user_nickname;
+                    var teamName = v.team_name;
+                    var teamSurp = v.team_surp;
+                    docTitle = docTitle ? docTitle : teamName + '球队铁杆球迷排行榜';
+                    var rank = i + 1;
+                    rank = rank < 10 ? '0'+rank : rank;
+                    html += '<li>';
+                    html += '<i>'+rank+'</i>';
+                    html += '<a href="http://www.'+baseHost+'?type=5&home_id=' + homeId + '&user_id=' + userId + '">';
+                    html += '<picture>';
+                    html += '<img src="'+avatar+'">';
+                    html += '</picture>';
+                    html += '<h3>'+nickname+'</h3>';
+                    html += '<span style="width: 96px;">支持：'+teamSurp+'</span>';
+                    html += '</a>';
+                    html += '</li>';
+                });
+                document.title = docTitle;
+                $('.rank-list').html(html);
+            });
+
+        } else {
+            var getRankUrl = '/euro-cup/order-rank';
+            var data = {};
+            $.getJsonp(apiBaseUrl+getRankUrl, data, function(json) {
+                var html = '';
+                $.each(json.list, function(i,v) {
+                    var avatar = v.user_avatar;
+                    var homeId = v.user_homeid;
+                    var userId = v.user_id;
+                    var nickname = v.user_nickname;
+                    var teamName = v.team_name;
+                    var teamSurp = v.team_surp;
+
+                    var rank = i + 1;
+                    rank = rank < 10 ? '0'+rank : rank;
+                    html += '<li>';
+                    html += '<i>'+rank+'</i>';
+                    html += '<a href="http://www.'+baseHost+'?type=5&home_id=' + homeId + '&user_id=' + userId + '">';
+                    html += '<picture>';
+                    html += '<img src="'+avatar+'">';
+                    html += '</picture>';
+                    html += '<h3>'+nickname+'</h3>';
+                    html += '<span style="width: 52%;">支持'+teamName+'：'+teamSurp+'</span>';
+                    html += '</a>';
+                    html += '</li>';
+                });
+                $('.rank-list').html(html);
+            });
+        }
+    });
+</script>
+</body>
+</html>

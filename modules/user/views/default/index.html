@@ -1,0 +1,85 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+    <h1 class="newest">最新动态</h1>
+    {% if (arr) %}
+    <div class="home_fl_margin">
+        {% for item in arr %}
+            <div class="newest-con">
+                <h3>{{ userinfo.username.username }} 在{{ item.user_buy_time.first }}{{ item.user_buy_time.second }}{{ item.user_buy_time.third }}伙购了<a  {% if(item.status == 2) %} href="{{ url('/product/lottery', {'pid':item.period_id}) }}"
+                    {% else %} href="{{ url('/product', {'pid':item.product_id}) }}"{% endif %} target="_blank">{{ item.goods_name }}</a></h3>
+                <div>
+                    {% if(item.status == 2) %}<b class="publish_ico_h">已经<br>揭晓</b>{% endif %}
+                    <picture>
+                        <img src="{{ item.goods_picture }}" alt="">
+                        {% if item.limit_num > 0 %}
+                        <i class="limitbuy-icon">限购</i>
+                        {% endif %}
+                    </picture>
+                    {% if(item.status == 2) %}
+                        <summary>
+                            <h4><a href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">(第{{ item.period_number }}期){{ item.goods_name }}</a></h4>
+                            <article>
+                                <aside class="c">获得者：<i>{{ item.user_name }}</i></aside>
+                                <aside class="c">伙购码：<i>{{ item.lucky_code }}  </i></aside>
+                                <aside class="h">揭晓时间：<i>{{ item.raff_time }}</i></aside>
+                            </article>
+                            <a class="act-a" href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">详情</a>
+                        </summary>
+                    {% elseif(item.status == 1) %}
+                        <summary>
+                            <h4><a href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">(第{{ item.period_number }}期){{ item.goods_name }}</a></h4>
+                            <article>
+                                <aside class="c">已满员：<i>正在开奖</i></aside>
+                            </article>
+                            <a class="act-a" href="{{ url('/product/lottery', {'pid':item.period_id}) }}" target="_blank">详情</a>
+                        </summary>
+                    {% else %}
+                        <summary>
+                            <h4><a href="{{ url('/product', {'pid':item.product_id}) }}" target="_blank">(第{{ item.period_number }}期){{ item.good_name }}</a></h4>
+                            <aside>总需：{{ item.code_price }}人次</aside>
+                            <p><i style="width:{{ item.progress }}%"></i></p>
+                            <figure>
+                                <span class="figure_fl"><i>{{ item.code_sales }}</i>已参与</span>
+                                <span class="figure_rl">剩余<i>{{ item.left_num }}</i></span>
+                            </figure>
+                        </summary>
+                    <b class="newest-con-a"><a href="{{ url('/product', {'pid':item.product_id}) }}" target="_blank">跟随伙购</a></b>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% if total > 0 %}
+<p id='tips'><i class="leftI"></i>当前用户只允许查看近{{ total }}条记录<i class="leftR"></i></p>
+{% endif %}
+    {% elseif ucenter_buylist == 0 and app.user.id == user_id %}
+    <div class="notHave">
+        <span class="notHave_icon"></span>
+        <p class="notHave_txt">还没有任何购买记录哦！</p>
+    </div>
+    {% else %}
+    <div class="notHave">
+        <span class="notHave_icon"></span>
+        <p class="notHave_txt">TA没有公开的伙购记录哦！</p>
+    </div>
+    {% endif %}
+    {% if(pagination) %}
+        {{ use('/app/widgets/LinkPager') }}
+        {{ link_pager_widget({pagination: pagination}) }}
+    {% endif %}
+{% endblock %}
+
+{% block js %}
+<script>
+    total = "{{ total }}";
+    if ($('.pagination').length > 0) {
+        if ($('.next').hasClass('disabled') && total > 0) {
+            $('#tips').show();
+        }
+    } else {
+        $('#tips').show();
+    }
+</script>
+{% endblock %}

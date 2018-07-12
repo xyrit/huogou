@@ -1,0 +1,30 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}了解伙购{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/help.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    <div class="newHelp">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b01.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b02.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b03.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b04.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b05.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b06.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b07.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b08.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b09.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b10.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/mobile/images/b11.png" width="100%">
+    </div>
+    {% include '@mobileModule/views/footer.html' %}
+
+
+</div>
+
+
+{% endblock %}

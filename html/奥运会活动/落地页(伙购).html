@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>奥运京东卡专场</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/integral.css">
+</head>
+<body class="bgcolor4">
+<div class="top">
+	<a class="back" href="javascript:history.go(-1)"></a>
+    <span class="title">奥运京东卡专场</span>
+</div>
+<div class="ldytopimg"><img src="images/ldytopimg.png" /></div>
+<div class="mainBox"> 
+    <!--  奖励设置  -->
+    <div class="people2"> <img src="images/ldytit1.png"/> </div>
+    <p class="fontText">奥运会活动结束后，积分榜排前20名的玩家获得对应奖品：</p>
+    <div class="imgList">
+        <ul>
+            <li><img src="images/imglist1.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist2.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist3.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist4.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist5.png" width='' height='' alt=''/></li>
+            <li style="margin-right: 0"><img src="images/imglist6.png" width='' height='' alt=''/></li>
+        </ul>
+    </div>
+    
+    <!--排名奖励列表-->
+    <div class="userList2">
+        <p class="titleH">积分榜排前20名</p>
+        <p><span>第<font class="hostColor">1</font>名</span><span class="boderStyle">iPhone 6s 64G 一台</span></p>
+        <p><span>第<font class="hostColor">2</font>名</span><span class="boderStyle">iPad mini4 64G 一部</span></p>
+        <p><span>第<font class="hostColor">3</font>名</span><span class="boderStyle">Apple Watch 一个</span></p>
+        <p><span>第<font class="hostColor">4</font>名</span><span class="boderStyle">Kindle Paperwhite 一个</span></p>
+        <p><span>第<font class="hostColor">5</font>名</span><span class="boderStyle">卡西欧手表 一个</span></p>
+        <p><span>第<font class="hostColor">6</font>名-第<font class="hostColor">10</font>名</span><span class="boderStyle">88元京东卡直减红包 一个</span></p>
+        <p><span>第<font class="hostColor">11</font>名-第<font class="hostColor">20</font>名</span><span class="boderStyle">66元京东卡直减红包 一个</span></p>
+    </div>
+    <div class="clear"></div>
+    
+    
+</div>
+<div class="jdkinfo">
+    <div class="people2"> <img src="images/ldytit2.png"/> </div>
+    <p class="fontText" style="text-align:center;">夺得1张金牌京东卡，再奖<font class="hostColor">66</font>元和<font class="hostColor">100</font>积分！</p>
+    <div class="ldyjdk">
+    	<p class="img"><img src="images/ldyjdk.png" /></p>
+        <p class="tit">面值1000元奥运金牌京东购物卡</p>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="fixldycy">
+    <div class="main"><a href="javascript:void(0);"><img src="images/ldycyan.png" /></a></div>
+</div>
+<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_notice">
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+<div class="fixiosreg">
+	<div class="iosreg">
+    	<div class="regtit"><img src="images/iosregtopbg.png" /></div>
+        <div class="regcon">
+        	<p><input type="text" class="input1" id="userMobile" placeholder="输入您的手机号" /></p>
+            <p class="yzmp"><input type="password" class="input2" id="mobileCode" placeholder="输入6位验证码" /><a class="hqyzm sendCode" href="javascript:void(0);">获取验证码</a></p>
+            <p><input type="password" class="input1" id="userPassword" placeholder="设置8-25位密码" /></p>
+            <p class="reganp"><a href="javascript:void(0);" class="orangeBtn reguser" id="regSubmit">一键注册</a></p>
+        </div>
+    </div>
+</div>
+<div class="fixdown">
+    <a class="az" href="javascript:void(0);"><img src="images/azdownan.png" /></a>
+    <a class="ios" href="javascript:void(0);"><img src="images/iosdownan.png" /></a>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
+<script>
+$(document).ready(function(){
+    if(isIos() || is_weixn() ){
+        // iPhone
+        $(".fixldycy a").click(function(){
+            $(".fixiosreg").fadeIn(500);
+        })
+    }else{
+        //Android ;
+        $(".fixdown .ios").hide();
+        $(".fixldycy a").click(function(){
+            $(".fixdown").fadeIn(500);
+        })
+        $(".fixdown .az").show();
+    }
+    $('.fixdown a').attr('href',downurl);//跳转到下载页面
+});
+</script>
+</body>
+</html>

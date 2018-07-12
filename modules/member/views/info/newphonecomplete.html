@@ -1,0 +1,40 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}keywords{% endblock %}
+{% block description %}description{% endblock %}
+
+{% block title %}绑定手机完成_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                <div class="phone-complete">
+                    <h3>修改完成</h3>
+                    <p>您现在可以使用您的手机号<i>18437484736</i>或邮箱账号<i>32347384@qq.com</i>进行登录</p>
+                    <p><a href="">前往伙购</a><a href="">前往个人中心首页</a></p>
+                    <aside><i>10</i>秒后跳转个人中心首页</aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+{% endblock %}

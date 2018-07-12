@@ -1,0 +1,7 @@
+CREATE TABLE `user_system_messages` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `to_userid` INT(10) UNSIGNED NOT NULL COMMENT '回复的用户ID',
+  `message` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '内容',
+  `created_at` INT(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统消息表';

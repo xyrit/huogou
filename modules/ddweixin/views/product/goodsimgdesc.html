@@ -1,0 +1,20 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}商品图文详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/goods.css" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/mobile/css/swiper.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/swiper.min.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/goodsimgdesc.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="goodsimgDesc">
+    <div style="width:800px; margin:0px auto; padding:0px; text-align: center;">
+    {{imgdesc|raw}}
+    </div>
+</div>
+{% endblock %}

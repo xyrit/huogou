@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>兑换中心</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="bgcolor2">
+
+<div class="kdhbdiv">
+	<div class="kdhbarr1"><span></span></div>
+    <div class="scocontent">
+    	<div class="kdhbtj">可领取红包金额：<span id="redMoney">0</span>元</div>
+    </div>
+    <div class="kdhbarr2"><span></span></div>
+</div>
+<div class="clear"></div>
+<div class="hblist">
+	<ul>
+    	<li><a hbje="1" href="javascript:void(0);"><img src="images/hb1.png" /></a></li>
+        <li><a hbje="5" href="javascript:void(0);"><img src="images/hb2.png" /></a></li>
+        <li><a hbje="10" href="javascript:void(0);"><img src="images/hb3.png" /></a></li>
+        <li><a hbje="25" href="javascript:void(0);"><img src="images/hb4.png" /></a></li>
+        <li><a hbje="50" href="javascript:void(0);"><img src="images/hb5.png" /></a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+
+<div class="tchsbg">
+	<div class="hbcontent">
+        <div class="klhbdiv">
+            <div class="hbjeimg"></div>
+            <div class="hblqtips">
+                <p>继续“点击领取”可以得到相对应的红包</p>
+                <p>红包放在APP“我的”-“我的红包”了哟</p>
+            </div>
+        </div>
+        <div class="hohashb">
+        	<div class="nohb"><img src="images/ylhbimbg.png" /></div>
+            <div class="hblqtips">
+                <p>不要太贪心哟，红包领取完毕啦，</p>
+                <p>赶紧向好友炫耀分享吧！</p>
+            </div>
+        </div>
+        <div class="share_knowan">
+        	<a class="share" href="http://www.huogou.com?type=9&share_title=%E3%80%90%E7%82%B9%E5%87%BB%E9%A2%86%E5%8F%96%E3%80%91%E6%82%A8%E6%9C%89%E4%B8%80%E6%9E%9A%E5%A5%A5%E8%BF%90%E9%87%91%E7%89%8C%E6%9C%AA%E8%AE%A4%E9%A2%86%EF%BC%81&share_img=http%3A%2F%2Fwww.huogou.com%2Fapp%2Folympic%2Fimages%2Fshare.png&share_desc=%E5%8F%82%E4%B8%8E%E5%A5%A5%E8%BF%90%E6%B4%BB%E5%8A%A8%EF%BC%8C%E4%B8%80%E5%85%83%E6%8A%A2%E9%87%91%E7%89%8C%EF%BC%8C%E8%BF%98%E6%9C%89%E6%9C%BA%E4%BC%9A%E6%8B%BF3%E4%B8%87%E5%A5%96%E9%87%91%E5%92%8CiPhone+6s%E3%80%82%E5%8F%AA%E9%9C%80%E2%80%A6%E2%80%A6&share_url=http%3A%2F%2Fwww.huogou.com%2Fspread%2Fgames%2Findex.html&share_callback=http%3A%2F%2Fapi.huogou.com%2Folympic%2Fshare%3Ftype%3D2" >炫耀分享</a>
+            <a class="know" href="javascript:void(0);">我知道了</a>
+        </div>
+    </div>
+</div>
+
+
+ 
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/comm.js"></script>
+<script>
+
+
+function renderRedInfo() {
+    var redInfoUrl = '/olympic/can-recieve-red-info';
+    var data = {};
+    $.getJsonp(apiBaseUrl + redInfoUrl, data, function(json) {
+        $('#redMoney').text(json.left);
+    });
+}
+
+$(document).ready(function(){
+    renderRedInfo();
+
+	$(".hblist li").on('click', 'a',function(){
+        var red = $('#redMoney').text();
+        var thisRedPrice = $(this).attr("hbje");
+		if(red == 0){
+			$(".tchsbg .klhbdiv").hide();
+			$(".tchsbg .hohashb").show();
+            $(".tchsbg").fadeIn(500);
+		}else{
+            var getRedUrl = '/olympic/recieve-red';
+            var data = {red:thisRedPrice}
+            $.getJsonp(apiBaseUrl + getRedUrl, data, function(json) {
+                renderRedInfo();
+                console.log(json)
+                if (json.code == '0') {
+                    $(".tchsbg .hohashb").hide();
+                    $(".tchsbg .klhbdiv").show();
+                    $(".klhbdiv .hbjeimg").html("<img src=images/hb_"+thisRedPrice+".png />")
+                    $(".tchsbg").fadeIn(500);
+                } else {
+                    alert(json.msg);
+                }
+            })
+		}
+	})
+	$(".share_knowan a.know").click(function(){
+		$(".tchsbg").fadeOut(500);
+	})
+});
+</script>
+
+</body>
+</html>

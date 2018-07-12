@@ -1,0 +1,48 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}账号设置{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+  <div class="registerCon">
+    <div class="binSuccess">
+      <dl>
+        <dd>
+          <a href="/userpage/{{userInfo.home_id}}">
+            <img src="{{ userInfo.avatar }}" />
+          </a>
+        </dd>
+        <dd>
+          <h4>
+            <a href="/userpage/{{userInfo.home_id}}" class="blue">{{ userInfo.username }}</a>
+          </h4> {% if userInfo.phone %}{{ userInfo.phone }}{% else %}{{ userInfo.email }}{% endif %}
+                    <span class="z-class-icon0{{ userInfo.level.num }} grade">
+                        <s></s>{{ userInfo.level.name }}
+                    </span>
+        </dd>
+      </dl>
+      <div class="binBtn">
+        <a id="btnUnbind" href="javascript:;" class="relieveBtn fl">退出登录</a>
+      </div>
+    </div>
+  </div>
+  <div class="oter_operation gray9">
+    <p>登录伙购网账号后，可在微信进行以下操作：</p> 1、查看您的伙购记录、获得商品信息、余额等
+    <br /> 2、随时掌握最新晒单、最新揭晓动态信息
+  </div>
+  {% include '@weixinModule/views/footer.html' %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  $('#btnUnbind').on('click',function() {
+    window.location.href = weixinBaseUrl+'/passport/logout.html';
+  });
+</script>
+{% endblock %}

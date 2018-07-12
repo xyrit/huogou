@@ -1,0 +1,29 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+  <h1>好友</h1>
+  {% if(friendList.list) %}
+  <ul class="home-friends">
+    {% for item in friendList.list %}
+    <li>
+      <picture><img src="{{ item.user_avatar }}" alt=""></picture>
+      <summary>
+        <h3><a href="{{ url('/user', {'id':item.user_home_id}) }}" target="_blank">{{ item.user_name }}</a></h3>
+        <p><i><img src="{{ app.params.skinUrl }}/img/{{ item.grade_pic }}" alt=""></i>{{ item.grade_name }}</p>
+          {% if(item.friend == '' or app.user.id == '') %}
+            <a class="home-friends-a btnAddFriend" href="javascript:void(0);" data-id="{{ item.user_home_id }}">+ 加好友</a>
+          {% endif %}
+      </summary>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <div class="notHave">
+      <span class="notHave_icon"></span>
+      <p class="notHave_txt">还没有任何好友哦！</p>
+    </div>
+  {% endif %}
+
+  {{ use('/app/widgets/LinkPager') }}
+  {{ link_pager_widget({pagination: friendList.pagination}) }}
+{% endblock %}

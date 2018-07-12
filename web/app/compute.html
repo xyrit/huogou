@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>计算详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/compute.css"/>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js?v=160325"></script>
+</head>
+<body style="display: none;">
+<div class="topdiv2" style="display: none;">
+    <div class="topnav">
+        <h1 class="pagetit">计算规则</h1>
+        <a class="fanhui" href="javascript:history.go(-1)"></a>
+        <!--<a class="home" href="index.html"></a>-->
+    </div>
+</div>
+<div class="topzhanwei" style="display: none;"></div>
+
+<div class="gongshi">
+    <span class="xymtit">幸运号码  =</span>
+    <span class="quyu">
+        <p>数值A+数值B</p>
+        <p class="linep">商品总需人次</p>
+    </span>
+    <span class="jiashu">取余数 + 10000001</span>
+    <div class="clear"></div>
+</div>
+
+
+<div class="shuzhiinfo">
+    <div class="infos">
+        <h4><span>A =</span>截止该商品最后购买时间（<b id="endTime">2016-01-01 00:00:00.222</b>）全站商品最后50条购买时间排列值之和</h4>
+        <h4><span>=</span><em class="fl" id="aTotal">00000000</em><a class="zansou" href="javascript:void(0);">展开</a><div class="clear"></div></h4>
+    </div>
+    <div class="buytimelist">
+        <p class="toplist"><span class="buytime">参与时间</span><span class="name">参与用户</span></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="line5"></div>
+<div class="shuzhiinfo">
+    <div class="infos">
+        <h4><span>B =</span>最近一期中国福利彩票“老时时彩”的开奖结果</h4>
+        <h4><span>=</span><em class="fl" id="shishiDetail">00000<!--正在等待揭晓...（第20160101001期）--></em><em class="fr" id="shishiLink" style="display: none;"></em><div class="clear"></div></h4>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="shicaigz">
+    <div class="gzborder">
+        <h2>凌晨1:55到上午10:00开奖规则如下：</h2>
+        <h3>（1）B值固定</h3>
+        <p>由于凌晨1:55到上午10:00老时时彩不开奖，默认“老时时彩”开奖结果为“00000”，即数值B=00000；</p>
+        <p>原因:根据伙购网揭晓规则,如无法获取“老时时彩”开奖结果,默认“老时时彩”开奖结果为00000.</p>
+
+        <h3>（2）即时开奖</h3>
+        <p>该段时间，商品凑满后即可开奖（倒计时30秒即揭晓结果）</p>
+    </div>
+    <div class="border1"></div>
+    <div class="border2"></div>
+    <div class="border3"></div>
+    <div class="border4"></div>
+</div>
+<div class="line5"></div>
+<div class="shuzhiinfo">
+    <div class="jieguoinfos">
+        <h4>计算结果</h4>
+        <p class="dengdaijx"><span>幸运号码：<em id="luckyCode">00000000</em>  <!--  <em>等待揭晓...</em>  --></span></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+        if (getUrlParam('showBar')) {
+            $('.topzhanwei').show();
+            $('.topdiv2').show();
+        }
+        $(".zansou").click(function(){
+            $(this).toggleClass("active");
+            $(this).parents(".shuzhiinfo").find(".buytimelist").slideToggle();
+            if($(this).hasClass("active")){
+                $(this).text('收缩');
+            }else{
+                $(this).text('展开');
+            }
+        });
+
+        var url = apiBaseUrl+"/period/compute";
+        var pid = getUrlParam('pid');
+        var showBar = getUrlParam('showBar') ? getUrlParam('showBar') : '';
+        $.getJsonp(url,{pid:pid},function(json) {
+            if (json.list.length!=50) {
+                location.href = './old_compute.html?pid='+pid+'&showBar='+showBar;
+            }
+            $('body').show();
+            var shishiData = json.shishiData;
+            var endTime = '';
+            $.each(json.list,function(i,v){
+                if (i==0) {
+                    endTime = v.buy_time;
+                }
+                var time = v.buy_time.split(" ");
+                var hList = "";
+                hList += "<p>";
+                hList += '<span class="buytime">'+time[0]+' '+time[1]+'<em> → '+v.data+'</em></span>';
+                hList += '<span class="name"><a href="">'+v.username+'</a></span>';
+                hList += "</p>";
+                $('.buytimelist').append(hList);
+            });
+
+            $("#aTotal").text(json.total);
+            $('#endTime').text(endTime);
+
+            var shishiDetailText = '正在等待揭晓...';
+            var luckCodeText = '等待揭晓...';
+
+
+            if (shishiData.shishi_num=='00000') {
+                shishiDetailText = shishiData.shishi_num;
+            } else if (shishiData.expect) {
+                if (shishiData.expect=='none') {
+                    shishiDetailText = '00000';
+                } else {
+                    if (json.luckyCode>0) {
+                        shishiDetailText = shishiData.shishi_num + "  (第" + shishiData.expect + '期)';
+                    } else {
+                        shishiDetailText = '正在等待揭晓...' + "  (第" + shishiData.expect + '期)';
+                    }
+                }
+
+            } else {
+                shishiDetailText = '00000';
+            }
+            $('#shishiLink').html('<a href="http://m.cailele.com/kj/history.php?lotteryId=150">开奖查询</a>').show();
+            if (json.luckyCode>0) {
+                luckCodeText = json.luckyCode;
+            }
+            $('#shishiDetail').text(shishiDetailText);
+            $('#luckyCode').text(luckCodeText);
+        });
+
+
+    })
+</script>
+</body>
+</html>

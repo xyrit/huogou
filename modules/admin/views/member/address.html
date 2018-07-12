@@ -1,0 +1,53 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+
+<div class="admin-content" >
+    {% include '@adminModule/views/member/top.html' %}
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>收货人</th>
+                        <th>联系方式</th>
+                        <th>省</th>
+                        <th>市</th>
+                        <th>区县</th>
+                        <th>详细地址</th>
+                        <th>状态</th>
+                        <th class="am-hide-sm-only">更新时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for value in list %}
+                        <tr>
+                           <td>{{ value.id }}</td>
+                           <td>{{ value.name }}</td>
+                           <td>{{ value.mobilephone }}</td>
+                           <td>{{ value.prov.name }}</td>
+                           <td>{{ value.city.name }}</td>
+                           <td>{{ value.area.name }}</td>
+                           <td>{{ value.address }}</td>
+                           <td>正常</td>
+                           <td>{{ value.update|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                       {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                    <div class="am-fr">
+                        {{ use('/app/widgets/BackendLinkPager') }}
+                        {{ backend_link_pager_widget({'pagination': pagination}) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

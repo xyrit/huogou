@@ -1,0 +1,90 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">充值卡列表</strong></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-9">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a class="am-btn am-btn-default" href="{{ url(['/admin/card/add']) }}">
+                            <i class="am-icon-plus"></i> 新增
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>批次</th>
+                            <th>已使用/总张数</th>
+<!--                            <th>明细</th>-->
+                            <th class="table-title am-hide-sm-only">状态</th>
+                            <th class="table-title am-hide-sm-only">有效期</th>
+                            <th class="table-title am-hide-sm-only">创建日期</th>
+                            <th class="table-title am-hide-sm-only">申请人</th>
+                            <th class="table-title am-hide-sm-only">审核人</th>
+                            <th class="table-set">管理</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% set list = dataProvider.getModels() %}
+                        {% for item in list %}
+                            <tr>
+                                <td>{{ item.card_id }}</td>
+                                <td>{{ item.useinfo }}</td>
+                                <td class="am-hide-sm-only">{% if item.status == 0 %}提交待审{% elseif(item.status == 1) %}审核通过{% elseif(item.status == 2) %}审核不通过{% endif %}</td>
+                                <td class="am-hide-sm-only">{{ item.time_start |date('Y-m-d') }} --- {{ item.time_end |date('Y-m-d') }}</td>
+                                <td class="am-hide-sm-only">{{ item.time_start }}</td>
+                                <td class="am-hide-sm-only">{{ item.applyUser.real_name }}</td>
+                                <td class="am-hide-sm-only">{{ item.checkUser.real_name }}</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <a href="{{ url('/admin/card/add', {'id':item.card_id}) }}" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                                <span class="am-icon-pencil-square-o"></span> [详情]
+                                            </a>
+                                            <a href="{{ url('/admin/card/out', {'id':item.card_id}) }}"  class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                                <span class="am-icon-trash-o"></span>[导出]
+                                            </a>
+                                            {% if item.is_out %}
+                                            <a href="{{ url('/admin/card/out-history', {'id':item.card_id}) }}"  class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                                <span class="am-icon-trash-o"></span>[导出历史]
+                                            </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ dataProvider.totalCount }} 条记录</p>
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': dataProvider.Pagination}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+
+{% endblock %}
+
+{% block script %}
+    <script>
+    </script>
+{% endblock %}

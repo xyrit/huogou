@@ -1,0 +1,108 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}小额免密码设置_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                <div class="safety-title">
+                    <h3 class="mima">小额免密码设置</h3>
+                    <a href="javascript:history.back()">&lt;&lt; 返回</a>
+                </div>
+
+                <div class="safety-note">
+                    <i></i><span>当支付额度小于等于您设置的额度时，无需支付密码即可支付！</span>
+                </div>
+
+                <div class="safety-password">
+                    <h3>请选择免密支付额度</h3>
+                    <ul class="password-list">
+                        <li {% if micro_pay == 50 or micro_pay == 0 %}class="act"{% endif %}>
+                            <input type="radio" name="password" value="50" {% if micro_pay == 50 or micro_pay == 0 %}checked{% endif %}>
+                            <label for="password01">≤ 50元/单笔</label>
+                        </li>
+                        <li {% if micro_pay == 100%}class="act"{% endif %}>
+                            <input type="radio" id="password02" name="password" value="100" {% if micro_pay == 100%}checked{% endif %}>
+                            <label for="password02">≤ 100元/单笔</label>
+                        </li>
+                        <li {% if micro_pay == 200%}class="act"{% endif %}>
+                            <input type="radio" id="password03" name="password" value="200" {% if micro_pay == 200%}checked{% endif %}>
+                            <label for="password03">≤ 200元/单笔</label>
+                        </li>
+                        <li {% if micro_pay == 500%}class="act"{% endif %}>
+                            <input type="radio" id="password04" name="password" value="500" {% if micro_pay == 500%}checked{% endif %}>
+                            <label for="password04">≤ 500元/单笔</label>
+                        </li>
+                        <li class="password-input {% if micro_pay != 0 and micro_pay != 50 and micro_pay != 100 and micro_pay != 200 and micro_pay != 500 %}act{% endif %}">
+                            <input id="password-jine" type="text" value="输入其他金额" name="other" onkeyup='this.value=this.value.replace(/\D/gi,"")' maxlength="4">
+                        </li>
+                    </ul>
+                    <input type="hidden" id="type" value="{{ t }}">
+                    <input class="password-submit" type="submit" value="确 定">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+<script type="text/javascript">
+$('.password-submit').on('click', function() {
+    if ($('.password-input').hasClass('act') && ($('#password-jine').val() == '输入其他金额' || $('#password-jine').val() <= 0) ) {
+        showErrorMsg('请输入金额');
+        return false;
+    }
+
+    var params = {
+        password: $("input[name='password']:checked").val(),
+        other: $('#password-jine').val(),
+        t: $('#type').val()
+    };
+
+    $.ajax({
+        async: false,
+        url: apiBaseUrl + '/info/pay-not-pwd',
+        type: "POST",
+        dataType: 'jsonp',
+        jsonp: 'callback',
+        data: params,
+        success: function (data) {
+            if (data.code == 100) {
+                $('.safety-b-box').html('<i id="safety-b-close"></i><h4>保存成功</h4>');
+                $('#safety-b-con').fadeIn();
+                setTimeout(function(){
+                    $('#safety-b-con').fadeOut();
+                    window.location.href="/info/safety";
+                },1000);
+                return false;
+            } else {
+                showErrorMsg(data.msg);
+                return false;
+            }
+        }
+    });
+
+    $('#paynotpwdForm').submit();
+});
+</script>
+
+{% endblock %}

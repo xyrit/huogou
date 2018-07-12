@@ -1,0 +1,40 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}限购专区_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imagezoom.min.js"></script>
+  <script src="{{ app.params.skinUrl }}/js/fly.js"></script>
+  <script src="{{ app.params.skinUrl }}/js/requestAnimationFrame.js"></script>
+  <script src="{{ app.params.skinUrl }}/js/limitbuy.js?v=160216"></script>
+{% endblock %}
+
+{% block body %}
+
+  {% include '@app/views/topbar.html' %}
+  {% include '@app/views/nav.html' %}
+  {% include '@app/views/cart.html' %}
+  <section class="quota_banner">
+    <div class="quota_gg">
+      <p>揭晓公告：</p>
+      <div class="quota_gg_list">
+        <ul id="scrollDiv">
+        </ul>
+      </div>
+      <a class="quota_gg_more" href="{{ url(['/lottery']) }}">更多 +</a>
+    </div>
+  </section>
+
+  <ul class="quota_list clear">
+
+  </ul>
+
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}

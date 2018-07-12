@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>
+        订单详情
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/member.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<input name="hideOrderID" type="hidden" id="hideOrderID" value="1215692" />
+<div class="wrapper">
+    <div class="clearfix g-adrsnav">
+        <div class="m-adrs-lst ">
+            <em>确认收货地址</em>
+            <i>
+                <s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst ">
+            <em>商家发货</em>
+            <i>
+                <s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst m-adrs-lstSel">
+            <em>确认收货</em>
+            <i>
+                <s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+    </div>
+    <div class="clearfix g-member g-address marginB">
+        <div class="clearfix m-round m-address-ct">
+            <!-- 地址列表 -->
+            <!-- 订单处理步骤 -->
+            <ul>
+                <li>
+                    <p class="gray9">
+                        <span class="fr">操作：云购系统</span> 2015-09-15 18:40
+                    </p> 恭喜您云购成功，请尽快填写收货地址，以便我们为您配送！
+                </li>
+                <li>
+                    <p class="gray9">
+                        <span class="fr">操作：会员本人</span> 2015-09-15 19:19
+                    </p> 会员已填写配送地址信息，等待商城发货
+                </li>
+                <li>
+                    <p class="gray9">
+                        <span class="fr">操作：吴**</span> 2015-09-20 15:18
+                    </p> 您的配送信息已确认。
+                </li>
+                <li>
+                    <p class="gray9">
+                        <span class="fr">操作：卢**</span> 2015-09-21 15:17
+                    </p> 您的商品[伊利 原味优酸乳 250mlx24盒 整箱装]由京东配送，请留意收货[京东订单号：10131325084]。
+                </li>
+            </ul>
+            <div class="u-Btn">
+                <div class="u-Btn-li">
+                    <a id="btnShiped" cid="1323187" href="javascript:;" class="z-DefineBtn">确认收货</a>
+                </div>
+            </div>
+        </div>
+        <!-- 商品信息 -->
+        <div class="clearfix mt10 m-round g-goods-info">
+            <h3> 配送信息</h3>
+            <ul id="loadingPicBlock">
+                <li>
+                    <a class="fl z-Limg" href="../lottery/detail-1619178.html">
+                        <img src="../weixin/images/loading.gif" src2="../GoodsPic/Pic-200-200/20150504113949911.jpg" />
+                    </a>
+                    <div class="u-gds-r gray9">
+                        <p class="z-gds-tt"><a href="../lottery/detail-1619178.html" class="gray6">(第4563云)伊利 原味优酸乳 250mlx24盒 整箱装</a></p>
+                        <p>价值：￥52.00</p>
+                        <p>幸运云购码：<em class="orange">10000009</em></p>
+                        <p>揭晓时间：2015-06-25 18:37:13.554</p>
+                    </div>
+                </li>
+            </ul>
+            <!-- 快递信息 -->
+            <!-- 收货地址信息 -->
+            <div class="m-Express">
+                <p>收货地址</p>
+                <p class="f-addressLH gray6">
+                    <span>广东省 深圳市 南山区 东方大厦</span>
+                    <span>某某某 12225465476</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <input id="hidPageType" type="hidden" value="3" />
+    <div class="footer">
+        <ul>
+            <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+            <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+            <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+            <li class="f_personal"><a href="../member/index.html" class="hover" title="我的云购"><i></i>我的云购</a></li>
+        </ul>
+    </div>
+</div>
+<script src="../weixin/JS/pageDialogBG.js"></script>
+<script>
+//    点击确认收货弹出弹窗
+    $('#btnShiped').click(function(){
+        if($(this).html() == '确认收货'){
+            pageDialogBG();
+            var pageCon = "";
+            pageCon+='  <div class="clearfix m-round u-tipsEject">' +
+                    '<div class="u-tips-txt">您确定收到货了吗？</div> ' +
+                    '<div class="u-Btn"> ' +
+                    '<div class="u-Btn-li"> ' +
+                    '<a href="javascript:;" id="btnMsgCancel" onclick="btnMsgCancel()" class="z-CloseBtn">取消</a> ' +
+                    '</div> <div class="u-Btn-li"> ' +
+                    '<a id="btnMsgOK" href="javascript:;" onclick="btnMsgOK()" class="z-DefineBtn">确定</a> ' +
+                    '</div> ' +
+                    '</div> ' +
+                    '</div>';
+            $('#pageDialog').append(pageCon);
+        }
+    })
+
+    //    点击确定跳转到支付页面
+    function btnMsgOK(){
+        $('#pageDialogBG').remove();
+        $('#pageDialog').remove();
+        $('#btnShiped').addClass('z-grayBtn');
+        $('#btnShiped').html('订单已完成');
+    }
+    //    点击取消弹窗消失
+    function btnMsgCancel(){
+        $('#pageDialogBG').remove();
+        $('#pageDialog').remove();
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">圈子列表</strong></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-9">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a class="am-btn am-btn-default" href="{{ url(['/admin/group/add']) }}">
+                            <i class="am-icon-plus"></i> 新增
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>圈子名称</th>
+                            <th class="table-title am-hide-sm-only">管理员</th>
+                            <th class="table-title am-hide-sm-only">简介</th>
+                            <th class="table-title am-hide-sm-only">公告</th>
+                            <th class="table-title am-hide-sm-only">成员</th>
+                            <th class="table-title am-hide-sm-only">帖子数</th>
+                            <th class="table-title am-hide-sm-only">可加入</th>
+                            <th class="table-title am-hide-sm-only">可发帖</th>
+                            <th class="table-title am-hide-sm-only">可回复</th>
+                            <th class="table-set">管理</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td><a href="{{ url('/admin/group/edit',{'id':item.id}) }}">{{ item.name }}</a></td>
+                            <td class="am-hide-sm-only">{{ item.adminuser }}</td>
+                            <td class="am-hide-sm-only">{{ item.intro[:10]|default('暂无简介') }}</td>
+                            <td class="am-hide-sm-only">{{ item.notice[:10]|default('暂无公告') }}</td>
+                            <td class="am-hide-sm-only">{{ item.user_count }}</td>
+                            <td class="am-hide-sm-only">{{ item.topic_count }}</td>
+                            <td class="am-hide-sm-only">{% if item.group_closed == '0' %}会员可加入{% else %}会员不可加入{% endif %}</td>
+                            <td class="am-hide-sm-only">{% if item.topic_closed == '0' %}会员可发帖{% else %}会员不可发帖{% endif %}</td>
+                            <td class="am-hide-sm-only">{% if item.comment_closed == '0' %}可回复{% else %}不可回复{% endif %}</td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <a href="{{ url('/admin/group/topic', {'id':item.id}) }}"  data-id="{{ item.id }}"
+                                           class="am-btn am-btn-default am-btn-xs ">
+                                            <span class="am-icon-trash-o"></span>[查看帖子]
+                                        </a>
+                                        <a href="{{ url('/admin/group/edit', {'id':item.id}) }}" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                            <span class="am-icon-pencil-square-o"></span> [编辑]
+                                        </a>
+                                        <a href="javascript:void(0);"  data-id="{{ item.id }}"
+                                           class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only btn-delete">
+                                            <span class="am-icon-trash-o"></span>[删除]
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+
+    <!-- 删除提示弹窗-->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">警告</div>
+            <div class="am-modal-bd">
+                你，确定要删除这条记录？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+        <span class="am-icon-btn am-icon-th-list"></span>
+    </a>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function () {
+            $('.btn-delete').on('click', function () {
+                $('#my-confirm').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+                        var $id = $(this.relatedTarget).data('id');
+                        $.post('{{ url(['/admin/group/del']) }}', {id: $id}, function (data) {
+                            if (data.error) {
+                                $('#errmsg').text(data.message);
+                                $('#my-alert').modal();
+                            } else {
+                                window.location.reload();
+                            }
+                        });
+                    },
+                    // closeOnConfirm: false,
+                    onCancel: function () {
+                        return;
+                    }
+                });
+            });
+
+        });
+    </script>
+{% endblock %}

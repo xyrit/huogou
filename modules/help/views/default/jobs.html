@@ -1,0 +1,360 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/help.css" />
+{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+
+    {% include '@app/views/nav.html' %}
+
+<section class="wrap clear">
+    <div class="present">
+        <a href="">首页</a><i></i><a href="">加入我们</a>
+    </div>
+    <div class="xl_back_white xl_job1">
+        <div class="xl_title1 clear"><h1 class="xl_left">加入伙购</h1>
+            <!--<span class="xl_right">请发送您的简历至<span class="xl_cs xl_f16">hr@huogou.com</span>，标题请注明所申请职位</span>-->
+        </div>
+        <br>
+        <div class="xl_gzd">
+            <b>工作地点：</b><a href="#" class="on">全部</a>/<a href="#">深圳</a>
+        </div>
+        <div class="xl_gzd">
+            <b>职位类别：</b><a href="#" class="all on">全部</a>/<a class="cw" href="#">财务部</a>/<a class="yy" href="#">运营部</a>/<a class="yf" href="#">研发部</a>
+        </div>
+    </div>
+
+    <div class="xl_back_white xl_zwlist">
+        <div class="hr_lb">
+            <ul>
+                <li class="hover yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：Andriod工程师<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责完成Andriod平台移动应用产品开发及系统设计；</p>
+                        <p>2、负责Android开发模块深度定制及调试；</p>
+                        <p>3、根据研发要求及项目流程规范编写相关的技术文档.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、3年以上Android软件开发经验，具备良好的独立工作能力；</p>
+                        <p>2、掌握Android系统下网络通信机制；</p>
+                        <p>3、对Socket通信、TCP/IP、http/https及WIFI有较深刻的理解或经验者优先；</p>
+                        <p>4、掌握内存优化，异步、线程的使用知识；</p>
+                        <p>5、掌握JNI技术，能够使用JNI,有c/c++开发经验优先考虑；</p>
+                        <p>6、良好的编码风格，从事过即时通讯(IM)相关产品的客户端开发者优先；</p>
+                        <p>7、对技术有激情、有追求，富于技术创新精神，勇于解决技术难题；</p>
+                        <p>8、具备良好的职业素养和团队协作精神；</p>
+                        <p>9、较强的学习能力，能承受工作压力.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：ERP产品策划</h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、公司PC端和移动端相关产品功能设计；</p>
+                        <p>2、负责需求说明书的编写、产品原型的设计，协助开发团队准确理解需求；</p>
+                        <p>3、负责公司订单、物流、客户、客服、财务之间的业务流程梳理；</p>
+                        <p>4、根据业务流程及需求提出产品解决方案，并完成产品需求文档的编写、评审并推进研发人员完成开发；</p>
+                        <p>5、负责产品模块新需求的测试及实施工作：需求分析、业务流程优化、方案设计、系统实现、系统测试和上线支持；</p>
+                        <p>6、培训公司内部相关的操作人员，并监督、考核操作人员按要求操作；</p>
+                        <p>7、解决实际操作中遇到的问题.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：IOS工程师</h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1. 负责电商平台IOS客户端产品的需求分析以及架构设计;</p>
+                        <p>2. 参与移动平台软件框架的研究、关键技术验证和选型等工作; </p>
+                        <p>3. 从事核心架构部分代码的开发，并保证代码质量; </p>
+                        <p>4. 解决研发过程中的关键问题和技术难题; </p>
+                        <p>5. 编写和维护文档，指导和培训工程师; </p>
+                        <p>6. 协助开发经理保证研发工作的质量和进度.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1.全日制本科以上学历，计算机及相关专业毕业;</p>
+                        <p>2.熟练掌握C/C++, Objective-C，熟悉iOS SDK，熟悉XCode开发环境;</p>
+                        <p>3.2年以上iOS开发经验，能独立开发iPhone App，有电商app相关研发经验优先;</p>
+                        <p>4.熟悉整个App store上架流程为佳,优先考虑曾经在iTunes应用商店上递交作品者;</p>
+                        <p>5.思路清晰，思维敏捷，快速的学习能力，良好的英文资料阅读能力; </p>
+                        <p>6.对创业有着很高的热情，能独立开展各项工作，能承担较大工作压力，具备良好的沟通能力和团队合作精神; </p>
+                        <p>7.熟悉HTML5，有已上架App作品或有PhoneGap、Zepto、GMU等移动框架开发经验优先考虑.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：PHP工程师<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、 使用PHP语言开发高效能数据、应用服务；</p>
+                        <p>2、 参与项目需求分析、设计与实现、相关单元测试等工作;</p>
+                        <p>3、 在开发中发现存在的问题，积极参与产品、功能与技术架构的改进；</p>
+                        <p>4、 积极参与工作相关技术的研究、技术规范的制定，提升团队技术能力；</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、 计算机及相关专业，大专及以上学历，2年以上php开发经验;</p>
+                        <p>2、 熟悉HTTP协议及W3C相关互联网规范，精通LAMP服务器系统维护操作和最优化配置；</p>
+                        <p>3、 熟悉HTML、CSS、JavaScript；熟悉SVN版本控制工具和linux的基本操作；熟练掌握AJAX 等技术；</p>
+                        <p>4、 熟悉软件设计模式和算法，和数据结构；</p>
+                        <p>5、 熟悉MVC开发模式，了解主流PHP和JS开发框架；</p>
+                        <p>6、 有过大流量网站构架或者电商开发经验者优先；</p>
+                        <p>7、 有良好的代码习惯，要求结构清晰，命名规范，逻辑性强，代码冗余率低；</p>
+                        <p>8、 有较强的沟通能力、团队合作精神、高度的责任心和较好的服务意识.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：UI设计师<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责移动端产品的界面设计；</p>
+                        <p>2、负责UI设计流行趋势的分析，参与产品用户研究，把握整体视觉风格；</p>
+                        <p>3、能够输出样式坐标文档和技术用图，配合开发人员实现产品界面并主动沟通跟进执行结果；</p>
+                        <p>4、能够充分理解产品方向和功能、体验目标，对交互设计有一定的见解和经验；</p>
+                        <p>5、与设计团队成员之间分享设计经验，收集和分析用户对于UI的需求，提出改善交互视觉的优化和 改进方案.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、2年以上移动端UI界面设计；</p>
+                        <p>2、了解手机UI界面的设计流程，深入理解iOS，Android两大平台设计理念，能够准确的把握洞查最 新的设计流行趋势；</p>
+                        <p>3、有很强的UI整体风格把握能力和实际技能与经验，能够主动与开发工程师沟通协调并跟进执行结果；</p>
+                        <p>4、执行力强，主动细心，追求完美，乐于表达和沟通，团队合作意识强，对设计有自己的思考和见 解并对设计充满热情，有手绘基础的优先；</p>
+                        <p>5、随简历请附带作品.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：Web前端工程师<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责公司项目前端静态页面架构的输出；</p>
+                        <p>2、参与web前端开发规范的制定和优化开发流程；</p>
+                        <p>3、解决web前端页面在各浏览器的兼容性样式问题；</p>
+                        <p>4、不断优化前端页面性能，改善用户体验.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、2年以上大中型互联网公司前端开发经验；</p>
+                        <p>2、熟悉各种web前端技术包括XHTML/HTML5/CSS3/JavaScript等前端技术的应用；</p>
+                        <p>3、了解js能读懂并可修改js代码；</p>
+                        <p>4、能够熟练解决不同浏览器及不同版本的兼容性问题；</p>
+                        <p>5、具备优秀的沟通及协调能力，逻辑清楚，思维活跃，有较强的团队意识及执行力，刻苦敬业能承担较大工作压力；</p>
+                        <p>6、有UI设计从业经历优先考虑.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="cw_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：财务会计<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责公司所有纳税申报和税款缴纳工作；</p>
+                        <p>2、开发票，认证发票工作；</p>
+                        <p>3、能税务筹划，熟悉会计法、税法规定制度；</p>
+                        <p>4、能够处理本部门日常工作中发生的问题，协调财会人员的工作关系；</p>
+                        <p>5、总经理安排的其他工作.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、财务专业专科以上学历，初级以上职称；</p>
+                        <p>2、具有扎实的财务知识，熟悉一般纳税人企业会计核算业务，熟悉税收法规；</p>
+                        <p>3、三年以上相关工作经验；</p>
+                        <p>4、熟练使用金蝶财务软件及office办公软件；</p>
+                        <p>5、熟悉库存帐务处理及管理工作；</p>
+                        <p>6、对数字比较敏感，工作细致，责任感强，有较强的沟通协调能力，执行力与团队合作精神.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yy_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：客服主管<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、带领客服团队提高服务技能，负责客服工作的分解、落实；</p>
+                        <p>2、负责客服团队的管理、监督、指导、处理客户棘手问题，制定绩效考核；</p>
+                        <p>3、制定客服培训计划并落实，通过培训不断提高客服人员的专业技能，对售前、售后、退换货等技能指导；</p>
+                        <p>4、制定客服话术语培训，在线QQ沟通技巧、电话沟通、事件培训，通过培训提高客服的业务技能和防范意识；</p>
+                        <p>5、调动客服工作积极性；</p>
+                        <p>6、向运营提供合理建议，协助运营处理其它事物，参与推广活动的执行，每周数据分析，客服月、周绩效考核.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、具有客服部实操经验及部门管理能力;</p>
+                        <p>2、具有一定的客户开发能力与技巧;</p>
+                        <p>3、具有一定的人际交往能力，谈判能力，较强的沟通能力;</p>
+                        <p>4、具有较强的综合分析能力、亲和力、执行力、敏锐的观察力;</p>
+                        <p>5、具有人员培训技能与技巧.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yy_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：客服专员<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、接听客服热线，解决客户问题、处理客户投诉、反馈客户问题；</p>
+                        <p>2、在电话中促进客户对产品的购买欲、建立良好的公司形象；</p>
+                        <p>3、负责公司网站自主注册会员在线咨询答疑；</p>
+                        <p>4、负责客户资料收集及分类；</p>
+                        <p>5、根据需要，对客户进行各种形式的回访调查，以获取客户的直接反馈，并及时将信息反馈给上级；</p>
+                        <p>6、上级安排的其他临时性工作.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、打字速度50字/分以上（听打）；</p>
+                        <p>2、喜爱互联网，并具备一定的网络应用知识； </p>
+                        <p>3、正规院校大专及以上学历，计算机、电子商务等相关优先；</p>
+                        <p>4、喜欢与人打交道，并能承受沟通压力；</p>
+                        <p>5、客户服务相关工作经验者优先. </p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">个人素质要求:</h2>
+                        <p>1、具备良好的办事能力及学习能力；</p>
+                        <p>2、善于倾听、理解、有一定的服务意识；</p>
+                        <p>3、做事注重细节，个人学习及自律能力强；</p>
+                        <p>4、良好的团队精神，能较快的适应工作环境；</p>
+                        <p>5、热爱服务行业，认可服务的价值.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：平面设计<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1.负责公司电商平台的装修，广告海报页面创意设计；整体风格设计、改版和优化工作；</p>
+                        <p>2.负责制作促销图片和页面，配合店铺销售活动；美化修改产品页面，定期更新店铺主页 ；</p>
+                        <p>3.负责制作商品详情页，详情页面产品资料和信息，对所店铺所销售的产品进行描述的策划及设计；</p>
+                        <p>4.负责各店各种页面的整体视觉的形象设计，网店风格及商品展示设计；</p>
+                        <p>5.负责公司的各种宣传资料设计及上级交办的其他工作任务.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yy_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：商品编辑<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责商城产品的编辑及对产品进行直观、感性、富有吸引力的描述；</p>
+                        <p>2、配合平面设计师对产品的描述进行画面设计，文字撰写，提高产品描述的转换率；</p>
+                        <p>3、撰写各种营销文案与实施方案；</p>
+                        <p>4、撰写商品描述文案、单品策划文案，广告文案，品牌宣传文案；</p>
+                        <p>5、商品资料信息录入、价格调整、商品上架下架等日常事务，对文字和图片精益求精.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1.熟悉移动互联网行业，了解移动互联网的用户行为习惯，理解产品的商业价值和用户价值；</p>
+                        <p>2.良好的设计创新能力，较强的责任心和进取心，具备良好的沟通能力、学习吸收能力及团队合作精神；</p>
+                        <p>3.文笔佳、熟悉电脑操作Office、Photoshop，能协助整理商品图片及文案；</p>
+                        <p>4.熟悉网络购物或有网络销售、购物操作经验；</p>
+                        <p>5.拥有较强的学习能力和执行力，能承受较大工作压力；</p>
+                        <p>6.良好的亲和力，团队合作精神及强烈的责任感和敬业精神；</p>
+                        <p>7.有摄影经验者优先.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：系统管理员<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责办公区设施，网络及其设备的维护、管理、故障排除等日常工作，确保公司网络日常的正常运作;</p>
+                        <p>2、负责公司电话交换设备、网络交换设备的日常维护;</p>
+                        <p>3、负责公司办公电脑的日常维护、维修、办公软件、病毒查杀等工作;</p>
+                        <p>4、负责公司电脑软件安装、硬件配置、打印机、扫描仪、复印机维护与简单维修;</p>
+                        <p>5、完成公司安排的其它工作等.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、掌握计算机维护的各种技能，对网络交换设备有一定的了解;</p>
+                        <p>2、有企业局域网管理、设备维护经验，熟悉网络及电话的布线和维护;</p>
+                        <p>3、熟悉局域网内路由器、交换机、防火墙等网络设备的安装、调试以及维护;</p>
+                        <p>4、熟悉Windows系统安装和维护，以及Windows平台下的各种应用硬软件的使用、管理和维护;</p>
+                        <p>5、熟悉linux、MySQL、Apache、SVN(GIT)等安装与设置.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yy_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：线上采购<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、通过各种网络购物平台（京东、苏宁易购、天猫等）进行商品采购；</p>
+                        <p>2、跟踪商品采购订单状态并及时更新到公司系统中；</p>
+                        <p>3、保证采购计划完成，控制采购成本；</p>
+                        <p>4、完成上级交给的其它事务性工作.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、 1年以上采购方面经验；中专以上学历；</p>
+                        <p>2、 热爱互联网行业，熟悉各大购物平台购物流程；</p>
+                        <p>3、 有良好的成本控制意识；优秀的沟通、谈判能力；</p>
+                        <p>4、 有良好的职业道德和敬业精神.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+                <li class="yf_section">
+                    <div class="hr_lb2 clearfix"><span class="xl_ico1 xl_absolute"></span><h1 class="xl_left">岗位名称：运维工程师<i class="ico_hot"></i></h1><span class="xl_right">深圳  /  2015-10-10</span></div>
+                    <div class="hr_lb3 xl_display_no">
+                        <h2 class="color_3 font16 m_b10">岗位职责:</h2>
+                        <p>1、负责linux系统及其平台下常用软件的安装，维护，调优和监控；</p>
+                        <p>2、通过学习和掌握各类工具实现运维自动化；</p>
+                        <p>3、负责业务运营系统的安装、调试、备份、存储、容灾系统的规划设计工作；</p>
+                        <p>4、负责业务运营系统性能调优与安全防护规划和管理工作;</p>
+                        <p>5、各类故障和事务的应急响应和技术支持.</p>
+                        <br> <br>
+                        <h2 class="color_3 font16 m_b10">任职要求:</h2>
+                        <p>1、以技术为本，拥有钻研技术的能力，三年以上Linux/Unix系统管理经验，具有大中型网站或web应用平台运维经验；</p>
+                        <p>2、精通Linux系统原理，熟悉内核参数调优，精通基于Linux的常用服务配置，例如LVS、crontab、samba等，并能够快速部署、配置及排错；</p>
+                        <p>3、熟悉Tcp/Udp 网络原理，深入理解Http 协议，了解Web 安全等网站技术；</p>
+                        <p>4、精通Shell/Perl/PHP/Python编程（至少一种），使用脚本来完成日常系统运维工作；</p>
+                        <p>5、精通Mysql的安装、部署与优化；</p>
+                        <p>6、熟悉服务器设备、网络设备、安全设备等的功能和性能，能熟练运用多种设备设计构建符合要求的网络系统架构；</p>
+                        <p>7、Apache、NginX、Tomcat、FTP、DNS,ISCSI等常用服务的安装、配置和维护；</p>
+                        <p>8、熟悉puppet等常见运维平台搭建和配置；</p>
+                        <p>9、具备较强的交流、沟通和表达能力，具备很强的问题分析和解决能力, 有良好的工作流程和文档制定撰写习惯；</p>
+                        <p>10、热爱系统运维工作，能适应一定压力但同时又充满机遇的工作环境.</p>
+                        <br>
+                        <span>请将简历发送至：<a href="#" class="a_but">hr@huogou.com</a> (主题注明“应聘 + 职位”)</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</section>
+    {% include '@app/views/footer.html' %}
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+    $('.hr_lb ul li').click(function(){
+        if ($(this).hasClass('hover')) {
+            $(this).removeClass('hover');
+            $(this).children('.hr_lb3').slideUp();
+        } else {
+            $(this).addClass('hover');
+            $(this).children('.hr_lb3').slideDown();
+        }
+    });
+    $('.xl_gzd').on('click','a',function(){
+       var selectA = $(this).attr('class');
+        if($(this).hasClass('all')){
+            $('.hr_lb ul li').show();
+        }else{
+            $(this).addClass('on').siblings().removeClass('on');
+            $('.hr_lb ul li').hide();
+            $('.'+selectA +'_section').show();
+        }
+    })
+</script>
+{% endblock %}

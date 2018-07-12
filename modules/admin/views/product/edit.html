@@ -1,0 +1,351 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">商品编辑</strong>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'product-form'}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'cat_id', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'cat_id', categoryItems,{'data-am-selected':"{searchBox: 1,maxHeight: 400}"})|raw }}
+                        {{ html.error(model, 'cat_id', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'brand_id', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'brand_id', brandItems,{'data-am-selected':"{searchBox: 1,maxHeight: 200}"})|raw }}
+                        {{ html.error(model, 'brand_id', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'name', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'name', {'placeholder':'输入商品名称'})|raw }}
+                        {{ html.error(model, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'store', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'store', {'placeholder':'伙购总期数(等于总库存量)'})|raw }}
+                        {{ html.error(model, 'store', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'limit_num', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {% if(model.limit_num == 5) %}5{% else %}0{% endif %}
+                        <!--{{ html.activeTextInput(model, 'limit_num', {'placeholder':'限购数量（0为不限购）'})|raw }}-->
+                        {{ html.error(model, 'limit_num', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'buy_unit', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'buy_unit', {'1':'否','10':'是'})|raw }}
+                        {{ html.error(model, 'buy_unit', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'bn', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'bn', {'placeholder':'填写商品编号'})|raw }}
+                        {{ html.error(model, 'bn', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'price', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'price', {'placeholder':'填写商品价值,整数'})|raw }}
+                        {{ html.error(model, 'price', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'cost', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'cost', {'placeholder':'填写商品成本价,整数'})|raw }}
+                        {{ html.error(model, 'cost', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'barcode', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'barcode', {'placeholder':'填写商品条形码'})|raw }}
+                        {{ html.error(model, 'barcode', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'brief', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'brief', {'placeholder':'填写商品简介'})|raw }}
+                        {{ html.error(model, 'brief', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'tag', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'tag', {'placeholder':'填写该商品标签，以空格隔开'})|raw }}
+                        {{ html.error(model, 'tag', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'keywords', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'keywords', {'placeholder':'填写该商品关键字，以空格隔开'})|raw }}
+                        {{ html.error(model, 'keywords', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'delivery_id', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'delivery_id', deliveryItems,{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'delivery_id', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'app', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'app', {0:'否', 1:'是'},{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'app', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group" id="order_manage_gid_form">
+                    {{ html.activeLabel(model, 'order_manage_gid', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'order_manage_gid', orderManageGidItems,{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'order_manage_gid', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-2 am-form-label" for="product-images">商品相册</label>
+
+                    <div class="am-u-sm-10" id="product-images-div">
+                        <input id="product-images" type="file" name="imageFile" multiple class="file-loading" accept="image/*">
+                        {{ html.activeHiddenInput(model, 'picture')|raw }}
+                        {{ html.error(model, 'picture', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'is_recommend', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'is_recommend', {'0':'否','1':'是'})|raw }}
+                        {{ html.error(model, 'is_recommend', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'list_order', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'list_order', {'placeholder':'填写商品排序'})|raw }}
+                        {{ html.error(model, 'list_order', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                     <div class="am-form-group">
+                    {{ html.activeLabel(model, 'live_time', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'live_time', {'10':'10年','0':'长期'})|raw }}
+                        {{ html.error(model, 'live_time', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+                
+                <!--<div class="am-form-group">
+                    {{ html.activeLabel(model, 'marketable', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'marketable', {'1':'上架','0':'下架'})|raw }}
+                        {{ html.error(model, 'marketable', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>-->
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'allow_share', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'allow_share', {'1':'是','0':'否'})|raw }}
+                        {{ html.error(model, 'allow_share', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'intro', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextarea(model, 'intro', {'placeholder':'填写商品详细介绍'})|raw }}
+                        {{ html.error(model, 'intro', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10 am-u-sm-push-2">
+                        <input type="hidden" name="page" value="{{ page }}">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{{ app.params.skinUrl }}/backend/js/fileinput.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/backend/js/fileinput_locale_zh.js"></script>
+    <script charset="utf-8" src="{{ app.params.skinUrl }}/backend/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //发货方式与订单处理小组 联动关系
+            if ($('#product-delivery_id').val()==1 || $('#product-delivery_id').val()==2) {
+                $('#order_manage_gid_form').show();
+            } else {
+                $('#order_manage_gid_form').hide();
+            }
+
+            $('#product-delivery_id').on('change',function(){
+
+                $deleveryVal = $(this).val();
+                if ($deleveryVal == 1 || $deleveryVal == 2) {
+                    $('#order_manage_gid_form').show();
+                } else {
+                    $('#order_manage_gid_form').hide();
+                }
+            });
+
+            //判断推荐
+            $('#product-is_recommend input').click(function(){
+                var recomm = $('#product-is_recommend input:checked').val();
+                if(recomm == 1){
+                    $.post('{{ url(['/admin/product/check-recommand']) }}', {}, function (data) {
+                        if (data.error == 1) {
+                            $('#errmsg').text(data.message);
+                            $('#my-alert').modal();
+                            $('#product-is_recommend input:checked').attr('checked',  false);
+                            $('#product-is_recommend input:first').prop('checked',  true);
+                        }
+                    });
+                }
+            })
+        });
+        $("#product-images").fileinput({
+            language: 'zh',
+            uploadUrl: "{{ url(['/admin/product/upload-image']) }}",
+            previewSettings:{image: {width: "160px", height: "160px"}},
+            showUpload: false,
+            showClose: false,
+            showRemove: false,
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            minImageWidth: 400,
+            minImageHeight: 400,
+            overwriteInitial: false,
+            initialPreview: [
+                {% for pic in pictures %}
+                    {% if pic.basename==model.picture %}
+                    "<img src='{{ pic.url }}' class='file-preview-image' alt='{{ pic.basename }}' title='{{ pic.basename }}'><span class='product_cover' basename='{{ pic.basename }}'>封面</span>",
+                    {% else %}
+                    "<img src='{{ pic.url }}' class='file-preview-image' alt='{{ pic.basename }}' title='{{ pic.basename }}'><a class='set_product_cover' basename='{{ pic.basename }}'>设为封面</a>",
+                    {% endif %}
+                {% endfor %}
+            ],
+            // initial preview configuration
+            initialPreviewConfig: [
+                {% for pic in pictures %}
+                {
+                    caption: '{{ pic.basename }}',
+                    width: '120px',
+                    url: '{{ url(['/admin/product/delete-product-image']) }}',//关联商品的图片删除
+                    extra: {product_id: {{ model.id }},picture: '{{ pic.basename }}'}
+                },
+                {% endfor %}
+            ]
+        });
+
+        $('#product-images-div').on('click', '.set_product_cover', function() {
+
+            var previewId = $(this).parent().attr('id');
+            var album = $(this).attr('basename');
+            $('#product-picture').val(album);
+            var p_album = $('.file-preview-frame .product_cover').attr('basename');
+            $('.file-preview-frame .product_cover').after("<a class='set_product_cover' basename='"+p_album+"'>设为封面</a>").remove();
+            $(this).after("<span class='product_cover' basename='"+album+"'>封面</span>").remove();
+            return false;
+        });
+
+        $('#product-images').on('fileloaded', function (event, file, previewId, index, reader) {
+            $('#'+previewId).find('.glyphicon-upload').click();
+        });
+        $('#product-images').on('fileuploaded', function (event, data, previewId, index) {
+            var response = data.response;
+            response = JSON.parse(response);
+            $('#'+previewId+' img').after('<a class="set_product_cover" basename="'+response.basename+'">设为封面</a>');
+            $('#product-form').append('<input type="hidden" id="'+previewId+'_album" name="album[]" value="' + response.basename + '">');
+        });
+        $('#product-images').on('filesuccessremove', function(event, id) {
+            $.post(
+                '{{ url(['/admin/product/delete-image']) }}',//未关联商品的图片删除
+                {key: 0,picture:$('#'+id+'_album').val()},
+                function (data) {
+                    console.log(data);
+                }
+            );
+            $('#'+id+'_album').remove();
+        });
+
+        //$('#product-limit_num input:not(:checked)').prop('checked', false);
+    </script>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('#product-intro', {
+                resizeType : 2,
+                allowPreviewEmoticons : false,
+                allowImageUpload : true,
+                minHeight: 400,
+                uploadJson : '{{ url(['/admin/product/upload-info-image']) }}',
+                items : [
+                    'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|',  'multiimage', 'link', 'fullscreen'
+                ]
+            });
+            editor.clickToolbar('fullscreen', function() {
+                $('body').css({
+                    'height' : '100%',
+                });
+            });
+        });
+    </script>
+{% endblock %}

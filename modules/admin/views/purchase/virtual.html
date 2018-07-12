@@ -1,0 +1,112 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增采购申请</strong>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'product_name', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeListBox(model, 'product_name', productList,{'data-am-selected':""})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-3 am-form-label" for="purchase-par-value">面值</label>
+                    <div class="am-u-sm-9">
+                        <label class="am-form-label" for="purchase-par-value">{{ virtualProducts[0]['parValue'] }}</label>元
+                        <input type="hidden" name="parValue" value="{{ virtualProducts[0]['parValue'] }}">
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'per_money', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        <label class="am-form-label" for="purchase-per-money">{{ virtualProducts[0]['perMoney'] }}</label>元
+                        <input type="hidden" name="perMoney" value="{{ virtualProducts[0]['perMoney'] }}">
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'nums', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'nums')|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'total', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'total')|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'extra', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activetextarea(model, 'extra')|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">添加</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>  
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+    var virtualProducts = HTMLDecode('{{ jsProducts }}');
+    $(function(){
+        $("#purchase-nums").keyup(function(){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if (e && e.keyCode != 8 && e.keyCode != 127 && e.keyCode != 37 && e.keyCode != 39 && (e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+                return false;
+            };
+            var nums = $(this).val();
+            var pl = $(".am-form-group:eq(0) select").val();
+            $.each(JSON.parse(virtualProducts),function(i,v) {
+                if (i == pl) {
+                    $("#purchase-total").val(toDecimal(nums*v.perMoney));
+                };
+            });
+        })
+    })
+    function HTMLDecode ( input ) { 
+        var converter = document.createElement("DIV"); 
+        converter.innerHTML = input; 
+        var output = converter.innerText; 
+        converter = null; 
+        return output; 
+    } 
+    function toDecimal(x) { 
+        var f = parseFloat(x); 
+        if (isNaN(f)) { 
+        return false; 
+        } 
+        var f = Math.round(x*100)/100; 
+        var s = f.toString(); 
+        var rs = s.indexOf('.'); 
+        if (rs < 0) { 
+        rs = s.length; 
+        s += '.'; 
+        } 
+        while (s.length <= rs + 2) { 
+        s += '0'; 
+        } 
+        return s;
+    } 
+</script>  
+{% endblock script %}

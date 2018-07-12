@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>猜拳赢话费，根本停不下来！</title>
+    <meta name="description" content="拳民争霸赛,打败星外星生活馆馆长，你也来试试！" />
+    <link rel="stylesheet" type="text/css" href="css/aio.css" />
+    <script type="text/javascript">
+
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            if (arr = document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                return null;
+        }
+        function setCookie(name, value) {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
+            var host=getDomain(document.domain);
+            document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString() + ";domain=" + host;
+        }
+        function getDomain (str) {
+            if (!str) return '';
+            if (str.indexOf('://') != -1) str = str.substr(str.indexOf('://') + 3);
+            var topLevel = ['com', 'net', 'org', 'gov', 'edu', 'mil', 'biz', 'name', 'info', 'mobi', 'pro', 'travel', 'museum', 'int', 'areo', 'post', 'rec'];
+            var domains = str.split('.');
+            if (domains.length <= 1) return str;
+            if (!isNaN(domains[domains.length - 1])) return str;
+            var i = 0;
+            while (i < topLevel.length && topLevel[i] != domains[domains.length - 1]) i++;
+            if (i != topLevel.length) return domains[domains.length - 2] + '.' + domains[domains.length - 1];
+            else {
+                i = 0;
+                while (i < topLevel.length && topLevel[i] != domains[domains.length - 2]) i++;
+                if (i == topLevel.length) return domains[domains.length - 2] + '.' + domains[domains.length - 1];
+                else return domains[domains.length - 3] + '.' + domains[domains.length - 2] + '.' + domains[domains.length - 1];
+            }
+        };
+
+        var XWX = XWX || {};
+
+        // 用户
+        XWX.user = {
+            openid: 'o3JL-sgEsQT46H-KfBX3OL-Ww_2w',
+            username: 'han',
+            avatar: 'http://wx.qlogo.cn/mmopen/Z30eeK99a89H6UXs8PzkWsOWuRrsjvhavbHKUBWT77WmB1DBFmxOIOuetG6xibux6pSTOVxe6aljNSUticlibFdicF1DicVrMvOFw/0',
+            level: getCookie('playLevel') ? getCookie('playLevel') : 1, // 关卡
+            count: 3, // 游戏次数
+            follow: true // true: 关注, false: 没关注,
+        }
+        XWX.prizes=[4,7,10];
+        XWX.isPrize=0;
+        XWX.isGetPrize=0;
+        XWX.activityId=1;
+        XWX.order={
+            name:'',
+            mobile:''
+        }
+        // 游戏
+        XWX.game = {};
+        // 接口
+        XWX.api = {
+            default: '/api/userPlay.ashx', // 猜拳 {openid, roshambo:stone|石头;scissors|剪刀;paper|布}/ 返回{status: 1|胜利;2|输;3|平局;4|没生命;5|晋级, roshambo: stone|石头;scissors|剪刀;paper|布}
+            post: '/api/postOrder.ashx', // 保存地址
+            share:'/api/shareGame.ashx'
+        };
+        // wechat jssdk
+        XWX.wechat = {
+            appId: 'wx265590b8c563c1a3',
+            timestamp: '1454050450',
+            nonceStr: '7037774765',
+            signature: '7363E872D6DD535F7999F99529AF061EE803182C',
+
+            share: {
+                title: '猜拳赢话费，根本停不下来！',
+                desc: '拳民争霸赛,打败星外星生活馆馆长，你也来试试！',
+                link: 'http://sh.game.xwx.cn/Activity.aspx?ID=1',
+                imgUrl: 'http://stative.xwx.cn/UpLoad/Image/8/a7/0d4/8a70d49ae8e854c0ebccb434e4f98ebb.jpg'
+            }
+        };
+        /Windows Phone|NOKIA|Nokia/.test(navigator.userAgent)&&alert("友情提醒：您的手机可能无法正常展示该页面，适配您机器的版本正在开发中...");
+        !function(a,b,c){function q(){var d=Math.min((o?e[h]().width:f.innerWidth)/(a/b),c);d!=p&&(k.innerHTML="html{font-size:"+d+"px!important;"+n+"}",p=d)}function r(){clearTimeout(l),l=setTimeout(q,500)}var l,d=document,e=d.documentElement,f=window,g="addEventListener",h="getBoundingClientRect",i="pageshow",j=d.head||d.getElementsByTagName("HEAD")[0],k=d.createElement("STYLE"),m="text-size-adjust:100%;",n="-webkit-"+m+"-moz-"+m+"-ms-"+m+"-o-"+m+m,o=h in e,p=null;a=a||320,b=b||16,c=c||32,j.appendChild(k),d[g]("DOMContentLoaded",q,!1),"on"+i in f?f[g](i,function(a){a.persisted&&r()},!1):f[g]("load",r,!1),f[g]("resize",r,!1),q()}(640, 32, 32)
+    </script>
+</head>
+<body class="ui-body">
+<div class="ui-center loading">
+    <div class="loading-wrapper">
+        <div class="loading-logo"></div>
+        <div class="loading-text">
+            Loading
+        </div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+        </div>
+        <div class="loading-progress-text">
+            如果进度条长时间不动，请重新打开页面。
+        </div>
+    </div>
+</div>
+<script id="widget/main" type="text/template">
+    <div class="ui-flexbox heart" data-target="include"></div>
+    <div class="title">
+        <img src="img/main-title.png" class="ui-img-responsive"/>
+    </div>
+    <div class="ui-flexbox ui-center pnc">
+        <div class="xiaoming">
+            <img src="img/pnc-xiaoming.png" class="ui-img-responsive"/>
+        </div>
+        <div class="jingjing">
+            <img src="img/pnc-jingjing.png" class="ui-img-responsive"/>
+        </div>
+    </div>
+    <div class="ui-btn-group">
+        <{if user.follow}>
+        <a href="javascript:;" class="ui-btn" data-target="route" data-type="game">
+            <img src="img/btn-begin.png" class="ui-img-responsive"/>
+        </a>
+        <{else}>
+        <a href="javascript:;" class="ui-btn" data-target="panel" data-type="follow">
+            <img src="img/btn-join.png" class="ui-img-responsive"/>
+        </a>
+        <{/if}>
+        <a href="#!/desc" class="ui-btn">
+            <img src="img/btn-description.png" class="ui-img-responsive"/>
+        </a>
+    </div>
+</script>
+<script id="widget/game" type="text/template">
+    <div class="ui-flexbox heart" data-target="include"></div>
+    <div class="level">·第<{game.level[user.level - 1]}>关·</div>
+    <div class="ui-flexbox canvas">
+        <div class="ui-flexbox-flex user">
+            <div class="trick"><div class="img"><i>?</i></div></div>
+            <div class="avatar"><div class="img"><img src="<{user.avatar}>" class="ui-img-responsive"/></div></div>
+            <div class="name"><{user.username}></div>
+        </div>
+        <div class="ui-flexbox-column vs">
+            <div class="img">
+                <img src="img/game-vs.png" class="ui-img-responsive"/>
+            </div>
+        </div>
+        <div class="ui-flexbox-flex system">
+            <div class="trick"><div class="img"><i>?</i></div></div>
+            <div class="avatar"><div class="img"><img src="img/loading.gif" class="ui-img-responsive" style="width: 68px;height: 69px"/></div></div>
+            <div class="name">玩家正在进入...</div>
+        </div>
+    </div>
+    <div class="roshambo">
+        <div class="title">请先选择手势！</div>
+        <div class="ui-flexbox trick">
+            <div class="ui-center ui-flexbox-flex">
+                <div class="stone" data-target="roshambo" data-type="stone"><img src="img/game-stone.png" class="ui-img-responsive"/><!--石头--></div>
+            </div>
+            <div class="ui-center ui-flexbox-flex">
+                <div class="scissors" data-target="roshambo" data-type="scissors"><img src="img/game-scissors.png" class="ui-img-responsive"/><!--剪刀--></div>
+            </div>
+            <div class="ui-center ui-flexbox-flex">
+                <div class="paper" data-target="roshambo" data-type="paper"><img src="img/game-paper.png" class="ui-img-responsive"/><!--布--></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-btn-group">
+        <a href="javascript:;" class="ui-btn" data-target="pk">
+            <img src="img/btn-pk.png" class="ui-img-responsive"/>
+        </a>
+    </div>
+</script>
+<script id="widget/result" type="text/template">
+    <div class="status status<{result.status}>">
+        <{if result.status == 1}>
+        <div class="crown">
+            <img src="img/game-result-crown.png" class="ui-img-responsive"/>
+        </div>
+        <div class="text">
+            <p>恭喜你闯过了第<{game.level[user.level - 1]}>关，</p>
+            <p>只要闯过第<{if user.level < 3}>3<{else if user.level < 7}>7<{else if user.level < 10}>10<{/if}>关就可以获得</p>
+            <p>奖品：<span><{if user.level < 3}>10<{else if user.level < 7}>50<{else if user.level < 10}>300<{/if}>元话费</span></p>
+        </div>
+        <div class="ui-btn-group">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="goon">继续闯关</a>
+        </div>
+        <{else if result.status == 2}>
+        <div class="text">
+            <p>哈哈哈~你输了</p>
+            <p>从头再来吧！</p>
+        </div>
+        <div class="ui-btn-group">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="goon">继续闯关</a>
+        </div>
+        <{else if result.status == 3}>
+        <div class="text">
+            <p>打平了</p>
+            <p>这局不算！</p>
+        </div>
+        <div class="ui-btn-group">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="goon">继续闯关</a>
+        </div>
+        <{else if result.status == 4}>
+        <div class="heart">
+            <img src="img/game-result-heart.png" class="ui-img-responsive"/>
+        </div>
+        <div class="text">
+            <p>灰常抱歉，你的<img src="img/heart.png" class="ui-img-responsive"/>已用完，</p>
+            <p>第一次分享游戏邀请朋友参加，</p>
+            <p>可以获得3次额外机会哦~</p>
+        </div>
+        <div class="ui-btn-group">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="share">确定</a>
+        </div>
+        <{else if result.status == 5}>
+        <div class="crown">
+            <img src="img/game-result-crown3.png" class="ui-img-responsive"/>
+        </div>
+        <div class="text <{if user.level == 10}>level<{/if}>">
+            <{if user.level == 3}>
+            <p>恭喜你闯过了第3关，</p>
+            <p>你可以选择领走第3关的奖品 : </p>
+            <p><span>10元话费</span></p>
+            <p>或者继续闯关，下一个获奖点为第7关。</p>
+            <p>奖品 : <span>50元话费</span> </p>
+            <p>闯关失败的话会失去目前的奖品哦！</p>
+            <{else if user.level == 7}>
+            <p>恭喜你闯过了第7关，</p>
+            <p>你可以选择领走第7关的奖品 : </p>
+            <p>50元话费</p>
+            <p>或者继续闯关，下一个获奖点为第10关。</p>
+            <p>奖品 : <span>300元话费</span> </p>
+            <p>闯关失败的话会失去目前的奖品哦！</p>
+            <{else if user.level == 10}>
+            <p>恭喜你闯过了第10关，</p>
+            <p>奖品 : <span>300元话费</span> </p>
+            <{/if}>
+        </div>
+        <div class="ui-btn-group <{if user.level == 10}>level<{/if}>">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="address">领走奖品</a>
+            <{if user.level < 10}>
+            <!--<a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="goon">继续闯关</a>-->
+            <{/if}>
+        </div>
+        <{else if result.status == 6}>
+        <div class="crown">
+            <img src="img/game-result-crown3.png" class="ui-img-responsive"/>
+        </div>
+        <div class="text">
+            <p>信息提交成功</p>
+            <p>奖品将在10个工作日内发出</p>
+        </div>
+        <div class="ui-btn-group">
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="main">返回首页</a>
+            <a href="javascript:;" class="ui-btn btn-result" data-target="game" data-type="close">关闭游戏</a>
+        </div>
+        <{/if}>
+    </div>
+</script>
+<div class="m_popUp"><div class="m_guide"></div><cite></cite></div>
+<script id="widget/description" type="text/template">
+    <div class="panel">
+        <div>
+            <p>游戏规则 : </p>
+            <p>1、拳民争霸总共10个关卡，猜拳获胜则可以继续挑战下一关，失败则从头再来，打平本局不算。其中第4、7、10关为获奖点。</p>
+            <p>2、每通过一个获奖点，可以选择领走奖品或者继续挑战。如果继续挑战，在通过下一个获奖点之前失败，将失去所有奖品，从头再来。</p>
+            <p>3、每位用户拥有1点初始生命值，分享游戏可获得额外3点生命值，每位用户只有一次获得额外生命值的机会。</p>
+        </div>
+        <div>
+            <p>游戏奖品 : </p>
+            <p>第4关: 10元话费</p>
+            <p>第7关: 50元话费</p>
+            <p>第10关: 300元话费</p>
+        </div>
+        <div>
+            <p>活动时间 : </p>
+            <p>7月28日 上午10：00—7月30日 晚上24：00</p>
+        </div>
+    </div>
+    <div class="ui-btn-group">
+        <{if user.follow}>
+        <a href="javascript:;" class="ui-btn" data-target="route" data-type="game">
+            <img src="img/btn-begin.png" class="ui-img-responsive"/>
+        </a>
+        <{else}>
+        <a href="javascript:;" class="ui-btn" data-target="panel" data-type="follow">
+            <img src="img/btn-join.png" class="ui-img-responsive"/>
+        </a>
+        <{/if}>
+    </div>
+</script>
+<script id="widget/address" type="text/template">
+    <div class="panel">
+        <div class="tips">
+            恭喜你，在拳民争霸中闯过第<{user.level}>关，
+            打败了<{100*(user.level/10)}>%的选手，你获得的奖品是 :
+        </div>
+        <div class="prize">
+            <div class="text"><span><{if user.level <= 4}>10<{else if user.level <= 7}>50<{else if user.level <= 10}>300<{/if}></span>元话费</div>
+            <div class="line"><i></i></div>
+        </div>
+        <div class="ui-form">
+            <form>
+                <div class="ui-form-item">请留下您的资料 :</div>
+                <div class="ui-flexbox ui-form-item">
+                    <div class="ui-form-label">姓  名</div>
+                    <div class="ui-flexbox-flex ui-form-control">
+                        <input type="text" name="name" class="input" value="<{order.name}>" required minlength="2" data-parent=".ui-form-item" data-empty="姓名不能为空" data-unvalid="姓名格式不正确"/>
+                    </div>
+                </div>
+                <div class="ui-flexbox  ui-form-item">
+                    <div class="ui-form-label">手  机</div>
+                    <div class="ui-flexbox-flex ui-form-control">
+                        <input type="mobile" name="mobile" class="input" value="<{order.mobile}>" required data-parent=".ui-form-item" data-empty="手机号码不能为空" data-unvalid="手机号码格式不正确"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ui-btn-group">
+        <a href="javascript:;" class="ui-btn" >
+            <img src="img/btn-post.png" class="ui-img-responsive"/>
+        </a>
+    </div>
+</script>
+<script id="widget/follow" type="text/template">
+    <div class="ui-center">
+        <div class="wrapper">
+            <div class="qr">
+                <img src="img/follow-qr.png" class="ui-img-responsive"/>
+            </div>
+            <div class="tips">
+                <p>长按图片【识别图中二维码】</p>
+                <p>关注“星外星生活馆”</p>
+            </div>
+            <div class="text">
+                <p>1、关注【星外星生活馆】服务号</p>
+                <p>2、从服务号自动回复中进入游戏</p>
+                <p>(老朋友回复“猜拳”即可获取游戏哦)</p>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="widget/heart" type="text/template">
+    <{each user.count}>
+    <div class="ui-flexbox-column">
+        <img src="img/heart.png" class="ui-img-responsive"/>
+    </div>
+    <{/each}>
+</script>
+<script type="text/javascript" src="js/jweixin-1.0.0.js"></script>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: XWX.wechat.appId,
+        timestamp: XWX.wechat.timestamp,
+        nonceStr: XWX.wechat.nonceStr,
+        signature: XWX.wechat.signature,
+        jsApiList: [
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'hideMenuItems',
+            'showMenuItems',
+            'getNetworkType',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'closeWindow'
+        ]
+    })
+</script>
+<script type="text/javascript" src="js/aio.js"></script>
+</body>
+</html>

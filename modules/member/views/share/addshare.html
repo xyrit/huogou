@@ -1,0 +1,272 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}keywords{% endblock %}
+{% block description %}description{% endblock %}
+
+{% block title %}晒单_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member/']) }}">我的伙购</a><i></i><a href="{{ url(['/member/default/topic-list']) }}">我的晒单</a><i></i><a href="">添加晒单</a>
+        </div>
+        <div class="orde-detail2">
+            <div style="display: none;">
+                <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>
+            </div>
+            <h2>晒单</h2>
+            <ul class="sd-list">
+                <li class="act">
+                    <summary>
+                        <h3>晒单说明:</h3><em>收起<i>&and;</i></em>
+                    </summary>
+                    <div>
+                        <p>1、晒单内容越详细，获得的福分奖励就越多（限时商品除外）；</p>
+                        <p>2、您的文字描述应不少于<i>100字</i>，高清的商品实拍照不少于<i>3张</i>；</p>
+                        <p>3、请避免晒单内容中文字与图片的大量重复；</p>
+                        <p>4、为提高晒单的真实性，您可以展示真实有效的<i>快递单号</i>；</p>
+                        <p>5、建议晒出<i>您与商品的合照</i>，您的<i>手机短信</i>、<i>邮件通知</i>及伙购网上的<i>交易详情页面截图</i>等；</p>
+                        <p>6、注意保持晒单内容与获得商品的关联性，请勿使用其他网站的图片，请勿违反国家相关规定，否则我们有权删除并冻结账号，且保留追究其法律责任的权利；</p>
+                        <p>7、如果晒单内容非常新颖，那么您有可能会获得更高的奖励！</p>
+                    </div>
+                </li>
+            </ul>
+            <div class="sd-con">
+                <a class="sd-pic" href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">
+                    <picture>
+                        <img src="{{ periodInfo.goods_picture_url }}" alt="">
+                    </picture>
+                    <p>(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</p>
+                </a>
+                <div class="sd-rl">
+                    <div class="theme">
+                        <label for="">主　　题：</label>
+                        <div class="log_ipts">
+                            <input type="text" id="postTitle" value="{{ info.title }}">
+                            <em class="input_arr">标题不少于5个字</em>
+                        </div>
+                    </div>
+                    <div class="speech">
+                        <label for="">伙购感言：</label>
+                        <textarea name="" id="postContent" onkeydown="countChar(postContent,counter,800);"
+                                  onkeyup="countChar(postContent,counter,800);">{{ info.content }}</textarea>
+                        <em class="input_arr">恭喜您伙购成功，在此输入您的伙购感言吧，内容不少于100字，审核通过即可获得相应福分奖励哦！</em>
+                    </div>
+                    <p style="padding: 0 20px 20px; text-align: right">最多输入800字，目前已经输入<span SPAN id="counter" style="COLOR:red;FONT-WEIGHT:bold">0</span>字</p>
+                    <div class="upload-pic">
+                        <label for="">上传图片：</label>
+                        <summary id="ulPicBox">
+                            {{ html.beginForm(url(['/share/upload']), 'post', {'name': 'pageForm', 'target': 'upFrame', 'id':'pageForm', 'enctype': 'multipart/form-data'}) | raw }}
+                            <div>
+                                <input id="fuploadFile" type="file" title="" class="file" name="imageFile" hidefocus="true" onchange="javascript:setImagePreview();" style="cursor: pointer;">
+                                <i></i>
+                                <b></b>
+                            </div>
+                            {{ html.endForm() | raw }}
+                        </summary>
+                    </div>
+                    <aside class="upload-tishi">您最少需上传3张，最多可上传10张照片，必须为实物拍摄商品图，单张图片不得超过5M。</aside>
+                    <input id="hidPicAll" type="hidden" value="" name="hidPicAll" />
+                    <input class="upload-submit" type="submit" value="立即晒单" id="btnSubmitShare">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    function countChar(textareaID,spanID,maxNum)
+    {
+        //得到输入的字符的长度
+        w = $(textareaID).val();
+        w = $.trim(w).replace(/\s+/g, ' ');
+        var NowNum = w.length;
+        //判断输入的长度是否超过规定的长度
+        if (NowNum>maxNum) {
+            //如果超过就截取规定长度的内容
+            $(textareaID).val($(textareaID).val().substring(0,maxNum));
+        } else {
+            //得到当前的输入长度并且显示在页面上
+            $(spanID).html(NowNum);
+        }
+    }
+    //得到当前的输入长度并且显示在页面上
+    function SetLength(textareaID,spanID)
+    {
+        var NowNum = $(textareaID).val().length;
+        $(spanID).html(NowNum);
+    }
+
+    function delImage(obj, basename)
+    {
+        images = $('#hidPicAll').val();
+        if (images.indexOf(basename) != -1) {
+            images = ("," + images + ",").replace("," + basename + ",", ",");
+            $('#hidPicAll').val(images.substr(1, images.length - 2));
+        }
+        $(obj).parent().remove('.upload-pic-list');
+    }
+
+    $(document).ready(function(){
+        $('.sd-list').find('summary').on('click',function(){
+            if ($(this).parent().hasClass('act')) {
+                $(this).siblings('div').slideUp(300).parent().removeClass();
+                $(this).find('em').html('展开<i>&or;</i>');
+            }else{
+                $(this).siblings('div').slideDown(300).parent().addClass('act').siblings('.act').removeClass().find('div').slideUp(300);
+                $(this).find('em').html('收起<i>&and;</i>');
+            }
+        })
+
+        $('.upload-pic-list').find('i').on('click', function(){
+            $(this).parent().remove('.upload-pic-list');
+        })
+        SetLength(postContent,counter)
+    })
+
+    function ShowError(message) {
+        $('.safety-b-box').css('width', "315px");
+        $('.safety-b-box h3').css({'width': "212px"});
+        $('.safety-b-box h3').html(message);
+        $('#safety-b-con').fadeIn();
+        setTimeout(function(){
+            $('#safety-b-con').fadeOut();
+            $('.safety-b-box h3').html("");
+        },1000)
+    }
+
+    function UploadFileScriptAPI(basename, width, height) {
+        if (width >= height) {
+            var html = '<picture class="upload-pic-list" name="' + basename + '"><img src="' + createShareImgUrl(basename, 'share') + '" alt="" style="height:auto;margin: auto auto"><i></i></picture>';
+        } else {
+            var html = '<picture class="upload-pic-list" name="' + basename + '"><img src="' + createShareImgUrl(basename, 'share') + '" alt="" style="width:auto;margin: auto"><i></i></picture>';
+        }
+        //var html = '<div id="img'+basename.substr(0, 17)+'"><img id="preview" src="'+ createShareImgUrl(basename, 'small') +'" alt=""><a href="javascript:;" onclick="delPostPic('+basename+')">删除此图片</a></div>';
+        //var html = '<picture class="upload-pic-list"><img src="' + createShareImgUrl(basename, 'share') + '" alt=""><i></i></picture>';
+        var tmp = $(html);
+        $('#ulPicBox').prepend(tmp);
+        images = $('#hidPicAll').val();
+
+        $(tmp).find('i').on('click', function() {
+            delImage(this, basename);
+        })
+
+        if (images == '') {
+            images = basename;
+        } else {
+            images += ',' + basename;
+        }
+        $('#hidPicAll').val(images);
+    }
+
+    function setImagePreview(avalue) {
+        var docObj=document.getElementById("fuploadFile");
+        var imgObjPreview=document.getElementById("preview");
+
+        if(docObj.files && docObj.files[0])
+        {
+            $("#pageForm").submit();
+        }
+        else
+        {
+            //IE下，使用滤镜
+            docObj.select();
+            var imgSrc = document.selection.createRange().text;
+            var localImagId = document.getElementById("ulPicBox");
+            //必须设置初始大小
+            localImagId.style.width = "102px";
+            localImagId.style.height = "102px";
+            //图片异常的捕捉，防止用户修改后缀来伪造图片
+            try{
+                localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+            }
+            catch(e)
+            {
+                alert("您上传的图片格式不正确，请重新选择!");
+                return false;
+            }
+            imgObjPreview.style.display = 'none';
+            document.selection.empty();
+        }
+        return true;
+    }
+
+    $("#btnSubmitShare").bind('click', function() {
+        var w = $("#postTitle").val();
+        w = $.trim(w).replace(/\s+/g, ' ');
+        var t = $("#postContent").val();
+        t = $.trim(t).replace(/\s+/g, ' ');
+        var s = $("#hidPicAll").val();
+        if (w == "") {
+            ShowError("请输入主题！")
+            return false
+        }
+        if (w.length > 100) {
+            ShowError("主题不能超过100字！");
+            return false
+        }
+        if (w.length < 5) {
+            ShowError("主题不能少于5个字！");
+            return false
+        }
+        if (t == "") {
+            ShowError("请输入获得感言！");
+            return false
+        }
+        if (t.length > 800) {
+            ShowError("获得感言不能超过800字！");
+            return false
+        }
+        if (t.length < 100) {
+            ShowError("获得感言不能少于100个字！");
+            return false
+        }
+        if (s.split(",").length < 3) {
+            ShowError("请上传3张以上原创图片！");
+            return false
+        }
+        if (s.split(",").length > 10) {
+            ShowError("上原创图片不能超过10张！");
+            return false
+        }
+        data = {'title':w,'content':t,'picture':s};
+        data['order_id'] = "{{ orderInfo.id }}";
+
+        $.ajax({
+            async:false,
+            url: apiBaseUrl + '/share/add-share',
+            type: "POST",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: data,
+            success: function (json) {
+                if (json.code == 100) {
+                    window.location.href = "{{ url(['/member/default/topic-list']) }}";
+                } else if (json.code == 101) {
+                    if (json.msg) {
+                        $.each(json.msg, function(i, v) {
+                            ShowError(v);
+                            return false;
+                        })
+                    } else {
+                        ShowError("晒单失败");
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,914 @@
+@charset "utf-8";
+
+.f-list-sorts li s {
+    background-image: url(../Images/list-icon.png?v=1124);
+    background-repeat: no-repeat;
+}
+
+.g-main-con {
+    clear: both;
+    padding-bottom: 50px;
+    background: #fff;
+}
+
+.m-position {
+    color: #bbb;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.m-position a {
+    color: #bbb;
+}
+
+.m-position a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.m-list-classification {
+    border: 1px solid #e4e4e4;
+    border-bottom: 0 none;
+}
+
+.m-classification {
+    width: 1188px;
+    border-bottom: 1px solid #e4e4e4;
+    background: #f9f9f9;
+    position: relative;
+}
+
+.m-classi {
+    width: 70px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding-top: 15px;
+}
+
+.m-fication {
+    width: 1118px;
+    margin-left: 70px;
+    padding: 10px 0;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.m-fication ul {
+    overflow: hidden;
+}
+
+.m-fication li {
+    float: left;
+    width: 110px;
+    height: 24px;
+    overflow: hidden;
+    text-align: left;
+    padding: 0 10px;
+    margin: 2px 0;
+}
+
+.m-fication li a {
+    color: #666;
+    height: 24px;
+    line-height: 24px;
+    padding: 3px 5px;
+    _padding: 4px 5px 2px;
+}
+
+.m-fication li a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.m-fication li.current a {
+    background: #f60;
+    color: #fff;
+}
+
+.m-fication li.current a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.f-a-expansion {
+    position: absolute;
+    right: 23px;
+    bottom: 12px;
+}
+
+.f-a-expansion a {
+    color: #2af;
+    width: 30px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    display: block;
+}
+
+.f-a-expansion a:hover {
+    text-decoration: underline;
+    *text-decoration: none;
+}
+
+.f-a-expansion .f-top-arrow {
+    position: absolute;
+    right: 0;
+    top: -2px;
+    text-decoration: none!important;
+}
+
+.f-a-expansion .f-top-arrow cite,.f-a-expansion .f-top-arrow b {
+    font-size: 17px;
+    _font-size: 8px;
+    font-weight: bold;
+    color: #2af;
+    top: 0;
+    *+top: 0;
+    top: 0\0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.f-a-expansion .f-top-arrow b {
+    top: -2px;
+    *+top: -2px;
+    top: -2px\0;
+    color: #fff;
+    font-family: inherit!important;
+}
+
+.f-a-expansion a.hover .f-top-arrow {
+    top: 1px;
+    text-decoration: none!important;
+}
+
+.f-a-expansion a.hover .f-top-arrow b {
+    top: 2px;
+    *+top: 2px;
+    top: 2px\0;
+}
+
+.f-a-expansion:hover .f-top-arrow cite,.f-a-expansion:hover .f-top-arrow b {
+    text-decoration: none!important;
+}
+
+.m-filterForm {
+    clear: both;
+    height: 31px;
+    margin: 10px auto;
+}
+
+.f-list-sorts li {
+    float: left;
+    margin-right: 10px;
+}
+
+.f-list-sorts li a {
+    display: block;
+    width: 100px;
+    height: 29px;
+    line-height: 29px;
+    _height: 24px;
+    _padding-top: 5px;
+    color: #666;
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    position: relative;
+}
+
+.f-list-sorts li a:hover {
+    color: #f60;
+    border: 1px solid #f60;
+}
+
+.f-list-sorts li.m-value a {
+    text-align: left;
+    padding-left: 32px;
+    width: 68px;
+}
+
+.f-list-sorts li.m-value a s {
+    background-position: 0 0;
+    display: block;
+    width: 7px;
+    height: 9px;
+    position: absolute;
+    right: 32px;
+    top: 10px;
+    _top: 14px;
+}
+
+.f-list-sorts li.m-value-default a {
+    border: 1px solid #f60;
+    color: #f60;
+}
+
+.f-list-sorts li.m-value-default a s {
+    background-position: -28px 0;
+    display: block;
+    width: 7px;
+    height: 9px;
+    position: absolute;
+    _right: 33px;
+    top: 10px;
+    _top: 14px;
+}
+
+.f-list-sorts li.current a {
+    border: 1px solid #f60;
+    background: #f60;
+    color: #fff!important;
+}
+
+.f-list-sorts li.current s.f-arrow-top {
+    background-position: -9px 0;
+    display: block;
+}
+
+.f-list-sorts li.current s.f-arrow-down {
+    background-position: -19px 0;
+}
+
+.f-list-sorts li.current a:hover s.f-arrow-top {
+    background-position: -9px 0;
+}
+
+.f-list-sorts li.current a:hover s.f-arrow-down {
+    background-position: -19px 0;
+}
+
+.f-list-sortsR {
+    height: 29px;
+    line-height: 29px;
+}
+
+.f-list-sortsR p {
+    float: left;
+}
+
+.f-list-sortsR p em {
+    margin: 0 3px;
+}
+
+.f-list-sortsR p b {
+    margin-left: 6px;
+}
+
+.u-list-btn {
+    margin-left: 10px;
+}
+
+.u-list-btn a {
+    display: block;
+    float: left;
+    width: 87px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    border: 1px solid #e4e4e4;
+    color: #999;
+    margin-left: 10px;
+}
+
+.u-list-btn a:hover {
+    color: #f60;
+    border: 1px solid #f60;
+}
+
+.u-list-btn a.u-btn-gray {
+    background: #f4f4f4;
+}
+
+.u-list-btn a.u-btn-gray:hover {
+    color: #999;
+    border: 1px solid #e4e4e4;
+    cursor: default;
+}
+
+.g_list_Curtit {
+    width: 1188px;
+    height: 39px;
+    line-height: 39px;
+    background: #fff;
+    border: 1px solid #E4E4E4;
+    margin: 10px auto 0;
+}
+
+.g_list_Curtit h1 {
+    font-size: 18px;
+    color: #f60;
+    font-weight: bold;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.g_list_Curtit span {
+    margin-left: 5px;
+    color: #999;
+}
+
+.g_list_Curtit span em {
+    margin: 0 5px;
+}
+
+.g-noConMsg {
+    width: 1188px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px 0;
+    background: #fff;
+    border: 1px solid #e4e4e4;
+}
+
+.g-noConMsg span {
+    background: url(http://skin.1yyg.com/images/webmsg.png?v=121228) no-repeat;
+}
+
+.g-noConMsg span {
+    height: 110px;
+    line-height: 90px;
+    padding-left: 80px;
+    display: inline-block;
+    font-size: 18px;
+    color: #999;
+    background-position: 0 -90px;
+}
+
+.announced-soon {
+    clear: both;
+    width: 1190px;
+    margin: 10px auto 0;
+}
+
+.soon-list-con {
+    float: left;
+    width: 297px;
+    height: 398px;
+    position: relative;
+    z-index: 1;
+}
+
+.soon-list {
+    width: 267px;
+    _width: 266px;
+    height: 367px;
+    padding: 15px;
+    border: 1px solid #e4e4e4;
+    border-right: 0 none;
+    margin: -1px 0;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.soon-list-hover {
+    position: relative;
+    z-index: 2;
+}
+
+.soon-list-hover .soon-list {
+    width: 266px;
+    position: absolute;
+    left: 0;
+    border: 1px solid #f60;
+    overflow: hidden;
+    -moz-box-shadow: 3px 3px 3px #d8d8d8;
+    -webkit-box-shadow: 3px 3px 3px #d8d8d8;
+    box-shadow: 3px 3px 3px #d8d8d8;
+}
+
+.soon-list-hover2 .soon-list {
+    width: 267px;
+}
+
+.soon-list4 {
+    width: 298px;
+}
+
+.soon-list4 .soon-list {
+    width: 267px;
+    border-right: 1px solid #e4e4e4;
+}
+
+.f-add-borR {
+    border-right: 1px solid #e4e4e4;
+}
+
+.soon-list li.g-soon-pic {
+    float: left;
+    width: 200px;
+    margin: 10px 33px 0;
+    display: inline;
+    position: relative;
+}
+
+.soon-list li.g-soon-pic a {
+    color: #666;
+}
+
+.soon-list li.g-soon-pic img {
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
+.soon-list li.soon-list-name {
+    clear: both;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding-top: 20px;
+    word-break: break-all;
+    margin-bottom: 2px;
+}
+
+.soon-list li.soon-list-name a {
+    color: #333;
+    font-size: 14px;
+}
+
+.soon-list li.soon-list-name a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.soon-list li.g-progress {
+    float: left;
+    width: 266px;
+    height: 48px;
+    margin: 5px 0 7px;
+    overflow: hidden;
+}
+
+.soon-list li dl.m-progress {
+    width: 266px;
+}
+
+.soon-list li dl.m-progress dt {
+    width: 266px;
+}
+
+.soon-list li dl.m-progress dd {
+    width: 266px;
+}
+
+.f-callout {
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    top: 28px;
+    left: 28px;
+}
+
+.f-callout span {
+    display: block;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+}
+
+.f-callout span.F_goods_rq {
+    background-position: -84px -48px;
+}
+
+.f-callout span.F_goods_xp {
+    background-position: -148px -110px;
+}
+
+.f-callout span.F_goods_tj {
+    background-position: -148px -48px;
+}
+
+.f-callout span.F_goods_xg {
+    background-position: 0 -110px;
+}
+
+.f-callout em img {
+    width: 52px;
+    height: 52px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+}
+
+.f-add-attention {
+    height: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #ccc;
+}
+
+.f-add-attention span {
+    float: left;
+    vertical-align: middle;
+    margin-right: 3px;
+    display: none;
+}
+
+.f-add-attention a {
+    float: left;
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-position: 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.attention-hover span {
+    display: block;
+}
+
+.attention-hover a {
+    background-position: -18px 0;
+}
+
+.attention-ygz a,.attention-ygz a:hover {
+    background-position: -36px 0;
+}
+
+.attention-ygz a:hover {
+    animation-name: none;
+    -webkit-animation-name: none;
+}
+
+.attention-ygz-hover span {
+    display: block;
+}
+
+.f-concerned {
+    width: 181px;
+    height: 37px;
+    position: absolute;
+    left: 58px;
+    top: 107px;
+}
+
+.f-concerned p {
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+}
+
+.f-concerned p i {
+    width: 17px;
+    height: 17px;
+    background-position: -43px -99px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.f-concerned span {
+    display: block;
+    width: 181px;
+    height: 37px;
+    line-height: 37px;
+    background: #000;
+    opacity: 0.6;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 20px;
+}
+
+.m-list-shelves {
+    width: 266px;
+    background: #f7f7f7;
+}
+
+.m-list-shelves dt {
+    width: 200px;
+    padding: 10px 33px 0;
+}
+
+.m-list-shelves dt img {
+    display: block;
+    width: 200px;
+    height: 200px;
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+}
+
+.m-list-shelves dd {
+    line-height: 20px;
+}
+
+.m-list-shelves dd p {
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding-top: 20px;
+    word-break: break-all;
+}
+
+.m-list-shelves dd p a {
+    color: #666;
+    font-size: 14px;
+}
+
+.m-list-shelves dd p a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.m-list-shelves dd.f-shelves-btn {
+    clear: both;
+    width: 150px;
+    margin: 0 auto 0;
+    padding-top: 39px;
+    z-index: 10;
+}
+
+.m-list-shelves dd.f-shelves-btn a {
+    display: block;
+    width: 148px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #f60;
+    border-radius: 2px;
+    text-align: center;
+    color: #f60;
+    font-size: 16px;
+}
+
+.m-list-shelves dd.f-shelves-btn a:hover {
+    background: #f60;
+    color: #fff;
+}
+
+.m-list-shelves .f-shelves-yxj {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.m-list-shelves .f-shelves-yxj span {
+    display: block;
+    background: url(http://skin.1yyg.com/images/yxj.png?v=141210) no-repeat;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+}
+
+.pop-pay-pwd {
+    width: 202px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.pop-pay-pwd dl {
+    text-align: center;
+}
+
+.pop-pay-pwd dt {
+    font-size: 16px;
+}
+
+.pop-pay-pwd dd {
+    clear: both;
+    width: 202px;
+    padding: 6px 0;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.pop-pay-pwd input {
+    width: 190px;
+    height: 26px;
+    line-height: 20px;
+    padding: 5px 0 5px 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    border: 1px solid #e4e4e4;
+    background: #fff;
+    display: block;
+    outline: none;
+    vertical-align: middle;
+    letter-spacing: 15px;
+}
+
+.pop-pay-pwd dd.red {
+    padding: 0;
+    color: #d00;
+}
+
+.pop-pay-pwd dd a.z-btn-determine {
+    padding: 0 30px;
+}
+
+.pop-pay-pwd dd.gray6 {
+    display: block;
+    padding-top: 0;
+}
+
+.pop-pay-pwd dd.gray6 a {
+    color: #666;
+}
+
+.pop-pay-pwd dd.gray6 a:hover {
+    color: #f60!important;
+    text-decoration: underline;
+}
+
+div.pageDialogMain div.content {
+    padding: 0!important;
+}
+
+@media screen and (max-width:1190px) {
+    .m-classification {
+        width: 988px;
+    }
+
+    .m-fication {
+        width: 918px;
+    }
+
+    .m-fication li {
+        width: 100px;
+    }
+
+    .g_list_Curtit {
+        width: 988px;
+    }
+
+    .g-noConMsg {
+        width: 988px;
+    }
+
+    .announced-soon {
+        width: 990px;
+    }
+
+    .soon-list-con {
+        width: 247px;
+    }
+
+    .soon-list {
+        width: 217px;
+        *width: 216px;
+    }
+
+    .soon-list li.g-progress {
+        width: 217px;
+        *width: 216px;
+    }
+
+    .soon-list li dl.m-progress {
+        width: 217px;
+        *width: 216px;
+    }
+
+    .soon-list li dl.m-progress dt {
+        width: 217px;
+        *width: 216px;
+    }
+
+    .soon-list li dl.m-progress dd {
+        width: 217px;
+        *width: 216px;
+    }
+
+    .soon-list li a.u-now {
+        margin-left: 7px;
+    }
+
+    .soon-list li.g-soon-pic {
+        margin: 10px 8px 0;
+    }
+
+    .soon-list-hover .soon-list {
+        width: 216px;
+    }
+
+    .soon-list-hover2 .soon-list {
+        width: 217px;
+    }
+
+    .soon-list4 {
+        width: 248px;
+    }
+
+    .soon-list4 .soon-list {
+        width: 217px;
+    }
+
+    .m-list-shelves {
+        width: 216px;
+    }
+
+    .m-list-shelves dt {
+        padding: 10px 8px 0;
+    }
+}
+
+body.f-width-change .m-classification {
+    width: 988px;
+}
+
+body.f-width-change .m-fication {
+    width: 918px;
+}
+
+body.f-width-change .m-fication li {
+    width: 100px;
+}
+
+body.f-width-change .g_list_Curtit {
+    width: 988px;
+}
+
+body.f-width-change .g-noConMsg {
+    width: 988px;
+}
+
+body.f-width-change .announced-soon {
+    width: 990px;
+}
+
+body.f-width-change .soon-list-con {
+    width: 247px;
+}
+
+body.f-width-change .soon-list {
+    width: 217px;
+    *width: 216px;
+}
+
+body.f-width-change .soon-list li.g-progress {
+    width: 217px;
+    *width: 216px;
+}
+
+body.f-width-change .soon-list li dl.m-progress {
+    width: 217px;
+    *width: 216px;
+}
+
+body.f-width-change .soon-list li dl.m-progress dt {
+    width: 217px;
+    *width: 216px;
+}
+
+body.f-width-change .soon-list li dl.m-progress dd {
+    width: 217px;
+    *width: 216px;
+}
+
+body.f-width-change .soon-list li a.u-now {
+    margin-left: 7px;
+}
+
+body.f-width-change .soon-list li.g-soon-pic {
+    margin: 10px 8px 0;
+}
+
+body.f-width-change .soon-list-hover .soon-list {
+    width: 216px;
+}
+
+body.f-width-change .soon-list-hover2 .soon-list {
+    width: 217px;
+}
+
+body.f-width-change .soon-list4 {
+    width: 248px;
+}
+
+body.f-width-change .soon-list4 .soon-list {
+    width: 217px;
+}
+
+body.f-width-change .m-list-shelves {
+    width: 216px;
+}
+
+body.f-width-change .m-list-shelves dt {
+    padding: 10px 8px 0;
+}

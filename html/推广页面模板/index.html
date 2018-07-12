@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- <html><head><title></title></head><body></body></html> -->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>滴滴专享小红书红包</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no,address=no,email=no" />
+    <meta name="mobileOptimized" content="width" />
+    <meta name="handheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="小红书-最大的全球购物社区,带你找到国外的好东西!每天10点开抢全球好物!海外品牌官方直采,100%正品保证,小红书保税仓闪电发货,7天无理由退货保证." />
+    <meta name="keywords" content="小红书,小红书购物笔记,境外时尚达人买手购物晒货社区,福利社" />
+    <link rel="stylesheet" href="css/didi_taxi.css" />
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        var docEl = document.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+        var clientWidth = docEl.clientWidth;
+        docEl.style.fontSize = 10 * (clientWidth / 320) + 'px';
+        window.addEventListener(resizeEvt, function() { clientWidth = docEl.clientWidth;docEl.style.fontSize = 10 * (clientWidth / 320) + 'px'; }, false);
+    </script>
+    <script>var _hmt = _hmt || [];</script>
+    <script>
+        var _ua = navigator.userAgent;
+        if (!!_ua.match(/.*OS\s([\d_]+)/) || !!_ua.match(/(Android)\s+([\d.]+)/)) {
+            document.write('<style>body{min-width:320px;min-height:320px;}</style>');
+        };
+    </script>
+</head>
+<body>
+<!--用于 app及分享页面-->
+<span style="display:none;" id="j_login_status"></span>
+<span style="display:none;" id="j_user_id"></span>
+<span style="display:none;" id="j_user_img_src"></span>
+<!-- <img src="img/down_btn.png" id="j_screen_img" style="display:none;" /> -->
+<article class="main">
+    <div class="bg">
+        <img class="bg-img" alt="bg-img" src="img/bg.jpg" />
+    </div>
+    <div class="title j_title">
+        <!--第一屏title-->
+        <img class="title-img" alt="title-img" src="img/title_3.png"/>
+
+        <!--第二三屏title-->
+        <img class="title-img2" alt="title-img" src="img/title_4.png" style="display: none;"  />
+    </div>
+
+    <!--第一屏内容-->
+    <section class="intro" id="j_intro">
+        <div class="promo j_promo">
+            <img class="promo-img" alt="promo-img" src="img/66redbag.png" />
+            <div class="get-btn" id="get_btn">
+                点我抢红包
+            </div>
+            <footer class="bottom" id="bottom">
+                <img class="footer-img" alt="footer-img" src="img/bg-bottom.png" />
+            </footer>
+        </div>
+    </section>
+
+    <!--第二屏内容-->
+    <section class="actions none" id="j_action">
+        <form class="phone-form" id="phone_form">
+            <div class="phone-hint">
+                现金券将放入你的小红书手机账号
+            </div>
+            <div class="phone-number-input">
+                <div class="phone-prefix" id="phone_prefix">
+                    +86
+                </div>
+                <input class="phone-number" id="phone_number" type="tel" placeholder="请输入手机号码" autofocus />
+            </div>
+            <button class="phone-btn" id="submit_phone" type="button" value="phone">确定</button>
+            <!-- <footer>*输入您的手机号，领取小红书现金券</footer> -->
+        </form>
+    </section>
+
+    <!--第三屏内容-->
+    <section class="actions none" id="j_action3">
+        <form class="phone-form" id="phone_form3">
+            <div class="phone-hint">
+                现金券将放入你的小红书手机账号
+            </div>
+            <div class="phone-number-input">
+                <input id="phone_number3" class="rText" maxlength="6" type="text" placeholder="6位验证码" autofocus="autofocus" />
+                <a id="btnSend" href="javascript:;" class="orgBtn" t="0">重新发送</a>
+            </div>
+            <button class="phone-btn" id="submit_phone3" type="button" value="phone">确定</button>
+            <!-- <footer>*输入您的手机号，领取小红书现金券</footer> -->
+        </form>
+    </section>
+
+    <!--第四屏内容-->
+    <section class="actions none" id="j_action4">
+        <form class="phone-form" id="phone_form4">
+            <div class="phone-hint">
+                现金券将放入你的小红书手机账号
+            </div>
+            <div class="phone-number-input">
+                <div class="phone-prefix" id="phone_prefix4">
+                    密码
+                </div>
+                <input class="phone-number" id="phone_number4" type="tel" placeholder="请输入密码" autofocus="autofocus" />
+            </div>
+            <button class="phone-btn" id="submit_phone4" type="button" value="phone">确定</button>
+            <!-- <footer>*输入您的手机号，领取小红书现金券</footer> -->
+        </form>
+    </section>
+
+
+    <!--第五屏内容-->
+    <section class="throw-app none" id="throw-app">
+        <!--<div class="title j_title"><img class="title-earth"  alt="title-img" src="img/result.png" /></div>-->
+        <div class="result-info">
+            <div class="info-text">
+                <em>66元</em>现金红包已到账
+            </div>
+            <div class="phone-text">
+                请用手机号
+                <em id="phone_text"></em>登录
+                <br /> 小红书，在&quot;我&quot;-&quot;薯券&quot;中查看
+            </div>
+            <div class="download-btn" id="download_btn">
+                前往小红书APP使用
+            </div>
+        </div>
+    </section>
+</article>
+<script>
+//    一屏到二屏
+    $('#j_intro').click(function(){
+        $('.title-img').hide();
+        $('.title-img2').show();
+        $(this).addClass('none');
+        $('#j_action').removeClass('none').show();
+        $('#phone_number').focus();
+    })
+
+//    二屏到三屏
+    $('#submit_phone').click(function(){
+        var patrn=/^(13[0-9]|15[0-9]|14[0-9]|18[0-9])\d{8}$/;
+        var phone = $('#phone_number').val();
+        if(!patrn.exec(phone)){
+            var html = "";
+            html += '<div class="popUp"></div>';
+            html += '<div id="dialog" class="mgp-dialog-alert " style="">';
+            html += '<div class="mgp-dialog-alert-title">手机号码格式错误</div>';
+            html += '<div class="mgp-dialog-alert-cont">请重新输入</div>';
+            html += '<div class="mgp-dialog-alert-close j_alert_button" d-tap="0" onclick="closePop()">确定</div>';
+            html += ' </div>';
+            if($('.popUp').length == 0){
+                $('body').append(html);
+            }
+            return false;
+        }else{
+            $('.title-img').hide();
+            $('.title-img2').show();
+            $('#j_intro').addClass('none').hide();
+            $('#j_action').addClass('none').hide();
+            $('#j_action3').removeClass('none').show();
+            $('#phone_number3').focus();
+        }
+    })
+
+    function closePop(){
+        $('.popUp').remove();
+        $('#dialog').remove();
+    }
+
+//    三屏到四屏
+$('#submit_phone3').click(function(){
+    $('.title-img').hide();
+    $('.title-img2').show();
+    $('#j_intro').addClass('none').hide();
+    $('#j_action').addClass('none').hide();
+    $('#j_action3').addClass('none').hide();
+    $('#j_action4').removeClass('none').show();
+    $('#phone_number4').focus();
+})
+
+//    四屏到五屏
+$('#submit_phone4').click(function(){
+    var a = "";
+    a += '<div class="m_popUp">';
+    a += '<div class="m_guide">';
+    a += "</div>";
+    a += "<cite></cite>";
+    a += "</div>"
+    $('.title-img').hide();
+    $('.title-img2').show();
+    $('#j_intro').addClass('none').hide();
+    $('#j_action').addClass('none').hide();
+    $('#j_action3').addClass('none').hide();
+    $('#j_action4').addClass('none').hide();
+    $('#throw-app').removeClass('none').show();
+    $('body').append(a);
+})
+</script>
+</body>
+</html>

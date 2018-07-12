@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>京东E卡送红包</title>
+    <meta content="" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main">
+    <!-- 倒计时 -->
+    <div class="countDown">
+        <div class="countDownCenter">
+            <div class="clockBox">
+                还有
+                <div id="simple_timer">
+
+                </div>
+                结束
+            </div>
+        </div>
+    </div>
+    <!-- 倒计时 -->
+
+    <!-- 大图 -->
+    <div class="carousel">
+        <img src="images/index_img.jpg" width="100%" alt="">
+    </div>
+    <!-- 大图 -->
+
+    <div class="convertBut">
+        <!--<a href="javascript:;" class="my_money" style="display: none">您可兑换红包金额：<span class="zhuColor" id="mymoney">0</span></a>-->
+        <a href="javascript:;" class="onlogin"  onclick="returnRul('pk-product','list','11')" style="display: none">请<font class="zhuColor">登录，</font>查看可兑换红包金额</a>
+    </div>
+
+    <div class="clear"></div>
+
+    <!-- 内容区域 -->
+    <div class="carCenter">
+        <!-- 切换按钮 -->
+        <div class="carCenterTitle">
+            <a class="carCenterleft" href="javascript:;"><img width="100%" data="carCenterleft" src="images/carCenterleftHover.png"></a>
+            <a class="carCenterright" href="javascript:;"><img width="100%" data="carCenterright" src="images/carCenterright.png"></a>
+        </div>
+
+        <!-- 领取红包列表 -->
+        <ul class="redBox" style="display: block">
+            <li><a  class="red" data-id="41"  href="javascript:;"><img width="100%" src="images/red1.png"/></a></li>
+            <li><a  class="red"  data-id="42" href="javascript:;"><img width="100%" src="images/red2.png"/></a></li>
+            <li><a  class="red" data-id="43"  href="javascript:;"><img width="100%" src="images/red3.png"/></a></li>
+            <li><a  class="red" data-id="44"  href="javascript:;"><img width="100%" src="images/red4.png"/></a></li>
+        </ul>
+        <!-- 领取红包结束 -->
+
+        <!-- 活动规则 -->
+        <ul class="ruletext">
+            <p class="rulTextP">用户参与京东E卡（包括PK场）<span class="sourceFont"></span>，商品揭晓时根据是否中奖，将获得不同金额的红包，可在<b>【兑换红包】</b>页面兑换。
+            </p>
+            <li>
+                <img src="images/libao.png"/><span><b>中奖100%返现</b></span>
+                <p><img class="fontImg" src="images/font1.png">获得<b>100</b>元京东卡，返还3元红包；</p>
+                <p><img class="fontImg" src="images/font2.png">获得<b>500</b>元京东卡，返还15元红包；</p>
+                <p><img class="fontImg" src="images/font3.png">获得<b>1000</b>元京东卡，返还30元红包。</p>
+            </li>
+            <li>
+                <img src="images/libao.png"/><span><b>不中100%包赔</b>></span>
+                <p><img class="fontImg" src="images/font1.png">用户单次购买活动专区商品，如未中奖，系统自动
+                    返还本次消费同等金额的红包；<br/><br/>
+                    举个栗子：小明单次参与了20人次100元京东卡，奖
+                    品揭晓后未中奖，小明获得20元红包。
+                </p>
+            </li>
+            <div class="borderTop"></div>
+            <li>
+               <span><b>红包说明:</b></span>
+                <p><img class="fontImg" src="images/font1.png">红包金额请在8月3日23:59前兑换，逾期作废；</p>
+                <p><img class="fontImg" src="images/font2.png">兑换的红包可在【我的】-【我的红包】查看；</p>
+                <p><img class="fontImg" src="images/font3.png">红包仅限购买京东E卡使用；</p>
+                <p><img class="fontImg" src="images/font4.png">红包使用期限：领取后3天内。</p>
+            </li>
+        </ul>
+        <!-- 活动规则结束 -->
+    </div>
+    <!-- 通用获取红包按钮 -->
+    <div class="huoquBut">
+        <a class="dowBut" href="javascript:;"><img src="images/huoquBut.png" width="100%" alt=""></a>
+    </div>
+</div>
+
+
+<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_notice">
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.8.0.min.js"></script>
+<script src="js/jquery.syotimer.js"></script>
+<script src="js/index.js"></script>
+<script>
+    var source = getUrlParam('source');//检测打开来源
+    if(source == 'dd'){//滴滴夺宝
+        $('.sourceFont').text('夺宝后');
+        var downurl = 'http://down.cgyyg.com/down.php';
+        var url='dddbapp://type=home&typeid=0';
+    }else if(source == 'hg'){//伙购网
+        $('.sourceFont').text('伙购后');
+        var downurl = 'http://www.huogou.com/app/down';
+        var url='huogouapp://type=home&typeid=0';
+    }else{//不等于 默认打开滴滴夺宝
+        var downurl = 'http://down.cgyyg.com/down.php';
+        var url='dddbapp://type=home&typeid=0';
+    }
+
+    $(document).ready(function(){
+        $('.dowBut,.red').click(function(){
+            $(this).attr('href',url);
+            window.setTimeout(function() {
+                window.location.href = downurl; /***下载app的地址***/
+            }, 2000);
+        });
+    });
+
+    //倒计时
+    $('#simple_timer').syotimer({
+        year: '2016',
+        month: '8',
+        day: '4',
+        hour: '23',
+        minute: '59'
+    });
+
+    //接受地址栏中的 参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return '';
+    }
+</script>
+</body>
+</html>

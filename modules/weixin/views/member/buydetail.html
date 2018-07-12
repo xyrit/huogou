@@ -1,0 +1,60 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}伙购详情{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/goodsbuydetail.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <div id="div_test"></div>
+      <div class="m_buylistDet">
+        <cite>
+          <a href="{{ url('/weixin/product', {'pid':periodInfo.goods_id}) }}">
+            <img src="{{ periodInfo.product_picture_url }}" />
+            {% if periodInfo.status == 0 %}
+            <i>正在进行</i>
+            {% elseif periodInfo.status==1 %}
+              <i>正在揭晓</i>
+            {% elseif periodInfo.status==2 %}
+              <i>已揭晓</i>
+            {% endif %}
+          </a>
+        </cite>
+        <dl>
+          <dt>
+            <a href="/lottery/{{ periodInfo.period_id }}.html" class="gray6">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a>
+          </dt>
+          <dd>已参与<em class="orange">{{ periodInfo.user_buy_num }}</em>人次</dd>
+          {% if periodInfo.status==2 %}
+          <dd>获得者：<a href="javascript:;" class="blue">{{ periodInfo.user_name }}</a></dd>
+          <dd class="gray9">揭晓时间：<em>{{ periodInfo.raff_time }}</em></dd>
+          {% endif %}
+          {% if periodInfo.current_period_number %}
+          <dd><a href="{{ url('/weixin/product', {'pid':periodInfo.goods_id}) }}" class="orangeBtn">第 {{ periodInfo.current_period_number }} 期正在进行中...</a></dd>
+          {% endif %}
+        </dl>
+      </div>
+      <div class="g-Record-ctlst marginB">
+        <ul>
+
+          {% for detail in buyDetail %}
+            <li>
+              <p>{{ detail.buy_time }}<span>{{ detail.buy_num }}人次</span></p>
+              {% for code in detail.codes %}
+                <b {% if periodInfo.lucky_code == code %} class="hover"{% endif %}>{{ code }}</b>
+              {% endfor %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% include '@weixinModule/views/footer.html' %}
+    </div>
+  </div>
+{% endblock %}

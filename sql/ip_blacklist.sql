@@ -1,0 +1,7 @@
+CREATE TABLE `ip_blacklist` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `ip` CHAR(15) NOT NULL COMMENT 'IP',
+  `created_at` INT(10) UNSIGNED NOT NULL COMMENT '创建时间',
+  `updated_at` INT(10) UNSIGNED NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'ip黑名单';

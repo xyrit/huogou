@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>您访问的页面不存在_滴滴夺宝</title>
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/jquery.fullPage.css">
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/style.css">
+<script src="{{ app.params.skinUrl }}/dddb/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+  })
+</script>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+</head>
+<body>
+<div class="fixtop"><div class="main">
+    <a class="logo" href="{{ url(['/']) }}"><img src="{{ app.params.skinUrl }}/dddb/images/logo.png" /></a>
+    <div class="rignav">
+        <a  href="{{ url(['/']) }}">下载APP</a>
+        <a  href="{{ url(['/ddhelp/default/wechat'])}}">关注微信</a>
+        <a  href="{{ url(['/ddhelp/default/about']) }}">关于我们</a>
+        <a  href="{{ url(['/ddhelp/default/contact'])}}">联系我们</a>
+    </div>
+    <div class="clear"></div>
+</div></div>
+<div style="padding:55px 0 0px 0;">
+	<section class="error">
+        <figure>
+            <picture><img src="./dddb/images/o_404.jpg"></picture>
+            <figcaption>
+                <h1>ERROR</h1>
+                <p>抱歉！您访问的页面出错啦！</p>
+                <a href="">刷新页面试试</a>
+                <!--<a href="">关闭页面</a>-->
+            </figcaption>
+        </figure>
+    </section>
+</div>
+{% include '@app/views/dd_footer.html' %}
+</body>
+</html>

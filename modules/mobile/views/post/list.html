@@ -1,0 +1,39 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}晒单分享{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/goods.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/post_list.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div>
+    <input name="hidGoodsID" type="hidden" id="hidGoodsID" value="{{productId}}" />
+    <div class="g-statistics gray9" id="div_title" style="">已有<em class="gray6" id="user_num">0</em>位幸运用户晒单<!--<span>总共<em class="orange" id="share_num">0</em>条评论</span>--></div>
+    <div class="g-goods-single">
+        <ul id="ul_list" ajax="/share/share-list?pid={{productId}}" onajax='$("#user_num").html(json.totalCount);$("#divLoading").hide();if(json.totalCount<1) $("#nohave").show();'  on_ajax='$("#divLoading").show();' >
+            <li >
+                <p class="fl">
+                    <a href="{createUserCenterUrl($user_home_id)}" class="blue"><img data-src="{createUserFaceImgUrl($user_avatar,avatarSize[1])}" src="/img/e.gif"> </a>
+                </p>
+                <dl>
+                    <dt>
+                        <a href="{createPostDetailUrl($id)}" class="blue">{title}</a>
+                    </dt>
+                    <dd class="gray6">{user_name}</dd>
+                    <dd class="gray9" style="text-overflow:ellipsis;overflow:hidden;">{content}</dd>
+                    <dd class="colorbbb">{created_at}</dd>
+                </dl>
+            </li>
+        </ul>
+
+        <div class="noRecords colorbbb clearfix" style="display:none;" id="nohave"><s></s>最近三个月无记录 <div class="z-use">请使用电脑访问www.huogou.com查看更多</div> </div>
+        <div id="divLoading" class="loading clearfix g-acc-bg" style="display: none">
+            <b></b>正在加载
+        </div>
+    </div>
+</div>
+{% endblock %}

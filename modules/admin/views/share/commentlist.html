@@ -1,0 +1,160 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">晒单评论管理</strong></div>
+        </div>
+        <div class="am-g">
+            {{ html.beginForm('', 'post', {}) | raw }}
+            <div class="am-u-sm-12 am-u-md-4">
+                <div class="am-form-group">
+                    <div class="am-u-sm-2" style="padding: 0px; width: 18%;">
+                        回复时间：
+                    </div>
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+                    </div>
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" name="account" class="am-form-field" placeholder="请输入手机号/邮箱" value="{{ condition.account }}">
+                      <span class="am-input-group-btn">
+                          <button class="am-btn am-btn-default" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+            {{ html.endForm() | raw }}
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>会员名</th>
+                            <th>评论内容</th>
+                            <th>回复次数</th>
+                            <th>评论时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                        <tr>
+                            <td><a data-id="{{ item.id }}" class="reply">{{ item.id }}</a></td>
+                            <td>{% if item.phone and item.email %}{{ item.phone }}<br>{{ item.email }}{% else %}{{ item.phone|default(item.email) }}{% endif %}</td>
+                            <td>{% autoescape true %}{{ item.content|raw }}{% endautoescape %}</td>
+                            <td>{{ item.reply_num|default(0) }}</td>
+                            <td>{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button">
+                                            <a href="javascript:;" class="link" data-id="{{ item.id }}">编辑</a>
+                                        </button>
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button">
+                                            <a href="javascript:;" class="link_comment" data-id="{{ item.id }}">删除</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/backend/js/jquery.datetimepicker.js"></script>
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script>
+    $('#is_pass').selected({
+        btnWidth: '100px',
+    });
+    $('#is_recommend').selected({
+        btnWidth: '100px',
+    });
+    var startDate = new Date();
+    var endDate = new Date();
+    var $alert = $('#my-alert');
+    $('#my-start').datepicker().on('changeDate.datepicker.amui', function(event) {
+        if (event.date.valueOf() > endDate.valueOf()) {
+            $alert.find('p').text('开始日期应小于结束日期！').end().show();
+        } else {
+            $alert.hide();
+            startDate = new Date(event.date);
+        }
+        $(this).datepicker('close');
+    });
+
+    $('#my-end').datepicker().on('changeDate.datepicker.amui', function(event) {
+        if (event.date.valueOf() < startDate.valueOf()) {
+            $alert.find('p').text('结束日期应大于开始日期！').end().show();
+        } else {
+            $alert.hide();
+            endDate = new Date(event.date);
+        }
+        $(this).datepicker('close');
+    });
+
+    $('.link').on('click', function() {
+        var id = $(this).attr('data-id');
+        var urls = 'http://admin.' + baseHost + "/share/edit-comment?id=" + id;
+        layer.open({
+            type: 2,
+            area: ['700px', '530px'],
+            fix: false, //不固定
+            shade: false,
+            maxmin: true,
+            tipsMore: true,
+            content: urls
+        });
+    })
+
+    $('.reply').on('click', function() {
+        var id = $(this).attr('data-id');
+        var urls = 'http://admin.' + baseHost + "/share/reply-list?id=" + id;
+        layer.open({
+            type: 2,
+            area: ['700px', '530px'],
+            fix: false, //不固定
+            shade: false,
+            maxmin: true,
+            tipsMore: true,
+            content: urls
+        });
+    })
+
+    $('.link_comment').on('click', function() {
+        var id = $(this).attr('data-id');
+        var urls = 'http://admin.' + baseHost + "/share/delete-comment?id=" + id;
+        $.post(urls, "", function(data) {
+            if (data == 1) {
+                alert("删除成功");
+                window.location.reload();
+            }
+        }, 'json');
+    })
+</script>
+{% endblock %}

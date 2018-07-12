@@ -1,0 +1,47 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block header %}最新揭晓{% endblock %}
+{% block title %}最新揭晓_伙购网{% endblock %}
+
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/lottery.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/lotterylist.js?v=160219" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+{% block head %}{% endblock %} {% include '@mobileModule/views/header.html' %}
+
+  <input type="hidden" id="hidPage" value="1">
+  <input type="hidden" id="hidCateId" value="0">
+  <!--<div id="div_sort" class="g-announced-title gray9">-->
+    <!--<span> <a href="javascript:;" class="z-set fr"></a> <span>全部分类</span> <cite style="display: none;"><em></em></cite> </span>-->
+    <!--&lt;!&ndash;分类&ndash;&gt;-->
+    <!--<div class="announced-sort" style="display: none;">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--分类筛选遮罩-->
+  <div class="mobile-mask" style="display: none;"></div>
+  <div class="marginB">
+    <div class="revCon" id="divLottery">
+
+    </div>
+
+
+
+
+    <div id="divLoading" class="loading clearfix g-acc-bg" style="display: block;">
+      <b></b>正在加载
+    </div>
+
+
+
+
+  </div>
+
+  {% include '@mobileModule/views/footer.html' %}
+
+{% endblock %}

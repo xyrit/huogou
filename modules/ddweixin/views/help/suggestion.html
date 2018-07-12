@@ -1,0 +1,20 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}意见反馈{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/help.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/help_suggestion.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<div class="feedback-inner">
+    <textarea id="txtContent" class="back-info" placeholder="欢迎您给我们留下宝贵的意见！" maxlength="200"></textarea>
+    <input id="txtInfo" type="text" class="back-find" placeholder="请输入联系方式，如手机号、邮箱、QQ等" maxlength="20" />
+    <a id="btnSuggestion" href="javascript:;" class="back-btn">提交</a>
+</div>
+
+{% endblock %}

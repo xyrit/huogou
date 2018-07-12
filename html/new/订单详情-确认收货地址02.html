@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>订单详情-确认收货地址</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/fly.js"></script>
+	<script src="js/requestAnimationFrame.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+	<script>
+	$(document).ready(function(){
+		$('.xin-add').on('click',function(){
+			$('#address-form').siblings('div').hide();
+			$('#address-form').show().find('h2').html('添加收货地址');
+			$('.confirm-address-fixed').stop().fadeIn();
+		})
+
+		$('.address-modify').on('click',function(){
+			$('#address-form').siblings('div').hide();
+			$('#address-form').show().find('h2').html('修改收货地址');
+			$('.confirm-address-fixed').stop().fadeIn();
+		})
+
+		$('.address-fixed-close').on('click',function(){
+			$('.confirm-address-fixed').stop().fadeOut('fast');
+		})
+
+		$('#address-form').find('.btn-cancle').on('click',function(){
+			$('.confirm-address-fixed').stop().fadeOut('fast');
+		})
+
+
+		$('#address-form').find('.btn-submit').on('click',function(){
+			$('#address-form').hide();
+			$('#address-submit').fadeIn();
+		})
+
+		$('#address-submit').find('.btn-cancle').on('click',function(){
+			$('#address-submit').hide();
+			$('#address-form').fadeIn();
+		})
+
+		$('#address-submit').find('.btn-submit').on('click',function(){
+			$('#address-submit').hide();
+			$('#order-share').fadeIn();
+		})
+	})
+	</script>
+</head>
+<body>
+	<section class="confirm-address-fixed">
+		<div class="address-fixed-con">
+			<i class="address-fixed-close"></i>
+			<div id="address-form">
+				<h2>修改收货地址</h2>
+				<div>
+					<label for="">所在地区：</label>
+					<select>
+						<option value="">广东省</option>
+						<option value="">广东省</option>
+						<option value="">广东省</option>
+						<option value="">广东省</option>
+					</select>
+					<select>
+						<option value="">深圳</option>
+						<option value="">深圳</option>
+						<option value="">深圳</option>
+						<option value="">深圳</option>
+					</select>
+					<select>
+						<option value="">宝安</option>
+						<option value="">宝安</option>
+						<option value="">宝安</option>
+						<option value="">宝安</option>
+					</select>
+					<span><i>*</i></span>
+				</div>
+				<div>
+					<label for="">详细地址：</label>
+					<input class="w368" type="text">
+					<span><i>*</i>无需重复填写所在地区</span>
+				</div>
+				<div>
+					<label for="">邮政编码：</label>
+					<input type="text">
+				</div>
+				<div>
+					<label for="">收货人：</label>
+					<input type="text">
+					<span><i>*</i>填写真实有效的姓名，否则将无法进行配送</span>
+				</div>
+				<div>
+					<label for="">固定电话：</label>
+					<input type="text">
+				</div>
+				<div>
+					<label for="">手机号码：</label>
+					<input type="text">
+				</div>
+				<p><input id="default-address" type="checkbox"><label for="default-address">设为默认地址</label></p>
+				<div class="tijiao"><a href="javascript:;" class="btn-submit">保存</a><a href="javascript:;" class="btn-cancle">取消</a></div>
+			</div>
+			<div id="address-submit">
+				<h3>确认地址后将不可修改，是否确认提交地址？</h3>
+				<p>雷神13895745854</p>
+				<p>福建省 南平市 建阳市 黄坑镇 北京阿萨德</p>
+				<div class="tijiao"><a href="javascript:;" class="btn-submit">确认</a><a href="javascript:;" class="btn-cancle">取消</a></div>
+			</div>
+			<div id="order-share">
+				<h4><img src="img/o_pic3.png"> 地址已提交，请您耐心等待发货</h4>
+				<p>向朋友们炫耀一下吧！</p>
+				<div id="bdshare" class="bdsharebuttonbox" data-tag="share_1">
+					<a class="bds_weixin" data-cmd="weixin" href="javascript:;"></a>
+					<a class="bds_tqq" data-cmd="sqq" href="javascript:;"></a>
+					<a class="bds_tsina" data-cmd="tsina" href="javascript:;"></a>
+					<a class="bds_qzone" data-cmd="qzone" href="javascript:;"></a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		window._bd_share_config = {
+			common : {
+				bdText : document.title,	
+				bdDesc : document.getElementsByTagName("h2")[0],	
+				bdUrl : window.location.href	
+			},
+			share : [{
+				"bdSize" : 82
+			}]
+		}
+		with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+
+	<!--侧边悬浮栏-->
+	<section class="sidebar">
+		<article>
+			<a class="sidebar_shop" href="">购<br>物<br>车<br><b>(1)</b></a>
+			<a class="sidebar_01" href="javascript:;">
+				<i></i>
+				<p>400-000-5000</p>
+			</a>
+			<a class="sidebar_02" href=""></a>
+			<a class="sidebar_03" href="javascript:;">
+				<i></i>
+				<p><img src="img/pic04.jpg"><br>下载手机端</p>
+			</a>
+			<a class="sidebar_04" href=""></a>
+			<a id="get_top" class="sidebar_05" href="javascript:;"></a>
+		</article>
+	</section>
+
+	<!--头部-->
+	<section class="log clear">
+		<article>
+			<div class="log_lf"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a><i>|</i><a id="mobile" href="javascript:;"><b></b><span>手机伙购</span><p><img src="img/pic04.jpg">下载手机端</p></a></div>
+			<ul class="log_rl">
+				<li>hi , 欢迎您来到伙购网！</li>
+				<li><a href="">登录</a></li>
+				<li><a href="">注册</a></li>
+				<li><i>|</i></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">我的一元乐购</a>
+					<div>
+						<a href="">云购记录</a>
+						<a href="">获得的商品</a>
+						<a href="">个人设置</a>
+					</div>
+				</li>
+				<li><a href="">充值</a></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">帮助中心</a>
+					<div class="help">
+						<a href="">新手指南</a>
+						<a href="">服务保障</a>
+						<a href="">商品配送</a>
+					</div>
+				</li>
+				<li class="service"><a href="">在线客服</a></li>
+			</ul>
+		</article>
+	</section>
+
+	<!--导航-->
+	<header>
+		<section class="clear">
+			<a class="logo" href=""></a>
+			<div class="add">
+				<img class="add_pic" src="img/pic05.gif">
+				<span>累计参与</span>
+				<ul>
+					<li class="num">5</li>
+					<li class="num">4</li>
+					<li class="nobor">,</li>
+					<li class="num">8</li>
+					<li class="num">3</li>
+					<li class="num">6</li>
+					<li class="nobor">,</li>
+					<li class="num">2</li>
+					<li class="num">6</li>
+					<li class="num">8</li>
+				</ul>
+				<span>人次</span>
+			</div>
+			<div class="search">
+				<div>
+					<input id="search_input" value="请输入要搜索的商品" type="text">
+					<span id="search_span">
+						<a href="">汽车</a>
+						<a href="">手机</a>
+					</span>
+				</div>
+				<input type="submit" value="">
+			</div>
+		</section>
+		<section class="clear">
+			<div class="sort">
+				<a class="sort_title" href="">全部商品分类</a>
+				<div>
+					<dl class="sort_list">
+						<dt><a href="">手机数码</a></dt>
+						<dd>
+							<a href="">手机</a><a href="">数码</a><a href="">影音</a><a href="">苹果手机</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_b">
+						<dt><a href="">电脑办公</a></dt>
+						<dd>
+							<a href="">笔记本</a><a href="">平板电脑</a><a href="">外设</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_c">
+						<dt><a href="">家电汽车</a></dt>
+						<dd>
+							<a href="">大家电</a><a href="">厨房</a><a href="">家电汽车</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_d">
+						<dt><a href="">化妆个护</a></dt>
+						<dd>
+							<a href="">面部护理</a><a href="">美发护发</a><a href="">香水</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_e">
+						<dt><a href="">钟表首饰</a></dt>
+						<dd>
+							<a href="">珠宝首饰</a><a href="">金条银条</a><a href="">手表</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_f">
+						<dt><a href="">食品饮料</a><i> / </i><a href="">其他</a></dt>
+						<dd>
+							<a href="">美食</a><a href="">粮油</a><a href="">酒类</a><a href="">饮料</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="act"><a href="">首页</a></li>
+				<li><a href="">最新揭晓</a></li>
+				<li><a href="">限购专区</a></li>
+				<li><a href="">晒单分享</a></li>
+				<li><a href="">乐购圈</a></li>
+				<li class="invite"><a href="">邀请有礼</a></li>
+			</ul>
+			<a class="shop" href="">购物车（0）</a>
+		</section>
+	</header>
+
+	<!--内容区-->
+	<section class="wrap clear">
+        <div class="present">
+			<a href="">首页</a><i></i><a href="">我的伙购</a><i></i><a href="">获得的商品</a><i></i><a href="">订单详情</a>
+		</div>
+        <div class="order-detail2">
+			<h2>获得的商品 - 订单详情</h2>
+			<ul class="order-detail2-nav">
+				<li class="pass"><span>获得商品</span><em></em></li>
+				<li class="act"><span>确认收货地址</span><i></i><em></em></li>
+				<li><span>商家发货</span><i></i><em></em></li>
+				<li><span>确认收货</span><i></i><em></em></li>
+				<li class="last"><span>晒单拿奖励</span><i></i></li>
+			</ul>
+			<div class="order-detail2-box">
+				<div class="order-detail2-status">
+					<h3>当前状态：等待提交收货地址</h3>
+					<p>客服工作时间为（周一至周日 09:00-21:00），在此期间您可以致电 400-000-5000 客服热线随时咨询订单相关信息。</p>
+				</div>
+
+				<div class="confirm-address">
+					<h3 class="confirm-address-title">请您确认收货地址</h3>
+					<div class="confirm-address-list">
+						<div class="add-con act">
+							<h4>雷神13895745854</h4>
+							<p>广东省 深圳市 南山区 东方科技 大厦701</p>
+							<a href="javascript:;" class="address-modify">修改</a>
+							<i></i>
+						</div>
+						<div class="add-con">
+							<h4>雷神13895745854</h4>
+							<p>广东省 深圳市 南山区 东方科技 大厦701</p>
+							<a href="javascript:;" class="address-modify">修改</a>
+							<i></i>
+						</div>
+						<div class="add-con">
+							<h4>雷神13895745854</h4>
+							<p>广东省 深圳市 南山区 东方科技 大厦701</p>
+							<a href="javascript:;" class="address-modify">修改</a>
+							<i></i>
+						</div>
+						<div class="xin-add">
+							<a href="javascript:;"><p>+</p>使用新地址</a>
+						</div>
+					</div>
+					<h3 class="confirm-address-title">配送时间<span>请选择送货上门的时间</span></h3>
+					<div class="confirm-address-select">
+						<select>
+							<option value="">时间不限</option>
+							<option value="">时间不限</option>
+							<option value="">时间不限</option>
+							<option value="">时间不限</option>
+						</select>
+					</div>
+					<h3 class="confirm-address-title">添加备注信息<span>请填写商品的信息，如商品为手机充值卡可以填写要充值的手机号码等</span></h3>
+					<div class="confirm-address-textarea">
+						<textarea></textarea>
+					</div>
+					<input type="submit" class="confirm-address-submit" value="确认提交">
+				</div>
+			</div>
+
+			<div class="order-goods">
+				<h2>获得的商品</h2>
+				<table class="get record_con">
+					<thead>
+						<tr>
+							<td width="55%">商品</td>
+							<td width="15%">价值</td>
+							<td width="15%">数量</td>
+							<td width="15%">订单号</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<figure>
+									<picture>
+										<a href=""><img src="img/pic21.jpg"></a>
+									</picture>
+									<figcaption>
+										<h3><a href="">(第52伙)苹果（Apple）iPhone 6s Plus 16G版 4G手机</a></h3>
+									<p>幸运云购码：10005809</p>
+									<p>揭晓时间：2015-09-10 17:53:45.394</p>
+									</figcaption>
+								</figure>
+							</td>
+							<td>￥7188.00</td>
+							<td>1</td>
+							<td>1166972</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+        	<div class="scan-code">
+				<div>
+					<picture><img src="img/ico_weixin02.jpg" alt=""></picture>
+					<article>
+						<h4>微信扫一扫</h4>
+						<p>关注伙购官方微信</p>
+						<p>揭晓信息随时掌控！</p>
+					</article>
+				</div>
+			</div>
+        </div>
+	</section>
+
+	<footer>
+		<section class="footer_a">
+			<div class="footer_a_list">
+				<dl>
+					<dt>新手指南</dt>
+					<dd><a href="">常见问题</a></dd>
+					<dd><a href="">会员福分经验值</a></dd>
+				</dl>
+				<dl>
+					<dt>权益保障</dt>
+					<dd><a href="">伙购保障体系</a></dd>
+					<dd><a href="">安全支付</a></dd>
+					<dd><a href="">投诉建议</a></dd>
+				</dl>
+				<dl>
+					<dt>商品配送</dt>
+					<dd><a href="">配送费用</a></dd>
+					<dd><a href="">商品验货与签收</a></dd>
+					<dd><a href="">长时间未收到商品</a></dd>
+				</dl>
+				<dl>
+					<dt>关于伙购</dt>
+					<dd><a href="">伙购介绍</a></dd>
+					<dd><a href="">云购公益</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				<dl>
+					<dt>伙购合作</dt>
+					<dd><a href="">商务合作</a></dd>
+					<dd><a href="">友情链接</a></dd>
+					<dd><a href="">官方QQ群交流</a></dd>
+				</dl>
+			</div>
+			<div class="service">
+				<summary>
+					<h3>服务热线</h3>
+					<p>(7*24小时为您服务)</p>
+				</summary>
+				<aside>400-000-5000</aside>
+				<a class="service_qq" href="">在线咨询</a>
+			</div>
+		</section>
+
+		<section class="footer_b">
+			<div class="wrap clear">
+				<article class="footer_b_01">
+					<summary>
+						<p>下载手机客户端</p>
+						<a href="">立即下载</a>
+					</summary>
+				</article>
+				<article class="footer_b_02">
+				</article>
+				<article class="footer_b_03">
+					<summary>
+						<p>服务器时间</p>
+						<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+					</summary>
+				</article>
+				<article class="footer_b_04">
+					<summary>
+						<p>伙购公益基金</p>
+						<span>￥180600.08</span>
+					</summary>
+				</article>
+			</div>
+		</section>
+
+		<section class="footer_c">
+			<div class="wrap clear">
+				<ul>
+					<li class="footer_c_01">
+						<h3>100%公平公正</h3>
+						<aside>参与过程公开透明，用户可随时查看</aside>
+					</li>
+					<li class="footer_c_02">
+						<h3>100%正品保证</h3>
+						<aside>精心挑选优质产品，100%品牌正品</aside>
+					</li>
+					<li class="footer_c_03">
+						<h3>全国免运费</h3>
+						<aside>全场商品全国包邮（港澳台地区除外）</aside>
+					</li>
+					<li class="footer_c_04">
+						<h3>100%权益保障</h3>
+						<aside>多重保障，让用户无忧伙购</aside>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="footer_d">
+			<div class="wrap clear">
+				<article>
+					<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+				</article>
+				<aside>Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备082120500号</aside>
+				<summary>
+					<a href=""><img src="img/pic51.jpg"></a><a href=""><img src="img/pic52.jpg"></a><a href=""><img src="img/pic53.jpg"></a><a href=""><img src="img/pic54.jpg"></a>
+				</summary>
+
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% extends '@helpModule/views/base.html' %}
+
+{% block keywords %}帮助中心{% endblock %}
+{% block description %}帮助中心{% endblock %}
+
+{% block title %}{{ app.name }}_帮助中心{% endblock %}
+
+{% block main %}
+<div class="xl_right xl_back_white xl_fot_nr">
+    <div class="xl_p40">
+        <div class="xl_title1"><h1>投诉建议</h1></div>
+        <br>
+        <div class="xl_table_c xl_f16">
+            <p style="line-height:30px; color:#999;">如果您对我们的网站或客服有任何不满意，请在下方反馈，内容将直接发送至项目经理邮箱，如客服服务存在问题我们将严肃处理：</p>
+            <br>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'s-form'}) | raw }}
+                <tr>
+                    <td width="12%" align="right">主题：</td>
+                    <td colspan="2">
+                        <input name="SuggestionForm[type]" class="input_roid" type="radio" checked="checked" value="0" id="radio">
+                        <label for="radio">投诉与建议 </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="SuggestionForm[type]" class="input_roid" type="radio" value="1"  id="radio2">
+                        <label for="radio2">商品配送 </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input name="SuggestionForm[type]"  class="input_roid" type="radio" value="2" id="radio3">
+                        <label for="radio3">售后服务</label></td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td align="right">{{ html.activeLabel(model, 'nickname', {})|raw }}：</td>-->
+                    <!--<td colspan="2">-->
+                        <!--{{ html.activeTextInput(model, 'nickname', {'class':'xl_input1'})|raw }}-->
+                        <!--{{ html.error(model, 'nickname', {'class':'am-alert am-alert-danger'})|raw }}-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <tr>
+                    <td align="right">{{ html.activeLabel(model, 'phone', {})|raw }}：</td>
+                    <td colspan="2">
+                        {{ html.activeTextInput(model, 'phone', {'class':'xl_input1'})|raw }}
+                        {{ html.error(model, 'phone', {'class':'am-alert am-alert-danger'})|raw }}
+                        <div class="phone-error"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><span class="xl_red">*</span>{{ html.activeLabel(model, 'email', {})|raw }}：</td>
+                    <td colspan="2">
+                        {{ html.activeTextInput(model, 'email', {'class':'xl_input1'})|raw }}
+                        {{ html.error(model, 'email', {})|raw }}
+                        <div class="email-error"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="display: inline-block; width: 101px;"><span class="xl_red">*</span>{{ html.activeLabel(model, 'content', {'class':'am-u-sm-2 am-form-label'})|raw }}：</td>
+                    <td colspan="2">
+                        {{ html.activeTextArea(model, 'content', {'id':'textarea','maxlength':'1500'})|raw }}
+                        {{ html.error(model, 'content', {})|raw }}
+                        <div class="text-error"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">{{ html.activeLabel(model, 'verifyCode', {'class':'am-u-sm-2 am-form-label'})|raw }}：</td>
+                    <td width="10%"><input class="xl_input1" type="text" name="SuggestionForm[verifyCode]" id="textfield4" style="width:80px;">{{ html.error(model, 'verifyCode', {})|raw }}<div class="error-notice"></div></td>
+                    {% set rand = random() %}
+                    <td width="78%"><span><img src="{{ url('/passport/api/captcha',{'v':rand}) }}" id="imgCode" style="float:left;cursor: pointer"><a href="javascript:;" id="btnChangeCode" style="display: block; height: 40px; line-height: 40px;">&nbsp;&nbsp;&nbsp;&nbsp;看不清？</a></span>
+                        </td>
+                </tr>
+                <tr>
+                    <td align="right">&nbsp;</td>
+                    <td colspan="2"><input type="submit" class="a_but" name="button" id="button" value="提交信息" data-id="{{ app.request.get('status') }}"></td>
+                </tr>
+                {{ html.endForm() | raw }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i class="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/suggestion.js" ></script>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/user.css"/>
+</head>
+<body>
+
+
+    <!-- 会员中心 -->
+    <div class="userMain">
+        <div class="userConter">
+            <div class="userImg"><img src="http://img.dddb.com/userface/80/000000000000.jpg"/></div>
+            <p id="nickname">xxx</p>
+            <p id="level">xxxx</p>
+        </div>
+        <div class="medalBox">
+            <ul>
+                <li>
+                    <span id="goldNum">0</span>
+                    <p><img src="images/phjbg.png"/>金牌</p>
+                </li>
+                <li>
+                    <span id="silverNum">0</span>
+                    <p><img src="images/phhbg.png"/>银牌</p>
+                </li>
+                <li>
+                    <span id="bronzeNum">0</span>
+                    <p><img src="images/phtbg.png"/>铜牌</p>
+                </li>
+                <li>
+                    <span id="score">0</span>
+                    <p>积分</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    <div class="userList">
+        <ul>
+            <li><a href="rank_list.html">我的积分排名<img src="images/rightarr1.png"/></a></li>
+            <li><a href="user_buylist.html">参与记录<img src="images/rightarr1.png"/></a></li>
+        </ul>
+    </div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script src="js/comm.js"></script>
+<script>
+    $(function() {
+        var userMedalInfoUrl = '/olympic/user-medal-info';
+        $.getJsonp(apiBaseUrl + userMedalInfoUrl, {}, function(json) {
+            console.log(json)
+            if (json.code == 201) {
+                $('#nickname').text('未登录');
+                $('.userImg img').attr('src', 'http://img.'+baseHost+'/userface/80/000000000000.jpg');
+            } else {
+                var nickname = json.nickname;
+                var avatar = json.avatar;
+                $('#nickname').text(nickname);
+                $('#level').text(json.level.name);
+                $('.userImg img').attr('src', createUserFaceImgUrl(avatar, 80));
+
+                $('#goldNum').text(json.gold);
+                $('#silverNum').text(json.silver);
+                $('#bronzeNum').text(json.bronze);
+                $('#score').text(json.score);
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

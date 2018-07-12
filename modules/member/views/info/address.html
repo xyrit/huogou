@@ -1,0 +1,57 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}收货地址_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="receiving-address">
+                    {% for address in list %}
+                    <div class="address-list">
+                        <h3>{{ address.name }}</h3>
+                        <p>{{ address.mobilephone }}</p>
+                        <p>{{ address.provName }} {{ address.cityName }} {{ address.areaName }}</p>
+                        <p>{{ address.address }}</p>
+                        <summary>
+                            <a href="/info/edit-address?id={{ address.id }}">修改</a><i> / </i>
+                            <a href="/info/delete-address?id={{ address.id }}">删除</a>
+                        </summary>
+                    </div>
+                    {% endfor %}
+                    <div class="address-a">
+                        <a href="/info/add-address"><p>+</p>请添加新地址</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+<script type="text/javascript">
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增充值卡</strong></div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+                <div class="am-form-group">
+                    <label for="brand-name" class="am-u-sm-3 am-form-label">申请批次</label>
+
+                    <div class="am-u-sm-9">
+                        第{{ model.find().count()+1 }}批
+                    </div>
+                </div>
+               
+                <div class="am-form-group">
+                    <label for="brand-alias" class="am-u-sm-3 am-form-label">30元面额张数</label>
+
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'money[30]', {"placeholder":"张"}) | raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="brand-url" class="am-u-sm-3 am-form-label">50元面额张数</label>
+
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'money[50]', {"placeholder":"张"}) | raw }}
+                    </div>
+                </div>
+
+                  <div class="am-form-group">
+                    <label for="brand-url" class="am-u-sm-3 am-form-label">100元面额张数</label>
+
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'money[100]', {"placeholder":"张"}) | raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label for="brand-intro" class="am-u-sm-3 am-form-label">有效期</label>
+
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(model, 'time_start', {"placeholder":"开始时间","id":"start_time"}) | raw }}
+                           到 
+                        {{ html.activeTextInput(model, 'time_end', {"placeholder":"结束时间","id":"end_time"}) | raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">确定</button>
+                        <button type="reset" onclick='history.go(-1)' class="am-btn am-btn-primary">取消</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $(function() {
+            laydate({
+                elem: '#start_time',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+
+            laydate({
+                elem: '#end_time',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+        })
+    </script>
+{% endblock %}

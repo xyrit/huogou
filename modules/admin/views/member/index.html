@@ -1,0 +1,336 @@
+{% extends '@adminModule/views/base.html' %}
+  
+{% block main %}
+<div class="admin-content">
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员信息</strong></div>
+    </div>
+
+    {{ html.beginForm('', 'get', {}) | raw }}
+    <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-1" style="width: 120px;">
+            <div class="am-form-group">
+                <select name="type" id="type" data-am-selected>
+                    <option value="1" {% if condition.type == 1 %}selected{% endif %}>注册时间</option>
+                    <option value="2" {% if condition.type == 2 %}selected{% endif %}>登录时间</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-form-group">
+                <input type="text" class="am-form-field" id="start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+            </div>
+        </div>
+        <!--<div class="am-u-sm-12 am-u-md-2">-->
+            <!--<div class="am-form-group">-->
+                <!--<input type="text" class="laydate-icon" id="start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-form-group">
+                <input type="text" class="am-form-field" id="end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+            </div>
+        </div>
+
+        <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+            <p>开始日期应小于结束日期！</p>
+        </div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                状态
+                <select name="status" data-am-selected id="status">
+                    <option value="-1" {% if condition.status == -1 %}selected{% endif %}>全部</option>
+                    <option value="0" {% if condition.status == 0 %}selected{% endif %}>正常</option>
+                    <option value="1" {% if condition.status == 1 %}selected{% endif %}>冻结</option>
+                </select>
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-3">
+            <div class="am-form-group">
+                排序
+                <select name="order" data-am-selected>
+                    <option value="1" {% if condition.order == 1 %}selected{% endif %}>注册时间由近到远</option>
+                    <option value="2" {% if condition.order == 2 %}selected{% endif %}>注册时间由远到近</option>
+                    <option value="3" {% if condition.order == 3 %}selected{% endif %}>登录时间由近到远</option>
+                    <option value="4" {% if condition.order == 4 %}selected{% endif %}>登录时间由远到近</option>
+                    <option value="5" {% if condition.order == 5 %}selected{% endif %}>账户余额降序排列</option>
+                    <option value="6" {% if condition.order == 6 %}selected{% endif %}>邀请人数降序排列</option>
+                    <option value="7" {% if condition.order == 7 %}selected{% endif %}>消费金额降序排列</option>
+                    <option value="8" {% if condition.order == 8 %}selected{% endif %}>中奖次数降序排列</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <input type="text" name="account" class="am-form-field" value="{{ condition.account }}" placeholder="请输入会员名/手机/邮箱">
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            <div class="am-form-group">
+                <button class="am-btn am-btn-default" type="submit">搜索</button>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <button class="am-btn am-btn-default" type="button" id="sendMessage">发送站内信</button>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            <div class="am-form-group">
+                <button class="am-btn am-btn-default" type="button" id="freeze">冻结</button>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            <div class="am-form-group">
+                <button class="am-btn am-btn-default" type="button" id="unfreeze">解冻</button>
+            </div>
+        </div>
+    </div>
+    {{ html.endForm() | raw }}
+
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th class="table-check"><input id="allCheck" type="checkbox" value="1"/></th>
+                        <th>会员名</th>
+                        <th>昵称</th>
+                        <th>账户余额</th>
+                        <th class="am-hide-sm-only">注册来源</th>
+                        <th class="am-hide-sm-only">邀请人数</th>
+                        <th class="am-hide-sm-only">等级</th>
+                        <th class="am-hide-sm-only">消费金额</th>
+                        <th class="am-hide-sm-only">中奖次数</th>
+                        <th class="am-hide-sm-only">状态</th>
+                        <th class="am-hide-sm-only">终端</th>
+                        <th class="am-hide-sm-only">注册区域</th>
+                        <th class="am-hide-sm-only">注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in list %}
+                        <tr>
+                            <td><input name="userids[]" type="checkbox" value="{{ item.id }}"/></td>
+                            <td><a href="{{ url('/user',{id:item.home_id}) }}" target="_blank"><img src='{{ item.avatar }}' style='width:30px;heigth:30px' ></a><a href="javascript:;" class="other" target="admin-main" data-id="{{ item.id }}">{% if item.phone and item.email %}{{ item.phone }}<br>{{ item.email }}{% else %}{{ item.phone|default(item.email) }}{% endif %}</a></td>
+                            <td>{{ item.nickname|default('无') }}</td>
+                            <td>{{ item.money }}</td>
+                            <td class="am-hide-sm-only">{{ item.reg_source }}</td>
+                            <td class="am-hide-sm-only">{{ item.invite_num|default(0) }}</td>
+                            <td class="am-hide-sm-only">{{ item.level_name }}</td>
+                            <td class="am-hide-sm-only">{{ item.payment_num|default(0) }}</td>
+                            <td class="am-hide-sm-only">{{ item.orders_num|default(0) }}</td>
+                            <td class="am-hide-sm-only">{% if item.status == 0 %}正常{% else %}冻结{% endif %}</td>
+                            <td class="am-hide-sm-only">{{ item.reg_terminal.name }}</td>
+                            <td class="am-hide-sm-only">{{ item.reg_ip }}</td>
+                            <td class="am-hide-sm-only">{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                                            <a href="javascript:;" data-id="{{ item.id }}" class="link">编辑</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                    <div class="am-fr">
+                        {{ use('/app/widgets/BackendLinkPager') }}
+                        {{ backend_link_pager_widget({'pagination': pagination}) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+    $('#status').selected({
+        btnWidth: '80px',
+    });
+    $('#type').selected({
+        btnWidth: '100px',
+    });
+    laydate({
+        elem: '#start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+    laydate({
+        elem: '#end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    $('#allCheck').on('click', function() {
+        var checked = $(this).is(':checked');
+        $('input[name="userids[]"]').prop('checked', checked);
+    });
+
+    function editUser(userId) {
+        $('#member_edit').dialog('open');
+        $.ajax({
+            async: async,
+            url: '/member/user',
+            type: "POST",
+            data: {user_id: userId},
+            success: function (json) {
+                $('#id').html(json.id);
+                $('#user_id').val(json.id);
+                $('#user_name').html(json.user);
+                $('#user_nick').html(json.nickname);
+                $('#user_phone').val(json.phone);
+                $('#user_email').val(json.email);
+                $('#user_password').val(json.password);
+
+                var userfaceurl = createUserFaceImgUrl(json.avatar, avatarSize[2]);
+                $('#user_img').attr('src', userfaceurl);
+            }
+        });
+    }
+
+    $('#sendMessage').on('click', function() {
+        //var id = 2;
+        var chk_value =[];
+        $('input[name="userids[]"]:checked').each(function() {
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length == 0) {
+            alert('请选择用户');
+            return false;
+        }
+        var urls = '{{ url('/member/send-message') }}' + '?userids=' + chk_value;
+        layer.open({
+            type: 2,
+            area: ['500px', '380px'],
+            fix: false, //不固定
+            maxmin: true,
+            shade: false,
+            content: urls
+        });
+    });
+
+    $('#freeze').on('click', function() {
+        var chk_value = [];
+        $('input[name="userids[]"]:checked').each(function () {
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length == 0) {
+            alert('请选择用户');
+            return false;
+        }
+
+        id = chk_value.join(',');
+
+        var params = {
+            id: id,
+            status: 1
+        };
+        $.ajax({
+            url: "{{ url('/member/change-status') }}",
+            type: "POST",
+            dataType: 'json',
+            data: params,
+            success: function (json) {
+                if (json.code == 100) {
+                    alert("冻结成功");
+                    window.location.reload();
+                }
+            }
+        });
+    });
+
+    $('#unfreeze').on('click', function() {
+        var chk_value = [];
+        $('input[name="userids[]"]:checked').each(function () {
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length == 0) {
+            alert('请选择用户');
+            return false;
+        }
+
+        id = chk_value.join(',');
+
+        var params = {
+            id: id,
+            status: 0
+        };
+        $.ajax({
+            url: "{{ url('/member/change-status') }}",
+            type: "POST",
+            dataType: 'json',
+            data: params,
+            success: function (json) {
+                if (json.code == 100) {
+                    alert("解冻成功");
+                    window.location.reload();
+                }
+            }
+        });
+    });
+
+    $('.link').click(function(){
+        var id = $(this).attr('data-id');
+        var urls = '{{ url('/member/edit-user') }}' + '?user_id=' + id;
+        layer.open({
+            type: 2,
+            area: ['400px', '380px'],
+            fix: false, //不固定
+            maxmin: true,
+            shade: false,
+            content: urls
+        });
+    })
+
+    $('.other').click(function(){
+        var id = $(this).attr('data-id');
+        var urls = '{{ url('/member/view')}}' + '?id=' + id;
+        var index = layer.open({
+            type: 2,
+            area: ['400px', '380px'],
+            fix: false, //不固定
+            maxmin: true,
+            shade: false,
+            content: urls
+        });
+        layer.full(index);
+    })
+</script>
+{% endblock %}

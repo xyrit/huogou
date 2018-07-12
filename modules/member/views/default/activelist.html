@@ -1,0 +1,56 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}活动订单_伙购网{% endblock %}
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1 class="activity-order">活动订单</h1>
+
+        <table class="get">
+            <thead>
+            <tr>
+                <td width="18%">商品图片</td>
+                <td width="56%" class="left">商品名称</td>
+                <td width="13%">状 态</td>
+                <td width="13%">查 看</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <!--<td>
+                    <picture>
+                        <a href=""><img src="img/pic21.jpg" alt=""></a>
+                    </picture>
+                </td>
+                <td class="left">
+                    <h3><a href="">(第1439伙) 苹果（Apple）iPhone 6s Plus 16G版 4G手机</a></h3>
+                    <aside>价值：65.00</aside>
+                    <p>幸运伙购码：10000055</p>
+                    <p>揭晓时间：2015-10-02 14:35:22.671</p>
+                </td>
+                <td>
+                    <span>交易完成</span>
+                </td>
+                <td>
+                    <a class="blue" href="">详情</a>
+                </td>-->
+            </tr>
+            <tr style="border-bottom: 0;"><td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+
+</script>
+{% endblock %}

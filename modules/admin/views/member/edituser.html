@@ -1,0 +1,78 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑用户</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">会员ID：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ id }}</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">用户名：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6">{{ username }}</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-4"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">昵称：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">{{ nickname }}</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <input type="hidden" id="user_id" value="{{ id }}">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">手机：</div>
+                    <input type="text" id="phone" value="{{ phone }}">
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">邮箱：</div>
+                    <input type="text" id="email" value="{{ email }}">
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">密码：</div>
+                    <input type="password" id="password" value="{{ password }}">
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+                <div class="am-g doc-am-g">
+                    <input type="submit" value="提交" id="submit">
+                    <input type="button" value="关闭" onclick="parent.location.reload();">
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    $('#submit').click(function() {
+        var params = {
+            user_id: $('#user_id').val(),
+            phone: $('#phone').val(),
+            email: $('#email').val(),
+            password: $('#password').val(),
+        };
+        $.ajax({
+            url: '/member/edit-user',
+            type: "POST",
+            dataType: 'json',
+            data: params,
+            success: function (json) {
+                window.opener=null;window.open('','_self');window.close();
+            }
+        });
+    });
+</script>
+{% endblock %}

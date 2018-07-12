@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        账户明细 - 1元云购触屏版
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/member.css" rel="stylesheet" type="text/css" />
+    <script src="../JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div class="h5-1yyg-v1" id="loadingPicBlock">
+    <input name="loadDataType" type="hidden" id="loadDataType" value="0" />
+    <!-- 栏目页面顶部 -->
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="javascript:;" onclick="history.go(-1)" class="z-HReturn">
+                <s></s><b>返回</b></a>
+        </div>
+        <h2>帐户明细</h2>
+        <div class="head-r">
+            <a href="index.html" class="z-Member"></a>
+        </div>
+    </header>
+    <section class="clearfix g-member">
+        <article class="clearfix m-round g-userMoney">
+            <a href="recharge.html" class="z-Recharge-btn">去充值</a>可用余额
+            <span class="orange">0.00</span>元
+        </article>
+        <article class="mt10 m-round">
+            <ul class="m-userMoneyNav">
+                <li>
+                    <a id="btnConsumption" class="z-MoneyNav-crt01" href="javascript:;">
+                        <b>消费明细</b>(消费总金额：￥42.00)
+                    </a>
+                    <s></s>
+                </li>
+                <li><a id="btnRecharge" href="javascript:;"><b>充值明细</b>(充值总金额：￥42.00)</a></li>
+            </ul>
+            <ul id="ulConsumption" class="m-userMoneylst m-Consumption">
+                <li class="m-userMoneylst-tt"><span>消费时间</span><span>消费金额</span></li>
+                <li class=""><span>2015-10-10 16:54:40</span><span>￥1.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+                <li class=""><span>2015-10-08 16:54:40</span><span>￥5.00</span></li>
+            </ul>
+            <ul id="ulRechage" class="m-userMoneylst" style="display:none;">
+            </ul>
+            <div id="divLoad" class="loading" style="display:none;">
+                <b></b>正在加载
+            </div>
+            <a id="btnLoadMore" class="loading" href="javascript:;">点击加载更多</a>
+        </article>
+    </section>
+    <footer id="pageBottom_footer" class="footer">
+        <div class="u-ft-nav" id="fLoginInfo">
+            <span><a href="../index.html">首页</a><b></b></span>
+            <span><a href="../about.html">新手指南</a><b></b></span>
+            <span>
+                <a href="index.html" class="Member">云狗骗子</a>
+                <a href="../index.html" class="Exit">退出</a>
+            </span>
+        </div>
+        <p class="m-ftA">
+            <a href="http://m.1yyg.com/">触屏版</a>
+            <a href="http://www.1yyg.com/?dev=1">电脑版</a>
+            <a href="http://app.1yyg.com/down1yygapk.do" target="_blank">下载客户端</a>
+        </p>
+        <p class="grayc">客服热线<span class="orange">400-850-8080</span>粤ICP备09213115号-1</p>
+        <a id="btnTop" href="javascript:;" class="z-top" style="display:none;"><b class="z-arrow"></b></a>
+    </footer>
+</div>
+</body>
+</html>

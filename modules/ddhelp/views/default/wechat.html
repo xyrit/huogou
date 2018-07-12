@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>关注微信_滴滴夺宝</title>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/jquery.fullPage.css">
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/dddb/css/style.css">
+    <link href="/favicon_dd.ico" type="image/x-icon" rel="shortcut icon">
+    <script src="{{ app.params.skinUrl }}/dddb/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        })
+    </script>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+</head>
+<body>
+<div class="fixtop"><div class="main">
+    <a class="logo" href="{{ url(['/']) }}"><img src="{{ app.params.skinUrl }}/dddb/images/logo.png" /></a>
+    <div class="rignav">
+        <a  href="{{ url(['/']) }}">下载APP</a>
+        <a class="active" href="{{ url(['/ddhelp/default/wechat'])}}">关注微信</a>
+        <a  href="{{ url(['/ddhelp/default/about']) }}">关于我们</a>
+        <a  href="{{ url(['/ddhelp/default/contact'])}}">联系我们</a>
+    </div>
+    <div class="clear"></div>
+</div></div>
+<div class="main" style="padding:54px 0 0 0;"></div>
+
+<section class="weixin-banner">
+    <p><span>没有安装微信？<a href="http://weixin.qq.com/" target="_blank">点击这里下载安装&gt;&gt;</a></span></p>
+</section>
+<div class="weixin-title">关注方式</div>
+<div class="weixin-item">
+    <figure>
+        <picture><img src="{{ app.params.skinUrl }}/dddb/images/weixin-item-01.png"></picture>
+        <figcaption><i>第一步</i>
+            <h2>打开微信</h2>
+            <p>使用右上角+符号，点击扫一扫</p>
+        </figcaption>
+    </figure>
+</div>
+<div class="weixin-item">
+    <figure>
+        <figcaption><i>第二步</i>
+            <h2>扫描二维码</h2>
+            <p>将手机对准伙购网官方二维码扫描</p>
+        </figcaption>
+        <picture><img src="{{ app.params.skinUrl }}/dddb/images/weixin-item-02.png"></picture>
+    </figure>
+</div>
+<div class="weixin-item">
+    <figure>
+        <picture><img src="{{ app.params.skinUrl }}/dddb/images/weixin-item-03.png"></picture>
+        <figcaption><i>第三步</i>
+            <h2>点击关注</h2>
+            <p>点击“关注”即可关注伙购网官方微信</p>
+        </figcaption>
+    </figure>
+</div>
+
+{% include '@app/views/dd_footer.html' %}
+</body>
+</html>

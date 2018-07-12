@@ -1,0 +1,453 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">{% if(exchange) %}换货订单{% else %}订单详情{% endif %}</strong>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                {% if(exchange) %}
+                    <div class="am-u-sm-6"><span class="am-text-danger" style="font-size: 16px;">换&nbsp;&nbsp;</span>订单号：{{ exchange.id }}</div><div class="am-u-sm-6">原订单号：{{ detail.id }}</div>
+                {% else %}
+                    <div class="am-u-sm-12">订单号：{{ detail.id }}</div>
+                {% endif %}
+            </div>
+
+            <div class="am-u-sm-12"><div class="am-u-sm-12">商品名称：{{ goodInfo.name }}</div></div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">商品分类：{{ catName[periodInfo.cat_id] }}</div>
+                <div class="am-u-sm-6">商品来源：{{ periodTable.source.name }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">伙购价格：￥{{ periodInfo.price }}</div>
+                <div class="am-u-sm-6">状态：{% if(detail.status == 2) %}待备货{% elseif(detail.status == 3) %}待发货{% endif %}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">会员：{{ detail.user_id.username }}</div>
+                <div class="am-u-sm-6">伙购时间：{{ periodTable.buy_time }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">伙购码：{{ periodInfo.lucky_code }}</div>
+                <div class="am-u-sm-6">中奖时间：{{ detail.create_time|date('Y-m-d H:i:s') }}</div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-u-sm-6">当期购买次数：{{ consume.total }}次</div>
+                <div class="am-u-sm-6">发货方式：第三方发货</div>
+            </div>
+
+            <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+                <ul class="am-tabs-nav am-nav am-nav-tabs">
+                    <li class="am-active"><a href="#tab1">收货地址</a></li>
+                    <li><a href="#tab2">发货信息</a></li>
+                    <li><a href="#tab3">备注</a></li>
+                </ul>
+
+                <div class="am-tabs-bd">
+                    <div class="am-tab-panel am-active" id="tab1">
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">提交时间：{{ confirm_addr_time|date('Y-m-d H:i:s') }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">收货人：{{ detail.ship_name }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">联系方式：{{ detail.ship_mobile }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-12">收货地址：{{ detail.ship_area }}{{ detail.ship_addr }}</div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">备注信息：{{ detail.mark_text }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">确认人：{{ person[detail.confirm_userid] }}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <div class="am-u-sm-6">确认时间：{% if(detail.confirm_time) %}{{ detail.confirm_time|date('Y-m-d H:i:s') }}{% else %}暂无{% endif %}</div>
+                            <div class="am-u-sm-6"></div>
+                        </div>
+                    </div>
+                    <div class="am-tab-panel" id="tab2">
+                        {% if(detail.status == 3) %}
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">备货人：{{ person[detail.prepare_userid] }}</div>
+                                <div class="am-u-sm-6">发票：{{ detail.bill }}&nbsp;&nbsp;<input type="button" value="时间" data-am-modal="{target: '#doc-modal-6', closeViaDimmer: 0, width: 300, height: 225}"></div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">备货时间：{{ detail.prepare_time|date('Y-m-d H:i:s') }}</div>
+                                <div class="am-u-sm-6">成本：{{ detail.actual_price }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">发货平台：{{ detail.platform }}</div>
+                                <div class="am-u-sm-6">规格：{{ detail.standard }}</div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <div class="am-u-sm-6">第三方订单号：{{ detail.third_order }}</div>
+                                <div class="am-u-sm-6">备注：{{ detail.deliver_market }}</div>
+                            </div>
+                        {% else %}
+                            无信息
+                        {% endif %}
+                    </div>
+                    <div class="am-tab-panel" id="tab3">
+                        <div class="am-u-sm-12">
+                            备注：{{ detail.remark }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if(detail.status ==2) %}
+                <div class="am-u-sm-12"><div class="am-u-sm-12">发货平台：
+                        <select data-am-selected name="platform">
+                            <option value="京东">京东</option>
+                            <option value="苏宁">苏宁</option>
+                            <option value="天猫">天猫</option>
+                            <option value="亚马逊">亚马逊</option>
+                            <option value="国美">国美</option>
+                            <option value="一号店">一号店</option>
+                            <option value="其他">其他</option>
+                        </select></div>
+                </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">第三方订单号：<input type="text" name="order"> <span style="color:red">*</span></div> </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">成本：<input type="text" name="price"> <span style="color:red">*</span></div> </div>
+                <div class="am-u-sm-12"><div class="am-u-sm-12">支付方式：
+                    <select name="payment">
+                        <option value="无">无</option>
+                        <option value="京东">京东</option>
+                        <option value="支付宝">支付宝</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">发票：
+                    <select name="bill">
+                        <option value="无">无</option>
+                        <option value="普通发票">普通发票</option>
+                        <option value="专业发票">专业发票</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">规格：<input type="text" name="standard"></div> </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">备注：<input type="text" name="comment"></div> </div>
+
+            {% elseif(detail.status == 3) %}
+                <div class="am-u-sm-12"><div class="am-u-sm-12">快递公司：
+                    <input type="text" name="company">
+                        <!--<select name="company" data-am-selected="{searchBox: 1}">
+                            {% for k,item in express %}
+                                <option value="{{ k }}">{{ k }}</option>
+                            {% endfor %}
+                            <option value="其他">其他</option>
+                        </select></div>-->
+                </div>
+
+                <div class="am-u-sm-12"><div class="am-u-sm-12">快递单号：<input type="text" name="deliver_order"></div> </div>
+            {% endif %}
+
+            <div class="am-g doc-am-g">
+                <input type="hidden" name="id" value="{{ detail.id }}">
+                {% if(detail.status == 2) %}
+                    <input type="hidden" name="prepareId" value="{{ detail.id }}">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"><input type="submit" value="备货" CLASS="prepare">
+                        <input type="button" value="备货异常" data-am-modal="{target: '#deliver', closeViaDimmer: 0, width: 400, height: 225}">
+                    </div>
+                {% elseif(detail.status == 3) %}
+                    <input type="hidden" name="deliverId" value="{{ detail.id }}">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"><input type="submit" value="发货" class="sendgood" >
+                        </div>
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"><input type="submit" value="修改备货信息" class="modifyPrepare" >
+                    </div>
+                {% endif %}
+                <div class="am-u-sm-6 am-u-md-8 am-u-lg-2"><input type="button" value="备注" data-am-modal="{target: '#doc-modal-5', closeViaDimmer: 0, width: 400, height: 425}"></div>
+                <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-5">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">后台备注
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <textarea style="width:300px;height: 300px;" class="remark_content">{{ detail.remark }}</textarea><br />
+                <input  type="submit"  value="提交" class="remark_admin">
+            </div>
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="deliver">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">发货异常理由
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+
+            <div class="am-modal-bd">
+                <select data-am-selected name="deliver_reason">
+                    <option value="收货地址无法配送">收货地址无法配送</option>
+                    <option value="其他">其他</option>
+                </select>
+                <input  type="submit"  value="提交" class="deliver_fail">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-6">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">发票时间
+                <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                发票时间: <input type="text" name="billtime" value="{{ detail.bill_time }}" id="bill"><br />
+                发票号码: <input type="text" name="billnum" value="{{ detail.bill_num }}" id="billnum"><br />
+                <input  type="submit"  value="提交" class="bill_time">
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block script %}
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+        <script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $('.modifyPrepare').click(function(){
+            var id = $('input[name=id]').val();
+            var urls = '{{ url('/deliver/modify-send') }}' + '?id=' + id;
+            layer.open({
+                type: 2,
+                area: ['450px', '400px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade: false,
+                content: urls
+            });
+        })
+
+        $('.remark_admin').click(function(){
+            var remark = $('.remark_content').val();
+            var id = $('input[name=id]').val();
+
+            $.post('/order/remark', {'id':id, 'remark':remark}, function(data){
+                if(data == 1){
+                    alert('操作成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }else{
+                    alert('操作失败');
+                    return false;
+                }
+            })
+        })
+
+        $(function(){
+            $('select[name=platform]').change(function(){
+                var value = $('select[name=platform] option:selected').val();
+                $('input[name=other]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="other"></div>');
+                }
+            })
+
+            $('select[name=bill]').change(function(){
+                var value = $('select[name=bill] option:selected').val();
+                $('input[name=bill_other]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="bill_other"></div>');
+                }
+            })
+
+            /*var company_value = $('select[name=company] option:selected').val();
+            if(company_value == '其他'){
+
+            }
+            $('select[name=company]').change(function(){
+                var value = $('select[name=company] option:selected').val();
+                $('input[name=other]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="other"></div>');
+                }
+            })
+*/
+            $('select[name=deliver_reason]').change(function(){
+                var value = $('select[name=deliver_reason] option:selected').val();
+                $('input[name=other]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="other"></div>');
+                }
+            })
+
+            $('select[name=payment]').change(function(){
+                var value = $('select[name=payment] option:selected').val();
+                $('input[name=paymentother]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="paymentother"></div>');
+                }
+            })
+
+            var id = $('input[name=id]').val();
+
+            $('.prepare').click(function(){
+                var order = $('input[name=order]').val();
+                var price = $('input[name=price]').val();
+                var platform = $('select[name=platform]').val();
+                var standard = $('input[name=standard]').val();
+                var comment = $('input[name=comment]').val();
+                var prepareId = $('input[name=prepareId]').val();
+                var other = $('input[name=other]').val();
+                var payment = $('select[name=payment]').val();
+                var paymentother = $('input[name=paymentother]').val();
+                var a = /^[0-9a-zA-Z]*$/g;
+                var b = /^d+(.d+)?$/;
+
+                if(order == '' || price == ''){
+                    alert('订单号和成本不能为空');
+                    return false;
+                }
+                if(!a.exec(order)){
+                    alert('订单号为字母，数字或字母数字组合');
+                    return false;
+                }
+                /*if(!b.test(price)){
+                    alert(price);
+                    alert('价格格式不正确jj');
+                    return false;
+                }*/
+                var billother = $('input[name=bill_other]').val();
+                if(billother == undefined){
+                    var bill = $('select[name=bill]').val();
+                }else{
+                    var bill = billother;
+                }
+                $.post('/deliver/prepare', {'id':id,'order':order, 'price':price, 'platform':platform, 'standard':standard,
+                    'other':other, 'comment':comment, 'prepareId':prepareId, 'bill':bill, 'payment':payment, 'paymentother':paymentother}, function(data){
+                    if(data == 1){
+                        alert('备货成功');
+                        //window.location.reload();
+                        parent.location.reload();
+                    }else if(data == 3){
+                        alert('备货人错误');
+                        return false;
+                    }else{
+                        alert('备货失败');
+                        return false;
+                    }
+                })
+            })
+
+            $('.sendgood').click(function(){
+                var deliver = $('input[name=deliver_order]').val();
+                var company = $('input[name=company]').val();
+                var deliverId = $('input[name=deliverId]').val();
+                var a = /^[0-9a-zA-Z]*$/g;
+
+                if(deliver == '' ){
+                    alert('快递号不能为空');
+                    return false;
+                }else if(!a.exec(deliver)){
+                    alert('快递号为字母，数字或字母数字组合');
+                    return false;
+                }else{
+                    $.post('/deliver/prepare', {'id':id, 'deliver_order':deliver, 'company':company, 'deliverId':deliverId}, function(data){
+                        if(data == 1){
+                            alert('发货成功');
+                            window.location.reload();
+                            parent.location.reload();
+                        }else if(data == 3){
+                            alert('备货人错误');
+                            return false;
+                        }else{
+                            alert('发货失败');
+                            return false;
+                        }
+                    })
+                }
+            })
+
+            $('.deliver_fail').click(function(){
+                var reason = $('select[name=deliver_reason]').val();
+                var other = $('input[name=other]').val();
+
+                $.post('/order/confirm', {'id':id, 'deliver_reason':reason, 'other':other}, function(data){
+                    if(data == 1){
+                        alert('操作成功');
+                        window.location.reload();
+                        parent.location.reload();
+                    }else{
+                        alert('操作失败');
+                        return false;
+                    }
+                })
+            })
+
+            laydate({
+                elem: '#bill',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+
+            $('.bill_time').click(function(){
+                var time = $('input[name=billtime]').val();
+                var num = $('input[name=billnum]').val();
+                var id = $('input[name=id]').val();
+
+                if(time == '' || num == ''){
+                    alert('时间和发票号不能为空');
+                    return false;
+                }
+                $.post('/order/bill', {'billtime':time,'id':id, 'num':num}, function(data){
+                    if(data == 1){
+                        alert('操作成功');
+                        window.location.reload();
+                        parent.location.reload();
+                    }else{
+                        alert('操作失败');
+                        return false;
+                    }
+                })
+            })
+        })
+    </script>
+
+{% endblock %}

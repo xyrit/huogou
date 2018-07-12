@@ -1,0 +1,6 @@
+<ul class="wrap_con_list">
+    <li {% if(app.controller.action.id == 'sys-msg') %} class="act"{% endif %}><i></i><a class="message" href="{{ url(['/member/message/sys-msg']) }}">系统消息（{{ sysMsgCount }}）</a></li>
+    <li {% if(app.controller.action.id == 'friend-apply') %} class="act"{% endif %}><i></i><a class="hy" href="{{ url(['/member/friend/friend-apply']) }}">好友请求（{{ friendMsg }}）</a></li>
+    <li {% if(app.controller.action.id == 'topic-comment') %} class="act"{% endif %}><i></i><a class="pl" href="{{ url(['/member/group/topic-comment']) }}">伙购圈消息（{{ commentMsg }}）</a></li>
+    <li {% if(app.controller.action.id == 'user-priv-msg' or app.controller.action.id == 'msg-detail') %} class="act"{% endif %}><i></i><a class="sx" href="{{ url(['/member/message/user-priv-msg']) }}">私信（{{ privMsg }}）</a></li>
+</ul>

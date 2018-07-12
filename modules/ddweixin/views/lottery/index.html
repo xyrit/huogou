@@ -1,0 +1,42 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}最新揭晓{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/lottery.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/lotterylist.js?v=160219" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <input type="hidden" id="hidPage" value="1">
+  <input type="hidden" id="hidCateId" value="0">
+  <div id="div_sort" class="g-announced-title gray9">
+    <span> <a href="javascript:;" class="z-set fr"></a> <span>全部分类</span> <cite style="display: none;"><em></em></cite> </span>
+    <!--分类-->
+    <div class="announced-sort" style="display: none;">
+    </div>
+  </div>
+  <!--分类筛选遮罩-->
+  <div class="weixin-mask" style="display: none;"></div>
+  <div class="marginB">
+    <div class="revCon" id="divLottery">
+
+    </div>
+
+
+
+
+    <div id="divLoading" class="loading clearfix g-acc-bg" style="display: block;">
+      <b></b>正在加载
+    </div>
+
+
+
+
+  </div>
+
+  {% include '@ddweixinModule/views/footer.html' %}
+
+{% endblock %}

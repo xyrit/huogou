@@ -1,0 +1,6 @@
+CREATE TABLE `card_type` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `card_name` VARCHAR (30) NOT NULL COMMENT '充值卡名称',
+  `card_price` INT(10) UNSIGNED NOT NULL COMMENT '充值卡价格',
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='充值卡类型';

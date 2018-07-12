@@ -1,0 +1,41 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}购物车{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/cartList.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/cart.js?v=160216" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div id="loadingPicBlock">
+    <input name="hidUserID" type="hidden" id="hidUserID" value="-1" />
+    <div class="wrapper">
+      <div class="g-Cart-list marginB">
+        <ul id="cartBody">
+
+        </ul>
+        <div id="divNone" class="empty" style="display: none;">
+          <s></s> 购物车为空
+          <p>您当前购物车为空，赶紧去夺宝吧</p>
+          <a href="/" class="orangeBtn" >去夺宝</a>
+        </div>
+      </div>
+      <div id="mycartpay" class="g-Total-bt g-car-new" style="display: none;">
+        <dl>
+          <dt class="gray6" id="cartpayInfo">
+
+          </dt>
+          <dd>
+            <a href="javascript:;" id="a_payment" class="orangeBtn w_account">去结算</a>
+          </dd>
+        </dl>
+      </div>
+
+
+      {% include '@ddweixinModule/views/footer.html' %}
+    </div>
+  </div>
+{% endblock %}

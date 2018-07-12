@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>网银充值</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/member.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <div class="wrapper">
+        <div class="g-rechargeNav">
+            <ul>
+                <li class="z-curr"><a href="Recharge.html">网银充值</a>
+                    <s></s></li>
+                <li><a href="CardRecharge.html">充值卡充值</a></li>
+            </ul>
+        </div>
+        <div class="g-Total gray9">
+            您的当前余额：
+            <span class="orange arial">0.00</span>元
+        </div>
+        <section class="clearfix g-member">
+            <div class="g-Recharge">
+                <ul id="ulOption">
+                    <li money="10"><a href="javascript:;" class="z-sel">10元
+                        <s></s></a></li>
+                    <li money="20"><a href="javascript:;">20元
+                        <s></s></a></li>
+                    <li money="30"><a href="javascript:;">30元
+                        <s></s></a></li>
+                    <li money="100"><a href="javascript:;">100元
+                        <s></s></a></li>
+                    <li money="200"><a href="javascript:;">200元
+                        <s></s></a></li>
+                    <li  money="0"><b> <input type="text" class="z-init" placeholder="输入金额" value="" maxlength="7" />
+                        <s></s></b></li>
+                </ul>
+            </div>
+            <article class="clearfix mt10 g-pay-ment g-bank-ct">
+                <ul id="ulBankList">
+                    <li class="gray6">充值金额<em class="orange">10.00</em>元</li>
+                    <li class="gray9 checked">
+                        <s></s>微信支付</li>
+                    <li class="gray9">
+                        <s></s>京东支付</li>
+                    <li class="gray9">
+                        <s></s>招商银行</li>
+                </ul>
+            </article>
+            <div class="mt10 f-Recharge-btn">
+                <a id="btnSubmit" href="javascript:;" class="z-Btn">支付充值</a>
+            </div>
+        </section>
+        <input id="hidPageType" type="hidden" value="3" />
+        <div class="footer">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="index.html" class="hover" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $('#ulOption li').click(function(){
+        var tMoney = $(this).attr('money');
+        $('#ulOption li').children('a').removeClass('z-sel');
+        $(this).children('a').addClass('z-sel');
+        if(""!=$(".z-init").val() && 0== tMoney)
+            tMoney = $(".z-init").val();
+        $('#ulBankList').find('.orange').html(tMoney+".00");
+        $(this).siblings('li').children('b').removeClass('z-initsel');
+    })
+//    输入金额
+    $('.z-init').keyup(function(){
+        // $(this).parent('b').addClass('z-initsel');
+        // $(this).parent().parent('li').siblings('li').children('a').removeClass('z-sel');
+
+
+         $('#ulBankList').find('.orange').html($(this).val()+".00");
+
+    })
+
+//    选择支付方式
+    $('.gray9').click(function(){
+        $(this).addClass('checked').siblings().removeClass('checked');
+    })
+
+</script>
+</body>
+</html>

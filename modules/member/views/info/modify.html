@@ -1,0 +1,455 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}个人资料_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="individual-con">
+                    <div class="individual-input clear">
+                        <b><i></i>手机：</b>
+                        {% if user.phone != '' %}
+                        <p>{{ user.phone }}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <a class="m_orange" href="/info/edit-phone">修改</a>
+                        {% else %}
+                        <a class="m_orange" href="/info/phone">立即绑定</a>
+                        {% endif %}
+                    </div>
+                    <div class="individual-input clear">
+                        <b><i></i>邮箱：</b>
+                        {% if user.email != '' %}
+                        <p>{{ user.email }}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        <a class="m_orange" href="/info/edit-email">修改</a>
+                        {% else %}
+                        <a class="m_orange" href="/info/email">立即绑定</a>
+                        {% endif %}
+                    </div>
+                    <div class="individual-input clear">
+                        <b><i></i>昵称：</b>
+                        <input type="text" value="{{ user.nickname }}" name="nickname" id="nickname">
+                        <span id="nickname_tips">昵称长度为2-20个字符，由汉字、字母、数字、"_-"组成</span>
+                    </div>
+                    <div class="individual-input clear">
+                        <b>备用电话：</b>
+                        <input type="text" value="{{ info.backup_phone }}" name="backup_phone" id="backup_phone">
+                        <span id="phone_tips" style="color:red"></span>
+                    </div>
+                    <div class="individual-input clear">
+                        <b>性别：</b>
+                        <label for="Male"><input id="Male" type="radio" name="sex" value="1" {% if info.sex == 1 %} checked="checked" {% endif %}>男</label>
+                        <label for="Female"><input id="Female" type="radio" name="sex" value="2" {% if info.sex == 2 %} checked="checked" {% endif %}>女</label>
+                        <label for="Confidential"><input id="Confidential" type="radio" name="sex" value="3" {% if info.sex == 3 %} checked="checked" {% endif %}>保密</label>
+                    </div>
+                    <div class="individual-input clear birthday">
+                        <b>生日：</b>
+                        <div class="select_box">
+                            <div class="select_ck" id="sel_year">
+                                {% if info.year != 0 %}
+                                <a value="{{ info.year }}">{{ info.year }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o sel_year" rel="{{ info.year }}"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck" id="sel_month">
+                                {% if info.month != 0 %}
+                                <a value="{{ info.month }}">{{ info.month }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o sel_month" rel="{{ info.month }}"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck" id="sel_day">
+                                {% if info.day != 0 %}
+                                <a value="{{ info.day }}">{{ info.day }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o sel_day" rel="{{ info.day }}"></div>
+                        </div>
+
+
+                        <!--<select class="sel_year" rel="{{ info.year }}"></select>-->
+                        <!--<select class="sel_month" rel="{{ info.month }}"></select>-->
+                        <!--<select class="sel_day" rel="{{ info.day }}"></select>-->
+
+
+                        <span id="sel_tips" style="color:red"></span>
+                    </div>
+
+
+                    <div class="individual-input clear birthday">
+                        <b>星座：</b>
+                        <div class="select_box">
+                            <div class="select_ck seleck" name="constellation" id="constellation">
+                                {% if info.constellation != 0 %}
+                                <a value="{{ info.constellation }}" class="selected" %}>
+                                    {% if info.constellation==1 %}白羊座
+                                    {% elseif info.constellation==2 %}金牛座
+                                    {% elseif info.constellation==3 %}双子座
+                                    {% elseif info.constellation==4 %}巨蟹座
+                                    {% elseif info.constellation==5 %}狮子座
+                                    {% elseif info.constellation==6 %}处女座
+                                    {% elseif info.constellation==7 %}天枰座
+                                    {% elseif info.constellation==8 %}天蝎座
+                                    {% elseif info.constellation==9 %}射手座
+                                    {% elseif info.constellation==10 %}摩羯座
+                                    {% elseif info.constellation==11 %}水瓶座
+                                    {% elseif info.constellation==12 %}双鱼座
+                                    {% endif %}
+                                </a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o seleck">
+                                <a value="1" {% if info.constellation == 1 %}selected{% endif %}>白羊座</a>
+                                <a value="2" {% if info.constellation == 2 %}selected{% endif %}>金牛座</a>
+                                <a value="3" {% if info.constellation == 3 %}selected{% endif %}>双子座</a>
+                                <a value="4" {% if info.constellation == 4 %}selected{% endif %}>巨蟹座</a>
+                                <a value="5" {% if info.constellation == 5 %}selected{% endif %}>狮子座</a>
+                                <a value="6" {% if info.constellation == 6 %}selected{% endif %}>处女座</a>
+                                <a value="7" {% if info.constellation == 7 %}selected{% endif %}>天枰座</a>
+                                <a value="8" {% if info.constellation == 8 %}selected{% endif %}>天蝎座</a>
+                                <a value="9" {% if info.constellation == 9 %}selected{% endif %}>射手座</a>
+                                <a value="10" {% if info.constellation == 10 %}selected{% endif %}>摩羯座</a>
+                                <a value="11" {% if info.constellation == 11 %}selected{% endif %}>水瓶座</a>
+                                <a value="12" {% if info.constellation == 12 %}selected{% endif %}>双鱼座</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="individual-input clear birthday">
+                        <b>现居地：</b>
+                        <div class="select_box">
+                            <div class="select_ck" id="now_pro">
+                                {% if info.now_province %}
+                                <a class="selected" value="{{ info.now_province }}">{{ info.now_province_name }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o now_province"  id="now_province"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck" id="now_ci">
+                                {% if info.now_city != 0 %}
+                                <a class="selected" value="{{ info.now_city }}">{{ info.now_city_name }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o now_city"  id="now_city"></div>
+                        </div>
+
+
+
+                        <!--<select name="now_province" id="now_province">-->
+                            <!--<option value="">-&#45;&#45;请选择-&#45;&#45;</option>-->
+                        <!--</select>-->
+                        <!--<select name="now_city" id="now_city">-->
+                            <!--<option value="">-&#45;&#45;请选择-&#45;&#45;</option>-->
+                        </select><span id="now_tips" style="color:red"></span>
+                    </div>
+                    <div class="individual-input clear birthday">
+                        <b>家乡：</b>
+                        <div class="select_box">
+                            <div class="select_ck">
+                                {% if info.old_province %}
+                                <a class="selected" value="{{ info.old_province }}">{{ info.old_province_name }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o" name="old_province" id="old_province"></div>
+                        </div>
+                        <div class="select_box">
+                            <div class="select_ck">
+                                {% if info.old_city != 0 %}
+                                <a class="selected" value="{{ info.old_city }}">{{ info.old_city_name }}</a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o"  name="old_city" id="old_city"></div>
+                        </div>
+
+                        <!--<select name="old_province" id="old_province">-->
+                            <!--<option value="">-&#45;&#45;请选择-&#45;&#45;</option>-->
+                        <!--</select>-->
+                        <!--<select name="old_city" id="old_city">-->
+                            <!--<option value="">-&#45;&#45;请选择-&#45;&#45;</option>-->
+                        <!--</select>-->
+                        <!---->
+                        <span id="old_tips" style="color:red"></span>
+                    </div>
+                    <!--<div class="individual-input clear">-->
+                        <!--<b>QQ：</b>-->
+                        <!--<input type="text" value="{% if info.qq > 0 %}{{ info.qq }}{% endif %}" name="qq" id="qq">-->
+                        <!--<span id="qq_tips" style="color:red"></span>-->
+                    <!--</div>-->
+
+
+                    <div class="individual-input clear birthday">
+                        <b>收入：</b>
+                        <div class="select_box">
+                            <div class="select_ck" name="monthly_income" id="monthly_income">
+                                {% if info.monthly_income != 0 %}
+                                <a value="{{ info.monthly_income }}" class="selected" %}>
+                                    {% if info.monthly_income==1 %}1000以下
+                                    {% elseif info.monthly_income==2 %}1000-3000
+                                    {% elseif info.monthly_income==3 %}3000-5000
+                                    {% elseif info.monthly_income==4 %}5000-10000
+                                    {% elseif info.monthly_income==5 %}10000以上
+                                    {% endif %}
+                                </a>
+                                {% else %}
+                                <a value="">---请选择---</a>
+                                {% endif %}
+                                <i></i>
+                            </div>
+                            <div class="select_o" id="sour">
+                                <a value="">---请选择---</a>
+                                <a value="1" {% if info.monthly_income == 1 %}selected="selected"{% endif %}>1000以下</a>
+                                <a value="2" {% if info.monthly_income == 2 %}selected="selected"{% endif %}>1000-3000</a>
+                                <a value="3" {% if info.monthly_income == 3 %}selected="selected"{% endif %}>3000-5000</a>
+                                <a value="4" {% if info.monthly_income == 4 %}selected="selected"{% endif %}>5000-10000</a>
+                                <a value="5" {% if info.monthly_income == 5 %}selected="selected"{% endif %}>10000以上</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="individual-input clear">
+                        <b>签名：</b>
+                        <textarea name="intro" id="intro" maxlength="120">{{ info.intro }}</textarea>
+                    </div>
+                    <input class="individual-submit" value="保 存" type="submit" id="btnModify">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_area.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ms_DatePicker({
+            YearSelector: ".sel_year",
+            MonthSelector: ".sel_month",
+            DaySelector: ".sel_day"
+        });
+    });
+    editAreaList("{{ info.now_province }}", "{{ info.now_city }}", "", 'now_province', 'now_city', 'not_area');
+
+    $('#now_province').click(function(){
+        pid = $(this).find('.selected').attr('value');
+        getAreaList(pid, 'now_city', 'now_province', 'now_city');
+        $('#now_city').siblings('.select_ck').html('<a value="">---请选择---</a><i></i>');
+    });
+
+    editAreaList("{{ info.old_province }}", "{{ info.old_city }}", "", 'old_province', 'old_city', 'not_area');
+
+    $('#old_province').click(function(){
+        pid = $(this).find('.selected').attr('value');
+        getAreaList(pid, 'old_city', 'old_province', 'old_city');
+        $('#old_city').siblings('.select_ck').html('<a value="">---请选择---</a><i></i>');
+    });
+
+    $('#btnModify').on('click', function() {
+        var year = $('#sel_year').find('a').attr('value'),
+                month = $('#sel_month').find('a').attr('value'),
+                day = $('#sel_day').find('a').attr('value');
+        if (year != 0 && month != 0 && day != 0) {
+            birthday = year + '-' + month + '-' + day;
+        } else {
+            if (year != 0 && (month == 0 || day == 0)) {
+                $('#sel_tips').html("请选择完整的生日");
+                setTimeout(function(){
+                    $('#sel_tips').html("");
+                },1000)
+                return false;
+            }
+            birthday = '';
+        }
+        var params = {
+            'nickname': $('#nickname').val(),
+            'backup_phone': $('#backup_phone').val(),
+            'sex': $('input[name="sex"]:checked').val() ? $('input[name="sex"]:checked').val() : 0,
+            'birthday': birthday,
+            'constellation': $('#constellation').find('a').attr('value'),
+            'now_province': $('#now_province').siblings('.select_ck').find('a').attr('value'),
+            'now_city': $('#now_city').siblings('.select_ck').find('a').attr('value'),
+            'old_province': $('#old_province').siblings('.select_ck').find('a').attr('value'),
+            'old_city': $('#old_city').siblings('.select_ck').find('a').attr('value'),
+            'qq': $('#qq').val(),
+            'monthly_income': $('#monthly_income').find('a').attr('value'),
+            'intro': $('#intro').val(),
+            'token': token
+        };
+
+        var reg = /^\d{3,4}-\d{7,8}$/;
+        if (params.backup_phone && !reg.test(params.backup_phone) && !checkPhone(params.backup_phone)) {
+            $('#phone_tips').html("请输入正确的电话号码");
+            setTimeout(function(){
+                $('#phone_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if (params.now_province != '' && params.now_city == '') {
+            $('#now_tips').html("请选择完整的现居地");
+            setTimeout(function(){
+                $('#now_tips').html("");
+            },1000)
+            return false;
+        }
+
+        if (params.old_province != '' && params.old_city == '') {
+            $('#old_tips').html("请选择完整的家乡");
+            setTimeout(function(){
+                $('#old_tips').html("");
+            },1000)
+            return false;
+        }
+
+        var reg = /^[1-9]\d{4,11}$/;
+        if (params.qq && params.qq != 0 && !reg.test(params.qq)) {
+            $('#qq_tips').html("请输入正确的QQ号码");
+            setTimeout(function(){
+                $('#qq_tips').html("");
+            },1000)
+            return false;
+        }
+
+        var regu = "^[0-9A-Za-z\u4E00-\u9FA5\uF900-\uFA2D_-]{1,20}$";
+        var reg = new RegExp(regu);
+        var nickname = $('#nickname').val();
+        nicknameLen = getStrLen(nickname);
+        if (nickname != '') {
+            if (!reg.test(nickname) || nicknameLen < 2 || nicknameLen > 20) {
+                $('#nickname_tips').css('color', 'red');
+                $('#nickname').focus();
+                return false;
+            }
+        }
+        $.ajax({
+            async: true,
+            url: apiBaseUrl + '/info/edit-profile',
+            type: "GET",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: params,
+            success: function (data) {
+                $('.safety-b-box h3').html("");
+                if (data.code == 101) {
+                    $('.safety-b-box').css({'width': 'auto','padding':'0 70px'});
+                    $('.safety-b-box h3').css('width', 'auto');
+                    $('.safety-b-box h3').html(data.msg);
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                    },1000)
+                } else {
+                    $('.safety-b-box').html('<i id="safety-b-close"></i><h4>' + data.msg + '</h4>');
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        window.location.reload();
+                    },1000)
+                }
+            }
+        });
+    });
+
+    function checkNickName() {
+        var regu = "^[0-9A-Za-z\u4E00-\u9FA5\uF900-\uFA2D_-]{1,20}$";
+        var reg = new RegExp(regu);
+        var nickname = $('#nickname').val();
+        nicknameLen = getStrLen(nickname);
+        if (!reg.test(nickname) || nicknameLen < 2 || nicknameLen > 20) {
+            $('#nickname_tips').css('color', 'red');
+            $('#nickname').focus();
+        } else {
+            $('#nickname_tips').removeAttr('style');
+            $.ajax({
+                async: true,
+                url: apiBaseUrl + '/info/check-nickname',
+                type: "GET",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: {nickname: nickname, token: token},
+                success: function (data) {
+                    if (data.code == 101) {
+                        flag = 0;
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h4 style="width: 250px">' + data.msg + '</h4>');
+                        $('#safety-b-con').fadeIn();
+                        setTimeout(function(){
+                            $('#safety-b-con').fadeOut();
+                            $('#nickname').focus();
+                        },1000)
+                        return false;
+                    }
+                }
+            });
+        }
+    }
+
+    /*$('#nickname').blur(function() {
+        if ($('#nickname').val() != '') {
+            checkNickName();
+        }
+    });*/
+
+
+    function getStrLen(str) {
+        var len = 0;
+        for (var i=0; i<str.length; i++) {
+            if (str.charCodeAt(i)>127 || str.charCodeAt(i)==94) {
+                len += 2;
+            } else {
+                len ++;
+            }
+        }
+        return len;
+    }
+
+</script>
+
+{% endblock %}

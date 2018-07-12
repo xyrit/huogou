@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>充值有礼</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/comm.js?v=160408"></script>
+</head>
+<body style="-webkit-overflow-scrolling:initial;">
+	<div class="reload-popup" style="display: none;">
+		<section>
+			<img class="reload-close" src="images/reload07.png">
+			<h3></h3>
+			<p>可直接使用该红包夺宝充值卡哦，赶紧去抢吧！</p>
+			<p>进入“我的”>“我的红包”查看</p>
+			<a href="javascript:;" id="gocard">去抢充值卡</a>
+		</section>
+	</div>
+	<div class="reload-bn">
+		<img src="images/reload01.jpg">
+		<div class="reload-prize">
+			<ul id="reload-prize-list"></ul>
+		</div>
+	</div>
+	<img class="w100" src="images/reload03.jpg">
+	<div class="activity-con">
+		<div class="activity-title">
+			<span>任务要求</span><span style="width: 27%">奖励直减红包</span><span>状态</span>
+		</div>
+		<ul class="activity-list"></ul>
+	</div>
+	<img class="w100" src="images/reload06.jpg">
+	<div class="reload-con">
+		<h3>活动时间：</h3>
+		<p>即日起至2016年5月30日23：59：59</p>
+		<h3>参与活动用户资格：</h3>
+		<p>滴滴夺宝注册用户</p>
+		<h3>活动内容：</h3>
+		<p>活动期间，滴滴夺宝用户完成充值金额要求就可获得相应红包一份，根据单次充值的金额，按最高档次的红包进行奖励，每个档次的红包奖励只能领取一次，若最高档次的红包奖励已领取，则以次一级档次的红包奖励给予。</p>
+		<h3>活动规则：</h3>
+		<p>1、充值有礼活动，每个档次的红包奖励只能领取一次。<br />如：某用户充值了50元获得了5元红包，若他再充值50元，则以次一级档次的奖励给予，即获得4元红包。</p>
+		<p>2、每个红包在领取后七天内有效，逾期作废。</p>
+		<p>3、领取到红包请在【我的红包】中查看。</p>
+		<p>4、所获得的红包均为充值卡专享，在购买30,50,100,300,500,1000元充值卡时可使用，使用金额均无限制。</p>
+		<p>5、每个红包仅限于单笔支付订单使用，不兑现金，不设找零。</p>
+		<p>6、该活动的解释权在法律规定的范围内归滴滴夺宝所有。</p>
+		<aside id="apple" style="display: none;">声明：本次活动所有奖品抽奖与苹果公司（Apple Inc.）无关</aside>
+	</div>
+	<div id="reload-fixed" class="reload-fixed">
+		<a class="reload-fixed-a" href="lottery/recharge?type=4">立即充值</a>
+	</div>
+	<script>
+		$(function(){
+			var baseUrl = apiBaseUrl+'/rechargereward';
+			var h = $(window).height();
+
+			$.getJsonp(baseUrl,{},function(data){
+				var html = '';
+				$.each(data,function(i,v){
+					html += '<li><span>单次充值'+v.demand+'</span><span>'+v.prize+'</span>';
+					if (v.status == 1) {
+						html += '<span><img src="images/reload04.png"></span>';
+						if (v.notice == 0) {
+							$(".reload-popup h3").text('恭喜您，获得'+v.prize);
+							$(".reload-popup").show();
+							$('body').css({'height':h,'overflow-y':'hidden'})
+						}
+					}else{
+						html += '<span><img src="images/reload05.png"></span>';
+					}
+					html += '</li>';
+				})
+				$(".activity-list").html(html);
+			});
+
+			$.getJsonp(baseUrl+'/list',{},function(data){
+				var html = '';
+				$.each(data,function(i,v){
+					html += '<li><a href="lottery/recharge?home_id='+v.home_id+'&user_id='+v.user_id+'&type=5">恭喜<em>'+v.user_name+'</em>充值了<i>'+v.amount+'元</i>，获得<i>'+v.prize+'</i></a></li>';
+				})
+				$(".reload-bn ul").html(html);
+				var box=document.getElementById("reload-prize-list"),can=true;
+				box.innerHTML+=box.innerHTML;
+				box.onmouseover=function(){can=false};
+				box.onmouseout=function(){can=true};
+				new function (){
+				 var stop=box.scrollTop%18==0&&!can;
+				 if(!stop)box.scrollTop==parseInt(box.scrollHeight/2)?box.scrollTop=0:box.scrollTop++;
+				 setTimeout(arguments.callee,box.scrollTop%18?18:800);
+				};
+			})
+			$("#gocard").click(function(){
+				$(".reload-popup").hide();
+				window.location.href="search?type=6&search=充值卡";
+			})
+		})
+		$('.reload-close').click(function(){
+			$('.reload-popup').fadeOut();
+			$('body').css({'height':'100%','overflow-y':'visible'})
+		})
+
+
+		$(function(){
+			if (browser.versions.ios) {
+				$("#apple").show();
+			}
+		})
+
+		function demand(json) {
+			var html = '';
+			$.each(data,function(i,v){
+				html += '<li><span>单次充值'+v.demand+'</span><span>'+v.prize+'</span>';
+				if (v.status == 1) {
+					html += '<span><img src="images/reload04.png"></span>';
+					if (v.notice == 0) {
+						$(".reload-popup h3").text('恭喜您，获得'+v.prize);
+						$(".reload-popup").show();
+					}
+				}else{
+					html += '<span><img src="images/reload05.png"></span>';
+				}
+				html += '</li>';
+			})
+			$(".activity-list").html(html);
+		}
+
+	</script>
+</body>
+</html>

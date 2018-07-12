@@ -1,0 +1,128 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+  <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">圈子修改</strong>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'group-form',  'enctype':"multipart/form-data"}) | raw }}
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'name', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextInput(model, 'name', {'placeholder':'圈子名称'})|raw }}
+            {{ html.error(model, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'adminuser', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-u-sm-10">
+            {{ html.activeTextInput(model, 'adminuser', {'placeholder':'圈主'})|raw }}<span>（请填写邮箱或手机）</span>
+            {{ html.error(model, 'adminuser', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'group_closed', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeRadioList(model, 'group_closed', {'0':'是','1':'否'})|raw }}  <span>普通会员是否可以加入圈子</span>
+            {{ html.error(model, 'group_closed', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'topic_closed', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeRadioList(model, 'topic_closed', {'0':'是','1':'否'})|raw }}<span>普通会员是否可以发帖</span>
+            {{ html.error(model, 'topic_closed', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'comment_closed', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeRadioList(model, 'comment_closed', {'0':'是','1':'否'})|raw }}<span>圈子里的话题是否可以回复</span>
+            {{ html.error(model, 'comment_closed', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'verify_status', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeRadioList(model, 'verify_status', {'0':'是','1':'否'})|raw }}<span>帖子和话题是否需要审核才能显示</span>
+            {{ html.error(model, 'verify_status', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'picture', {'class':'am-u-sm-2 am-form-label'})|raw }}
+          <div class="am-form-group am-form-file">
+            {% if(image != '') %} <img src="{{ image }}">{% endif %}
+            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+              <i class="am-icon-cloud-upload"></i> 选择要上传的文件</button>
+            <input id="doc-form-file" type="file" multiple name="imageFile">
+            <div id="file-list"></div>
+            {{ html.error(model, 'image', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'intro', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'intro', {'placeholder':'圈子简介'})|raw }}
+            {{ html.error(model, 'intro', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          {{ html.activeLabel(model, 'notice', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+          <div class="am-u-sm-10">
+            {{ html.activeTextarea(model, 'notice', {'placeholder':'圈子公告'})|raw }}
+            {{ html.error(model, 'notice', {'class':'am-alert am-alert-danger'})|raw }}
+          </div>
+        </div>
+
+        <div class="am-form-group">
+          <div class="am-u-sm-10 am-u-sm-push-2">
+            <button type="submit" class="am-btn am-btn-primary">保存</button>
+          </div>
+        </div>
+        {{ html.endForm() | raw }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+    $(function() {
+      $('#doc-form-file').on('change', function() {
+        var fileNames = '';
+        $.each(this.files, function() {
+          fileNames += '<span class="am-badge">' + this.name + '</span> ';
+        });
+        $('#file-list').html(fileNames);
+      });
+    });
+  </script>
+
+{% endblock %}

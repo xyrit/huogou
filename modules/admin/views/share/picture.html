@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>图片轮播切换效果-橡树小屋</title>
+    <style type="text/css">
+    </style>
+
+    <script src="{{ app.params.skinUrl }}/backend/js/jquery-1.11.1.min.js"></script>
+    <script src="{{ app.params.skinUrl }}/backend/js/excanvas.js"></script>
+    <script src="{{ app.params.skinUrl }}/backend/js/crop_rotation.js"></script>
+    <script src="{{ app.params.skinUrl }}/js/common.js"></script>
+</head>
+
+<body>
+<img height="{{ height }}" width="{{ width }}" id="cropTestImg" src="{{ url }}" name="{{ basename }}" share_topic_id="{{ share_topic_id }}"/>
+<button id="main" style="display:none; position:relative; z-index:1;" onclick="verify('main')">设置主图</button>
+<button id="detail" style="display:none; position:relative; z-index:1;" onclick="verify('detail')">设置详情图</button>
+<br/><br/><br/>
+<button id="cut_roll" style="display:none; position:relative; z-index:1;">截取滚动图</button>
+<button id="roll" style="display:none; position:relative; z-index:1;" onclick="verify('roll')">设置滚动图</button><br/><br/><br/>
+<button id="cut_recommend" style="display:none; position:relative; z-index:1;">截取推荐图</button>
+<button id="recommend" style="display:none; position:relative; z-index:1;" onclick="verify('recommend')">设置推荐图</button><br/><br/><br/>
+<!--<button id="cut_mobile" style="display:none; position:relative; z-index:1;">截取手机图</button>-->
+<!--<button id="mobile" style="display:none; position:relative; z-index:1;" onclick="verify('mobile')">设置手机图</button>-->
+<script type="text/javascript">
+    var percent = 555/369;
+    window.onload = function() {
+        var oImg = document.getElementById("cropTestImg");
+        var main = document.getElementById("main");
+        var roll = document.getElementById("roll");
+        var recommend = document.getElementById("recommend");
+        var cut_roll = document.getElementById("cut_roll");
+        var cut_recommend = document.getElementById("cut_recommend");
+        //var cut_mobile = document.getElementById("cut_mobile");
+        //var mobile = document.getElementById("mobile");
+        fnImageCropRot(oImg, "{{ orgwidth }}", "{{ orgheight }}");
+        main.style.display = "inline-block";
+        detail.style.display = "inline-block";
+        roll.style.display = "inline-block";
+        recommend.style.display = "inline-block";
+        cut_roll.style.display = "inline-block";
+        cut_recommend.style.display = "inline-block";
+        //cut_mobile.style.display = "inline-block";
+        //mobile.style.display = "inline-block";
+        $('#cut_roll').click(function() {
+            percent = 230/146;
+        })
+
+        $('#cut_recommend').click(function() {
+            percent = 555/369;
+        })
+
+//        $('#cut_mobile').click(function() {
+//            percent = 1;
+//        })
+    }
+
+    function verify(size) {
+        var x = $("#cropPosX").val(),
+                y = $("#cropPosY").val(),
+                w = $("#cropImageWidth").val(),
+                h = $("#cropImageHeight").val(),
+                angle = $("#zxxRotAngle").attr('angle');
+        if (angle === "") {
+            angle = 0;
+        }
+        //alert("角度：" + angle + "\n剪裁横坐标：" + x + "\n剪裁纵坐标：" + y + "\n剪裁宽度：" + w + "\n剪裁高度：" + h);
+        var params = {
+            share_topic_id: $('#cropTestImg').attr('share_topic_id'),
+            basename: $('#cropTestImg').attr('name'),
+            size: size,
+            angle: angle,
+            x: x,
+            y: y,
+            w: w,
+            h: h,
+        };
+        $.get('http://admin.' + baseHost + '/share/set-picture', params, function (data) {
+            alert('设置成功')
+        }, 'json');
+    };
+</script>
+</body>
+</html>

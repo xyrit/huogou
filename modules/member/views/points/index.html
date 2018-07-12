@@ -1,0 +1,87 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}福分管理_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="member_sub">
+            <div class="present">
+                <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">个人中心</a><i></i><a href="{{ url(['/member/points']) }}">福分管理</a>
+            </div>
+            {% include '@memberModule/views/nav.html' %}
+        </div>
+
+        <div class="wrap_con">
+            <ul class="wrap_con_list">
+                <li class="act"><i></i><a class="integral" href="{{ url(['/member/points']) }}">福分管理</a></li>
+            </ul>
+            <div class="wrap_con_box">
+                <div class="available-integral">
+                    <em>可用福分：<i>{{ point }}</i></em><span>(伙购时可抵扣现金{{ cash }}元)</span><a href="{{ url(['/help/default/user-experience']) }}">如何获得福分？</a>
+                </div>
+
+                <div class="screening">
+                    <summary>
+                        <a class="act" href="javascript:void(0);">最近一个月</a><a href="javascript:void(0);">最近三个月</a>
+                    </summary>
+                    <div class="search-vip">
+                        <em>选择时间段：</em>
+                        <input type="text" id="J-xl" value="2015-10-21">
+                        <i>-</i>
+                        <input type="text" id="J-xl-2" value="2015-10-23">
+                        <input type="submit" value="搜索">
+                    </div>
+                </div>
+
+                <table class="integral-table">
+                    <thead>
+                    <tr>
+                        <td width="30%">时间</td>
+                        <td width="20%" align="center">获得/支出</td>
+                        <td width="50%">详情</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div class="pagination">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/laydate.dev.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //日历调取
+        laydate({
+            elem: '#J-xl'
+        });
+        laydate({
+            elem: '#J-xl-2'
+        });
+    });
+    getPointsList();
+    filt(pointslist_condition, getPointsList);
+</script>
+{% endblock %}

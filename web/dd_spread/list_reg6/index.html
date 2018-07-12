@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>年度盛惠•1元专场</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+    <script type="text/javascript" src="js/register.js?2016725"></script>
+    <script>
+        $(function () {
+		//获取地址栏传过来参数
+           /* function GetQueryString(data)
+            {
+                var reg = new RegExp("(^|&)"+ data +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r!=null)return  unescape(r[2]); return null;
+            }
+            var phoneStr = GetQueryString('phoneStr');
+            if(phoneStr=='h'){
+                //替换为伙购的图片
+                $('#logo').attr('src','img/section1/se1-h.png');
+				$('#se2-h').attr('src','img/section2/se1-h.png');
+				$('#se3-h').attr('src','img/section3/se1-h.png');
+				$('#se4-h').attr('src','img/section4/se1-h.png');
+				$('#se5-h').attr('src','img/section5/se1-h.png');
+				$('#alerttop').attr('src','img/section6/alerttop-h.png');
+				$('#reg-sueccess').attr('src','img/reg-sueccess_01-h.png');
+            }*/
+                       
+        });
+    </script>
+    <style>
+        /*新渠道落地页*/
+        html,body{
+            /*min-height: 100%;*/
+            height: 100%;
+            /*要使用 swiper 必须设置这个属性*/
+        }
+        .head{
+            background-color: #4294f1;
+            background-image: url("img/section1/se-bg.png");
+        }
+
+        .sub-content{
+            position: relative;
+            /*padding-bottom: 10%;*/
+        }
+        .sub-list1 .link-btn{
+            left: 0;
+        }
+        .sub-list2 .link-btn{
+            right: 0;
+        }
+        .sub-list3 .link-btn{
+            left: 0;
+        }
+        .sub-list4 .link-btn{
+            right: 0;
+        }
+        .m_middle{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            display: block;
+            text-indent: -9999em;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .resize{/*width: 90%;margin:0 auto;*/position: absolute}
+        .sub{position: relative;/*height: 320px;*/width: 100%}
+        .head .sub{
+            margin-top: -35%;
+        }
+        /*匹配屏幕*/
+        @media screen and (max-width: 320px) {
+            .sub{
+
+            }
+            .sub img{
+                width: 90% !important;
+            }
+            .head .sub{
+                margin-top: -40%;
+            }
+            .head .sub img{
+                width: 90% !important;
+                margin: 0 auto;
+            }
+        }
+        /*.swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            !* Center slide text vertically *!
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }*/
+
+        .swipe-tip {
+            /*content: " ";*/
+            position: absolute;
+            width: 24px;
+            height: 18px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            bottom: .5rem;
+            background: url(img/web-swipe-tip.png) no-repeat;
+            background-size: 100% 100%;
+            animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -webkit-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -moz-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -o-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            z-index: 100;
+        }
+        @keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-webkit-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-moz-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-o-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-ms-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        /*ios注册弹出*/
+        .m_con_ios{
+            width: 80%;
+            /*height: 200px;*/
+            /*height: 100%;*/
+            /*background-color: #fff;*/
+            margin:55% auto auto;
+            border-radius: 5px;
+        }
+        .m_con_ios ul{
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        @media (device-height:568px) and (-webkit-min-device-pixel-ratio:2){
+            /*苹果5*/
+            .m_con_ios {
+                margin: 60% auto auto;
+            }
+        }
+
+        @media (min-device-width : 375px) and (max-device-width : 667px) and (-webkit-min-device-pixel-ratio : 2){
+            /*苹果6*/
+            .m_con_ios {
+                margin: 65% auto auto;
+            }
+        }
+        @media (min-device-width : 414px) and (max-device-width : 736px) and (-webkit-min-device-pixel-ratio : 3){
+            /*苹果6+*/
+            .m_con_ios {
+                margin: 65% auto auto;
+            }
+        }
+       /*滑动到最后一页追加slide*/
+        #m_popUp_ios2{
+            background-image: url("img/section6/alert_bg.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+
+</head>
+<body style="max-width: 640px;margin: auto;">
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="head swiper-slide">
+            <img src="img/section1/se1.png" id="logo" class="ani resize" style="width:80px;height:45px;left:0;top:0;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se5.png" class="ani resize" style="width:320px;height:193px;left:0;top:300px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+
+            <img src="img/section1/se2.png" class="ani resize" style="width:280px;height:79px;left:25px;top:35px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se3.png" class="ani resize" style="width:156px;height:101px;left:80px;top:125px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+            <img src="img/section1/se4.png" class="ani resize" style="width:230px;height:73px;left:45px;top:240px;z-index:5;" swiper-animate-effect="slideInUp" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s"/>
+        </div>
+        <div class="sub-content sub-list1 swiper-slide">
+
+            <img src="img/section2/se1.png" id="se2-h" class="resize ani" style="width:140px;height:184px;left:90px;top:20px;z-index:5;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s"/>
+            <img src="img/section2/se2.png" class="resize ani" style="width:220px;height:198px;left:80px;top:210px;z-index:5;" swiper-animate-effect="rollIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s"/>
+
+            <a href="javascript:;" class="link-btn"><img src="img/section2/se3.png" class="resize ani"  swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div>
+        <div class="sub-content sub-list2 swiper-slide">
+            <img src="img/section3/se1.png" id="se3-h" class="resize ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section3/se2.png" class="resize ani" swiper-animate-effect="lightSpeedIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="javascript:;" class="link-btn"><img src="img/section3/se3.png" class="resize ani" swiper-animate-effect="fadeInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div >
+        <div class="sub-content sub-list3 swiper-slide">
+            <img src="img/section4/se1.png" id="se4-h" class="resize ani" swiper-animate-effect="bounceInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section4/se2.png" class="resize ani" swiper-animate-effect="bounceInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="javascript:;" class="link-btn"><img src="img/section4/se3.png" class="resize ani" swiper-animate-effect="bounceInRight" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:35px;left:80px;top:425px;z-index:5;"/></a>
+
+        </div>
+        <div class="sub-content sub-list4 swiper-slide">
+            <img src="img/section5/se1.png" id="se5-h" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s" style="width:140px;height:184px;left:90px;top:20px;z-index:5;"/>
+            <img src="img/section5/se2.png" class="resize ani" swiper-animate-effect="rotateIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.7s" style="width:220px;height:198px;left:80px;top:210px;z-index:5;"/>
+
+            <a href="javascript:;" class="link-btn"><img src="img/section5/se3.png" class="resize ani" swiper-animate-effect="slideInUp" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s" style="width:170px;height:30px;left:80px;top:425px;z-index:5;"/></a>
+        </div>
+    </div>
+    <!--<div class="swiper-pagination"></div>-->
+    <div class="swipe-tip"></div>
+</div>
+<!--安卓弹出层-->
+<div id="m_popUp" class="m_popUp" style="display: none;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/android.png" style="width: 90%;margin: 0 auto" id="pic">
+        <a class="m_middle" id="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+<!--苹果注册弹出框-->
+<div id="m_popUp_ios" class="m_popUp" style="display:none;">
+    <div class="m_guide"></div>
+    <div class="m_con m_con_ios">
+        <ul>
+            <li class="accAndPwd">
+                <input class="ipt" id="userMobile" maxlength="11" type="tel" placeholder="请输入您的手机号码" />
+            </li>
+            <li>
+                <input style="width:63.5%;float: left;" class="ipt" id="mobileCode" type="text" value="" placeholder="6位验证码">
+                <button type="button" class="sendCode" href="javascript:void(0);">获取验证码</button>
+            </li>
+            <li class="accAndPwd">
+                <input class="ipt" id="userPassword" maxlength="20" type="password" placeholder="请输入8-25位密码" />
+            </li>
+            <li>
+                <img src="img/section6/alerttop.png" id="alerttop" style="width: 100%;position: absolute;bottom: 90%;left: 0;"/>
+                <button type="button" id="regSubmit" href="javascript:;" class="orangeBtn">一键注册</button>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<!--苹果注册成功后弹出-->
+<div class="m_popUpTip m_popUp" style="display: none;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/reg-sueccess_01.png" id="reg-sueccess" style="width: 90%;margin: 0 auto;">
+        <a class="m_middle" href="http://down.cgyyg.com/down.php" target="_blank"><img src="img/reg-sueccess_02.png" style="width: 90%"></a>
+
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+
+<div class="footer">
+    <div class="guod_g">
+        <div class="wrap wrap_r reg_before" style="display: none;">
+            <!--<button type="button" class="close">关闭</button>-->
+            <!--<p>温馨提示</p>-->
+            <p class="two" style="line-height: 1.4em;">您手机号已经注册<br>请下载APP参与夺宝</p>
+            <p><span style="padding: 0.2em 1em; background-color: #ef2828;" class="off"><a style="color: #fff;" href="http://down.cgyyg.com/down.php">立即下载APP</a></span></p>
+        </div>
+        <div class="wrap wrap_r reg_notice" style="display: none;">
+            <!--<button type="button" class="close">关闭</button>-->
+            <!--<p>注册提示</p>-->
+            <p class="two"></p>
+        </div>
+    </div>
+</div>
+<script>
+
+    var inWidth=window.innerWidth;
+    var inHeight=window.innerHeight;
+    var scaleW,
+        scaleH;
+
+    var inBi=320/480;
+    if((inWidth/inHeight)>inBi){
+        var w=inHeight*inBi;
+        document.body.style.width=w+'px';
+        // document.getElementById("m_popUp_ios").style.width=w+'px';
+        document.body.style.margin='0 auto';
+        //document.getElementById("m_popUp_ios").style.margin='0 auto';
+         scaleW=document.body.clientWidth/320;
+         scaleH=inHeight/480;
+    }
+    else{
+        var h=inWidth/inBi;
+        document.body.style.height=h+'px';
+        //document.getElementById("m_popUp_ios").style.height=h+'px';
+        document.body.style.marginTop=(inHeight-h)/2+'px';
+        // document.getElementById("m_popUp_ios").style.marginTop=(inHeight-h)/2+'px';
+        scaleW=inWidth/320;
+        scaleH=document.body.clientHeight/480;
+    }
+    var resizes = document.querySelectorAll('.resize');
+    for (var j=0; j<resizes.length; j++) {
+        resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+        resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+        resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+        resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px';
+    }
+
+    $(function () {
+
+        var mySwiper = new Swiper('.swiper-container',{
+            onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+                swiperAnimateCache(swiper);
+                swiperAnimate(swiper);
+            },
+            onSlideChangeStart: function(swiper){
+                //滑动开始前执行图片居中
+                // checkheight();
+                //给每一页不同的slide的body换背景
+                checkBg();
+            },
+            onSlideChangeEnd: function(swiper){
+                //滑入动画
+                swiperAnimate(swiper);
+                //检查是否到了最后一页，屏蔽提示
+                //checkEnd();
+                //检测是安卓还是ios
+                /*if(mySwiper.isEnd){
+                    //checkAlert();
+                    //mySwiper.slideTo(0, 3000, true);//切换到第一个slide，速度为1秒
+                }*/
+            },
+            /*onReachBeginning: function(swiper){
+             //到了第一页
+             $('.swipe-tip').show();
+             },*/
+            onReachEnd: function(swiper){
+                //到了最后一页
+                // $('.swipe-tip').hide();
+
+            },
+            onTouchEnd:function(){   /*手指滑动时，判断手指滑动的方向*/
+                /*if(mySwiper.isEnd){
+                 var   m_popUp=$("#m_popUp_ios"),
+                 m_con=$('.m_con_ios');
+                 m_popUp.css('display','block');
+                 }*/
+
+            },
+            direction: 'vertical',
+            //pagination: '.swiper-pagination',
+            mousewheelControl : true,
+            loop:true,
+            //autoHeight: true, //高度随内容变化
+        });
+
+        //判断是否是结尾
+        function checkEnd() {
+            if(mySwiper.isEnd){
+                $('.swipe-tip').hide();
+            }else{
+                $('.swipe-tip').show();
+            }
+        }
+        var acIndex=mySwiper.activeIndex;
+        //图片居中
+        function checkheight() {
+            var imgStr=$('.swiper-slide-active .resize');
+            var swiperHeight=mySwiper.height;
+            var imgHeight=imgStr.height();
+            var curHeight=(swiperHeight-imgHeight)/2;
+
+            imgStr.css('margin-top',curHeight);
+            alert(swiperHeight+'*'+imgHeight);
+            alert(imgStr.css('margin-top'));
+        }
+        //checkheight();
+        //到了最后一页，追加一页注册，判断是安卓还是ios
+        function checkBg(){
+            var acIndex=$('.swiper-slide.swiper-slide-active').attr('data-swiper-slide-index');
+             /*if(acIndex<0){acIndex=0}*/
+
+            console.log(acIndex);
+            if(acIndex==0){
+                document.body.style.backgroundColor='#4294f1';
+                document.body.style.backgroundImage='url(img/section1/se-bg.png)';
+            }
+            else if(acIndex==1){
+                document.body.style.backgroundColor='#814ec7';
+                document.body.style.backgroundImage='none';
+            }
+            else if(acIndex==2){
+                document.body.style.backgroundColor='#4ea9c7';
+                document.body.style.backgroundImage='none';
+            }
+            else if(acIndex==3){
+                document.body.style.backgroundColor='#c74eba';
+                document.body.style.backgroundImage='none';
+            }
+            else{
+                document.body.style.backgroundColor='#34b989';
+                document.body.style.backgroundImage='none';
+            }
+        }
+        //checkBg();
+		
+		//判断手机平台
+		if(isIos() || is_weixn() ){
+                // iPhone
+                $('.link-btn').click(function(){
+                   // window.location=regiUrl;
+                   var pic=$("#pic"),
+                           m_popUp=$("#m_popUp_ios"),
+                           m_con=$('.m_con_ios');
+
+                    m_popUp.css('display','block');
+
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+
+                    pic.attr('src','img/ios.png');
+                    //m_middle.attr({'href':'./register.html','target':'_parent'});
+                    /*if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }*/
+                });
+                $('#urlBut').text('立即注册');
+
+            }else{
+                //Android ;
+                $('.link-btn').click(function(){
+                    //window.location=url;
+                    var m_con=$('.m_con');
+                    var m_popUp=$("#m_popUp");
+                    m_popUp.css('display','block');
+                    //m_popUp.show();
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+                    if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }
+                });
+            }
+            //关闭弹层
+            $('.m_guide').on('click',function () {
+                $(this).parent('.m_popUp').css('display','none');
+            });
+    });
+
+</script>
+</body>
+</html>

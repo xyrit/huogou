@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>竞猜欧洲杯，激情无昼夜</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/idangerous.swiper.css">
+</head>
+<body>
+<div class="user_head">
+	<div class="user_img">
+        <a href="guessing.html"><img id="userAvatar" src="images/userimg.png" /></a>
+        <span>
+            <p><a href="javascript:;" class="name" id="nickname">未登录</a></p>
+            <p>点击查看<a href="guessing.html?random=">我的竞猜</a></p>
+            <!--  <p>您还没有竞猜过比赛！<a href="">点击了解</a></p>  未竞猜-->
+        </span>
+    </div>
+    <a class="kdlhb" href="red.html?random=">可兑领红包</a>
+</div>
+
+<div class="clear pkdiv">
+    <div class="arrow-left"></div> 
+    <div class="arrow-right"></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="gameList">
+
+
+            
+        </div>
+    </div>
+
+    <input type="hidden" id="selGameDate" value="">
+    <input type="hidden" id="selGameTeam" value="">
+    <input type="hidden" id="selGameOdds" value="">
+    <div class="srollgg">
+        <div class="srollgg_bg">
+            <div id="hottitle" class="hot">
+                <ul id="ulid">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="pagination"></div>
+
+
+<div class="bottomzw"></div>
+<div class="jisuandiv">
+    <div class="yujihuibao"><span id="buyNumText"></span></div>
+    <div class="main">
+        <div class="touzhu">
+            <a class="jianshu" href="javascript:;"></a>
+            <input type="text" class="shuzhi" value="10" id="buyNum">
+            <a class="jiashu" href="javascript:;"></a>
+            <span>元</span>
+        </div>
+        <a class="jingcaian" href="javascript:;">立即竞猜</a>
+        <div class="clear"></div>
+        <!--   <a class="jingcaian2" href="javascript:void(0);">立即竞猜</a> 网页版用  -->
+    </div>
+</div>
+
+<!-- 弹窗样式 -->
+<div class="shade_box" id="payResult">
+    <div class="centershade">
+        <div class="popup_box">
+            <p>谢谢您对该球队的支持~<br>可前往我的竞猜页面查看我的竞猜信息</p>
+        </div>
+        <div class="popup_boxBut">
+                <a class="hidePopup" href="javascript:;">确定</a>
+        </div>
+    </div>
+</div>
+
+<div class="shade_box" id="paying">
+    <div class="centershade">
+        <div class="popup_box">
+            <p>正在提交...</p>
+        </div>
+    </div>
+</div>
+<!-- 弹窗 结束 -->
+
+<!-- 预计回报 -->
+<div class="shade_boxText">
+    <div class="centershadeText">
+        <div class="popupText">
+            <div class="text_left"><h4>规则说明:</h4></div>
+            <p>
+                竞猜起投本金为1元。若猜中即获得金额=(本金*赔率)的伙购币，若竞猜失败可以前往活动页面我的竞猜页面兑换失败等额的红包。
+                参与竞猜的奖金将会以夺宝币的形式存入用户的个人账户中，伙购币不可提现，但可用来购买滴滴夺宝上的任意商品。
+            </p>
+            <a class="hidePopupText" href="javascript:;">确定</a>
+        </div>
+    </div>
+</div>
+<!-- 竞猜规则 结束 -->
+
+ 
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/comm.js"></script>
+<script type="text/javascript" src="js/idangerous.swiper.min.js"></script>
+<script type="text/javascript" src="js/MSClass.js"></script>
+
+<script>
+
+$(document).ready(function(){
+	$('#gameList').on('click', ".suclist .infos a",function(){
+		$(this).parents(".suclist").find("a").removeClass("active");
+		$(this).addClass("active");
+
+        //fj
+        var gameDate = $(this).attr('data-gamedate');
+        var team = $(this).attr('data-team');
+        var odds = $(this).attr('data-odds');
+
+        changeBuyText($('#buyNum').val(), odds);
+        setSelGameInfo(gameDate, team, odds);
+        var objsscon = $(this).parents(".sscon");
+        objsscon.attr('data-gamedate', gameDate);
+        objsscon.attr('data-team', team);
+        objsscon.attr('data-odds', odds);
+	});
+    $('.touzhu .jiashu').click(function () {
+        var oldVal = $('#buyNum').val();
+        oldVal = parseInt(oldVal);
+        var nowVal = oldVal + 1;
+        $('#buyNum').val(nowVal);
+        changeBuyText(nowVal, $('#selGameOdds').val());
+    });
+    $('.touzhu .jianshu').click(function () {
+        var oldVal = $('#buyNum').val();
+        oldVal = parseInt(oldVal);
+        var nowVal = oldVal - 1;
+        nowVal = nowVal > 0 ? nowVal : 1;
+        $('#buyNum').val(nowVal);
+        changeBuyText(nowVal, $('#selGameOdds').val());
+    });
+
+    $('#buyNum').on('input', function() {
+        var val = $('#buyNum').val();
+        if (val.length>0) {
+            val = parseInt(val);
+            if (isNaN(val)) {
+                val = 10;
+            }
+        }
+        $('#buyNum').val(val);
+        changeBuyText(val, $('#selGameOdds').val());
+    });
+
+    //执行竞猜
+    $('.jingcaian').click(function(){
+        showPopup('paying');
+        var payUrl = '/euro-cup/pay';
+        var gameDate = $('#selGameDate').val();
+        var team = $('#selGameTeam').val();
+        var money = $('#buyNum').val();
+        var data = {'game_date' : gameDate, 'team' : team, 'money' : money};
+        $.getJsonp(apiBaseUrl + payUrl, data, function() {
+
+        });
+        getPayResult(gameDate);
+
+        return false;
+    });
+
+    //预计回报
+    $('.yujihuibao').click(function(){
+        showPoupText(3000);
+    });
+});
+
+function getPayResult(gameDate)
+{
+    var payResultUrl = '/euro-cup/pay-result';
+    $.getJsonp(apiBaseUrl+payResultUrl, {'game_date' : gameDate}, function(json) {
+        if (typeof (json.code) == 'undefined') {
+            setTimeout(function() {
+                getPayResult(gameDate);
+            }, 900);
+        }else if (json.code==100) {
+            $('.shade_box').fadeOut();
+            showPopup('payResult', null, 'http://www.'+baseHost+'/didi_app/euro/guessing.html?random='+Math.random());
+        } else {
+            $('.shade_box').fadeOut();
+            $('.popup_box').html('<p>'+json.msg+'</p>');
+            if (json.code==203) {
+                showPopup('payResult', null, 'http://www.'+baseHost+'?type=4');
+            } else {
+                showPopup('payResult');
+            }
+        }
+    });
+}
+/*
+ * 提示弹窗
+ * timeFont  自动隐藏时间 int
+ * url   点击按钮 需要跳转地址 可不传
+ */
+function showPopup(id, timeFont,url){
+
+    $('#'+id+'.shade_box').fadeIn();
+    if (timeFont>0) {
+        window.setTimeout(function(){$('.shade_box').fadeOut();},timeFont);
+    }
+    if (typeof url != 'undefined') {
+        $('.hidePopup').attr('href', url);
+    }
+    $('.hidePopup').click(function(){
+        if(!url){
+            $('.shade_box').fadeOut();
+        }
+    });
+}
+
+/*
+ * 显示规则 文字内容
+ * timeFont  自动隐藏时间 int
+ * url   点击按钮 需要跳转地址 可不传
+ */
+function showPoupText(timeFont,url){
+    url?url:null;
+    $('.shade_boxText').fadeIn();
+    window.setTimeout(function(){$('.shade_boxText').fadeOut();},timeFont);
+
+    if (typeof url != 'undefined') {
+        $('.hidePopupText').attr('href', url);
+    }
+    $('.hidePopupText').click(function(){
+        if(!url){
+            $('.shade_boxText').fadeOut();
+        }
+    });
+}
+    function setSelGameInfo(date, team, odds)
+    {
+        $('#selGameDate').val(date);
+        $('#selGameTeam').val(team);
+        $('#selGameOdds').val(odds);
+    }
+
+    function changeBuyText(money, odds)
+    {
+        var returnMoney = Math.ceil((money * odds));
+        var text = '预计回报：猜中得'+returnMoney+'，未中得'+money;
+        $('#buyNumText').text(text);
+    }
+function createUserFaceImgUrl(name, width) {
+    if (!name) {
+        name = '000000000000.jpg';
+        return 'http://img.' + baseHost + '/userface/' + width + '/' + name;
+    }
+    return 'http://img.' + baseHost + '/userface/' + width + '/' + name;
+}
+
+function share()
+{
+    window.location.href = 'http://www.' + baseHost + '?type=3';
+}
+</script>
+<script>
+    $(function() {
+        var userInfoUrl = '/info/user-info';
+        $.getJsonp(apiBaseUrl + userInfoUrl, {}, function(json) {
+            if (json.code == 201) {
+                alert('请先登录');
+            } else {
+                var userInfo = json.userinfo;
+                var nickname = userInfo.nickname;
+                var avatar = userInfo.avatar;
+                var money = userInfo.money;
+                $('#nickname').text(nickname);
+                $('#userAvatar').attr('src', createUserFaceImgUrl(avatar, 80));
+
+            }
+        });
+
+        var userPayListUrl = '/euro-cup/user-pay-list';
+        $.getJsonp(apiBaseUrl + userPayListUrl, {}, function(json) {
+            var html = '';
+            $.each(json.list, function(i,v) {
+                html += '<li><a href="javascript:;">'+v.nickname+'充值'+v.money+'元，为'+v.team+'队加油~</a></li>';
+            });
+            $('#ulid').html(html);
+
+            var bigwidth=$(".banner").width();
+            new Marquee(["hottitle","ulid"],2,1,bigwidth,30,20,0,0);
+        });
+
+        var gamesUrl = '/euro-cup/games-list';
+        $.getJsonp(apiBaseUrl + gamesUrl, {}, function(json) {
+            var html = '';
+            var listNum = 0;
+            $.each(json.list, function(i,v) {
+                var gameDate = i;
+                var gameDesc = v.desc;
+                var dateText = v.dateText;
+                var teams = v.teams;
+                var teamLeft = teams[0];
+                var teamEq = teams[1];
+                var teamRight = teams[2];
+
+                if (listNum==0) {
+                    changeBuyText(10, teamLeft.odds);
+                    setSelGameInfo(gameDate, teamLeft.team, teamLeft.odds);
+                }
+                listNum ++;
+                html += '<div class="swiper-slide">';
+                html += '<div class="sscon" data-gamedate="'+gameDate+'" data-team="'+teamLeft.team+'" data-odds="'+teamLeft.odds+'">';
+                html += '<div class="sai_shi">';
+                html += '<div class="tit">'+gameDesc+'</div>';
+                html += '<div class="time">'+dateText+'</div>';
+                html += '<div class="teams">';
+                html += '<div class="team_info fl">';
+                html += '<p><img src="images/'+teamLeft.img+'" /></p>';
+                html += '<p>'+teamLeft.name+'</p>';
+                html += '</div>';
+                html += '<div class="team_info fr">';
+                html += '<p><img src="images/'+teamRight.img+'" /></p>';
+                html += '<p>'+teamRight.name+'</p>';
+                html += '</div>';
+                html += '<div class="clear"></div>';
+                html += '</div>';
+                html += '</div>';
+
+                html += '<div class="sai_suc">';
+                html += '<div class="suclist">';
+                html += '<div class="infos">';
+                html += '<p><a class="active" href="javascript:void(0);" data-gamedate="'+gameDate+'" data-team="'+teamLeft.team+'" data-odds="'+teamLeft.odds+'">'+teamLeft.name+'<br>'+teamLeft.odds+'</a></p>';
+                html += '<p>'+teamLeft.suport+'%支持</p>';
+                html += '</div>';
+                html += '<div class="infos">';
+                html += '<p><a href="javascript:void(0);"  data-gamedate="'+gameDate+'" data-team="'+teamEq.team+'" data-odds="'+teamEq.odds+'">平局<br>'+teamEq.odds+'</a></p>';
+                html += '<p>'+teamEq.suport+'%支持</p>';
+                html += '</div>';
+                html += '<div class="infos">';
+                html += '<p><a href="javascript:void(0);"  data-gamedate="'+gameDate+'" data-team="'+teamRight.team+'" data-odds="'+teamRight.odds+'">'+teamRight.name+'<br>'+teamRight.odds+'</a></p>';
+                html += '<p>'+teamRight.suport+'%支持</p>';
+                html += '</div>';
+                html += '</div>';
+                html += '</div>';
+                html += '<div class="righta"><a class="ruleBut" href="rule-dd.html?random=">竞猜规则</a></div>';
+                html += '<div class="qiumi">';
+                html += '<a href="rank.html?team='+teamLeft.team+'">'+teamLeft.name+'铁杆球迷</a>';
+                html += '<a href="rank.html?team='+teamRight.team+'">'+teamRight.name+'铁杆球迷</a>';
+                html += '<span class="line"></span>';
+                html += '</div>';
+
+                html += '<div class="righta"><a href="rank.html?random=">完整球迷榜单</a></div>';
+                html += '<div class="suctips">亲，竞猜奖金将存入您的账户哦！</div>';
+                html += '</div>';
+                html += '</div>';
+
+            });
+            $('#gameList').html(html);
+
+            var windowHeight = $(".sscon").height();
+            $(".pkdiv").css("height", windowHeight + "px");
+            window.onresize = function () {
+                var windowHeight = $(".sscon").height();
+                $(".pkdiv").css("height", windowHeight + "px");
+            }
+            var mySwiper = new Swiper('.swiper-container', {
+                pagination: '.pagination',
+                loop: true,
+                grabCursor: true,
+                paginationClickable: true,
+                onSlideChangeEnd : function() {
+                    //轮播后 设置投注信息
+                    var objsscon = $('.swiper-slide-active .sscon');
+                    var gameDate = objsscon.attr('data-gamedate');
+                    var team = objsscon.attr('data-team');
+                    var odds = objsscon.attr('data-odds');
+                    changeBuyText($('#buyNum').val(), odds);
+                    setSelGameInfo(gameDate, team, odds);
+                }
+            })
+
+            $('.arrow-left').on('click', function (e) {
+                e.preventDefault()
+                mySwiper.swipePrev();
+            })
+            $('.arrow-right').on('click', function (e) {
+                e.preventDefault()
+                mySwiper.swipeNext();
+            })
+        });
+    });
+</script>
+</body>
+</html>

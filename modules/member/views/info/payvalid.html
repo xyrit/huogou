@@ -1,0 +1,72 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}支付密码_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                <div class="safety-title">
+                    <h3 class="zhifu">支付密码</h3>
+                    <a href="javascript:history.back()">&lt;&lt; 返回</a>
+                </div>
+                <div class="verify">
+                    {% if user.phone == '' %}
+                    <span>您当前未绑定手机号 <a href="{{ url(['/member/info/phone']) }}" style="color: #ff500b;">去绑定</a></span>
+                    {% else %}
+                    <p>您当前绑定的手机号：{{ user.phone }}</p>
+                    <div>
+                        <em>验证码：</em><input type="text" id="code"><a class="verify-yz" href="javascript:void(0)" id="getCode" t="0">获取验证码</a>
+                    </div>
+                    <input type="hidden" value="{{ flag }}" id="flag">
+                    <input type="hidden" value="payvalid" id="type">
+                    <input class="verify-submit" type="submit" value="下一步" id="btnValid">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+<script>
+    var flag = $('#flag').val();
+    if (flag == 0) { //关闭支付密码
+        type = 34;
+    } else if (flag == 1) { //开启支付密码
+        type = 8;
+    } else if (flag == 2) { //修改支付密码
+        type = 9;
+    }
+    if ($.cookie('SEND_CODE_' + type) == 1) {
+        $('#getCode').addClass('verification_gray').attr("t",60).text('重新发送(60)');
+        var j =setInterval(function(){
+            var t = parseInt($('#getCode').attr("t")-1);
+            if (t <= 0) {
+                clearInterval(j);
+                $('#getCode').attr("t",t).text('获取验证码').removeClass('verification_gray');
+            }else{
+                $('#getCode').attr("t",t).text('重新发送('+t+')');
+            }
+        },1000);
+    }
+</script>
+{% endblock %}

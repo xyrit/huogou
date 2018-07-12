@@ -1,0 +1,132 @@
+{% extends '@adminModule/views/base.html' %}
+
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增余额调整</strong>
+            </div>
+        </div>
+
+        <hr>
+        {{ html.beginForm('/finance/adjust-balance', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'user_id', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'user_id', {'placeholder':'用户手机或邮箱'})|raw }}<span>余额：<b class="usermoney"></b>元</span>
+                        {{ html.error(model, 'user_id', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'type', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeRadioList(model, 'type', {'0':'增加', '1':'扣除'})|raw }}
+                        {{ html.error(model, 'type', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'reason', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'reason', reason,{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'reason', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'order', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'order', {'placeholder':'原始单号'})|raw }}
+                        {{ html.error(model, 'order', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12">
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'money', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'money', {'placeholder':'请输入正整数'})|raw }}<span>调整后余额：<b class="actual"></b>元</span>
+                        {{ html.error(model, 'money', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <div class="am-u-sm-10 am-u-sm-push-2">
+                    <button type="submit" id="sub" class="am-btn am-btn-primary">保存</button>
+                </div>
+            </div>
+            {{ html.endForm() | raw }}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+        $('#adjustbalance-user_id').blur(function(){
+            var name = $(this).val();
+            $.post('{{ url(['/admin/finance/user']) }}', {'name':name}, function (data) {
+                if(data == 1){
+                    alert('该用户不存在');
+                }else{
+                    $('.usermoney').html(data);
+                    $('#adjustbalance-user_id').after('<input type="hidden" name="beformoney" value="'+data+'"> ');
+                }
+            });
+        })
+
+        $('#adjustbalance-reason').change(function(){
+            var reason = $(this).val();
+            if(reason == '其它'){
+                $(this).after('<input type="text" name="other">');
+            }else{
+                $("input[name=other]").remove();
+            }
+        })
+
+        $("#adjustbalance-money").bind("copy cut paste",function(e){
+            return false;
+        })
+
+        $('#adjustbalance-money').blur(function(){
+            $('input[name=final_money]').remove();
+            var money = $('.usermoney').html();
+            var moneytype = $('#adjustbalance-type input:checked').val();
+            var much = $('#adjustbalance-money').val();
+            if(moneytype == 0){
+                var final = parseFloat(money) + parseFloat(much);
+            }else if(moneytype == 1){
+                var final = parseFloat(money) - parseFloat(much);
+                if(final < 0) final = 0;
+            }else{
+                alert('请选择操作');return false;
+            }
+
+            $('.actual').html(final);
+            $('.actual').after('<input name="final_money" type="hidden" value="'+final+'">');
+        })
+
+        $('#sub').click(function(){
+            var final = $('#adjustbalance-money').val();
+            var reg=/^[0-9]*[1-9][0-9]*$/;
+
+            if(reg.test(final) == false || final == ''){
+                alert('请填写正整数金额');return false;
+            }
+            parent.location.reload();
+        })
+    })
+</script>
+{% endblock %}

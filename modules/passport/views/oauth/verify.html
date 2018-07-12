@@ -1,0 +1,56 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block title %}验证信息_{{ app.name }}{% endblock %}
+
+{% block body %}
+
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return" href="{{ url(['/']) }}">返回首页</a>
+  </section>
+
+  {{ html.beginForm('', 'post', {'id':'oatuh-verify-form'}) | raw }}
+  <section class="binding_box">
+    <div class="con padding">
+      <h1 class="yanzhen">验证信息</h1>
+      <div class="con-box">
+        <div class="binding">
+          <p class="binding-text"><em>验证码已发送至</em><i>{{ privacyAccount }}</i><a href="{{ rebindUrl }}">更换</a></p>
+          <summary>
+            <input class="gl_verify" placeholder="6位验证码" type="text" name="code" id="oathCode" maxlength="6">
+            <input type="hidden" name="account" id="account" value="{{ account }}">
+            <a href="javascript:void(0);" class="verification_act" t="0">重新发送（60）</a>
+          </summary>
+          <span id="oathCodeError"></span>
+          <input type="submit" value="立即绑定" id="oauthBindBtn">
+        </div>
+      </div>
+    </div>
+  </section>
+  {{ html.endForm() | raw }}
+
+  <!--弹窗-->
+  <div id="resend-wrap" style="display: none;">
+    <div class="resend-container">
+      <i id="resend-close">X</i>
+      <h5>请输入验证码</h5>
+      <div class="log_ipts">
+        <input class="gl_verify" type="text" id="smsVcode" maxlength="6">
+        <em class="input_arr">验证码</em>
+      </div>
+      <a href="javascript:void(0);" class="resend-code refresh-imgCode"><img src="{{ url(['/passport/api/captcha']) }}" id="imgCode"></a> <span class="refresh-imgCode">换一个</span>
+      <span id="vcodeerror"></span>
+      <input type="submit" value="确 定" id="vcodeSubmit">
+    </div>
+  </div>
+  <!--弹窗end-->
+
+  {% include '@passportModule/views/footer.html' %}
+{% endblock %}
+
+{% block script %}
+  <script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+  <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/bind.js"> </script>
+
+
+{% endblock %}

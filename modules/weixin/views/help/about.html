@@ -1,0 +1,31 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}了解伙购{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/help.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+
+<div class="wrapper marginB">
+    <div class="newHelp">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b01.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b02.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b03.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b04.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b05.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b06.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b07.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b08.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b09.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b10.png" width="100%">
+        <img src="{{ app.params.skinUrl }}/weixin/images/b11.png" width="100%">
+    </div>
+    {% include '@weixinModule/views/footer.html' %}
+
+
+</div>
+
+
+{% endblock %}

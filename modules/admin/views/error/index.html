@@ -1,0 +1,33 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">{{ code }}</strong>
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <h2 class="am-text-center am-text-xxxl am-margin-top-lg">{{ name }}</h2>
+                <p class="am-text-center">{{ message }}</p>
+                <pre class="page-404">
+          .----.
+       _.'__    `.
+   .--($)($$)---/#\
+ .' @          /###\
+ :         ,   #####
+  `-..__.-' _.-\###/
+        `;_:    `"'
+      .'"""""`.
+     /,  ya ,\\
+    //  {{ code }}!  \\
+    `-._______.-'
+    ___`. | .'___
+   (______|______)
+                </pre>
+            </div>
+        </div>
+    </div>
+{% endblock %}

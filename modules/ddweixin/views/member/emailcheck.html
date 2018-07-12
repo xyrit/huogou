@@ -1,0 +1,40 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/emailcheck.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>绑定邮箱</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <input name="hidOldEmail" type="hidden" id="hidOldEmail" value="{{oldEmail}}" />
+        <input name="hidEmail" type="hidden" id="hidEmail" value="{{email}}" />
+        <div class="authentication-con clearfix">
+            <ul>
+                <li class="pd20"> 验证邮箱: {{privateEmail}}</li>
+                <li class="enter-word"> <input id="txtCode" maxlength="6" type="text" placeholder="请输入6位验证码" class="rText" />
+                    <a id="btnSend" href="javascript:;" class="orgBtn">获取验证码</a>
+                </li>
+                <li><a id="btnSubmit" href="javascript:;" class="grayBtn">确认</a></li>
+                <li class="gray9">换了邮箱或遗失？请致电客服申诉解除绑定<br /> 400-850-8080</li>
+            </ul>
+        </div>
+    </section>
+    {% include '@ddweixinModule/views/footer.html' %}
+</div>
+{% endblock %}

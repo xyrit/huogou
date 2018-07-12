@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>兑换弹窗</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/user.css"/>
+</head>
+<body>
+<div class="shade">
+    <div id="convertBox">
+        <a class="removeBox"><img src="images/error.png"/></a>
+        <div class="huodeMain">
+            <a class="titlefon">已获得：</a>
+            <span><img src="images/phjbg.png"/>X<font>3</font></span>
+            <span><img src="images/phjbg.png"/>X<font>3</font></span>
+            <span><img src="images/phjbg.png"/>X<font>3</font></span>
+
+        </div>
+
+        <div class="huodeMain">
+            <a class="titlefon">可兑换：</a>
+            <span><img src="images/phjbg.png"/>X<font class="numFont">3</font></span>
+            <div class="cart">
+                <a href="javascript:;" class="reduce">-</a>
+                <input class="cartInput" type="tel" name="num" value="1"/>
+                <a href="javascript:;" class="add">+</a>
+            </div>
+        </div>
+
+        <div class="huodeMain paddLeft">
+            <span><img src="images/phjbg.png"/>X<font class="numFont">5</font></span>
+            <div class="cart">
+                <a href="javascript:;" class="reduce">-</a>
+                <input class="cartInput" type="tel" name="num" value="1"/>
+                <a href="javascript:;" class="add">+</a>
+            </div>
+        </div>
+
+        <div class="huodeMain paddLeft">
+            <span><img src="images/phjbg.png"/>X<font class="numFont">8</font></span>
+            <div class="cart">
+                <a href="javascript:;" class="reduce">-</a>
+                <input class="cartInput" type="tel" name="num" value="1"/>
+                <a href="javascript:;" class="add">+</a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--获得伙购币-->
+        <div class="gain">可获得<span>38</span>个伙购币</div>
+
+        <!--兑换规则-->
+        <div class="ruleText">
+            <p style="padding-top: 10px;">兑换规则：</p>
+            <p>
+                一枚金牌可兑换66个伙购币;一枚银牌可兑换33个伙购
+                币;一枚铜牌可兑换6个伙购币。
+            </p>
+            <p>
+                对应京东购物卡奖品，请前往【我的】-【获得的奖品】领取！
+            </p>
+        </div>
+        <a href="javascript:;" class="convertBut">马上兑换</a>
+    </div>
+</div>
+<button onclick="fadeInBox();">立即兑换</button>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function(){
+        //增加数量
+        $('.add').click(function(){
+            var vInput = $(this).parent().find('.cartInput');
+            var num    =$(this).parent().parent().find('.numFont').text();
+            var v = vInput.val();
+            v++;
+            if(v>num){
+                v=num;
+                return false;
+            }
+            vInput.val(v);
+        });
+
+        //增少数量
+        $('.reduce').click(function(){
+            var vInput = $(this).parent().find('.cartInput');
+            var num    =$(this).parent().parent().find('.numFont').text();
+            var v = vInput.val();
+            v--;
+            if(v<1){
+                v=num;
+                return false;
+            }
+            vInput.val(v);
+        });
+
+        //关闭兑换弹窗
+        $('.removeBox').click(function(){
+            $(this).parent().parent().fadeOut();
+        });
+    });
+    function fadeInBox(){
+        $('.shade').fadeIn();
+    }
+    //fadeInBox();//调用兑换弹窗
+</script>
+</body>
+</html>

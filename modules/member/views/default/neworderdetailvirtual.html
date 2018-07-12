@@ -1,0 +1,206 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}订单详情_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+{% include '@app/views/nav.html' %}
+
+<section class="wrap clear">
+        <div class="present">
+			<a href="/">首页</a><i></i><a href="/default/order-list">我的伙购</a><i></i><a href="/default/order-list">获得的商品</a><i></i><a href="">订单详情</a>
+		</div>
+        <div class="order-detail2">
+			<h2>获得的商品 - 订单详情</h2>
+			<ul class="order-detail2-nav">
+				<li class="pass"><span>获得商品</span><em></em></li>
+				{% if orderInfo.status == 0 %}
+				<li class="act"><span>选择运营商</span><i></i><em></em></li>
+				<li class="last"><span>派发奖品</span><i></i></li>
+				{% elseif orderInfo.status == 5 or orderInfo.status == 8 or orderInfo.status == 4 %}
+				<li class="pass"><span>选择运营商</span><i></i><em></em></li>
+				<li class="last act"><span>派发奖品</span><i></i></li>
+				{% endif %}
+			</ul>
+			<div class="order-detail2-box">
+				<div class="order-detail2-status">
+					{% if orderInfo.status == 0 %}
+					<h3>当前状态：等待选择运营商</h3>
+					{% elseif orderInfo.status == 5 or orderInfo.status == 8 or orderInfo.status == 4 %}
+					<h3>当前状态：奖品已派发</h3>
+					{% endif %}
+					<p>客服工作时间为（周一至周日 09:00-21:00），在此期间您可以致电 400-000-5000 客服热线随时咨询订单相关信息。</p>
+				</div>
+				{% if orderInfo.status == 0 %}
+				<div class="recharge">
+					<h3>请您选择运营商</h3>
+					<ul class="recharge_list">
+						<li>
+							<i></i>
+							<label for="recharge01">
+								<em><img src="{{ app.params.skinUrl }}/img/recharge02.jpg"></em>中国移动（充值卡卡密）
+							</label>
+							<input type="radio" id="recharge01" name="recharge" value="yd">
+						</li>
+						<li>
+							<i></i>
+							<label for="recharge02">
+								<em><img src="{{ app.params.skinUrl }}/img/recharge03.jpg"></em>中国联通（充值卡卡密）
+							</label>
+							<input type="radio" id="recharge02" name="recharge" value="lt">
+						</li>
+						<li>
+							<i></i>
+							<label for="recharge03">
+								<em><img src="{{ app.params.skinUrl }}/img/recharge04.jpg"></em>中国电信（充值卡卡密）
+							</label>
+							<input type="radio" id="recharge03" name="recharge" value="dx">
+						</li>
+					</ul>
+
+					<a class="recharge_a" href="javascript:;">确认提交</a>
+				</div>
+				{% elseif orderInfo.status == 5 or orderInfo.status == 8 or orderInfo.status == 4 %}
+				<div class="recharge">
+					<h3>请您选择使用方式<span></span></h3>
+					
+					<div class="recharge_card">
+						<div class="recharge_card_title">
+							<span>卡号</span>
+							<span>密码</span>
+							<span></span>
+						</div>
+						<ul>
+						</ul>
+					</div>
+				</div>
+				<script type="text/javascript">
+					$(function(){
+						$.getContent(apiBaseUrl + '/record/get-virtual-list?id='+getUrlParam('id'),'','virtualList');
+					})
+					function success_virtualList(json){
+						if(json.code == 100){
+							if (json.type == '伙购币') {
+								$(".recharge h3").html("兑换商品详情");
+								$.each(json.list,function(i,v){
+									var html = "";
+									html += '<p style="padding-bottom: 10px;">您已成功兑换'+v.card+'，请到伙购币明细页面查询余额。</p>';
+									html += '<a target="_blank" style="color: #2af;" href="http://member.' +　baseHost +  '/recharge/money-log">前往查看></a>';
+									$(".recharge_card").html(html);
+								})
+							}else{
+								$(".recharge h3 span").html(" (您获得"+json.list.length+"张"+json.list['0'].parvalue+"元<span style='font-weight:bold;font-size:16px;padding:0 5px;color:#81d444'>"+json.type+"</span>充值卡，可充值到支付宝或话费)");
+								$.each(json.list,function(i,v){
+									var html = "";
+									html += '<li>';
+									html += '<span>'+v.card+'</span>';
+									html += '<span id="pwd_'+v.id+'">'+v.pwd+'</span>';
+									html += '<span><a class="card_cat" href="javascript:;" data-id="'+v.id+'">显示卡密</a></span>';
+									html += '</li>';
+									$(".recharge_card ul").append(html);
+								})
+								$(".card_cat").click(function(){
+									var id = $(this).data('id');
+									$.getJsonp(apiBaseUrl + '/record/get-pwd?id='+id,'',function(json){
+										if (json.code == 100) {
+											$("#pwd_"+id).text(json.result);
+										};
+									})
+								})
+							};
+						}
+					}
+				</script>
+				{% endif %}
+			</div>
+
+			<div class="order-goods">
+                <h2>获得的商品</h2>
+                <table class="get record_con">
+                    <thead>
+                    <tr>
+                        <td width="55%">商品</td>
+                        <td width="15%">价值</td>
+                        <td width="15%">数量</td>
+                        <td width="15%">订单号</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <figure>
+                                <picture>
+                                    <a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}"><img src="{{ periodInfo.goods_picture_url }}"></a>
+                                </picture>
+                                <figcaption>
+                                    <h3><a href="{{ url('/product', {'pid': periodInfo.goods_id}) }}">(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</a></h3>
+                                    <p>幸运伙购码：{{ periodInfo.lucky_code }}</p>
+                                    <p>揭晓时间：{{ periodInfo.raff_time }}</p>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>￥{{ periodInfo.price }}</td>
+                        <td>1</td>
+                        <td>{{ orderId }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+			
+        	<div class="scan-code">
+				<div>
+					<picture><img src="{{ app.params.skinUrl }}/img/ico_weixin02.jpg" alt=""></picture>
+					<article>
+						<h4>微信扫一扫</h4>
+						<p>关注伙购官方微信</p>
+						<p>揭晓信息随时掌控！</p>
+					</article>
+				</div>
+			</div>
+        </div>
+	</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+{% block js %}
+<script type="text/javascript">
+	var type = 'yd';
+	$(document).ready(function(){
+		$('.recharge_list').each(function(){
+			$(this).find('li').on('click', function(){
+				$(this).addClass('act').siblings().removeClass('act');
+				$(this).find('input').attr("checked","checked");
+				type = $(this).find('input').val();
+			}).eq(0).trigger('click');
+		})
+		$(".recharge_a").click(function(){
+			getVirtual();
+		})
+	})
+	function success_getVirtualResult(json){
+		if (json.code == 100) {
+			window.location.reload();
+		}else{
+			var wHtml = "";
+				wHtml += '<div class="fail">';
+				wHtml += '<img src="'+skinBaseUrl+'/img/shibai.png">';
+				wHtml += '<aside>抱歉,派发失败</aside>';
+				wHtml += '<p>请点击重新派发，如有疑问可以<a href=http://help.' +　baseHost +  '/contactus.html>联系我们</a></p>';
+				wHtml += '<a class="send_a" href="javascript:;" onclick="getVirtual();">重新派发</a>';
+				wHtml += '</div>';
+			$(".recharge").html(wHtml);		
+		}
+	}
+	function getVirtual(){
+		var loading = '<img src="'+ skinBaseUrl +'/img/result-loading.gif" style="padding:50px 0">';
+		$(".order-detail2-status").remove();
+		$(".recharge").html(loading).css('textAlign','center');
+		$.getContent(apiBaseUrl + '/record/get-virtual?id='+getUrlParam('id')+'&type='+type,'','getVirtualResult');
+	}
+</script>
+{% endblock %}

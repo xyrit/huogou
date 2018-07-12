@@ -1,0 +1,85 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}伙购网,伙购供应商,商务合作{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}商务合作_{{ app.name }}{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="hg-partner"></section>
+<section class="hg-partner-item">
+    <ul>
+        <li>
+            <h2><img src="{{ app.params.img }}/img/o_pic9.png">伙购网简介</h2>
+            <p>伙购网（www.huogou.com）是一种全新的互动购物体验方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网…  <a href="{{ url(['/help/default/about']) }}">查看详情 &gt;</a></p>
+        </li>
+        <li>
+            <h2><img src="{{ app.params.img }}/img/o_pic10.png">招商对象</h2>
+            <p>国内外品牌商、经销商或有正规货源及授权的渠道商，具有合法完整的企业营业执照、企业税务登记证 、品牌授权书（或商标注册证）。欢迎以多样化合作方式进行商务合作。</p>
+        </li>
+        <li class="last">
+            <h2><img src="{{ app.params.img }}/img/o_pic11.png">招商联系</h2>
+            <p>邮箱：hz@huogou.com<br> 邮编：518100 <br> 地址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼</p>
+        </li>
+    </ul>
+</section>
+<section class="hg-power">
+    <ul>
+        <li class="hg-power-01">
+            <h2>创新模式，潜力巨大，前景广阔</h2>
+            <p>伙购网是一种全新的互动购物体验，集购物、娱乐于一体，引领购物娱乐潮流，是国内最具潜质的综合型B2C电子商务平台，由深圳市橙果网络科技有限公司投入巨资打造。</p>
+        </li>
+        <li class="hg-power-02">
+            <h2>高效运营，专业品质管理</h2>
+            <p>强大的互联网营销能力，领先的精准营销手段，线上线下渠道的无缝整合，快速准确地向用户传递最新、最热商品信息。</p>
+        </li>
+        <li class="hg-power-03">
+            <h2>高端技术支撑，应对庞大流量</h2>
+            <p>伙购网线上、移动App、微信营销平台等带来庞大流量，拥有高端信息技术支撑的网络购物平台，可支持1000万用户同时访问，每天可处理上万订单。</p>
+        </li>
+        <li class="hg-power-04">
+            <h2>充满激情与活力的团队</h2>
+            <p>青春激扬，这里充满创意与灵感。我们立志成为一家快速成长、充满活力的创业公司，我们更矢志成为一家伟大的、备受社会尊敬的基业长青的企业！</p>
+        </li>
+    </ul>
+</section>
+<section class="hg-process">
+    <h2>合作流程</h2>
+    <ul>
+        <li class="hg-process-01">
+            <i></i>
+            <h3>初步接洽，确认合作意向</h3>
+            <p>供应商与伙购网商品运营中心联系双方接洽，确认合作意向</p>
+            <em></em>
+        </li>
+        <li class="hg-process-02">
+            <i></i>
+            <h3>伙购网进行资格审查</h3>
+            <p>伙购网商品运营中心对供应商提供的资料进行审查</p>
+            <em></em>
+        </li>
+        <li class="hg-process-03">
+            <i></i>
+            <h3>商讨并确认商品清单</h3>
+            <p>供应商提交商品清单及样品，伙购网确认商品并反馈</p>
+            <em></em>
+        </li>
+        <li class="hg-process-04">
+            <i></i>
+            <h3>签订合作合同</h3>
+            <p>商讨合同具体细节，签订合同供应商品进行上线销售</p>
+        </li>
+    </ul>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+{% endblock %}

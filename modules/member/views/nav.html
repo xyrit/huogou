@@ -1,0 +1,6 @@
+<summary>
+    <a href="{{ url(['/member']) }}" {% if this.context.id=='default' or this.context.id=='invite' or this.context.id=='friend' or this.context.id=='group' %}class="summary_a"{% endif %}>{% if this.context.id=='info' or this.context.id=='points' or this.context.id=='message' or this.context.id=='recharge' or this.context.id=='friend' or this.context.id=='group' %}<i></i>返回个人中心{% else %}<i class="mIcon"></i>个人中心{% endif %}</a>
+    <a href="{{ url(['/member/info/modify']) }}" {% if this.context.id=='info' %}class="summary_a"{% endif %}><i class="shezhi"></i>个人设置</a>
+    <a href="{{ url(['/member/points']) }}" {% if this.context.id=='points' %}class="summary_a"{% endif %}><i class="jifen"></i>福分管理</a>
+    <a href="{{ url(['/member/message/sys-msg']) }}" {% if this.context.id=='message' %}class="summary_a"{% endif %}><i class="xiaoxi">{% if totalMsg %}<span>{{ totalMsg }}<b></b></span>{% endif %}</i>我的消息</a>
+</summary>

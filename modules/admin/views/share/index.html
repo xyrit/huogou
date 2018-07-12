@@ -1,0 +1,200 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">晒单列表</strong></div>
+        </div>
+
+        <div class="am-g">
+            {{ html.beginForm('', 'get', {}) | raw }}
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    状态：
+                    <select name="is_pass" id="is_pass" data-am-selected>
+                        <option value="-1" {% if condition.is_pass == -1 %}selected{% endif %}>全部</option>
+                        <option value="0" {% if condition.is_pass == 0 %}selected{% endif %}>待审核</option>
+                        <option value="2" {% if condition.is_pass == 2 %}selected{% endif %}>未通过</option>
+                        <option value="1" {% if condition.is_pass == 1 %}selected{% endif %}>完成</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    推荐：
+                    <select name="is_recommend" id="is_recommend" data-am-selected>
+                        <option value="-1" {% if condition.is_recommend == -1 %}selected{% endif %}>全部</option>
+                        <option value="1" {% if condition.is_recommend == 1 %}selected{% endif %}>是</option>
+                        <option value="0" {% if condition.is_recommend == 0 %}selected{% endif %}>否</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-4">
+                <div class="am-form-group">
+                    <div class="am-u-sm-2" style="padding: 0px; width: 18%;">
+                        晒单时间：
+                    </div>
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-start" name="start_time" value="{{ condition.start_time }}" placeholder="开始时间"/>
+                    </div>
+                    <div class="am-u-sm-4" style="padding: 0px; width: 40%;">
+                        <input type="text" class="am-form-field" id="my-end" name="end_time" value="{{ condition.end_time }}" placeholder="结束时间"/>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" name="account" class="am-form-field" placeholder="请输入手机号/邮箱" value="{{ condition.account }}">
+                      <span class="am-input-group-btn">
+                          <button class="am-btn am-btn-default" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <button class="am-btn am-btn-default"><a href="{{ url }}">导出</a></button>
+            </div>
+            {{ html.endForm() | raw }}
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>商品名称</th>
+                            <th>会员名</th>
+                            <th>奖励福分</th>
+                            <th>羡慕</th>
+                            <th>回复</th>
+                            <th>推荐</th>
+                            <th>精华</th>
+                            <th>状态</th>
+                            <th>晒单时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in shareTopicList %}
+                        <tr>
+                            <td>{{ item.id }}</td>
+                            <td>(第{{ item.period_number }}期){{ item.name }}</td>
+                            <td>{% if item.phone and item.email %}{{ item.phone }}<br>{{ item.email }}{% else %}{{ item.phone|default(item.email) }}{% endif %}</td>
+                            <td>{{ item.point }}</td>
+                            <td>{{ item.up_num }}</td>
+                            <td>{{ item.comment_num }}</td>
+                            <td>
+                                {% if(item.is_recommend == 1) %}
+                                <a href="{{ url('/admin/share/set-recommend', {'id':item.id, 'op':'cancel'}) }}">是</a>
+                                {% else %}
+                                <a href="{{ url('/admin/share/set-recommend', {'id':item.id}) }}">否</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if(item.is_digest == 1) %}
+                                <a href="{{ url('/admin/share/set-digest', {'id':item.id, 'op':'cancel'}) }}">是</a>
+                                {% else %}
+                                <a href="{{ url('/admin/share/set-digest', {'id':item.id}) }}">否</a>
+                                {% endif %}
+                            </td>
+                            <td>{% if item.is_pass == 0 %}待审核</a>{% elseif item.is_pass == 1 %}完成{% elseif item.is_pass == 2 %}未通过{% endif %}</td>
+                            <td>{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button">
+                                            <a href="javascript:;" class="link" data-id="{{ item.id }}">{% if item.is_pass==0 %}审核{% else %}编辑{% endif %}</a>
+                                        </button>
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button">
+                                            <a href="javascript:;" class="link_comment" data-id="{{ item.id }}">查看回复</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script>
+    $('#is_pass').selected({
+        btnWidth: '100px',
+    });
+    $('#is_recommend').selected({
+        btnWidth: '100px',
+    });
+
+    laydate({
+        elem: '#my-start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    laydate({
+        elem: '#my-end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    $('.link').on('click', function() {
+        var id = $(this).attr('data-id');
+        var urls = 'http://admin.' + baseHost + "/share/view?id=" + id;
+        layer.open({
+            type: 2,
+            area: ['900px', '900px'],
+            fix: false, //不固定
+            shade: false,
+            maxmin: true,
+            tipsMore: true,
+            content: urls
+        });
+    })
+
+    $('.link_comment').on('click', function() {
+        var id = $(this).attr('data-id');
+        var urls = 'http://admin.' + baseHost + "/share/comment-list?id=" + id;
+        layer.open({
+            type: 2,
+            area: ['900px', '900px'],
+            fix: false, //不固定
+            shade: false,
+            maxmin: true,
+            tipsMore: true,
+            content: urls
+        });
+    })
+</script>
+{% endblock %}

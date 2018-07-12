@@ -1,0 +1,66 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">推广数据</strong></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>渠道名称</th>
+                            <th>渠道标示</th>
+                            <th>注册人数</th>
+                            <th>充值人数</th>
+                            <th>充值金额</th>
+                            <th>消费人数</th>
+                            <th>消费金额</th>
+                            <th>消费积分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for info in list %}
+                            <tr data-id="{{ info.id }}">
+                                <td><a href="#">{{ info.spread_source_name }}</a></td>
+                                <td>{{ info.spread_source }}</td>
+                                <td>{{ info.reg_nums }}</td>
+                                <td>{{ info.recharge_nums }}</td>
+                                <td>{{ info.recharge_money }}</td>
+                                <td>{{ info.consume_nums }}</td>
+                                <td>{{ info.consume_money }}</td>
+                                <td>{{ info.consume_point }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".am-btn-toolbar").click(function(){
+            var id = $(this).parent().parent().data('id');
+            var urls = '{{ url('/purchase/info')}}' + '?id=' + id;
+            var index = layer.open({
+                type: 2,
+                area: ['200px', '100px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade: false,
+                content: urls
+            });
+            layer.full(index);
+            })
+    })
+</script>
+{% endblock script %}

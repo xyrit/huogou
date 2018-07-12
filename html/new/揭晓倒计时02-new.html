@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>正在揭晓</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script>
+	<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+	<script type="text/javascript" src="js/jquery.imagezoom.min.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+	<script>
+	$(document).ready(function(){
+		var navTop = $('.con_title').offset().top + $('.con_title').height();
+	    var navOff = 0;
+	    $(window).on('scroll',function(){
+	        if ($(window).scrollTop() > navTop && !navOff) {
+	            $('.con_title').addClass('fixed');
+	            navOff = 1;
+	        }else if($(window).scrollTop() < navTop && navOff){
+	            $('.con_title').removeClass('fixed');
+	            navOff = 0;
+	        }
+	    })
+		
+		$('.phase_fl li:last').css('marginRight','0');
+
+		var aLi = $('#phase_pic').find('li');
+	    aLi.on('click', function(){
+	        $(this).addClass('act').siblings().removeClass('act');
+	        $('#pic').hide().attr('src',$(this).find('img').attr('src')).fadeIn();
+	    }).eq(0).trigger('click');
+
+	    $('.phase_rl_title').find('span').on('click', function(){
+	        $(this).addClass('act').siblings().removeClass('act');
+	        $('.phase_rl_list').stop().hide().eq($(this).index()).fadeIn();
+	    }).eq(0).trigger('click');
+
+	    $('.con_title').find('li').on('click', function(){
+	        $(this).addClass('act').siblings().removeClass('act');
+	        $('.con_box').stop().hide().eq($(this).index()).fadeIn();
+	    }).eq(0).trigger('click');
+
+	    $("#pic").imagezoom();
+	
+		$("#thumblist li a").click(function(){
+			$(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
+			$("#pic").attr('src',$(this).find("img").attr("mid"));
+			$("#pic").attr('rel',$(this).find("img").attr("big"));
+		});
+		
+		var timer = null;
+		$('.shaidan_con_pic').find('dd').on('click', function(){
+			$(this).parent().find('p').hide();
+			$(this).find('p').stop().slideToggle(500);
+		}).hover(function(){
+			clearTimeout(timer);
+		},function(){
+			timer = setTimeout(function(){
+				$('.shaidan_con_pic').find('p').slideUp();
+			},50)
+		})
+
+		$('.xianm').on('click',function(){
+			$(this).addClass('act')
+		})
+
+		$('.shaidan li:last').css('marginBottom','0');
+		//查看参与码弹出框
+		$('.view-btn').on('click',function(){
+			$('.modal-backdrop').show();
+			$('.view-alertbg').show();
+			$('.view-alert').show();
+		});
+		$('.close-btn').on('click',function(){
+			$('.modal-backdrop').hide();
+			$('.view-alertbg').hide();
+			$('.view-alert').hide();
+		});
+	})
+	</script>
+</head>
+<body>
+	<section class="sidebar">
+		<article>
+			<a class="sidebar_shop" href="">购<br>物<br>车</a>
+			<a class="sidebar_01" href="javascript:;">
+				<i></i>
+				<p>400-000-5000</p>
+			</a>
+			<a class="sidebar_02" href=""></a>
+			<a class="sidebar_03" href="javascript:;">
+				<i></i>
+				<p><img src="img/pic04.jpg"><br>下载手机端</p>
+			</a>
+			<a class="sidebar_04" href=""></a>
+			<a id="get_top" class="sidebar_05" href="javascript:;"></a>
+		</article>
+	</section>
+	<section class="log clear">
+		<article>
+			<div class="log_lf"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a><i>|</i><a id="mobile" href="javascript:;"><b></b><span>手机伙购</span><p><img src="img/pic04.jpg">下载手机端</p></a></div>
+			<ul class="log_rl">
+				<li>hi , 欢迎您来到伙购网！</li>
+				<li><a href="">登录</a></li>
+				<li><a href="">注册</a></li>
+				<li><i>|</i></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">我的一元乐购</a>
+					<div>
+						<a href="">云购记录</a>
+						<a href="">获得的商品</a>
+						<a href="">个人设置</a>
+					</div>
+				</li>
+				<li><a href="">充值</a></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">帮助中心</a>
+					<div class="help">
+						<a href="">新手指南</a>
+						<a href="">服务保障</a>
+						<a href="">商品配送</a>
+					</div>
+				</li>
+				<li class="service"><a href="">在线客服</a></li>
+			</ul>
+		</article>
+	</section>
+	<header>
+		<section class="clear">
+			<a class="logo" href=""></a>
+			<div class="add">
+				<img class="add_pic" src="img/pic05.gif">
+				<span>累计参与</span>
+				<ul>
+					<li class="num">5</li>
+					<li class="num">4</li>
+					<li class="nobor">,</li>
+					<li class="num">8</li>
+					<li class="num">3</li>
+					<li class="num">6</li>
+					<li class="nobor">,</li>
+					<li class="num">2</li>
+					<li class="num">6</li>
+					<li class="num">8</li>
+				</ul>
+				<span>人次</span>
+			</div>
+			<div class="search">
+				<div>
+					<input id="search_input" value="请输入要搜索的商品" type="text">
+					<span id="search_span">
+						<a href="">汽车</a>
+						<a href="">手机</a>
+					</span>
+				</div>
+				<input type="submit" value="">
+			</div>
+		</section>
+		<section class="clear">
+			<div class="sort">
+				<a class="sort_title" href="">全部商品分类</a>
+				<div>
+					<dl class="sort_list">
+						<dt><a href="">手机数码</a></dt>
+						<dd>
+							<a href="">手机</a><a href="">数码</a><a href="">影音</a><a href="">苹果手机</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_b">
+						<dt><a href="">电脑办公</a></dt>
+						<dd>
+							<a href="">笔记本</a><a href="">平板电脑</a><a href="">外设</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_c">
+						<dt><a href="">家电汽车</a></dt>
+						<dd>
+							<a href="">大家电</a><a href="">厨房</a><a href="">家电汽车</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_d">
+						<dt><a href="">化妆个护</a></dt>
+						<dd>
+							<a href="">面部护理</a><a href="">美发护发</a><a href="">香水</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_e">
+						<dt><a href="">钟表首饰</a></dt>
+						<dd>
+							<a href="">珠宝首饰</a><a href="">金条银条</a><a href="">手表</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_f">
+						<dt><a href="">食品饮料</a><i> / </i><a href="">其他</a></dt>
+						<dd>
+							<a href="">美食</a><a href="">粮油</a><a href="">酒类</a><a href="">饮料</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="act"><a href="">首页</a></li>
+				<li><a href="">最新揭晓</a></li>
+				<li><a href="">限购专区</a></li>
+				<li><a href="">晒单分享</a></li>
+				<li><a href="">乐购圈</a></li>
+				<li class="invite"><a href="">邀请有礼</a></li>
+			</ul>
+			<a class="shop" href="">购物车（0）</a>
+		</section>
+	</header>
+
+	<section class="wrap clear">
+		<div class="present">
+			<a href="">首页</a><i></i><a href="">全部商品</a><i></i><a href="">手机数码</a><i></i><a href="">商品详情</a>
+		</div>
+		<!--原来的往期揭晓--已删除-->
+		<!--<div class="phase">
+			<a class="first act" href="">第1000伙<i></i><b></b></a>
+			<a href="">第999伙<b></b></a>
+			<a href="">第998伙<b></b></a>
+			<a href="">第997伙<b></b></a>
+			<a href="">第996伙<b></b></a>
+			<a href="">第995伙<b></b></a>
+			<a href="">第994伙<b></b></a>
+			<a href="">第993伙<b></b></a>
+			<a href="">第992伙<b></b></a>
+			<a class="last" href="">查看更多+</a>
+		</div>-->
+		<div class="phase_con noborder">
+			<div class="phase_fl phase_fl_2">
+				<picture><img id="pic" src="" alt=""></picture>
+				<ul id="phase_pic" class="clearfix">
+					<li><img src="img/04.jpg" alt=""></li>
+					<li><img src="img/04.jpg" alt=""></li>
+					<li><img src="img/04.jpg" alt=""></li>
+					<li><img src="img/04.jpg" alt=""></li>
+					<li><img src="img/04.jpg" alt=""></li>
+				</ul>
+				<ol class="safe clearfix">
+					<li class="safe_1">公平公正公开</li>
+					<li class="safe_2">正品保障</li>
+					<li class="safe_3">权益保障</li>
+				</ol>
+				<article>
+					<a class="guanzhu" href="">关注</a>
+					<div class="bshare-custom">
+					    <span>分享到：</span>
+					    <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+					    <a title="分享到微信" class="bshare-weixin" href="javascript:void(0);"></a>
+					    <a title="分享到QQ空间" class="bshare-qzone"></a>
+					    <a title="分享到QQ好友" class="bshare-qqim" href="javascript:void(0);"></a>
+					    <a title="分享到腾讯微博" class="bshare-qqmb" href="javascript:void(0);"></a>
+					</div>
+				</article>
+			</div>
+			<div class="phase_centre phase_centre_2">
+				<div class="phase_centre_title">
+					<h2>(第10期火购)苹果 iPhone 6s Plus 16G版 4G手机（预售）<span class="text-red">(颜色随机发)</span></h2>
+					<aside>价值：￥4688.00 &nbsp;&nbsp;每满4688人次，即抽取1人获得该商品 </aside>
+				</div>
+				<div class="daoji">
+					<p class="title">揭晓倒计时 丨 期号：305240986</p>
+					<p class="time"><span class="left-time"><i>0</i><i>7</i><em>:</em><i>0</i><i>6</i><em>:</em><i>1</i><i>6</i></span></p>
+				</div>
+				<div class="calculation">
+                    <p class="how">如何计算？</p>
+					<p class="howis"><span class="text-green">变化数值</span>是取下面公式的余数</p>
+					<p class="rule-item-1">
+						<span class="q_mask-1">
+						    <i class="lottery-num text-red-2">?</i>
+
+				    	</span>
+						<span class="e_mask">
+							=
+						</span>
+						<span class="fixed text-red-2">
+							10000001
+						</span>
+						<span class="e_mask" style="width: 30px;text-align: center;">+</span>
+						<span class="q_mask-2 text-red-2">
+							?
+						</span>
+					</p>
+					<p class="rule-item-2">
+
+						<span class="mask">(</span>
+						<span class="sum" style="width: 108px">
+							12455656442
+					    </span>
+						<span class="e_mask" style="width: 90px;text-align: center">+</span>
+						<span class="q_mask" style="width: 30px">?</span>
+						<span style="width: 40px;text-align: center">)&nbsp;&divide;</span>
+						<span class="">
+							6480
+						</span>
+					</p>
+					<p class="text-gray last-text-1">
+						<span class="last-text-item-1">50个时间求和</span>
+						<span class="last-text-item-2" style="margin-left: 40px;">固定数值</span>
+						<span class="last-text-item-3 text-green">变化数值</span>
+					</p>
+					<p class="text-gray last-text-2">
+						<span class="last-text-item-1">本期幸运号码</span>
+						<span class="last-text-item-2" style="margin-left: 30px;">“老时时彩”幸运号码</span>
+						<span class="last-text-item-3">总需人次</span>
+					</p>
+					<i style="height: 80px;width:2px;display: block;position: absolute;left: 340px;border-left:1px dashed #e2e2e2;top: 25px"></i>
+				</div>
+				<div class="viw_me">
+					<!--<p><span class="text-red">请登录</span>，查看您的伙购号码</p>-->
+					<!--<p>您还没有参与本次伙购哦</p>-->
+					<p>您已拥有2个伙购号码 <a href="javascript:;" class="arrow-right view-btn">查看号码</a></p>
+
+				</div>
+				<div class="the_new">
+                   <h2>(最新一期) 正在火热进行中...</h2>
+					<p class="progress">
+						<i style="width: 20%"></i>
+					</p>
+					<p>已完成<span class="text-red">45%</span>，剩余<span class="text-red">3450</span>人次</p>
+					<a href="#" class="nowto-btn">立即前往</a>
+				</div>
+				<!--原来的文字规则---已删除-->
+			</div>
+			<!--原来右侧参与记录--已删除-->
+		</div>
+
+		<div class="con_cut">
+			<ul class="con_title">
+				<li><i></i>计算结果</li>
+				<li><i></i>商品详情</li>
+				<li><i></i>参与记录</li>
+				<li><i></i>晒 单</li>
+				<li><i></i>往期揭晓</li>
+				<li class="gouw"><a href="">加入购物车</a></li>
+			</ul>
+			<div class="con_box jisuan_box">
+				<!--计算规则-->
+				<div class="rule clearfix">
+                    <div class="rule-left pull-left">
+					   <img src="img/rule.png" class="img" style="margin-top: 70px"/>
+					   <span class="rule-l-title">幸运号码<br>计算规则</span>
+				    </div>
+					<div class="rule-right pull-left">
+						<ol>
+							<li class="order-1">商品的最后一个号码分配完毕后，将公示截止该时间点本站全部商品的最后50个参与时间；</li>
+							<li class="order-2">将这50个时间的数值进行求和（得出数值A）（每个时间按时、分、秒、毫秒的顺序组合，如20:15:25.362则为201525362）；</li>
+							<li class="order-3">为保证公平公正公开，系统还会等待一小段时间，取最近下一期中国福利彩票“老时时彩”的揭晓结果（一个五位数值B）；</li>
+							<li class="order-4">（数值A+数值B）除以该商品总需人次得到的余数 + 原始数 10000001，得到最终幸运号码，拥有该幸运号码者，直接获得该商品。</li>
+						</ol>
+						<p class="text-red" style="margin-top: 10px">注：如遇福彩中心通讯故障，无法获取上述期数的中国福利彩票“老时时彩”揭晓结果，则默认“老时时彩”揭晓结果为00000。
+						</p>
+						<dl>
+							<dt>凌晨1:55到上午10:00开奖规则如下：</dt>
+							<dd>（1）B值固定：由于凌晨1:55到上午10:00老时时彩不开奖，默认“老时时彩“开奖结果为”00000“，即数值B=00000</dd>
+							<dd>（2）即时开奖：该段时间，商品凑满后即可开奖（倒计时30秒即揭晓结果）</dd>
+						</dl>
+					</div>
+				</div>
+				<ul class="jisuan_title">
+					<li class="title01">伙购时间</li>
+					<li class="title02">转换数据</li>
+					<li class="title03">会员名称</li>
+					<li class="title04">参与人次</li>
+					<li class="title05">商品名称</li>
+				</ul>
+				<div class="jisuan_detail">
+					<div class="jisuan_step">
+						<p class="title">
+							截止该商品最后购买时间【2016-05-26 09:06:11.839】网站所有商品的最后100条购买时间(时、分、秒、毫秒)记录
+						</p>
+						<ul class="jisuan_list clear">
+							<li class="s-r03" style="width: 140px;">
+								<p>
+								？
+							    </p>
+								<span>最终幸运号码</span>
+							</li>
+							<li class="s-z">=</li>
+							<li class="s-z">(</li>
+							<li class="s-r02">
+								<p>
+									8587310968
+								</p>
+								<span>以下100条时间取值之和</span><b></b></li>
+							<li class="s-r05">
+								<p>
+									%
+								</p>
+								<span>(取余)</span>
+								<div>
+									<b></b>余数是指整数除法中被除数未被除尽部分,如7÷3 = 2 ......1，1就是余数。
+								</div>
+							</li>
+							<li class="s-r03">
+								<p>
+									?
+								</p>
+								<span>“老时时彩”开奖号码</span></li>
+							<li class="s-z">)</li>
+							<li class="s-z">+</li>
+							<li class="s-r03">
+								<p>
+									6200
+								</p>
+								<span>总需参与人次</span></li>
+							<li class="s-z">=</li>
+							<li class="s-r03">
+								<p>
+									10000001
+								</p>
+								<span>固定数值</span></li>
+						</ul>
+					</div>
+					<ul class="jisuan_ren_list clear">
+						<li><span class="ren01">2016-05-26 09:06:11.839</span><span class="ren02"><i></i>090611839</span><span class="ren03"><a title="宝宝不哭我们会中的" href="http://u.huogou.com/106701760">宝宝不哭我们会中的</a></span><span class="ren04">16人次</span><span class="ren05"><a href="/product/154.html">移动/联通/电信100元充值卡 官方卡密</a></span></li>
+						<li><span class="ren01">2016-05-26 09:05:25.626</span><span class="ren02"><i></i>090525626</span><span class="ren03"><a title="卸载了你个坑" href="http://u.huogou.com/1041012021">卸载了你个坑</a></span><span class="ren04">50人次</span><span class="ren05"><a href="/product/154.html">移动/联通/电信100元充值卡 官方卡密</a></span></li>
+						<li><span class="ren01">2016-05-26 09:05:04.249</span><span class="ren02"><i></i>090504249</span><span class="ren03"><a title="卸载了你个坑" href="http://u.huogou.com/1041012021">卸载了你个坑</a></span><span class="ren04">10人次</span><span class="ren05"><a href="/product/128.html">幻响（I-Mu）折纸兔共振震音箱 </a></span></li>
+						<li><span class="ren01">2016-05-26 09:05:00.254</span><span class="ren02"><i></i>090500254</span><span class="ren03"><a title="中中中了啊" href="http://u.huogou.com/100669796">中中中了啊</a></span><span class="ren04">3人次</span><span class="ren05"><a href="/product/2.html">苹果（Apple）iPhone 6s 64G版 4G手机</a></span></li>
+						<li><span class="ren01">2016-05-26 09:04:31.144</span><span class="ren02"><i></i>090431144</span><span class="ren03"><a title="中中中了啊" href="http://u.huogou.com/100669796">中中中了啊</a></span><span class="ren04">3人次</span><span class="ren05"><a href="/product/3.html">苹果（Apple）iPhone 6s Plus 16G版 4G手机</a></span></li>
+					</ul>
+					<a class="jisuan_more" href="javascript:;">展开全部100条数据</a>
+				</div>
+			</div>
+			<div class="con_box">
+				<img src="img/pic75.jpg" alt="">
+				<h3>重要说明：</h3>
+				<p>1、该商品为预售商品，到货时间预计在9月25日左右，伙购网将在商品到货后第一时间按订单顺序发出，颜色随机发货。</p>
+				<p>2、商品获得者拥有苹果（Apple）iPhone 6s 64G版 4G手机（预售）10年免费使用权。</p>
+				<p>3、火购网对本商品使用权在法律范围内拥有最终解释权。</p>
+			</div>
+			<div class="con_box jisuan_box">
+				<table class="canyu">
+					<thead>
+						<tr>
+							<td>伙购时间</td>
+							<td>会 员</td>
+							<td>参与人次</td>
+							<td>IP地址</td>
+							<td>来源</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_iphone">iOS客户端</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_weixin">微信公众平台</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_pc">PC电脑</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_android">Android客户端</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_iphone">iOS客户端</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_weixin">微信公众平台</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_pc">PC电脑</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_android">Android客户端</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_pc">PC电脑</p></td>
+						</tr>
+						<tr>
+							<td>2015-09-14 16:57:06.398</td>
+							<td><picture><img src="img/pic_m.jpg" alt=""></picture><a href="">13587****70</a></td>
+							<td>10人次</td>
+							<td>广西梧州市 IP:222.217.215.163</td>
+							<td><p class="ico_android">Android客户端</p></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="pagination">
+					<a href="" class="prev">上一页</a><a class="act" href=""><b></b>1</a><a href=""><b></b>2</a><a href=""><b></b>3</a><a href=""><b></b>4</a><a href=""><b></b>5</a><i>...</i><a href=""><b></b>10</a><a href="" class="next">下一页</a>
+				</div>
+			</div>
+			<div class="con_box jisuan_box">
+				<ul class="shaidan clear">
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+					<li>
+						<summary>
+							<picture>
+								<img src="img/ico_logo_shaidan.jpg" alt="">
+							</picture>
+							<a href="">152****3969</a>
+						</summary>
+						<article>
+							<div class="shaidan_title">
+								<p>第1期晒单<a href="">梦寐以求的6s终于到手了</a></p>
+								<i>08月30日 16:00</i>
+							</div>
+							<div class="shaidan_con">
+								<p>中了好久了，第一次拿出来晒。一元伙购感觉靠的是运气，一开始投了很多都没中。还以为是骗人的。但后来慢慢中了点小东西，运气好的话一天可以中两三次，但运气不好的话，一两个月没中过。希望下次中个大的，也希望大家能中到自己想要的东西。</p>
+								<dl class="shaidan_con_pic clear">
+									<dd>
+										<picture><img src="img/pic109.jpg" alt=""></picture>
+										<p><img src="img/pic109.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic110.jpg" alt=""></picture>
+										<p><img src="img/pic110.jpg" alt=""></p>
+									</dd>
+									<dd>
+										<picture><img src="img/pic111.jpg" alt=""></picture>
+										<p><img src="img/pic111.jpg" alt=""></p>
+									</dd>
+								</dl>
+								<div class="shaidan_con_cut">
+									<span class="xianm"><em>2</em>人羡慕嫉妒恨</span><span class="pinl">0条评论</span>
+								</div>
+							</div>
+						</article>
+					</li>
+				</ul>
+
+				<div class="pagination">
+					<a href="" class="prev">上一页</a><a class="act" href=""><b></b>1</a><a href=""><b></b>2</a><a href=""><b></b>3</a><a href=""><b></b>4</a><a href=""><b></b>5</a><i>...</i><a href=""><b></b>10</a><a href="" class="next">下一页</a>
+				</div>
+			</div>
+			<div class="con_box jisuan_box">
+				<!--往期揭晓-->
+				<ul class="old-item-group">
+					<li class="old-item clearfix">
+						<div class="item-num pull-left">
+							期号 305195245
+						</div>
+						<div class="item-user pull-left">
+							<img src="http://img.huogou.com/pic-200-200/20151221131431280.jpg" class="user-img pull-left"/>
+							<p class="user-right pull-left">
+								<span class="display-b">
+									<span class="display-b pull-left">恭喜</span>
+									<a  href="#" class="text-blue ellipsis">谢伟民大sssss傻</a>
+									<span class="display-b pull-left">(IP:192.168.255.255)获得了本期商品</span>
+								</span>
+								<span class="display-b">用户ID:82527922(ID为用户唯一不变标识)</span>
+								<span class="display-b">本次参与：<span class="text-red">44人次</span></span>
+							</p>
+						</div>
+						<div class="item-user2 pull-left">
+							<span class="display-b">幸运号码：<span class="text-red">1000017</span></span>
+							<span class="display-b">揭晓时间：2016-05-24 23:40</span>
+							<span class="display-b">伙购时间：2016-05-24 23:40</span>
+						</div>
+						<div class="item-view pull-left">
+                            <a href="#" class="text-blue">查看详情</a>
+						</div>
+					</li>
+					<li class="old-item clearfix">
+						<div class="item-num pull-left">
+							期号 305195245
+						</div>
+						<div class="item-user pull-left">
+							<img src="http://img.huogou.com/pic-200-200/20151221131431280.jpg" class="user-img pull-left"/>
+							<p class="user-right pull-left">
+								<span class="display-b">
+									<span class="display-b pull-left">恭喜</span>
+									<a  href="#" class="text-blue ellipsis">谢伟民大sssss傻</a>
+									<span class="display-b pull-left">(IP:192.168.255.255)获得了本期商品</span>
+								</span>
+								<span class="display-b">用户ID:82527922(ID为用户唯一不变标识)</span>
+								<span class="display-b">本次参与：<span class="text-red">44人次</span></span>
+							</p>
+						</div>
+						<div class="item-user2 pull-left">
+							<span class="display-b">幸运号码：<span class="text-red">1000017</span></span>
+							<span class="display-b">揭晓时间：2016-05-24 23:40</span>
+							<span class="display-b">伙购时间：2016-05-24 23:40</span>
+						</div>
+						<div class="item-view pull-left">
+							<a href="#" class="text-blue">查看详情</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<section class="footer_a">
+			<div class="footer_a_list">
+				<dl>
+					<dt>新手指南</dt>
+					<dd><a href="">常见问题</a></dd>
+					<dd><a href="">会员福分经验值</a></dd>
+				</dl>
+				<dl>
+					<dt>权益保障</dt>
+					<dd><a href="">伙购保障体系</a></dd>
+					<dd><a href="">安全支付</a></dd>
+					<dd><a href="">投诉建议</a></dd>
+				</dl>
+				<dl>
+					<dt>商品配送</dt>
+					<dd><a href="">配送费用</a></dd>
+					<dd><a href="">商品验货与签收</a></dd>
+					<dd><a href="">长时间未收到商品</a></dd>
+				</dl>
+				<dl>
+					<dt>关于伙购</dt>
+					<dd><a href="">伙购介绍</a></dd>
+					<dd><a href="">云购公益</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				<dl>
+					<dt>伙购合作</dt>
+					<dd><a href="">商务合作</a></dd>
+					<dd><a href="">友情链接</a></dd>
+					<dd><a href="">官方QQ群交流</a></dd>
+				</dl>
+			</div>
+			<div class="service">
+				<summary>
+					<h3>服务热线</h3>
+					<p>(7*24小时为您服务)</p>
+				</summary>
+				<aside>400-000-5000</aside>
+				<a class="service_qq" href="">在线咨询</a>
+			</div>
+		</section>
+
+		<section class="footer_b">
+			<div class="wrap clear">
+				<article class="footer_b_01">
+					<summary>
+						<p>下载手机客户端</p>
+						<a href="">立即下载</a>
+					</summary>
+				</article>
+				<article class="footer_b_02">
+				</article>
+				<article class="footer_b_03">
+					<summary>
+						<p>服务器时间</p>
+						<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+					</summary>
+				</article>
+				<article class="footer_b_04">
+					<summary>
+						<p>伙购公益基金</p>
+						<span>￥180600.08</span>
+					</summary>
+				</article>
+			</div>
+		</section>
+
+		<section class="footer_c">
+			<div class="wrap clear">
+				<ul>
+					<li class="footer_c_01">
+						<h3>100%公平公正</h3>
+						<aside>参与过程公开透明，用户可随时查看</aside>
+					</li>
+					<li class="footer_c_02">
+						<h3>100%正品保证</h3>
+						<aside>精心挑选优质产品，100%品牌正品</aside>
+					</li>
+					<li class="footer_c_03">
+						<h3>全国免运费</h3>
+						<aside>全场商品全国包邮（港澳台地区除外）</aside>
+					</li>
+					<li class="footer_c_04">
+						<h3>100%权益保障</h3>
+						<aside>多重保障，让用户无忧伙购</aside>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="footer_d">
+			<div class="wrap clear">
+				<article>
+					<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+				</article>
+				<aside>Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备082120500号</aside>
+				<summary>
+					<a href=""><img src="img/pic51.jpg"></a><a href=""><img src="img/pic52.jpg"></a><a href=""><img src="img/pic53.jpg"></a><a href=""><img src="img/pic54.jpg"></a>
+				</summary>
+			</div>
+		</section>
+	</footer>
+	<!--我的参与码--弹出层-->
+	<div class="view-alertbg">
+		<div class="view-alert">
+			<h3>
+				我的伙购号码<span style="font-size: 14px;padding-left: 5px;">(本期共参与了<span class="text-red">222</span>人次)</span>
+			</h3>
+			<button type="button" class="close-btn"></button>
+			<ul>
+				<li>
+					<p class="text-gray">2015-12-03 08:56:39.674</p>
+					<p><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span></p>
+				</li>
+				<li>
+					<p class="text-gray">2015-12-03 08:56:39.674</p>
+					<p><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span></p>
+				</li>
+				<li>
+					<p class="text-gray">2015-12-03 08:56:39.674</p>
+					<p><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span></p>
+				</li>
+				<li>
+					<p class="text-gray">2015-12-03 08:56:39.674</p>
+					<p><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span></p>
+				</li>
+				<li>
+					<p class="text-gray">2015-12-03 08:56:39.674</p>
+					<p><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span><span>100002154</span></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="modal-backdrop"></div>
+</body>
+</html>

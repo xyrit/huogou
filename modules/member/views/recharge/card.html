@@ -1,0 +1,88 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}账户充值_伙购网{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section id="invite_tishi">
+        <p></p>
+        <b></b>
+    </section>
+
+    <section class="member">
+        <div class="wrap clear">
+            <div class="member_sub">
+                {% include '@memberModule/views/nav.html' %}
+            </div>
+
+            <div class="account-recharge">
+                <h2>账户充值</h2>
+                <div class="account-recharge-list">
+                    <summary>
+                        <a  href="{{ url(['/member/recharge/index']) }}">网银充值</a><a class="act" href="{{ url(['/member/recharge/card']) }}">充值卡充值</a>
+                    </summary>
+                    <a class="acc01" href="{{ url(['/member']) }}">返回我的账户</a>
+                </div>
+
+                <div class="recharge-card">
+                    <aside>请使用伙购官方充值卡进行充值<a href="" style="display: none;">，立即购买充值卡 &gt;&gt;</a></aside>
+                    <div>
+                        <figcaption>
+                            <summary>
+                                <label for="">充值卡号：</label>
+                                <input id="cardI" type="text" name="card">
+                                <em class="input_arr">请输入卡号</em>
+                                <p class="cardMsg" style="display: none;"></p>
+                            </summary>
+                            <summary>
+                                <label for="">充值密码：</label>
+                                <input type="password" name="password">
+                                <em class="input_arr">请输入密码</em>
+                                <p class="cardPwdMsg" style="display: none;"></p>
+                            </summary>
+                            <!--<summary>-->
+                                <!--<label for="">卡上余额：</label>-->
+                                <!--<i class="money">￥0.00</i>-->
+                            <!--</summary>-->
+                            <summary>
+                                <input type="submit" value="确定充值" id="cardBtn">
+                            </summary>
+                        </figcaption>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+<script>
+    $(function(){
+        setTimeout(function(){
+            if($("#cardI").val() != ""){
+                $("#cardI").siblings('.input_arr').hide();
+            }else{
+                $("#cardI").siblings('.input_arr').show();
+            }
+        },300)
+    })
+</script>
+
+    {% include '@app/views/footer.html' %}
+    <section id="safety-b-con">
+        <div class="safety-b-box">
+            <i id="safety-b-close"></i>
+            <h3></h3>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/recharge.js"></script>
+{% endblock %}
+

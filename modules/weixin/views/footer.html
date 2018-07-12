@@ -1,0 +1,11 @@
+<div class="footer" style="">
+  <ul>
+    <li class="f_home"><a href="{{ url(['/weixin']) }}" title="首页" {% if this.context.uniqueId=='weixin/default' %}class="hover"{% endif %}><i></i>首页</a></li>
+    <!--<li class="f_whole"><a href="{{ url(['/weixin/list']) }}" title="所有商品" {% if this.context.uniqueId=='weixin/list' %}class="hover"{% endif %}><i></i>所有商品</a></li>-->
+    <li class="f_announced"><a href="{{ url(['/weixin/lottery']) }}" {% if this.context.uniqueId=='weixin/lottery' %}class="hover"{% endif %}><i></i>最新揭晓</a></li>
+    <li class="f_guide"><a href="{{ url(['/weixin/help/about']) }}" {% if this.context.uniqueId=='weixin/help' %}class="hover"{% endif %}><i></i>新手指南</a></li>
+    <!--<li class="f_single"><a href="{{ url(['/weixin/post']) }}" {% if this.context.uniqueId=='weixin/post' %}class="hover"{% endif %}><i></i>晒单</a></li>-->
+    <li class="f_car"><a id="btnCart" href="{{ url(['/weixin/cart']) }}" title="购物车" {% if this.context.uniqueId=='weixin/cart' %}class="hover"{% endif %}><i></i>购物车</a></li>
+    <li class="f_personal"><a href="{{ url(['/weixin/member']) }}" title="我的伙购" {% if this.context.uniqueId=='weixin/member' %}class="hover"{% endif %}><i></i>我的伙购</a></li>
+  </ul>
+</div>

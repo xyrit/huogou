@@ -1,0 +1,294 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}隐私设置_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="privacy-settings">
+                    {{ html.beginForm('', 'post', {'id':'settings-form'}) | raw }}
+                    <div class="privacy-list">
+                        <h3>私信</h3>
+                        <summary>
+                            <span>谁可以给你发送私信</span>
+                            <p>
+                                <input type="radio" id="Private02" name="private_letter" {% if (limitInfo.private_letter == 2) or (limitInfo.private_letter is null) %}checked="checked"{% endif %} value="2">
+                                <label for="Private02">仅限好友</label>
+                                <span>（只有你们是好友关系才能给您发送私信）</span>
+                            </p>
+                            <p>
+                                <input type="radio" id="Private03" name="private_letter" {% if limitInfo.private_letter == 0 and limitInfo.private_letter is not null %}checked="checked"{% endif %} value="0">
+                                <label for="Private03">禁止任何人给我发送私信</label>
+                            </p>
+                        </summary>
+                    </div>
+
+                    <div class="privacy-list">
+                        <h3>地理位置</h3>
+                        <summary>
+                            <span>设置是否允许查看我的地理位置</span>
+                            <p>
+                                <input type="radio" id="Position01" name="position" {% if limitInfo.position == 1 or limitInfo.position is null %}checked="checked"{% endif %} value="1">
+                                <label for="Position01">允许</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="Position02" name="position" {% if limitInfo.position == 0 and limitInfo.position is not null %}checked="checked"{% endif %} value="0">
+                                <label for="Position02">禁止</label>
+                            </p>
+                        </summary>
+                    </div>
+
+                    <div class="privacy-list">
+                        <h3>好友搜索</h3>
+                        <summary>
+                            <span>设置是否允许让其它会员搜索到您</span>
+                            <p>
+                                <input type="radio" id="Friends01" name="friend_search" {% if limitInfo.friend_search == 1 or limitInfo.friend_search is  null %}checked="checked"{% endif %} value="1">
+                                <label for="Friends01">允许</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="Friends02" name="friend_search" {% if limitInfo.friend_search == 0 and limitInfo.friend_search is not null %}checked="checked"{% endif %} value="0">
+                                <label for="Friends02">禁止</label>
+                            </p>
+                        </summary>
+                    </div>
+
+                    <!--<div class="privacy-list">-->
+                        <!--<h3>个人主页-伙购记录</h3>-->
+                        <!--<summary>-->
+                            <!--<span>设置是否允许让其它会员看到您的伙伴购记录(仅限PC版、触屏版中生效)</span>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Record01" name="ucenter_buylist" {% if limitInfo.ucenter_buylist == 1 or limitInfo.ucenter_buylist is null %}checked="checked"{% endif %} value="1">-->
+                                <!--<label for="Record01">所有人可见</label>-->
+                            <!--</p>-->
+                            <!--<div>-->
+                                <!--{% if limitInfo.ucenter_buylist == 1 or limitInfo.ucenter_buylist is null %}-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Record01-1" name="buylist_number" {% if limitInfo.buylist_number == 0 or limitInfo.ucenter_buylist is null %}checked="checked"{% endif %} value="0">-->
+                                    <!--<label for="Record01-1">全部显示</label>-->
+                                <!--</figure>-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Record01-2" name="buylist_number" {% if limitInfo.buylist_number != 0 %}checked="checked"{% endif %} value="1">-->
+                                    <!--<label for="Record01-2">显示<input type="text" name="buylist_num" data-id="{{ limitInfo.buylist_number }}" value="{{ limitInfo.buylist_number }}">条</label>-->
+                                <!--</figure>-->
+                                <!--{% else %}-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Record01-1" name="buylist_number" value="0">-->
+                                    <!--<label for="Record01-1">全部显示</label>-->
+                                <!--</figure>-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Record01-2" name="buylist_number" value="1">-->
+                                    <!--<label for="Record01-2">显示<input type="text" name="buylist_num" value="{{ limitInfo.buylist_number }}">条</label>-->
+                                <!--</figure>-->
+                                <!--{% endif %}-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Record02" name="ucenter_buylist" {% if limitInfo.ucenter_buylist == 2 %}checked="checked"{% endif %} value="2">-->
+                                <!--<label for="Record02">好友可见</label>-->
+                            <!--</p>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Record03" name="ucenter_buylist" {% if limitInfo.ucenter_buylist == 0 %}checked="checked"{% endif %} value="0">-->
+                                <!--<label for="Record03">仅自己可见</label>-->
+                            <!--</p>-->
+                        <!--</summary>-->
+                    <!--</div>-->
+
+                    <!--<div class="privacy-list">-->
+                        <!--<h3>个人主页-获得的商品</h3>-->
+                        <!--<summary>-->
+                            <!--<span>设置是否允许让其它会员看到您获得的商品(仅限PC版、触屏版中生效)</span>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Commodity01" name="ucenter_orderlist" {% if limitInfo.ucenter_orderlist == 1 or limitInfo.ucenter_orderlist is null %}checked="checked"{% endif %} value="1">-->
+                                <!--<label for="Commodity01">所有人可见</label>-->
+                            <!--</p>-->
+                            <!--<div>-->
+                                <!--{% if limitInfo.ucenter_orderlist == 1 or limitInfo.ucenter_orderlist is null %}-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Commodity01-1" name="orderlist_number" {% if limitInfo.orderlist_number == 0 or limitInfo.ucenter_orderlist is null %}checked="checked"{% endif %} value="0">-->
+                                    <!--<label for="Commodity01-1">全部显示</label>-->
+                                <!--</figure>-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Commodity01-2" name="orderlist_number" {% if limitInfo.orderlist_number != 0 %}checked="checked"{% endif %} value="1">-->
+                                    <!--<label for="Commodity01-2">显示<input type="text" name="orderlist_num" data-id="{{ limitInfo.orderlist_number }}" value="{{ limitInfo.orderlist_number }}">条</label>-->
+                                <!--</figure>-->
+                                <!--{% else %}-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Commodity01-1" name="orderlist_number" value="0">-->
+                                    <!--<label for="Commodity01-1">全部显示</label>-->
+                                <!--</figure>-->
+                                <!--<figure>-->
+                                    <!--<input type="radio" id="Commodity01-2" name="orderlist_number" value="1">-->
+                                    <!--<label for="Commodity01-2">显示<input type="text" name="orderlist_num" value="{{ limitInfo.orderlist_number }}">条</label>-->
+                                <!--</figure>-->
+                                <!--{% endif %}-->
+                            <!--</div>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Commodity02" name="ucenter_orderlist" {% if limitInfo.ucenter_orderlist == 2 %}checked="checked"{% endif %} value="2">-->
+                                <!--<label for="Commodity02">好友可见</label>-->
+                            <!--</p>-->
+                            <!--<p>-->
+                                <!--<input type="radio" id="Commodity03" name="ucenter_orderlist" {% if limitInfo.ucenter_orderlist == 0 %}checked="checked"{% endif %} value="0">-->
+                                <!--<label for="Commodity03">仅自己可见</label>-->
+                            <!--</p>-->
+                        <!--</summary>-->
+                    <!--</div>-->
+
+                    <div class="privacy-list">
+                        <h3>个人主页-晒单</h3>
+                        <summary>
+                            <span>设置是否允许让其它会员看到您的晒单(仅限PC版、触屏版中生效)</span>
+                            <p>
+                                <input type="radio" id="pr-shaidan01" name="ucenter_sharelist" {% if limitInfo.ucenter_sharelist == 1 or limitInfo.ucenter_sharelist is null %}checked="checked"{% endif %} value="1">
+                                <label for="pr-shaidan01">所有人可见</label>
+                            </p>
+                            <div>
+                                {% if limitInfo.ucenter_sharelist == 1 or limitInfo.ucenter_sharelist is null %}
+                                <figure>
+                                    <input type="radio" id="pr-shaidan01-1" name="sharelist_number" {% if limitInfo.sharelist_number == 0 or limitInfo.ucenter_sharelist is null %}checked="checked"{% endif %} value="0">
+                                    <label for="pr-shaidan01-1">全部显示</label>
+                                </figure>
+                                <figure>
+                                    <input type="radio" id="pr-shaidan01-2" name="sharelist_number" {% if limitInfo.sharelist_number != 0 %}checked="checked"{% endif %} value="1">
+                                    <label for="pr-shaidan01-2">显示<input type="text" name="sharelist_num" data-id="{{  limitInfo.sharelist_number }}" value="{{  limitInfo.sharelist_number }}">条</label>
+                                </figure>
+                                {% else %}
+                                <figure>
+                                    <input type="radio" id="pr-shaidan01-1" name="sharelist_number" value="0">
+                                    <label for="pr-shaidan01-1">全部显示</label>
+                                </figure>
+                                <figure>
+                                    <input type="radio" id="pr-shaidan01-2" name="sharelist_number" value="1">
+                                    <label for="pr-shaidan01-2">显示<input type="text" name="sharelist_num" value="{{  limitInfo.sharelist_number }}">条</label>
+                                </figure>
+                                {% endif %}
+                            </div>
+                            <p>
+                                <input type="radio" id="pr-shaidan02" name="ucenter_sharelist" {% if limitInfo.ucenter_sharelist == 2 %}checked="checked"{% endif %} value="2">
+                                <label for="pr-shaidan02">好友可见</label>
+                            </p>
+                            <p>
+                                <input type="radio" id="pr-shaidan03" name="ucenter_sharelist" {% if limitInfo.ucenter_sharelist == 0 %}checked="checked"{% endif %} value="0">
+                                <label for="pr-shaidan03">仅自己可见</label>
+                            </p>
+                        </summary>
+                    </div>
+
+                    <input class="privacy-submit" type="submit" value="保存" id="btnSettting">
+                    {{ html.endForm() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $('#btnSettting').on('click', function() {
+        $('#settings-form').submit();
+        return false;
+    });
+
+    if ("{{ flag }}" == 1) {
+        $('.safety-b-box').html('<i id="safety-b-close"></i><h4>保存成功</h4>');
+        $('#safety-b-con').fadeIn();
+        setTimeout(function(){
+            $('#safety-b-con').fadeOut();
+            window.location.href='/info/settings';
+        },1000)
+    }
+
+    $('input[name=ucenter_buylist]').change(function(){
+        var val = $(this).val();
+        var buy = $('input[name=buylist_num]');
+        if(val == 1){
+            $('input[name=buylist_number]').get(0).checked=true;
+        }else{
+            buy.val(0);
+            $('input[name=buylist_number]').attr('checked', false);
+        }
+    })
+
+    $('input[name=buylist_number]').change(function(){
+        var val = $(this).val();
+        if(val == 0){
+            $('input[name=buylist_num]').val(0);
+        }else if(val == 1){
+            var num = $('input[name=buylist_num]').attr('data-id');
+            $('input[name=buylist_num]').val(num);
+        }
+    })
+
+    $('input[name=buylist_number]').change(function() {
+        $('input[name=ucenter_buylist]').get(0).checked=true;
+    })
+
+    $('input[name=ucenter_orderlist]').change(function(){
+        var val = $(this).val();
+        if(val == 1){
+            $('input[name=orderlist_number]').get(0).checked=true;
+        }else{
+            $('input[name=orderlist_number]').attr('checked', false);
+            $('input[name=orderlist_num]').val(0);
+        }
+    })
+
+    $('input[name=orderlist_number]').change(function(){
+        var val = $(this).val();
+        if(val == 0){
+            $('input[name=orderlist_num]').val(0);
+        }else if(val == 1){
+            var num = $('input[name=orderlist_num]').attr('data-id');
+            $('input[name=orderlist_num]').val(num);
+        }
+    })
+
+    $('input[name=orderlist_number]').change(function() {
+        $('input[name=ucenter_orderlist]').get(0).checked=true;
+    })
+
+    $('input[name=ucenter_sharelist]').change(function(){
+        var val = $(this).val();
+        if(val == 1){
+            $('input[name=sharelist_number]').get(0).checked=true;
+        }else{
+            $('input[name=sharelist_num]').val(0);
+            $('input[name=sharelist_number]').attr('checked', false);
+        }
+    })
+
+    $('input[name=sharelist_number]').change(function(){
+        var val = $(this).val();
+        if(val == 0){
+            $('input[name=sharelist_num]').val(0);
+        }else if(val == 1){
+            var num = $('input[name=sharelist_num]').attr('data-id');
+            $('input[name=sharelist_num]').val(num);
+        }
+    })
+
+    $('input[name=sharelist_number]').change(function() {
+        $('input[name=ucenter_sharelist]').get(0).checked=true;
+    })
+</script>
+
+{% endblock %}

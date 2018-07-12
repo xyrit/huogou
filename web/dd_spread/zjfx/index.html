@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>落地页</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/integral.css">
+</head>
+<body>
+<div class="banner">
+	<img src="images/banner.png" />
+    <a href=""><img src="images/userimg.png" id="headimg" /></a>
+</div>
+<div class="clear"></div>
+<div class="inusinfo">
+	<div class="hdsptit">
+    	<img src="images/yqldyadbg.png"  />
+        <p><span><em class="name" id="nickname"></em><em><i id="money">15块钱</i>抢到了以下商品</em></span></p>
+    </div>
+    <div class="hdsplist">
+    	<ul id="share">
+        	<li><a href="">
+            	<img src="images/proimg.png" />
+                <h3>苹果（Apple）iPhone 6s Plus64版 4G</h3>
+                <p>原价：6880人次</p>
+            </a></li>
+            <li><a href="">
+            	<img src="images/proimg.png" />
+                <h3>苹果（Apple）iPhone 6s Plus64版 4G</h3>
+                <p>原价：6880人次</p>
+            </a></li>
+            <li><a href="">
+            	<img src="images/proimg.png" />
+                <h3>苹果（Apple）iPhone 6s Plus64版 4G</h3>
+                <p>原价：6880人次</p>
+            </a></li>
+        </ul>
+        <div class="loadmore"><a href="javascript:void(0);"   id="pmore">点击查看更多</a></div>
+    </div>
+</div>
+
+
+
+<div class="bottomzw1"></div>
+<div class="fixlqhb"><div class="lqhban"><a href="javascript:void(0);">领取体验红包</a></div></div>
+
+<div class="fixazdown">
+	<div class="azdowncaon">
+    	<a href="javascript:void(0);" class="close"></a>
+        <div class="azcon">
+        	<p>恭喜您<br>获得了10元红包</p>
+            <p><a class="downan" href="javascript:void(0);">下载APP领取红包</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/register.js"></script>
+<script type="text/javascript" src="js/comm.js"></script>
+<script>
+$(document).ready(function(){
+    $('.fixazdown .downan').attr('href',urlApp);//有安装app 打开 app
+    if(isIos() || is_weixn() ){
+        // iPhone
+		$('.fixazdown .downan').text("注册账号领取红包");
+        $(".fixlqhb a").click(function(){
+            $(".fixazdown").fadeIn(500);
+            window.setTimeout(function() {
+                window.location.href = regiUrl; /***跳转到下载页面***/
+            }, 2000);
+        })
+    }else{
+        //Android ;
+        $(".fixlqhb a").click(function(){
+            $(".fixazdown").fadeIn(500);
+            window.setTimeout(function() {
+                window.location.href = downurl; /***下载app的地址***/
+            }, 2000);
+        })
+    }
+
+    $(".fixazdown a.close").click(function(){
+		$(".fixazdown").fadeOut(500);
+	});
+    var url = apiBaseUrl+"/sharing/winshare";
+    var headimgurl= imgurl+'/userface/160/';
+    var pidurl= imgurl+'/pic-400-400/';
+    var id = getUrlParam('id');
+    var info={id:id};
+    $.getJsonp(url,info,function(data) {
+        console.log(data);
+        if (data.code == 201) {
+            showNotice('请求超时');
+
+        } else{
+            $('#headimg').attr('src',headimgurl+data.headimg);
+            $('#nickname').text(data.nickname);
+            $('#money').text(data.money+'块钱');
+            var html='';
+            $.each(data.share,function (a,b) {
+                html+='<li><a href="javascript:void(0);">';
+                html+=' <img src="'+pidurl+b.picture+'" />';
+                html+='<h3>'+b.name+'</h3>';
+                html+=' <p>原价：'+b.user_buy_num+'人次</p>';
+                html+=' </a></li>';
+            })
+            $('#share').html(html);
+        }
+    });
+
+
+});
+$('#pmore').click(function () {
+    $(this).text('没有更多了');
+})
+</script>
+
+</body>
+</html>

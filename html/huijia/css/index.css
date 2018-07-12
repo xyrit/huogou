@@ -1,0 +1,57 @@
+body,html {
+    background-color: rgba(0,0,0,.6)
+}
+
+.sqlf {
+    background: url(../images/sqlf-bg1.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.btn-sqlf {
+    display: block;
+    width: 4rem;
+    height: 1.05rem;
+    position: absolute;
+    bottom: 1.18rem;
+    left: 50%;
+    margin-left: -2rem;
+    background: url(../images/btn-sqlf1.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.btn-sqlf:active {
+    background: url(../images/btn-sqlf-active1.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 3
+}
+
+#svg {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 3.5rem;
+    left: 1.95rem
+}
+
+.tips-app2wx,.tips-m2wx {
+    position: absolute;
+    width: 3.91rem
+}
+
+.tips-m2wx {
+    bottom: .5rem;
+    left: .4rem;
+    height: 3.56rem
+}
+
+.tips-app2wx {
+    top: .3rem;
+    right: .4rem;
+    height: 3.44rem
+}

@@ -1,0 +1,65 @@
+<div class="home_top">
+    <div>
+        <picture><img src="{{ avatar }}" alt=""></picture>
+        <article>
+            <h3>{{ userinfo.username.username }}</h3>
+            <p>
+                {% if(userinfo.info.hometown) %}<b class="address">{{ userinfo.info.hometown|default('暂无') }}&nbsp;&nbsp;</b>{% endif %}
+                <b class="website"><a href="{{ url('/user', {'id':userinfo.username.home_id}) }}">{{ url('/user', {'id':userinfo.username.home_id}) }}</a></b>
+            </p>
+            <p>
+                <span><em><img src="{{ app.params.skinUrl }}/img/{{ userinfo.username.level.pic }}" alt=""></em>{{ userinfo.username.level.name }}</span>
+                <i>经验值：{{ userinfo.username.experience|default(0) }}</i>
+            </p>
+            <aside>{{ userinfo.info.intro|default('这家伙很懒，什么都没留下') }}</aside>
+        </article>
+    </div>
+    <summary>
+        {% if (userinfo.username.id != app.user.id ) %}
+            {% if(isfriend == '') %}
+                <a class="haoy btnAddFriend" href="javascript:void(0);" data-id="{{ userinfo.username.home_id }}">
+                    <i></i>
+                    <b>加好友</b>
+                </a>
+            {% endif %}
+            <h2 style="display: none;">{{ userinfo.username.username }}</h2>
+        <a class="six send-message letter" href="javascript:void(0);" data-id="{{ userinfo.username.home_id }}">
+            <i></i>
+            <b>发私信</b>
+        </a>
+        {% endif %}
+    </summary>
+
+    <span id="report" style="display: none;">举报</span>
+</div>
+
+<ul class="home_sub">
+    <li {% if (app.controller.action.id == 'index') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/index',  {'id': app.request.get('id')}) }}">TA的主页</a></li>
+    <li  {% if (app.controller.action.id == 'user-buy') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-buy',  {'id': app.request.get('id')}) }}">伙购记录</a></li>
+    <li {% if (app.controller.action.id == 'user-raffle') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-raffle',  {'id': app.request.get('id')}) }}">获得的商品</a></li>
+    <li {% if (app.controller.action.id == 'user-post') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-post',  {'id': app.request.get('id')}) }}">晒单</a></li>
+    <li {% if (app.controller.action.id == 'user-group') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-group',  {'id': app.request.get('id')}) }}">加入的圈子</a></li>
+    <li {% if (app.controller.action.id == 'user-topic') or (app.controller.action.id == 'user-topic-comment') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-topic',  {'id': app.request.get('id')}) }}">话题</a></li>
+    <li {% if (app.controller.action.id == 'user-friends') %}class="act"{% endif %}><b><i></i></b><a href="{{ url('default/user-friends',  {'id': app.request.get('id')}) }}">好友</a></li>
+</ul>
+
+<section id="safety-b-con">
+    <div class="safety-b-box">
+        <i class="safety-b-close"></i>
+        <h3></h3>
+    </div>
+</section>
+
+<section id="letter-fixed">
+    <div class="letter-fixed-con">
+        <b id="letter-no"></b>
+        <h2></h2>
+        <article>
+            <textarea maxlength="150"></textarea>
+        </article>
+        <div>
+            <p>您可以输入<i>150</i>个字！</p><input type="submit" value="立即发送" class="commentBtn">
+        </div>
+        <div class="commentid"></div>
+    </div>
+</section>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>个人主页</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="weixin/CSS/star.css" rel="stylesheet" type="text/css" />
+    <script src="weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body id="loadingPicBlock">
+<div class="wrapper">
+    <input name="hdUserID" type="hidden" id="hdUserID" value="8358997" />
+    <div class="mainCon">
+        <div class="mBanner">
+            <ul>
+                <li class="mUserHead"><img src="UserFace/00000000000000000.jpg" /></li>
+                <li class="mUserInfo"><p>13556****78</p><br />经验值：2100<span class="z-class-icon01">
+        <s></s>云购小将</span></li>
+            </ul>
+        </div>
+        <div class="g-snav" id="divMidNav">
+            <span class="g-snav-lst mCurr" id="BuyRecord"><a href="javascript:void(0);">云购记录<em></em></a></span>
+            <span class="g-snav-lst" id="GetGoods"><a href="javascript:void(0);">获得的商品<em></em></a></span>
+            <span class="g-snav-lst" id="Single"><a href="javascript:void(0);">晒单<em></em></a></span>
+        </div>
+        <!--云购记录-->
+        <div id="divBuyRecord" class="mBuyRecord m_lst">
+
+            <style type="text/css">
+                #tips {
+                    text-align: center;
+                    color: #999;
+                    font-size: 14px;
+                    display: none;
+                    position: relative;
+                    padding-top: 10px;
+                }
+                #tips i {
+                    width: 90px;
+                    border-top: 1px solid #e6e6e6;
+                    display: inline-block;
+                    position: absolute;
+                    top: 20px;
+                }
+                #tips i.leftI {
+                    left: 10px;
+                }
+                #tips i.leftR {
+                    right: 10px;
+                }
+            </style>
+
+            <p id="tips" style="display: block;"><i class="leftI"></i>当前用户只允许查看近<span>2</span>条记录<i class="leftR"></i></p>
+
+
+            <ul onclick="location.href='lottery/detail-1619178.html'">
+                <li class="mBuyRecordL"><img src="GoodsPic/pic-200-200/20150504113949911.jpg" /></li>
+                <li class="mBuyRecordR">(第286云)创维（Skyworth）49G7200 49英寸 4色4K12核智能网络液晶电视
+                    <p class="mValue">价值：￥6599.00</p>
+                    <span>获得者：
+                        <a style="color: #22AAff" href="userpage.html">云购nn让我穷尽一生</a>
+                        <br />幸运云购码：
+                        <em class="orange">10006155</em>
+                    </span>
+                </li>
+            </ul>
+            <ul onclick="location.href='lottery/detail-1619178.html'">
+                <li class="mBuyRecordL"><img src="GoodsPic/pic-200-200/20150504113949911.jpg" /></li>
+                <li class="mBuyRecordR">(第286云)创维（Skyworth）49G7200 49英寸 4色4K12核智能网络液晶电视
+                    <p class="mValue">价值：￥6599.00</p>
+                    <span>获得者：
+                        <a style="color: #22AAff" href="userpage.html">云购让我穷尽一生</a>
+                        <br />幸运云购码：
+                        <em class="orange">10006155</em>
+                    </span>
+                </li>
+            </ul>
+            <ul onclick="location.href='lottery/detail-1619178.html'">
+                <li class="mBuyRecordL"><img src="GoodsPic/pic-200-200/20150504113949911.jpg" /></li>
+                <li class="mBuyRecordR">(第286云)创维（Skyworth）49G7200 49英寸 4色4K12核智能网络液晶电视
+                    <p class="mValue">价值：￥6599.00</p>
+                    <span>获得者：
+                        <a style="color: #22AAff" href="userpage.html">云购让我穷尽一生</a>
+                        <br />幸运云购码：
+                        <em class="orange">10006155</em>
+                    </span>
+                </li>
+            </ul>
+
+
+        </div>
+        <!--获得商品-->
+        <div id="divGetGoods" class="mBuyRecord m_lst marginB" style="display: none;">
+            <ul onclick="location.href='lottery/detail-1619178.html'" class="BuyRecordList">
+                <li class="mBuyRecordL">
+                    <img src="GoodsPic/pic-200-200/20150504113949911.jpg" />
+                </li>
+                <li class="mBuyRecordR">(第949云)小米（MIUI）小米电视 2 40英寸
+                    <p class="mValue">价值：￥2788.00</p>
+                    <span>幸运云购码：
+                        <em class="orange">10002073</em>
+                        <br />揭晓时间：
+                        <i>2015-10-10 18:00:35.262</i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <!--晒单-->
+        <div id="divSingle" class="mSingle m_lst marginB" style="display: none">
+            <ul>
+                <!--无晒单显示-->
+                <div class="noRecords gray9" style="display: none">
+                    <s></s>
+                    暂无记录
+                </div>
+                <!--无晒单显示-->
+
+                <li>
+                    <a href="http://weixin.1yyg.com/post/detail-59930.html">
+                        <h3>
+                            <b>又来个小米平板，</b>
+                            <em>03月04日 17:22</em>
+                        </h3>
+                        <p>
+                            这也太支持国产了，中了好几个小米的产品了，平板很薄，红包太多啦，不要红包啦，多给点福分吧，看看福分能不能带来好运，
+                            让我在中一个小米note。下个目标就...
+                        </p>
+                    <dl>
+                        <img src="userpost/small/20150304171938558.jpg" />
+                        <img src="userpost/small/20150304171938558.jpg" />
+                        <img src="userpost/small/20150304171938558.jpg" />
+                    </dl>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div id="divLoading" class="loading" style="display: none;">
+            <b></b>正在加载
+        </div>
+        <div class="load_more" id="btnLoadMore">
+            <a href="javascript:;" title="加载更多">加载更多</a>
+        </div>
+        <input id="hidPageType" type="hidden" value="-1" />
+        <div class="footer" style="display: none;">
+            <ul>
+                <li class="f_home"><a href="index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="list.html" class="hover" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="member/index.html" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+//    点击tab栏切换对应展示域
+$('.g-snav-lst').click(function(){
+    var tId = $(this).attr('id');
+    $(this).addClass('mCurr').siblings('span').removeClass('mCurr');
+    $('.m_lst').hide();
+    $('#div'+tId).show();
+})
+
+</script>
+</body>
+</html>

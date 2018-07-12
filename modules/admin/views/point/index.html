@@ -1,0 +1,142 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+<!-- content start -->
+<div class="admin-content">
+
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">伙购订单</strong></div>
+    </div>
+
+    <div class="am-g">
+        {{ html.beginForm('', 'get', {}) | raw }}
+        <div class="am-u-sm-12 am-u-md-2">
+            <select id="firstLevelCats-select" name="type" class="am-form-field">
+                <option value="0">类型</option>
+                <option value="1" {% if(condition.type == 1) %}selected="selected"{% endif %}>消费抵扣</option>
+                <option value="6" {% if(condition.type == 6) %}selected="selected"{% endif %}>购买福分</option>
+                <option value="2" {% if(condition.type == 2) %}selected="selected"{% endif %}>邀请好友并消费</option>
+                <option value="3" {% if(condition.type == 3) %}selected="selected"{% endif %}>成功晒单</option>
+                <option value="4" {% if(condition.type == 4) %}selected="selected"{% endif %}>晒单评论</option>
+                <option value="5" {% if(condition.type == 5) %}selected="selected"{% endif %}>完善资料</option>
+            </select>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <div class="am-u-sm-12">
+                    <input type="text" class="am-form-field" name="content" value="{{ condition.content }}" placeholder="用户名"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-4">
+            <div class="am-form-group">
+                <div class="am-u-sm-6" style="padding: 0px; width: 40%;">
+                    <input type="text" class="am-form-field" id="my-start" name="start_time" value="{{ condition.startTime }}" placeholder="开始时间"/>
+                </div>
+                <div class="am-u-sm-6" style="padding: 0px; width: 40%;">
+                    <input type="text" class="am-form-field" id="my-end" name="end_time" value="{{ condition.endTime }}" placeholder="结束时间"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-2">
+            <button class="am-btn am-btn-default" type="submit">搜索</button>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            <button class="am-btn am-btn-default"><a href="{{ url }}">导出</a></button>
+        </div>
+
+        <div class="am-u-sm-12 am-u-md-1">
+            总计：{{ list.total }}
+        </div>
+        {{ html.endForm() | raw }}
+    </div>
+
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th>会员</th>
+                        <th>福分</th>
+                        <th>类型</th>
+                        <th class="am-hide-sm-only">备注</th>
+                        <th class="am-hide-sm-only">伙购时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in list.list %}
+                    <tr>
+                        <td>{{ item.user_id.phone }}<br />{{ item.user_id.email }}</td>
+                        <td>{{ item.point }}</td>
+                        <td>{% if(item.point > 0 and item.type.name == '伙购消费') %}购买福分{% elseif(item.point < 0 and item.type.name == '伙购消费') %}福分抵扣{% else %}{{ item.type.name }}{% endif %}</td>
+                        <td class="am-hide-sm-only">{{ item.desc }}</td>
+                        <td class="am-hide-sm-only">{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <div class="am-fr">
+                        <div class="am-cf">
+                            <p class="am-fl">共 {{ list.pagination.totalCount }} 条记录</p>
+
+                            <div class="am-fr">
+                                {{ use('/app/widgets/BackendLinkPager') }}
+                                {{ backend_link_pager_widget({'pagination': list.pagination}) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">Modal 标题
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            Modal 内容。本 Modal 无法通过遮罩层关闭。
+        </div>
+    </div>
+</div>
+<!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script>
+    laydate({
+        elem: '#my-start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    laydate({
+        elem: '#my-end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">通知模板</strong></div>
+    </div>
+
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+            <tr>
+              <th>选中</th>
+              <th>ID</th>
+              <th>描述</th>
+              <th class="am-hide-sm-only">通知方式</th>
+              <th class="am-hide-sm-only">状态</th>
+              <th class="am-hide-sm-only">更新时间</th>
+              <th class="am-hide-sm-only">操作人</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+              <tr>
+                <td><input type="checkbox" name="ids[]"></td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.desc }}</td>
+                <td class="am-hide-sm-only">{{ item.ways }}</td>
+                <td class="am-hide-sm-only">{% if item.status==1 %} 启用 {% else %} 停用 {% endif %}</td>
+                <td class="am-hide-sm-only">{{ item.updated_at|date('Y-m-d H:i:s') }}</td>
+                <td class="am-hide-sm-only">{{ item.op_user }}</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                        <a href="javascript:;" data-id="{{ item.id }}" class="link">
+                          编辑
+                        </a>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <div class="am-cf">
+            <div class="am-fr">
+              <div class="am-cf">
+                <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                <div class="am-fr">
+                  {{ use('/app/widgets/BackendLinkPager') }}
+                  {{ backend_link_pager_widget({'pagination': pagination}) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+{% endblock %}
+
+{% block script %}
+  <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+  <script>
+    $('.link').click(function(){
+      var id = $(this).attr('data-id');
+      var urls = '{{ url('notice/edit') }}' + '?id=' + id;
+      layer.open({
+        type: 2,
+        area: ['700px', '800px'],
+        fix: false, //不固定
+        shade: false,
+        maxmin: true,
+        content: urls
+      });
+    })
+  </script>
+{% endblock %}
+

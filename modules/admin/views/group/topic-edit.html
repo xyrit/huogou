@@ -1,0 +1,91 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+<link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf">
+            <strong class="am-text-primary am-text-lg">编辑话题</strong>
+        </div>
+    </div>
+
+    <hr>
+    <div>
+        <div class="am-u-sm-12">
+            <div class="am-form-group">
+                <div class="am-u-sm-10">
+                    <input type="text" name="subject" style="width: 650px;" value="{{ model.subject }}">
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <div class="am-u-sm-10">
+                    <textarea id="product-intro">{{ message }}</textarea>
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <div class="am-u-sm-10">
+                    <input type="button" onclick="sub();" value="修改">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block script %}
+<script charset="utf-8" src="{{ app.params.skinUrl }}/backend/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('#product-intro', {
+            resizeType : 2,
+            allowPreviewEmoticons : false,
+            allowImageUpload : true,
+            minHeight: 400,
+            uploadJson : '{{ url(['/admin/group/upload-topic-img']) }}',
+            items : [
+                'emoticons','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|',  'multiimage', 'link', 'fullscreen'
+            ]
+        });
+        editor.clickToolbar('fullscreen', function() {
+            $('body').css({
+                'height' : '100%',
+            });
+        });
+    });
+    function sub(){
+        var id = "{{ model.id }}"
+        var content = $(document.getElementsByTagName('iframe')[0].contentWindow.document.body).html();
+        var title = $('input[name=subject]').val();
+        var fil = filterContent(content)
+
+        $.post("{{ url('/group/topic-edit') }}", {'id':id, 'subject':title, 'content':fil}, function(data){
+            if(data == 1){
+                alert('修改成功');
+                window.location.href="{{ url('/group/topic') }}";
+            }else{
+                alert('修改失败');
+                return;
+            }
+        })
+    }
+
+    function filterContent(content){
+        var con = content.replace(/<img[^>]*src=\"[\w:\.\/-]+\/([\d]{1,2})\.gif\"[^>]*>/ig, "[s:$1]").replace(/<img[^>]*src=[\'\"\s]?([\w:\.\/]+([\d]{17}\.(jpg|gif))[\s\'\"]+)[^>]*>/ig, "[img]$2[/img]").replace(/<a[^>]*href=[\'\"\s]?([^\s\'\"]*)[^>]*>(.+?)<\/a>/ig, "[url=$1]$2[/url]");
+
+        return con;
+    }
+
+</script>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block header %}联系我们{% endblock %}
+{% block title %}联系我们_伙购网{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/member.css" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/app/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/app/css/layout_sub.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/app/js/openApp.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<section id="wechat-con">
+    <div>
+        <p></p>
+    </div>
+</section>
+<section class="contact01">
+    <picture><img src="{{ app.params.skinUrl }}/app/images/contact01.png"></picture>
+    <article>
+        <h3>联系客服QQ：</h3>
+        <!--<p><a href="tel:4000067060">400-000-5000</a></p>-->
+        <p>4000067060</p>
+    </article>
+    <a class="link" id="service_qq_a" href="javascript:;">联系客服</a>
+</section>
+<section class="contact01">
+    <picture><img src="{{ app.params.skinUrl }}/app/images/contact02.png"></picture>
+    <article>
+        <h3>微信公众号：</h3>
+        <p id="tbid">yyhuogou</p>
+    </article>
+    <!--<a class="link" onclick="copyText(document.all.tbid)" href="javascript:;">点击复制</a>-->
+    <a href="javascript:;" class="link gzhuBtn">点击关注</a>
+</section>
+<section class="contact02">
+    <picture><img src="{{ app.params.skinUrl }}/app/images/contact03.png"></picture>
+    <article>
+        <h3>商务合作</h3>
+        <summary>伙购网拥有国内庞大的消费群体及专业高效的电子商务平台，诚意邀请各品牌供应商与我们达成商务合作，共同创造中国电子商务的美好明天。</summary>
+        <p>邮 箱：hz@huogou.com</p>
+    </article>
+</section>
+<section class="contact02">
+    <picture><img src="{{ app.params.skinUrl }}/app/images/contact04.png"></picture>
+    <article>
+        <h3>市场推广</h3>
+        <summary>随着伙购发展壮大以及全国各地市场的开拓，欢迎拥有市场推广、广告合作资源的您与我们携手共进，共同发展、携手共进。</summary>
+        <p>电 话：400-000-5000转3 <br>邮 箱：tg@huogou.com</p>
+    </article>
+</section>
+<section class="contact03">
+    <h3>深圳市橙果网络科技有限公司</h3>
+    <aside>( 旗下首个购物平台“伙购网” )</aside>
+    <p>热 线：400-000-5000</p>
+    <p>邮 箱：service@huogou.com</p>
+    <p>地 址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼</p>
+    <p>邮 编：518100</p>
+</section>
+
+
+
+<!--公众号弹窗-->
+<div id="showcode">
+    <div class="imgshow">
+        <span class="close"><a href="javascript:;" class="closebtn"><img src="{{ app.params.skinUrl }}/app/images/closebtn.png" /></a></span>
+        <div style="padding: 22px;">
+            <img src="{{ app.params.skinUrl }}/app/images/wechat.jpg" id="showimg" style="box-shadow: 0px 0px 3px #fff" ;="" />
+        </div>
+        <div class="fontcss">
+            <font style="color:#ea222e;margin-top: 3px;">长按图片识别或扫描二维码关注</font>
+        </div>
+    </div>
+</div>
+<!--公众号弹窗-->
+
+
+
+
+<script>
+    $(function() {
+        $('#service_qq_a').click(function() {
+            location.href = 'http://share.mp.qq.com/cgi/share.php?uin=938004123&account_flag=0&jumptype=1&card_type=crm';
+        });
+    });
+</script>
+<script>
+    $(function() {
+        $('.gzhuBtn').click(function () {
+            var h = $(window).height();
+            $('#showcode').css('height',h).show();
+        })
+        $('.closebtn').click(function () {
+            $('#showcode').hide();
+        });
+    });
+</script>
+
+
+{% endblock %}

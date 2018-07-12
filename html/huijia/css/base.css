@@ -1,0 +1,218 @@
+.layer,body,html {
+    width: 100%;
+    height: 100%
+}
+
+.layer-header,.layer-subheader {
+    text-align: center;
+    color: #ff4800
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body,html {
+    font-family: "microsoft yahei","Yuanti SC",Helvetica,Arial,sans-serif;
+    background-color: #ff4800
+}
+
+ul {
+    list-style: none
+}
+
+a {
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-tap-highlight-color: rgba(255,255,255,0)
+}
+
+a:active,a:hover {
+    outline: 0
+}
+
+input,select {
+    -webkit-appearance: none;
+    -moz-appearance: none
+}
+
+.page {
+    width: 100%;
+    min-height: 11.36rem;
+    position: absolute;
+    overflow: hidden
+}
+
+@media screen and (min-height:11.36rem) {
+    .page {
+        height: 100%
+    }
+}
+
+.layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,.8)
+}
+
+.layer-content {
+    position: absolute;
+    width: 6.15rem;
+    height: 9.38rem;
+    left: 50%;
+    margin-left: -3.075rem;
+    top: 50%;
+    margin-top: -4.69rem;
+    padding-top: 1.56rem;
+    background: url(../images/sqLb-layer.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-close {
+    position: absolute;
+    top: .9rem;
+    right: .3rem;
+    display: block;
+    width: .5rem;
+    height: .5rem;
+    background: url(../images/close.png) center center no-repeat;
+    background-size: .48rem .48rem
+}
+
+.layer-header {
+    padding-left: .2rem;
+    font-size: .42rem
+}
+
+.layer-subheader {
+    margin-top: .16rem;
+    font-size: .3rem
+}
+
+.layer-btn,.layer-receive {
+    display: block;
+    width: 3.59rem;
+    height: .92rem;
+    margin: .3rem auto .15rem
+}
+
+.layer-btn {
+    background: url(../images/btn-receive.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-btn.received {
+    background: url(../images/btn-received.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-receive {
+    background: url(../images/btn-receive.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-receive.received {
+    background: url(../images/btn-received.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-rule h1,.layer-rule span {
+    text-align: center;
+    background-color: #7d6036
+}
+
+.layer-info {
+    text-align: center;
+    font-size: .26rem;
+    color: #b69058
+}
+
+.layer-rule {
+    height: 3.4rem;
+    overflow: scroll;
+    padding: .2rem .3rem;
+    font-size: .26rem
+}
+
+.layer-rule h1 {
+    width: 1.26rem;
+    height: .4rem;
+    line-height: .4rem;
+    font-size: .26rem;
+    color: #fff;
+    border-radius: .4rem
+}
+
+.layer-rule p {
+    line-height: .48rem;
+    font-size: .25rem;
+    color: #7d6036
+}
+
+.layer-rule span {
+    display: inline-block;
+    width: .3rem;
+    height: .3rem;
+    line-height: .3rem;
+    font-size: .2rem;
+    color: #fff;
+    margin-right: .1rem;
+    vertical-align: middle;
+    border-radius: .3rem
+}
+
+.layer-text {
+    color: #ff4800;
+    font-size: .24rem;
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center
+}
+
+.layer-bypower,.layer-code-tips {
+    text-align: center;
+    color: #b69059
+}
+
+.layer-code {
+    text-align: center;
+    vertical-align: middle
+}
+
+.layer-code img {
+    width: 3.08rem;
+    height: 3.15rem
+}
+
+.layer-code-tips {
+    font-size: .34rem
+}
+
+.layer-bypower {
+    position: absolute;
+    width: 100%;
+    bottom: .4rem;
+    font-size: .2rem;
+    letter-spacing: 1.5px
+}
+
+.share-m,.share-wx {
+    position: absolute;
+    width: 3.91rem
+}
+
+.share-wx {
+    top: .3rem;
+    right: .4rem;
+    height: 3.44rem
+}
+
+.share-m {
+    bottom: .5rem;
+    left: .4rem;
+    height: 3.56rem
+}

@@ -1,0 +1,64 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}绑定手机_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                <div class="individual-title">
+                    <h3>新手机验证</h3>
+                    <a href="javascript:history.back()">&lt;&lt; 返回</a>
+                </div>
+                <div class="individual-note">
+                    <i></i><span>请完成手机验证，验证手机不仅能加强账户安全，快速找回密码，还会在您成功伙购到商品后及时通知您！</span>
+                </div>
+                <div class="xin-verify">
+                    <div>
+                        <em>输入手机号码：</em><input type="text" id="phone">
+                    </div>
+                    <div class="w123">
+                        <em>输入验证码：</em><input type="text" id="code"><a class="xin-verify-yz"  href="javascript:void(0)" id="getCode">获取验证码</a>
+                    </div>
+                    <input type="hidden" value="{{ flag }}" id="flag">
+                    <input type="hidden" value="newphone" id="type">
+                    <input class="xin-verify-submit" type="submit" value="验证" id="btnValid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+<script>
+    if ($.cookie('SEND_CODE_4') == 1) {
+        $('#getCode').addClass('verification_gray').attr("t",60).text('重新发送(60)');
+        var j =setInterval(function(){
+            var t = parseInt($('#getCode').attr("t")-1);
+            if (t <= 0) {
+                clearInterval(j);
+                $('#getCode').attr("t",t).text('获取验证码').removeClass('verification_gray');
+            }else{
+                $('#getCode').attr("t",t).text('重新发送('+t+')');
+            }
+        },1000);
+    }
+</script>
+{% endblock %}

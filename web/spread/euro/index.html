@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>欧洲杯</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body class="eurobg">
+<div>
+    <div class="ldytop"><img src="images/ldtopbg.png" /></div>
+    <div class="ldytit"><img src="images/gztitbg.png" /></div>
+    <div class="gzcon">
+        <div class="con1">
+            竞猜时间：2016年7月5日~2016年7月11日
+        </div>
+        <div class="con2">
+            竞猜金额：1元即可参与。
+        </div>
+        <div class="con3">
+            竞猜奖励：<br>
+            1.若猜中，可获得奖金(奖金=竞猜金额*赔率)。<br>
+            2.若竞猜失败，则可领取同竞猜失败金额等值的红包。<br>
+            3.每支球队竞猜总金额排前3名的用户，将会获得该队铁杆粉丝的称号，并可获得价值399的豪华个性定制大礼包一份。
+        </div>
+    </div>
+    <div class="downan"><a href="" title="立即参与"><img src="images/ldyan.png" /></a> </div>
+</div>
+<span style="display: none">
+    <script type="text/javascript" src="/js/tongji.js?v=160706" ></script>
+</span>
+ 
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+$(function() {
+    var downurl = 'http://ld.cacn360.cn/down.php';
+    var url='huogouapp://';
+    $('.downan a').click(function(){
+        $(this).attr('href',url);
+        window.setTimeout(function() {
+            window.location.href = downurl; /***下载app的地址***/
+        }, 3000)
+
+    });
+ })
+</script>
+
+</body>
+</html>

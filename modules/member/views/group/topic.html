@@ -1,0 +1,118 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}圈子话题_伙购网{% endblock %}
+
+{% block main %}
+<div class="member_con_rl">
+  <div class="find-friends">
+    <div class="find_bt_list">
+      <a href="{{ url(['/member/group/topic']) }}" {% if(app.controller.action.id == 'topic') %} class="act"{% endif %}>圈子话题({{ topicNum }})</a><a href="{{ url(['/member/group/comment']) }}" {% if(app.controller.action.id == 'comment') %} class="act"{% endif %}>发表的回复({{ replyNum.totalCount }})</a>
+    </div>
+
+    {% if (reply == 'reply') %}
+      <table class="get">
+        <thead>
+        <tr>
+          <td width="90%" class="left padding">发表的回复</td><td width="10%" class="left padding">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% if replyList %}
+        {% for item in replyList %}
+          <tr>
+            <td class="left padding">
+              <p class="hui">{{ item.created_at }} 对话题“<a class="blue" href="{{ url('/group/topic/view', {'id':item.topic_id}) }}">{{ topics[item.topic_id] }}</a>”进行了回复：</p>
+              <h4>{% autoescape true %}{{ item.message|raw }}{% endautoescape %}</h4>
+            </td>
+            <td valign="top">
+              <a name="delete" data-id="{{ item.id }}" href="javascript:;" class="blue postdel">删除</a>
+            </td>
+          </tr>
+        {% endfor %}
+        {% else %}
+        <tr style="border-bottom: 0;">
+          <td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td>
+        </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    {% elseif(topic == 'topic') %}
+      <table class="get">
+        <thead>
+        <tr>
+          <td width="30%" class="left padding">话题</td>
+          <td width="14%">所属圈子</td>
+          <td width="14%" class="left">时间</td>
+          <td width="14%">审核状态</td>
+          <td width="14%">回复/人气</td>
+          <td width="14%">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% if list %}
+        {% for item in list %}
+          <tr>
+            <td class="left padding">
+              <a href="{{ url('/group/topic/view', {'id':item.id}) }}" target="_blank">{{ item.subject }}</a>
+            </td>
+            <td class="orange">
+              {{ groups[item.group_id] }}
+            </td>
+            <td class="left">
+              <div class="l_time">
+                {{ item.created_at }}
+              </div>
+            </td>
+            <td class="left">
+              {% if(item.status == 0) %}待审核{% elseif(item.status == 1) %}已通过{% elseif(item.status == 2) %}不通过{% endif %}
+            </td>
+            <td>
+              <a href="{{ url('/group/topic/view', {'id':item.id}) }}" target="_blank">{{ item.comment_count }}</a> /
+              <a href="{{ url('/group/topic/view', {'id':item.id}) }}" target="_blank">{{ item.view_count }}</a>
+            </td>
+            <td class="margin"><!-- <a class="blue" href="{{ url('/member/group/edit', {'editId':item.id}) }}">编辑</a>--><a class="circle-delete blue topicblue" href="javascript:;" data-id="{{ item.id }}">删除</a></td>
+          </tr>
+        {% endfor %}
+        {% else %}
+        <tr style="border-bottom: 0;">
+          <td colspan="5"><div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div></td>
+        </tr>
+        {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+  {{ use('/app/widgets/LinkPager') }}
+  {{ link_pager_widget({pagination: pagination}) }}
+</div>
+
+<section class="balance_con">
+  <div class="balance_box">
+    <i class="close"></i>
+    <article>
+      您确定要删除吗？
+    </article>
+    <a href="javascript:;" id="del-cancle">取 消</a><a class="determine" href="javascript:;" id="del-sure">确定</a>
+  </div>
+</section>
+
+<section id="safety-b-con">
+  <div class="safety-b-box">
+    <i class="safety-b-close"></i>
+    <h3></h3>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_group.js" ></script>
+<script type="text/javascript">
+
+</script>
+
+{% endblock %}

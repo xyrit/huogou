@@ -1,0 +1,68 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}晒单分享{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/single.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/post_index.js" language="javascript" type="text/javascript"></script>
+<script src="{{ app.params.skinUrl }}/ddweixin/js/wxshare.js" language="javascript" type="text/javascript"></script>
+
+{% endblock %}
+
+{% block body %}
+
+   <input name="hidAppID" type="hidden" id="hidAppID" value="{{this.context.jsSdkSignPackage.appId}}" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="{{this.context.jsSdkSignPackage.timestamp}}" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="{{this.context.jsSdkSignPackage.nonceStr}}" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="{{this.context.jsSdkSignPackage.signature}}" />
+<!--导航-->
+<nav id="Topnav" class="nav-wrapper">
+    <ul class="wx-port-nav">
+        <li class="current" order="10"><a href="javascript:;">最新</a></li>
+        <li order="20"><a href="javascript:;">精华</a></li>
+        <li order="30"><a href="javascript:;">推荐</a></li>
+        <li order="40"><a href="javascript:;">人气</a></li>
+    </ul>
+    <div class="wx-nav-menu">
+        <a href="javascript:;" class="column">全部分类<span></span></a>
+    </div>
+</nav>
+<!--列表内容-->
+<div id="loadingPicBlock" class="wx-show-wrapper">
+    <div class="wx-show-inner marginB">
+        <div id="divPostList">
+
+        </div>
+        <div id="postLoading" class="loading clearfix">
+            <b></b>正在加载
+        </div>
+        
+        <div style="display: none;" id="btnLoadMore" class="load_more">
+            <a title="加载更多" href="javascript:void(0);">点击加载更多</a><b></b>
+          </div>
+        
+    </div>
+</div>
+<!--全部分类弹窗-->
+<div id="divSortMenu" class="wx-show-tail" style="display: none;">
+    <div class="tail-wrapper">
+        <ul class="tail-inner clearfix">
+            <li class="current" sortid="0"><a href="javascript:;">全部分类</a></li>
+            <li sortid="100"><a href="javascript:;">手机数码</a></li>
+            <li sortid="106"><a href="javascript:;">电脑办公</a></li>
+            <li sortid="104"><a href="javascript:;">家用电器</a></li>
+            <li sortid="2"><a href="javascript:;">化妆个护</a></li>
+            <li sortid="397"><a href="javascript:;">食品饮料</a></li>
+            <li sortid="213"><a href="javascript:;">家居家纺</a></li>
+            <li sortid="222"><a href="javascript:;">钟表首饰</a></li>
+            <li sortid="251"><a href="javascript:;">礼品箱包</a></li>
+            <li sortid="276"><a href="javascript:;">运动户外</a></li>
+            <li sortid="312"><a href="javascript:;">其他商品</a></li>
+        </ul>
+    </div>
+</div>
+<div class="weixin-mask" style="display:none;"></div>
+{% include '@ddweixinModule/views/footer.html' %}
+{% endblock %}

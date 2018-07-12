@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, maximum-scale=5.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>
+        商品图文详情
+    </title>
+    <link href="http://mskin.1yyg.com/weixin/CSS/comm.css?v=130715" rel="stylesheet" type="text/css" />
+    <link href="http://mskin.1yyg.com/weixin/CSS/goods.css?v=151105" rel="stylesheet" type="text/css" />
+    <script src="http://mskin.1yyg.com/weixin/JS/jquery190.js" language="javascript" type="text/javascript"></script>
+    <script type="text/javascript">
+        /*
+         * 智能机浏览器版本信息:
+         *
+         */
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent, app = navigator.appVersion;
+                return {//移动终端浏览器版本信息
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                    iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+
+        var _swidth = 0;
+        var _dwidth = 0;
+        var _gheight = 0;
+        var setZoomFun = function (isResize) {
+            var _goodsdesc = $("#divGoodsDesc").show();
+            var _hwidth = _goodsdesc.width();//$("header.g-header").width();
+            if (_hwidth == _swidth) { return; }
+            _swidth = _hwidth;//window.screen.width;
+            if (_dwidth == 0) {
+                _dwidth = $(document).width();
+            }
+            if (_gheight == 0) {
+                _gheight = _goodsdesc.height();
+            }
+            if (!isResize) {
+                _goodsdesc.find("img").each(function () {
+                    var E = "src2";
+                    var H = $(this).attr(E);
+                    $(this).attr("src", H).removeAttr(E).show();
+
+                });
+            }
+            var _zoom = parseFloat(_swidth / _dwidth);
+            if (_zoom >= 1 || _zoom <= 0) {
+                return;
+            }
+            // document.title = _zoom;
+            if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+                _goodsdesc.css("-webkit-transform-origin", "left top");
+                _goodsdesc.css("-moz-transform-origin", "left top");
+                _goodsdesc.css("-o-transform-origin", "left top");
+
+                _goodsdesc.css("-webkit-transform", "scale(" + _zoom + ")");
+                _goodsdesc.css("-moz-transform", "scale(" + _zoom + ")");
+                _goodsdesc.css("-o-transform", "scale(" + _zoom + ")");
+
+                _goodsdesc.css("height", _gheight * _zoom + "px");
+
+            } else {
+                _goodsdesc.css("zoom", _zoom);
+            }
+        }
+
+        $(document).ready(function () {
+            setZoomFun(false);
+        });
+
+        $(window).resize(function () {
+            setZoomFun(true);
+        });
+
+
+    </script>
+</head>
+<body fnav="1">
+<div class="h5-1yyg-v1">
+    <div id="divGoodsDesc" class="detailContent z-minheight" style="display: none;">
+        <div>
+            <div>
+                <div>
+                    <p> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630181914164.jpg" /></p>
+                    <p> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630181919310.jpg" /></p>
+                </div>
+                <div style="width:800px; margin:0px auto; padding:0px; font-family:'微软雅黑'; height:367px; background:url(http://goodsimg.1yyg.com/GoodsInfo/20150630181928964.jpg) no-repeat center; padding:0px;">
+                    <p style="font-size:15px; line-height:24px; padding:80px 0px 0px 60px; margin:0px; color:#FFF; width:250px;"> 底部有四个小支撑防滑垫，同时还有一个小小的纽扣电池槽，这个电池可不是用来 给音箱供电的，而是以保证时钟的正常计时。</p>
+                </div>
+                <div style="width:800px; margin:0px auto; padding:0px; font-family:'微软雅黑'; height:377px; background:url(http://goodsimg.1yyg.com/GoodsInfo/20150630181946518.jpg) no-repeat center; padding:0px;">
+                    <p style="font-size:15px; line-height:24px; padding:170px 0px 0px 80px; margin:0px; color:#FFF; width:300px;"> AJ3275DZ的一大亮点即就是这个小小的闪电接口，支持iPhone6手机，并有相应的 软橡胶靠垫设计，起到辅助支持手机的作用。</p>
+                </div>
+                <div>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182035963.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182040353.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182047565.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182055733.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182102898.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182109357.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182115923.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182121376.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182128475.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182135737.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182140708.jpg" /></p>
+                    <p style="padding:0px; margin:0px; text-align:center;"> <img src2="http://goodsimg.1yyg.com/GoodsInfo/20150630182147901.jpg" /></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="hidPageType" type="hidden" value="-1" />
+<div class="footer clearfix" style="display:none;">
+    <ul>
+        <li class="f_home"><a href="/index.do"><i></i>云购</a></li>
+        <li class="f_announced"><a href="/lottery/"><i></i>最新揭晓</a></li>
+        <li class="f_single"><a href="/post/index.do"><i></i>晒单</a></li>
+        <li class="f_car"><a id="btnCart" href="/mycart/index.do"><i></i>购物车</a></li>
+        <li class="f_personal"><a href="/member/index.do"><i></i>我的云购</a></li>
+    </ul>
+</div>
+</body>
+</html>

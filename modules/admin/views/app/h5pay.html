@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<div class="admin-content" style="padding-bottom: 26.5rem">
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/h5pay" target="_black">网页支付</a></strong>
+    </div>
+</div>
+<hr>
+
+<div class="am-u-sm-12">
+    {% set form=ActiveForm_begin() %}
+    {{ html.activeHiddenInput(model, "id") |raw}}
+    {{ form.field(model,'status').checkbox() |raw }}
+    {{ html.activeHiddenInput(model, "system") |raw }}
+    {{ html.submitButton('保存',{'class':'am-btn am-btn-primary'}) |raw }}
+    {{ ActiveForm_end() }}
+</div>
+</div>
+{% endblock %}

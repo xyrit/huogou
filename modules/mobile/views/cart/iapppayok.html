@@ -1,0 +1,55 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}爱贝支付结果{% endblock %}
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/cartList.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block body %}
+<div id="shopResultBox" class="wrapper">
+    <div class="g-pay-success marginB">
+
+        <!--付款loading-->
+        <div class="g-pay-auto gray9 new-pay" id="payLoading">
+            <p>已成功提交支付</p>
+            <p class="wait">正在获取支付结果，请稍作等待...</p>
+            <div class="loading-progress">
+                <span class="loading-pgbar"><span class="loading-pging"></span></span>
+            </div>
+        </div>
+        <!--付款loading-->
+
+        <div class="mobile-mask" style="display: none;"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+
+    window.onload = function(){
+        var url = apiBaseUrl + '/chatpay/index?o=' + '{{orderId}}';
+        if (url && url.length > 0) {
+            var t = function() {
+                $.getJsonp(url,{},function(json) {
+                    if (typeof json.type != 'undefined') {
+                        clearInterval(s);
+                        if (json.type==1) {
+                            $.PageDialog.ok('充值成功',function() {
+                                window.location.href = mobileBaseUrl+'/member/consumption.html#recharge';
+                            });
+                        } else if(json.type==2) {
+                            window.location.href = mobileBaseUrl+'/shopok.html?o='+json.order;
+                        }
+                    }
+                });
+            };
+            t();
+            var s = setInterval(t,1000);
+
+        }
+    };
+
+</script>
+{% endblock %}

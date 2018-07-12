@@ -1,0 +1,144 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}伙购详情_伙购网{% endblock %}
+
+{% block body %}
+
+<section class="record-code-fixed">
+    <div class="record-code-fixed-con">
+        <i class="record-code-close"></i>
+        <div id="record-code-share">
+            <div id="bdshare" class="bdsharebuttonbox" data-tag="share_1">
+                <a class="bds_weixin" data-cmd="weixin" href="javascript:;"></a>
+                <a class="bds_tqq" data-cmd="sqq" href="javascript:;"></a>
+                <a class="bds_tsina" data-cmd="tsina" href="javascript:;"></a>
+                <a class="bds_qzone" data-cmd="qzone" href="javascript:;"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/member']) }}">我的伙购</a><i></i><a href="{{ url(['/member/default/buy-list']) }}">伙购记录</a><i></i><a href="">伙购记录详情</a>
+        </div>
+        <div class="record-details">
+            <h2>伙购记录详情</h2>
+            <div class="record-info">
+                <picture>
+                    <img src="{{ periodInfo.product_picture_url  }}" alt="">
+                </picture>
+                <summary>
+                    <a href="{% if periodInfo.status>=1 %}{{ url('/product/lottery', {'pid': periodInfo.period_id}) }}{% else %}{{ url('/product', {'pid': periodInfo.goods_id}) }}{% endif %}"><h3>(第{{ periodInfo.period_number }}期){{ periodInfo.goods_name }}</h3></a>
+                    <p>价值：￥{{ periodInfo.price }}</p>
+                    <p>您已参与{{ periodInfo.user_buy_num }}人次</p>
+                    {% if periodInfo.status == 1 %}
+                    <span class="record-info-jx">
+                        正在揭晓...
+                    </span>
+                    {% elseif periodInfo.status == 0 %}
+                    <b class="progress-bar"><i style="width: {{ (periodInfo.price - periodInfo.left_num) / periodInfo.price * 100 }}%"></i></b>
+                    <aside>
+                        <span class="fl"><i>{{ periodInfo.price - periodInfo.left_num }}</i>已参加</span>
+                        <span class="rl">剩余<i>{{ periodInfo.left_num }}</i></span>
+                    </aside>
+                    {% endif %}
+
+                    {% if periodInfo.lucky_code %}
+                        {% if periodInfo.uid == app.user.id %}
+                        <p style="color:red">恭喜您获得此商品</p>
+                        {% else %}
+                        <p>获得者：<a class="blue" href="{{ url('/user', {'id': periodInfo.user_home_id}) }}">{{ periodInfo.user_name }}</a></p>
+                        {% endif %}
+                    <p>幸运伙购码：{{ periodInfo.lucky_code }}</p>
+                    <p>揭晓时间：{{ periodInfo.raff_time }}</p>
+                    {% endif %}
+                </summary>
+                <div>
+                    {% if periodInfo.status == 0 %}
+                    <a class="orange" href="{{ url('/product', {'pid': periodInfo.product_id}) }}">追加伙购</a>
+                    {% endif %}
+                    {% if orderInfo and periodInfo.status==2 %}
+                    <a href="{{ url('/member/default/order-detail', {'id': orderInfo.id}) }}">完善收货地址</a>
+                    {% endif %}
+                    {% if periodInfo.lucky_code and periodInfo.uid == app.user.id %}
+                    <a class="share" id="record-info-share" href="javascript:;">一键分享</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="record-code">
+                <p>本期商品您总共参与<i>{{ periodInfo.user_buy_num }}</i>人次拥有<i>{{ periodInfo.user_buy_num }}</i>个伙购码</p>
+                <div class="record-code-con">
+                    {% for detail in buyDetail %}
+                    <summary>
+                        <aside>{{ detail.buy_time }} {{ detail.buy_num }}人次</aside>
+                        <article>
+                            {% for code in detail.codes %}
+                            <i {% if periodInfo.lucky_code == code %} class="act"{% endif %}>{{ code }}</i>
+                            {% endfor %}
+                        </article>
+                    </summary>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+
+    if ("{{ periodInfo.status }}" >= 1) {
+        url = createLotteryUrl("{{ periodInfo.period_id }}");
+    } else {
+        url = createGoodsUrl("{{ periodInfo.goods_id }}");
+    }
+
+    window._bd_share_config = {
+        common : {
+            bdText : "哇塞，我在伙购网花了{{ periodInfo.user_buy_num }}元购买的这件商品， 一起来伙购吧~~",
+            bdDesc : "{{ periodInfo.goods_name }}",
+            bdUrl : url,
+            bdPic: "{{ periodInfo.product_picture_url  }}"
+        },
+        share : [{
+            "bdSize" : 82
+        }]
+    }
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+
+    $(document).ready(function(){
+        var liRecord = $('.record-code-con').find('summary').size();
+        var aRow = Math.ceil(liRecord / 1);
+        $('.record-code-con').find('summary').each(function(index){
+            if ((index+1) > (aRow - 1) * 1){
+                $(this).css('borderBottom',0);
+            }
+        })
+
+        $('#record-info-share').on('click',function(){
+            $('.record-code-fixed').fadeIn();
+        })
+        $('.record-code-close').on('click',function(){
+            $('.record-code-fixed').stop().fadeOut('fast');
+        })
+    });
+</script>
+
+{% endblock %}

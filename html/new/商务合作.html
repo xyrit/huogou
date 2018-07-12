@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<title>安全支付</title>
+	<link rel="stylesheet" href="css/global.css">
+	<link rel="stylesheet" href="css/layout.css">
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/global.js"></script>
+	<script src="js/fly.js"></script>
+	<script src="js/requestAnimationFrame.js"></script>
+	<!--[if IE]>
+		<script type="text/javascript" src="js/html5.js"></script>
+		<script src="//api.html5media.info/1.1.8/html5media.min.js"></script>
+	<![endif]-->
+	<!--[if IE 6]>
+		<script type="text/javascript" src="js/DD_belatedPNG_0.0.8a.min.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+	<![endif]-->
+</head>
+<body>
+	<!--头部-->
+	<section class="log clear">
+		<article>
+			<div class="log_lf"><a href="javascript:void(0)" onclick="shoucang(document.title,window.location)">收藏</a><i>|</i><a id="mobile" href="javascript:;"><b></b><span>手机伙购</span><p><img src="img/pic04.jpg">下载手机端</p></a></div>
+			<ul class="log_rl">
+				<li>hi , 欢迎您来到伙购网！</li>
+				<li><a href="">登录</a></li>
+				<li><a href="">注册</a></li>
+				<li><i>|</i></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">我的一元乐购</a>
+					<div>
+						<a href="">云购记录</a>
+						<a href="">获得的商品</a>
+						<a href="">个人设置</a>
+					</div>
+				</li>
+				<li><a href="">充值</a></li>
+				<li class="log_arr">
+					<a class="my_lg" href="">帮助中心</a>
+					<div class="help">
+						<a href="">新手指南</a>
+						<a href="">服务保障</a>
+						<a href="">商品配送</a>
+					</div>
+				</li>
+				<li class="service"><a href="">在线客服</a></li>
+			</ul>
+		</article>
+	</section>
+
+	<!--导航-->
+	<header>
+		<section class="clear">
+			<a class="logo" href=""></a>
+			<div class="add">
+				<img class="add_pic" src="img/pic05.gif">
+				<span>累计参与</span>
+				<ul>
+					<li class="num">5</li>
+					<li class="num">4</li>
+					<li class="nobor">,</li>
+					<li class="num">8</li>
+					<li class="num">3</li>
+					<li class="num">6</li>
+					<li class="nobor">,</li>
+					<li class="num">2</li>
+					<li class="num">6</li>
+					<li class="num">8</li>
+				</ul>
+				<span>人次</span>
+			</div>
+			<div class="search">
+				<div>
+					<input id="search_input" value="请输入要搜索的商品" type="text">
+					<span id="search_span">
+						<a href="">汽车</a>
+						<a href="">手机</a>
+					</span>
+				</div>
+				<input type="submit" value="">
+			</div>
+		</section>
+		<section class="clear">
+			<div class="sort">
+				<a class="sort_title" href="">全部商品分类</a>
+				<div>
+					<dl class="sort_list">
+						<dt><a href="">手机数码</a></dt>
+						<dd>
+							<a href="">手机</a><a href="">数码</a><a href="">影音</a><a href="">苹果手机</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_b">
+						<dt><a href="">电脑办公</a></dt>
+						<dd>
+							<a href="">笔记本</a><a href="">平板电脑</a><a href="">外设</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_c">
+						<dt><a href="">家电汽车</a></dt>
+						<dd>
+							<a href="">大家电</a><a href="">厨房</a><a href="">家电汽车</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_d">
+						<dt><a href="">化妆个护</a></dt>
+						<dd>
+							<a href="">面部护理</a><a href="">美发护发</a><a href="">香水</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_e">
+						<dt><a href="">钟表首饰</a></dt>
+						<dd>
+							<a href="">珠宝首饰</a><a href="">金条银条</a><a href="">手表</a>
+						</dd>
+					</dl>
+					<dl class="sort_list_f">
+						<dt><a href="">食品饮料</a><i> / </i><a href="">其他</a></dt>
+						<dd>
+							<a href="">美食</a><a href="">粮油</a><a href="">酒类</a><a href="">饮料</a>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<ul class="nav">
+				<li class="act"><a href="">首页</a></li>
+				<li><a href="">最新揭晓</a></li>
+				<li><a href="">限购专区</a></li>
+				<li><a href="">晒单分享</a></li>
+				<li><a href="">乐购圈</a></li>
+				<li class="invite"><a href="">邀请有礼</a></li>
+			</ul>
+			<a class="shop" href="">购物车（0）</a>
+		</section>
+	</header>
+
+	<!--内容区-->
+	<section class="hg-partner">
+	</section>
+	<section class="hg-partner-item">
+		<ul>
+			<li>
+				<h2><img src="img/o_pic9.png">伙购网简介</h2>
+				<p>伙购网（www.huogou.com）是一种全新的互动购物体验方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网…  <a href="">查看详情 ></a></p>
+			</li>
+			<li>
+				<h2><img src="img/o_pic10.png">招商对象</h2>
+				<p>国内外品牌商、经销商或有正规货源及授权的渠道商，具有合法完整的企业营业执照、企业税务登记证 、品牌授权书（或商标注册证）。欢迎以多样化合作方式进行商务合作。</p>
+			</li>
+			<li class="last">
+				<h2><img src="img/o_pic11.png">招商联系</h2>
+				<p>邮箱：11111111@qq.com <br> 邮编：518100 <br> 地址：广东省深圳市宝安区28区新安三路第一工业城四栋4楼</p>
+			</li>
+		</ul>
+	</section>
+	<section class="hg-power">
+		<ul>
+			<li class="hg-power-01">
+				<h2>创新模式，潜力巨大，前景广阔</h2>
+				<p>伙购网是一种全新的互动购物体验，集购物、娱乐于一体，引领购物娱乐潮流，是国内最具潜质的综合型B2C电子商务平台，由深圳市橙果网络科技有限公司投入巨资打造。</p>
+			</li>
+			<li class="hg-power-02">
+				<h2>高效运营，专业品质管理</h2>
+				<p>强大的互联网营销能力，领先的精准营销手段，线上线下渠道的无缝整合，快速准确地向用户传递最新、最热商品信息。</p>
+			</li>
+			<li class="hg-power-03">
+				<h2>高端技术支撑，应对庞大流量</h2>
+				<p>伙购网线上、移动App、微信营销平台等带来庞大流量，拥有高端信息技术支撑的网络购物平台，可支持1000万用户同时访问，每天可处理上万订单。</p>
+			</li>
+			<li class="hg-power-04">
+				<h2>充满激情与活力的团队</h2>
+				<p>青春激扬，这里充满创意与灵感。我们立志成为一家快速成长、充满活力的创业公司，我们更矢志成为一家伟大的、备受社会尊敬的基业长青的企业！</p>
+			</li>
+		</ul>
+	</section>
+	<section class="hg-process">
+		<h2>合作流程</h2>
+		<ul>
+			<li class="hg-process-01">
+				<i></i>
+				<h3>初步接洽，确认合作意向</h3>
+				<p>供应商与伙购网商品运营中心联系双方接洽，确认合作意向</p>
+				<em></em>
+			</li>
+			<li class="hg-process-02">
+				<i></i>
+				<h3>伙购网进行资格审查</h3>
+				<p>伙购网商品运营中心对供应商提供的资料进行审查</p>
+				<em></em>
+			</li>
+			<li class="hg-process-03">
+				<i></i>
+				<h3>商讨并确认商品清单</h3>
+				<p>供应商提交商品清单及样品，伙购网确认商品并反馈</p>
+				<em></em>
+			</li>
+			<li class="hg-process-04">
+				<i></i>
+				<h3>签订合作合同</h3>
+				<p>商讨合同具体细节，签订合同供应商品进行上线销售</p>
+			</li>
+		</ul>
+	</section>
+	<footer>
+		<section class="footer_a">
+			<div class="footer_a_list">
+				<dl>
+					<dt>新手指南</dt>
+					<dd><a href="">常见问题</a></dd>
+					<dd><a href="">会员福分经验值</a></dd>
+				</dl>
+				<dl>
+					<dt>权益保障</dt>
+					<dd><a href="">伙购保障体系</a></dd>
+					<dd><a href="">安全支付</a></dd>
+					<dd><a href="">投诉建议</a></dd>
+				</dl>
+				<dl>
+					<dt>商品配送</dt>
+					<dd><a href="">配送费用</a></dd>
+					<dd><a href="">商品验货与签收</a></dd>
+					<dd><a href="">长时间未收到商品</a></dd>
+				</dl>
+				<dl>
+					<dt>关于伙购</dt>
+					<dd><a href="">伙购介绍</a></dd>
+					<dd><a href="">云购公益</a></dd>
+					<dd><a href="">联系我们</a></dd>
+				</dl>
+				<dl>
+					<dt>伙购合作</dt>
+					<dd><a href="">商务合作</a></dd>
+					<dd><a href="">友情链接</a></dd>
+					<dd><a href="">官方QQ群交流</a></dd>
+				</dl>
+			</div>
+			<div class="service">
+				<summary>
+					<h3>服务热线</h3>
+					<p>(7*24小时为您服务)</p>
+				</summary>
+				<aside>400-000-5000</aside>
+				<a class="service_qq" href="">在线咨询</a>
+			</div>
+		</section>
+
+		<section class="footer_b">
+			<div class="wrap clear">
+				<article class="footer_b_01">
+					<summary>
+						<p>下载手机客户端</p>
+						<a href="">立即下载</a>
+					</summary>
+				</article>
+				<article class="footer_b_02">
+				</article>
+				<article class="footer_b_03">
+					<summary>
+						<p>服务器时间</p>
+						<span class="lxftime" nowtime="4/8/2014 12:56:47.50" data-endtime="11/10/2015 22:06:00" col="0" lxfday="yes"></span>
+					</summary>
+				</article>
+				<article class="footer_b_04">
+					<summary>
+						<p>伙购公益基金</p>
+						<span>￥180600.08</span>
+					</summary>
+				</article>
+			</div>
+		</section>
+
+		<section class="footer_c">
+			<div class="wrap clear">
+				<ul>
+					<li class="footer_c_01">
+						<h3>100%公平公正</h3>
+						<aside>参与过程公开透明，用户可随时查看</aside>
+					</li>
+					<li class="footer_c_02">
+						<h3>100%正品保证</h3>
+						<aside>精心挑选优质产品，100%品牌正品</aside>
+					</li>
+					<li class="footer_c_03">
+						<h3>全国免运费</h3>
+						<aside>全场商品全国包邮（港澳台地区除外）</aside>
+					</li>
+					<li class="footer_c_04">
+						<h3>100%权益保障</h3>
+						<aside>多重保障，让用户无忧伙购</aside>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="footer_d">
+			<div class="wrap clear">
+				<article>
+					<a href="">关于伙购</a><i>|</i><a href="">隐私声明</a><i>|</i><a href="">合作专区</a><i>|</i><a href="">加入伙购</a><i>|</i><a href="">联系我们</a>
+				</article>
+				<aside>Copyright © 2013 - 2015, 版权所有 huogou.com 粤ICP备082120500号</aside>
+				<summary>
+					<a href=""><img src="img/pic51.jpg"></a><a href=""><img src="img/pic52.jpg"></a><a href=""><img src="img/pic53.jpg"></a><a href=""><img src="img/pic54.jpg"></a>
+				</summary>
+			</div>
+		</section>
+	</footer>
+</body>
+</html>

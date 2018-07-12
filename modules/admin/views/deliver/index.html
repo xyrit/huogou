@@ -1,0 +1,241 @@
+{% extends '@adminModule/views/base.html' %}
+
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">第三方平台发货</strong></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 300, height: 175}"> 选取备货人 </button>
+
+                        <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+                            <div class="am-modal-dialog">
+                                <div class="am-modal-hd">
+                                    <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+                                    <select name="prepare">
+                                        <option value="罗丽媚">罗丽媚</option>
+                                        <option value="张晓霞">张晓霞</option>
+                                        <option value="何桂清">何桂清</option>
+                                    </select>
+                                    <input type="button" value="提交" onclick="selectPrepare();">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="am-g">
+            {{ html.beginForm('', 'get', {}) | raw }}
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1"  id="my-start-2" name="startTime" value="{{ condition.startTime }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1" id="my-end-2"  name="endTime" value="{{ condition.endTime }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <input type="text" name="name" class="am-form-field" placeholder="用户名" {% if(condition.name) %}value="{{ condition.name }}"{% endif %}>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <input type="text" name="prepare" class="am-form-field" placeholder="备货人" {% if(condition.prepare) %}value="{{ condition.prepare }}"{% endif %}>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" name="content" class="am-form-field" value="{{ condition.content }}" placeholder="请输入订单号或商品名">
+                    <span class="am-input-group-btn">
+                        <input type="hidden" name="sub" value="sub">
+                        <button class="am-btn am-btn-default" type="submit">搜索</button>
+                    </span>
+                </div>
+            </div>
+
+            {% if(status == '3' ) %}
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-input-group am-input-group-sm">
+                      <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-default search-topic" type="button"><a href="{{ url }}">导出采购订单</a></button>
+                      </span>
+                </div>
+            </div>
+            {% endif %}
+            {{ html.endForm() | raw }}
+        </div>
+
+        <div class="am-tabs">
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li {% if(status == '' or status == 'all') %} class="am-active"{% endif %}><a href="{{ url('/deliver/index', {'status':'all'}) }}">全部({{ count.deliver }})</a></li>
+                <li {% if(status == '2' ) %} class="am-active"{% endif %}><a href="{{ url('/deliver/index', {'status':2}) }}">备货({{ count.three }})</a></li>
+                <li {% if(status == '3' ) %} class="am-active"{% endif %}><a href="{{ url('/deliver/index', {'status':3}) }}">发货({{ count.four }})</a></li>
+            </ul>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th class="table-check"><input type='checkbox' id="all" onclick="cli('checkname');"></th>
+                            <th>订单号</th>
+                            <th>商品名称</th>
+                            <th>分类</th>
+                            <th class="am-hide-sm-only">会员</th>
+                            <th class="am-hide-sm-only">期数</th>
+                            <th class="am-hide-sm-only">伙购码</th>
+                            <th class="am-hide-sm-only">收货人</th>
+                            <th class="am-hide-sm-only">联系方式</th>
+                            <th class="am-hide-sm-only">状态</th>
+                            <th class="am-hide-sm-only">填写地址时间</th>
+                            <th class="am-hide-sm-only">操作人</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                            <tr>
+                                <td><input name='checkname' type='checkbox' value='{{ item.id }}' ></td>
+                                <td><a href="{{ url('/admin/order/view', {'id':item.id}) }}" target="_blank">{{ item.id }}</a>{% if(item.exchange) %}<span class="am-text-danger" style="font-size: 16px;"> &nbsp;&nbsp;换</span>{% endif %}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ catName[item.cat_id] }}</td>
+                                <td class="am-hide-sm-only">{{ item.user_id.phone }}<br />{{ item.user_id.email }}</td>
+                                <td class="am-hide-sm-only">{{ item.period_number }}</td>
+                                <td class="am-hide-sm-only"></td>
+                                <td class="am-hide-sm-only">{{ item.ship_name }}</td>
+                                <td class="am-hide-sm-only">{{ item.ship_mobile }}</td>
+                                <td class="am-hide-sm-only">{% if(item.status == 0) %}已中奖{% elseif(item.status == 1) %}待确认{% elseif(item.status == 2) %}待备货{% elseif(item.status == 3) %}待发货{% elseif(item.status == 4) %}待收货
+                                    {% elseif(item.status == 5) %}待晒单{% elseif(item.status == 6) %}异常订单{% elseif(item.status == 7) %}售后{% endif %}</td>
+                                <td class="am-hide-sm-only">{{ item.create_time }}</td>
+                                <td class="am-hide-sm-only">{{ person[item.select_prepare] }}</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                                                <a href="javacript:;"  data-id="{{ item.id }}"
+                                                   class="link">{% if(item.status == 2) %}备货{% elseif(item.status == 3) %}发货{% endif %}</a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <div class="am-fr">
+                            <div class="am-cf">
+                                <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                                <div class="am-fr">
+                                    {{ use('/app/widgets/BackendLinkPager') }}
+                                    {{ backend_link_pager_widget({'pagination': pagination}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        function selectPrepare()
+        {
+            var prepareName = $('select[name=prepare] option:selected').val();
+            var chk_value =[];//定义一个数组
+            $('input[name="checkname"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                chk_value.push($(this).val());//将选中的值添加到数组chk_value中
+            });
+
+            if(chk_value.length == 0){
+                alert('至少选择一个订单');
+                return false;
+            }
+            $.post('/deliver/select-prepare', {'prepareName':prepareName, 'checkArr':chk_value}, function(data){
+                if(data == 0){
+                    alert('操作成功');
+                    window.location.reload();
+                }else{
+                    alert('操作失败');
+                    return false;
+                }
+            })
+        }
+
+        function cli(Obj)
+        {
+            var collid = document.getElementById('all');
+            var coll = document.getElementsByName(Obj)
+            if (collid.checked){
+                for(var i = 0; i < coll.length; i++)
+                    coll[i].checked = true;
+            }else{
+                for(var i = 0; i < coll.length; i++)
+                    coll[i].checked = false;
+            }
+        }
+
+        $('.link').click(function(){
+            var id = $(this).attr('data-id');
+            var urls = '{{ url('/deliver/view') }}' + '?id=' + id;
+            layer.open({
+                type: 2,
+                area: ['900px', '650px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade: false,
+                content: urls
+            });
+        })
+        $(function() {
+            laydate({
+                elem: '#my-start-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+
+            laydate({
+                elem: '#my-end-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,194 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}晒单,晒单分享,伙购网晒单,伙购晒单,伙购分享{% endblock %}
+{% block description %}您伙购到啥了？快来晒晒！晒得越多奖励得越多！{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/global.css" />
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="js/iepng.js"></script>
+<script type="text/javascript">
+    EvPNG.fix('.search a.seaIcon i,.m-menu-all h3 em,.nav-cart-btn i.f-cart-icon,a.u-cart s,.u-mui-tab a.u-menus s,.u-mui-tab li.f-cart a.u-menus i,.u-mui-tab li.f-both-top a.u-menus,.u-mui-tab li.f-both-bottom a.u-menus,.i-ctrl a s,.g-list li cite,.f-list-sorts li.m-value s,.nav-main li.f-nav-thanks span,.u-float-list a i,.cartEmpty i,.transparent-png');
+</script>
+<![endif]-->
+{% endblock %}
+
+{% block title %}晒单分享_伙购网_快乐要和大家分享，快来晒晒你的成果吧！{% endblock %}
+
+{% block body %}
+{% include '@app/views/topbar.html' %}
+{% include '@app/views/nav.html' %}
+
+<!--内容部分-->
+<section class="share_banner">
+    <div class="share_t">
+        <div class="present">
+            <a href="{{ url(['/']) }}">首页</a><i></i><a href="{{ url(['/share']) }}">晒单分享</a>
+        </div>
+        <div class="share_t_c">
+            <div class="share_title">
+                <h2>晒单分享</h2>
+                <span>共<i>{{ totalCount }}</i>个幸运获得者晒单</span>
+            </div>
+            <div class="share_list clear">
+                <article>
+                    <a {% if t == 10 %}class="act"{% endif %} href="{{ url('/share', {'s':s, 't': 10}) }}">最新</a>
+                    <a href="{{ url('/share', {'s':s, 't': 20}) }}" {% if t == 20 %}class="act"{% endif %} style="float: right;">精华</a>
+                    <a href="{{ url('/share', {'s':s, 't': 30}) }}" {% if t == 30 %}class="act"{% endif %}>推荐</a>
+                    <a href="{{ url('/share', {'s':s, 't': 40}) }}" {% if t == 40 %}class="act"{% endif %} style="float: right;">人气</a>
+                </article>
+                <summary id="share_title_more">
+                    <span>{{ selectCateName }} +</span>
+                    <div>
+                        <a href="{{ url('/share', {'s':0, 't': t}) }}" style="float: right;">全部分类</a>
+                        {% for category in productCategory %}
+                        <a href="{{ url('/share', {'s':category.id, 't': t}) }}" class="" style="float: right;">{{ category.name }}</a>
+                        {% endfor %}
+                    </div>
+                </summary>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="notHaveB">
+    <span class="notHaveB_icon"></span>
+    <p class="notHaveB_txt">查无记录！</p>
+</div>
+<div class="wrapper" style="margin: 0px auto; width: 1200px;text-align:center;">
+    <ul class="clear" id="bands-list" style="position: relative;">
+    </ul>
+    <div class="p_list" id="loading" style="display: none">
+        <img src="{{ app.params.skinUrl }}/img/loading.gif" alt="">
+    </div>
+</div>
+
+<div id="navigation" align="center">
+    <a href="{{ url('share/topic-list', {'page': 1}) }}"></a>
+</div>
+
+<div class="pagination" style="margin: 10px auto"></div>
+
+
+
+<!--底部-->
+{% include '@app/views/footer.html' %}
+{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/share.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript">
+    var params = {
+        page: 1,
+        perpage: 16,
+        catId: "{{ s }}",
+        orderFlag: "{{ t }}",
+        downPage: 4,
+        totalPage: 0
+    };
+    var $container = $('#bands-list');
+    $(function() {
+        $('.item img').load(function(){
+            $container.masonry({
+                itemSelector: '.item',
+                columnWidth: 290,
+                gutterWidth: 13,
+            });
+        });
+        $container.masonry({
+            itemSelector: '.item',
+            columnWidth: 290,
+            gutterWidth: 13,
+        });
+        $(window).scrollTop($(window).height());//滚动条滚动，触发infinitescroll事件
+        $(window).scrollTop(0);//恢复滚动条位置
+        $container.infinitescroll({
+                    navSelector: "#navigation",
+                    nextSelector: "#navigation a",
+                    itemSelector: "#bands-list",
+                    animate: true,
+                    dataType: 'json',
+                    path: function(page) {
+                        params.page = page - 1;
+                        return shareBaseUrl + '/default/topic-list?page='+params.page+'&perpage='+params.perpage+'&catId='+params.catId+'&orderFlag='+params.orderFlag;
+                    },
+                    loading: {
+                        finished: function() {
+                            $('#loading').hide();
+                        },
+                        start: function (opts) {
+                            var me = $(this);
+                            $('#loading').show($.proxy(function() {
+                                //获取缓存的对象，注意是在DOM对象上缓存的，不是jquery包装过后的
+                                $.data(this[0], 'infinitescroll').beginAjax(opts) ;
+                            }, me));//注意使用me对象更改上下文
+                        },
+                        msg: $('#loading')
+                    },
+                    appendCallback: false,
+                },
+                function(json, opts) {
+                    var strHtml = '';
+                    $.each(json.list, function(i, v) {
+                        strHtml += '<li class="item">';
+                        strHtml += '<picture><a href="' + createShareDetailUrl(v.id) + '" target="_blank"><img class="lazy" width="' + v.width + 'px" height="' + v.height + '" src="' + createShareImgUrl(v.header_image, 'main') + '" alt=""></a></picture>';
+                        strHtml += '<h3><a href="' + createShareDetailUrl(v.id) + '" target="_blank">' + v.title + '</a></h3>';
+                        strHtml += '<aside>' + v.content + '</aside>';
+                        strHtml += '<article>';
+                        strHtml += '<span><img src="' + createUserFaceImgUrl(v.user_avatar, 160) + '" alt=""></span><a href="' + createUserCenterUrl(v.user_home_id) + '" target="_blank" title="'+ v.user_name +'">' + v.user_name + '</a><i>' + v.created_at + '</i>';
+                        strHtml += '</article>';
+                        strHtml += '</li>';
+                    });
+                    var $box = $(strHtml).css({ opacity: 0}).appendTo($container);
+                    $box.animate({opacity: 1},10);
+                    $container.masonry( 'appended', $box,true);
+                    params.totalPage = json.totalPage;
+                    if (json.totalPage == 0) {
+                        $(window).unbind('.infscr');
+                        $('.notHaveB').show();
+                    } else if (json.list.length < params.perpage) {
+                        $(window).unbind('.infscr');
+                        if (json.totalPage / 4 > 1) {
+                            $(".pagination").createPage({
+                                pageCount: Math.ceil(params.totalPage / params.downPage),
+                                current: Math.ceil(params.page/params.downPage),
+                                downPage: params.downPage,
+                                gotoPage: 'gotoPage'
+                            });
+                            $(".pagination").show();
+                        }
+                    } else {
+                        if (params.page % params.downPage == 0) {
+                            $(window).unbind('.infscr');
+                            $(".pagination").createPage({
+                                pageCount: Math.ceil(params.totalPage / params.downPage),
+                                current: Math.ceil(params.page/params.downPage),
+                                downPage: params.downPage,
+                                gotoPage: 'gotoPage'
+                            });
+                            $(".pagination").show();
+                        }
+                    }
+                });
+    });
+    function gotoPage(currentPage) {
+        params.page = currentPage;
+        $('#bands-list').empty();
+        $('.pagination').hide();
+        $container.masonry({
+            itemSelector: '.item',
+            columnWidth: 290,
+            gutterWidth: 13,
+        });
+        $container.infinitescroll({
+            state: {
+                currPage: currentPage
+            }
+        });
+        $container.infinitescroll('bind');
+    }
+</script>
+
+{% endblock %}

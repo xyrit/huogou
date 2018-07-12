@@ -1,0 +1,114 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}官网微信{% endblock %}
+{% block description %}欢迎来到伙购网,伙购网是一种全新的互动购物体验方式,如果您是第一次来到伙购网,那么您只需通过以下几步便可实现您的伙购之旅。{% endblock %}
+{% block title %}官方微信_伙购网{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/interact.css" />
+{% endblock %}
+
+{% block js %}
+<script src="{{ app.params.skinUrl }}/js/jquery.mousewheel.min.js"></script>
+<script src="{{ app.params.skinUrl }}/js/animated.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="interact-fixed-box">
+    <div id="interact-fixed">
+        <h2>海量奖品随意挑选</h2>
+        <aside>分类精选 应有尽有</aside>
+        <article>
+            <picture><img src="{{ app.params.skinUrl }}/img/interact/interact_icon02.png" width="159" height="159"></picture>
+            <p>手机扫描二维码下载</p>
+            <a class="ios" href="https://itunes.apple.com/cn/app/huo-gou-wang/id1076141712" target="_blank">App Store版下载</a>
+            <a class="android" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.huogou.app" target="_blank">Android版下载</a>
+        </article>
+    </div>
+</div>
+
+
+<div id="interact-box">
+    <div id="interact-con" style="height:400%;">
+        <div id="interact-01" class="scene animated" style="height: 25%;">
+            <section class="head">
+                <div class="wLogo">
+                    <a class="logo" href="{{url(['/'])}}"></a>
+                    <i class="w_line"></i>
+                    <a class="wechatTxt" title="手机版" href="javascript:;">手机版</a>
+                </div>
+                <ul>
+                    <li><i></i><a href="{{url(['/'])}}" >伙购网首页</a></li>
+                    <li class="mobile act"><i></i><a href="javascript:;">手机版</a></li>
+                    <li class="wechat"><i></i><a href="wechat.html">微信关注</a></li>
+                </ul>
+            </section>
+            <section class="interact-am01">
+                <div class="interact-am01-animated" data-animated="1">
+                    <i class="am01-bg"></i>
+                    <i class="am01-yun1"></i>
+                    <i class="am01-yun2"></i>
+                    <i class="am01-phone"></i>
+                    <i class="am01-icon1"></i>
+                    <i class="am01-icon2"></i>
+                    <i class="am01-icon3"></i>
+                    <i class="am01-icon4"></i>
+                    <i class="am01-icon5"></i>
+                    <i class="am01-icon6"></i>
+                </div>
+            </section>
+        </div>
+
+        <div id="interact-02" class="scene" data-animated="1">
+            <section>
+                <i class="zp_bg"></i>
+                <i class="zp_phone"></i>
+                <i class="zp_icon01"></i>
+                <i class="zp_icon02"></i>
+                <i class="zp_icon03"></i>
+            </section>
+        </div>
+
+        <div id="interact-03" class="scene" data-animated="1">
+            <section>
+                <i class="zf_phone"></i>
+                <div class="bank">
+                    <i class="bank01"></i>
+                    <i class="bank02"></i>
+                    <i class="bank03"></i>
+                    <i class="bank04"></i>
+                    <i class="bank05"></i>
+                    <i class="bank06"></i>
+                </div>
+                <div class="star">
+                    <i class="star01"></i>
+                    <i class="star02"></i>
+                    <i class="star03"></i>
+                </div>
+                <i class="car01"></i>
+            </section>
+        </div>
+
+        <div id="interact-04" class="scene" data-animated="1">
+            <section>
+                <i class="ren01"></i>
+                <i class="ren02"></i>
+                <div class="jx_phone">
+                    <div>
+                        <i class="jx_bai"></i>
+                        <i class="jx_logo"></i>
+                        <span class="jx_phone_ren"></span>
+                    </div>
+                </div>
+                <i class="jx_hz"></i>
+                <i class="jx_jb"></i>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

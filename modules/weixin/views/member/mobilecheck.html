@@ -1,0 +1,41 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/mobilecheck.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>绑定手机</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <input name="hidOldMobile" type="hidden" id="hidOldMobile" value="{{oldMobile}}" />
+        <input name="hidMobile" type="hidden" id="hidMobile" value="{{mobile}}" />
+        <div class="authentication-con clearfix">
+            <ul>
+                <li class="pd20"> 验证手机号: {{privateMobile}}</li>
+                <li class="enter-word">
+                    <input id="txtCode" maxlength="6" type="text" placeholder="请输入6位验证码" class="rText" />
+                    <a id="btnSend" href="javascript:;" class="orgBtn">获取验证码</a>
+                </li>
+                <li><a id="btnSubmit" href="javascript:;" class="grayBtn">确认</a></li>
+                <li class="gray9">换了手机号或遗失？请致电客服申诉解除绑定<br /> 400-000-500</li>
+            </ul>
+        </div>
+    </section>
+    {% include '@weixinModule/views/footer.html' %}
+</div>
+{% endblock %}

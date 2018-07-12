@@ -1,0 +1,23 @@
+CREATE TABLE `withdraw` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT(10) NOT NULL COMMENT '申请用户ID',
+  `money` SMALLINT(6) UNSIGNED NOT NULL COMMENT '申请提现金额(分)',
+  `account` VARCHAR(20) NOT NULL COMMENT '开户人',
+  `bank` VARCHAR(40) NOT NULL COMMENT '银行名称',
+  `branch` VARCHAR(100) NOT NULL COMMENT '开户支行',
+  `phone` CHAR(11) NOT NULL COMMENT '联系电话',
+  `bank_number` CHAR(30) NOT NULL COMMENT '银行账号',
+  `service_charge` SMALLINT(6) NOT NULL DEFAULT '0' COMMENT '手续费(分)',
+  `status` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '审核状态,0表示未审核',
+  `payment` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '支付方式',
+  `payment_no` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '支付单号',
+  `payment_money` SMALLINT(6) NOT NULL DEFAULT 0 COMMENT '支付金额',
+  `apply_time` INT(10) NOT NULL DEFAULT 0 COMMENT '申请时间',
+  `audit_time` INT(10) NOT NULL DEFAULT 0 COMMENT '审核时间',
+  `pass_time` INT(10) NOT NULL DEFAULT 0 COMMENT '完成时间',
+  `audit_user` INT(10) NOT NULL DEFAULT 0 COMMENT '审核人',
+  `pass_user` INT(10) NOT NULL DEFAULT 0 COMMENT '处理人',
+  `fail_type` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '失败原因，驳回原因',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='提现表';

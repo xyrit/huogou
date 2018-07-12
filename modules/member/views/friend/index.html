@@ -1,0 +1,95 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的好友_伙购网{% endblock %}
+
+{% block js%}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+{% endblock %}
+
+{% block main %}
+
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1 class="my-friend">我的好友<i>({{ friendNum }})</i></h1>
+        <div class="find_bt_con">
+            {{ html.beginForm('', 'post', {}) | raw }}
+                <span>查找：</span><input type="text" placeholder="请输入会员名称，手机号或邮箱" name="content"><input type="submit" value="搜索">
+            {{ html.endForm() | raw }}
+        </div>
+
+        {% if(findFriends) %}
+            <ul class="find-friends-list">
+                {% for item in findFriends %}
+                    <li>
+                        <picture><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank"><img src="{{ item.user_avatar }}" alt=""></a></picture>
+                        <summary>
+                            <h3><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank">{{ item.user_name }}</a></h3>
+                            <article>
+                                <b class="xf"><img src="{{ app.params.skinUrl }}/img/{{ item.grade_pic }}" />{{ item.grade_name }}</b>
+                                <b class="dz">{{ item.live }}</b>
+                            </article>
+                            <p>{{ item.intro|default('这家伙很懒，什么都没留下。') }}</p>
+                            <div>
+                                <a class="letter" href="{{ url('/message/msg-detail', {'id':item.user_home_id}) }}" userid="{{ item.user_id }}">发私信</a>
+                                <a class="delete delFriend" href="javascript:;" userid="{{ item.user_id }}" id="delFriend">删除好友</a>
+                            </div>
+                        </summary>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elseif(friendList.totalCount) %}
+            <ul class="find-friends-list">
+                {% for item in friendList.list %}
+                    <li>
+                        <picture><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank"><img src="{{ item.user_avatar }}" alt=""></a></picture>
+                        <summary>
+                            <h3><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank">{{ item.user_name }}</a></h3>
+                            <article>
+                                <b class="xf"><img src="{{ app.params.skinUrl }}/img/{{ item.grade_pic }}" />{{ item.grade_name }}</b>
+                                <b class="dz">{{ item.live }}</b>
+                            </article>
+                            <p>{{ item.intro|default('这家伙很懒，什么都没留下。') }}</p>
+                            <div>
+                                <a class="letter" href="{{ url('/message/msg-detail', {'id':item.user_home_id}) }}" userid="{{ item.user_id }}">发私信</a>
+                                <a class="delete delFriend" href="javascript:;" userid="{{ item.user_id }}" id="delFriend">删除好友</a>
+                            </div>
+                        </summary>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div id="divPageNav" class="page_nav">
+                <p class="am-fl">共 {{ friendList.totalCount }} 条记录</p>
+                <div class="am-fr">
+                    {{ use('/app/widgets/LinkPager') }}
+                    {{ link_pager_widget({pagination: friendList.pagination}) }}
+                </div>
+            </div>
+        {% elseif(friendList.totalCount == 0) %}
+            <div class="notHave">
+                <span class="notHave_icon"></span>
+                <p class="notHave_txt">暂无好友！</p>
+            </div>
+        {% else %}
+            <div class="notHave">
+                <span class="notHave_icon"></span>
+                <p class="notHave_txt">查无记录！</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<section class="balance_con">
+    <div class="balance_box">
+        <i class="close"></i>
+        <article>
+            您确定要删除吗？
+        </article>
+        <a href="javascript:;" id="del-cancle">取 消</a><a class="determine" href="javascript:;" id="del-sure">确定</a>
+    </div>
+</section>
+
+{% endblock %}

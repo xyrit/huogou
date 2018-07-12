@@ -1,0 +1,59 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}消息设置_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="message-setting">
+                    {{ html.beginForm('', 'post', {'id':'notice-form'}) | raw }}
+                    <div>
+                        <aside>设置接收参与伙购未获得商品的提醒通知</aside>
+                        <p><input type="checkbox" id="message-text" name="receive_sysinfo" {% if noticeInfo.receive_sysinfo == 1 %}checked="checked"{% endif %} value="1"><label for="message-text">接收系统消息</label></p>
+                        <p><input type="checkbox" id="message-text-02" name="receive_wchat" {% if noticeInfo.receive_wchat == 1 %}checked="checked"{% endif %} value="1"><label for="message-text-02">接收微信或邮件消息</label></p>
+                    </div>
+                    <input class="message-submit" type="submit" value="保存" id="btnNotice">
+                    {{ html.endForm() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $('#btnNotice').on('click', function() {
+        $('#notice-form').submit();
+        return false;
+    });
+
+    if ("{{ flag }}" == 1) {
+        $('.safety-b-box').html('<i id="safety-b-close"></i><h4>保存成功</h4>');
+        $('#safety-b-con').fadeIn();
+        setTimeout(function(){
+            $('#safety-b-con').fadeOut();
+        },1000)
+    }
+
+</script>
+{% endblock %}

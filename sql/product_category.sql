@@ -1,0 +1,11 @@
+CREATE TABLE `product_categories` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `parent_id` INT(10) UNSIGNED NOT NULL  COMMENT '父类别ID',
+  `top_id` VARCHAR (255) NOT NULL COMMENT '顶级分类ID',
+	`level` TINYINT(1) UNSIGNED NOT NULL COMMENT '分类层级',
+  `name` CHAR (20) NOT NULL COMMENT '分类名称',
+  `product_num` VARCHAR (255) DEFAULT NULL COMMENT '商品数量',
+  `list_order` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '排序',
+  `updated_at` INT(10) UNSIGNED NOT NULL COMMENT '最后更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品分类表';

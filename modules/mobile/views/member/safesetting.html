@@ -1,0 +1,25 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}安全设置{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/safesetting.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+<form name="ctl00" method="post" action="" id="ctl00">
+    <div class="h5-1yyg-v11">
+        <!-- 内页顶部 -->
+        <section>
+            <div class="security-con clearfix">
+
+            </div>
+        </section>
+
+        {% include '@mobileModule/views/footer.html' %}
+    </div>
+</form>
+{% endblock %}

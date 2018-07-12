@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+#preview_box2,#preview_box3{
+    
+   position: relative; left:0; top:0;margin:0;padding:0;
+    
+}
+/*-----------error--------------------*/
+#error {
+    background:url(../images/error.png) no-repeat 20px center;
+    line-height:25px;
+    font-size:14px;
+    font-weight:bold;
+    text-indent:40px;
+    color:red;
+}
+/*-----------loading--------------------*/
+#loading {    
+    background:url(../images/loading.gif) no-repeat 20px center;
+    font-size:14px;
+    font-weight:bold;
+    color:#666;
+    line-height:18px;
+    text-indent:40px;
+    
+}

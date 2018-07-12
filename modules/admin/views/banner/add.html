@@ -1,0 +1,186 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block css %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ app.params.skinUrl }}/backend/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="{{ app.params.skinUrl }}/backend/css/admin.css">
+{% endblock %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">banner添加</strong>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal', 'id':'product-form', 'enctype':"multipart/form-data"}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'name', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'name', {'placeholder':'名称'})|raw }}
+                        {{ html.error(model, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'link', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'link', {'placeholder':'链接地址'})|raw }}
+                        {{ html.error(model, 'link', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'source', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'source', {'0':'pc', '1':'微信', '2':'安卓', '3':'ios', '4':'wap'},{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'source', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'picture', {'class':'am-u-sm-2 am-form-label'})|raw }}
+
+                    <div class="am-form-group am-form-file">
+                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                            <i class="am-icon-cloud-upload"></i> 选择要上传的图片</button>
+                        <input id="doc-form-file" type="file" multiple name="picture">
+                        {{ html.error(model, 'picture', {'class':'am-alert am-alert-danger'})|raw }}
+                        <div id="file-list"></div>
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'width', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'width', {'readonly':'readonly', 'value':1920})|raw }}
+                        {{ html.error(model, 'width', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'height', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'height', { 'readonly':'readonly', 'value':387})|raw }}
+                        {{ html.error(model, 'height', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <label class="am-u-sm-2 am-form-label" for="banner-width">日期</label>
+                    <div class="am-u-sm-10">
+                        <div class="am-u-sm-3">
+                            <button type="button" class="am-btn am-btn-default am-margin-right" id="my-start">开始日期</button>
+                            <span id="my-startDate"><input type="text" name="Banner[starttime]" value=""></span>
+                        </div>
+                        <div class="am-u-sm-7">
+                            <button type="button" class="am-btn am-btn-default am-margin-right" id="my-end">结束日期</button><span id="my-endDate">
+                                <input type="text" name="Banner[endtime]" value=""></span></span>
+                        </div>
+                    </div>
+                    {{ html.error(model, 'starttime', {'class':'am-alert am-alert-danger'})|raw }}
+                    {{ html.error(model, 'endtime', {'class':'am-alert am-alert-danger'})|raw }}
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'type', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeListBox(model, 'type', {'0':'首页'},{'data-am-selected':""})|raw }}
+                        {{ html.error(model, 'type', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(model, 'list_order', {'class':'am-u-sm-2 am-form-label'})|raw }}
+                    <div class="am-u-sm-10">
+                        {{ html.activeTextInput(model, 'list_order', {'placeholder':'排序'})|raw }}<span>(0-9之间，越高则越靠前)</span>
+                        {{ html.error(model, 'list_order', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-10 am-u-sm-push-2">
+                        <button type="submit" class="am-btn am-btn-primary">保存</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+
+    <div class="am-alert am-alert-danger" id="my-alert" style="display: none">
+        <p>开始日期应小于结束日期！</p>
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        $(function() {
+            $('#banner-source').on('change',function(){
+
+                var bannerVal = $(this).val();
+                if (bannerVal == 0) {
+                    $('#banner-width').val('1920');
+                    $('#banner-height').val('387');
+                } else if(bannerVal == 1){
+                    $('#banner-width').val('640');
+                    $('#banner-height').val('300');
+                }else if(bannerVal == 2){
+                    $('#banner-width').val('1080');
+                    $('#banner-height').val('444');
+                }else if(bannerVal == 3){
+                    $('#banner-width').val('1242');
+                    $('#banner-height').val('512');
+                }else if(bannerVal == 4){
+                    $('#banner-width').val('640');
+                    $('#banner-height').val('300');
+                }
+            });
+
+            $('#doc-form-file').on('change', function() {
+                var fileNames = '';
+                $.each(this.files, function() {
+                    fileNames += '<span class="am-badge">' + this.name + '</span> ';
+                });
+                $('#file-list').html(fileNames);
+            });
+        });
+
+        $(function() {
+            var startDate = new Date(2000, 10, 14);
+            var endDate = new Date(2030, 11, 25);
+            var $alert = $('#my-alert');
+            $('#my-start').datepicker().
+                    on('changeDate.datepicker.amui', function(event) {
+                        if (event.date.valueOf() > endDate.valueOf()) {
+                            $alert.find('p').text('开始日期应小于结束日期！').end().show();
+                        } else {
+                            $alert.hide();
+                            startDate = new Date(event.date);
+                            $('#my-startDate input').val($('#my-start').data('date'));
+                        }
+                        $(this).datepicker('close');
+                    });
+
+            $('#my-end').datepicker().
+                    on('changeDate.datepicker.amui', function(event) {
+                        if (event.date.valueOf() < startDate.valueOf()) {
+                            $alert.find('p').text('结束日期应大于开始日期！').end().show();
+                        } else {
+                            $alert.hide();
+                            endDate = new Date(event.date);
+                            $('#my-endDate input').val($('#my-end').data('date'));
+                        }
+                        $(this).datepicker('close');
+                    });
+        });
+    </script>
+
+{% endblock %}

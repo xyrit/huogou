@@ -1,0 +1,49 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}限购专区{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/purchase.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/limitbuy.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<section class="pur-page-wrap">
+  <!--banner start-->
+  <article class="purchase-banner-wrap">
+    <a href="javascript:;"> <img src="{{app.params.skinUrl}}/weixin/images/purchase-banner-1.jpg" alt="" /></a>
+    <a href="javascript:;"> <img src="{{app.params.skinUrl}}/weixin/images/purchase-banner-2.jpg" alt="" /></a>
+    <a href="javascript:;"> <img src="{{app.params.skinUrl}}/weixin/images/purchase-banner-3.jpg" alt="" /></a>
+  </article>
+  <!--banner end-->
+  <section class="pur-rule-txt">
+    每个商品每位会员参与人次设置上限，揭晓规则不变。
+  </section>
+  <!--main start-->
+  <section class="purchase-main">
+    <!--幸运中奖者开始-->
+    <input type="hidden" id="hidLastMaxSecond" value="" />
+    <section class="purchase-people" id="st_newlottery" style="display: none;">
+      <ul class="purchase-ul">
+      </ul>
+    </section>
+    <!--幸运中奖者结束-->
+    <!--商品列表开始-->
+    <section class="purchase-shoping">
+      <ul class="purchase-list clearfix" id="ul_purchaselist">
+
+
+      </ul>
+    </section>
+    <!--商品列表结束-->
+  </section>
+  <!--main end-->
+
+
+  {% include '@ddweixinModule/views/footer.html' %}
+</section>
+
+{% endblock %}

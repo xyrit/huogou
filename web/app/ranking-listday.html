@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>每日土豪大pk</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout_sub.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/comm.js?v=160408"></script>
+    <script type="text/javascript" src="js/ranking.js?v=160478"></script>
+</head>
+<body>
+<!--共用nav-->
+<section id="tuhao-nav" style="display: none">
+    <ul class="nav_ul">
+        <li class="act">
+            <a class="act_color" href="javascript:;">每日土豪榜</a>
+        </li>
+        <li>
+            <a href="javascript:;">每月土豪榜</a>
+        </li>
+    </ul>
+</section>
+<div class="tuhao_box">
+    <section class="tuhao-banner" style="display: none;">
+        <img src="images/daily_banner.png">
+        <a class="tuhao-bd" href="/app/ranking_day_past.html?t=0"><img src="images/tuhao_icon01.png"></a>
+        <a class="tuhao-jl" href="/app/ranking_day_past.html?t=1">中奖记录</a>
+    </section>
+    <ul class="tuhao-list">
+    </ul>
+
+    <div class="tuhao-prepaid">
+    </div>
+
+    <div class="tuhao-info" style="display: none;">
+        <h2>每日土豪榜规则说明：</h2>
+        <aside>每日PK，看谁是真土豪，越壕越开心，每日进行单笔消费金额排名，前十笔壕交易进行伙购币返现！</aside>
+        <p>1、活动时间：<span>每日（00:00:00到23:59:59时）</span></p>
+        <p>2、活动要求：</p>
+        <article class="tuhao-info01">
+            <p>a. 活动期间，按照用户单笔消费的金额进行排名。</p>
+            <p>b. 若单笔消费金额相同，则按时间的先后顺序进行排列，时间排前则排名靠前</p>
+            <p>c. 严禁使用任何违规手段，一经发现，封号处理。</p>
+        </article>
+        <p>3、奖项设置</p>
+        <article class="tuhao-info02">
+            <p><span>第1名：</span>按照单笔消费金额返现15%</p>
+            <p><span>第2名：</span>按照单笔消费金额返现10%</p>
+            <p><span>第3名：</span>按照单笔消费金额返现8%</p>
+            <p><span>第4名：</span>按照单笔消费金额返现5%</p>
+            <p><span>第5-10名：</span>按照单笔金额返现2%</p>
+        </article>
+        <p>4、返现的金额请在【中奖记录】中，点击【领取】，领取成功后会即时发放到您的伙购账户中，请在“我的伙购”—“账户明细”中进行查看。</p>
+        <p>5、如单笔消费金额折算后有小数点将以福分（0.1伙购币=10福分）的形式发放到您的福分账户中，请在“我的伙购”—“我的福分”中进行查看。</p>
+        <p>6、该活动的解释权在法律规定的范围内归伙购网所有。</p>
+        <p class="apple" style="display: none;">声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</p>
+    </div>
+</div>
+
+<div class="tuhao_box">
+    <section class="tuhao-banner" style="display: none;">
+        <img src="images/monthly_banner.png">
+        <a class="tuhao-bd" href="/app/ranking_month_past.html?t=0"><img src="images/tuhao_icon01.png"></a>
+        <a class="tuhao-jl" href="/app/ranking_month_past.html?t=1">中奖记录</a>
+    </section>
+    <ul class="tuhao-list">
+    </ul>
+
+    <div class="tuhao-prepaid" style="display: none">
+
+    </div>
+
+    <div class="tuhao-info" style="display: none;">
+        <h2>月度土豪榜说明：</h2>
+        <aside>为回报广大小伙伴对伙购网的支持与厚爱，特推出“月度土豪冲级赛”，前十皆有奖励！</aside>
+        <p>1、活动时间：<span>每月（1号到30号或31号）</span></p>
+        <p>2、活动要求：</p>
+        <article class="tuhao-info01">
+            <p>a. 活动期间，按照用户消费的金额进行排名。</p>
+            <p>b. 活动结束后，排名前10名的用户均可获得对应的奖品（下个月1号公布最终结果）;</p>
+            <p>c. 严禁使用任何违规手段，一经发现，封号处理。</p>
+        </article>
+        <p>3、奖项设置</p>
+        <img class="w100" src="images/tuhao_icon09.jpg">
+        <article class="tuhao-info02">
+            <p><span>第1名：</span>iphone6S 16G x1(￥5750)</p>
+            <p><span>第2名：</span>中国农业银行传世之宝“金钱”Au9999 10g x1(￥2900)</p>
+            <p><span>第3名：</span>卡西欧（Casio,）指针系列男表时尚商务手表石英MTP-1370L-1A男士手表 x1(￥412)</p>
+            <p><span>第4名：</span>Midea/美的 MK-TM1502 保温防烫电水壶 x1(￥116)</p>
+            <p><span>第5-7名：</span>88伙购币</p>
+            <p><span>第8-10名：</span>68伙购币</p>
+        </article>
+        <p>4、请获奖用户及时在【中奖记录】中，点击【领取】进入完善收货地址或领取伙购币。</p>
+        <p>5、实物奖品将在完善收货地址后7个工作日内发出，详细的物流信息请在“我的伙购”—“活动奖品”中进行查看。超过七天无法联系视为主动放弃。</p>
+        <p>6、所得伙购币在领取成功后，会即时发放到您的伙购账户中，请在“我的伙购”—“账户明细”中进行查看。</p>
+        <p>7、请非手机注册的用户及时绑定手机，以便客服第一时间与您取得联系。</p>
+        <p>8、该活动的解释权在法律规定的范围内归伙购网所有。</p>
+        <p class="apple" style="display: none;">声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var b = getCookie('b');
+    if(b == 3) var param = 1;
+    else var param = 0;
+    delCookie("b");
+
+    $(function() {
+        var isiOS = isIos();
+        if (isiOS) {
+            $(".apple").show();
+        }
+
+        //日土豪
+        dayUrl = apiBaseUrl+'/rich/detail?t=day';
+        $.getJsonp(dayUrl,{},function(json) {
+            if(json.append != ''){
+                createSelf(json.append, 0);
+                //$('.tuhao-prepaid-1').show();
+            }
+            createListHtml(json, '单笔消费', 0);
+        });
+
+        //月土豪
+        /*monthUrl = apiBaseUrl+'/rich/detail?t=month';
+        $.getJsonp(monthUrl,{},function(json) {
+            if(json.append != ''){
+                createSelf(json.append, 1);
+                //$('.tuhao-prepaid-2').show();
+            }
+            createListHtml(json, '消费', 1);
+        });*/
+    })
+
+    $('#tuhao-nav .nav_ul').find('li').on('click', function(){
+        $(this).addClass('act').siblings().removeClass('act');
+        $('.nav_ul').removeClass('act_color');
+        $(this).children('a').addClass('act_color');
+        $('.tuhao_box').hide().eq($(this).index()).show();
+    }).eq(param).trigger('click');
+
+    //未上榜，则增加
+    function createSelf(append, ex)
+    {
+        var html = '';
+        html += '<div class="tuhao-inner">';
+        html += '<img class="tuhao-icon" src="images/tuhao_icon07.png">';
+        html += '<picture><img src="' + append.avatar + '"></picture>';
+        html += '<h3>' + append.username + '</h3>';
+        html += '<a href="/app/ranking-listday?type=4">充值</a>';
+        if(ex == 1){
+            html += '<span>消费：' + append.money + '</span>';
+        }else{
+            html += '<span>单笔消费：' + append.money + '</span>';
+        }
+        html += '</div>';
+        $('.tuhao-prepaid').eq(ex).html(html);
+    }
+
+    function  createListHtml(json, append, dateType) {
+        var html = '';
+        $.each(json.list, function (i, v) {
+            n = v.id + 1;
+            if (i < 3) {
+                html += '<li class="tuhao-act0'+ n +'">';
+            } else {
+                html += '<li>';
+            }
+
+            if(n != 10) n = '0' + n;
+            html += '<i>' + n + '</i>';
+            html += '<a href="/app/ranking-listday?type=5&home_id=' + v.home_id + '&user_id=' + v.user_id + '">';
+            html += '<picture><img src="' + v.avatar + '"></picture>';
+            html += '<h3>' + v.username + '</h3>';
+            if(append == '消费'){
+                html += '<span style="width: 86px;">' + append + '：' + v.money + '</span>';
+            }else{
+                html += '<span>' + append + '：' + v.money + '</span>';
+            }
+            html += '</a>';
+            html += '</li>';
+        });
+        $('.tuhao-banner').eq(dateType).show();
+        $('.tuhao-info').eq(dateType).show();
+        $('.tuhao-list').eq(dateType).html(html);
+    }
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+</script>
+
+</body>
+</html>

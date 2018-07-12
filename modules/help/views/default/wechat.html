@@ -1,0 +1,79 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}官网微信{% endblock %}
+{% block description %}欢迎来到伙购网,伙购网是一种全新的互动购物体验方式,如果您是第一次来到伙购网,那么您只需通过以下几步便可实现您的伙购之旅。{% endblock %}
+{% block title %}官方微信_伙购网{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/interact.css" />
+{% endblock %}
+
+
+{% block body %}
+
+<div id="interact-box">
+    <div id="interact-con" style="height:auto; position: inherit;">
+        <div id="interact-01" class="scene animated" style="height: 25%;">
+            <section class="head">
+                <div class="wLogo">
+                    <a class="logo" href="{{url(['/'])}}"></a>
+                    <i class="w_line"></i>
+                    <a class="wechatTxt" title="官方微信" href="javascript:;">官方微信</a>
+                </div>
+                <ul>
+                    <li><i></i><a href="{{url(['/'])}}" >伙购网首页</a></li>
+                    <li class="mobile"><i></i><a href="app.html">手机版</a></li>
+                    <li class="wechat act"><i></i><a href="javascript:;">微信关注</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <!--内容区-->
+    <section class="weixin-banner">
+        <p><span>没有安装微信？<a href="http://weixin.qq.com/" target="_blank">点击这里下载安装>></a></span></p>
+    </section>
+    <div class="weixin-title">关注方式</div>
+    <div class="weixin-item">
+        <figure>
+            <picture>
+                <img src="img/weixin-item-01.png">
+            </picture>
+            <figcaption>
+                <i>第一步</i>
+                <h2>打开微信</h2>
+                <p>使用右上角+符号，点击扫一扫</p>
+            </figcaption>
+        </figure>
+    </div>
+    <div class="weixin-item">
+        <figure>
+            <figcaption>
+                <i>第二步</i>
+                <h2>扫描二维码</h2>
+                <p>将手机对准伙购网官方二维码扫描</p>
+            </figcaption>
+            <picture>
+                <img src="img/weixin-item-02.png">
+            </picture>
+        </figure>
+    </div>
+    <div class="weixin-item">
+        <figure>
+            <picture>
+                <img src="img/weixin-item-03.png">
+            </picture>
+            <figcaption>
+                <i>第三步</i>
+                <h2>点击关注</h2>
+                <p>点击“关注”即可关注伙购网官方微信</p>
+            </figcaption>
+        </figure>
+    </div>
+
+</div>
+
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+

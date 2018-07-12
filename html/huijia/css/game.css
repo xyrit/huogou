@@ -1,0 +1,348 @@
+.main {
+    height: 100%;
+    background: url(../images/game-bg.png) no-repeat;
+    background-size: 100% 10rem
+}
+
+.main-route {
+    height: 2rem;
+    position: relative
+}
+
+.route-info {
+    position: absolute;
+    top: .64rem;
+    right: .1rem;
+    width: 3.2rem;
+    height: 1rem;
+    font-size: .3rem
+}
+
+.route-info-startend span {
+    display: inline-block;
+    height: .4rem;
+    color: #feae32;
+    vertical-align: middle
+}
+
+.route-info-startend .arrow {
+    width: 1.12rem;
+    font-size: .2rem;
+    text-align: center;
+    background: url(../images/arrow.png) center bottom no-repeat;
+    background-size: 1.12rem .16rem
+}
+
+.route-info-progress {
+    height: .6rem;
+    background: url(../images/progress-bg.png) 0 center no-repeat;
+    background-size: 1.69rem .31rem
+}
+
+.route-info-progress .progress-bar {
+    display: inline-block;
+    width: 1.67rem;
+    height: 100%;
+    background: url(../images/progress-bar.png) 0 center no-repeat;
+    background-size: 30% .23rem;
+    vertical-align: middle
+}
+
+.route-info-progress .now-length {
+    display: inline-block;
+    height: 100%;
+    line-height: .6rem;
+    font-size: .26rem;
+    color: #feae32;
+    vertical-align: middle
+}
+
+.main-gift {
+    height: 5.66rem;
+    position: relative;
+    background: url(../images/gift-bg.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.gift,.picture {
+    position: absolute
+}
+
+.picture {
+    width: .56rem;
+    height: .62rem;
+    font-size: .2rem;
+    background: url(../images/picture.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.picture-header {
+    width: .46rem;
+    height: .46rem;
+    margin-top: .05rem;
+    margin-left: .06rem
+}
+
+.gift,.main-info {
+    height: 1.2rem
+}
+
+.main-list h1,.main-rule h1 {
+    margin-top: .15rem;
+    text-align: center
+}
+
+.picture-position1 {
+    top: .6rem;
+    right: 1.8rem
+}
+
+.picture-position2 {
+    top: 1.6rem;
+    left: 2.4rem
+}
+
+.picture-position3 {
+    bottom: 1.9rem;
+    left: 1.2rem
+}
+
+.picture-position4 {
+    bottom: 1.45rem;
+    right: 2rem
+}
+
+.gift {
+    width: 1.05rem;
+    background: url(../images/gift-big.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.btn-get,.btn-help,.btn-share {
+    width: 3rem;
+    float: left;
+    margin-left: .15rem
+}
+
+.gift-1 {
+    top: 1rem;
+    right: .8rem
+}
+
+.gift-2 {
+    top: 1.2rem;
+    left: 1.2rem
+}
+
+.gift-3 {
+    bottom: 1rem;
+    left: 1.8rem
+}
+
+.shake {
+    -webkit-animation-name: shake;
+    animation-name: shake;
+    -webkit-animation-timing-function: ease;
+    animation-timing-function: ease;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s
+}
+
+@-webkit-keyframes shake {
+    0%,100% {
+        background: url(../images/gift-big.png) no-repeat;
+        background-size: 100% 100%
+    }
+
+    50% {
+        background: url(../images/gift-sml.png) no-repeat;
+        background-size: 100% 100%
+    }
+}
+
+@keyframes shake {
+    0%,100% {
+        background: url(../images/gift-big.png) no-repeat;
+        background-size: 100% 100%
+    }
+
+    50% {
+        background: url(../images/gift-sml.png) no-repeat;
+        background-size: 100% 100%
+    }
+}
+
+.main-info p {
+    font-size: .28rem;
+    color: #7b0004;
+    text-align: center
+}
+
+.list-item,.main-link,.main-list h1,.main-rule h1,.main-rule p {
+    font-size: .24rem
+}
+
+.main-btns {
+    height: 1rem
+}
+
+.main-btns a {
+    display: block;
+    height: .92rem
+}
+
+.btn-help {
+    background: url(../images/btn-help.png) center center no-repeat;
+    background-size: 3rem .92rem
+}
+
+.btn-share {
+    background: url(../images/btn-share.png) center center no-repeat;
+    background-size: 3rem .92rem;
+    height: .92rem;
+}
+
+.btn-get {
+    background: url(../images/btn-get.png) center center no-repeat;
+    background-size: 3rem .92rem
+}
+
+.btn-findjob {
+    width: 2.76rem;
+    float: right;
+    margin-right: .15rem;
+    background: url(../images/btn-findjob.png) center center no-repeat;
+    background-size: 2.67rem .92rem
+}
+
+.main-link {
+    height: .8rem;
+    line-height: .8rem;
+    text-align: center;
+    vertical-align: middle
+}
+
+.main-link a {
+    color: #ffbca2;
+    text-decoration: underline
+}
+
+.main-list h1 {
+    color: #7b0004;
+    background: url(../images/line2.png) center center no-repeat;
+    background-size: 5.74rem .04rem
+}
+
+.main-list .list-wrap {
+    padding: 0 .4rem
+}
+
+.list-item {
+    height: 1rem;
+    line-height: 1rem
+}
+
+.list-item-header {
+    display: inline-block;
+    width: .6rem;
+    height: .6rem;
+    border-radius: .6rem;
+    vertical-align: middle
+}
+
+.list-item-info {
+    display: inline-block;
+    margin-left: .1rem;
+    vertical-align: middle
+}
+
+.list-item-info p {
+    height: .35rem;
+    line-height: .35rem;
+    color: #ffbca2
+}
+
+.list-item-info span {
+    display: inline-block;
+    height: .35rem;
+    line-height: .35rem;
+    max-width: 1.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle
+}
+
+.main-rule h1 {
+    color: #7b0004;
+    background: url(../images/line1.png) center center no-repeat;
+    background-size: 5.74rem .04rem
+}
+
+.main-rule p {
+    line-height: .42rem;
+    color: #ffbca2;
+    padding: 0 .2rem
+}
+
+.main-rule span {
+    display: inline-block;
+    width: .3rem;
+    height: .3rem;
+    color: #ff4800;
+    line-height: .3rem;
+    border-radius: .3rem;
+    text-align: center;
+    background-color: #ffbca2;
+    margin-right: .1rem
+}
+
+.main-rule .by-power {
+    height: 1.2rem;
+    line-height: 1.2rem;
+    color: #7b0004;
+    font-size: .2rem;
+    text-align: center
+}
+
+.callfriend-layer .layer-content,.success-layer .layer-content {
+    position: absolute;
+    width: 6.15rem;
+    height: 5.67rem;
+    left: 50%;
+    margin-left: -3.075rem;
+    top: 50%;
+    margin-top: -2.835rem;
+    padding-top: 1.56rem;
+    background: url(../images/success-layer.png) no-repeat;
+    background-size: 100% 100%
+}
+
+.layer-callfriend {
+    display: block;
+    width: 3.59rem;
+    height: .92rem;
+    margin: .3rem auto .15rem;
+    background: url(../images/btn-callfriend.png) center center no-repeat;
+    background-size: 100% 100%
+}
+
+.callfriend-layer .layer-subheader {
+    font-size: .35rem;
+    font-weight: 500;
+    color: #7d6036
+}
+
+.callfriend-ann {
+    text-align: center;
+    color: #b69059;
+    font-size: 0.26rem
+}
+
+#callFriendImg {
+    text-align: center;
+    width: 2rem;
+    margin: auto;
+}

@@ -1,0 +1,286 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}keywords{% endblock %}
+{% block description %}description{% endblock %}
+
+{% block css%}
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/Payment.css" />
+{% endblock %}
+{% block title %}支付{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/frontend/js/jquery.min.js"></script>
+<script src="{{ app.params.skinUrl }}/frontend/js/common.js"></script>
+<script src="{{ app.params.skinUrl }}/frontend/js/payment.js"></script>
+{% endblock %}
+{% block body %}
+{% include '@app/views/topbar.html' %}
+
+<div class="w1190 clrfix">
+    <!--头部-->
+    <div class="g-special-head">
+        <a href="/" class="f-logo fl transparent-png"></a>
+        <a href="/" title="继续伙购" class="f-carryOn fr">继续伙购</a>
+    </div>
+
+    <div class="g-main-con clrfix">
+        <div class="m-cart-title gray3"><b>订单信息</b></div>
+
+        <!--商品列表-->
+        <div id="divCartList" class="m-pay-list gray9 clrfix">
+            <dl>
+                <dt>
+                    <span class="f-pay-comm">商品</span>
+                    <span class="f-pay-price">剩余人次</span>
+                    <span class="f-pay-plusLess">伙购人次</span>
+                    <span class="f-pay-subtotal">小计</span>
+                </dt>
+            </dl>
+        </div>
+
+        <input name="hidTotalCount" type="hidden" id="hidTotalCount" value="0">
+        <!--展开按钮-->
+        
+
+        <!--福分与余额-->
+        <div id="divPayWayBox" class="m-pay-Total clrfix">
+            <dl>
+                <dt>
+                    <span class="fl"><a href="/cart.html" title="返回修改">返回修改</a></span>
+                </dt>
+
+                <dd id="ddPointBox" class="f-pay-grayBg">
+                    <cite style="display:none;">
+                        <span id="spPoint" class="orange">-￥0.00</span>
+                        <span class="u-pay-bixu"><em><b></b></em>必须为100的整数倍</span>
+                        <span><input id="txtUsePoint" type="text"></span>
+                    </cite>
+                    <span><a id="checkPoint" href="javascript:;" class="z-check"></a></span>
+                </dd>
+                <dd id="ddBalanceBox" class="f-pay-grayBg">
+                    <span id="spBalance" class="orange" style="display: none;">-￥0.00</span>
+                    <span><a id="checkBalance" href="javascript:;" class="z-check"></a></span>
+                </dd>
+            </dl>
+        </div>
+
+        <!--网银-->
+        <div id="divBankBox" class="m-pay-manner" style="display:none">
+            <div class="f-pay-select">
+                <span class="fl" id="spPayTitle">您的账户余额不足，请选择以下方式完成支付</span>
+                <span class="fr">使用网银支付<i id="iBankPay" class="orange">￥2.00</i></span>
+            </div>
+
+            <div class="f-pay-defray clrfix">
+                <p class="fl gray9">网银支付</p>
+                <div id="divBankList" class="fr f-pay-bank">
+                    <cite>
+                        <span class="current"><a id="btnCXK" href="javascript:;" title="储蓄卡支付">储蓄卡支付</a></span>
+                        <span><a id="btnXYK" href="javascript:;" title="信用卡支付">信用卡支付</a></span>
+                    </cite>
+                    <!-- 储蓄卡 -->
+                    <dl id="dlCXK" class="clrfix">
+                        <!-- 1. 招商、工商、建行、农行、 中行-->
+                        <dd class="checked">
+                            <input type="radio" value="3080" name="account" id="bankType3080" checked="checked"><label for="bankType3080"><span class="zh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="1025" name="account" id="bankType1025"><label for="bankType1025"><span class="gh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="105" name="account" id="bankType105"><label for="bankType105"><span class="jh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="103" name="account" id="bankType103"><label for="bankType103"><span class="nh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="104" name="account" id="bankType104"><label for="bankType104"><span class="zg_bank"></span></label>
+                        </dd>
+
+                        <!-- 2. 交通、华夏、兴业、上海、民生 -->
+                        <dd>
+                            <input type="radio" value="301" name="account" id="bankType301"><label for="bankType301"><span class="jt_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="311" name="account" id="bankType311"><label for="bankType311"><span class="hx_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="309" name="account" id="bankType309"><label for="bankType309"><span class="xy_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="326" name="account" id="bankType326"><label for="bankType326"><span class="sh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="305" name="account" id="bankType305"><label for="bankType305"><span class="ms_bank"></span></label>
+                        </dd>
+
+                        <!-- 3. 广发、平安、浦发、中信、光大 -->
+                        <dd>
+                            <input type="radio" value="3061" name="account" id="bankType3061"><label for="bankType3061"><span class="gf_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="307" name="account" id="bankType307"><label for="bankType307"><span class="pa_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="314" name="account" id="bankType314"><label for="bankType314"><span class="pf_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="313" name="account" id="bankType313"><label for="bankType313"><span class="zx_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="312" name="account" id="bankType312"><label for="bankType312"><span class="gd_bank"></span></label>
+                        </dd>
+
+                        <!-- 4. 南京、邮政、杭州、宁波、北京  -->
+                        <dd>
+                            <input type="radio" value="316" name="account" id="bankType316"><label for="bankType316"><span class="nj_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3230" name="account" id="bankType3230"><label for="bankType3230"><span class="yz_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="324" name="account" id="bankType324"><label for="bankType324"><span class="hz_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="302" name="account" id="bankType302"><label for="bankType302"><span class="lb_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="310" name="account" id="bankType310"><label for="bankType310"><span class="bj_bank"></span></label>
+                        </dd>
+
+                        <!-- 5. 重庆农商、北京农商、青岛、成都  -->
+                        <dd>
+                            <input type="radio" value="342" name="account" id="bankType342"><label for="bankType342"><span class="cqls_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="335" name="account" id="bankType335"><label for="bankType335"><span class="bj2_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3341" name="account" id="bankType3341"><label for="bankType3341"><span class="qd_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="336" name="account" id="bankType336"><label for="bankType336"><span class="cd_bank"></span></label>
+                        </dd>
+                    </dl>
+
+                    <!-- 信用卡 -->
+                    <dl id="dlXYK" class="clrfix" style="display: none;">
+                        <!-- 1. 招商、工商、建行、中行、华夏 -->
+                        <dd>
+                            <input type="radio" value="308" name="account" id="bankType308"><label for="bankType308"><span class="zh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="1027" name="account" id="bankType1027"><label for="bankType1027"><span class="gh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="1054" name="account" id="bankType1054"><label for="bankType1054"><span class="jh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="106" name="account" id="bankType106"><label for="bankType106"><span class="zg_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3112" name="account" id="bankType3112"><label for="bankType3112"><span class="hx_bank"></span></label>
+                        </dd>
+                        <!-- 2. 民生、光大、邮政、杭州、宁波 -->
+                        <dd>
+                            <input type="radio" value="3051" name="account" id="bankType3051"><label for="bankType3051"><span class="ms_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3121" name="account" id="bankType3121"><label for="bankType3121"><span class="gd_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3231" name="account" id="bankType3231"><label for="bankType3231"><span class="yz_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3241" name="account" id="bankType3241"><label for="bankType3241"><span class="hz_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="303" name="account" id="bankType303"><label for="bankType303"><span class="lb_bank"></span></label>
+                        </dd>
+                        <!-- 3. 上海、兴业、广发、平安、浦发 -->
+                        <dd>
+                            <input type="radio" value="3261" name="account" id="bankType3261"><label for="bankType3261"><span class="sh_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3091" name="account" id="bankType3091"><label for="bankType3091"><span class="xy_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="306" name="account" id="bankType306"><label for="bankType306"><span class="gf_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3071" name="account" id="bankType3071"><label for="bankType3071"><span class="pa_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" value="3141" name="account" id="bankType3141"><label for="bankType3141"><span class="pf_bank"></span></label>
+                        </dd>
+                        <!-- 4. 青岛 -->
+                        <dd>
+                            <input type="radio" value="334" name="account" id="bankType334"><label for="bankType334"><span class="qd_bank"></span></label>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="f-pay-defray f-pay-defray2 clrfix">
+                <p class="fl gray9">支付平台支付</p>
+                <div class="fr f-pay-bank">
+                    <h3>支付平台支付：</h3>
+                    <dl id="dlPayForm" class="clrfix">
+                        <dd>
+                            <input type="radio" name="account" value="jdpay" id="jdpay"><label for="jdpay"><span class="jd_bank"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" name="account" value="chat" id="Swift"><label for="Swift"><span class="u-bank-weixin"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" name="account" value="SwiftQ" id="SwiftQ"><label for="SwiftQ"><span class="u-bank-qqmobile"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" name="account" value="Chinabank" id="Chinabank"><label for="Chinabank"><span class="u-bank-wy"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" name="account" value="QuickMoney" id="QuickMoney"><label for="QuickMoney"><span class="u-bank-kq"></span></label>
+                        </dd>
+                        <dd>
+                            <input type="radio" name="account" value="Unionpay" id="Unionpay"><label for="Unionpay"><span class="u-bank-online"></span></label>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+
+        <!--使用网银支付提交表单-->
+        <form id="toPayForm" name="toPayForm" action="/pay.html" method="post" target="_blank">
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <input type="hidden" id="hidPayType" name="payType" value="balance">
+            <input type="hidden" id="hidPayName" name="payName" value="">
+            <input type="hidden" id="hidPayBank" name="payBank" value="0">
+            <input type="hidden" id="hidUseBalance" name="useBalance" value="0">
+            <!-- 不使用福分时，值为0；使用福分时，值为使用福分值 2012.4.28-->
+            <input type="hidden" id="hidIntegral" name="integral" value="0">
+            <!-- 支付SN -->
+            <input type="hidden" id="hidCheckSN" name="checkSN" value="">
+            <div class="m-pay-Total clrfix">
+                <div id="divPaypwd" class="f-payment-password clrfix" style="display:none;">
+                    <p>
+                        <input type="password" id="txtPaypwd" value="" maxlength="6" autocomplete="off">
+                        <s style="display:none;"></s>
+                        <em id="emTip">请输入6位支付密码</em>
+                    </p>
+                    <span><a href="http://member.1yyg.com/Security/UserAuth-10.do" target="_blank" class="gray6">忘记支付密码？</a></span>
+                </div>
+                <div class="f-list-accounts fr">
+                    <input id="submitOK" type="submit" name="submit" value="确认支付">
+                </div>
+            </div>
+            <div id="divGetPoint" class="f-cgzf">成功支付即可获得2福分</div>
+        </form>
+    </div>
+</div>
+ <input type="hidden" name="t" value="{{token}}">
+         <!--footer 开始-->
+        <!--版权-->
+ {% include '@app/views/footer.html' %}
+
+{% endblock %}

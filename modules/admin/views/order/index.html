@@ -1,0 +1,223 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">中奖订单</strong></div>
+        </div>
+
+        {{ html.beginForm('', 'get', {}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <select data-am-selected name="deliver">
+                        <option value="0" {% if(condition.deliver == '0') %}selected="selected"{% endif %}>发货方式</option>
+                        <option value="1" {% if(condition.deliver == 1) %}selected="selected"{% endif %}>第三方平台</option>
+                        <option value="2" {% if(condition.deliver == 2) %}selected="selected"{% endif %}>虚拟物品(手动发货)</option>
+                        <option value="3" {% if(condition.deliver == 3) %}selected="selected"{% endif %}>虚拟物品(自动发货)</option>
+                        <option value="3" {% if(condition.deliver == 4) %}selected="selected"{% endif %}>自建仓发货</option>
+                        <option value="4" {% if(condition.deliver == 5) %}selected="selected"{% endif %}>供应商代发</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <select name="time" data-am-selected>
+                        <option value="0" {% if(condition.time == 0) %}selected="selected"{% endif %}>时间选择</option>
+                        <option value="1" {% if(condition.time == 1) %}selected="selected"{% endif %}>中奖时间</option>
+                        <option value="2" {% if(condition.time == 2) %}selected="selected"{% endif %}>备货时间</option>
+                        <option value="3" {% if(condition.time == 3) %}selected="selected"{% endif %}>发货时间</option>
+                        <option value="4" {% if(condition.time == 4) %}selected="selected"{% endif %}>发票时间</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-8"></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1"  id="my-start-2" name="startTime" value="{{ condition.startTime }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1" id="my-end-2"  name="endTime" value="{{ condition.endTime }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <input type="text" name="order" class="am-form-field" placeholder="订单编号" {% if(condition.order) %}value="{{ condition.order }}"{% endif %}>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <input type="text" name="prepare" class="am-form-field" placeholder="备货人" {% if(condition.prepare) %}value="{{ condition.prepare }}"{% endif %}>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <input type="text" name="name" class="am-form-field" placeholder="用户名" {% if(condition.name) %}value="{{ condition.name }}"{% endif %}>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-input-group am-input-group-sm">
+                      <span class="am-input-group-btn">
+                          <input type="hidden" name="sub" value="sub">
+                        <button class="am-btn am-btn-default search-topic" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-input-group am-input-group-sm">
+                      <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-default search-topic"><a href="{{ url }}">导出</a></button>
+                      </span>
+                </div>
+            </div>
+        </div>
+
+        {{ html.endForm() | raw }}
+        <div class="am-tabs" id="doc-my-tabs">
+            <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+                <li {% if((status is null) or (status == 'all')) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':'all'}) }}">全部({{ count.all }})</a></li>
+                <li {% if(status == 0 and status != '' and status != 'all') %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':0}) }}">已中奖({{ count.one }})</a></li>
+                <li{% if(status == 1) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':1}) }}">待确认({{ count.two }})</a></li>
+                <li{% if(status == 2) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':2}) }}">备货({{ count.three }})</a></li>
+                <li{% if(status == 3) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':3}) }}">发货({{ count.four }})</a></li>
+                <li{% if(status == 4) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':4}) }}">待收货({{ count.five }})</a></li>
+                <li{% if(status == 5) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':5}) }}">待晒单({{ count.six }})</a></li>
+                <li{% if(status == 6) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':6}) }}">异常订单({{ count.seven }})</a></li>
+                <li{% if(status == 8) %} class="am-active"{% endif %}><a href="{{ url('/order/index', {'status':8}) }}">已完成({{ count.nine }})</a></li>
+            </ul>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>商品名称</th>
+                            <th>分类</th>
+                            <th class="am-hide-sm-only">会员</th>
+                            <th class="am-hide-sm-only">期数</th>
+                            <th class="am-hide-sm-only">伙购码</th>
+                            <th class="am-hide-sm-only">状态</th>
+                            <th class="am-hide-sm-only">发货方式</th>
+                            <th class="am-hide-sm-only">中奖时间</th>
+                            <th class="am-hide-sm-only">{% if(status >= 1 and (status < 4)) %}确认地址时间{% elseif(status >= 4) %}最后修改时间{% endif %}</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                        <tr {% if(item.status.name == '已完成') %} style="color:#c1c1c1"{% endif %}>
+                            <td><a href="{{ url('/admin/order/view', {'id':item.id}) }}" target="_blank">{{ item.id }}</a>{% if(item.is_exchange) %} &nbsp;&nbsp;<span style="color:orangered">换</span></span>{% endif %}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ catName[item.cat_id] }}</td>
+                            <td class="am-hide-sm-only">{{ item.user_id.phone }}<br />{{ item.user_id.email }}</td>
+                            <td class="am-hide-sm-only">{{ item.period_number }}</td>
+                            <td class="am-hide-sm-only">{{ item.code }}</td>
+                            <td class="am-hide-sm-only">{{ item.status.name }}{% if(item.fail_type == 1 and item.delay != 0) %}(待办{{ item.delay }}){% elseif(item.fail_type == 2) %}(冻结){%  endif%}</td>
+                            <td class="am-hide-sm-only">{{ item.delivery.name }}</td>
+                            <td class="am-hide-sm-only">{{ item.create_time }}</td>
+                            <td class="am-hide-sm-only">{% if(status >= 1) and (status < 4) %}{{ item.confirm_addr_time }}{% elseif(status > 3) %}{{ item.last_modified }}{% endif %}</td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                                            <!--<a href="javascript:window.open ('{{ url('/admin/order/view', {'id':item.id}) }}', 'newwindow', 'height=600, width=500, top=150,left=500, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no');">-->
+                                            <a href="javascript:;" data-id="{{ item.id }}" class="link">
+                                                {% if(item.status == 1) %}确认{% else %}详情{% endif %}</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="am-cf">
+                        <div class="am-fr">
+                            <div class="am-cf">
+                                <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                                <div class="am-fr">
+                                    {{ use('/app/widgets/BackendLinkPager') }}
+                                    {{ backend_link_pager_widget({'pagination': pagination}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+
+{% block script %}
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+    <script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $(function(){
+            $.get('{{ url(['/admin/order/change']) }}', {}, function (data) {
+
+            })
+        })
+
+        $('.link').click(function(){
+            var id = $(this).attr('data-id');
+            $('.link').removeAttr("style");
+            $(this).css('color', 'red');
+            var urls = '{{ url('/order/view') }}' + '?id=' + id;
+            layer.open({
+                type: 2,
+                area: ['900px', '650px'],
+                fix: false, //不固定
+                shade: false,
+                maxmin: true,
+                content: urls
+            });
+        })
+
+        laydate({
+            elem: '#my-start-2',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+
+        laydate({
+            elem: '#my-end-2',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+    </script>
+{% endblock %}
+

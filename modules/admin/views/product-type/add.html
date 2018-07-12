@@ -1,0 +1,48 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content" style="padding-bottom: 26.5rem">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增商品类型</strong>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div class="am-u-sm-12">
+                {{ html.beginForm('', 'post', {'class':'am-form am-form-horizontal'}) | raw }}
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'name', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'name', {'placeholder':'输入商品类型名称'})|raw }}
+                        {{ html.error(formModel, 'name', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'alias', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeTextInput(formModel, 'alias', {'placeholder':'输入商品类型别名'})|raw }}
+                        {{ html.error(formModel, 'alias', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    {{ html.activeLabel(formModel, 'brands', {'class':'am-u-sm-3 am-form-label'})|raw }}
+                    <div class="am-u-sm-9">
+                        {{ html.activeCheckboxList(formModel, 'brands', brands, {'class':'checkbox', 'itemOptions':{'labelOptions':{'class':'am-checkbox-inline'}}})|raw }}
+                        {{ html.error(formModel, 'brands', {'class':'am-alert am-alert-danger'})|raw }}
+                    </div>
+                </div>
+
+                <div class="am-form-group">
+                    <div class="am-u-sm-9 am-u-sm-push-3">
+                        <button type="submit" class="am-btn am-btn-primary">添加</button>
+                    </div>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

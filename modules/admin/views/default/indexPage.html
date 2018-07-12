@@ -1,0 +1,126 @@
+{% extends '@app/modules/admin/views/base.html' %}
+
+
+{% block main %}
+<!-- content start -->
+<div class="admin-content">
+
+    <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">统计看板</strong></div>
+    </div>
+
+    <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list " style="display: none">
+        <li><a href="{{ url(['/admin/order/all-order']) }}" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>已支付<br/>{{ consumeTotal }}</a></li>
+        <li><a href="{{ url('/admin/deliver/index', {'status':3}) }}" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>待发货<br/>{{ deliverCount.three }}</a></li>
+        <li><a href="{{ url('/admin/order/index', {'status':7}) }}" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>需换货<br/>{{ deliverCount.four }}</a></li>
+        <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/><br/></a></li>
+    </ul>
+
+    <div class="am-g">
+        <div class="am-u-md-12">
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">财务数据<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">总参与人次：{{ return.incomeTotal }}元</div>
+                    <div class="am-u-sm-2">总充值金额：{{ return.moneyTotal }}元</div>
+                    <div class="am-u-sm-2">账号总余额：{{ return.balance }}元</div>
+                    <div class="am-u-sm-2">佣金余额：{{ return.comm }}元</div>
+                    <div class="am-u-sm-4"></div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">福分数据<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">邀请福分：{{ return.inviteTotal }}</div>
+                    <div class="am-u-sm-2">资料福分：{{ return.taskTotal }}</div>
+                    <div class="am-u-sm-2">晒单福分：{{ return.shareTotal-5000 }}</div>
+                    <div class="am-u-sm-2">购买福分：{{ return.comTotal }}</div>
+                    <div class="am-u-sm-2"></div>
+                    <div class="am-u-sm-2"></div>
+                </div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">抵扣福分：{{ return.totalComsue }}</div>
+                    <div class="am-u-sm-2">余额福分：{{ return.totalPoint }}</div>
+                    <div class="am-u-sm-2">后台操作：{{ return.modifyTotal }}</div>
+                    <div class="am-u-sm-6"></div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">运营数据<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">一级分类：{{ return.cateTotal }}个</div>
+                    <div class="am-u-sm-2">品牌：{{ return.brandTotal }}个</div>
+                    <div class="am-u-sm-2">商品总数量：{{ return.productTotal }}个</div>
+                    <div class="am-u-sm-2">在售数量：{{ return.onlineTotal }}个</div>
+                    <div class="am-u-sm-2">会员数量：{{ return.userTotal }}个</div>
+                    <div class="am-u-sm-2"></div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">今日数据<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">今日新增会员：{{ return.toadyTotal }}个</div>
+                    <div class="am-u-sm-2">今日收入：{{ return.todayIncomeTotal|default(0) }}元</div>
+                    <div class="am-u-sm-2">今日充值：{{ return.rechargeTotal|default(0) }}元</div>
+                    <div class="am-u-sm-2">今日开奖：{{ return.luckyTotal }}次</div>
+                    <div class="am-u-sm-2">今日发货：{{ return.deliverTotal }}次</div>
+                    <div class="am-u-sm-2"></div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">昨日数据<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">昨日新增会员：{{ yesterday.member }}个</div>
+                    <div class="am-u-sm-2">昨日收入：{{ yesterday.income|default(0) }}元</div>
+                    <div class="am-u-sm-2">昨日充值：{{ yesterday.recharge|default(0) }}元</div>
+                    <div class="am-u-sm-2">昨日开奖：{{ yesterday.lottery }}次</div>
+                    <div class="am-u-sm-2">昨日发货：{{ yesterday.delivery }}次</div>
+                    <div class="am-u-sm-2"></div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">进行中订单状态统计<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <div class="am-u-sm-2">已中奖：{{ order.one }}</div>
+                    <div class="am-u-sm-2">待确认：{{ order.two }}</div>
+                    <div class="am-u-sm-2">待备货：{{ order.three }}</div>
+                    <div class="am-u-sm-2">待发货：{{ order.four }}</div>
+                    <div class="am-u-sm-2">待收货：{{ order.five }}</div>
+                    <div class="am-u-sm-2">异常订单：{{ order.seven }}</div>
+                </div>
+            </div>
+
+            <div class="am-panel am-panel-default">
+                <div class="am-panel-hd am-cf" data-am-collapse="{target: '#collapse-panel-2'}">热销伙购商品<span class="am-icon-chevron-down am-fr" ></span></div>
+                <div class="am-g">
+                    <table class="am-u-sm-12">
+                        <tbody>
+                        {% for item in hotProductList %}
+                        <tr>
+                            <td class="am-u-sm-1"></td>
+                            <td class="am-u-sm-7">{{ item.product_id }}</td>
+                            <td class="am-u-sm-4">{{ item.period_number }}期</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- content end -->
+{% endblock %}
+
+{% block script %}
+<script>
+    $(function(){
+        $.get('/default/yesterday', '', function(){})
+    })
+</script>
+{% endblock %}

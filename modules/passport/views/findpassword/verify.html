@@ -1,0 +1,189 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block keywords %}伙购网,夺宝,伙购官网,伙购网,伙购{% endblock %}
+{% block description %}伙购网是一种全新的购物方式，是时尚、潮流的风向标，能满足个性、年轻消费者的购物需求，由深圳市橙果网络科技有限公司注入巨资打造的新型购物网。{% endblock %}
+
+{% block title %}伙购网 - 欢乐伙购 惊喜无限!{% endblock %}
+
+
+{% block body %}
+	<section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+		<a class="return" href="{{ url(['/']) }}">返回首页</a>
+	</section>
+	<input type="hidden" id="hidAccount" value="{{ account }}">
+	<input type="hidden" id="hidKey" value="{{ key }}">
+	<section class="binding_box">
+		<div class="con padding">
+			<h1 class="yanzhen">验证信息</h1>
+			<div class="con-box">
+				<div class="binding">
+					<p class="binding-text"><em>验证码已发送至</em><i>{{ privacyAccount }}</i><a href="{{ url(['/passport/findpassword']) }}">更换</a></p>
+					<summary>
+						<input class="gl_verify" type="text" id="verifyCode" maxlength="6">
+						<a href="javascript:void(0);" id="sendCode" class="verification_act" >重新发送</a>
+						<span id="verifyCodeError" class="yanz_pass"></span>
+						<em class="input_arr">6位验证码</em>
+					</summary>
+					<input type="submit" value="立即提交" id="submit">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--弹窗-->
+	<div id="resend-wrap" style="display: none;">
+		<div class="resend-container">
+			<i id="resend-close">X</i>
+			<h5>请输入验证码</h5>
+			<div class="log_ipts">
+				<input class="gl_verify" type="text" id="smsVcode" maxlength="6">
+				<em class="input_arr">验证码</em>
+			</div>
+			<a href="javascript:void(0);" class="resend-code refresh-imgCode"><img src="{{ url(['/passport/api/captcha']) }}" id="imgCode"></a> <span class="refresh-imgCode">换一个</span>
+			<span id="vcodeerror"></span>
+			<input type="submit" value="确 定" id="vcodeSubmit">
+		</div>
+	</div>
+	<!--弹窗end-->
+
+	{% include '@passportModule/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+	<script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+{% endblock %}
+
+{% block script %}
+	<script>
+		var submit = false;
+		var accountVal = $("#hidAccount").val();
+		var keyVal = $('#hidKey').val();
+		var codeType = 2;
+		$(function() {
+
+			countDownSendCodeBtn();
+
+			$('#sendCode').on('click', function() {
+
+				var obj = $(".verification_act");
+
+				if (obj.attr("t") > 0) {
+					return;
+				}
+				$.getContent(passportBaseUrl + '/api/send-code',{"account":accountVal, 'type':codeType},'sendCode', false);
+
+				return false;
+			});
+
+			$('#verifyCode').on('blur', function() {
+				var code = $('#verifyCode').val();
+				checkCode(code);
+			});
+
+			$('#submit').on('click', function() {
+				$('.gl_verify').focus();
+				var code = $('#verifyCode').val();
+				checkCode(code);
+				if (!submit) {
+					return;
+				}
+				var url = window.location.href;
+				var data = {'account':accountVal, 'code':$('#verifyCode').val(), 'key':keyVal}
+				$(this).val('正在提交...');
+				$.post(url, data, function(e) {
+					if (e.error==0) {
+						window.location.href = e.url;
+					}
+				})
+			});
+
+			$('.refresh-imgCode').on('click', function () {
+				$('#imgCode').attr('src', passportBaseUrl + '/api/captcha?v=' + Math.random())
+			});
+
+			$('#vcodeSubmit').on('click', function () {
+				var smsVcode = $('#smsVcode').val();
+				if (smsVcode.length == 0) {
+					$('#vcodeerror').text('请输入验证码');
+					return false;
+				}
+
+				$.getContent(passportBaseUrl + '/api/send-code', {
+					"account": accountVal,
+					"type": codeType,
+					"vcode": smsVcode
+				}, 'sendCodeAndVerify', false);
+			});
+			$('#smsVcode').on('blur', function() {
+				var smsVcode = $('#smsVcode').val();
+				if (smsVcode.length == 0) {
+					$('#vcodeerror').text('请输入验证码');
+					return false;
+				}
+			});
+			$('#resend-close').on('click', function () {
+				$('#resend-wrap').stop().fadeOut();
+			});
+
+		});
+
+		function countDownSendCodeBtn() {
+			var obj = $(".verification_act");
+			var timeLeft = 120;
+			obj.attr("t", timeLeft).text('重新发送('+timeLeft+')');
+			obj.addClass('verification_gray');
+			var j = setInterval(function () {
+				var t = parseInt(obj.attr("t") - 1);
+				if (t <= 0) {
+					clearInterval(j);
+					obj.attr("t", t).text('重新发送');
+					obj.removeClass('verification_gray');
+				} else {
+					obj.attr("t", t).text('重新发送(' + t + ')');
+				}
+			}, 1000);
+		}
+
+		function checkCode(code){
+			if (code == '') {
+				submit = false;
+				$("#verifyCodeError").show().text('请输入验证码');
+			} else {
+				$.getContent(passportBaseUrl + '/api/check-code',{"code":code, 'account':accountVal, 'type':codeType},'checkCode', false);
+			}
+		}
+
+		function success_sendCode(json){
+			if (json.errcode == 101) {
+				$('#resend-wrap').fadeIn();
+				$('#vcodeerror').text('');
+				$('#smsVcode').val('');
+			} else {
+				countDownSendCodeBtn();
+			}
+		}
+
+		function success_sendCodeAndVerify(json) {
+			if (json.errcode == 101) {
+				$('#vcodeerror').text('验证码错误');
+			}else if(json.errcode == 100) {
+				$('#resend-wrap').stop().fadeOut();
+				$('#vcodeerror').text('');
+				$('#smsVcode').val('');
+				countDownSendCodeBtn();
+			}
+		}
+
+		function success_checkCode(json){
+			if (json.state==1) {
+				submit = true;
+				$("#verifyCodeError").hide().text('');
+			} else {
+				submit = false;
+				$("#verifyCodeError").show().text('验证码错误');
+			}
+		}
+	</script>
+{% endblock %}

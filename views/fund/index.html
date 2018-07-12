@@ -1,0 +1,67 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}伙购公益,关于伙购{% endblock %}
+{% block description %}欢迎来到伙购网,伙购网是一种全新的互动购物体验方式,如果您是第一次来到伙购网,那么您只需通过以下几步便可实现您的伙购之旅。{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css" />
+{% endblock %}
+{% block title %}伙购公益_每成功伙购一次即向伙购基金捐赠1分钱，您伙购的不仅仅是梦想，更是在做一份公益事业_伙购网{% endblock %}
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/fund.js"></script>
+{% endblock %}
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+	<!--内容区-->
+	<section class="hg-public">
+		<a href="/list.html"></a>
+	</section>
+	<section class="hg-public-con">
+		<div class="hg-public-con-left">
+			<h2 class="hg-public-title"><img src="img/o_pic6.png">伙购基金</h2>
+			<ul>
+				<li>
+					<span>01</span>
+					<h3>基金的建立</h3>
+					<p>伙购基金是伙购网创始人发起成立的以公益事业为主要方向的爱心基金。伙购基金本着“我为人人，人人为我”的社会责任，向需要帮助的困难人们提供爱心捐助。</p>
+				</li>
+				<li>
+					<span>02</span>
+					<h3>基金筹款办法</h3>
+					<p>每位在伙购网进行分享购物的朋友，您的每次参与都将是为我们的公益事业做出一份贡献。当您每参与1人次伙购，将由伙购网出资为伙购基金筹款0.01元，所筹款项将全部用于伙购基金。</p>
+				</li>
+				<li>
+					<span>03</span>
+					<h3>基金的去向</h3>
+					<p>伙购基金将会以第1种途径或第2种途径进行使用：</p>
+					<p>一、伙购网全体员工将组织向身边的公益事业进行捐赠与关怀活动。活动内容包括：资金、所需用品以及探望与协助等，每次捐赠与关怀活动结束后伙购基金将公布活动详情以及基金详细使用报告。</p>
+					<p>二、伙购基金通过腾讯公益或壹基金等公益组织进行爱心捐赠。</p>
+				</li>
+				<li>
+					<span>04</span>
+					<h3>社会活动</h3>
+					<p>伙购基金的捐赠活动，我们不定期开展内部全体员工对身边更多公益事业或实时公益事业进行爱心捐赠的社会活动。</p>
+					<p>我们还将不定期邀请幸运者参与并见证我们的基金社会活动，共同为我们的社会责任付出一份爱心与力量。当活动启动前我们会将活动进行公告，您可自愿或自行组织参与，组成伙购网大家庭，共同开启活动之行。凡参与社会活动的幸运者均能获得伙购网为您精心准备的公益爱心礼品一份。</p>
+				</li>
+			</ul>
+		</div>
+		<div class="hg-public-con-right">
+			<h2 class="hg-public-title"><img src="img/o_pic7.png">基金账户</h2>
+			<div class="con-right-wrap">
+				<h3>伙购公益账户累计总额：</h3>
+				<p>( 其中100万元为伙购网预先注入启动资金 )</p>
+				<div class="public-money">
+					<span>{{ fund }}</span>元
+				</div>
+				<div class="maquee" style="overflow: hidden">
+				<ul></ul>
+				</div>
+			</div>
+		</div>
+	</section>
+ {% include '@app/views/footer.html' %}
+
+{% endblock %}
+

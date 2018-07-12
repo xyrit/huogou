@@ -1,0 +1,41 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css" />
+{% endblock %}
+{% block title %}支付结果_{{ app.name }}{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/js/result.js"></script>
+{% endblock %}
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+    <section class="wrap clear">
+        <input type="hidden" value="{{order}}" name="order" id="order">
+        <input type="hidden" value="{{rorder}}" name="rorder" id="rorder">
+        <div class="payment-success">
+            <div class="payment-result">
+                <i class="underway">数据提交中，请稍后...</i>
+                <img src="{{ app.params.skinUrl }}/img/result-loading.gif">
+            </div>
+            <div class="scan-code">
+                <div>
+                    <picture><img src="{{ app.params.skinUrl }}/img/wechat.jpg" alt="" width="118" height="118"></picture>
+                    <article>
+                        <h4>微信扫一扫</h4>
+                        <p>关注伙购官方微信</p>
+                        <p>揭晓信息随时掌控！</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--footer 开始-->
+ {% include '@app/views/footer.html' %}
+
+{% endblock %}

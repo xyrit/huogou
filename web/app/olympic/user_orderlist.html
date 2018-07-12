@@ -1,0 +1,346 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>获奖记录</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="">
+<meta http-equiv="description" content="">
+<meta name="wap-font-scale"  content="no"/>
+<link rel="stylesheet" href="../../css/jquery.mCustomScrollbar.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/list.css">
+</head>
+<body>
+
+
+<ul class="mui-flex">
+    <li class="cell">
+        <a href="user_buylist.html" class="menu_a">参与记录</a>
+    </li>
+    <li class="cell">
+        <a href="javascript:;" class="menu_a active">获奖记录</a>
+    </li>
+    <li class="cell">
+        <a href="user_rewardlist.html" class="menu_a">领取记录</a>
+    </li>
+</ul>
+<div class="contenter">
+    <ul class="group-list">
+
+
+    </ul>
+    <div class="get">
+        <button type="button" class="get-btn">
+            领取奖励
+        </button>
+    </div>
+
+</div>
+
+<!--弹出框-->
+<div class="alert-bg"></div>
+<!--查看参与码弹出框-->
+<div class="alert-box" id="alert1">
+    <div class="title">
+        <h3>奥运码</h3>
+        <button type="button" class="close">×</button>
+    </div>
+    <div class="content">
+        <p class="count">本期参与了：<span class="blue" id="codeBuyNum">x</span>人次</p>
+        <div class="ma mCustomScrollbar" id="codeList">
+
+        </div>
+    </div>
+</div>
+<!--领取-->
+<div class="alert-box alert-box2" id="alert2">
+    <div class="title" style="border-bottom:none;height: 10px">
+        <button type="button" class="close" style="top: 5px">×</button>
+    </div>
+    <div class="content">
+        <div class="ma" style="height: auto">
+           <div class="h-text clearfix">
+               <div class="text">已获得：</div>
+               <div class="h-num">
+                   <p class="h-num-item">
+                       <img src="images/winpaibg1.png"/>
+                       <span>×<i id="goldNum">3</i></span>
+                   </p>
+                   <p class="h-num-item">
+                       <img src="images/winpaibg2.png"/>
+                       <span>×<i id="silverNum">5</i></span>
+                   </p>
+                   <p class="h-num-item">
+                       <img src="images/winpaibg3.png"/>
+                       <span>×<i id="bronzeNum">4</i></span>
+                   </p>
+               </div>
+           </div>
+            <div class="h-text clearfix">
+                <div class="text">可领取：</div>
+                <div class="h-num v-num">
+                    <div class="h-num-item clearfix">
+                        <div class="h-num-itemleft">
+                            <img src="images/winpaibg1.png"/>
+                            <span>×<i class="numFont" id="goldLeft">3</i></span>
+                        </div>
+
+                        <div class="countnum" id="buynum1" data-medal="gold">
+                            <a href="javascript:;" class="reduce">-</a>
+                            <input  name="pnum" type="text" class="num" maxlength="7"  value="3" min="0" id="postGoldNum">
+                            <a href="javascript:;" class="add" >+</a>
+                        </div>
+                    </div>
+                    <div class="h-num-item clearfix">
+                        <div class="h-num-itemleft">
+                            <img src="images/winpaibg2.png"/>
+                            <span>×<i class="numFont" id="silverLeft">5</i></span>
+                        </div>
+
+                        <div class="countnum" id="buynum2" data-medal="silver">
+                            <a href="javascript:;" class="reduce">-</a>
+                            <input  name="pnum" type="text" class="num" maxlength="7" value="3" min="0" id="postSilverNum">
+                            <a href="javascript:;" class="add">+</a>
+                        </div>
+                    </div>
+                    <div class="h-num-item clearfix">
+                        <div class="h-num-itemleft">
+                            <img src="images/winpaibg3.png"/>
+                            <span>×<i class="numFont" id="bronzeLeft">4</i></span>
+                        </div>
+
+                        <div class="countnum" id="buynum3" data-medal="bronze">
+                            <a href="javascript:;" class="reduce">-</a>
+                            <input  name="pnum" type="text" class="num" maxlength="7" value="4" min="0" id="postBronzeNum">
+                            <a href="javascript:;" class="add">+</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="ke">可获得<span id="canRecieveHgbNum">0</span>个伙购币</p>
+            <p style="margin-top: 5px">兑换规则：<p>
+            <p>
+                一枚金牌可兑换66个伙购币;一枚银牌可兑换33个伙购币;一枚铜牌可兑换6个伙购币。
+            </p>
+            <p style="font-weight: bold;margin-top: 10px">
+                对应京东购物卡奖品，请前往【我的】-【获得的奖品】领取！
+            </p>
+            <button type="button" class="get-btn2" style="position: relative">
+                领取奖励
+            </button>
+        </div>
+    </div>
+</div>
+
+<!--领取成功后弹出-->
+<div class="alert-box alert-box2" id="alert3">
+    <div class="content">
+        <div class="ma" style="height: auto">
+           <img src="images/convert1.png" class="sueccessimg"/>
+            <p class="sueccesstext">可在“APP”-“我的”-“个人账户”中查看</p>
+            <p style="text-align: center">
+                <a type="button" class="sueccessbtn1 share" href="http://www.huogou.com?type=9&share_title=%E3%80%90%E7%82%B9%E5%87%BB%E9%A2%86%E5%8F%96%E3%80%91%E6%82%A8%E6%9C%89%E4%B8%80%E6%9E%9A%E5%A5%A5%E8%BF%90%E9%87%91%E7%89%8C%E6%9C%AA%E8%AE%A4%E9%A2%86%EF%BC%81&share_desc=%E5%8F%82%E4%B8%8E%E5%A5%A5%E8%BF%90%E6%B4%BB%E5%8A%A8%EF%BC%8C%E4%B8%80%E5%85%83%E6%8A%A2%E9%87%91%E7%89%8C%EF%BC%8C%E8%BF%98%E6%9C%89%E6%9C%BA%E4%BC%9A%E6%8B%BF3%E4%B8%87%E5%A5%96%E9%87%91%E5%92%8CiPhone+6s%E3%80%82%E5%8F%AA%E9%9C%80%E2%80%A6%E2%80%A6&share_url=http%3A%2F%2Fwww.huogou.com%2Fspread%2Fgames%2Findex.html&share_callback=http%3A%2F%2Fapi.huogou.com%2Folympic%2Fshare%3Ftype%3D3">
+                   炫耀分享
+                </a>
+                <button type="button" class="sueccessbtn2">
+                    我知道了
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="../../js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/comm.js"></script>
+
+<script>
+    function getCodes() {
+        $(".view-a").click(function(){
+            var pid = $(this).attr('data-pid');
+            var codesUrl = '/period/mycodes';
+            $.getJsonp(apiBaseUrl+codesUrl, {pid:pid}, function(json) {
+                console.log(json)
+
+                $('#codeBuyNum').text(json.codes);
+
+                var codes = '';
+                $.each(json.data, function(i,v) {
+                    codes += v.codes + ',';
+                });
+                var codesArr = codes.split(',');
+
+
+                var html = '';
+                $.each(codesArr, function(i,v) {
+
+                    html += '<span>'+v+'</span>';
+                });
+                $('#codeList').html(html);
+
+                $('#codeList').mCustomScrollbar();
+            });
+
+
+            $('.alert-bg').show();
+            $("#alert1").fadeIn(500);
+        });
+
+    }
+
+
+    function totalRewardHgb() {
+        var goldNum = $('#postGoldNum').val();
+        var silverNum = $('#postSilverNum').val();
+        var bronzeNum = $('#postBronzeNum').val();
+
+        var canHgb = goldNum * 66 + silverNum * 33 + bronzeNum * 6;
+        $('#canRecieveHgbNum').text(canHgb);
+
+    }
+</script>
+
+<script>
+
+
+
+$(document).ready(function(){
+
+	$(".get-btn").click(function(){
+		$('.alert-bg').show();
+		$("#alert2").fadeIn(500);
+	});
+	$(".close").click(function(){
+        $('.alert-bg').hide();
+        $("#alert1").fadeOut(500);
+		$("#alert2").fadeOut(500);
+        $("#alert3").fadeOut(500);
+	});
+    $(".get-btn2").click(function () {
+        $("#alert2").hide();
+
+        var recieveHgbUrl = '/olympic/recieve-hgb';
+        var data = {};
+        data.gold = $('#postGoldNum').val();
+        data.silver = $('#postSilverNum').val();
+        data.bronze = $('#postBronzeNum').val();
+        $.getJsonp(apiBaseUrl + recieveHgbUrl, data, function(json) {
+            if (json.code=='100') {
+                $("#alert3").show();
+            } else {
+                alert(json.msg);
+                $('.alert-bg').hide();
+            }
+        });
+
+    });
+    $(".sueccessbtn2").click(function(){
+        $('.alert-bg').hide();
+        $("#alert3").fadeOut(500);
+    });
+
+
+    //增加数量
+    $('.add').click(function(){
+        var vInput = $(this).parent().find('.num');
+        var num    =$(this).parent().parent().find('.numFont').text();
+        var v = vInput.val();
+        v++;
+        if(v>num){
+            v=num;
+        }
+        vInput.val(v);
+        totalRewardHgb();
+    });
+    //增少数量
+    $('.reduce').click(function(){
+        var vInput = $(this).parent().find('.num');
+        var num    =$(this).parent().parent().find('.numFont').text();
+        var v = vInput.val();
+        v--;
+        if(v<1){
+            v=0;
+        }
+        vInput.val(v);
+        totalRewardHgb();
+    });
+
+    $('.num').on('input',function() {
+        var num = $(this).parent().parent().find('.numFont').text();
+        var v = $(this).val();
+        v = parseInt(v);
+        if (isNaN(v)) {
+            v = 1;
+        } else {
+            if (v>num) {
+                v = num;
+            } else if (v<1) {
+                v = 0;
+            }
+        }
+        $(this).val(v);
+        totalRewardHgb();
+    });
+});
+</script>
+
+<script>
+    $(function() {
+        var canRecieveInfoUrl = '/olympic/can-recieve-hgb-info';
+        $.getJsonp(apiBaseUrl + canRecieveInfoUrl, {}, function(json) {
+            console.log(json)
+
+            var totalNum = json.total;
+            var leftNum = json.left;
+            $('#goldNum').text(totalNum.gold);
+            $('#silverNum').text(totalNum.silver);
+            $('#bronzeNum').text(totalNum.bronze);
+
+            $('#goldLeft').text(leftNum.gold);
+            $('#silverLeft').text(leftNum.silver);
+            $('#bronzeLeft').text(leftNum.bronze);
+
+            $('#postGoldNum').val(leftNum.gold);
+            $('#postSilverNum').val(leftNum.silver);
+            $('#postBronzeNum').val(leftNum.bronze);
+
+            totalRewardHgb();
+        });
+
+
+
+
+        var userOrderListUrl = '/olympic/user-order-list';
+        var data = {page:1, perpage:20};
+        $.getJsonp(apiBaseUrl + userOrderListUrl, data, function(json) {
+
+            var html = '';
+            $.each(json.list, function(i,v) {
+                var time = v.time;
+                var medal = v.medal;
+                var buyNum = v.buy_num;
+                var periodId = v.period_id;
+
+                html += '<li class="group-list-item">';
+                html += '<p class="time">2016-08-12  18:23</p>';
+                html += '<p>获得<span class="blue">'+medal+'</span><p>';
+                html += '<p>投入金额：<span class="blue">'+buyNum+'</span>元</p>';
+                html += '<a href="javascript:;" data-pid="'+periodId+'" class="view-a">查看奥运码<img src="images/backarr.png" width="8" class="arrow-right"/> </a>';
+                html += '</li>';
+
+
+            });
+
+            $('.group-list').html(html);
+            getCodes();
+
+        })
+    });
+</script>
+</body>
+</html>

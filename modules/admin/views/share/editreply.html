@@ -1,0 +1,74 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">编辑回复</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <input type="hidden" id="share_reply_id" value="{{ shareReply.id }}">
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">内容：</div>
+                    <textarea id="editor"></textarea>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+                <div class="am-g doc-am-g">
+                    <input type="submit" value="保存" id="submit">
+                    <input type="button" value="关闭">
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-8"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/keditor/kindeditor-min.js" ></script>
+<script type="text/javascript">
+    $('#submit').click(function() {
+        var url = 'http://admin.' + baseHost + '/share/edit-reply?id=' + $('#share_reply_id').val();
+
+        $.post(url, {'content': editor.html()}, function(data) {
+            if (data == 1) {
+                alert('保存成功');
+
+            }
+        }, 'json');
+    });
+
+    var editor = KindEditor.create('#editor', {
+        resizeType : 0,
+        allowPreviewEmoticons : true,
+        allowImageUpload : false,
+        items : ['emoticons'],
+        themeType : 'simple',
+        pasteType : 1,
+        width : '800px',
+        height : '130px',
+        afterChange : function(){
+            var textNum = this.count('text');
+            if (textNum > 150) {
+                //$('#edit-submit').addClass('dis');
+                KindEditor('#edit-count').html('<span>已超过' + (textNum - 150) + '个字了，请适当删除部分内容</span>');
+            }else{
+                $('#edit-submit').removeClass();
+                KindEditor('#edit-count').html('<span>' + this.count('text') + '</span>/150');
+                //                border: 1px solid #ff500b;
+                /*if (this.html() != '') {
+                    $('#edit-submit').css('background', '#ff500b').css('border', '1px solid #ff500b');
+                } else {
+                    $('#edit-submit').css('background', 'grey').css('border', '1px solid grey');
+                }*/
+            }
+        },
+        layout: '<div class="container"><i><em></em></i><div class="edit"></div><div class="toolbar"></div><div class="edit-info"><div id="edit-count">0/150</div><a href="javascript:;" id="edit-submit" onclick="commit({{ detail.id }})" style="background: grey;border: 1px solid grey; display: none">提交</a></div><div class="statusbar"></div></div>'
+    });
+
+    editor.html('{% autoescape true %}{{ shareReply.content|raw }}{% endautoescape %}');
+</script>
+{% endblock %}

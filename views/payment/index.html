@@ -1,0 +1,355 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+{% block title %}订单确认_{{ app.name }}{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/js/payment.js?v=160303"></script>
+{% endblock %}
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+	<!--内容区-->
+	<section class="succeed_con">
+		<div class="succeed_box">
+			<i class="close"></i>
+			<div class="succeed_nr">
+				<h2><i></i>请在新开窗口完成支付！</h2>
+				<article>
+					<aside>如您的浏览器不支持，请复制以下链接到IE浏览器打开，完成付款后跟据您的情况进行以下操作！</aside>
+					<a href="">http://www.huogou.com/cart.html</a>
+				</article>
+				<summary>
+					<a href="{{ url(['/member/default/buy-list']) }}" class="pay">完成支付</a><a href="" class="wenti">支付遇到问题？返回重新选择</a>
+				</summary>
+			</div>
+		</div>
+	</section>
+	<section class="wrap clear">
+		<div class="present">
+			<a href="">首页</a><i></i><a href="">我的购物车</a>
+		</div>
+		<!--购物车内容区-->
+		<div class="shopping">
+			<h1>订单信息</h1>
+			<table class="shopping_list">
+				<thead>
+					<tr>
+						<td width="59%" class="left">商品</td>
+						<td width="10%">剩余人次</td>
+						<td width="16%">伙购人次</td>
+						<td width="10%">小计</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			 <div class="open"><span class=""></span></div>
+
+			<div class="shopping_elect point-line">
+				<a class="return" href="/cart.html">返回购物车</a>
+			</div>
+			<div class="order_con" id="point"></div>
+			<!--红包-->
+			<!--<div class="order-hb" id="packets"></div>-->
+
+			<div class="order_con" id="balance"></div>
+			<div id="third" style="display:none">
+				<div class="payment">
+					<span>您可使用账户余额支付，也可选择以下方式完成支付</span>
+					<aside>使用网银支付：<em>0.00</em></aside>
+				</div>
+				<div class="banking">
+					<div class="banking_title">
+						网银支付
+					</div>
+					<div class="banking_con">
+						<ul class="banking_title_list">
+							<li>储蓄卡支付</li>
+							<li>信用卡支付</li>
+						</ul>
+						<div class="banking_con_box">
+							<ul class="banking_con_list">
+								<li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_gs.jpg" alt=""><input type="radio" name="debit" value="1025"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_jh.jpg" alt=""><input type="radio" name="debit" value="1051"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_ly.jpg" alt=""><input type="radio" name="debit" value="103"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_zg.jpg" alt=""><input type="radio" name="debit" value="104"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_pa.jpg" alt=""><input type="radio" name="debit" value="307"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_zs.jpg" alt=""><input type="radio" name="debit" value="3080"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_yz.jpg" alt=""><input type="radio" name="debit" value="3230"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_ms.jpg" alt=""><input type="radio" name="debit" value="305"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_xy.jpg" alt=""><input type="radio" name="debit" value="309"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_zx.jpg" alt=""><input type="radio" name="debit" value="313"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_hx.jpg" alt=""><input type="radio" name="debit" value="311"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_pf.jpg" alt=""><input type="radio" name="debit" value="314"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_jt.jpg" alt=""><input type="radio" name="debit" value="3407"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_sh.jpg" alt=""><input type="radio" name="debit" value="326"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_bj.jpg" alt=""><input type="radio" name="debit" value="310"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_gd.jpg" alt=""><input type="radio" name="debit" value="312"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_gf.jpg" alt=""><input type="radio" name="debit" value="3061"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_hz.jpg" alt=""><input type="radio" name="debit" value="324"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_qd.jpg" alt=""><input type="radio" name="debit" value="3341"></label>
+	                            </li>
+	                            <li>
+	                                <i></i>
+	                                <label for=""><img src="http://skin.huogou.com/img/bank_nj.jpg" alt=""><input type="radio" name="debit" value="316"></label>
+	                            </li>
+							</ul>
+							<ul class="banking_con_list">
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_gs.jpg" alt=""><input type="radio" name="credit" value="1027"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_jh.jpg" alt=""><input type="radio" name="credit" value="1054"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_jt.jpg" alt=""><input type="radio" name="credit" value="3011"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_ly.jpg" alt=""><input type="radio" name="credit" value="1031"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_ms.jpg" alt=""><input type="radio" name="credit" value="3051"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_pa.jpg" alt=""><input type="radio" name="credit" value="3071"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_yz.jpg" alt=""><input type="radio" name="credit" value="3231"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_zg.jpg" alt=""><input type="radio" name="credit" value="106"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_zs.jpg" alt=""><input type="radio" name="credit" value="308"></label>
+								</li>
+								<li>
+									<i></i>
+									<label for=""><img src="img/bank_zx.jpg" alt=""><input type="radio" name="credit" value="3131"></label>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="terrace">
+					<div class="terrace_title">
+						支付平台支付
+					</div>
+					<div class="terrace_con">
+						<ul class="terrace_con_list" type="platform">
+							<li>
+								<i></i>
+								<label for=""><img src="img/terrace_02.jpg" alt=""><input type="radio" name="platform" value="zhifukachat"></label>
+							</li>
+							<!--<li>-->
+								<!--<i></i>-->
+								<!--<label for=""><img src="img/terrace_01.jpg" alt=""><input type="radio" name="platform" value="jd"></label>-->
+							<!--</li>-->
+							<li>
+								<i></i>
+								<label for=""><img src="img/terrace_08.jpg" alt=""><input type="radio" name="platform" value="zhifukaqq"></label>
+							</li>
+							<li>
+								<i></i>
+								<label for=""><img src="img/terrace_07.jpg" alt=""><input type="radio" name="platform" value="iapp"></label>
+							</li>
+							<!--<li>
+								<i></i>
+								<label for=""><img src="img/terrace_05.jpg" alt=""><input type="radio" name="platform" value="kq"></label>
+							</li>-->
+							<li>
+								<i></i>
+								<label for=""><img src="img/terrace_04.jpg" alt=""><input type="radio" name="platform" value="chinaBank"></label>
+							</li>
+							<!--<li>-->
+								<!--<i></i>-->
+								<!--<label for=""><img src="img/terrace_06.jpg" alt=""><input type="radio" name="platform" value="union"></label>-->
+							<!--</li>-->
+						</ul>
+					</div>
+				</div>
+			</div>
+			<form id="toPayForm" name="toPayForm" action="pay.html" method="post" target="_blank">
+		        <input type="hidden" name="_csrf" value="{{csrf}}">
+		        <input type="hidden" id="hidPayType" name="payType" value="consume">
+		        <input type="hidden" id="hidPayName" name="payName" value="">
+		        <input type="hidden" id="hidPayBank" name="payBank" value="0">
+		        <input type="hidden" id="hidUseBalance" name="useBalance" value="0">
+		        <!-- 不使用福分时，值为0；使用福分时，值为使用福分值 2012.4.28-->
+		        <input type="hidden" id="hidIntegral" name="integral" value="0">
+		        <!-- 支付SN -->
+		        <input type="hidden" id="hidPayMoney" name="payMoney" value="">
+		        <input type="hidden" id="userSource" name="userSource" value="1">
+		        <div class="order_con pay clearfix" id="submit" style="display:none">
+			        <div id="divPaypwd" class="f-payment-password clrfix" style="display:none;">
+			            <p>
+							<input type="password" style="display: none;">
+			                <input type="password" id="txtPaypwd" name="ppwd" value="" maxlength="6" autocomplete="off" autofocus="autofocus">
+							<em class="input_arr">请输入6位支付密码</em>
+			                <s style="display:none;"></s>
+			            </p>
+			            <span><a href="{{ url('/member/info/pay-valid', {'flag': 2}) }}" target="_blank" class="gray6">忘记支付密码？</a></span>
+			        </div>
+					<article class="f-grayButton">
+						<input id="submitOK" type="button" value="确认支付"><aside></aside>
+					</article>
+				</div>
+		    </form>
+		</div>
+	</section>
+
+	<section class="balance_con">
+		<div class="balance_box">
+			<i class="close"></i>
+			<article class="balance_txt">
+				您确定使用账户余额支付吗？
+			</article>
+			<a href="javascript:;" id="pay-cancle">取 消</a><a class="determine" href="javascript:;" id="pay-sure">确定</a>
+		</div>
+	</section>
+
+	<!--红包-->
+	<section class="hb-box">
+		<div class="balance_box">
+			<i class="close"></i>
+			<h2>选择使用红包</h2>
+			<ul id="hb-fixed-list">
+				<li>
+					<em class="hb-box-check"></em>
+					<div class="hb-icon">
+						<div class="fold">
+							<p>8.5</p>
+							<span>折</span>
+						</div>
+					</div>
+					<article>
+						<h3>支付立享：8.5折</h3>
+						<p>有效期至：2016-05-06</p>
+						<p>充值大礼包</p>
+						<p>全场通用</p>
+					</article>
+				</li>
+				<li>
+					<em class="hb-box-check"></em>
+					<div class="hb-icon">
+						<div class="fold">
+							<p>1</p>
+							<span>伙购币</span>
+						</div>
+					</div>
+					<article>
+						<h3>余额：1伙购币</h3>
+						<p>有效期至：2016-05-06</p>
+						<p>充值大礼包</p>
+						<p>全场通用</p>
+					</article>
+				</li>
+				<li>
+					<em class="hb-box-check"></em>
+					<div class="hb-icon">
+						<div class="fold">
+							<p>5</p>
+							<span>伙购币</span>
+						</div>
+					</div>
+					<article>
+						<h3>余额：5伙购币</h3>
+						<p>有效期至：2016-05-06</p>
+						<p>充值大礼包</p>
+						<p>全场通用</p>
+					</article>
+				</li>
+				<li>
+					<em class="hb-box-check"></em>
+					<div class="hb-icon">
+						<div class="fold">
+							<p>5</p>
+							<span>伙购币</span>
+						</div>
+					</div>
+					<article>
+						<h3>余额：5伙购币</h3>
+						<p>有效期至：2016-05-06</p>
+						<p>充值大礼包</p>
+						<p>全场通用</p>
+					</article>
+				</li>
+			</ul>
+			<a href="javascript:;" id="hb-cancle">取 消</a><a class="determine" href="javascript:;" id="hb-sure">确定</a>
+		</div>
+	</section>
+
+         <!--footer 开始-->
+        <!--版权-->
+ {% include '@app/views/footer.html' %}
+
+{% endblock %}

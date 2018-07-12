@@ -1,0 +1,70 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+<div class="admin-content" >
+    {% include '@adminModule/views/member/top.html' %}
+
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>商品名称</th>
+                        <th>分类</th>
+                        <th class="am-hide-sm-only">伙购价格</th>
+                        <th class="am-hide-sm-only">次数</th>
+                        <th class="am-hide-sm-only">期数</th>
+                        <th class="am-hide-sm-only">来源</th>
+                        <th class="am-hide-sm-only">状态</th>
+                        <th class="am-hide-sm-only">伙购时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in list %}
+                        <tr>
+                            <td><a href="{{ url('/admin/order/buy', {'id':item.id}) }}">{{ item.id }}</a></td>
+                            <td>{{ item.product_name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.price }}</td>
+                            <td>{{ item.buy_num }}</td>
+                            <td>{{ item.periods.period_number }}</td>
+                            <td>{{ item.source }}</td>
+                            <td>已支付</td>
+                            <td class="am-hide-sm-only">{{ item.buy_time }}</td>
+                            <td>
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button class="am-btn am-btn-default am-btn-xs am-text-secondary" type="button" >
+                                            <a href="{{ url('/admin/member/view', {'id':item.id}) }}"  target="_blank">详情</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                    <div class="am-fr">
+                        {{ use('/app/widgets/BackendLinkPager') }}
+                        {{ backend_link_pager_widget({'pagination': pagination}) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(function() {
+            $('#doc-my-tabs').tabs();
+        })
+    </script>
+{% endblock %}

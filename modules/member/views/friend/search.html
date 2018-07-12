@@ -1,0 +1,92 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}查找好友_伙购网{% endblock %}
+
+{% block main %}
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1>查找好友</h1>
+        <div class="find_bt_list">
+            <a  {% if(status == '') %}class="act"{% endif %} href="{{ url(['/member/friend/search-friend']) }}">搜索</a><a href="{{ url('/member/friend/search-friend', {'status':1}) }}" {% if(status == 1) %}class="act"{% endif %}>获得商品最多</a>
+            <a href="{{ url('/member/friend/search-friend', {'status':2}) }}" {% if(status == 2) %}class="act"{% endif %}>活跃会员</a><a href="{{ url('/member/friend/search-friend', {'status':3}) }}"  {% if(status == 3) %}class="act"{% endif %}>最新加入</a>
+        </div>
+
+        {% if(status == '') %}
+            {{ html.beginForm('', 'get', {}) | raw }}
+                <div class="find_bt_con">
+                    <span>查找：</span><input type="text" name="content" placeholder="请输入会员名称，手机号或邮箱" value="{{ content }}"><input type="submit" value="搜索">
+                </div>
+            {{ html.endForm() | raw }}
+        {% endif %}
+
+        <!--<h3 class="friends">{% if(status == '') %}可能认识的人{% endif %}</h3>-->
+
+        <!--暂无记录-->
+        <!--暂无记录-->
+
+
+        {% if(all) %}
+        <ul class="find-friends-list">
+            {% for item in all %}
+                <li>
+                    <picture><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank"><img src="{{ item.user_avatar }}" alt=""></a></picture>
+                    <summary>
+                        <h3><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank">{{ item.user_name.username }}</a></h3>
+                        <article>
+                            <b class="xf">{{ item.grade_name|default('伙购先锋') }}</b>
+                            <b class="dz">{{ item.address }}</b>
+                        </article>
+                        <p>{{ item.intro|default('这家伙很懒，什么都没留下。') }}</p>
+                        <div>
+                            <a class="add-friends" href="javascript:;" name="addFriend" id="addFriend" userid="{{ item.user_home_id }}" >+ 加好友</a>
+                        </div>
+                    </summary>
+                </li>
+            {% endfor %}
+        </ul>
+        <div>
+            <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+            <div class="am-fr">
+                {{ use('/app/widgets/LinkPager') }}
+                {{ link_pager_widget({pagination: pagination}) }}
+            </div>
+        </div>
+        {% elseif(randomUser) %}
+            <ul class="find-friends-list">
+                {% for item in randomUser %}
+                    {% if(item.user_id != app.user.id) %}
+                        {% if(item.friend == '') %}
+                        <li>
+                            <picture><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank"><img src="{{ item.user_avatar }}" alt=""></a></picture>
+                            <summary>
+                                <h3><a href="{{ url('/user/default/index', {'id':item.user_home_id}) }}" target="_blank">{{ item.username }}</a></h3>
+                                <article>
+                                    <b class="xf">{{ item.grade_name|default('伙购先锋') }}</b>
+                                    <b class="dz">{{ item.address }}</b>
+                                </article>
+                                <p>{{ item.intro|default('这家伙很懒，什么都没留下。') }}</p>
+                                <div>
+                                        <a class="add-friends" href="javascript:;" name="addFriend" id="addFriend" userid="{{ item.user_home_id }}" >+ 加好友</a>
+                                </div>
+                            </summary>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else  %}
+            <div class="notHave">
+                <span class="notHave_icon"></span>
+                <p class="notHave_txt">查无记录</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js%}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+{% endblock %}

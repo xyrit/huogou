@@ -1,0 +1,148 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">采购记录</strong></div>
+        </div>
+        {{ html.beginForm('/purchase', 'get', {}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-u-sm-10">
+                    <select data-am-selected name="type">
+                        <option value="30元联通充值卡" {% if condition.type == '30元联通充值卡' %}selected{% endif %}>30元联通充值卡</option>
+                        <option value="30元移动充值卡" {% if condition.type == '30元移动充值卡' %}selected{% endif %}>30元移动充值卡</option>
+                        <option value="30元电信充值卡" {% if condition.type == '30元电信充值卡' %}selected{% endif %}>30元电信充值卡</option>
+                        <option value="50元联通充值卡" {% if condition.type == '50元联通充值卡' %}selected{% endif %}>50元联通充值卡</option>
+                        <option value="50元移动充值卡" {% if condition.type == '50元移动充值卡' %}selected{% endif %}>50元移动充值卡</option>
+                        <option value="50元电信充值卡" {% if condition.type == '50元电信充值卡' %}selected{% endif %}>50元电信充值卡</option>
+                        <option value="100元联通充值卡" {% if condition.type == '100元联通充值卡' %}selected{% endif %}>100元联通充值卡</option>
+                        <option value="100元移动充值卡" {% if condition.type == '100元移动充值卡' %}selected{% endif %}>100元移动充值卡</option>
+                        <option value="100元电信充值卡" {% if condition.type == '100元电信充值卡' %}selected{% endif %}>100元电信充值卡</option>
+                        <option value="Q币" {% if condition.type == 'Q币' %}selected{% endif %}>Q币</option>
+                    </select>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1"  id="startTime" name="startTime" value="{{ condition.startTime }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1" id="endTime"  name="endTime" value="{{ condition.endTime }}"/>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-input-group am-input-group-sm">
+                      <span class="am-input-group-btn">
+                          <input type="hidden" name="sub" value="sub">
+                        <button class="am-btn am-btn-default search-topic" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+
+        {{ html.endForm() | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>商品名称</th>
+                            <th>类型</th>
+                            <th>采购数量</th>
+                            <th>总金额</th>
+                            <th>状态</th>
+                            <th>进度</th>
+                            <th>最后更新时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for info in list %}
+                            <tr data-id="{{ info.id }}">
+                                <td><a href="#">{{ info.id }}</a></td>
+                                <td>{{ info.product_name }}</td>
+                                <td>{% if info.type == 1 %}实物</a>{% elseif info.type == 2 %}虚拟物品{% endif %}</td>
+                                <td>{{ info.nums }}</td>
+                                <td>{{ info.total }}</td>
+                                <td>{% if info.order_status == 0 %}未返回{% elseif info.order_status == 1 %}成功{% elseif info.order_status == 2 %}失败{% endif %}</td>
+                                <td>{% if info.status == 0 %}待审核{% elseif info.status == 1 %}待付款{% elseif info.status == 2 %}待收货{% elseif info.status == 3 %}完成{% elseif info.status == '-1' %}驳回{% endif %}</td>
+                                <td>{{ info.last_update_time | date("Y-m-d H:i:s") }}</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary btn-edit" type="button">
+                                                <span class="am-icon-pencil-square-o"></span> 详情
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+{% endblock %}
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".am-btn-toolbar").click(function(){
+            var id = $(this).parent().parent().data('id');
+            var urls = '{{ url('/purchase/info')}}' + '?id=' + id;
+            var index = layer.open({
+                type: 2,
+                area: ['200px', '100px'],
+                fix: false, //不固定
+                maxmin: true,
+                shade: false,
+                content: urls
+            });
+            layer.full(index);
+        })
+    })
+    laydate({
+            elem: '#startTime',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+        laydate({
+            elem: '#endTime',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            //min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                end.start = datas //将结束日的初始值设定为开始日
+            }
+        });
+</script>
+{% endblock script %}

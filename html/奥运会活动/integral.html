@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>积分规则</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/integral.css">
+</head>
+<body>
+
+    <!--积分规则-->
+<div class="mainBox">
+    <!--标题-->
+    <div class="foneTitle2">
+        <span>积分规则</span>
+    </div>
+    <!--文字介绍-->
+    <div class="textBox">
+        <p><span class="rederBut"></span>中奖<span class="hostColor">金牌</span>京东卡得<span class="hostColor">100</span>积分、<span class="hostColor">银牌</span>京东卡<span class="hostColor">50</span>积分、铜牌京东卡<span class="hostColor">10</span>积分；</p>
+        <p><span class="rederBut"></span><span class="hostColor">每天分享本次活动</span>可得<span class="hostColor">1</span>积分；</p>
+        <p><span class="rederBut"></span>中奖奥运京东卡后，<span class="hostColor">分享中奖信息，</span>可得<span class="hostColor">2</span>积分。</p>
+        <p><span class="rederBut"></span>奥运会活动结束后，积分榜<span class="hostColor">排前20名，</span>的玩家获得对应奖品。</p>
+        <p><span class="rederBut" style="height: 50px"></span>若总积分相同，则按用户在平台的经验值决定最终名
+            次。用户可在APP下方的<span class="hostColor">【我的】</span>&nbsp;页面查看经验值。</p>
+    </div>
+    <!--积分奖励-->
+    <div class="people">
+        <img src="images/people.png"/>
+    </div>
+    <!--奖品图片-->
+    <p class="fontText">奥运会活动结束后，积分榜排前20名的玩家获得对应奖品：</p>
+    <div class="imgList">
+        <ul>
+            <li><img src="images/imglist1.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist2.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist3.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist4.png" width='' height='' alt=''/></li>
+            <li><img src="images/imglist5.png" width='' height='' alt=''/></li>
+            <li style="margin-right: 0"><img src="images/imglist6.png" width='' height='' alt=''/></li>
+        </ul>
+    </div>
+
+    <!--排名奖励列表-->
+    <div class="userList">
+        <p><span class="titleH">名次</span><span class="boderStyle titleH">奖励</span><span  class="titleH">参考价</span></p>
+        <p><span>第<font class="hostColor">1</font>名</span><span class="boderStyle hostColor">iPhone 6s 64G</span><span class="hostColor">￥5600</span></p>
+        <p><span>第<font class="hostColor">2</font>名</span><span class="boderStyle hostColor">iPad mini4 64G</span><span class="hostColor">￥3588</span></p>
+        <p><span>第<font class="hostColor">3</font>名</span><span class="boderStyle hostColor">Apple Watch</span><span class="hostColor">￥2288</span></p>
+        <p><span>第<font class="hostColor">4</font>名</span><span class="boderStyle hostColor">Kindle Paperwhite</span><span class="hostColor">￥958</span></p>
+        <p><span>第<font class="hostColor">5</font>名</span><span class="boderStyle hostColor">卡西欧手表</span><span class="hostColor">￥229</span></p>
+        <p><span>第<font class="hostColor">6</font>名-第<font class="hostColor">10</font>名</span><span class="boderStyle hostColor">&nbsp;88元京东卡直减红包&nbsp;</span><span class="hostColor">￥88</span></p>
+        <p><span>第<font class="hostColor">11</font>名-第<font class="hostColor">20</font>名</span><span class="boderStyle hostColor">&nbsp;66元京东卡直减红包&nbsp;</span><span class="hostColor">￥66</span></p>
+    </div>
+
+    <div class="foneTitle textfoder ">
+
+            <div class="textfoderLeft"><img src="images/zhuImg.png"/></div>
+            <div class="textfoderRight">前5名的获奖用户，需要加入兑奖QQ群：<font class="hostColor">432119748，</font>联系群主领
+                取奖品。若有疑问，请咨询APP在线客服（点击APP首页【我的】-
+                【在线客服】）
+                <p style="padding: 5px 0px">本次活动解释权归橙果网络科技有限公司所有</p>
+            </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".rederBut").each(function(){
+            $(this).css("height",$(this).parent('p').height())
+        });
+
+    });
+    window.onresize = function(){
+        $(".rederBut").each(function(){
+            $(this).css("height",$(this).parent('p').height())
+        });
+    }
+</script>
+
+</body>
+</html>

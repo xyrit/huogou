@@ -1,0 +1,47 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}最新揭晓_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/newbuylist.js"></script>
+{% endblock %}
+
+{% block body %}
+  {% include '@app/views/topbar.html' %}
+  {% include '@app/views/nav.html' %}
+  {% include '@app/views/cart.html' %}
+	<!--内容区-->
+	<section class="wrap clear">
+        <div class="present">
+			<a href="">首页</a><i></i><a href="/list.html">全部商品</a>
+		</div>
+		<div class="history">
+			<div class="title">
+				<h2>最新伙购记录</h2><aside><span>本页显示最新伙购记录<i>100</i>条</span><a href="historybuylist.html"> 查看历史记录 &gt;</a></aside>
+			</div>
+
+			<table class="history-tbable">
+				<thead>
+					<tr>
+						<td width="20%">伙购时间</td>
+						<td width="14%">会员帐号</td>
+						<td width="56%">伙购商品名称</td>
+						<td width="10%">伙购人次</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<div class="title">
+				<aside><span>本页显示最新伙购记录<i>100</i>条</span><a href="historybuylist.html"> 查看历史记录 &gt;</a></aside>
+			</div>
+		</div>
+	</section>
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}

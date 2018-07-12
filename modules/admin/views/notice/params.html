@@ -1,0 +1,53 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">编辑通知模板</strong>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form" id="product-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+            <tr>
+              <th class="table-check">编号</th>
+              <th class="table-title">参数</th>
+              <th class="table-type">说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for key,val in params %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ key}}</td>
+                <td>{{ key}}</td>
+
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+
+  <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+    <span class="am-icon-btn am-icon-th-list"></span>
+  </a>
+
+{% endblock %}
+
+{% block script %}
+  <script>
+
+
+  </script>
+{% endblock %}

@@ -1,0 +1,212 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}账户明细_伙购网{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<!--账户转账-->
+<section class="acc-fixed-box">
+    <div class="acc-info acc-fixed">
+        <i class="acc-fixed-n"></i>
+        <h2>账户转账<a href="{{url('recharge/money-log', {'index': 2})}}" id="transfer" target="_self">转账记录</a></h2>
+        <div class="acc-info-balance">
+            <em>温馨提示：</em><p>转帐申请处理成功后，系统会自动将款项转入对方帐户并将转账结果通知收款人。</p>
+        </div>
+        <div style="display: none;">
+            <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>
+        </div>
+        <div class="acc-zz">
+            {{ html.beginForm(url(['/recharge/transfer']), 'post', {'id':'recharge-form', 'target':'upFrame'}) | raw }}
+            <summary>
+                <label for="">收款账号：</label>
+                <input type="text" name="username" value="">
+                <span class="input_arr">邮箱/手机号码</span>
+            </summary>
+            <summary>
+                <label for="">转账金额：</label>
+                <input type="text" name="UserTransferAccount[account]">
+                <em>账户余额：<i>{{ app.user.identity.money }}</i>元</em>
+                <span class="input_arr">整数金额</span>
+            </summary>
+            <summary class="w360">
+                <label for="">转账说明：</label>
+                <input type="text" name="UserTransferAccount[comment]">
+                <span class="input_arr">选填</span>
+            </summary>
+            <input type="password" style="display: none;">
+            <summary>
+                <label for="">支付密码：</label>
+                <input type="password" name="paypwd" maxlength="6" >
+                <span class="input_arr">支付密码</span>
+            </summary>
+            <summary>
+                <input type="submit" value="提交" id="rechargeSubmit">
+            </summary>
+            {{ html.endForm() | raw }}
+        </div>
+    </div>
+</section>
+<section class="global-fixed" style="display: none" id="showPay">
+    <div class="global-con">
+        <p class="Note"><i></i><em>请先设置支付密码</em></p>
+        <summary>
+            <a href="javascript:;" id="cancel">取 消</a><a class="determine" href="javascript:;">立即设置</a>
+        </summary>
+    </div>
+</section>
+
+<section class="member">
+    <div class="wrap clear">
+        <div class="member_sub">
+            {% include '@memberModule/views/nav.html' %}
+        </div>
+
+        <div class="acc-info">
+            <h2>账户明细</h2>
+            <div class="acc-info-balance">
+                <b>您的账户可用余额为：<i>{{ userInfo.money }}</i>伙购币 </b><a href="{{ url(['/member/recharge']) }}">充 值</a><a class="blue" id="acc-fixed-act" href="javascript:;">转 账</a>
+            </div>
+
+            <div class="acc-info-list">
+                <a class="act" href="javascript:void(0);">充值记录</a>
+                <a href="javascript:void(0);">消费记录</a>
+                <!--<a href="javascript:void(0);">转账记录</a>-->
+            </div>
+
+            <div class="screening">
+                <summary>
+                    <a class="act" href="javascript:void(0);">全部</a>
+                    <a href="javascript:void(0);">今天</a>
+                    <a href="javascript:void(0);">本周</a>
+                    <a href="javascript:void(0);">本月</a>
+                    <a href="javascript:void(0);">最近三个月</a>
+                </summary>
+                <div class="search-vip">
+                    <em>选择时间段：</em>
+                    <input type="text" id="acc-rl" value="2015-10-21">
+                    <i>-</i>
+                    <input type="text" id="acc-rl-2" value="2015-10-23">
+                    <input type="submit" value="搜索">
+                    <em class="total"></em>
+                </div>
+            </div>
+
+            <table class="acc-info-table">
+                <thead>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <div class="pagination"></div>
+        </div>
+    </div>
+</section>
+
+{% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/laydate.dev.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/recharge.js"></script>
+<script type="text/javascript">
+    //日历调取
+    laydate({
+        elem: '#acc-rl'
+    });
+    laydate({
+        elem: '#acc-rl-2'
+    });
+
+    //账户转账
+    $('#acc-fixed-act').on('click',function(){
+        //转账弹窗提示文字
+        var t = $('.acc-zz summary input');
+        t.each(function(){
+            if(t.val() == ""){
+                t.siblings('.input_arr').show();
+            }else{
+                t.siblings('.input_arr').hide();
+            }
+        });
+
+        $.ajax({
+            async: false,
+            url: apiBaseUrl + '/info/check-pay-pwd',
+            type: "POST",
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            data: {'token': token},
+            success: function (data) {
+                if (data.code == 100) {
+                    $('.acc-fixed-box').fadeIn();
+                } else {
+                    $('#showPay').fadeIn();
+                    return false;
+                }
+            }
+        });
+    })
+    $('#cancel').on('click', function() {
+        $('#showPay').fadeOut();
+    });
+    $('.determine').on('click', function() {
+        self.location = 'http://member.' + baseHost + '/info/pay-valid?flag=1';
+    })
+    $('.acc-fixed-n').on('click',function(){
+        $('.acc-fixed-box').fadeOut();
+    })
+
+    moneyLog_filt();
+    $(".acc-info-list").find("a").eq("{{ index }}").click();
+    $('#rechargeSubmit').on('click', function() {
+        $(this).attr('disabled', true);
+        $('#recharge-form').submit();
+    })
+    function result(json) {
+        if (json.code == 100) {
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>转账成功</h4>');
+            $('#safety-b-con').fadeIn();
+            $('#safety-b-close').on('click',function(){
+                $('#safety-b-con').fadeOut();
+            });
+            setTimeout(function(){
+                self.location = 'http://member.' + baseHost + '/recharge/money-log?index=2';
+                return true;
+            },1000)
+        } else {
+            $.each(json.msg, function(i, v) {
+                $('.safety-b-box h3').css('width', '140px');
+                if (v.length > 8) {
+                    $('.safety-b-box h3').css('width', 'auto');
+                    $('.safety-b-box h3').html(v);
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        $('#rechargeSubmit').removeAttr("disabled");
+                        return true;
+                    },1000)
+                } else {
+                    $('.safety-b-box h3').html(v);
+                    $('#safety-b-con').fadeIn();
+                    setTimeout(function(){
+                        $('#safety-b-con').fadeOut();
+                        $('#rechargeSubmit').removeAttr("disabled");
+                        return true;
+                    },1000)
+                }
+            })
+        }
+    }
+</script>
+{% endblock %}

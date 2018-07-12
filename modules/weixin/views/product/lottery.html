@@ -1,0 +1,103 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}商品详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/weixin/css/goods.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/weixin/js/picSlider.js" language="javascript" type="text/javascript"></script>
+  <script src="{{ app.params.skinUrl }}/weixin/js/goods.func.js?v=160216" language="javascript" type="text/javascript"></script>
+  <script src="{{ app.params.skinUrl }}/weixin/js/lottery.js?v=160216" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <input type="hidden" id="periodNumber" value="">
+  <input type="hidden" id="curPeriodNumber" value="">
+  <input type="hidden" id="productIdVal" value="">
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <!--期数列表-->
+      <!--<div class="issue">-->
+        <!--<ul id="morePeriod">-->
+
+        <!--</ul>-->
+      <!--</div>-->
+      <!-- 揭晓信息 -->
+      <div class="ann_detail" style="display: none;">
+
+      </div>
+      <div class="ann_btn" style="display: none;">
+        <a href="javascript:;" >计算详情
+          <s class="fr"></s></a>
+        <a href="javascript:;" >所有参与记录
+          <s class="fr"></s></a>
+        <a href="javascript:;" >商品晒单
+          <s class="fr"></s></a>
+          <a href="javascript:;" >往期揭晓
+              <s class="fr"></s></a>
+      </div>
+
+      <!--揭晓倒计时-->
+      <div id="divLotteryTime" class="pCountdown blue" style="display: none;">
+        <s></s>
+        <span>揭晓倒计时</span>
+        <i></i>
+        <em>00</em>
+        <i>:</i>
+        <em>00</em>
+        <i>:</i>
+        <em>00</em>
+      </div>
+      <!-- 产品图 -->
+      <div id="divPic" class="pPic"  style="display: none">
+        <div class="pPic2">
+          <div id="sliderBox" class="pImg" style="width: 630px;">
+            <div class="flex-viewport">
+              <ul class="slides" style="width: 600%; transition: 0s; transform: translate3d(-108px, 0px, 0px); display: block;">
+
+              </ul>
+            </div>
+            <ul class="direction-nav">
+              <li class="prev" style="display: block; width: 97px;"></li>
+              <li class="next" style="display: block; width: 97px;"></li>
+            </ul>
+          </div>
+          <dl id="PicPostion">
+
+          </dl>
+        </div>
+      </div>
+      <!-- 产品信息 -->
+      <div class="pro_info" style="display: none">
+
+      </div>
+      <!--本商品已结束-->
+      <div class="pState" style="display: none">
+      </div>
+      <div class="ann_btn" style="display: none">
+        <!--计算详情-->
+        <a href="javascript:;">计算详情<s class="fr"></s></a>
+        <!--所有参与记录-->
+        <a href="javascript:;">参与记录<s class="fr"></s></a>
+        <!--商品详情-->
+        <a href="javascript:;">图文详情<em>（建议WIFI下使用）</em><s class="fr"></s></a>
+        <!--商品晒单-->
+        <a href="javascript:;">商品晒单<s class="fr"></s></a>
+      </div>
+      
+      <div class="pro_foot" style="display: none;">
+        <a href="javascript:;" id="a_sc" class="z-set z-foot-fans fl" data-src=""></a>
+        <a href="{{ url(['/weixin/cart']) }}" id="btnCart"><i class="fr"></i></a>
+        <div class="btn">
+          <ul>
+              <li class="conductBtn">
+                  <a href="/product/{{ 0 }}.do">第{{ 0 }}伙正在进行中…</a>
+              </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}

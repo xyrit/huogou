@@ -1,0 +1,1 @@
+Base.getScript("http://skin.1yyg.com/Member/JS/MemberFun.js?date=150717");

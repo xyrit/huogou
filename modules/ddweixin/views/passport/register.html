@@ -1,0 +1,38 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}注册{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/register.js?v=0530" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div class="wrapper">
+    <input name="hidForward" type="hidden" id="hidForward" value="/mycart/payment.do" />
+    <div class="registerCon">
+      <ul>
+        <li class="accAndPwd">
+          <dl>
+            <input id="userMobile" maxlength="11" type="tel" placeholder="请输入您的手机号码" />
+          </dl> </li>
+        <li><a id="btnNext" href="javascript:;" class="orangeBtn loginBtn">下一步</a></li>
+        <li><span id="isCheck"><em></em>我已阅读并同意</span><a href="{{ url(['/ddweixin/passport/terms']) }}" class="blue">滴滴夺宝用户服务协议</a></li>
+      </ul>
+    </div>
+
+  </div>
+  <script>
+    $('#isCheck').click(function(){
+      if(!$(this).hasClass('noCheck')){
+        $(this).addClass('noCheck');
+        $('#btnNext').addClass('grayBtn');
+      }else{
+        $(this).removeClass('noCheck');
+        $('#btnNext').removeClass('grayBtn');
+      }
+    });
+  </script>
+{% endblock %}

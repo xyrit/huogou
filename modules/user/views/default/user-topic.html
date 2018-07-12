@@ -1,0 +1,76 @@
+{% extends '@userModule/views/base.html' %}
+
+{% block main %}
+<h1 class="topic">话题</h1>
+
+<div class="home_fl_margin">
+  <div class="find_bt_list">
+    <a href="{{ url('default/user-topic', {'id':app.request.get('id')}) }}"{% if(status == null) %} class="act"{% endif %}>发表过的话题({{ num.topicNum|default(0) }})</a>
+    <a href="{{ url('default/user-topic-comment', {'id':app.request.get('id')}) }}" {% if (status == 1) %}class="act"{% endif %}>发表过的回复({{ num.commentNum|default(0) }})</a>
+  </div>
+  {% if(pagination.totalCount) %}
+    {% if (topicComment) %}
+      <table class="get">
+        <thead>
+        <tr>
+          <td width="88%" class="left padding">回复</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in topicComment %}
+          <tr>
+            <td class="left padding">
+              <p class="hui">{{ item.created_at }} 对话题“<a class="blue" href="{{ url('/group/topic/view', {'id':item.topic_id}) }}">{{ item.subject }}</a>”进行了回复：</p>
+              <h4>{% autoescape true %}{{ item.message|raw }}{% endautoescape %}</h4>
+            </td>
+            <td valign="top">
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% elseif(publicTopic) %}
+      <table class="get">
+        <thead>
+        <tr>
+          <td width="44%" class="left padding">话题</td>
+          <td width="14%">所属圈子</td>
+          <td width="14%" class="left">时间</td>
+          <td width="14%">回复/人气</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in publicTopic %}
+          <tr>
+            <td class="left padding">
+              <a href="{{ url('/group/topic/view', {'id':item.id}) }}">{{ item.subject }}</a>
+            </td>
+            <td class="orange">
+              {{ getGroup[item.group_id] }}
+            </td>
+            <td class="left">
+              {{ item.created_at }}
+            </td>
+            <td>
+              {{ item.comment_count }} / {{ item.view_count }}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+
+  {% else %}
+  <div class="notHave">
+    <span class="notHave_icon"></span>
+    <p class="notHave_txt">暂无记录！</p>
+  </div>
+
+  {% endif %}
+</div>
+
+  {% if(pagination.totalCount) %}
+  {{ use('/app/widgets/LinkPager') }}
+  {{ link_pager_widget({pagination: pagination}) }}
+  {% endif %}
+{% endblock %}

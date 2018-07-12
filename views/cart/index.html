@@ -1,0 +1,58 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}购物车_{{ app.name }}{% endblock %}
+
+{% block css%}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/cart.js?v=160226" ></script>
+{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    <!--内容区-->
+    <section class="wrap clear">
+        <div class="present">
+            <a href="/">首页</a><i></i><a href="">我的购物车</a>
+        </div>
+        <!--购物车内容区-->
+        <div class="shopping">
+            <h1>我的购物车</h1>
+            <table class="shopping_list">
+                <thead>
+                    <tr>
+                        <td width="49%" class="left" colspan="2">商品</td>
+                        <td width="10%">剩余人次</td>
+                        <td width="16%">伙购人次</td>
+                        <td width="10%">小计</td>
+                        <td width="10%">操作</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="shopping_elect">
+                <div class="fl">
+                    <input id="check-all" type="checkbox" checked="checked"><label for="check-all">全选</label><i>/</i><a href="javascript:;" id="delete-all">删除</a>
+                </div>
+                <div class="rl">金额总计：<i id="total"></i></div>
+            </div>
+            <div class="finish">
+                <a href="/list.html">返回继续伙购</a><a class="finish_a" href="javascript:;">去结算</a>
+            </div>
+
+            <h2 class="popularity">人气推荐</h2>
+            <ul class="popularity_list clear"></ul>
+        </div>
+    </section>
+{% include '@app/views/footer.html' %}
+
+    <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+
+</div>
+{% endblock %}

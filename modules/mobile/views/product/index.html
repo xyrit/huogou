@@ -1,0 +1,77 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block header %}商品详情{% endblock %}
+{% block title %}{{ model.name }}_伙购网{% endblock %}
+{% block keywords %}{{ model.keywords }}{% endblock %}
+{% block description %}{{ model.keywords }}{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/goods.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/picSlider.js" language="javascript" type="text/javascript"></script>
+  <script src="{{ app.params.skinUrl }}/mobile/js/goods.func.js?v=160216" language="javascript" type="text/javascript"></script>
+  <script src="{{ app.params.skinUrl }}/mobile/js/goods.js?v=160216" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <input type="hidden" name="periodId" id="periodId" value="">
+  <input type="hidden" name="productId" id="productId" value="">
+  <input type="hidden" name="buyUnit" id="buyUnit" value="">
+  <input type="hidden" name="periodNumber" id="periodNumber" value="">
+  <div class="wrapper">
+    <!--期数列表-->
+    <!--<div class="issue">-->
+      <!--<ul id="morePeriod">-->
+
+      <!--</ul>-->
+    <!--</div>-->
+    <!-- 产品图 -->
+    <div id="divPic" class="pPic">
+      <div class="pPic2">
+        <div id="sliderBox" class="pImg" style="width: 630px;">
+          <div class="flex-viewport">
+            <ul class="slides" style="width: 600%; transition: 0s; transform: translate3d(-108px, 0px, 0px); display: block;">
+
+            </ul>
+          </div>
+          <ul class="direction-nav">
+            <li class="prev" style="display: block; width: 97px;"></li>
+            <li class="next" style="display: block; width: 97px;"></li>
+          </ul>
+        </div>
+        <dl id="PicPostion">
+
+        </dl>
+      </div>
+    </div>
+    <!-- 产品信息 -->
+    <div class="pro_info">
+
+    </div>
+    <!--本商品已结束-->
+    <div class="pState">
+    </div>
+    <div class="ann_btn">
+      <!--所有参与记录-->
+      <a href="javascript:;">参与记录<s class="fr"></s></a>
+      <!--商品详情-->
+      <a href="javascript:;">图文详情<em>（建议WIFI下使用）</em><s class="fr"></s></a>
+      <!--商品晒单-->
+      <a href="javascript:;">商品晒单<s class="fr"></s></a>
+        <!--往期揭晓-->
+        <a href="javascript:;">往期揭晓<s class="fr"></s></a>
+    </div>
+    <div class="pro_foot" style="display: none;">
+      <a href="javascript:;" id="a_sc" class="z-set z-foot-fans fl" data-src=""></a>
+      <a href="{{ url(['/mobile/cart']) }}" id="btnCartFooter"><i class="fr"></i></a>
+      <div class="btn">
+        <ul>
+          <li><a href="javascript:;" class="orangeBtn">立即伙购</a></li>
+          <li><a href="javascript:;" class="blueBtn">加入购物车</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

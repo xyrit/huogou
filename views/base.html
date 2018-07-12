@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta property="qc:admins" content="655147777760577756375" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="shortcut icon" href="{{ url(['/']) }}/favicon.ico" />
+    {{ html.csrfMetaTags() | raw }}
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/global.css?v=160303" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css?v=160527" />
+    {% block css %}{% endblock %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery-1.11.2.min.js" ></script>
+    <!--[if IE]>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/html5.js"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/html5media.min.js"></script>
+    <![endif]-->
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/DD_belatedPNG_0.0.8a.min.js"></script>
+    <script>
+        DD_belatedPNG.fix('*');
+    </script>
+    <![endif]-->
+</head>
+
+<body>
+{% block body %}{% endblock %}
+
+<section id="safety-b-con">
+    <div class="safety-b-box">
+        <i id="safety-b-close"></i>
+        <h3></h3>
+    </div>
+</section>
+
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.jsonp.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.easing.1.3.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/common.js?v=160303" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/global.js?v=160302" ></script>
+<script type="text/javascript">
+    var token = "{{token}}";
+    $(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#safety-b-con').on('click', '#safety-b-close',function() {
+            $('#safety-b-con').fadeOut();
+        });
+
+        $.getScript('http://wpa.b.qq.com/cgi/wpa.php',function() {
+            BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000005000, selector: 'service_qq_a'});
+            BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000005000, selector: 'service_qq_b'});
+            BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000005000, selector: 'service_qq_c'});
+            BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000005000, selector: 'service_qq_d'});
+            BizQQWPA.addCustom({aty: '0', a: '0', nameAccount: 4000005000, selector: 'service_qq_e'});
+        });
+    });
+</script>
+
+{% block js %}{% endblock %}
+{% block script %}
+
+{% endblock %}
+
+</body>
+</html>

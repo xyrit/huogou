@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>账户明细</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="../member/CSS/member.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <input name="loadDataType" type="hidden" id="loadDataType" value="0" />
+    <div class="wrapper">
+        <div id="div_account" class="clearfix m_account_details">
+            <ul class="m-userMoneyNav">
+                <li>
+                    <a id="btnConsumption" class="z-MoneyNav-crt01" href="javascript:;"><b>消费明细</b>总金额：￥2307.00</a>
+                    <s></s>
+                </li>
+                <li>
+                    <a id="btnRecharge" href="javascript:;"><b>充值明细</b>总金额：￥2306.00</a>
+                </li>
+            </ul>
+            <ul id="ulConsumption" class="m-userMoneylst m-Consumption">
+                <li class="m-userMoneylst-tt"><span>消费时间</span><span>消费金额</span></li>
+                <li class=""><span>2015-10-13 14:33:59</span><span>￥6.00</span></li>
+                <li class=""><span>2015-10-13 14:33:59</span><span>￥6.00</span></li>
+                <li class=""><span>2015-10-13 14:33:59</span><span>￥6.00</span></li>
+                <li class=""><span>2015-10-13 14:33:59</span><span>￥6.00</span></li>
+                <li class=""><span>2015-10-13 14:33:59</span><span>￥6.00</span></li>
+            </ul>
+            <ul id="ulRechage" class="m-userMoneylst" style="display: none;">
+                <li class="m-userMoneylst-tt"><span>充值时间</span><span>充值金额</span><span>充值渠道</span></li>
+                <li class=""><span>2015-10-13 14:32:37</span><span>￥6.00</span><span>佣金充值</span></li>
+                <li class=""><span>2015-10-13 14:32:37</span><span>￥6.00</span><span>佣金充值</span></li>
+                <li class=""><span>2015-10-13 14:32:37</span><span>￥6.00</span><span>佣金充值</span></li>
+                <li class=""><span>2015-10-13 14:32:37</span><span>￥6.00</span><span>佣金充值</span></li>
+            </ul>
+            <div id="divLoad" class="loading" style="display: none">
+                <b></b>正在加载
+            </div>
+        </div>
+        <div class="load_more" id="btnLoadMore" style="display: block">
+            <a href="javascript:;" title="加载更多">加载更多</a>
+        </div>
+        <input id="hidPageType" type="hidden" value="3" />
+        <div class="footer">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="index.html" class="hover" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+//    消费明细
+    $('#btnConsumption').click(function(){
+        if($('#btnConsumption').hasClass('z-MoneyNav-crt01') == false){
+            $('#ulConsumption').show();
+            $('#ulRechage').hide();
+            $(this).addClass('z-MoneyNav-crt01');
+            $('#btnRecharge').removeClass('z-MoneyNav-crt02');
+        }
+    })
+//充值明细
+    $('#btnRecharge').click(function(){
+        if($('#btnRecharge').hasClass('z-MoneyNav-crt02') == false){
+            $('#ulRechage').show();
+            $('#ulConsumption').hide();
+            $(this).addClass('z-MoneyNav-crt02');
+            $('#btnConsumption').removeClass('z-MoneyNav-crt01');
+        }
+    })
+</script>
+</body>
+</html>

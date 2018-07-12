@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>公告</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css?v=160324">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/comm.js?v=160325"></script>
+</head>
+<body>
+	<section class="notice-detail">
+
+	</section>
+</body>
+<script>
+	$(function() {
+
+        var url = apiBaseUrl+'/app/system-notice-info';
+        var msgId = getUrlParam('id');
+        var type = getUrlParam('type');
+        var data = {'id':msgId,'type':type};
+        $.getJsonp(url,data,function(json) {
+            var info = json.info;
+            var title = info.title;
+            var content = info.content;
+            var time = info.time;
+
+            var html = '';
+            html += '<div class="notice-detail-title">';
+            html += '<h2>'+ title+'</h2>';
+            html += '<p>'+ time+'</p>';
+            html += '</div>';
+            html += '<div class="notice-detail-con">';
+            html += '<summary>';
+            html += content;
+            html += '</summary>';
+            html += '</div>';
+            $('.notice-detail').html(html);
+        });
+	});
+</script>
+</html>

@@ -1,0 +1,103 @@
+@charset "utf-8";
+*{margin:0;padding:0;word-wrap:break-word;word-break:break-all;}
+body{font:14px/20px "Microsoft YaHei", arial, sans-serif,'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif;color:#444;}
+html, body, h1, h2, h3, h4,input,div,ul,li,p,form,table,dt,dl,dd,tr{list-style-type:none;}
+h3,h4{ font-size:14px; font-weight:bold;}
+a{color:#444;text-decoration:none;} a:hover{color:#333;} a img{border:none;} 
+em{font-style: normal;font-weight: normal;}
+img{max-width:100%; max-height:100%;}
+.clear{ clear:both; width:0; height:0;}
+.show{ display: block;visibility:visible;}  .hide{ display:none; visibility:hidden;} 
+.fl{float:left;}  .fr{float:right;}
+.main{width:100%;  margin:0 auto;}
+.mt10{margin-top:10px;} .mb10{margin-bottom:10px;} .pt10{padding-top:10px;} .mt20{margin-top:20px;} .mb20{margin-bottom:20px;} .pt20{padding-top:20px;}
+body{max-width:640px; margin:0 auto; background:#f0f0f0;}
+
+/* 头部 */
+.topzhanwei{width:100%; height:50px;}
+.topdiv2{width:100%; height:50px; position:fixed; top:0; left:0; z-index:985;}
+.topdiv2 .topnav{width:100%; max-width:640px; box-sizing:border-box; position:relative; padding:10px 45px 10px 40px; height:50px; font-size:16px; background:#f9f9f9; color:#333; text-align:center; margin:0 auto; border-bottom:1px #e6e6e6 solid;}
+.topdiv2 .topnav .fanhui{width:30px; height:30px; border-radius:50%; display:block; position:absolute; top:10px; left:5px; background:url(../images/fanhuian.png) center center no-repeat; background-size:auto 18px;}
+.topdiv2 .topnav .home{width:30px; height:30px; border-raidus:50%; display:block; position:absolute; top:10px; right:5px; background:url(../images/gohomean.png) center center no-repeat; background-size:auto 18px;}
+.topdiv2 .topnav .pagetit{line-height:30px; font-size:22px; font-weight:normal; color#333;}
+.topdiv2 .topnav.active .topsoso,.topdiv2 .topnav.active .pagetit{display:none;}
+.topdiv2 .topnav.active .fanhui{background-color:rgba(6,6,6,0.3); border-radius:50%; background-image:url(../images/fanhuian2.png); background-size:auto 18px; background-position:center center; background-repeat:no-repeat;}
+.topdiv2 .topnav.active .home{background-color:rgba(6,6,6,0.3); border-radius:50%; background-image:url(../images/gohomean2.png); background-size:auto 18px; background-position:center center; background-repeat:no-repeat;}
+
+
+
+/* 计算结果 */
+.gongshi{margin:10px; padding:10px 0; background:#ef2828; color:#fff; border-radius:4px; text-align:center;}
+.gongshi span{display:inline-block; height:50px; overflow:hidden; float:left; margin:0 0 0 8px;}
+.gongshi span.xymtit{font-size:16px; line-height:50px;}
+.gongshi span.quyu{font-size:12px; border:1px #fff dashed; border-radius:4px; padding:0 10px; line-height:24px;}
+.gongshi span.quyu .linep{border-top:1px #fff solid;}
+.gongshi span.jiashu{font-size:14px; line-height:50px;}
+
+.jisuangs{padding:10px; font-size:12px; background:#e6e6e6;}
+.jisuangs .con{border:1px #ef2828 solid; padding:10px; background:#fff; color:#ef2828; font-size:12px; border-radius:5px; text-align:center;}
+.shuzhiinfo{clear:both; padding:0 0 10px 0;}
+
+.shuzhiinfo .infos{clear:both; font-size:12px; line-height:22px; background:#fff;}
+.shuzhiinfo .infos h4{font-size:14px; font-weight:normal; padding:7px 10px 7px 50px; position:relative; line-height:20px; border-bottom:1px #e6e6e6 solid; clear:both; color:#666;}
+.shuzhiinfo .infos h4 span{position:absolute; top:7px; left:0; width:45px; line-height:20px; text-align:right; color:#ef2828;}
+.shuzhiinfo .infos h4 i{color:#666; font-style:normal;}
+.shuzhiinfo .infos em{color:#ef2828;}
+.shuzhiinfo .infos a{float:right; display:inline-block; height:20px; color:#3388ff;}
+.shuzhiinfo .infos a.zansou{padding:0 15px 0 0; background:url(../images/zkssanbg1.png) right center no-repeat; background-size:10px auto;;}
+.shuzhiinfo .infos a.zansou.active{background:url(../images/zkssanbg2.png) right center no-repeat; background-size:10px auto;}
+
+.shuzhiinfo .jieguoinfos{clear:both; font-size:12px; line-height:22px; background:#fff;}
+.shuzhiinfo .jieguoinfos h4{font-size:14px; font-weight:normal; padding:7px 10px; line-height:20px; border-bottom:1px #e6e6e6 solid; clear:both; color:#666;}
+.shuzhiinfo .jieguoinfos .dengdaijx{text-align:center; font-size:14px; padding:7px 10px; line-height:20px;}
+.shuzhiinfo .jieguoinfos .dengdaijx em{color:#ef2828;}
+
+.shicaigz{margin:0 10px 10px 10px; clear:both; overflow:hidden; position:relative; padding:10px; background:#fff0db; color:#d10000;}
+.shicaigz .border1{width:18px; height:18px; background:#fff0db url(../images/jiaobg.png) top left no-repeat; background-size:45px auto; position:absolute; top:7px; left:7px; border-radius:0 0 9px 0;}
+.shicaigz .border2{width:18px; height:18px; background:#fff0db url(../images/jiaobg.png) top right no-repeat; background-size:45px auto; position:absolute; top:7px; right:7px; border-radius:0 0 0 9px;}
+.shicaigz .border3{width:18px; height:18px; background:#fff0db url(../images/jiaobg.png) bottom right no-repeat; background-size:45px auto; position:absolute; bottom:7px; right:7px; border-radius:9px 0 0 0;}
+.shicaigz .border4{width:18px; height:18px; background:#fff0db url(../images/jiaobg.png) bottom left no-repeat; background-size:45px auto; position:absolute; bottom:7px; left:7px; border-radius:0 9px 0 0;}
+
+.shicaigz .gzborder{padding:10px 10px 5px 10px; border:#e8786d 1px solid; min-height:40px; font-size:12px; line-height:18px;}
+.shicaigz .gzborder h2{padding:0 0 5px 0; line-height:20px; font-size:15px;}
+.shicaigz .gzborder h3{line-height:20px; font-size:12px; margin:0 0 0 -3px;}
+.shicaigz .gzborder p{padding:0 0 5px 28px;}
+
+/* 计算结果参与时间 */
+.buytimelist{clear:both; font-size:12px; overflow:hidden; display:none; background:#fff;}
+.buytimelist p{line-height:18px; padding:8px 65px 8px 10px; position:relative; border-bottom:1px #e6e6e6 solid; color:#666;}
+.buytimelist p.toplist{font-size:14px; color:#333;}
+.buytimelist p.toplist .name{font-size:14px; color:#333;}
+.buytimelist p .buytime em{color:#ef2828;}
+.buytimelist p .name{width:65px; height:20px; display:inline-block; line-height:20px; position:absolute; top:7px; right:10px; overflow:hidden; white-space:nowrap; text-overflow: ellipsis; color:#0066FF;}
+.buytimelist p .name a{color:#0066FF;}
+
+
+/* 回顶部 */
+.huitop{width:40px; height:40px; position:fixed; bottom:107px; right:10px; background:url(../images/huitopbg.png) center center no-repeat; background-size:auto 40px; border-radius:50%; z-index:981; display:none;}
+
+/* 浮动购物车 */
+.botfixcar{width:40px; height:40px; position:fixed; bottom:55px; right:10px; border-radius:50%; background:#ef2828 url(../images/fixcarnanbg.png) center center no-repeat; background-size:22px auto; z-index:982;}
+.botfixcar a{width:40px; height:40px; display:block; position:relative;}
+.botfixcar a span{min-width:12px; height:12px; display:inline-block; border:1px #ef2828 solid; padding:0 2px; line-height:12px; font-size:12px; color:#ef2828; background:#fff; border-radius:6px; position:absolute; top:-8px; left:8px; z-index:983; text-align:center;}
+.botfixcar i{width:7px; height:4px; display:inline-block; background:url(../images/fixcanshuarr.png) left bottom no-repeat; background-size:auto 7px; position:absolute; top:4px; left:14px; z-index:983;}
+
+/* 圆形底部导航 */
+.botfixnavan{width:35px; height:35px; position:fixed; bottom:55px; left:10px; border-radius:50%; background:url(../images/fixleftanbg1.png) center center no-repeat; background-size:auto 35px; z-index:982;}
+.botfixnavbg{width:100%; height:100%; position:fixed; top:0; left:0; background:url(../images/botfixbg1.png) 0 0 repeat; z-index:986; display:none;}
+.botfixnavbg .botfixnav{width:100%; max-width:640px; height:100%; margin:0 auto; position:relative; overflow:hidden;}
+.botfixnavbg .botfixnav .botfix{width:190px; height:190px; border-radius:50%; overflow:hidden; background:url(../images/botfixbg2.png) 0 0 repeat; position:absolute; left:-70px; bottom:70px; text-align:center;}
+.botfixnavbg .botfixnav .botfix a{font-size:12px; line-height:18px; color:#666; height:18px; padding:22px 0 0 0; display:block;}
+.botfixnavbg .botfixnav .botfix .botfix1{width:40px; height:40px; background:url(../images/bot_nav1.png) center 3px no-repeat; background-size:auto 20px; position:absolute; top:8px; right:78px;}
+.botfixnavbg .botfixnav .botfix .botfix2{width:60px; height:40px; background:url(../images/bot_nav2.png) center 3px no-repeat; background-size:auto 20px; position:absolute; top:30px; right:18px;}
+.botfixnavbg .botfixnav .botfix .botfix3{width:40px; height:40px; background:url(../images/bot_nav3.png) center 3px no-repeat; background-size:auto 20px; position:absolute; top:78px; right:10px;}
+.botfixnavbg .botfixnav .botfix .botfix4{width:45px; height:40px; background:url(../images/bot_nav4.png) center 3px no-repeat; background-size:auto 20px; position:absolute; top:125px; right:30px;}
+.botfixnavbg .botfixnav .botfix .botfix5{width:40px; height:40px; background:url(../images/bot_nav5.png) center 3px no-repeat; background-size:auto 20px; position:absolute; top:145px; right:78px;}
+.botfixnavbg .botfixnav .botfix .closebotfix{width:35px; height:35px; background:url(../images/fixleftanbg2.png) center center no-repeat; background-size:auto 35px; position:absolute; top:83px; right:70px;}
+
+/* 加入购物车动画 */
+.frightdiv{width:50px; height:50px; top:0; right:0; display:none; position:fixed; z-index:999999; border-radius:3px; overflow:hidden;}
+.frightdiv img{width:100%; height:100%; display:inline-block;}
+/* .frightdiv img{width:100%; height:100%; display:inline-block; animation:frighttocar 0.5s;}
+@keyframes frighttocar{from{transform:rotate(0deg);} to {transform:rotate(1440deg);}}
+*/

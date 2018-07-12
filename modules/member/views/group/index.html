@@ -1,0 +1,42 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}加入的圈子_伙购网{% endblock %}
+
+{% block main %}
+<div class="member_con_rl">
+    <div class="find-friends">
+        <h1 class="circle">加入的圈子</h1>
+
+        <ul class="circle_con_list">
+            {% if joinGroup %}
+            {% for item in joinGroup %}
+            <li class="feedback">
+                <div>
+                    <article class="group-class-0{{ item.id }}">
+                        <h2><a href="{{ url('/group/default/view', {'id':item.id}) }}" target="_blank">{{ item.name }}</a></h2>
+                        <aside><i>成员：{{ item.user_count }}</i><i>话题：{{ item.topic_count }}</i></aside>
+                        <p>{{ item.intro[:40] }}</p>
+                    </article>
+                </div>
+            </li>
+            {% endfor %}
+            {% else %}
+            <div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">暂无记录</p></div>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.page.js" ></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript">
+
+</script>
+
+{% endblock %}

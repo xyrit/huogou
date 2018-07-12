@@ -1,0 +1,69 @@
+{% extends '@passportModule/views/base.html' %}
+
+{% block title %}其他方式快捷登录_{{ app.name }}{% endblock %}
+
+{% block body %}
+  <section class="wrap clear">
+    <a class="logo" href="{{ url(['/']) }}"></a>
+    <a class="return" href="{{ url(['/']) }}">返回首页</a>
+  </section>
+
+  <section class="binding_box">
+    <div class="con">
+      <div class="con-box">
+        <div class="title">
+          <picture>
+            <img src="{{ userInfo.avatar }}" alt="{{ userInfo.nickname }}"/>
+          </picture>
+          <article>
+            <h3>欢迎您，{{ userInfo.nickname }}</h3>
+            <aside>完善账号信息，关联账号一键登陆</aside>
+          </article>
+        </div>
+        <div class="binding">
+          {{ html.beginForm('', 'post', {'id':'register-form'}) | raw }}
+          <ul>
+            <li>
+              <input class="gl_id" type="text" name="RegisterForm[username]" id="account" autocomplete="off">
+              <span id="nameerror"></span>
+              <i></i>
+              <em class="input_arr">手机号/邮箱地址</em>
+            </li>
+            <input type="password" style="display: none;">
+            <li>
+              <input class="gl_code" type="password" name="RegisterForm[password]" id="passowrd" autocomplete="off">
+              <span id="pwderror"></span>
+              <i></i>
+              <em class="input_arr">登录密码</em>
+            </li>
+            <li id="repasswordLi" style="display: none;">
+              <input class="re_code" type="password" name="RegisterForm[confirmPassword]" id="repassword" autocomplete="off">
+              <span id="repwderror"></span>
+              <i></i>
+              <em class="input_arr">确认登录密码</em>
+            </li>
+          </ul>
+          <summary>
+            <div class="log_ipts">
+              <input class="gl_verify" name="RegisterForm[verifyCode]"   type="text" id="verify" maxlength="6" autocomplete="off">
+              <em class="input_arr">验证码</em>
+            </div>
+            <a href="javascript:void(0);" ><img src="{{ url('/passport/api/captcha',{'v':rand}) }}" alt="" id="imgCode" width="122" height="46"></a>
+          </summary>
+          <span id="verifyCodeError"></span>
+          <input type="submit" value="立即绑定" id="formSubmit">
+          {{ html.endForm() | raw }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include '@passportModule/views/footer.html' %}
+{% endblock %}
+
+{% block script %}
+  <script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+  <script type="text/javascript" src="{{ app.params.httpsSkinUrl }}/js/bind.js"> </script>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+<div class="admin-content" >
+    {% include '@adminModule/views/member/top.html' %}
+
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    <thead>
+                    <tr>
+                        <th>圈子名</th>
+                        <th class="am-hide-sm-only">加入时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for value in list %}
+                        <tr>
+                           <td>{{ value.name }}</td>
+                           <td>{{ value.created_at|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                       {% endfor %}
+
+                    </tbody>
+                </table>
+                <div class="am-cf">
+                    <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                    <div class="am-fr">
+                        {{ use('/app/widgets/BackendLinkPager') }}
+                        {{ backend_link_pager_widget({'pagination': pagination}) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- content end -->
+{% endblock %}

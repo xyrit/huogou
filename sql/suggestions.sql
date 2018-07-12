@@ -1,0 +1,10 @@
+CREATE TABLE `suggestions` (
+  `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `type` TINYINT(1) NOT NULL DEFAULT 0 COMMENT '投诉类型',
+  `nickname` VARCHAR(50) DEFAULT '' COMMENT '昵称',
+  `phone` varchar(11) NOT NULL DEFAULT 0 COMMENT '手机号',
+  `email` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `content` TEXT NOT NULL DEFAULT '' COMMENT '投诉内容',
+  `created_at` INT(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+)ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT='投诉建议表';

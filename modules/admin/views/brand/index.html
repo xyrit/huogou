@@ -1,0 +1,124 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">商品品牌</strong></div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-9">
+                <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                        <a class="am-btn am-btn-default" href="{{ url(['/admin/brand/add']) }}">
+                            <i class="am-icon-plus"></i> 新增
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="am-u-sm-12 am-u-md-3">
+                {{ html.beginForm('', 'post') | raw }}
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" class="am-form-field" name="keywords" value="{{ keywords }}">
+                    <span class="am-input-group-btn"><button class="am-btn am-btn-default" type="submit">搜索
+                        </button></span>
+                </div>
+                {{ html.endForm() | raw }}
+            </div>
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th>品牌名称</th>
+                            <th>品牌别名</th>
+                            <th class="am-hide-sm-only">品牌网址</th>
+                            <th class="am-hide-sm-only">创建人</th>
+                            <th class="am-hide-sm-only">创建时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for brand in brands %}
+                            <tr data-id="{{ brand.id }}">
+                                <td><a href="#">{{ brand.name }}</a></td>
+                                <td>{{ brand.alias }}</td>
+                                <td class="am-hide-sm-only">{{ brand.url }}</td>
+                                <td class="am-hide-sm-only">{{ brand.create_name }}</td>
+                                <td class="am-hide-sm-only">{{ brand.created_at|date('Y-m-d H:i:s') }}</td>
+                                <td>
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-secondary btn-edit" type="button">
+                                                <span class="am-icon-pencil-square-o"></span> 编辑
+                                            </button>
+                                            <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only btn-delete" type="button">
+                                                <span class="am-icon-trash-o"></span> 删除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pages.totalCount }} 条记录</p>
+
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({pagination: pages}) }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- content end -->
+
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">警告</div>
+            <div class="am-modal-bd">
+                你，确定要删除这条记录？
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $(function () {
+            $('.btn-edit').on('click', function () {
+                var id = $(this).closest('tr').data('id');
+                window.location.href = "{{ url(['/admin/brand/edit']) }}?id=" + id;
+            });
+
+            $('.btn-delete').on('click', function () {
+                $('#my-confirm').modal({
+                    relatedTarget: this,
+                    onConfirm: function (options) {
+                        var id = $(this.relatedTarget).closest('tr').data('id');
+                        $.post('{{ url(['/admin/brand/del']) }}', {'id': id}, function (data) {
+                            if (data.errno) {
+                                $('#errmsg').text(data.errmsg);
+                                $('#my-alert').modal();
+                            } else {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

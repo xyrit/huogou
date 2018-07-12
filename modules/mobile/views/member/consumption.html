@@ -1,0 +1,39 @@
+
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}消费明细{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/mobile/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/mobile/js/consumption.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+  <div id="loadingPicBlock">
+    <input name="loadDataType" type="hidden" id="loadDataType" value="0" />
+    <div class="wrapper">
+      <div id="div_account" class="clearfix m_account_details">
+        <ul class="m-userMoneyNav">
+          <li>
+            <a id="btnConsumption" class="z-MoneyNav-crt01" href="javascript:;"><b>消费明细</b>总金额：xx 伙购币</a>
+            <s></s>
+          </li>
+          <li>
+            <a id="btnRecharge" href="javascript:;"><b>充值明细</b>总金额：xx 伙购币</a>
+          </li>
+        </ul>
+        <ul id="ulConsumption" class="m-userMoneylst m-Consumption">
+          <li class="m-userMoneylst-tt"><span>消费时间</span><span>消费金额</span></li>
+        </ul>
+        <ul id="ulRechage" class="m-userMoneylst" style="display: none;">
+          <li class="m-userMoneylst-tt"><span>充值时间</span><span>充值金额</span><span>充值渠道</span></li>
+        </ul>
+      </div>
+      <div id="divLoad" class="loading" style="display: block;">
+        <b></b>正在加载
+      </div>
+    </div>
+  </div>
+{% endblock %}

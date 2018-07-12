@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>产品列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/reg.js?v=160323"></script>
+</head>
+	<script>
+	$(document).ready(function(){
+		
+	})
+	</script>
+<body>
+	<section class="pro">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009400798/TB2ToNSkXXXXXXpXpXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009423195/TB2tMFykXXXXXciXpXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009437715/TB2_ZtKkXXXXXavXpXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i4/182070166009445259/TB25DB6kXXXXXboXXXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009460197/TB2x5tVkXXXXXb8XXXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009468709/TB2jEpwkXXXXXcFXpXXXXXXXXXX_!!0-martrix_bbs.jpg">
+		<img src="https://img.alicdn.com/imgextra/i2/182070166009468780/TB28EVvkXXXXXcsXpXXXXXXXXXX_!!0-martrix_bbs.jpg">
+	</section>
+	<section class="pro-fixed">
+		<a href="javascript:;" id="reg">立即注册</a>
+		<div class="awards-tip-box" style="display: none;">
+			<div class="awards-tip-title">
+				<div class="step">
+					<span class="orange" id="step1_title">输入手机号</span> &gt; <span id="step2_title">输入验证码</span> &gt; <span id="step3_title">设置密码</span>
+				</div>
+			</div>
+			<div class="login-con">
+				<div class="login-input">
+					<div class="input-phone">
+						<input placeholder="手机号码" type="text" id="mobile">
+					</div>
+					<div class="input-verify" style="display: none;">
+						<input placeholder="短信验证码" type="text" id="code"><a class="act" href="javascript:;">获取验证码</a>
+					</div>
+					<div class="input-password" style="display: none;">
+						<input placeholder="8-20位数字字母密码" type="password" id="password">
+					</div>
+				</div>
+				<input id="register-submit" class="login-submit" type="submit" value="确 定" step="mobile">
+			</div>
+		</div>
+	</section>
+	<div class="popUp"></div>
+	<div id="dialog" class="mgp-dialog-alert" style="">
+		<div class="mgp-dialog-alert-title"></div>
+		<div class="mgp-dialog-alert-cont">请重新输入</div>
+		<div class="mgp-dialog-alert-close j_alert_button" d-tap="0" onclick="closePop()">确定</div>
+	</div>
+</body>
+</html>

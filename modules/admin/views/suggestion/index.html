@@ -1,0 +1,117 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">建议列表</strong></div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-md-9">
+        <div class="am-btn-toolbar">
+          <div class="am-btn-group am-btn-group-xs">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>建议类型</th>
+              <th class="table-title am-hide-sm-only" >手机</th>
+              <th class="table-title am-hide-sm-only">邮箱</th>
+              <th class="table-title am-hide-sm-only">内容</th>
+              <th class="am-hide-sm-only">创建时间</th>
+              <th class="table-set">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in list %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{% if item.type == '0' %}投诉与建议{% elseif( item.type == 1) %}商品配送{% else %}售后服务{% endif %}</td>
+                <td class="am-hide-sm-only">{{ item.phone }}</td>
+                <td class="am-hide-sm-only">{{ item.email }}</td>
+                <td class="am-hide-sm-only">{{ item.content }}</td>
+                <td class="am-hide-sm-only">{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                <td>
+                  <div class="am-btn-toolbar">
+                    <div class="am-btn-group am-btn-group-xs">
+                      <a href="javascript:void(0);"  data-id="{{ item.id }}"
+                         class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only btn-sugg-delete">
+                        <span class="am-icon-trash-o"></span>删除
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+          <div class="am-cf">
+            <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+            <div class="am-fr">
+              {{ use('/app/widgets/BackendLinkPager') }}
+              {{ backend_link_pager_widget({'pagination': pagination}) }}
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+
+  <!-- 删除提示弹窗-->
+  <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd">警告</div>
+      <div class="am-modal-bd">
+        你，确定要删除这条记录？
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+    <span class="am-icon-btn am-icon-th-list"></span>
+  </a>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(function () {
+      $('.btn-sugg-delete').on('click', function () {
+        $('#my-confirm').modal({
+          relatedTarget: this,
+          onConfirm: function (options) {
+            var $id = $(this.relatedTarget).data('id');
+            $.get('{{ url(['/admin/suggestion/del']) }}', {id: $id}, function (data) {
+              if (data.error) {
+                $('#errmsg').text(data.message);
+                $('#my-alert').modal();
+              } else {
+                window.location.reload();
+              }
+            });
+          },
+          // closeOnConfirm: false,
+          onCancel: function () {
+            return;
+          }
+        });
+      });
+
+    });
+  </script>
+{% endblock %}

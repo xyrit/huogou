@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>1元购</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="js/touch.js"></script>
+	<script type="text/javascript" src="js/reg.js?v=160323"></script>
+</head>
+<script>
+	$(document).ready(function(){
+		var apiUrl = "http://api.huogou.com";
+		var skinBaseUrl = "http://skin.huogou.com";
+		var icon = '';
+		if (isIos()) {
+			icon += skinBaseUrl+'/spread/ios-icon.png';
+		}else{
+			icon += skinBaseUrl+'/spread/android-icon.png';
+		}
+		
+		$.getJSON(apiUrl+'/wechat/jsconfig?callback=?',function(data){
+			$("#hidAppID").val(data.appId);
+			$("#hidTimeSpan").val(data.timestamp);
+			$("#hidNonceStr").val(data.nonceStr);
+			$("#hidSignature").val(data.signature);
+			$.getScript(skinBaseUrl + '/spread/wxshare.js', function () {
+	            wxShareFun({
+	                shareTitle: "1元就能买iPhone 6s！我试过了，这是真的！",
+	                shareDesc: '只要1元，iphone 6s拿到手。更多实用商品，全部1元获得，快来点我，点我！',
+	                shareImg: icon,
+	                shareMoney: false,
+	                showMask: false
+	            });
+	        });
+		})
+		function isIos(){
+	        var u = navigator.userAgent;
+	        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+	        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+	        if (isiOS) {
+	            return true
+	        }
+	        return false;
+	    }
+	})
+	</script>
+<body>
+	<input name="hidAppID" type="hidden" id="hidAppID" value="" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="" />
+	<a class="a-link" href="http://ld.cacn360.cn/down.php"></a>
+	<img class="w100" src="img/banner01.jpg">
+	<ul class="register-pro-list">
+		<li>
+			<picture><img src="img/register10.jpg"></picture>
+			<h3>Apple iPhone6s Plus 64G 颜色随机 处处不同...</h3>
+			<p><em>原价：￥7688</em><span>￥<i>1</i></span></p>
+		</li>
+		<li>
+			<picture><img src="img/register21.jpg"></picture>
+			<h3>2016款 宝马（BMW）3系 320i 时尚型 四门轿车...</h3>
+			<p><em>原价：￥399998.00</em><span>￥<i>1</i></span></p>
+		</li>
+		<li>
+			<picture><img src="img/register11.jpg"></picture>
+			<h3>apple watch sport 38 毫米银色铝...</h3>
+			<p><em>原价：￥3238.00</em><span>￥<i>1</i></span></p>
+		</li>
+		<li>
+			<picture><img src="img/register12.jpg"></picture>
+			<h3>佳能（Canon）EOS 70D 单反套机 EF-S 18-200mm</h3>
+			<p><em>原价：￥9378.00</em><span>￥<i>1</i></span></p>
+		</li>
+		<li>
+			<picture><img src="img/register22.jpg"></picture>
+			<h3>苹果（Apple）iPad Pro 12.9 英寸平板电脑...</h3>
+			<p><em>原价：￥8608.00</em><span>￥<i>1</i></span></p>
+		</li>
+		<li>
+			<picture><img src="img/register23.jpg"></picture>
+			<h3>苹果（Apple）iMac 21.5 英寸 1.4GHz 处理器</h3>
+			<p><em>原价：￥9108.00</em><span>￥<i>1</i></span></p>
+		</li>
+	</ul>
+	<img class="w100" src="img/zjjl.jpg">
+
+	<ul class="winning-list">
+		<li>
+			<picture class="picture"><img src="img/register14.jpg"></picture>
+			<div>
+				<h3>爱生活</h3><i>12：04</i>
+			</div>
+			<p>(第245伙)IPHONE 6S 128G玫瑰金</p>
+			<summary>
+				想到这么幸运不错不错棒棒的。。最爱伙购啦，总之收到手机好开心！！
+			</summary>
+			<article>
+				<picture><img src="img/register07.jpg"></picture>
+				<picture><img src="img/register08.jpg"></picture>
+				<picture><img src="img/register09.jpg"></picture>
+			</article>
+		</li>
+		<li>
+			<picture class="picture"><img src="img/register06.jpg"></picture>
+			<div>
+				<h3>138****2514</h3><i>11：23</i>
+			</div>
+			<p>(第245伙)苹果（Apple）iMac 21.5 英寸</p>
+			<summary>
+				哈哈哈哈以前都是玩充值卡 然后玩了一下这个没想到一次就中了。问题是快递速度真特么快，昨天下午4点中的今天就特么到货了。！
+			</summary>
+			<article>
+				<picture><img src="img/register15.jpg"></picture>
+				<picture><img src="img/register16.jpg"></picture>
+				<picture><img src="img/register17.jpg"></picture>
+			</article>
+		</li>
+		<li>
+			<picture class="picture"><img src="img/register13.jpg"></picture>
+			<div>
+				<h3>不中不玩了</h3><i>08：34</i>
+			</div>
+			<p>(第245伙)（Apple）Apple Watch Sport 38 毫米银色</p>
+			<summary>
+				嘿嘿，只是抱着试一试的想法没想到还真中了。。。还真是幸运呢！！！！只花了十块钱，还挺划算了。。。！
+			</summary>
+			<article>
+				<picture><img src="img/register18.jpg"></picture>
+				<picture><img src="img/register19.jpg"></picture>
+				<picture><img src="img/register20.jpg"></picture>
+			</article>
+		</li>
+	</ul>
+	<div class="reload-fixed">
+		<a class="reload-fixed-a" href="http://ld.cacn360.cn/down.php">立即下载</a>
+	</div>
+</body>
+</html>

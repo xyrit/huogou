@@ -1,0 +1,182 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+<div class="admin-content" >
+    {% include '@adminModule/views/member/top.html' %}
+    <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <a href="{{ url('/admin/member/account', {'id': id, 'flag': 1}) }}">充值</a>
+                <a href="{{ url('/admin/member/account', {'id': id, 'flag': 2}) }}">转账</a>
+            </div>
+        </div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-form-group">
+                <a href="{{ url('/admin/member/account', {'id': id, 'region': 0, 'flag': condition.flag}) }}">全部</a>
+                <a href="{{ url('/admin/member/account', {'id': id, 'region': 1, 'flag': condition.flag}) }}">今天</a>
+                <a href="{{ url('/admin/member/account', {'id': id, 'region': 2, 'flag': condition.flag}) }}">本周</a>
+                <a href="{{ url('/admin/member/account', {'id': id, 'region': 3, 'flag': condition.flag}) }}">本月</a>
+                <a href="{{ url('/admin/member/account', {'id': id, 'region': 4, 'flag': condition.flag}) }}">近三个月</a>
+            </div>
+        </div>
+
+        {{ html.beginForm('', 'get', {}) | raw }}
+        <div class="am-u-sm-12 am-u-md-1">
+            <div class="am-form-group" style="width: 100px">
+                选择时间段：
+            </div>
+        </div>
+
+        <div class="am-u-sm-6 am-u-md-2" style="width: 200px;">
+            <div class="am-input-group am-input-group-sm">
+                <input type="text" class="am-form-field" id="start" name="start_time" value="{{ condition.start_time }}"/>
+            </div>
+        </div>
+
+
+        <div class="am-u-sm-6 am-u-md-2" style="float: left;">
+            <div class="am-input-group am-input-group-sm">
+                <input type="text" class="am-form-field" id="end" name="end_time" value="{{ condition.end_time }}"/>
+                <span class="am-input-group-btn">
+                    <button class="am-btn am-btn-default" type="submit">搜索</button>
+                </span>
+            </div>
+        </div>
+        {{ html.endForm() | raw }}
+        <div class="am-u-sm-12 am-u-md-2">
+            <div class="am-input-group am-input-group-sm">
+                {% if condition.flag == 1 %}
+                充值总额：{{ totalRecharge|default(0) }}元
+                {% else %}
+                转入总额：{{ in_transfer|default(0) }}元  转出总额：{{ out_transfer|default(0) }}元
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <form class="am-form">
+                <table class="am-table am-table-striped am-table-hover table-main">
+                    {% if condition.flag == 1 %}
+                        <thead>
+                        <tr>
+                            <th>订单号</th>
+                            <th>金额</th>
+                            <th>支付方式</th>
+                            <th>来源</th>
+                            <th class="am-hide-sm-only">充值时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for value in list %}
+                            <tr>
+                                <td>{{ value.payment_order_id }}</td>
+                                <td>{{ value.money }}</td>
+                                <td>{{ value.payment }}</td>
+                                <td>{{ value.source }}</td>
+                                <td>{{ value.recharge_time }}</td>
+                            </tr>
+                           {% endfor %}
+                        </tbody>
+                    {% else %}
+                        <thead>
+                        <tr>
+                            <th>单号</th>
+                            <th>类别</th>
+                            <th>转入/转出账户</th>
+                            <th>金额</th>
+                            <th>状态</th>
+                            <th class="am-hide-sm-only">操作时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for value in list %}
+                        <tr>
+                            <td>{{ value.transfer_id }}</td>
+                            <td>{{ value.type }}</td>
+                            <td>{{ value.username }}</td>
+                            <td>{{ value.account }}</td>
+                            <td>转账成功</td>
+                            <td>{{ value.created_at|date('Y-m-d H:i:s') }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% endif %}
+                </table>
+                <div class="am-cf">
+                    <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+                    <div class="am-fr">
+                        {{ use('/app/widgets/BackendLinkPager') }}
+                        {{ backend_link_pager_widget({'pagination': pagination}) }}
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+  {% if  balance_list %}
+<div><h3>备注</h3>(余额调整)
+       <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th class="table-type">金额</th>
+                            <th class="table-type">调整原因</th>
+                            <th class="table-type">原始单号</th>
+                            <th class="table-type">操作时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+  {% for item in balance_list %}
+                        <tr>
+                                <td>{% if(item.type == 0) %}+{% else %}-{% endif %}{{ item.money }}</td>
+                                <td>{{ item.reason }}</td>
+                                <td>{{ item.order }}</td>
+                                <td>{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+       </table>
+</div>
+ {% endif %}
+ 
+{% endblock %}
+
+{% block script %}
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+    var startDate = new Date();
+    var endDate = new Date();
+    laydate({
+        elem: '#start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+    laydate({
+        elem: '#end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        //min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function(datas){
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    });
+
+    $(function() {
+        $('#doc-my-tabs').tabs();
+    })
+
+</script>
+{% endblock %}

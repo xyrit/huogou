@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>年度盛惠•1元专场</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+    <script>
+        $(function () {
+            if(isIos() || is_weixn() ){
+                // iPhone
+                $('.link-btn').click(function(){
+                   // window.location=regiUrl;
+                   var pic=$("#pic"),
+                           m_middle=$("#m_middle"),
+                           m_popUp=$("#m_popUp"),
+                           m_con=$('.m_con');
+
+                    m_popUp.css('visibility','visible');
+
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+
+                    pic.attr('src','img/ios.png');
+                    m_middle.attr({'href':'./register.html','target':'_parent'});
+                    if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }
+                });
+                $('#urlBut').text('立即注册');
+               // $(document).attr("title","立即注册");//修改title值
+               // $('#urlBut').attr('href',regiUrl);//跳转 注册页面
+            }else{
+                //Android ;
+                $('#urlBut').text('立即下载');
+                //$(document).attr("title","立即下载");//修改title值
+                $('#urlBut').attr('href',url);//跳转到滴滴夺宝下载页面
+
+                // iPhone
+                $('.link-btn').click(function(){
+                    //window.location=url;
+                    var m_con=$('.m_con');
+                    var m_popUp=$("#m_popUp");
+                    m_popUp.css('visibility','visible');
+                    //m_popUp.show();
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+                    if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }
+                });
+            }
+            //关闭弹层
+            $('.m_guide').on('click',function () {
+                $(this).parent().css('visibility','hidden');
+            })
+        });
+    </script>
+    <style>
+        /*新渠道落地页*/
+        .sub-content{
+            position: relative;
+            padding-bottom: 10%;
+        }
+        .sub-list1{
+            background-color: #814ec7;
+        }
+        .sub-list2{
+            background-color: #4ea9c7;
+        }
+        .sub-list3{
+            background-color: #c74eba;
+        }
+        .link-btn{
+            position: absolute;
+            bottom: 10%;
+            display: block;
+            width: 50%;
+            height: 60px;
+        }
+        .sub-list1 .link-btn{
+            left: 0;
+        }
+        .sub-list2 .link-btn{
+            right: 0;
+        }
+        .sub-list3 .link-btn{
+            left: 0;
+        }
+        .sub-list4 .link-btn{
+            right: 0;
+        }
+        .m_middle{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            display: block;
+            text-indent: -9999em;
+        }
+
+    </style>
+	<!--<script>
+		$(function () {
+            $('.link-btn').attr('href',regiUrl);//跳转 注册页面
+            $('body').click(function(){
+                window.location=regiUrl;
+            });
+		});
+	</script>-->
+</head>
+<body style="max-width: 640px;margin: auto;">
+<div class="head">
+    <img src="img/new1.jpg" style="width: 100%">
+    <a href="#" class="link-btn"></a>
+</div>
+<div class="sub-content sub-list1">
+    <img src="img/new2.jpg" style="width: 100%">
+    <a href="#" class="link-btn"></a>
+</div>
+<div class="sub-content sub-list2">
+    <img src="img/new3.jpg" style="width: 100%">
+    <a href="#" class="link-btn"></a>
+</div>
+<div class="sub-content sub-list3">
+    <img src="img/new4.jpg" style="width: 100%">
+    <a href="#" class="link-btn"></a>
+</div>
+<div class="sub-content sub-list2">
+    <img src="img/new5.jpg" style="width: 100%">
+    <a href="#" class="link-btn"></a>
+</div>
+<div id="m_popUp" class="m_popUp" style="visibility: hidden;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/android.png" style="width: 90%" id="pic">
+        <a class="m_middle" id="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <cite class="m_zx"></cite>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+CREATE TABLE `card_batch` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(32) NOT NULL DEFAULT '' COMMENT '批次名称',
+  `card_price_detail` text COMMENT '充值卡批次明细',
+  `num_limit` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '领券限制',
+  `recharge_money_limit` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '充值金额限制',
+  `recharge_num_limit` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '充值次数限制',
+  `valid_type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '有效期类型 1 固定日期 2 领取后生效',
+  `start_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效期开始时间',
+  `end_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效期结束时间',
+  `valid` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '有效期',
+  `user_apply` int(11) unsigned NOT NULL COMMENT '申请人',
+  `user_check` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '审核人',
+  `check_note` text COMMENT '审核备注',
+  `export_num` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '导出次数',
+  `created_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '申请时间',
+  `checked_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '审核时间',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0提交待审，1审核通过，2审核不通过',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='充值卡批次';

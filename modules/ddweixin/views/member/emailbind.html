@@ -1,0 +1,43 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/emailbind.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>绑定邮箱</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <input name="hidOldEmail" type="hidden" id="hidOldEmail" value="{{oldEmail}}" />
+    <section>
+        <div id="div_registercon" class="registerCon clearfix">
+            <ul>
+                <li> <input id="txtEmail" type="text" placeholder="请输入邮箱" class="rText" /></li>
+                <li><a href="javascript:;" id="btnSend" class="orgBtn">下一步</a></li>
+            </ul>
+        </div>
+        <div id="div_securitycode" class="securityCode clearfix" style="display: none;">
+            <ul>
+                <li class="gray3">验证码已发送到您的邮箱 <span id="span_email"></span></li>
+                <li> <input id="txtCode" type="text" maxlength="6" placeholder="请输入6位验证码" class="rText" /></li>
+                <li><a href="javascript:;" id="btnSubmit" class="orgBtn">确认</a></li>
+                <li><a href="javascript:;" id="btnAgain" class="againBtn">重新发送</a></li>
+            </ul>
+        </div>
+    </section>
+    {% include '@ddweixinModule/views/footer.html' %}
+</div>
+{% endblock %}

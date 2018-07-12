@@ -1,0 +1,30 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}佣金明细{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/ddweixin/js/commission.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+    <input type="hidden" id="hidPage" value="1">
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <div id="divList" class="inviteDetails commiss">
+        <p>累计收入：<em class="orange">￥{{ "%.2f"|format(payCommissionSum/100) }}</em></p>
+        <dl>
+          <dt>
+            <span>用户名</span><span>时间</span><span>夺宝金额(￥)</span><span>佣金(￥)</span>
+          </dt>
+        </dl>
+      </div>
+      <div id="divLoading" class="loading" style="display: block">
+        <b></b>正在加载
+      </div>
+    </div>
+  </div>
+{% endblock %}

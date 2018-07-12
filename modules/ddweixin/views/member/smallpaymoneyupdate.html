@@ -1,0 +1,41 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/smallpaymoneyupdate.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+    <!-- 内页顶部 -->
+    <header class="g-header">
+        <div class="head-l">
+            <a href="safesetting.html" class="z-HReturn"><i class="z-arrow"></i></a>
+        </div>
+        <h2>{% if micro == 0 %}设置小额免密设置{% elseif micro>0 %}修改免密支付额度{% endif %}</h2>
+        <div class="head-r">
+        </div>
+    </header>
+    <section>
+        <input name="hidOldMoney" type="hidden" id="hidOldMoney" value="{{micro}}"/>
+        <input name="hidSmallMoney" type="hidden" id="hidSmallMoney" value="0" />
+        <div class="login-protection small-money clearfix">
+            <cite class="gray9">请选择免密支付额度</cite>
+            <ul id="ul_smallmoney">
+                <li money="50"><a href="javascript:;">≤ 50元/单笔<b class="member-icon"></b></a></li>
+                <li money="100"><a href="javascript:;">≤ 100元/单笔<b class="member-icon"></b></a></li>
+                <li money="200"><a href="javascript:;">≤ 200元/单笔<b class="member-icon"></b></a></li>
+                <li money="500"><a href="javascript:;">≤ 500元/单笔<b class="member-icon"></b></a></li>
+                <li money="0">≤<input id="txtCustomMoney" type="text" placeholder="自定义" maxlength="5" class="gray9" /><em>元/单笔</em><b class="member-icon"></b></li>
+            </ul>
+            <span class="btn-margin"><a id="btnSubmit" href="javascript:;" class="orgBtn">保存</a></span>
+        </div>
+    </section>
+    {% include '@ddweixinModule/views/footer.html' %}
+</div>
+{% endblock %}

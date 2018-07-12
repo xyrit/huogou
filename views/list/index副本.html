@@ -1,0 +1,94 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}keywords{% endblock %}
+{% block description %}description{% endblock %}
+
+{% block css%}
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/header.css" />
+  <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/frontend/css/GoodsList.css" />
+{% endblock %}
+{% block title %}列表{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/frontend/js/jquery.min.js"></script>
+<script src="{{ app.params.skinUrl }}/frontend/js/common.js"></script>
+<script src="{{ app.params.skinUrl }}/frontend/js/goodslist.js"></script>
+{% endblock %}
+{% block body %}
+  {% include '@app/views/topbar.html' %}
+
+  {% include '@app/views/header.html' %}
+
+  {% include '@app/views/nav.html' %}
+
+  <div class="g-main-con clrfix">
+    <div class="w1190">
+      <div class="m-position">当前位置：<a href="/" title="首页">首页</a><span class="f-tran f-tran-prev f-tran-next">&gt;</span><a href="/list/m1.html" title="所有商品">所有商品</a><span class="f-tran f-tran-prev f-tran-next">&gt;</span><a href="/list/i100.html" title="手机数码">手机数码</a><span class="f-tran f-tran-prev f-tran-next">&gt;</span>手机</div>
+
+      <!--分类 品牌-->
+      <div class="m-list-classification clrfix">
+        <div class="m-classification">
+          <div class="m-classi">分类</div>
+          <div class="m-fication">
+            <ul id="catlist">
+              <li class=""><a href="/list.html" catid='0'>全部分类</a></li>
+            </ul>
+            <a href="javascript:;" class="expansion"></a>
+          </div>
+        </div>
+
+        <div id="dlBrandBox" class="m-classification">
+          <div class="m-classi">品牌</div>
+          <div class="m-fication">
+            <ul id="ulBrandList" style="height:56px;">
+              <li class=""><a href="/list.html" bid="0" title="全部">全部</a></li>
+            <div class="f-a-expansion">
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--排序-->
+      <div class="m-filterForm clrfix">
+        <div class="f-list-sorts fl">
+          <ul>
+            <li class="">
+              <a href="/list.html?r=10">即将揭晓</a>
+            </li>
+            <li class="">
+              <a href="/list.html?r=20">人气</a>
+            </li>
+            <li class="">
+              <a href="/list.html?r=40">剩余人次</a>
+            </li>
+            <li class="">
+              <a href="/list.html?r=50">最新</a>
+            </li>
+            <li name="liPrice" class="m-value" style="display: none;">
+              <a href="/list.html?r=31">价值<s></s></a>
+            </li>
+            <li name="liPrice" class="m-value m-value-default" style="">
+              <a href="/list.html?r=31">价值<s></s></a>
+            </li>
+            <li class="">
+              <a href="/list.html?tag=10">限购</a>
+            </li>
+          </ul>
+        </div>
+        <div id="divTopPageInfo" class="f-list-sortsR fr"></div>
+      </div>
+
+      <!--加载-->
+      <div id="divLoadingLine" class="g-loading-2014 w1190"><i></i></div>
+
+      <!--列表-->
+      <div id="ulGoodsList" class="announced-soon clrfix" style=""></div>
+
+      <!--分页-->
+      <div id="divPageNav"></div>
+
+    </div>
+  </div>
+
+  {% include '@app/views/footer.html' %}
+{% endblock %}

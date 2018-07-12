@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>伙购网- 猴年马月红包趴来啦</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/activity.css">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/comm.js"></script>
+</head>
+<body style="background-color: #fce4ca">
+    <div class="clock">
+        <div class="clock_con">
+			<div class="clock-left"><img src="img/ac-clock.png">
+			距离活动结束还有
+			</div>
+			<!--<span class="days">0</span>天<span class="hours">0</span>时<span class="minutes">0</span>分<span class="seconds">0</span>秒-->
+			<div id="simple_timer">
+
+            </div>
+		</div>
+
+	</div>
+	<div id="focus" class="page-item banner-item">
+		<img style="display: inline;" src="img/ac-banenr-1.jpg" class="lazy">
+	</div>
+	<div class="tips_bg">
+		<div class="tips">
+			<p>您已累计领取<span class="money-already">0</span>元红包，还有<span class="money-remain">2016</span>元红包未领取</p>
+		</div>
+	</div>
+    <div class="section-con">
+		<div class="fontRader">
+			<p>
+				<img src="img/ac-1-title-1.jpg">
+			</p>
+		</div>
+
+		<ul class="register-pro-list clearfix">
+
+		</ul>
+
+	</div>
+	<div class="section-con section-con2">
+		<div class="fontRader fontRader2">
+			<p>
+				<img src="img/ac-1-title-2.jpg">
+			</p>
+		</div>
+		<div class="con-rule">
+			<p><b>活动时间:6月21日-6月28日</b></p>
+			<p style="padding: 2% 0"><b>活动规则：</b></p>
+			<dl>
+				<dt><i>1</i>商品揭晓后,返还中奖用户参与伙购等额的红包金额（但不超过上限),可在[我的红包]中查询;</dt>
+			</dl>
+			<dl class="indent">
+				<dt><i>2</i>红包返还规则:</dt>
+				<dd>1.获得20元购物卡，最高返还2元红包</dd>
+				<dd>2.获得50元购物卡，最高返还4元红包</dd>
+				<dd>3.获得100元购物卡，最高返还8元红包</dd>
+				<dd>4.获得200元购物卡，最高返还12元红包</dd>
+			</dl>
+			<dl>
+				<dt><i>3</i>红包总额最高可得2016元，可抵扣相应面值金额，无任何商品使用限制。</dt>
+			</dl>
+			<dl class="indent">
+				<dt><i>4</i>购买说明：</dt>
+				<dd>1.20元购物卡，每人每期限购5次</dd>
+				<dd>2.50元购物卡，每人每期限购10次</dd>
+				<dd>3.100元购物卡，每人每期限购20次</dd>
+				<dd>4.200元购物卡，每人每期限购40次</dd>
+				<dd><b style="color: red;">该规则仅适用于猴年马月活动的充值卡，请前往首页购买！</b></dd>
+			</dl>
+			<dl>
+				<dt><i>5</i>红包使用期限:领取后三天内有效;</dt>
+			</dl>
+
+		</div>
+    </div>
+	<div class="wenxin-tips">
+		<p class="title"><img src="img/waring.jpg"> 温馨提示:</p>
+		<p class="con">若发现用户在活动中使用不正当手段参与，活动举办方有权取消其参与资格及奖品。主办方在法律允许范围内保留对本次活动的解释权。</p>
+	</div>
+	<div class="ac-1-footer">
+		<img src="img/ac-1-footer.jpg">
+	</div>
+	<script src="js/jquery.syotimer.js"></script>
+	<script type="text/javascript" >
+		$(function() {
+
+			var hnmyApiUrl = apiBaseUrl + '/active/hnmy-info';
+			$.getJsonp(hnmyApiUrl, {}, function(json) {
+				$('.money-already').text(json.num);
+				$('.money-remain').text(json.left_num);
+			});
+
+
+			if (baseHost=='huogou.com') {
+				var productIds = [223,224,225,227];
+			} else {
+				var productIds = [2,121,1,3];
+			}
+			for (var key in productIds) {
+				var productId = productIds[key];
+				var url = apiBaseUrl + '/product/info';
+				var data = {id: productId};
+				console.log(productId);
+				$.getJsonp(url, data, function(json) {
+//					console.log(json);
+
+					var productName = json.name;
+					var imgUrl = createGoodsImgUrl(json.picture, 200, 200);
+					var process = parseInt(json.periodInfo.progress/1000);
+
+					var html = '';
+					html += '<li>';
+					html += '<a href="javascript:;">';
+					html += '<picture><img src="'+imgUrl+'"></picture>';
+					html += '<h3>'+productName+'</h3>';
+					html += '</a>';
+//					html += '<article>';
+//					html += '<div>';
+//					html += '<aside>开奖进度 <i>'+process+'%</i></aside>';
+//					html += '<b><i style="width: '+process+'%;"></i></b>';
+//					html += '</div>';
+//					html += '<a class="buy" href="javascript:;">立即抢购</a>';
+//					html += '</article>';
+					html += '</li>';
+					$('.register-pro-list').append(html);
+				});
+			}
+
+			function createGoodsImgUrl(name, width, height) {
+				return 'http://img.' + baseHost + '/pic-' + width + '-' + height + '/' + name;
+			}
+            //倒计时
+			$('#simple_timer').syotimer({
+				year: 2016,
+				month: 7,
+				day: 29,
+				hour: 0,
+				minute: 0,
+			});
+
+		});
+
+	</script>
+</body>
+</html>

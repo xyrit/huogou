@@ -1,0 +1,277 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <div class="admin-content">
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">修改订单</strong>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">发货平台：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <select data-am-selected name="platform">
+                            <option value="京东">京东</option>
+                            <option value="苏宁">苏宁</option>
+                            <option value="天猫">天猫</option>
+                            <option value="亚马逊">亚马逊</option>
+                            <option value="国美">国美</option>
+                            <option value="一号店">一号店</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-1">第三方订单号：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <input type="text" name="order" value="{{ detail.third_order }}">
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-7"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">成本：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <input type="text" name="price" value="{{ detail.price }}">
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">支付方式：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <select name="payment">
+                            <option value="无">无</option>
+                            <option value="京东">京东</option>
+                            <option value="支付宝">支付宝</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">发票：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <select name="bill">
+                            <option value="无">无</option>
+                            <option value="普通发票">普通发票</option>
+                            <option value="专业发票">专业发票</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">规格：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <input type="text" name="standard" value="{{ detail.standard }}">
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">备注：</div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <input type="text" name="comment" value="{{ detail.mark_text }}">
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+
+                {% if(detail.status == 4) %}
+                    <div class="am-g doc-am-g">
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">快递公司：</div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                            <input type="text" name="company" value="{{ detail.deliver_company }}">
+                            <!--<select name="company" data-am-selected="{searchBox: 1}">
+                                {% for k,item in express %}
+                                    <option value="{{ k }}">{{ k }}</option>
+                                {% endfor %}
+                                <option value="其他">其他</option>
+                            </select>-->
+                        </div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                    </div>
+
+                    <div class="am-g doc-am-g">
+                        <div class="am-u-sm-6 am-u-md-4 am-u-lg-2">快递单号：</div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                            <input type="text" name="deliver_order" value="{{ detail.deliver_order }}">
+                        </div>
+                        <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                    </div>
+                {% endif %}
+
+                <div class="am-g doc-am-g">
+                    <div class="am-u-sm-6 am-u-md-4 am-u-lg-2"></div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-3">
+                        <input type="button" value="修改" id="submit">
+                    </div>
+                    <div class="am-u-sm-6 am-u-md-8 am-u-lg-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        $(function(){
+            var platform = '{{ detail.platform }}';
+            //var company = '{{ detail.deliver_company }}';
+            var bill = '{{ detail.bill }}';
+            var payment = '{{ detail.payment }}';
+
+            $('select[name=platform] option').each(function(){
+                var val = $(this).val();
+                if(val == platform){
+                    $(this).attr('selected',true);
+                }
+            })
+
+            var value = $('select[name=platform] option:selected').val();
+            if(platform != value){
+                $('select[name=platform]').after('<div><input type="text" name="other" value="'+ platform +'"></div>');
+                $('select[name=platform] option:last').attr('selected', true);
+            }
+
+            $('select[name=bill] option').each(function(){
+                var val = $(this).val();
+                if(val == bill){
+                    $(this).attr('selected',true);
+                }
+            })
+
+            var bvalue = $('select[name=bill] option:selected').val();
+            if(bill != bvalue){
+                $('select[name=bill]').after('<div><input type="text" name="bill_other" value="'+ bill +'"></div>');
+                $('select[name=bill] option:last').attr('selected', true);
+            }
+
+            $('select[name=bill]').change(function(){
+                var value = $('select[name=bill] option:selected').val();
+                $('input[name=bill_other]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="bill_other"></div>');
+                }
+            })
+
+            $('select[name=payment] option').each(function(){
+                var val = $(this).val();
+                if(val == payment){
+                    $(this).attr('selected',true);
+                }
+            })
+
+            var pvalue = $('select[name=payment] option:selected').val();
+            if(payment != pvalue){
+                $('select[name=payment]').after('<div><input type="text" name="paymentother" value="'+ payment +'"></div>');
+                $('select[name=payment] option:last').attr('selected', true);
+            }
+
+            $('select[name=payment]').change(function(){
+                var value = $('select[name=payment] option:selected').val();
+                $('input[name=paymentother]').remove();
+                if(value == '其他'){
+                    $(this).after('<div><input type="text" name="paymentother"></div>');
+                }
+            })
+
+            /*$('select[name=company] option').each(function(){
+                var val = $(this).val();
+                if(val == company){
+                    $(this).attr('selected',true);
+                }
+            })
+
+            var selcom = $('select[name=company] option:selected').val();
+            if(company != selcom){
+                $('select[name=company]').after('<div><input type="text" name="comother" value="'+ company +'"></div>');
+                $('select[name=company] option:last').attr('selected', true);
+            }*/
+        })
+
+        $('select[name=platform]').change(function(){
+            var value = $('select[name=platform] option:selected').val();
+            $('input[name=other]').remove();
+            if(value == '其他'){
+                $(this).after('<div><input type="text" name="other"></div>');
+            }
+        })
+/*
+
+        $('select[name=company]').change(function(){
+            var value = $('select[name=company] option:selected').val();
+            $('input[name=comother]').remove();
+            if(value == '其他'){
+                $(this).after('<div><input type="text" name="comother"></div>');
+            }
+        })
+*/
+
+        $('#submit').click(function() {
+            var order = $('input[name=order]').val();
+            var price = $('input[name=price]').val();
+            var platform = $('select[name=platform]').val();
+            var standard = $('input[name=standard]').val();
+            var comment = $('input[name=comment]').val();
+            var prepareId = $('input[name=prepareId]').val();
+            var other = $('input[name=other]').val();
+            var payment = $('select[name=payment]').val();
+            var paymentother = $('input[name=paymentother]').val();
+            var id = {{ detail.id }};
+            var comother = $('input[name=comother]').val();
+            var deliver = $('input[name=deliver_order]').val();
+            var company = $('input[name=company]').val();
+            var a = /^[0-9a-zA-Z]*$/g;
+            var b = /^[1-9]\d+(\.\d+)?$/;
+            var c = /^[0-9a-zA-Z]*$/g;
+
+            if(order == '' || price == ''){
+                alert('订单号和成本不能为空');
+                return false;
+            }
+            if(!a.exec(order)){
+                alert('订单号为字母，数字或字母数字组合');
+                return false;
+            }
+            if(!b.test(price) || price < 10 ){
+                alert('价格格式不正确或价格必须大于10');
+                return false;
+            }
+            if(deliver == '' ){
+                alert('快递号不能为空');
+                return false;
+            }else if(!c.exec(deliver)){
+                alert('快递号为字母，数字或字母数字组合');
+                return false;
+            }
+
+            var billother = $('input[name=bill_other]').val();
+            if(billother == undefined){
+                var bill = $('select[name=bill]').val();
+            }else{
+                var bill = billother;
+            }
+
+            $.post('/deliver/modify-send', {'order':order, 'price':price, 'platform':platform, 'standard':standard,'bill':bill,
+                'other':other, 'comment':comment, 'id':id, 'comother':comother, 'deliver_order':deliver, 'company':company,'payment':payment,'paymentother':paymentother}, function(data){
+                if(data == 1){
+                    alert('修改成功');
+                    window.location.reload();
+                    parent.location.reload();
+                }else{
+                    alert('修改失败');
+                    return false;
+                }
+            })
+        });
+    </script>
+{% endblock %}

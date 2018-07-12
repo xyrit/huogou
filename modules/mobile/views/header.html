@@ -1,0 +1,17 @@
+<header class="header">
+    <h1 class="fl"><span>伙购</span><a href="/"></a></h1>
+    <div class="fl u-slogan"></div>
+    <div class="fr head-r">
+        <a href="/member/index.html" class="z-Member"></a>
+        <a id="btnCart" href="/cart.html" class="z-shop"></a>
+    </div>
+</header>
+
+<nav class="g-snav u-nav">
+    <div class="g-snav-lst"><a href="/" {% if this.context.uniqueId=='mobile/default' %}class="nav-crt"{% endif %}>首页</a> {% if this.context.uniqueId=='mobile/default' %}<s class="z-arrowh"></s>{% endif %}</div>
+    <div class="g-snav-lst"><a href="/list.html"  {% if this.context.uniqueId=='mobile/list' %}class="nav-crt"{% endif %}>所有商品</a>{% if this.context.uniqueId=='mobile/list' %}<s class="z-arrowh"></s>{% endif %}</div>
+    <div class="g-snav-lst"><a href="/ten.html" {% if this.context.uniqueId=='mobile/ten' %}class="nav-crt"{% endif %}>十元专区</a>{% if this.context.uniqueId=='mobile/ten' %}<s class="z-arrowh"></s>{% endif %}</div>
+    <div class="g-snav-lst"><a href="/limitbuy.html" {% if this.context.uniqueId=='mobile/limitbuy' %}class="nav-crt"{% endif %}>限购专区</a>{% if this.context.uniqueId=='mobile/limitbuy' %}<s class="z-arrowh"></s>{% endif %}</div>
+    <div class="g-snav-lst"><a href="/lottery/m1.html" {% if this.context.uniqueId=='mobile/lottery' %}class="nav-crt"{% endif %}>最新揭晓</a>{% if this.context.uniqueId=='mobile/lottery' %}<s class="z-arrowh"></s>{% endif %}</div>
+    <div class="g-snav-lst"><a href="/post/index.html" {% if this.context.uniqueId=='mobile/post' %}class="nav-crt"{% endif %}>晒单</a>{% if this.context.uniqueId=='mobile/post' %}<s class="z-arrowh"></s>{% endif %}</div>
+</nav>

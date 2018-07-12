@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>消息中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css?v=160324">
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/comm.js?v=160325"></script>
+
+</head>
+<body>
+
+	<ul class="message">
+		<li id="msgLi">
+			<a href="message_list.html">
+				<picture><img src="images/message.png"></picture>
+				<div>
+					<h2>消息通知</h2>
+					<p>有最新的未读消息通知<span id="msgNum">0</span>条</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="customer_list.html">
+				<picture><img src="images/customer_service.png"></picture>
+				<div>
+					<h2>客服反馈</h2>
+					<p>有新的未读客服反馈0条</p>
+				</div>
+			</a>
+		</li>
+
+		<li id="noticeLi">
+			<a href="public_notice_list.html">
+				<picture><img src="images/notice.png"></picture>
+				<div>
+					<h2>公告</h2><span id="notice_time"></span>
+					<p id="pub_notice"></p>
+				</div>
+			</a>
+		</li>
+	</ul>
+</body>
+<script>
+
+	$(function() {
+		var url = apiBaseUrl+'/app/msg-num';
+		var data = {};
+		$.getJsonp(url,data,function(json) {
+			if (json.msg>0) {
+				$('#msgLi').addClass('act');
+				$('#msgNum').text(json.msg);
+			}
+			$('#pub_notice').text(json.public_notice.desc);
+			$('#notice_time').text(json.public_notice.time);
+		});
+	});
+</script>
+</html>

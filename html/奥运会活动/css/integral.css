@@ -1,0 +1,25 @@
+/*规则页面*/
+body{background: url(../images/bodyBj.gif); background-size:100%; font-size: 15px;font-family: '微软雅黑'}
+.mainBox{ width: 95%;height:auto;margin: 0 auto;}
+.foneTitle{width: 100%; padding: 35px 0px 25px;}
+.foneTitle span{ width: 25%; height: 40px; background: #0577b8; border-radius: 5px; color: #fff; display: block; text-align: center; line-height: 40px; font-size: 15px; margin: 0; padding: 0;}
+.textBox{ color: #fff;padding: 0px 10px;box-sizing: border-box}
+.textBox p{ margin-bottom: 10px;}
+.hostColor{color:#fff605;}
+.rederBut{width: 15px; height: 35px; background: url(../images/radius.png)no-repeat top;background-size: 12px;    background-position: 2px 5px; display: inline-block; margin-right: 8px; float: left;}
+.people{ text-align: center;margin-top: 20px}
+.people img{ width:60%}
+.fontText{ color: #fff;margin: 10px 0px}
+.imgList{ width: 100%;height: auto;overflow: hidden;margin: 20px 0px;}
+.imgList ul li{ float: left;width: 15%;margin-right:2%}
+.imgList ul li img{ width: 100%; }
+.userList span{width: 35%;float: left;text-align: center;height: 35px;background: #0683ca;color: #fff;line-height: 35px;box-sizing: border-box}
+.userList span:nth-child(2){width: 44%; }
+.userList span:nth-child(3){width: 21%; }
+.userList span.boderStyle{ border-left:1px solid #43a3db;border-right: 1px solid #43a3db;}
+.userList span.titleH{ background: #025c90;}
+.userList span.hostColor{color:#fff605;}
+.userList p{ width: 100%;overflow: hidden;border-bottom:1px solid #43a3db;font-size:14px; }
+.textfoder{ padding-top: 25px;color: #fff}
+.textfoder .textfoderLeft{ width: 35px;height: 100px;float: left}
+.textfoder img{ width: 25px;margin-right: 10px;}

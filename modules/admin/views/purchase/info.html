@@ -1,0 +1,85 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+<div class="admin-content" >
+    <div class="am-g">
+        <div class="am-u-sm-5">申请人：{% if info.username %}{{ info.username }}{% else %}system{% endif %}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">类型：{% if info.type == 1 %}实物</a>{% elseif info.type == 2 %}虚拟物品{% endif %}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">商品名称：{{ info.product_name }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">购买数量：{{ info.nums }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">单价：{{ info.per_money }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">总价：{{ info.total }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">状态：{% if info.status == 0 %}待审核{% elseif info.status == 1 %}待付款{% elseif info.status == 2 %}待收货{% elseif info.status == 3 %}完成{% elseif info.status == '-1' %}驳回{% endif %}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">创建时间：{{ info.create_time | date("Y-m-d H:i:s") }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">最后更新时间：{{ info.last_update_time | date("Y-m-d H:i:s") }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">进度：</div>
+    </div>
+    <ul class="am-g am-comments-list am-padding-left-xl">
+        {% for item in info.schedule %}
+        <li>{{item.time}} {{item.user}} {{item.schedule}}</li>
+        {% endfor %}
+    </ul>
+    <div class="am-g">
+        <div class="am-u-sm-5">订单号：{{ info.order.orderid }}</div>
+    </div>
+    {% if info.type == 2 %}
+    <div class="am-g">
+        <div class="am-u-sm-5">第三方订单号：{{ info.order.exchange_no }}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">第三方返回结果：{% if info.order.status == 1 %}购买成功{% else %}购买失败{% endif %}</div>
+    </div>
+    <div class="am-g">
+        <div class="am-u-sm-5">结果详情：</div>
+    </div>
+    <ul class="am-g am-comments-list am-padding-left-xl">
+        {% if info.order.status == 1 %}
+            {% for card in info.cards %}
+            <li>{{ card.pwd }}</li>
+            {% endfor %}
+        {% else %}
+            <li>{{ info.order.result }}</li>
+        {% endif %}
+    </ul>
+    <div class="am-g">
+        <div class="am-u-sm-5">返回时间：{{ info.order.update_time | date("Y-m-d H:i:s") }}</div>
+    </div>
+    {% endif %}
+    <div class="am-g">
+    {% if info.status == 0 %}
+        <div class="am-u-sm-5" id="pass">通过</div>
+        <div class="am-u-sm-5">驳回</div>
+    {% endif %}
+    </div>
+</div>
+    <!-- content end -->
+{% endblock %}
+{% block script %}
+<script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#pass").click(function(){
+            $.get("{{ url(['/admin/purchase/pass'])}}?id="+{{ info.id }},function(data){})
+        })
+    })
+</script>
+{% endblock script %}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>竞猜详情</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="">
+    <meta http-equiv="description" content="">
+    <meta name="wap-font-scale"  content="no"/>
+    <link rel="stylesheet" href="css/style.css"/>
+<body>
+
+<div class="gueListTop">
+</div>
+
+    <!-- 列表 -->
+    <div class="guessingBox marginBox">
+        <ul id="detailInfoUl">
+
+        </ul>
+    </div>
+
+<!--底部按钮-->
+    <div class="footerBut">
+        <div class="main">
+
+            <a class="lingquBut" href="javascript:;">领取奖励</a>
+        </div>
+    </div>
+
+<div class="shade_box" id="getRewardPop">
+    <div class="centershade">
+        <div class="popup_box">
+            <p>恭喜您领取奖励成功~</p>
+        </div>
+        <div class="popup_boxBut">
+                <a class="hidePopup fxBut" href="javascript:;">确定</a>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/comm.js"></script>
+<script>
+    $(function () {
+
+
+        showDetail();
+
+
+    });
+
+
+    function getReward(id)
+    {
+        var getRewardUrl = '/euro-cup/get-reward';
+        var data = {id:id};
+        $.getJsonp(apiBaseUrl+getRewardUrl, data, function(json) {
+            showDetail();
+            $('.popup_box').html('<p>'+json.msg+'</p>');
+            showPopup('getRewardPop');
+        });
+    }
+
+    function showDetail()
+    {
+        var orderDetailUrl = '/euro-cup/my-order-detail';
+        var data = {id:getUrlParam('id')};
+        $.getJsonp(apiBaseUrl+orderDetailUrl, data, function(json) {
+
+            var teams = json.teams;
+            var scoreText = teams[0].score+':'+teams[2].score;
+            var html = '';
+
+            html += '<div class="gueLeft"><img src="images/'+teams[0].img+'"><p>'+teams[0].name+'&nbsp;(主)</p></div>';
+            html += '<div class="gueCenter"><h4>'+scoreText+'</h4></div>';
+            html += '<div class="gueRight"><img src="images/'+teams[2].img+'"><p>'+teams[2].name+'&nbsp;(客)</p></div>';
+
+            $('.gueListTop').html(html);
+
+            var info = json.info;
+            var disable_btn = info.disable_btn;
+            $('.lingquBut').text(info.reward_btn_text);
+            if (disable_btn) {
+                $('.lingquBut').addClass('disableBtn');
+            }
+            var html = '';
+            html += '<li class="gueList_v">';
+            html += '<a href="javascript:;">';
+            html += '<p><span>我的竞猜</span><span class="textRight">'+info.my_guess+'</span></p>';
+            html += '</a>';
+            html += '</li>';
+            html += '<li class="gueList_v">';
+            html += '<a href="javascript:;">';
+            html += '<p><span>揭晓结果</span><span class="textRight">'+info.guess_result+'</span></p>';
+            html += '</a>';
+            html += '</li>';
+            html += '<li class="gueList_v">';
+            html += '<a href="javascript:;">';
+            html += '<p><span>竞猜金额</span><span class="textRight">'+info.money+'元</span></p>';
+            html += '</a>';
+            html += '</li>';
+            html += '<li class="gueList_v" style="border:none">';
+            html += '<a href="javascript:;">';
+            html += '<p><span>奖励</span><span class="textRight">'+info.reward_text+'</span></p>';
+            html += '</a>';
+            html += '</li>';
+            html += '<div class="divisionBox"></div>';
+            html += '<li class="gueList_v" style="border:none">';
+            html += '<a href="javascript:;">';
+            html += '<p><span>竞猜时间：</span><span>'+info.guess_time+'</span></p>';
+            html += '</a>';
+            html += '</li>';
+
+            $('#detailInfoUl').html(html);
+            if (info.reward_type=='red') {
+                $('.lingquBut').attr('href', 'http://www.'+baseHost+'/app/euro/red.html?random=' + Math.random());
+            } else {
+                $('.lingquBut').click(function () {
+                    if ($(this).hasClass('disableBtn')) {
+                        return false;
+                    }
+                    getReward(getUrlParam('id'));
+                    return false;
+                });
+            }
+        });
+    }
+    /*
+     * 提示弹窗
+     * timeFont  自动隐藏时间 int
+     * url   点击按钮 需要跳转地址 可不传
+     */
+    function showPopup(id, timeFont,url){
+
+        $('#'+id+'.shade_box').fadeIn();
+        if (timeFont>0) {
+            window.setTimeout(function(){$('.shade_box').fadeOut();},timeFont);
+        }
+        if (typeof url != 'undefined') {
+            $('.hidePopup').attr('href', url);
+        }
+        $('.hidePopup').click(function(){
+            if(!url){
+                $('.shade_box').fadeOut();
+            }
+        });
+    }
+</script>
+</body>
+</html>

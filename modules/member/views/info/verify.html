@@ -1,0 +1,97 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}修改邮箱_伙购网{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/info/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <div class="individual-title">
+                        <h3>邮箱验证</h3>
+                        <a href="javascript:history.back()">&lt;&lt; 返回</a>
+                    </div>
+                    <div class="individual-note">
+                        <i></i><span>为了加强账户安全，更改邮箱地址前需验证当前绑定的邮箱，验证通过后才可绑定新的邮箱地址。</span>
+                    </div>
+                    <div class="email-yz">
+                        <div style="margin-left: 50px;">
+                            您当前绑定的邮箱：<i style="color: #22aaff;margin:0 8px;">{{ privacyAccount }}</i>
+                        </div>
+                        <div>
+                            <em>请输入验证码：</em><input class="gl_verify" placeholder="6位验证码" type="text" id="code" maxlength="6"><a class="verify-yz" href="javascript:void(0)" id="getEmailCode" t="0">获取验证码</a>
+                        </div>
+                        <div>
+                            <em>&nbsp;</em><a class="email-yz-a sendNewMail" href="javascript:void(0)" id="checkEmailCode">下一步</a>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="type" value="5">
+            </div>
+        </div>
+    </section>
+
+
+    {% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+    <script>
+        $(function(){
+            if ($.cookie('SEND_CODE_5') == 1) {
+                $('#getEmailCode').addClass('verification_gray').attr("t",60).text('重新发送(60)');
+                var j =setInterval(function(){
+                    var t = parseInt($('#getEmailCode').attr("t")-1);
+                    if (t <= 0) {
+                        clearInterval(j);
+                        $('#getEmailCode').attr("t",t).text('获取验证码').removeClass('verification_gray');
+                    }else{
+                        $('#getEmailCode').attr("t",t).text('重新发送('+t+')');
+                    }
+                },1000);
+            }
+
+
+            /*$('#getEmailCode').addClass('verification_gray').attr("t",60).text('重新发送（60）');
+            var j =setInterval(function(){
+                var t = parseInt($('#getEmailCode').attr("t")-1);
+                if (t <= 0) {
+                    clearInterval(j);
+                    $('#getEmailCode').attr("t",t).removeClass('verification_gray').text('获取验证码');
+                }else{
+                    $('#getEmailCode').attr("t",t).text('重新发送('+t+')');
+                }
+            },1000);*/
+
+
+            /*$('.sendNewMail').click(function(){
+                var url = window.location.href;
+                var code = $('.gl_verify').val();
+                var account = $('#hidAccount').val();
+                var key = $('#hidKey').val();
+                $('.error').remove();
+
+                $.post(url, {'code': code, 'key':key, 'account':account}, function(e) {
+                    console.log(e);
+                    if (e.error==0) {
+                        window.location.href = e.url;
+                    }else{
+                        showErrorMsg('验证码错误');
+                    }
+                });
+            })*/
+        })
+    </script>
+{% endblock %}

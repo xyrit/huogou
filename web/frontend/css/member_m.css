@@ -1,0 +1,45 @@
+@CHARSET "UTF-8";
+
+/*---------------------new add--------------------------*/
+.red{
+	color:red;
+	font-weight:500;
+}
+
+#loading {
+    background:url(../images/mem_succ.png) no-repeat 20px center;
+    line-height:28px;
+    font-size:14px;
+    font-weight:bold;
+    text-indent:40px;
+    color:#999;
+    border:none !important;
+}
+.ui-corner-all{border:none;border-radius:0;}
+
+.per-invitation{
+   line-height:24px;
+}
+
+
+
+.memberbtn a {
+    background-color: #2af;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 0;
+    text-align: center;
+    width: 65px;
+}
+.memberbtn a:hover{
+    background-color: #229aff; 
+} 
+a {
+    outline: medium none;
+    text-decoration: none;
+}

@@ -1,0 +1,37 @@
+#superContainer{height:100%; position:relative; -ms-touch-action:none; touch-action:none;}
+.fp-section{position:relative; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+.fp-slide{float:left;}
+.fp-slide,.fp-slidesContainer{height:100%; display:block;}
+.fp-slides{z-index:1; height:100%; overflow:hidden; position:relative; -webkit-transition:all 0.3s ease-out; transition:all 0.3s ease-out;}
+.fp-section.fp-table,.fp-slide.fp-table{display:table; table-layout:fixed; width:100%;}
+.fp-tableCell{display:table-cell; vertical-align:middle; width:100%; height:100%;}
+.fp-slidesContainer{float:left; position:relative;}
+.fp-controlArrow{position:absolute; z-index:4; top:50%; cursor:pointer; width:0; height:0; border-style:solid; margin-top:-38px;}
+.fp-controlArrow.fp-prev{left:15px; width:0; border-width:38.5px 34px 38.5px 0; border-color:transparent #fff transparent transparent;}
+.fp-controlArrow.fp-next{right:15px; border-width:38.5px 0 38.5px 34px; border-color:transparent transparent transparent #fff;}
+.fp-scrollable{overflow:scroll;}
+.fp-notransition{-webkit-transition:none !important; transition:none !important;}
+.fp-auto-height.fp-section,.fp-auto-height .fp-slide,.fp-auto-height .fp-tableCell{height: auto !important;}
+
+#fp-nav{position:fixed; z-index:100; margin-top:-130px; top:50%; opacity:1;}
+#fp-nav.right{right:10px;}
+#fp-nav.left{right:10px;}
+.fp-slidesNav{position:absolute; z-index:4; left:50%; opacity:1;}
+.fp-slidesNav.bottom{bottom:10px;}.fp-slidesNav.top{top:10px;}
+#fp-nav ul,.fp-slidesNav ul{margin:0; height:80px; padding:40px 0 0 0;}
+#fp-nav ul li,.fp-slidesNav ul li{display:block; height:10px; margin-top:10px; line-height:10px; font-size:14px;}
+#fp-nav ul li a,.fp-slidesNav ul li a{display:inline-block; width:10px; height:10px; line-height:10px; border-radius:5px; cursor:pointer; text-decoration:none; text-align:center; background:#fff; overflow:hidden; color:#fff;}
+#fp-nav ul li a.active,.fp-slidesNav ul li a.active,#fp-nav ul li a:hover,.fp-slidesNav ul li a:hover{background:#fec84e;}
+#fp-nav ul li:last-child{display:none;}
+
+#fp-nav ul li a.active span,.fp-slidesNav ul li a.active span,#fp-nav ul li a:hover span,.fp-slidesNav ul li a:hover span{color:#fff;}
+#fp-nav ul li a span i,.fp-slidesNav ul li a span i{display:inline-block; font-style:normal; width:25px; color:#fff;}
+#fp-nav ul li a span em,.fp-slidesNav ul li a span em{display:none; font-style:normal; overflow:hidden; color:#fff;}
+#fp-nav ul li a:hover span i,.fp-slidesNav ul li a:hover span i{display:none;}
+#fp-nav ul li a:hover span em,.fp-slidesNav ul li a:hover span em{display:inline-block; overflow:hidden;}
+
+#fp-nav ul li a span,.fp-slidesNav ul li a span{display:inline-block; min-width:25px; height:25px; border-radius:12px; overflow:hidden; text-align:center; color:#333;}
+#fp-nav ul li .fp-tooltip{position:absolute; top:-2px; color:#fff; font-size:14px; font-family:arial,helvetica,sans-serif; white-space:nowrap; max-width:220px; overflow:hidden; display:block; opacity:0; width:0;}
+#fp-nav ul li:hover .fp-tooltip{-webkit-transition:opacity 0.2s ease-in; transition:opacity 0.2s ease-in; width:auto; opacity:1;}
+#fp-nav ul li .fp-tooltip.right{right:20px;}
+#fp-nav ul li .fp-tooltip.left{left:20px;

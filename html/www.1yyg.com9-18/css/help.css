@@ -1,0 +1,613 @@
+@charset "utf-8";
+
+.textindent {
+    text-indent: 2em;
+}
+
+.help-main {
+    margin: 10px auto;
+    overflow: hidden;
+    color: #666;
+}
+
+.help-left-part {
+    float: left;
+    width: 240px;
+}
+
+.help-right-part {
+    float: right;
+    width: 940px;
+}
+
+.help-in-rihgt-part {
+    float: right;
+    width: 908px;
+    min-height: 939px;
+    border: 1px solid #e4e4e4;
+    padding: 15px;
+}
+
+.help-nav {
+    border: 1px solid #e4e4e4;
+    border-bottom: 0 none;
+}
+
+.help-nav h3 {
+    font-size: 22px;
+    height: 46px;
+    line-height: 46px;
+    padding-left: 40px;
+    color: #f60;
+    border-bottom: 2px solid #f60;
+    background: url(../images/help-new.png) no-repeat;
+}
+
+.help-nav h4 {
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    padding-left: 18px;
+    margin-bottom: 7px;
+    font-weight: bold;
+    color: #999;
+    background: #f7f7f7;
+}
+
+.help-nav ul {
+    padding-left: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.help-nav ul li {
+    height: 26px;
+}
+
+.help-nav ul li a {
+    color: #666;
+}
+
+.about-banner {
+    width: 826px;
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+
+.help-in-rihgt-part h2 {
+    font-size: 24px;
+    height: 46px;
+    line-height: 40px;
+    _line-height: 46px;
+    color: #666;
+    border-bottom: 1px solid #e4e4e4;
+    margin-bottom: 10px;
+    padding-left: 15px;
+}
+
+.help-content {
+    font-size: 14px;
+    line-height: 30px;
+    padding: 15px;
+}
+
+.help-content h3,.help-content h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.help-content .rule {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.help-content .rule b {
+    font-weight: normal;
+}
+
+.help-content .mat0 {
+    margin-top: 0;
+}
+
+.help-contact {
+    margin-top: 10px;
+    border: 1px solid #e4e4e4;
+    padding: 15px;
+    color: #999;
+}
+
+.help-contact a {
+    color: #999;
+}
+
+.help-contact a:hover {
+    color: #f60;
+}
+
+.help-contact .CustomerCon {
+    padding: 15px 0 10px 0;
+}
+
+.help-contact .Customer {
+    width: 128px;
+    height: 26px;
+    line-height: 24px;
+    _height: 20px;
+    _padding-top: 6px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3px;
+    background: #FF6500;
+    font-size: 14px;
+    color: #fff;
+}
+
+.help-contact .Customer:hover {
+    color: #fff;
+}
+
+.help-contact .Customer b {
+    width: 13px;
+    height: 14px;
+    display: inline-block;
+    background: url(../images/help-new.png) 0 -46px no-repeat;
+    vertical-align: -2px;
+    margin-right: 8px;
+    position: relative;
+    _top: -2px;
+}
+
+.help-contact .tel {
+    font-size: 25px;
+    font-family: Arial;
+    color: #f60;
+    padding-bottom: 10px;
+}
+
+.jobs-sort {
+    margin-left: -90px;
+    margin-top: -5px;
+    display: inline-block;
+}
+
+.jobs-sort dl {
+    float: left;
+    margin-left: 100px;
+    display: inline;
+}
+
+.jobs-sort dt {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.jobs-sort dd span {
+    display: block;
+}
+
+.jobs-sort dd a {
+    color: #666;
+}
+
+.jobs-sort dd a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+
+.jobs-detailed {
+    padding-top: 35px;
+    color: #666;
+    overflow: hidden;
+}
+
+.jobs-detailed ul {
+    display: inline-block;
+}
+
+.jobs-detailed li {
+    overflow: hidden;
+}
+
+.jobs-detailed li p {
+    width: 868px;
+    padding-left: 10px;
+    height: 34px;
+    line-height: 34px;
+    _height: 31px;
+    _padding-top: 3px;
+    overflow: hidden;
+    background: #eee;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.jobs-detailed li dl {
+    padding-bottom: 15px;
+    margin: 20px 30px -1px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.jobs-detailed li a {
+    color: #f60;
+}
+
+.jobs-detailed li dt {
+    margin-top: -1px;
+}
+
+.jobs-detailed li dt a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.jobs-detailed li dd {
+    margin: 5px 0;
+}
+
+.jobs-detailed li dd a {
+    text-decoration: underline;
+}
+
+.jobs-detailed dd span {
+    display: block;
+    padding-left: 70px;
+    _padding-left: 76px;
+}
+
+.jobs-detailed dd em {
+    display: block;
+    padding-left: 93px;
+    _padding-left: 98px;
+}
+
+.jobs-detailed dd cite {
+    display: block;
+    padding-left: 113px;
+    _padding-left: 120px;
+}
+
+.help_class_tab {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.help_class_tab table {
+    border-top: 1px solid #bbb;
+    border-left: 1px solid #bbb;
+    color: #666;
+    width: 680px;
+}
+
+.help_class_tab th {
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    background: #f3f3f3;
+    height: 30px;
+    line-height: 30px;
+}
+
+.help_class_tab td {
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    text-align: center;
+    line-height: 35px;
+    padding: 0 10px;
+}
+
+.help_class_tab b {
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+    display: block;
+    margin: 0 auto;
+}
+
+.help_class_tab .class01 b img {
+    margin-left: -1px;
+}
+
+.help_class_tab .class02 b img {
+    margin-left: -18px;
+}
+
+.help_class_tab .class03 b img {
+    margin-left: -35px;
+}
+
+.help_class_tab .class04 b img {
+    margin-left: -52px;
+}
+
+.help_class_tab .class05 b img {
+    margin-left: -69px;
+}
+
+.help_class_tab .class06 b img {
+    margin-left: -86px;
+}
+
+.help_Experience_tab td {
+    text-align: left;
+}
+
+.help-suggestion {
+    margin: 20px 50px;
+    width: 600px;
+    float: left;
+    display: inline;
+}
+
+.help-suggestion dl {
+    width: 600px;
+    padding-bottom: 6px;
+    float: left;
+}
+
+.help-suggestion dt {
+    width: 90px;
+    vertical-align: middle;
+    float: left;
+    text-align: right;
+    padding-right: 6px;
+    line-height: 35px;
+    _line-height: 38px;
+}
+
+.help-suggestion dl span {
+    padding-left: 10px;
+}
+
+.help-suggestion dd {
+    width: 504px;
+    display: block;
+    float: left;
+}
+
+.help-suggestion dl dd p {
+    width: 454px;
+    float: left;
+    padding: 0;
+    text-indent: 0;
+}
+
+.help-suggestion dl dd p input {
+    margin-right: 10px;
+}
+
+.help-suggestion dl div.ok {
+    background: url(../images/arrow_button.png) no-repeat -170px -115px;
+}
+
+.help-suggestion dl div.tips_txt {
+    float: left;
+    color: #ABABAB;
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.help-suggestion dl div.wrong {
+    height: 35px;
+    line-height: 35px;
+    color: #f60;
+    background: url(../images/arrow_button.png) no-repeat -170px -74px;
+    padding: 0 0 0 20px;
+    width: 275px;
+    float: left;
+}
+
+.dd_text {
+    padding-top: 3px;
+    _padding-top: 7px;
+}
+
+.input_roid {
+    vertical-align: 0;
+    margin-right: 5px;
+}
+
+.help-suggestion dl dd .input_text {
+    float: left;
+    width: 250px;
+    height: 30px;
+    line-height: 35px;
+    line-height: 38px\9;
+    _line-height: 34px;
+    padding-left: 3px;
+    _padding-left: 5px;
+    border: 1px solid #BBB;
+    font-family: Arial;
+    font-size: 14px;
+    margin: 1px 10px 1px 1px;
+}
+
+.help-suggestion dl dd .input_textCur {
+    float: left;
+    margin-right: 10px;
+    width: 250px;
+    height: 30px;
+    line-height: 35px;
+    font-size: 14px;
+    line-height: 38px\9;
+    _line-height: 34px;
+    padding-left: 3px;
+    _padding-left: 5px;
+    border: 2px solid #FF6500;
+    background: #FFFAF6;
+    margin: 0 9px 0 0;
+}
+
+.help-suggestion dl dd .input_textarea {
+    float: left;
+    width: 250px;
+    height: 100px;
+    line-height: 35px;
+    line-height: 38px\9;
+    _line-height: 34px;
+    padding-left: 3px;
+    _padding-left: 5px;
+    border: 1px solid #BBB;
+    font-family: Arial;
+    font-size: 14px;
+    margin: 1px;
+}
+
+.help-suggestion dl dd .input_textareaCur {
+    float: left;
+    width: 250px;
+    height: 100px;
+    line-height: 35px;
+    line-height: 38px\9;
+    _line-height: 34px;
+    padding-left: 3px;
+    _padding-left: 5px;
+    border: 2px solid #FF6500;
+    font-family: Arial;
+    font-size: 14px;
+    margin: 0;
+}
+
+.help-suggestion dl dd .input_CodeCur {
+    width: 55px;
+    height: 30px;
+    line-height: 35px;
+    line-height: 38px\9;
+    _line-height: 34px;
+    padding-left: 3px;
+    _padding-left: 5px;
+    border: 2px solid #FF6500;
+    background: #FFFAF6;
+    margin: 0;
+}
+
+.help-suggestion .help-action {
+    padding-left: 96px;
+    padding-top: 10px;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.help-suggestion .help-btn {
+    width: 66px;
+    height: 29px;
+    line-height: 29px;
+    font-weight: bold;
+    display: block;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px;
+    background: url(../images/arrow_button.png) 0 -612px;
+}
+
+#dZcontent {
+    display: block;
+    overflow: hidden;
+    zoom: 1;
+    height: 25px;
+    width: 275px;
+    text-align: left;
+    margin: 0;
+    line-height: 25px;
+}
+
+#Zyanma {
+    vertical-align: 25px;
+}
+
+#dZyanma {
+    width: 150px;
+    height: 25px;
+    margin-top: 7px;
+    float: left;
+    line-height: 25px;
+}
+
+#dZemail {
+    width: 150px;
+    height: 25px;
+    margin-top: 5px;
+    float: left;
+    line-height: 25px;
+}
+
+.ZImageClass {
+    float: left;
+    margin-top: -1px;
+    cursor: pointer;
+}
+
+#ZshowimgA {
+    float: left;
+    line-height: 37px;
+}
+
+@media(max-width:1190px) {
+    .help-left-part {
+        width: 198px;
+    }
+
+    .help-right-part {
+        width: 782px;
+    }
+
+    .help-in-rihgt-part {
+        width: 750px;
+        min-height: 957px;
+    }
+
+    .about-banner {
+        width: 680px;
+    }
+
+    .about-banner img {
+        width: 680px;
+    }
+
+    .jobs-sort {
+        margin-left: -40px;
+    }
+
+    .jobs-sort dl {
+        margin-left: 50px;
+    }
+
+    .jobs-detailed li p {
+        width: 700px;
+    }
+}
+
+body.f-width-change .help-left-part {
+    width: 198px;
+}
+
+body.f-width-change .help-right-part {
+    width: 782px;
+}
+
+body.f-width-change .help-in-rihgt-part {
+    width: 750px;
+    min-height: 957px;
+}
+
+body.f-width-change .about-banner {
+    width: 680px;
+}
+
+body.f-width-change .about-banner img {
+    width: 680px;
+}
+
+body.f-width-change .jobs-sort {
+    margin-left: -40px;
+}
+
+body.f-width-change .jobs-sort dl {
+    margin-left: 50px;
+}
+
+body.f-width-change .jobs-detailed li p {
+    width: 700px;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <title>土豪榜</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/layout_sub.css">
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/comm.js?v=160325"></script>
+    <script src="js/ranking.js"></script>
+</head>
+<body>
+<section class="tuhao-banner">
+    <img src="images/season_banner1.png" class="banner">
+</section>
+<ul class="tuhao-list">
+</ul>
+
+<div class="notice-record" style="display: none;">
+    <img src="images/icon01.png">
+    <p>暂无记录!</p>
+</div>
+<script type="text/javascript">
+    $(function(){
+        setCookie('a', 3);
+        //alert(getCookie("a"));
+        var isiOS = isIos();
+        if (isiOS) {
+            $("#apple").show();
+        }
+        var param = getUrlParam('time');
+        var url = apiBaseUrl+'/rich/list-detail?time=' + param;
+        var data = {page:1,perpage:10};
+        $.getJsonp(url,data,function(json) {
+            if (typeof json.list =='undefined' || json.list.length==0) {
+                $('.notice-record').show();
+                //$('.message-classify').hide();
+                return;
+            }
+
+            createListHtml(json);
+        });
+    })
+
+    function  createListHtml(json,append) {
+        var html = '';
+        $.each(json.list, function (i, v) {
+            n = i + 1;
+            if (n <= 3) {
+                html += '<li class="tuhao-act0'+ n +'">';
+            } else {
+                html += '<li>';
+            }
+
+            if(n != 10) n = '0' + n;
+            html += '<i>' + n + '</i>';
+            html += '<a href="/app/ranking-list?type=5&home_id=' + v.home_id + '&user_id=' + v.user_id + '">';
+            html += '<picture><img src="' + v.avatar + '"></picture>';
+            html += '<h3>' + v.username + '</h3>';
+            html += '<span>单笔消费：' + v.money + '</span>';
+            html += '</a>';
+            html += '</li>';
+        });
+        if (append) {
+            $('.tuhao-list').append(html);
+        } else {
+            $('.tuhao-list').html(html);
+        }
+        $('.banner').attr('src','images/season_banner'+json.season+'.png');
+    }
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+</script>
+</body>
+</html>

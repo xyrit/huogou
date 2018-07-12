@@ -1,0 +1,152 @@
+{% extends '@adminModule/views/base.html' %}
+
+{% block main %}
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">后台操作日志</strong>
+            </div>
+        </div>
+
+        {{ html.beginForm('', 'get', {'class':'am-form am-form-horizontal'}) | raw }}
+        <div class="am-g">
+            <div class="am-u-sm-12 am-u-md-3">&nbsp;</div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-form-group">
+                    <select name="type">
+                        <option value="all">全部</option>
+                        <option value="1" {% if(condition.type == 1) %}selected{% endif %}>中奖订单</option>
+                        <option value="2" {% if(condition.type == 2) %}selected{% endif %}>商品管理</option>
+                        <option value="3" {% if(condition.type == 3) %}selected{% endif %}>分类管理</option>
+                        <option value="4" {% if(condition.type == 4) %}selected{% endif %}>品牌管理</option>
+                        <option value="5" {% if(condition.type == 5) %}selected{% endif %}>佣金审核</option>
+                        <option value="6" {% if(condition.type == 6) %}selected{% endif %}>佣金处理</option>
+                        <option value="7" {% if(condition.type == 7) %}selected{% endif %}>金额操作</option>
+                        <option value="8" {% if(condition.type == 8) %}selected{% endif %}>福分操作</option>
+                        <option value="9" {% if(condition.type == 9) %}selected{% endif %}>发货管理</option>
+                        <option value="10" {% if(condition.type == 10) %}selected{% endif %}>圈子管理</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1"  id="my-start-2" name="startTime" value="{{ condition.start }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    <input type="text" class="am-form-field am-u-md-1" id="my-end-2"  name="endTime" value="{{ condition.end }}"/>
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-3">
+                <div class="am-input-group am-input-group-sm">
+                    <input type="text" class="am-form-field" placeholder="操作人或内容" name="content" value="{{ condition.content }}">
+                      <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-default" type="submit">搜索</button>
+                      </span>
+                </div>
+            </div>
+        </div>
+            {{ html.endForm() | raw }}
+        </div>
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form" id="product-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+                            <th class="table-title">序号</th>
+                            <th class="table-type">操作人</th>
+                            <th class="table-type">模块</th>
+                            <th class="table-type">内容</th>
+                            <th class="table-type">操作时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in list %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.admin_id.real_name }}</td>
+                                <td>{% if(item.module == 1) %}中奖管理{% elseif(item.module == 2) %}商品管理{% elseif(item.module == 3) %}分类管理
+                                {% elseif(item.module == 4) %}品牌管理{% elseif(item.module == 5) %}佣金审核{% elseif(item.module == 6) %}佣金处理
+                                {% elseif(item.module == 7) %}金额操作{% elseif(item.module == 8) %}福分操作{% elseif(item.module == 9) %}发货管理{% elseif(item.module == 10) %}圈子管理{% endif %}</td>
+                                <td>{{ item.content }}</td>
+                                <td>{{ item.created_at|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="am-cf">
+                        <p class="am-fl">共 {{ pagination.totalCount }} 条记录</p>
+
+                        <div class="am-fr">
+                            {{ use('/app/widgets/BackendLinkPager') }}
+                            {{ backend_link_pager_widget({'pagination': pagination}) }}
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+
+    <a href="#" class="am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}">
+        <span class="am-icon-btn am-icon-th-list"></span>
+    </a>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ app.params.skinUrl }}/js/layer.js"></script>
+<script src="{{ app.params.skinUrl }}/backend/js/laydate/laydate.js"></script>
+    <script>
+        $(function() {
+            laydate({
+                elem: '#my-start-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+
+            laydate({
+                elem: '#my-end-2',
+                format: 'YYYY/MM/DD hh:mm:ss',
+                //min: laydate.now(), //设定最小日期为当前日期
+                max: '2099-06-16 23:59:59', //最大日期
+                istime: true,
+                istoday: false,
+                choose: function(datas){
+                    end.min = datas; //开始日选好后，重置结束日的最小日期
+                    end.start = datas //将结束日的初始值设定为开始日
+                }
+            });
+            $('.link').click(function(){
+                var urls = '{{ url(['finance/adjust-point']) }}';
+                layer.open({
+                    type: 2,
+                    area: ['700px', '530px'],
+                    fix: false, //不固定
+                    maxmin: true,
+                    shade: false,
+                    content: urls
+                });
+            });
+
+        })
+    </script>
+{% endblock %}

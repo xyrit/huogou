@@ -1,0 +1,74 @@
+<section id="hgq-banner">
+    {% if(app.user.id) %}
+        <div class="hgq-myinfo">
+            <figure>
+                <picture class="usercenter">
+                    <img src="{{ user_info.avatar }}">
+                    <i></i>
+                </picture>
+                <figcaption>
+                    <h2 class="usercenter"><a>{{ user_info.username }}</a></h2>
+                    <span><img src="{{ app.params.skinUrl }}/img/{{ user_info.level.pic }}">{{ user_info.level.name }}</span>
+                </figcaption>
+            </figure>
+            <ul>
+                <li>
+                    <span>{{ topicNum }}</span>
+                    <p>话题</p>
+                </li>
+                <li class="bd">
+                    <span>{{ commentNum }}</span>
+                    <p>回复</p>
+                </li>
+                <li id="qz-show">
+                    <a href="">
+                        <span>{{ joinGroup.num }}</span>
+                        <p>加入圈子</p>
+                    </a>
+                    <div class="hgq-myinfo-qz" style="display: none; height: 182px; padding-top: 0px; margin-top: 0px; padding-bottom: 20px; margin-bottom: 0px;">
+                        {% for item in joinGroup.groups %}
+                            <a href="{{ url('default/view', {'id':item.group_id}) }}" class="hgq-myinfo-qz0{{ item.group_id }}">{{ getGroup[item.group_id] }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    {% else %}
+        <div class="hgq-login">
+            <p>登录查看您的圈子吧！</p>
+            <p>没账号？<span><a href="{{ url(['/passport/default/register']) }}"> 简单注册 快捷方便！</a></span></p>
+            <a class="group_login" href="javascript:;" onclick="showLoginForm()">立即登录</a>
+        </div>
+    {% endif %}
+</section>
+
+<section id="safety-b-con">
+    <div class="safety-b-box">
+        <i class="safety-b-close"></i>
+        <h3></h3>
+    </div>
+</section>
+
+<section id="letter-fixed">
+    <div class="letter-fixed-con">
+        <b id="letter-no"></b>
+        <h2>对运狗渐渐失去耐心了说：</h2>
+        <article>
+            <textarea maxlength="150"></textarea>
+        </article>
+        <div>
+            <p>您可以输入<i>150</i>个字！</p><input type="submit" value="立即发送" class="commentBtn">
+        </div>
+        <div class="commentid"></div>
+    </div>
+</section>
+
+{% block script %}
+<script>
+    $('.usercenter').on('click', function() {
+        window.location.href = "{{ url('/user', {'id': user_info.home_id}) }}";
+    })
+</script>
+{% endblock %}
+

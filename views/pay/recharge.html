@@ -1,0 +1,44 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/layout.css" />
+{% endblock %}
+{% block title %}支付结果_{{ app.name }}{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/js/result.js"></script>
+{% endblock %}
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+    {% include '@app/views/nav.html' %}
+    {% include '@app/views/cart.html' %}
+    <section class="wrap clear">
+        <div class="payment-success">
+            <h3 class="payment-success-title">充值成功!</h3>
+            <summary>
+                <a href="{{ url(['member/default/buy-list']) }}">查看伙购记录</a><a href="/list.html">继续伙购</a>
+            </summary>
+
+            <div class="payment-success-piece">
+                <span><i>0</i>件商品伙购成功</span>
+            </div>
+
+            <div class="scan-code">
+                <div>
+                    <picture><img src="{{ app.params.skinUrl }}/img/ico_weixin02.jpg" alt=""></picture>
+                    <article>
+                        <h4>微信扫一扫</h4>
+                        <p>关注伙购官方微信</p>
+                        <p>揭晓信息随时掌控！</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--footer 开始-->
+ {% include '@app/views/footer.html' %}
+
+{% endblock %}

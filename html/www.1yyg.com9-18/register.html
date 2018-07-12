@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>会员注册_1元云购</title>
+    <meta name="Description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" type="text/css" href="css/sslComm.css" />
+    <link rel="stylesheet" type="text/css" href="css/layout.css" />
+</head>
+<body>
+<div class="wrapper">
+    <input name="hidRegisterForward" type="hidden" id="hidRegisterForward" value="http://member.1yyg.com/" />
+    <div class="g-logo-top">
+        <a href="http://www.1yyg.com" class="transparent-png fl">
+            <img src="images/logo.png" /></a>
+        <span class="fr">已有账号？<a id="hylinkLoginPage" class="blue" href="login.html">立即登录</a></span>
+    </div>
+
+    <div class="g-contentCon clrfix">
+
+        <div class="m-main clrfix">
+            <h2 class="gray3">新用户注册</h2>
+            <div class="register-form-con clrfix">
+                <ul>
+                    <li>
+                        <input id="txtUserName" type="text" maxlength="100" />
+                        <b class="passport-icon user-name transparent-png"></b>
+                        <em style="">手机号/邮箱地址</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                    </li>
+                    <li>
+                        <input id="txtPwd" type="password" maxlength="20" />
+                        <b class="passport-icon login-password transparent-png"></b>
+                        <em style="">设置登录密码</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                        <span id="pwdStrength" style="display: none;"></span>
+
+                    </li>
+                    <li>
+                        <input id="txtConPwd" type="password" maxlength="20" />
+                        <b class="passport-icon login-password transparent-png"></b>
+                        <em style="">确认密码</em>
+                        <span class="orange" style="display: none;"></span>
+                        <s class="passport-icon" style="display: none;"></s>
+                    </li>
+                    <li>
+                        <div class="z-code clrfix">
+                            <input id="txtCode" type="text" maxlength="6">
+                            <b class="passport-icon verification-code transparent-png"></b>
+                            <em style="">验证码</em>
+                            <img src="/api/regsn.html" alt="" id="imgCode" />
+                            <a href="javascript:;" id="btnChangeCode">换一张</a>
+                        </div>
+                        <span class="orange"></span>
+                    </li>
+                </ul>
+                <ul class="j-tips-wrap" id="j-tips-wrap"></ul>
+            </div>
+            <div class="link-con clrfix">
+                <a id="btnAgreeBtn" href="registercheck.html" class="z-agreeBtn">同意协议并注册</a>
+                <a id="btnAgreement" href="http://help.1yyg.com/htm-agreement.html" target="_blank" class="z-agreement">《1元云购服务协议》</a>
+            </div>
+        </div>
+    </div>
+
+    <!--版权-->
+    <div class="g-copyrightCon clrfix">
+        <div class="g-links">
+            <a target="_blank" href="http://www.1yyg.com/" title="首页">首页</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-about.html" title="关于云购">关于云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-privacy.html" title="隐私声明">隐私声明</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-business.html">合作专区</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/info/htm-jobs.html" title="加入云购">加入云购</a><s></s>
+            <a target="_blank" href="http://help.1yyg.com/htm-contactus.html" title="联系我们">联系我们</a>
+        </div>
+        <div class="g-copyright">
+            Copyright &copy; 2011 - 2015, 版权所有 1yyg.com 粤ICP备09213115号-1
+        </div>
+    </div>
+
+    <link type="text/css" rel="stylesheet" href="css/pageDialog.css" />
+    <div class="pageDialogBG" id="pageDialogBG"></div>
+    <div class="pageDialogBorder" id="pageDialogBorder"></div>
+    <div class="pageDialog" id="pageDialog">
+        <div class="pageDialogClose" id="pageDialogClose" title="关闭"></div>
+        <div class="pageDialogMain" id="pageDialogMain"> </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    //点击em文本使input获得焦点
+    $('.register-form-con ul li em').click(function(){
+        $(this).siblings('input').focus();
+    })
+
+    //点击input改变本身样式
+    function userPsd(par1,par2,par3){
+        $(par1).focus(function(){
+            $(this).parents('li').addClass("enter-focus");
+            $(this).siblings('em').html(par2);
+        }).blur(function(){
+            $(this).parents('li').removeClass("enter-focus");
+            $(this).siblings('em').html(par3);
+            if($(this).val() == ''){
+                $(this).siblings('em').css('display','block');
+            }
+        }).keydown(function(){
+            $(this).css('color','rgb(51, 51, 51)');
+            $(this).siblings('em').css('display','none');
+        })
+    }
+    userPsd('#txtUserName','推荐使用手机注册','手机号/邮箱地址' )
+    userPsd('#txtPwd','使用8-20为数字字符或两种组合','设置登录密码')
+    userPsd('#txtConPwd')
+    userPsd('#txtCode')
+
+
+</script>
+
+</body>
+</html>

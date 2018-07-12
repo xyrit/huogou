@@ -1,0 +1,69 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}订单详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/orderdetail_submit.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<input type="hidden" id="hidOrderId" value="{{orderId}}">
+<div class="wrapper">
+    <div class="clearfix g-adrsnav">
+        <div class="m-adrs-lst ">
+            <em>确认收货地址</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst ">
+            <em>商家发货</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst">
+            <em>确认收货</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+        <div class="m-adrs-lst">
+            <em>晒单</em>
+            <i><s></s></i>
+            <b class="z-arrow"></b>
+        </div>
+    </div>
+    <div class="clearfix g-member g-address marginB">
+        <div class="clearfix m-round m-address-ct">
+            <!-- 地址列表 -->
+            <!-- 订单处理步骤 -->
+            <ul>
+
+            </ul>
+            <div class="u-Btn">
+                <div class="u-Btn-li">
+                    <a id="btnShiped" href="javascript:;" class="z-DefineBtn z-grayBtn">确认收货</a>
+                </div>
+            </div>
+        </div>
+        <!-- 商品信息 -->
+        <div class="clearfix mt10 m-round g-goods-info">
+            <h3> 配送信息</h3>
+            <ul id="loadingPicBlock">
+
+            </ul>
+            <!-- 快递信息 -->
+            <!-- 收货地址信息 -->
+            <div class="m-Express">
+                <p>收货地址</p>
+                <p class="f-addressLH gray6">
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

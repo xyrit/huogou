@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>拯救不中奖</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/layout_sub.css">
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	<script type="text/javascript" src="js/touch.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+  <script type="text/javascript" src="js/copyToClipboard.js"></script>
+</head>
+<body style="background-color: #fff;">
+	<section class="not_win_box">
+		<img class="w100" src="images/not_win.jpg">
+		<a class="not_win" href="/product/148.html">秘籍在手  赚钱我有</a>
+	</section>
+</body>
+<script type="text/javascript">
+	$(function(){
+		var s = getUrlParam('s');
+		if (s == 'a') {
+			$(".not_win").attr('href',$('.not_win').attr('href')+'?type=1&go=product&goid=148');
+		};
+	})
+	function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURI(r[2]);
+        return null;
+    }
+</script>
+</html>

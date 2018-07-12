@@ -1,0 +1,53 @@
+{% extends '@mobileModule/views/base.html' %}
+
+{% block title %}安全设置 - {{app.name}}{% endblock %}
+{% block header %}{{ update ? "修改支付密码" :  "支付密码设置" }}{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/mobile/css/security.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/mobile/js/paypwdcheck.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="h5-1yyg-v11">
+
+
+    <!-- 内页顶部 -->
+
+
+    <section>
+        <input name="hidIdentity" type="hidden" id="hidIdentity" value="{{mobile}}" />
+        <input name="hidIsOpen" type="hidden" id="hidIsOpen" value="{{isOpen}}" />
+        <input name="hidIsUpate" type="hidden" id="hidIsUpate" value="{{update}}" />
+        <div class="login-protection clearfix">
+            <p class="gray6">支付密码<a id="a_switch"><b></b></a></p>
+            <div id="div_update" class="set-con clearfix" style="display:none;">
+                <ul>
+                    <li>
+                        <a  href="paypwdcheck.html?update=1">修改支付密码<i class="z-arrow"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="div_auth" style="display:none;" class="authentication-con clearfix">
+            <ul>
+                <li>
+                    验证手机号: {{privateMobile}}</li>
+                <li class="enter-word">
+                    <input id="txtCode" maxlength="6" type="text" placeholder="请输入6位验证码" class="rText">
+                    <a id="btnSend" href="javascript:;" class="orgBtn">获取验证码</a>
+                </li>
+                <li><a id="btnSubmit" href="javascript:;" class="grayBtn">确认</a></li>
+                <li class="gray9">换了手机号或遗失？请致电客服申诉解除绑定<br />
+                    400-000-5000</li>
+            </ul>
+        </div>
+    </section>
+
+    {% include '@mobileModule/views/footer.html' %}
+</div>
+{% endblock %}
+

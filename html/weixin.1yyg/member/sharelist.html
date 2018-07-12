@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        分享赚钱
+    </title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="../weixin/CSS/newcomm.css" rel="stylesheet" type="text/css" />
+    <link href="../member/CSS/member.css" rel="stylesheet" type="text/css" />
+    <script src="../weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<div id="loadingPicBlock">
+    <input name="hidAppID" type="hidden" id="hidAppID" value="wxb305761c75b19f0c" />
+    <input name="hidLineLink" type="hidden" id="hidLineLink" value="http://weixin.1yyg.com/index.html?uid=X7GvBmj4H7BlXe99cED75Q==" />
+    <input name="hidTimeSpan" type="hidden" id="hidTimeSpan" value="1444806191" />
+    <input name="hidNonceStr" type="hidden" id="hidNonceStr" value="jULkMXkRFtLCj7W3" />
+    <input name="hidSignature" type="hidden" id="hidSignature" value="f407d67dccb8662575eaecb7a18771e1b70f54ae" />
+    <div class="wrapper m_share">
+        <div class="shareCon">
+            <div class="m_banner"></div>
+            <dl>
+                <dt>
+                    邀请好友成功参与云购后，即可获得6%的佣金！
+                </dt>
+                <dd>
+                    <a id="btnShare" href="javascript:;" class="orangeBtn">立即赚钱</a>
+                </dd>
+                <dd>
+                    邀请好友：
+                    <em class="orange"> 1340</em>
+                    <b></b>佣金：
+                    <em class="orange">￥364.92</em>
+                </dd>
+            </dl>
+        </div>
+        <div class="sub_nav marginB">
+            <a href="invitelist.html">邀请记录<i></i></a>
+            <a href="commission.html">佣金明细<i></i></a>
+        </div>
+        <!--弹出-->
+        <div class="m_popUp" id="m_popUp" style="display:none;">
+            <div class="m_guide">
+                <span></span>
+                <div class="m_how">
+                    <h4>怎么赚钱？</h4>
+                    <p>1: 点击本页面右上角的三个点的图标</p>
+                    <p>2: 选择[发送给朋友]或[分享到朋友圈]</p>
+                    <p>3: 经您邀请的好友，成功参与云购后，您可获得好友消费额6%的佣金奖励</p>
+                </div>
+            </div>
+        </div>
+        <input id="hidPageType" type="hidden" value="3" />
+        <div class="footer" style="display: none;">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="index.html" class="hover" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--弹窗背景-->
+<div class="weixin-mask" style="height: 736px;"></div>
+
+<!--弹窗-->
+<div class="record-pop-ups f-pop-balance clearfix" style="top: 154px; left: 47px;">
+    <dl>
+        <dt class="gray9">
+            可转入金额
+            <em class="orange">￥49.00</em>
+        </dt>
+        <dd class="gray6">
+            确认将以上金额转入云购账户？
+        </dd>
+        <dd>
+            <!--增加input-->
+            <input type="text" class="tc_ipt">
+            <!--增加input-->
+        </dd>
+        <dd class="comm-pop-btn clearfix">
+            <cite class="return-modify"><a id="closeDiag" href="javascript:;" class="gray6">取消</a></cite>
+            <cite><a id="btnOK" href="javascript:;" class="orangeBtn">确认</a></cite>
+        </dd>
+    </dl>
+</div>
+</body>
+<script>
+    $('#btnShare').click(function(){
+        $('#m_popUp').fadeIn(1000);
+    })
+    $('#m_popUp').click(function(){
+        $(this).fadeOut(1000);
+    })
+</script>
+</html>

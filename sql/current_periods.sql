@@ -1,0 +1,14 @@
+CREATE TABLE `current_periods` (
+  `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '期数ID',
+  `product_id` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品ID',
+  `table_id` INT(10) UNSIGNED NOT NULL COMMENT '期数参与纪录分表ID',
+  `period_number` BIGINT(20) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品伙购第几期',
+  `price` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品价值',
+  `limit_num` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '限购数量',
+  `sales_num` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '已购数量',
+  `progress` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '已购占比',
+  `left_num` INT(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '剩余数量',
+  `start_time` CHAR(16)  NOT NULL COMMENT '开始时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '当前期数表';

@@ -1,0 +1,295 @@
+{% extends '@memberModule/views/base.html' %}
+
+{% block keywords %}{{ keywords }}{% endblock %}
+{% block description %}{{ description }}{% endblock %}
+
+{% block title %}我的伙购_{{ app.name }}{% endblock %}
+
+{% block main %}
+    <section class="balance_con">
+        <div class="balance_box">
+            <i class="close"></i>
+            <article>
+                您确定要删除吗？
+            </article>
+            <a href="javascript:;" id="del-cancle">取 消</a><a class="determine" href="javascript:;" id="del-sure">确定</a>
+        </div>
+    </section>
+    <section id="invite_tishi">
+        <p></p>
+        <b></b>
+    </section>
+    <div class="member_con_rl">
+        <div class="invite_box">
+            {% for item in orderList %}
+                <div class="site">
+                    <span>恭喜您！<a style="float: none; margin-right: 0" href="{{ url('/product/lottery', {'pid': item.period_id}) }}" target="_blank"><i>商品"{{ item.product_name[:20] }}"</i></a> 归您啦！赶快{% if item.delivery_id == 3 %}查看卡密{% else %}确认收货地址{% endif %}吧！</span>
+                    <a href="{{ url('/member/default/order-detail', {'id':item.id}) }}">{% if item.delivery_id == 3 %}查看卡密{% else %}立即填写{% endif %} >></a>
+                    <b></b>
+                </div>
+            {% endfor %}
+            <div class="invite">
+                <span>复制链接邀请好友：</span>
+                <p id="tbid">1元就能买IPhone 6哦，快去看看吧！{{ createCode }}</p>
+                <a onclick="copyText(document.all.tbid)" href="javascript:;">复制链接</a>
+            </div>
+        </div>
+        <div class="con">
+            <div class="fl">
+                <div class="hg-new-user">
+                    <h3><span>伙购记录</span><a href="{{ url(['/member/default/buy-list']) }}">全部<i>></i></a></h3>
+                    <div class="hg-new-user-box">
+                        {% if buyList.list is empty %}
+                        <div class="hg-new-user-wu">
+                            <picture><img src="{{ app.params.skinUrl }}/img/user-wu.jpg" alt=""></picture>
+                            <p>您还没有参与伙购？梦想与您只有1元的距离！</p>
+                            <a href="{{ url(['/list']) }}">去伙购<i>></i></a>
+                        </div>
+                        {% else %}
+                        <div>
+                            <ul class="hg-new-user-list">
+                                {% for buy in buyList.list %}
+                                <li>
+                                    <picture><a href="{% if buy.status == 0 %}{{ url('/product', {'pid': buy.product_id}) }}{% else %}{{ url('/product/lottery', {'pid': buy.period_id}) }}{% endif %}"><img src="{{ buy.goods_picture_url }}"></a></picture>
+                                    <p><a href="{% if buy.status == 0 %}{{ url('/product', {'pid': buy.product_id}) }}{% else %}{{ url('/product/lottery', {'pid': buy.product_id}) }}{% endif %}">(第{{ buy.period_number }}期){{ buy.goods_name }}</a></p>
+                                    {% if buy.status == 2 %}<span>已揭晓</span>{% elseif buy.status == 1 %}<span>揭晓中</span>{% else %}<span class="orange">进行中</span>{% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <button id="user-page">&lt;</button>
+                        <button class="r" id="user-next">&gt;</button>
+                        {% endif %}
+                    </div>
+                    <div class="hg-user-gz">
+                        <h3><span>我关注的商品</span><a href="{{ url(['/member/default/collect-list']) }}">全部<i>></i></a></h3>
+                        {% if collectList.list is empty %}
+                        <div class="hg-new-user-box">
+                            <div class="hg-new-user-wu">
+                                <picture><img src="{{ app.params.skinUrl }}/img/user-wu.jpg" alt=""></picture>
+                                <p>您还没有关注商品？马上关注您喜欢的商品！</p>
+                                <a href="{{ url(['/list']) }}">关注<i></i></a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <ul>
+                            {% for collect in collectList.list %}
+                            {% if collect.quantity %}
+                            <li>
+                                <picture><img src="{{ collect.goods_picture_url }}" pid="{{ collect.goods_id }}"><a href="javascript:;" class="user-gz-close" pid="{{ collect.goods_id }}">X</a></picture>
+                                <div>
+                                    <h4>{{ collect.goods_name }}</h4>
+                                    <p>第<span>{{ collect.period_number }}</span>期 进行中</p>
+                                    <summary>
+                                        <span class="user-gz-progress"><em style="width:{{ collect.sales / collect.quantity * 100 }}%;"></em></span>
+                                        <a href="javascript:;" class="user-gz-btn" codeid="{{ collect.period_id }}">加入购物车</a>
+                                    </summary>
+                                </div>
+                            </li>
+                            {% else %}
+                            <li class="goods_picture_li">
+                                <picture><img class="goods_picture_end" src="{{ collect.goods_picture_url }}" pid="{{ collect.goods_id }}"></picture>
+                                <summary class="conclude"><span class="conclude_icon">已结束</span></summary>
+                                <div>
+                                    <h4>{{ collect.goods_name }}</h4>
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="hg-user-sd">
+                        <h3>伙友最新晒单</h3>
+                        <ul>
+                            {% for share in shareList.list %}
+                            <li>
+                                <div>
+                                    <picture><a href="{{ url('/share/default/detail', {'id': share.id}) }}"><img src="{{ share.header_image_url }}"></a></picture>
+                                    <h4><a href="{{ url('/share/default/detail', {'id': share.id}) }}">{{ share.title }}</a></h4>
+                                    <p>{{ share.content[:30] }}</p>
+                                    <aside>{{ share.created_at }}</aside>
+                                    <summary class="clear">
+                                        <b><img src="{{ share.user_avatar }}" alt=""></b>
+                                        <a href="{{ url('/user', {'id': share.user_home_id}) }}">{{ share.user_name }}</a>
+                                        <em><em></em></em>
+                                    </summary>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="more">
+                            想要看更多？去<a href="{{ url(['/share']) }}">晒单分享</a>看看
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rl">
+                <div class="friend_buy"><h2>好友伙购记录</h2></div>
+                {% if friendBuyList is empty %}
+                <div class="hg-new-user-wu">
+                    <picture><img src="{{ app.params.skinUrl }}/img/user-wu.jpg" alt=""></picture>
+                    <p>您还没有好友！您的好友去哪了？</p>
+                    <!--<a href="{{ url(['/member/friend/search-friend']) }}">加好友<i>></i></a>-->
+                </div>
+                {% else %}
+                <ul class="friend_buy_list">
+                    {% for friend in friendBuyList %}
+                    <li>
+                        <a href="{{ url('/user', {'id': friend.user_home_id}) }}">
+                            <picture>
+                                <i></i>
+                                <img src="{{ friend.user_avatar }}" alt="">
+                            </picture>
+                        </a>
+                        <summary>
+                            <h3><a href="{{ url('/user', {'id': friend.user_home_id}) }}"><em title="{{ friend.friend_name }}">{{ friend.friend_name }}</em> </a><span>{{ friend.user_buy_time }}</span></h3>
+                            <p title="{{ friend.goods_name }}"><span>伙购了</span>{{ friend.goods_name }}</p>
+                        </summary>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="rl">
+                <div class="week"><h2>本周最伙达人</h2><span id="changeOrder">换一批</span></div>
+                <ul class="week_list">
+                </ul>
+                <div class="week"><h2>圈子热门话题</h2></div>
+                <ul class="circle_list">
+                    {% for value in rightTopic %}
+                        <li>
+                            <summary>
+                                <a href="{{ url('/group/topic/view', {'id': value.id}) }}" target="_blank">{{ value.subject }}</a>
+                                <i>{{ groups[value.group_id] }}</i>
+                            </summary>
+                            <aside>{{ value.comment_count }}条回复</aside>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_record.js"></script>
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/copyToClipboard.js"></script>
+<script type="text/javascript">
+    var user_id = "{{ app.user.id }}";
+    hotOrderList();
+    $(document).ready(function(){
+        $('.site').find('b').on('click', function(){
+            $(this).parent().remove('.site');
+        })
+        $('#invite_tishi').find('b').on('click', function(){
+            $('#invite_tishi').fadeOut();
+        });
+
+        $('#changeOrder').click(function(){
+            hotOrderList();
+        })
+
+        $('.hg-user-sd').find('li').each(function(index){
+            if ((index + 1) % 2 == 0){
+                $(this).css('borderRight',0);
+            }
+        })
+        $('.hg-user-gz').find('li').each(function(index){
+            if ((index + 1) % 2 == 0){
+                $(this).css('borderRight',0);
+            }
+        })
+
+        var bNow = 0;
+        var oBrand = $('.hg-new-user-list');
+        var bPage = Math.ceil(oBrand.find('li').size()/2);
+        oBrand.css('width',bPage*100+'%');
+        $('#user-page').on('click',function(){
+            bNow--;
+            if (bNow < 0) bNow = bPage -1;
+            oBrand.stop().animate({left:bNow*-100+'%'},600);
+        })
+        $('#user-next').on('click',function(){
+            bNow++;
+            if (bNow > bPage -1) bNow = 0;
+            oBrand.stop().animate({left:bNow*-100+'%'},600);
+        })
+
+        $('.hg-user-gz').find("a.user-gz-btn").click(function () {
+            var periodId = $(this).attr("codeid");
+            $.ajax({
+                async: false,
+                url: apiBaseUrl + '/cart/add',
+                type: "GET",
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                data: {periodid: periodId, num: 1, token: token},
+                success: function (data) {
+                    if (data.code == 100) {
+                        $('.safety-b-box').html('<i id="safety-b-close"></i><h4>添加成功</h4>');
+                        $('#safety-b-con').fadeIn();
+                        setTimeout(function(){
+                            $('#safety-b-con').fadeOut();
+                        },1000);
+                        $.getContent(apiBaseUrl + "/cart/list", {"token": token}, 'sideBarCart');
+                        return false;
+                    } else {
+                        $('.safety-b-box h3').html('添加失败');
+                        $('#safety-b-con').fadeIn();
+                        setTimeout(function(){
+                            $('#safety-b-con').fadeOut();
+                        },1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        //删除关注
+        $('.hg-user-gz').find("a.user-gz-close").click(function() {
+            $('.balance_con').fadeIn();
+            $('.close, #del-cancle, #del-sure').on('click',function(){
+                $('.balance_con').fadeOut();
+            })
+
+            var productId = $(this).attr("pid");
+
+            $('#del-sure').on('click',function(){
+                $.ajax({
+                    async:false,
+                    url: apiBaseUrl + '/follow/cancel',
+                    type: "GET",
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    data: {pid: productId, token: token},
+                    success: function (data) {
+                        if (data.code == 1) {
+                            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>删除成功</h4>');
+                            $('#safety-b-con').fadeIn();
+                            setTimeout(function(){
+                                $('#safety-b-con').fadeOut();
+                            },1000)
+                            setTimeout(function(){
+                                window.location.reload();
+                            },1000)
+                            return false;
+                        } else {
+                            $('.safety-b-box h3').html('删除失败');
+                            $('#safety-b-con').fadeIn();
+                            setTimeout(function(){
+                                $('#safety-b-con').fadeOut();
+                            },1000);
+                            return false;
+                        }
+                    }
+                });
+            })
+        });
+        $('.hg-user-gz').find("img").on('click', function() {
+            window.location.href = createGoodsUrl($(this).attr('pid'));
+        })
+    })
+</script>
+{% endblock %}
+

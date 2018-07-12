@@ -1,0 +1,37 @@
+{% extends '@weixinModule/views/base.html' %}
+
+{% block title %}我的伙购{% endblock %}
+
+{% block css %}
+  <link href="{{ app.params.skinUrl }}/weixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+  <script src="{{ app.params.skinUrl }}/weixin/js/goodsbuylist.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <input type="hidden" id="hidPage" value="1">
+  <input type="hidden" id="hidState" value="-1">
+  <div id="loadingPicBlock">
+    <div class="wrapper">
+      <div class="m_buylist_nav" id="navBox">
+        <p>
+          <a href="javascript:;" state="-1" class="hover">全部<em></em></a>
+          <a href="javascript:;" state="0">进行中<em></em></a>
+          <a href="javascript:;" state="1">已揭晓<em></em></a>
+        </p>
+      </div>
+      <div id="divBuyList" class="m_buylist">
+
+
+      </div>
+      <div id="divGoodsLoading" class="loading" style="display: block;">
+        <b></b>正在加载
+      </div>
+      <div class="load_more" id="btnLoadMore" style="display: block;">
+      </div>
+      {% include '@weixinModule/views/footer.html' %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,201 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}修改头像_伙购网{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/imgareaselect-animated.css" />
+{% endblock %}
+
+{% block body %}
+
+{% include '@app/views/topbar.html' %}
+
+{% include '@app/views/nav.html' %}
+
+<section class="member">
+    <div class="wrap clear">
+        {% include '@memberModule/views/info/header.html' %}
+        <div class="wrap_con">
+            {% include '@memberModule/views/info/sidebar.html' %}
+            <div class="wrap_con_box">
+                {% include '@memberModule/views/info/perinfonav.html' %}
+                <div class="modify-avatar">
+                    <div style="display: none;">
+                        <iframe name="upFrame" scrolling="no" src="about:blank"></iframe>
+                    </div>
+                    <article>
+
+                        {{ html.beginForm(url(['info/photo-upload']), 'post', {'id':'pageForm','target':'upFrame','enctype':'multipart/form-data'}) | raw }}
+                            <span><input type="file" name="uploadFace" class="uploadFace" id="btnUploadFace"></span>
+                        {{ html.endForm() | raw }}
+                        <p>支持jpg、jpeg、png、bmp格式文件，文件小于5M</p>
+                    </article>
+                    <div class="modify-avatar-pic">
+                        <summary class="avatar-pic-a">
+                            <picture><img src="{{ userFaces['160'] }}" alt="" id="photo"></picture>
+                        </summary>
+                        <summary class="avatar-pic-b">
+                            <picture><img src="{{ userFaces['160'] }}" alt="" ></picture>
+                            <p>160px X 160px</p>
+                        </summary>
+                        <summary class="avatar-pic-c">
+                            <picture><img src="{{ userFaces['80'] }}" alt=""></picture>
+                            <p>80px X 80px</p>
+                        </summary>
+                        <summary class="avatar-pic-d">
+                            <picture><img src="{{ userFaces['30'] }}" alt="" ></picture>
+                            <p>30px X 30px</p>
+                        </summary>
+                        <b>您上传的头像会自动生成三种尺寸，请注意中小尺寸是否清晰</b>
+                    </div>
+                    <input type="hidden" id="cutX" value="">
+                    <input type="hidden" id="cutY" value="">
+                    <input type="hidden" id="cutW" value="">
+                    <input type="hidden" id="cutH" value="">
+                    <input type="hidden" id="hidPicUrl">
+                    <div class="avatar-act">
+                        <input class="submit" type="submit" value="保存头像" id="submit">
+                         {{ html.beginForm(url(['info/photo-upload']), 'post', {'id':'pageForm2','target':'upFrame','enctype':'multipart/form-data'}) | raw }}
+                            <span class="submit-a" >重新上传<input type="file" name="uploadFace" class="uploadFace" id="btnUploadFace2"></span>
+                        {{ html.endForm() | raw }}
+                        <!--<a class="submit-a" href="javascript:;" id="btnResetUpFile">重新上传</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% include '@app/views/footer.html' %}
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery.imgareaselect.pack.js"></script>
+<script type="text/javascript">
+    var avatarSize = {'b':160, 'c':80, 'd':30};
+    $(function () {
+        $('#btnUploadFace').on('change', function() {
+            if(! $(this).val()) return ;
+            $('#apply-fixed').stop().fadeOut('fast');
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>正在提交...</h4>');
+            $('#safety-b-con').fadeIn();
+            document.getElementById('pageForm').submit();
+           // $(this).val('');
+        });
+        
+        //copy 上传按钮
+        $('#btnUploadFace2').on('change', function() {
+            if(! $(this).val()) return ;
+            $('#apply-fixed').stop().fadeOut('fast');
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>正在提交...</h4>');
+            $('#safety-b-con').fadeIn();
+            document.getElementById('pageForm2').submit();
+        });
+        $('#btnResetUpFile').on('click', function() {
+            $('#btnUploadFace').trigger('click');
+        });
+
+        $('#submit').on('click', function() {
+            $(this).addClass('submit-a').attr('disable','disable');
+            var cutX = $('#cutX').val();
+            var cutY = $('#cutY').val();
+            var cutW = $('#cutW').val();
+            var cutH = $('#cutH').val();
+            var hidPicUrl = $('#hidPicUrl').val();
+            if (!hidPicUrl) {
+                $('.safety-b-box').html('<i id="safety-b-close"></i><h4>请选择头像</h4>');
+                $('#safety-b-con').fadeIn();
+                var t = setTimeout(function(){
+                    $('#safety-b-con').fadeOut();
+                    clearTimeout(t);
+                },1000);
+                return;
+            }
+            $('#apply-fixed').stop().fadeOut('fast');
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h4>正在提交...</h4>');
+            $('#safety-b-con').fadeIn();
+            var uploadData = {'cutX':cutX, 'cutY':cutY, 'cutW':cutW, 'cutH':cutH, 'hidPicUrl':hidPicUrl };
+            $.post("{{ url(['info/photo']) }}",uploadData,function(result){
+                $('#apply-fixed').stop().fadeOut('fast');
+                $('.safety-b-box').html('<i id="safety-b-close"></i><h4>头像保存成功</h4>');
+                $('#safety-b-con').fadeIn();
+                setTimeout(function(){
+                    window.location.reload();
+                },1000);
+            });
+        });
+    });
+
+    function changePhotoes(img, selection) {
+
+        var imgWidth = $(img).width();
+        var imgHeight = $(img).height();
+
+        $.each(avatarSize, function(i,v) {
+            var scale = parseFloat(selection.width/v);
+            var width = parseInt(imgWidth/scale);
+            var height = parseInt(imgHeight/scale);
+            var x1 = parseInt(selection.x1/scale);
+            var y1 = parseInt(selection.y1/scale);
+            $('.avatar-pic-'+i+' img').css({'width':width+'px','height':height+'px','marginLeft':'-'+x1+'px','marginTop':'-'+y1+'px'});
+        });
+        $('#cutX').val(selection.x1);
+        $('#cutY').val(selection.y1);
+        $('#cutW').val(selection.width);
+        $('#cutH').val(selection.height);
+        var picUrl = $('.avatar-pic-a img').attr('src');
+        $('#hidPicUrl').val(picUrl);
+
+    }
+
+    function successUploadImage(data) {
+        data = JSON.parse(data);
+        if (data.error) {
+            $('.safety-b-box').html('<i id="safety-b-close"></i><h3>'+data.message+'</h3>');
+            $('.safety-b-box').css({'width':'440px'});
+            $('.safety-b-box h3').css({'width':'300px'});
+            setTimeout(function() {
+                $('#safety-b-con').fadeOut();
+            }, 5000);
+            return;
+        } else {
+            $('#safety-b-con').fadeOut();
+        }
+        var tempImgUrl = createTempImgUrl(data.basename);
+        $('.avatar-pic-a img').attr('src', tempImgUrl);
+        $('.avatar-pic-b img').attr('src', tempImgUrl);
+        $('.avatar-pic-c img').attr('src', tempImgUrl);
+        $('.avatar-pic-d img').attr('src', tempImgUrl);
+
+        $('img#photo').imgAreaSelect({
+            maxWidth: 250,
+            maxHeight: 250,
+            aspectRatio: '1:1',
+            x1: 45,
+            y1: 45,
+            x2: 205,
+            y2: 205,
+            handles: true,
+            onSelectEnd: changePhotoes
+        },$(".avatar-pic-a"));
+
+
+        $('#cutX').val(0);
+        $('#cutY').val(0);
+        $('#cutW').val(250);
+        $('#cutH').val(250);
+        $('#hidPicUrl').val(tempImgUrl);
+
+        $('.avatar-act').show();
+    }
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}修改邮箱_伙购网{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/info/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <div class="individual-title">
+                        <h3>邮箱验证</h3>
+                        <a href="javascript:history.back()">&lt;&lt; 返回</a>
+                    </div>
+                    <div class="individual-note">
+                        <i></i><span>为了加强账户安全，更改邮箱地址前需验证当前绑定的邮箱，验证通过后才可绑定新的邮箱地址。</span>
+                    </div>
+                    <div class="email-yz">
+                        <div>
+                            <em>请输入新邮箱：</em><input name="email"  type="text" id="email">
+                        </div>
+                        <div>
+                            <em>请输入验证码：</em><input class="gl_verify" placeholder="验证码" type="text" id="code" maxlength="6"><a class="verify-yz" href="javascript:void(0)" id="getEmailCode" t="0">获取验证码</a>
+                        </div>
+                        <div>
+                            <em>&nbsp;</em><a class="email-yz-a sendNewMail" href="javascript:void(0)" id="checkEmailCode">下一步</a>
+                        </div>
+                        <input type="hidden" value="6" id="type">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% include '@app/views/footer.html' %}
+
+{% endblock %}
+
+{% block js %}
+    <script src="{{ app.params.httpsSkinUrl }}/js/common.js"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_info.js"></script>
+
+    <script>
+        $('#imgCode').on('click', function() {
+            $('#imgCode').attr('src', passportBaseUrl +'/api/captcha?v='+Math.random())
+        });
+
+        if ($.cookie('SEND_CODE_6') == 1) {
+            $('#getEmailCode').addClass('verification_gray').attr("t",60).text('重新发送(60)');
+            var j =setInterval(function(){
+                var t = parseInt($('#getEmailCode').attr("t")-1);
+                if (t <= 0) {
+                    clearInterval(j);
+                    $('#getEmailCode').attr("t",t).text('获取验证码').removeClass('verification_gray');
+                }else{
+                    $('#getEmailCode').attr("t",t).text('重新发送('+t+')');
+                }
+            },1000);
+        }
+
+        var flag = true;
+
+        $('#email').blur(function() {
+            email = $('#email').val();
+
+            if (email != '') {
+                if (!checkEmail(email)) {
+                    flag = false;
+                    showErrorMsg('邮箱格式错误');
+                    return false;
+                } else {
+                    flag = true;
+                }
+
+                $.ajax({
+                    async: false,
+                    url: apiBaseUrl + '/info/valid-email',
+                    type: "POST",
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    data: {email: email},
+                    success: function (data) {
+                        if (data.code == 101) {
+                            flag = false;
+                            $('.safety-b-box').css('width', 'auto');
+                            $('.safety-b-box h3').css('width', 'auto');
+                            $('.safety-b-box h3').html(data.msg);
+                            $('#safety-b-con').fadeIn();
+                            setTimeout(function () {
+                                $('#safety-b-con').fadeOut();
+                                $('.safety-b-box h3').html("");
+                            }, 1000)
+                            return false;
+                        } else {
+                            flag = true;
+                        }
+                    }
+                });
+            }
+        })
+
+        /*$(function(){
+            $('.sendNewMail').click(function(){
+                var url = window.location.href;
+                var email = $('input[name=email]').val();
+                var code = $('.gl_verify').val();
+                $('.error').remove();
+
+                var reMail = /^[a-zA-Z0-9!#$%&\'*+\\/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&\'*+\\/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;
+                if (!reMail.test(email)) {
+                    showErrorMsg('邮箱格式错误');
+                    return false;
+                }
+
+                $.post('/info/edit-email', {'code': code, 'email':email}, function(e) {
+                    console.log(e);
+                    if (e.error==0) {
+                        window.location.href = e.url;
+                    }else{
+                        showErrorMsg('e.msg');
+                    }
+                });
+            })
+        })*/
+
+    </script>
+{% endblock %}

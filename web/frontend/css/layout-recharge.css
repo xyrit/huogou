@@ -1,0 +1,806 @@
+@CHARSET "UTF-8";
+
+.transfer-accounts-con {
+    margin: 0;
+    padding-top: 20px;
+    width: 600px;
+}
+.transfer-accounts-con li {
+    float: left;
+    font-size: 14px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 10px 0;
+    width: 600px;
+}
+.transfer-accounts-con li.u-accounts {
+    padding: 0;
+}
+.transfer-accounts-con li.u-accounts label {
+    position: relative;
+}
+.transfer-accounts-con li b {
+    font-size: 18px;
+}
+.transfer-accounts-con li em {
+    margin-right: 5px;
+}
+.transfer-accounts-con li label, .transfer-accounts-con li input, .transfer-accounts-con li em, .transfer-accounts-con li span i {
+    float: left;
+}
+.transfer-accounts-con li label {
+    display: block;
+    text-align: right;
+    width: 200px;
+}
+.transfer-accounts-con li p {
+    clear: both;
+    display: block;
+    padding-left: 200px;
+}
+.transfer-accounts-con li p a {
+    text-decoration: underline;
+}
+.z-receivables {
+    letter-spacing: 1px;
+}
+.transfer-accounts-con li input {
+    border-color: #bbb #ddd #ddd #bbb;
+    border-style: solid;
+    border-width: 1px;
+    color: #bbb;
+    font: 14px/1.5 "微软雅黑",Arial;
+    height: 22px;
+    margin-right: 5px;
+    padding: 3px;
+    width: 192px;
+}
+.transfer-accounts-con li input.z-money {
+    width: 130px;
+}
+.transfer-accounts-con li a.bluebut, .transfer-accounts-con li a.graybut {
+    display: block;
+    font-size: 14px;
+    height: 25px;
+    line-height: 25px;
+    margin-left: 200px;
+    text-align: center;
+    width: 88px;
+}
+.transfer-accounts-con li a.graybut {
+    cursor: default;
+}
+.transfer-accounts-con li a.graybut:hover {
+    background: #f3f3f3 none repeat scroll 0 0;
+    border: 1px solid #cfcfcf;
+    color: #999;
+}
+.transfer-accounts-con li span {
+    color: #f60;
+}
+.transfer-accounts-con li span i {
+    background: rgba(0, 0, 0, 0) url("http://skin.1yyg.com/Member/images/new-admin.png?v=150421") no-repeat scroll -144px -99px;
+    display: block;
+    height: 16px;
+    margin-right: 3px;
+    position: relative;
+    top: 7px;
+    width: 16px;
+}
+.transfer-accounts-list dt {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 1px solid #e3e3e3;
+    color: #999;
+    height: 23px;
+    overflow: hidden;
+    padding-top: 5px;
+}
+.transfer-accounts-list dd {
+    border-bottom: 1px solid #eee;
+    color: #666;
+    height: 38px;
+    line-height: 38px;
+}
+.transfer-accounts-list span {
+    display: block;
+    float: left;
+    height: 38px;
+    overflow: hidden;
+    padding: 0 5px;
+    word-break: break-all;
+}
+.transfer-accounts-list span.w140 {
+    width: 140px;
+}
+.transfer-accounts-list span.w140 a {
+    color: #43b6ff;
+}
+.transfer-accounts-list span.w140 a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+.transfer-accounts-list span.w110 {
+    width: 110px;
+}
+.transfer-accounts-list span.w90 {
+    width: 90px;
+}
+.transfer-accounts-list dd span.w110 {
+    font-weight: bold;
+}
+.confirmation-box {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 362px;
+}
+.m-confirmation {
+    line-height: 30px;
+    margin: 0 auto;
+    width: 362px;
+}
+.m-confirmation dt {
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+.m-confirmation dd {
+    font-size: 16px;
+    padding-left: 35px;
+}
+.m-confirmation dd span {
+    color: #bbb;
+    float: left;
+}
+.m-confirmation dd cite {
+    display: block;
+    float: left;
+    width: 240px;
+    word-break: normal;
+    word-wrap: break-word;
+}
+.identifying-code {
+    clear: both;
+    padding-left: 35px;
+    padding-top: 25px;
+    width: 327px;
+}
+.identifying-code dt {
+    font-size: 14px;
+    margin-bottom: -8px;
+    text-align: left;
+}
+.identifying-code dt span {
+    margin: 0 5px;
+}
+.identifying-code dt a {
+    color: #999;
+    text-decoration: underline;
+}
+.identifying-code dd {
+    clear: both;
+    padding-top: 15px;
+}
+.identifying-code dd input {
+    border-color: #bbb #ddd #ddd #bbb;
+    border-style: solid;
+    border-width: 1px;
+    color: #bbb;
+    float: left;
+    font: 14px/1.5 "微软雅黑",Arial;
+    height: 22px;
+    padding: 2px 3px 4px 5px;
+    width: 139px;
+}
+.identifying-code dd a {
+    background: #f60 none repeat scroll 0 0;
+    border: 1px solid #f60;
+    border-radius: 2px;
+    color: #fff;
+    display: block;
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    margin-left: 4px;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    width: 110px;
+}
+.identifying-code dd a:hover {
+    background: #f40 none repeat scroll 0 0;
+    border: 1px solid #f40;
+    color: #fff;
+}
+.identifying-code dd a.resendBtn {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    color: #bbb;
+    cursor: default;
+}
+.identifying-code dd span a {
+    background: #f60 none repeat scroll 0 0;
+    border: 1px solid #f60;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    margin-left: 0;
+}
+.identifying-code dd em {
+    color: #d00;
+    line-height: 35px;
+    padding-left: 5px;
+}
+.binding-box {
+    font-size: 14px;
+    margin: 0 auto;
+    padding-top: 30px;
+    width: 380px;
+}
+.binding-box p {
+    display: block;
+    font-size: 18px;
+}
+.binding-box p i {
+    background: rgba(0, 0, 0, 0) url("http://skin.1yyg.com/MyCart/images/cart-arrow.gif?v=141217") no-repeat scroll -33px -27px;
+    display: block;
+    float: left;
+    height: 20px;
+    margin-right: 6px;
+    position: relative;
+    top: 3px;
+    width: 20px;
+}
+.binding-box span {
+    display: block;
+    margin: 5px 0 20px 26px;
+}
+.binding-box a {
+    display: block;
+    font-size: 14px;
+    height: 33px;
+    line-height: 33px;
+    margin-left: 26px;
+    text-align: center;
+    width: 137px;
+}
+.last {
+    color: #666;
+}
+.last ul li {
+    background: #fcfcfc none repeat scroll 0 0;
+    border: 1px solid #f5f5f5;
+    height: 57px;
+    line-height: 45px;
+    padding-left: 13px;
+}
+.last ul li h3 {
+    display: inline;
+    font-size: 14px;
+    font-weight: normal;
+}
+.last ul li b {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 30px;
+    margin-left: 5px;
+    position: relative;
+}
+.last li {
+    font-size: 14px;
+}
+.last li b {
+    margin-right: 5px;
+    top: 3px;
+}
+.last li a {
+    left: 10px;
+    position: relative;
+    top: -2px;
+}
+.type {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border-bottom: 1px solid #d6d6d6;
+    border-top: 1px solid #d6d6d6;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 10px;
+}
+.type a {
+    color: #666;
+    display: block;
+    float: left;
+    height: 29px;
+    text-align: center;
+    width: 71px;
+}
+.type a.annal1 {
+    background: #fcfcfc none repeat scroll 0 0;
+    border-left: 1px solid #d6d6d6;
+    border-right: 1px solid #d6d6d6;
+    font-weight: bold;
+    position: relative;
+}
+.recordList {
+    color: #666;
+}
+.recordList ul, .cash ul, .commission ul {
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+.recordList ul li {
+    line-height: 22px;
+    padding: 8px 10px;
+    text-align: center;
+    width: 170px;
+}
+.recordList ul.listTitle {
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 1px solid #e3e3e3;
+}
+.recordList ul.listTitle li {
+    line-height: 28px;
+    padding: 0 10px;
+}
+.recordList ul li.leftTitle {
+    text-align: left;
+}
+.recordList ul li.leftTitle, .recordList ul li.fontAri {
+    font-family: Arial,Helvetica,sans-serif;
+}
+.recordList ul li a {
+    color: #43b6ff;
+}
+.recordList ul li a:hover {
+    color: #f60;
+    text-decoration: underline;
+}
+.recordList ul li.price {
+    text-align: right;
+}
+.recordList ul li.regard {
+    padding-left: 30px;
+    width: 300px;
+}
+.buyDetail ul li.leftTitle {
+    width: 430px;
+}
+.buyDetail ul li.regard {
+    width: 80px;
+}
+.count {
+    height: 25px;
+    line-height: 25px;
+    margin: 10px 0 15px;
+}
+.count dd {
+    float: left;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.count dd em {
+    font-family: Arial,Helvetica,sans-serif;
+    margin-right: 17px;
+}
+.count dd.btn {
+    float: right;
+    position: relative;
+    width: 88px;
+}
+.count dd.btn, .count dd a {
+    height: 25px;
+}
+.count dd.btn a {
+    background: #f1f1f1 none repeat scroll 0 0;
+    border: 1px solid #d6d6d6;
+    border-radius: 2px;
+    color: #878787;
+    display: block;
+    font-size: 12px;
+    height: 25px;
+    line-height: 23px;
+    padding-right: 14px;
+    text-align: right;
+    text-decoration: none;
+    width: 74px;
+}
+.count span {
+    background-position: -115px -80px;
+    display: block;
+    height: 11px;
+    left: 21px;
+    position: absolute;
+    top: 7px;
+    width: 8px;
+}
+.select {
+    display: inline-block;
+    margin: 10px auto 25px;
+    width: 780px;
+}
+.select ul {
+    margin-top: 15px;
+}
+.select li {
+    background: #fdfdfd none repeat scroll 0 0;
+    border: 1px solid #efefef;
+    color: #666;
+    cursor: pointer;
+    float: left;
+    font-family: "宋体";
+    font-size: 12px;
+    font-weight: bold;
+    height: 38px;
+    line-height: 38px;
+    margin-left: 17px;
+    padding-left: 18px;
+    text-align: left;
+    width: 110px;
+}
+.select li label {
+    cursor: pointer;
+}
+.select li input {
+    position: relative;
+    top: 2px;
+}
+.select li label b, .select li input.enter {
+    color: #f60;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.select li label strong {
+    color: #f60;
+    font-family: "宋体";
+}
+.select li.rdoCheck {
+    border: 1px solid #bebebe;
+}
+.select li.selected {
+    border: 1px solid #ff7010;
+}
+.select li.custom {
+    width: 170px;
+}
+.select li input.enter {
+    border: 1px solid #d6d3d6;
+    color: #f60;
+    height: 22px;
+    line-height: 22px;
+    margin-left: 5px;
+    padding: 0 3px;
+    position: relative;
+    top: 1px;
+    width: 68px;
+}
+.charge_money_list {
+    border-top: 1px solid #eee;
+    padding: 13px 0 0 10px;
+    position: relative;
+    width: 770px;
+}
+.charge_money_list p.title {
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.charge_money_list .tab_btn {
+    background: #f2f2f2 none repeat scroll 0 0;
+    border-bottom: 1px solid #e6e6e6;
+    border-top: 2px solid #e6e6e6;
+    font-size: 16px;
+    height: 37px;
+    line-height: 37px;
+}
+.charge_money_list .tab_btn a {
+    color: #333;
+    display: block;
+    float: left;
+    text-align: center;
+    width: 146px;
+}
+.charge_money_list .tab_btn a.tab_btn_hover {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid #fff;
+    border-top: 2px solid #f60;
+    color: #f60;
+    margin-top: -2px;
+}
+.charge_money_list .tab_btn a:hover {
+    color: #f60;
+}
+.charge_money_list ul.payment {
+    border-bottom: 2px solid #e6e6e6;
+    clear: both;
+    float: left;
+    padding: 20px 10px 0;
+    width: 750px;
+}
+.charge_money_list ul.sel li {
+    float: left;
+}
+.charge_money_list ul.payment li {
+    float: left;
+}
+.charge_money_list ul.payment li.top {
+    padding-bottom: 20px;
+    width: 750px;
+}
+.charge_money_list ul.payment li input {
+    display: block;
+    float: left;
+    margin: 12px 5px 0 0;
+}
+.charge_money_list ul.payment span {
+    background: rgba(0, 0, 0, 0) url("/MyCart/images/bank_logo_2014.gif?v=0612") repeat scroll 0 0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: block;
+    float: left;
+    height: 36px;
+    margin: 0 25px 0 0;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 130px;
+}
+p.leix {
+    clear: both;
+    color: #333;
+    display: block;
+    float: left;
+    font-size: 16px;
+    margin: 10px 0;
+    width: 150px;
+}
+.charge_money_list li span.gh_bank {
+    background-position: 7px 0;
+}
+.charge_money_list li span.zh_bank {
+    background-position: 7px -32px;
+}
+.charge_money_list li span.jh_bank {
+    background-position: 7px -67px;
+}
+.charge_money_list li span.nh_bank {
+    background-position: 7px -99px;
+}
+.charge_money_list li span.pf_bank {
+    background-position: 7px -132px;
+}
+.charge_money_list li span.sf_bank {
+    background-position: 7px -165px;
+}
+.charge_money_list li span.xy_bank {
+    background-position: 7px -199px;
+}
+.charge_money_list li span.bj_bank {
+    background-position: 7px -232px;
+}
+.charge_money_list li span.gd_bank {
+    background-position: 7px -264px;
+}
+.charge_money_list li span.ms_bank {
+    background-position: 7px -297px;
+}
+.charge_money_list li span.zx_bank {
+    background-position: 7px -329px;
+}
+.charge_money_list li span.gf_bank {
+    background-position: 7px -362px;
+}
+.charge_money_list li span.pa_bank {
+    background-position: 7px -397px;
+}
+.charge_money_list li span.zg_bank {
+    background-position: 7px -429px;
+}
+.charge_money_list li span.jt_bank {
+    background-position: 7px -462px;
+}
+.charge_money_list li span.hx_bank {
+    background-position: 7px -727px;
+}
+.charge_money_list li span.sh_bank {
+    background-position: 7px -767px;
+}
+.charge_money_list li span.nj_bank {
+    background-position: 7px -811px;
+}
+.charge_money_list li span.yz_bank {
+    background-position: 5px -851px;
+}
+.charge_money_list li span.hz_bank {
+    background-position: 5px -889px;
+}
+.charge_money_list li span.lb_bank {
+    background-position: 7px -933px;
+}
+.charge_money_list li span.cqls_bank {
+    background-position: 7px -972px;
+}
+.charge_money_list li span.bj2_bank {
+    background-position: 7px -1005px;
+}
+.charge_money_list li span.qd_bank {
+    background-position: 7px -1040px;
+}
+.charge_money_list li span.cd_bank {
+    background-position: 7px -1081px;
+}
+.charge_money_list li span.zfb {
+    background-position: 7px -613px;
+}
+.charge_money_list li span.cft {
+    background-position: 7px -500px;
+}
+.charge_money_list li span.yl {
+    background: rgba(0, 0, 0, 0) url("/MyCart/images/bank_logo.png?v=23") repeat scroll 8px -550px;
+}
+.charge_money_list li span.kq {
+    background-position: 11px -577px;
+}
+.charge_money_list li span.wy {
+    background-position: 10px -539px;
+}
+.charge_money_list li span.online {
+    background-position: 10px -649px;
+}
+.charge_money_list li span.weixin {
+    background-position: 9px -688px;
+}
+.charge_money_list li span.jd_bank {
+    background-position: 9px -1121px;
+}
+.charge_money_list li span.qqmobile {
+    background-position: 8px -1162px;
+}
+.charge_money_list p.much {
+    border-bottom: 1px solid #e6e7e8;
+    color: #666;
+    float: left;
+    font-weight: bold;
+    padding: 10px 0;
+    width: 770px;
+}
+.charge_money_list p.much span {
+    color: #f40;
+    font-size: 12px;
+    font-weight: bold;
+}
+.charge_money_list p.much span#Money {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+}
+.charge_money_list h6 {
+    clear: both;
+    margin-left: 68px;
+    padding: 15px 0;
+}
+.charge_money_list .imm {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 19px;
+}
+.prompt_box {
+    height: 140px;
+    position: relative;
+    width: 340px;
+}
+.prompt_box p.pic {
+    color: #fe7800;
+    height: 15px;
+    line-height: 15px;
+    padding: 10px 0 0 33px;
+}
+.prompt_box p.pic em {
+    background: rgba(0, 0, 0, 0) url("http://skin.1yyg.com/Member/images/new-admin.png?v=150421") no-repeat scroll -82px -98px;
+    display: block;
+    float: left;
+    height: 15px;
+    margin-right: 2px;
+    width: 15px;
+}
+.prompt_box p.ts {
+    color: #999;
+    padding: 10px 0 0 50px;
+    width: 280px;
+}
+.prompt_box p a {
+    color: #1070c4;
+}
+.prompt_box p a:hover {
+    color: #f60;
+}
+.prompt_box ul {
+    float: left;
+    padding: 10px 0 0 50px;
+    width: 280px;
+}
+.prompt_box ul li {
+    float: left;
+    padding-right: 20px;
+}
+.prompt_box ul li a.look {
+    background: rgba(0, 0, 0, 0) url("../images/arrow_button.png") no-repeat scroll 0 -410px;
+    color: #666;
+    display: block;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    width: 110px;
+}
+.prompt_box ul li a.back {
+    background: rgba(0, 0, 0, 0) url("../images/arrow_button.png") no-repeat scroll 0 -440px;
+    color: #666;
+    display: block;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+    width: 94px;
+}
+.prompt_box ul li a {
+    text-decoration: none;
+}
+.recharge-card {
+    background: rgba(0, 0, 0, 0) url("../images/recharge-card.png?v=130723") repeat scroll 0 0;
+    height: 255px;
+    margin: 50px auto;
+    width: 438px;
+}
+.recharge-card ul {
+    padding: 30px 0 0 40px;
+}
+.recharge-card li {
+    clear: both;
+    color: #333;
+    font-size: 16px;
+    padding-left: 82px;
+    position: relative;
+    width: 300px;
+}
+.recharge-card li label {
+    display: block;
+    left: 0;
+    line-height: 28px;
+    position: absolute;
+    vertical-align: middle;
+}
+.recharge-card li input {
+    border-color: #bbb #ddd #ddd #bbb;
+    border-style: solid;
+    border-width: 1px;
+    color: #bbb;
+    font: 14px/1.5 "微软雅黑",Arial;
+    height: 20px;
+    padding: 4px 3px;
+    vertical-align: middle;
+    width: 192px;
+}
+.recharge-card li.z-error {
+    height: 18px;
+    margin: 3px 0 10px;
+}
+.recharge-card li.z-error span {
+    background: rgba(0, 0, 0, 0) url("/Images/arrow_button.png") no-repeat scroll -170px -80px;
+    color: #dd0101;
+    font-size: 12px;
+    padding: 0 0 0 18px;
+}
+.recharge-card li a {
+    display: block;
+    height: 23px;
+    margin-top: 15px;
+    padding: 0;
+    width: 86px;
+}
+.recharge-card li a.graybtn {
+    background: #bbb none repeat scroll 0 0;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    color: #fff;
+    cursor: default;
+    text-align: center;
+}

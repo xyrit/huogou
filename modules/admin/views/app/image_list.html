@@ -1,0 +1,86 @@
+{% extends 'main.html' %}
+
+
+{% block main %}
+<script src="/assets/yii2/yii.js"></script>
+<script src="/assets/yii2/yii.gridView.js"></script>
+<div class="admin-content" style="padding-bottom: 26.5rem">
+
+<div class="am-cf am-padding">
+    <div class="am-fl am-cf">
+        <strong id="title" class="am-text-primary am-text-lg"><a href="http://api.{{ constant('DOMAIN') }}/app/openpic" target="_black">开机图片列表</a></strong>
+    </div>
+</div>
+    
+    <form method="get" action="" class="am-form am-form-horizontal">
+        <div class="am-g">
+            
+            <div class="am-u-sm-12 am-u-md-3">&nbsp;</div>
+            <div class="am-u-sm-12 am-u-md-1">
+                <div class="am-form-group">
+                    系统
+                    {{ html.listBox("system",app.request.get("system"),{'':'全部',"android":"android","ios":"ios"},{"size":1}) |raw }}
+                </div>
+            </div>
+
+            <div class="am-u-sm-12 am-u-md-2">
+                <div class="am-form-group">
+                    状态
+                    {{ html.listBox("status",app.request.get("status"),{"":"全部","1":"启用","0":"未启用"},{"size":1}) |raw }}
+                </div>
+            </div>
+        </div>
+            </form>
+<hr>
+
+<div class="am-u-sm-12">
+<p>{{  html.a('新建', {0:'create','tpl':"image",'refer':app.getRequest().getUrl()}, {'class' : 'am-btn am-btn-default'})  |raw }}  </p>
+
+<div class="grid-view" id="w0">
+    <table class="am-table am-table-striped am-table-hover table-main"><thead>
+            <tr>
+                <th>图片</th>
+                <th>标题</th>
+                <th>开始时间</th>
+                <th>结束时间</th>
+                <th>  是否启用   </th>
+                <th>编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set list = dataProvider.getModels() %}
+            {% for item in list %}
+                <tr data-key="{{ item.id }}">
+                    <td><a href='{{ item.image_link }}' target="black"><img src="{{ item.image_src}}" style="max-height: 70px" /></a></td>
+                    <td>{{ item.image_title }}</td>
+                    <td>{{ item.start_time }}</td>
+                    <td>{{ item.end_time }}</td>
+                    <td>1</td>
+                    <td> <a data-pjax="0" aria-label="更新" title="更新" href="/app/update?id={{ item.id }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a data-pjax="0" data-method="post" data-confirm="您确定要删除此项吗？" aria-label="删除" title="删除" href="/app/delete?id={{ item.id }}"><span class="glyphicon glyphicon-trash"></span></a> 
+                            <a class="action_column" title="上移" href="/app/sort?id={{ item.id }}"><span class="glyphicon glyphicon-arrow-up"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody></table>
+      <div class="am-cf">
+        <p class="am-fl">共 {{ dataProvider.totalCount }} 条记录</p>
+        <div class="am-fr">
+            {{ use('/app/widgets/BackendLinkPager') }}
+            {{ backend_link_pager_widget({'pagination': dataProvider.Pagination}) }}
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        $("select").change(function(){
+            $(this).parents("form").submit();
+        })
+   </script>
+{% endblock %}

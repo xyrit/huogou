@@ -1,0 +1,117 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}晒单详情{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/single_detail.css" rel="stylesheet" type="text/css" />
+<link href="{{ app.params.skinUrl }}/ddweixin/css/single_index.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/post_detail.js" language="javascript" type="text/javascript"></script>
+
+{% endblock %}
+
+{% block body %}
+<div id="loadingPicBlock">
+    <div class="wrapper">
+        <div class="singleDetail marginB">
+            <div class="sing_info">
+                <a href="{{ periodInfo.user_home_id }}" id="userurl" class="userurl">
+                    <img src="{{ periodInfo.user_avatar }}" />
+                </a>
+                <p class="gray9">
+                    <a href="{{ url('/user', {'id': periodInfo.user_home_id}) }}" class="blue userurl">{{ periodInfo.user_name }}</a> 本期参与：
+                    <em class="orange">{{ periodInfo.user_buy_num }}</em>人次
+                    <span>获得的商品：{{ periodInfo.goods_name }}<a href="{{ url('/product', {'pid':periodInfo.goods_id}) }}">  </a></span>
+                </p>
+                <cite>奖励福分<em>{{ detail.point }}</em></cite>
+                <s>
+                    <i></i>
+                </s>
+            </div>
+            <dl>
+                <dt class="gray6">
+                    {{ detail.title }}
+                </dt>
+                <dd>
+                    {{ detail.created_at }}    {{ detail.view_num }}人阅读    {{ detail.comment_num }}人评论
+                </dd>
+                <dd>
+                    <p class="gray9">
+                         {{ detail.content }}
+                    </p>
+                </dd>
+                <dd>
+                      {% for picture in pictures %}
+                        <img src="{{ picture }}">
+                        {% endfor %}
+                </dd>
+            </dl>            
+            
+            
+            
+            
+              <div class="wx-show-message comment">
+                <div class="mess-menu">
+                    <span>评论(<em id="emReplyNum">75</em>)</span>
+                </div>
+                <div class="mess-wrapper">
+                    <div id="replyList" class="mess-inner">
+<!--                        <div class="mess-list"><a href="http://weixin.1yyg.com/userpage/1011074327" class="photo">
+                                <img src="http://mimg.1yyg.com/userface/00000000000000000.jpg" alt="头像"></a>
+                            <p class="name"><a href="http://weixin.1yyg.com/userpage/1011074327" class="blue">13107****00</a><span class="fr time">12月02日 23:11</span></p><p>真的是骗人吗？</p></div>-->
+                    </div>
+                    <div style="display: none;" class="loading clearfix"><b></b>正在加载</div>
+                </div>
+            </div>
+            
+            <a href="javascript:void(0);" class="lookAll gray6" style="display:none;">查看所有<em class="orange">{{ detail.comment_num }}</em>条评论</a>
+        </div>
+        
+        
+<div class="s_comments" style="display:none;">
+                   {% if app.user.isGuest %}
+                    <article>
+                        <i></i>
+                        请您<a href="javascript:;" onclick="showLoginForm()">登录</a>或<a href="{{ url(['/passport/default/register']) }}">注册</a>后再评论
+                    </article>
+                    {% else %}
+                    <div class="editor-wrap">
+                        <textarea id="comment" placeholder="说两句吧！" style="color:#666"></textarea>
+                        <span id="p_size">0/150</span>
+                        <p>
+                            <a href="javascript:;" id="a_cancel" class="cancelBtn fl" title="取消">取消</a>
+                            <a id="a_sendok" href="javascript:;" class="orangeBtn fr" title="确定发表">确定发表</a>
+                        </p>
+                    </div>
+                    
+                    {% endif %}
+        </div>
+        <!--<div class="saysome">-->
+            <!--<a href="javascript:;" id="tocomment">-->
+                <!--<s></s>我要评论</a>-->
+        <!--</div>-->
+        
+        
+        <input id="hidPageType" type="hidden" value="-1" />
+        <div class="footer" style="display: none;">
+            <ul>
+                <li class="f_home"><a href="../index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="../list.html" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="../mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="../member/index.html" title="我的夺宝"><i></i>我的夺宝</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+     var topic_id = {{detail.id}};
+     var token = "";
+     var shareComment_condition = {
+        page: 1,
+        perpage : 50,
+        token: token
+    };
+</script>
+{% endblock %}

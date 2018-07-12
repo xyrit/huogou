@@ -1,0 +1,80 @@
+*{ margin: 0;padding: 0;list-style: none;border: none;}
+body{font-size: 14px;font-family: '微软雅黑';color: #333;background: #ffdd55}
+a{ text-decoration: none;color: #333}
+a:link{text-decoration:none;}/* 指正常的未被访问过的链接*/
+a:visited{text-decoration:none;}/*指已经访问过的链接*/
+a:hover{text-decoration:none;}/*指鼠标在链接*/
+a:active{text-decoration:none;}/* 指正在点的链接*/
+a:focus {outline:none;-moz-outline:none;-webkit-outline:none;} /*去除a标签选中出现虚线边框*/
+/*主颜色*/
+.zhubuttton{ background: #ea3b40;height: 50px;border-radius: 5px;}
+.main{ width: 100%;height: auto; max-width: 640px;margin: 0 auto;}
+.carousel{ margin-top: 39px;}
+.zhuColor{ color: #fee032}
+.main .convertBut{ width: 100%;overflow: hidden;padding: 5px 0px;}
+.main .convertBut a{ width: 80%; background: #ea3b40;display: block;margin: 0 auto;text-align: center;line-height: 45px;border-radius: 10px;color: #fff;font-size: 1.0rem;}
+.main .convertBut a span{ font-size: 1.0rem;display: inline-block;margin: 0;padding: 0;}
+.carCenter{ width:90%;background: #fff9e3;overflow:hidden;border-radius: 10px;margin: 20px auto 100px;text-align: center;padding: 25px 15px; box-sizing:border-box;}
+.carCenter ul{display: none}
+.carCenterTitle{width: 100%;overflow: hidden;margin-bottom: 20px;}
+.carCenterTitle a{ width: 48%;float: left;border-radius: 8px;}
+.carCenterTitle a:nth-child(1){margin-right: 4% }
+.carCenter ul.redBox li{ width:48%;float: left;margin-bottom: 4%;overflow: hidden}
+.carCenter ul.redBox li:nth-child(1){margin-right: 4% }
+.carCenter ul.redBox li:nth-child(3){margin-right: 4%;margin-bottom: 0; }
+.carCenter ul.redBox li:nth-child(4){margin-bottom: 0; }
+.clear{ clear:both}
+.huoquBut{width: 90%; margin: 20px auto; position: fixed; bottom: -10px; left: 50%; margin-left: -45%;}
+.countDown{ width:100%;background: #4c42b5;position: fixed;left: 0;top:0;padding: 10px 0px;}
+.clockBox { color: #fff;text-align: center}
+.clockBox p{ margin-bottom: 10px;font-size: 12px}
+.clockBox p img{ margin: 0px 10px -2px 0px;}
+.clockBox span{ width:30px; height: 25px;background:#3e2fa5;display: inline-block;text-align: center;font-weight: bold;line-height: 25px;color: #fef337;border-radius: 3px;}
+ul.ruletext{ color:#6c3000;font-size: 16px;line-height: 25px}
+.rulTextP{ margin-bottom: 20px;text-align: left;}
+ul.ruletext li{ text-align: left;margin-bottom: 35px}
+ul.ruletext li img{width: 20px;margin: 0px 10px -2px 0px;}
+ul.ruletext li img.fontImg{width:18px}
+ul.ruletext li span{ font-size: 18px;color: #e53e45}
+ul.ruletext li p{ margin: 8px 0px;font-size: 16px;padding-left: 30px;}
+.borderTop{ background: #6c3000;width: 95%;margin: 30px auto;height: 1px}
+
+@media screen and (min-width: 640px) {
+    .huoquBut {
+        width: 90%;
+        margin: 20px auto;
+        position: fixed;
+        bottom: -10px;
+        left: 50%;
+        max-width: 640px;
+        margin-left: -320px;
+    }
+}
+/*倒计时 css */
+#simple_timer{ display: inline-block; }
+.timer .table-cell { display: inline-block; }
+.timer .table-cell .tab-val { font-size: 1.0rem; color: #fef337; background:#3e2fa5; display: inline; width:30px; height: 25px;background:#3e2fa5;display: inline-block;text-align: center;font-weight: bold;line-height: 25px;color: #fef337;border-radius: 3px; }
+.timer .table-cell .tab-metr { font-size: 12px; text-transform: uppercase; display: inline; }
+.dev_comment { clear: left; font-size: 14pt; color: #fff; text-align: center; padding-top: 10px; margin: 20px 10px; }
+#loading { text-align: center; margin: 10px; display: none; position: absolute; width: 100%; top: 60px; }
+.tips_bg{ padding-top: 2%; background-color: #e74044; }
+.tips{ width: 96%; margin: 0 auto; background-color: #fce4ca; padding: 2%; box-sizing: border-box; text-align: center; }
+.tips>p>span{ color: #e74044; padding: 0 2px; }
+.wenxin-tips{ background-color: #f4f4f4; padding: 0 2% 2%; }
+.wenxin-tips p>img{ width: 18px; }
+.wenxin-tips p{ color:#de612e; }
+.wenxin-tips p.title{ border-bottom: 1px solid #de612e; padding-bottom: 1%; font-weight: 600; }
+.wenxin-tips p.con{ padding-top: 1%; line-height: 22px;
+}
+/*倒计时 css结束 */
+
+/*弹窗*/
+.footer.on{display:block;}
+.footer{display:none;line-height:2em;width:100%;height:100%;position:fixed;left:0;top:0;background:rgba(0,0,0,.6);}
+.wrap.wrap_r{position:absolute;top:50%;left:50%;height:80px;text-align:center;width:80%;margin-top:-40px;margin-left:-40%;background:#fff;padding: 19px 0px;
+box-sizing: border-box;}
+.wrap.wrap_r  span{color:#f02f0f;margin:0 1em;font-size:1.1em;border-radius:5px;display:inline-block;border:1px solid #f02f0f;padding:0.5em 0.8em;}
+.wrap.wrap_r p:first-child{font-size:1.0em;}
+.wrap.wrap_r p{padding:0.3em 0px 0.1em;}
+.wrap.wrap_r .two{color:#434140;font-size:1.0em;}
+.wrap.wrap_r p .off.on{background:#f02f0f;color:#fff;}

@@ -1,0 +1,70 @@
+{% extends '@app/views/base.html' %}
+
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block title %}我的消息-私信{% endblock %}
+
+{% block body %}
+
+    {% include '@app/views/topbar.html' %}
+
+    {% include '@app/views/nav.html' %}
+
+    <section class="member">
+        <div class="wrap clear">
+            {% include '@memberModule/views/info/header.html' %}
+            <div class="wrap_con">
+                {% include '@memberModule/views/message/sidebar.html' %}
+                <div class="wrap_con_box">
+                    <ul class="sx-info">
+                        {% for key,item in messageList.list %}
+                            <li>
+                                <b class="sx-info-delete close-msg"  home-id="{{ item.user.home_id }}"></b>
+                                <picture>
+                                    <img src="{{ item.avatar }}" alt="">
+                                </picture>
+                                <summary>
+                                    {% if(item.id == app.user.id) %}
+                                        <p>您对<a href="{{ url('/user', {'id':item.user.home_id}) }}" target="_blank">{{ item.user.username }}</a>说：
+                                            {% autoescape true %}
+                                                {{ item.content|raw }}
+                                            {% endautoescape %}
+                                        </p>
+                                    {% else %}
+                                        <p>{{ item.user.username }}对<a href="{{ url('/user', {'id':item.user.home_id}) }}" target="_blank"></a>您说：
+                                            {% autoescape true %}
+                                                {{ item.content|raw }}
+                                            {% endautoescape %}
+                                        </p>
+                                    {% endif %}
+                                    <aside>
+                                        <i>{{ item.created_at }}</i>
+                                        <span><a href="{{ url('/member/message/msg-detail', {'id':item.user.home_id}) }}">共{{ item.count }}条私信</a>
+                                            <a href="{{ url('/member/message/msg-detail', {'id':item.user.home_id}) }}">回复</a></span>
+                                    </aside>
+                                </summary>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    {% if(messageList.list) %}
+                    <div class="sx-info-act">
+                        <span id="sx-info-empty" class="close-msg" msgall="all" onclick="gotoClick();">全部清空</span>
+                    </div>
+                    {{ use('/app/widgets/LinkPager') }}
+                    {{ link_pager_widget({pagination: messageList.pagination}) }}
+                     {% else %}
+                         <div class="notHave"><span class="notHave_icon"></span><p class="notHave_txt">你还没有私信消息哦！</p></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include '@app/views/footer.html' %}
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/member_friend.js" ></script>
+{% endblock %}

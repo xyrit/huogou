@@ -1,0 +1,91 @@
+{% extends '@ddweixinModule/views/base.html' %}
+
+{% block title %}我的夺宝{% endblock %}
+
+{% block css %}
+<link href="{{ app.params.skinUrl }}/ddweixin/css/member.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block js %}
+<script src="{{ app.params.skinUrl }}/ddweixin/js/member_index.js" language="javascript" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+
+  <div class="wrapper">
+    {% if userInfo.id %}
+    <div class="m_myInfo">
+      <dl>
+        <dt class="gray6 clearfix" >
+          <div>
+            <img id="avatarImg" src="{{ userInfo.avatar }}" onclick="location.href='/userpage/{{userInfo.home_id}}'"/>
+            <iframe name="upFrame" scrolling="no" src="about:blank" style="display: none;"></iframe>
+            {{ html.beginForm(url(['/ddweixin/member/avatar']), 'post', {'id':'pageForm','target':'upFrame','enctype':'multipart/form-data'}) | raw }}
+            <span class="avatarInputSpan" style="margin-right: 0;"><input type="file" name="avatar" id="avatar" class="avatarInput"></span>
+            {{ html.endForm() | raw }}
+          </div>
+        <p>
+          {% if userInfo.nickname is empty %}
+          <span id="nicknameBtn" class="setNickname" data-val="{{userInfo.nickname}}">设置昵称</span>
+          {% else %}
+          <span id="nicknameBtn" data-val="{{userInfo.nickname}}">{{ userInfo.username }}</span>
+          {% endif %}
+          <em class="gray9">（<a class="gray9" href="/userpage/{{userInfo.home_id}}">{% if userInfo.phone %}{{ userInfo.phone }}{% else %}{{ userInfo.email }}{% endif %}</a>）</em>
+          <cite class="gray9">
+            <span class="z-class-icon0{{ userInfo.level.num }}">
+             <s></s>{{ userInfo.level.name }}
+            </span>经验值：<em>{{ userInfo.experience }}</em>
+          </cite>
+        </p>
+        </dt>
+        <dd class="clearfix">
+          <b>
+            <a href="userpoints.html"><em class="orange">{{ userInfo.point }}</em>可用福分</a>
+          </b>
+          <b>
+            <a href="consumption.html"><em class="orange">{{ "%.2f"|format(userInfo.money) }}<i> 夺宝币</i></em>可用余额</a>
+          </b>
+          <a href="recharge.html" class="orangeBtn">去充值</a>
+        </dd>
+      </dl>
+    </div>
+    {% else %}
+    <div class="welcome gray9">^_^ 欢迎来到滴滴夺宝<a href="/passport/login.html?forward=http%3A%2F%2Fweixin.{{constant('DOMAIN')}}%2Fmember%2Findex.html" class="orange">登录</a></div>
+    {% endif %}
+    <div class="sub_nav marginB">
+      <!--<a href="javascript:;" class="gzhuBtn"><s class="m_s6"></s>点这里关注微信公众号</a>-->
+      <a href="goodsbuylist.html">
+        <s class="m_s1"></s>夺宝记录<i></i>
+      </a>
+      <a href="orderlist.html">
+        <s class="m_s2"></s>获得的商品<i></i>
+      </a>
+      <a href="postlist.html">
+        <s class="m_s9"></s>我的晒单<i></i>
+      </a>
+      <a href="favorite.html">
+        <s class="m_s8"></s>我的关注<i></i>
+      </a>
+      <a href="sharelist.html">
+        <s class="m_s4"></s>分享赚钱<span class="orange">邀请新用户最多可获得188元现金！</span><i></i>
+      </a>
+      <a href="addresslist.html">
+        <s class="m_s7"></s>收货地址<i></i>
+      </a>
+      <a href="safesetting.html">
+        <s class="m_s10"></s>安全设置<i></i>
+      </a>
+      <a href="/problem.html">
+        <s class="m_s11"></s>帮助与反馈<i></i>
+      </a>
+      <a href="/didi_app/contact.html">
+        <s class="m_s12"></s>联系我们<i></i>
+      </a>
+      <a href="unbind.html" class="user-set">
+        <s class="m_s5"></s>账号设置<i></i>
+      </a>
+      <p style="padding-top: 15px;text-align: center;color: #bbb; font-size: 12px;">客服热线：400-006-7060  (9:00-18:30)</p>
+    </div>
+    {% include '@ddweixinModule/views/footer.html' %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>所有云购记录</title>
+    <meta content="app-id=518966501" name="apple-itunes-app" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, maximum-scale=1.0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="weixin/CSS/comm.css" rel="stylesheet" type="text/css" />
+    <link href="weixin/CSS/goods.css" rel="stylesheet" type="text/css" />
+    <script src="weixin/JS/jquery-1.11.3.min.js" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<!-- 云购记录 -->
+<input name="hidCodeID" type="hidden" id="hidCodeID" value="1619134" />
+<input name="hidIsEnd" type="hidden" id="hidIsEnd" value="0" />
+<div id="loadingPicBlock">
+    <div class="wrapper">
+        <!--去掉#divRecordList中 .marginB 隐藏#divBuyLoading  添加li-->
+        <div id="divRecordList" class="buy_records">
+            <ul>
+                <li>
+                    <span>
+                        <a href="http://weixin.1yyg.com/userpage/1008803882">
+                            <img src="UserFace/00000000000000000.jpg" />
+                        </a>
+                    </span>
+                    <dl>
+                        <dt>
+                            <a href="http://weixin.1yyg.com/userpage/1008803882" class="blue">云购鼎你个肺</a>
+                            <em>(广东省广州市)</em>
+                        </dt>
+                        <dd class="gray6">
+                            云购了
+                            <b class="orange">100</b>人次
+                        </dd>
+                        <dd class="gray9">
+                            2015-10-13 12:14:17.160
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>
+                        <a href="http://weixin.1yyg.com/userpage/1008803882">
+                            <img src="UserFace/00000000000000000.jpg" />
+                        </a>
+                    </span>
+                    <dl>
+                        <dt>
+                            <a href="http://weixin.1yyg.com/userpage/1008803882" class="blue">云购鼎你个肺</a>
+                            <em>(广东省广州市)</em>
+                        </dt>
+                        <dd class="gray6">
+                            云购了
+                            <b class="orange">100</b>人次
+                        </dd>
+                        <dd class="gray9">
+                            2015-10-13 12:14:17.160
+                        </dd>
+                    </dl>
+                </li>
+
+                <div id="divBuyLoading" class="loading" style="display: none">
+                    <b></b>正在加载
+                </div>
+            </ul>
+        </div>
+        <div id="btnLoadMore" class="load_more" style="display: block;">
+            <a href="javascript:;" title="加载更多">加载更多</a>
+        </div>
+
+        <input id="hidPageType" type="hidden" value="-2" />
+        <div class="footer">
+            <ul>
+                <li class="f_home"><a href="index.html" title="首页"><i></i>首页</a></li>
+                <li class="f_whole"><a href="list.html" class="hover" title="所有商品"><i></i>所有商品</a></li>
+                <li class="f_car"><a id="btnCart" href="mycart/index.html" title="购物车"><i></i>购物车</a></li>
+                <li class="f_personal"><a href="member/index.html" title="我的云购"><i></i>我的云购</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+//    点击加载更多
+    $('#btnLoadMore').click(function(){
+        $(this).hide();
+        $('#divBuyLoading').show();
+        setTimeout(function(){
+            $('#divBuyLoading').hide();
+            $('#btnLoadMore').show();
+        },2000)
+    })
+</script>
+</body>
+</html>

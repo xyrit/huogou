@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="{{ app.params.skinUrl }}/css/site.css" />
+
+    <!--调用-->
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/common.js" ></script>
+    <script type="text/javascript" src="{{ app.params.skinUrl }}/js/active-lottery.js"></script>
+</head>
+
+<body class="choujiang">
+<section class="top"><img src="{{ app.params.skinUrl }}/img/lottery/img1.jpg" alt="" class="widthfull">  <a href="{{ url('lottery/reward', {'id':id, 'type':'2'}) }}" class="click">中奖记录</a> </section>
+<section class="pan"><img src="{{ app.params.skinUrl }}/img/lottery/img2.jpg" alt="" class="widthfull">
+
+    <div class="items">
+        <ul class="noliststyle clearfix" id="lottery">
+        </ul>
+    </div>
+</section>
+<section class="message">
+    <div class="list">
+        <ul class="noliststyle-2">
+        </ul>
+    </div>
+</section>
+<section class="buttons clearfix">
+    <a href="{{ url('lottery/recharge', {'id':id, 'type':'4'}) }}" class="btn1"><img src="{{ app.params.skinUrl }}/img/lottery/img7.png" alt=""></a>
+    <a href="{{ url('lottery/share', {'id':id, 'type':'3'}) }}" class="btn2"><img src="{{ app.params.skinUrl }}/img/lottery/img8.png" alt=""></a>
+</section>
+<section class="footer">
+    <div class="title"><div class="line"><div class="txt"><i></i><span>活动说明</span><i></i></div></div></div>
+    <p class="bt">活动时间：</p>
+    <p>即日起生效，具体结束时间请留意伙购网官方发布。<br />
+        参与活动用户资格：伙购网注册用户。</p>
+    <p class="bt">活动细则：</p>
+    <ul class="helpBox stepTwo">
+        <li>
+            <p>1、抽奖次数获取方式：<br /> a，活动期间，单次充值满100元即可获得1次抽奖，抽奖次数可根据抽奖金额累加。<br />
+                b，每日分享，可获得1次抽奖机会。
+            </p>
+        </li>
+        <li>
+            <p>2、获得奖品领取方式。<br />a，获得伙购币或福分，直接转入进伙购个人账户中。<br />
+                b，获得红包，进入“我的伙购—我的红包”中进行查看。<br />
+                c，获得实物，请及时与我司客服人员联系，确认后，会在三个工作日内将奖品送出。
+            </p>
+        </li>
+        <li>
+            <p>3、通过手机号验证的注册用户才可参与此活动。</p>
+        </li>
+        <li>
+            <p>4、该活动的解释权在法律规定的范围内归伙购网所有。</p>
+            <p id="apple" style="display: none;">声明：所有奖品抽奖活动与苹果公司（Apple Inc.）无关</p>
+        </li>
+    </ul>
+</section>
+
+<div class="popcover"></div>
+
+<div class="choujiang_result">
+    <img src="{{ app.params.skinUrl }}/img/lottery/img9.png" class="widthfull">
+    <div class="info">
+        <div class="s_title"></div>
+        <div class="reward_img"><img src="" alt=""></div>
+        <div class="descr"></div>
+        <button class="submit" onclick="popHide('.choujiang_result');">确定</button>
+    </div>
+    </section>
+</div>
+
+<!--提示弹窗-->
+<div class="buy_box">
+    <i class="close"></i>
+    <div class="buy_con">
+        <div>
+            <p class="adel_ts"></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    var boxTop= ( $(window).height() - 138 ) /2;
+    var token = "{{ get.token }}";
+    var tokenSource = "{{ get.tokenSource }}";
+    $('.buy_box').css('top',boxTop);
+
+    var uid = "{{ uid }}";
+    var num = "{{ lottery_num }}";
+    var id = "{{ id }}";
+    // 弹出
+    function popShow(ele){
+        $('.popcover').show();
+        var top= ( $(window).height() - $(ele).height() ) /2;
+        $(ele).show().css('top',top);
+    }
+    function popHide(ele){
+        $('.popcover').hide();
+        $(ele).hide();
+    }
+
+    $(function(){
+        var isiOS = isIos();
+        if (isiOS) {
+            $("#apple").show();
+        }
+    })
+    function isIos(){
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if (isiOS) {
+            return true
+        }
+        return false;
+    }
+</script>

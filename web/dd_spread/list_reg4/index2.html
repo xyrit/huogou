@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>年度盛惠•1元专场</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/swiper-3.3.1.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="js/swiper.animate1.0.2.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/register.js"></script>
+    <script>
+        $(function () {
+            if(isIos() || is_weixn() ){
+                // iPhone
+                $('.link-btn').click(function(){
+                   // window.location=regiUrl;
+                   var pic=$("#pic"),
+                           m_middle=$("#m_middle"),
+                           m_popUp=$("#m_popUp"),
+                           m_con=$('.m_con');
+
+                    m_popUp.css('visibility','visible');
+
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+
+                    pic.attr('src','img/ios.png');
+                    m_middle.attr({'href':'./register.html','target':'_parent'});
+                    if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }
+                });
+                $('#urlBut').text('立即注册');
+               // $(document).attr("title","立即注册");//修改title值
+               // $('#urlBut').attr('href',regiUrl);//跳转 注册页面
+            }else{
+                //Android ;
+                $('#urlBut').text('立即下载');
+                //$(document).attr("title","立即下载");//修改title值
+                $('#urlBut').attr('href',url);//跳转到滴滴夺宝下载页面
+
+                // iPhone
+                $('.link-btn').click(function(){
+                    //window.location=url;
+                    var m_con=$('.m_con');
+                    var m_popUp=$("#m_popUp");
+                    m_popUp.css('visibility','visible');
+                    //m_popUp.show();
+                    var winHight=$(window).height();
+                    var conHeight=m_con.height();
+                    if(winHight>conHeight){
+                        var curHeight=(winHight-conHeight)/2;
+                        m_con.css('margin-top',curHeight);
+                    }
+                });
+            }
+            //关闭弹层
+            $('.m_guide').on('click',function () {
+                $(this).parent().css('visibility','hidden');
+            })
+        });
+    </script>
+    <style>
+        /*新渠道落地页*/
+        html,body{
+            min-height: 100%;
+            height: 100%;
+            /*要使用 swiper 必须设置这个属性*/
+        }
+        .head{
+            background-color: #ffd800;
+
+        }
+
+        .sub-content{
+            position: relative;
+            padding-bottom: 10%;
+        }
+        .sub-list1{
+            background-color: #814ec7;
+        }
+        .sub-list2{
+            background-color: #4ea9c7;
+        }
+        .sub-list3{
+            background-color: #c74eba;
+        }
+        .sub-list4{
+            background-color: #34b989;
+        }
+        .link-btn{
+            position: absolute;
+            bottom: 0;
+            display: block;
+            width: 50%;
+            height: 60px;
+        }
+        .sub-list1 .link-btn{
+            left: 0;
+        }
+        .sub-list2 .link-btn{
+            right: 0;
+        }
+        .sub-list3 .link-btn{
+            left: 0;
+        }
+        .sub-list4 .link-btn{
+            right: 0;
+        }
+        .m_middle{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            display: block;
+            text-indent: -9999em;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+        }
+        .resize{width: 90%;margin:0 auto;}
+        .sub{position: relative}
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+        .swipe-tip {
+            /*content: " ";*/
+            position: absolute;
+            width: 24px;
+            height: 18px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            bottom: .5rem;
+            background: url(img/web-swipe-tip.png) no-repeat;
+            background-size: 100% 100%;
+            animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -webkit-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -moz-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            -o-animation: webSwipeTipAfter 1.5s infinite ease-in-out;
+            z-index: 100;
+        }
+        @keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-webkit-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-moz-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-o-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+        @-ms-keyframes webSwipeTipAfter {
+            0% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+            }
+            100% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                -webkit-transform: translate3d(0, -100%, 0);
+                -moz-transform: translate3d(0, -100%, 0);
+                -o-transform: translate3d(0, -100%, 0);
+                -ms-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0);
+            }
+        }
+
+    </style>
+	<!--<script>
+		$(function () {
+            $('.link-btn').attr('href',regiUrl);//跳转 注册页面
+            $('body').click(function(){
+                window.location=regiUrl;
+            });
+		});
+	</script>-->
+</head>
+<body style="max-width: 640px;margin: auto;">
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="head swiper-slide">
+            <img src="img/new1.jpg" class="resize ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.3s" swiper-animate-delay="0.3s">
+            <a href="#" class="link-btn"></a>
+        </div>
+        <div class="sub-content sub-list1 swiper-slide">
+                <div class="sub">
+                    <img src="img/new2.jpg" class="resize ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+                    <a href="#" class="link-btn"></a>
+                </div>
+        </div>
+        <div class="sub-content sub-list2 swiper-slide">
+            <div class="sub">
+                <img src="img/new3.jpg" class="resize ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+                <a href="#" class="link-btn"></a>
+            </div>
+
+        </div >
+        <div class="sub-content sub-list3 swiper-slide">
+            <div class="sub">
+                <img src="img/new4.jpg" class="resize ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+                <a href="#" class="link-btn"></a>
+            </div>
+
+        </div>
+        <div class="sub-content sub-list4 swiper-slide">
+            <div class="sub">
+                <img src="img/new5.jpg" class="resize ani" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.3s">
+                <a href="#" class="link-btn"></a>
+            </div>
+
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swipe-tip"></div>
+</div>
+
+<div id="m_popUp" class="m_popUp" style="visibility: hidden;">
+    <div class="m_guide"></div>
+    <div class="m_con">
+        <img src="img/android.png" style="width: 90%;margin: 0 auto" id="pic">
+        <a class="m_middle" id="m_middle" href="http://down.cgyyg.com/down.php" target="_blank">立即下载APP</a>
+    </div>
+    <!--<cite class="m_zx"></cite>-->
+</div>
+
+<script>
+    $(function () {
+        var mySwiper = new Swiper('.swiper-container',{
+            onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+                swiperAnimateCache(swiper);
+                swiperAnimate(swiper);
+            },
+
+            onSlideChangeStart: function(swiper){
+                //滑动开始前执行图片居中
+                // checkheight();
+
+            },
+            onSlideChangeEnd: function(swiper){
+                //滑入动画
+                swiperAnimate(swiper);
+                //检查是否到了最后一页，屏蔽提示
+                checkEnd();
+            },
+            direction: 'vertical',
+            pagination: '.swiper-pagination',
+            //autoHeight: true, //高度随内容变化
+        });
+        //判断是否是结尾
+        function checkEnd() {
+            if(mySwiper.isEnd){
+                $('.swipe-tip').hide();
+            }else{
+                $('.swipe-tip').show();
+            }
+        }
+
+        //图片居中
+        function checkheight() {
+            var imgStr=$('.swiper-slide-active .resize');
+            var swiperHeight=mySwiper.height;
+            var imgHeight=imgStr.height();
+            var curHeight=(swiperHeight-imgHeight)/2;
+
+            imgStr.css('margin-top',curHeight);
+            alert(swiperHeight+'*'+imgHeight);
+            alert(imgStr.css('margin-top'));
+        }
+        //checkheight();
+    })
+
+</script>
+</body>
+</html>

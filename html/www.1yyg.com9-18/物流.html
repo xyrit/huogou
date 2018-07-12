@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>订单详情_1元云购</title>
+    <link rel="stylesheet" type="text/css" href="css/header.css" />
+    <link href="css/sslComm.css" rel="stylesheet" type="text/css" />
+    <link href="css/d_member.css" rel="stylesheet" type="text/css" /> <!--增加样式文件-->
+</head>
+<body id="loadingPicBlock">
+<div class="wrapper wrapper-new">
+    <div class="buy-detail clrfix">
+        <div class="g-cur-location">
+            您的位置：
+            <a href="http://www.1yyg.com">首页</a>
+            <em class="f-tran">&gt;</em>
+            <a href="/">我的1元云购</a>
+            <em class="f-tran">&gt;</em>
+            <a href="/OrderList.do">获得的商品</a>
+            <em class="f-tran">&gt;</em>订单详情
+        </div>
+        <div class="g-buyCon clrfix">
+            <h3 class="gray3"> 获得的商品 - 订单详情</h3>
+            <div class="m-get-process">
+                <ul>
+                    <!--订单导航步骤-->
+                    <li class="z-old"><span class="f-hdsp"><i class="u-personal"></i>获得商品</span>
+                        <s class="u-personal"></s></li>
+                    <li class="z-old"><span><i class="u-personal"></i>确认收货地址</span>
+                        <s class="u-personal"></s></li>
+                    <li class="z-old"><span><i class="u-personal"></i>商家发货</span>
+                        <s class="u-personal"></s></li>
+                    <li class="z-old"><span><i class="u-personal"></i>确认收货</span>
+                        <s class="u-personal"></s></li>
+                    <li class="f-sdnjl z-old"><span class="f-sdnjl"><i class="u-personal"></i>交易完成</span>
+                        <s class="u-personal"></s></li>
+                </ul>
+            </div>
+            <div class="m-statusCon clrfix">
+                <!--订单状态及提示-->
+                <div class="cur-status gray9">
+                    <p><b>当前状态：交易完成</b></p>
+                    <br />
+                    <a href="javascript:;" class="z-no-click">此商品不可晒单</a>
+                </div>
+                <!--收货地址列表(待确认订单)-->
+                <!--物流信息及收货人信息-->
+                <div class="delivery-mes gray6">
+                    <p class="f-logistics">
+                        <span>快递信息：</span>
+                        <a href="http://www.jd-ex.com/" target="_blank" class="orange">京东</a>&nbsp;&nbsp;&nbsp;
+                        <span class="orange"><i>10682573339</i></span><a href="javascript:;" id="a_showdelivery" typeid="201" typeurl="http://www.jd-ex.com/">查看物流</a>
+                    </p>
+                    <p><span>配送信息：</span><i>李杰</i><i>15926603321</i>广东省 深圳市 南山区 大冲都市花园E座29B</p>
+                    <p><span><em>备</em>注：</span></p>
+
+
+                    <!--物流弹窗-->
+                    <div id="div_delivery" class="logistics-info-wrap logistics-info" style="left: 89.2188px;" isshow="1">
+                        <div class="logistics-text jspScrollable" tabindex="0" style="overflow: hidden; padding: 0px; width: 651px;">
+                            <div class="jspContainer" style="width: 651px; height: 420px;">
+                                <div class="jspPane" style="padding: 0px 10px; width: 625px; top: 0px;">
+                                    <ul>
+                                        <li class="z-current"><span class="gray9"><em class="u-personal"></em>2015-10-25 11:16:57</span><cite>感谢您在京东购物，欢迎您再次光临！</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-25 07:54:10</span><cite>配送员【刘善和】已出发，联系电话【15986847309或0755-86574792，感谢您的耐心等待，参加评价还能赢取京豆呦】</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-24 07:10:57</span><cite>您的订单在【深圳科技园站】验货完成，正在分配配送员</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 16:08:01</span><cite>您的订单在【东莞麻涌分拣中心】发货完成，准备送往【深圳科技园站】</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 16:06:48</span><cite>您的订单在【东莞麻涌分拣中心】分拣完成</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 13:59:09</span><cite>您的订单在【广州萝岗分拣中心】发货完成，准备送往【东莞麻涌分拣中心】</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 13:58:39</span><cite>您的订单在【广州萝岗分拣中心】分拣完成</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 13:34:29</span><cite>打包成功</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 13:01:12</span><cite>扫描员已经扫描</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 12:57:42</span><cite>您的订单已经拣货完成</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 12:49:46</span><cite>您的订单已经打印完毕</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 12:05:28</span><cite>您的订单预计10月24日送达您手中</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 12:02:28</span><cite>您的订单已经进入京东广州32号库准备出库</cite></li>
+                                        <li><span class="gray9"><em class="u-personal"></em>2015-10-23 11:43:46</span><cite>您的订单由于送货时间未到不能出库</cite></li>
+                                        <li class="z-lastli"><span class="gray9"><em class="u-personal"></em>2015-10-23 11:43:36</span><cite>您提交了订单，请等待系统确认</cite></li>
+                                    </ul>
+                                </div>
+                                <div class="jspVerticalBar">
+                                    <div class="jspCap jspCapTop"></div>
+                                    <div class="jspTrack" style="height: 420px;">
+                                        <div class="jspDrag" style="height: 405px;">
+                                            <div class="jspDragTop"></div>
+                                            <div class="jspDragBottom"></div>
+                                        </div>
+                                    </div>
+                                    <div class="jspCap jspCapBottom"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <b>
+                            <s></s>
+                        </b>
+                    </div>
+                    <!--物流弹窗-->
+
+
+                <!--订单处理步骤-->
+                <div class="operating-mes">
+                    <ul>
+                        <li><span>2015-10-21 12:02:28</span><span class="ope-text">恭喜您云购成功，请尽快填写收货地址，以便我们为您配送！</span><span class="gray9">云购系统</span></li>
+                        <li><span>2015-10-21 12:04:00</span><span class="ope-text">会员已填写配送地址信息，等待商城发货！</span><span class="gray9">会员本人</span></li>
+                        <li><span>2015-10-23 11:41:31</span><span class="ope-text">您的配送信息已确认。</span><span class="gray9">陈**</span></li>
+                        <li><span>2015-10-23 11:43:36</span><span class="ope-text">您的商品[陶华碧老干妈 风味豆豉油制辣椒 280g/瓶x3瓶]由京东配送，请留意收货[京东订单号：10682573339]。</span><span class="gray9">黄**</span></li>
+                        <li><span>2015-10-27 09:55:36</span><span class="ope-text">已成功提交确认收货！</span><span class="gray9">会员本人</span></li>
+                    </ul>
+                </div>
+                <!--订单备注(待确认收货)-->
+            </div>
+            <div class="m-goods-title clrfix">
+                <cite class="gray3"> 获得的商品</cite>
+                <!--获得的商品信息-->
+                <div class="goods-obtCon clrfix">
+                    <ul class="goods-title">
+                        <li class="f-com-name">商品</li>
+                        <li class="f-value">价值</li>
+                        <li class="f-quantity">数量</li>
+                        <li class="f-number">订单号</li>
+                    </ul>
+                    <ul>
+                        <li class="f-com-name"><span><a target="_blank" href="http://www.1yyg.com/product/1667961.html"><img src="http://goodsimg.1yyg.com/GoodsPic/pic-70-70/20150615112540839.jpg" /></a></span><p class="gray9"><em><a target="_blank" href="http://www.1yyg.com/product/1667961.html" class="gray3">(第5561云)陶华碧老干妈 风味豆豉油制辣椒 280g/瓶x3瓶</a></em>幸运云购码：10000009<br />揭晓时间：2015-10-21 11:59:23.479</p></li>
+                        <li>￥29.00</li>
+                        <li>1</li>
+                        <li class="f-number">1534894</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="g-wx-banner">
+                <img alt="" src="http://skin.1yyg.com/MyCart/images/wx-banner.jpg" />
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

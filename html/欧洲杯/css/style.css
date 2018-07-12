@@ -1,0 +1,210 @@
+@charset "utf-8";
+*{margin:0;padding:0;word-wrap:break-word;word-break:break-all;}
+body{font:14px/20px "Microsoft YaHei", arial, sans-serif,'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB',STHeiti,SimSun,sans-serif;color:#444;}
+html, body, h1, h2, h3, h4,input,div,ul,li,p,form,table,dt,dl,dd,tr{list-style-type:none;}
+h3,h4{ font-size:14px; font-weight:bold;}
+a{color:#444;text-decoration:none;} a:hover{color:#333;} a img{border:none;} 
+em{font-style: normal;font-weight: normal;}
+.clearfix,.clear{clear:both;}
+.clearfix:before,.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.show{ display: block;visibility:visible;}  .hide{ display:none; visibility:hidden;} 
+.fl{float:left;}  .fr{float:right;}
+.main{width:100%; max-width:640px; margin:0 auto;}
+.mt10{margin-top:10px;} .mb10{margin-bottom:10px;} .pt10{padding-top:10px;} .mt20{margin-top:20px;} .mb20{margin-bottom:20px;} .pt20{padding-top:20px;}
+body{max-width:640px; margin:0 auto;  background:#f0f0f0;}
+
+.user_head{height:50px; padding:10px; background:#003e7e;}
+.user_head .user_img{height:50px; display:inline-block; float:left; overflow:hidden;}
+.user_head .user_img img{width:50px; height:50px; display:inline-block; float:left; border-radius:50%; margin:0 10px 0 0;}
+.user_head .user_img span{height:50px; display:inline-block; float:left;}
+.user_head .user_img p{line-height:22px; font-size:14px; color:#f5f5f5;}
+.user_head .user_img p a{color:#0177ff; text-decoration:underline; margin:0 0 0 5px;}
+.user_head .user_img p a.name{line-height:25px; font-size:20px; color:#fff; text-decoration:none; margin:0 0 0 0;}
+.user_head .share{width:30px; height:30px; display:inline-block; float:right; margin:10px 0 0 0; background:url(../images/sharebg.png) center center no-repeat; background-size:22px auto; overflow:hidden;}
+.user_head .kdlhb{height:25px; display:inline-block; float:right; margin:3px 0 0 0; background:url(../images/dlhbbg.png) top center no-repeat; background-size:25px auto; line-height:22px; text-align:center; font-size:12px; color:#fff; overflow:hidden; padding:28px 0 0 0;}
+
+.pkdiv{width:100%; max-width:640px; margin:0px auto; position:relative; overflow: hidden;}
+.pkdiv .arrow-left{width:40px; height:40px; display:block; background:url(../images/arrbg1.png) center center no-repeat; background-size:auto 25px; position:absolute; left:5px; top:70px; z-index:9999; cursor:pointer;}
+.pkdiv .arrow-right{width:40px; height:40px; display:block; background:url(../images/arrbg2.png) center center no-repeat; background-size:auto 25px; position:absolute; right:5px; top:70px; z-index:9999; cursor:pointer;}
+
+.pkdiv .srollgg{width:100%; height:30px; line-height:30px; background:url(../images/hstmbg.png) 0 0 repeat; overflow:hidden; position:absolute; left:0; top:160px; z-index: 999;}
+.pkdiv .srollgg_bg{width:100%; height:30px; line-height:30px; padding:0 10px 0 28px; background:url(../images/inggbg.png) 5px center no-repeat; background-size:auto 15px; overflow:hidden; box-sizing:border-box;}
+.pkdiv .srollgg_bg .hot{height:30px;}
+.pkdiv .srollgg_bg .hot ul{height:30px; overflow:hidden; margin:0;padding:0;}
+.pkdiv .srollgg_bg .hot ul li{height:30px; float:left; margin-right:25px; line-height:30px;}
+.pkdiv .srollgg_bg .hot ul li a{ color:#fff; font-size:14px;}
+
+
+.swiper-container{width:100%; /*height: 100%; */ max-width:640px; z-index:990; background:url(../images/pkbg.png) top center repeat-x; background-size:auto 190px;}
+.pagination {position:absolute;left:0;text-align:center;bottom:5px;width:100%;}
+.swiper-pagination-switch{display:inline-block;width:10px;height:10px;border-radius:10px;background:#999;box-shadow:0px 1px 2px #555 inset;margin:0 3px;cursor:pointer;}
+.swiper-active-switch{background:#fff;}
+.pagination{display:none;}
+.swiper-slide{ overflow: hidden; position: relative; overflow-y: auto;}
+.swiper-slide .sscon{position:relative; overflow: hidden; overflow-y: auto;}
+.sai_shi{clear:both; height:160px; padding:10px 55px; box-sizing:border-box; overflow:hidden; text-align:center; color:#fff; font-size:16px;}
+.sai_shi .tit{height:25px; line-height:25px; font-size:20px; padding:2px 0 5px 0;}
+.sai_shi .teams{height:85px; clear:both; overflow:hidden; background:url(../images/vsbg.png) center center no-repeat; background-size:auto 25px;}
+.sai_shi .teams .team_info{height:77px; overflow:hidden; display:inline-block; line-height:20px; margin:8px 0 0 0;}
+.sai_shi .teams .team_info img{width:50px; height:50px; display:inline-block; border-radius:50%;}
+
+.sai_suc{clear:both; width:100%; max-width:640px; margin:0 auto; padding:40px 0 20px 10px; box-sizing:border-box; overflow:hidden;}
+.sai_suc .suclist{overflow:hidden; text-align:center; font-size:14px;}
+.sai_suc .suclist .infos{width:33.3%; float:left; padding:0 10px 0 0; box-sizing:border-box; overflow:hidden; text-align:center; font-size:14px; color:#014993;}
+.sai_suc .suclist .infos a{height:50px; padding:2px 0; border:1px #014993 solid; line-height:26px; font-size:18px; display:block; border-radius:5px; margin:0 0 6px 0; background:#fff; color:#014993;}
+.sai_suc .suclist .infos a.active{border:1px #d52b1e solid; background:#d52b1e; color:#fff;}
+
+.righta{clear:both; width:100%; max-width:640px; margin:0 auto; height:35px; line-height:35px; font-size:15px; padding:0 10px 0 0; box-sizing:border-box; margin:5px 0;}
+.righta a{height:35px; display:inline-block; float:right; padding:0 14px 0 0; background:url(../images/morearrbg.png) right center no-repeat; background-size:auto 13px; color:#0077ff;}
+
+.qiumi{width:100%; height:45px; line-height:45px; font-size:16px; position:relative; max-width:640px; margin:0 auto; background:#014993;}
+.qiumi a{width:50%; height:45px; padding:0 5px; box-sizing:border-box; overflow:hidden; text-align:center; font-size:16px; display:block; float:left; color:#fff;}
+.qiumi .line{width:1px; height:21px; position:absolute; top:12px; left:50%; background:#002041; display:block;}
+
+.suctips{padding:10px 10px 5px 10px; text-align:center; font-size:14px; color:#ccc;}
+.yujihuibao{clear:both; text-align:center; font-size:16px; line-height:25px; color:#666; padding:15px 5px; background:#fafafa; border:#e0e0e0 solid 1px; border-width:1px 0 1px 0; margin:0 0 10px 0;}
+.yujihuibao span{height:25px; display:inline-block; padding:0 0 0 25px; background:url(../images/whybg.png) left center no-repeat; background-size:18px auto;}
+
+.jisuandiv{clear:both; width:100%; margin:0 auto; padding:0 0 10px 0; box-sizing:border-box; background:#fff; position:fixed; left:0; bottom:0; z-index: 998;}
+.jisuandiv .touzhu{display:inline-block; height:32px; float:left; overflow:hidden; margin: 0 0 0 10px;}
+.jisuandiv .touzhu .jianshu{width:30px; height:30px; display:inline-block; float:left; overflow:hidden; border:1px #999 solid; border-radius:5px 0 0 5px; background:#fafafa url(../images/addbg1.png) center center no-repeat; background-size:15px auto;}
+.jisuandiv .touzhu .shuzhi{width:50px; height:30px; line-height:30px; display:inline-block; border:1px #999 solid; border-width:1px 0 1px 0; padding:0; margin:0; background:#fafafa; text-align:center; font-size:16px; color:#333; float:left; overflow:hidden;}
+.jisuandiv .touzhu .jiashu{width:30px; height:30px; display:inline-block; float:left; overflow:hidden; border:1px #999 solid; border-radius:0 5px 5px 0; background:#fafafa url(../images/addbg2.png) center center no-repeat; background-size:15px auto;}
+.jisuandiv .touzhu span{float:left; height:30px; display:inline-block; line-height:32px; padding:0 0 0 5px; font-size:16px;}
+.jisuandiv .jingcaian{height:32px; padding:0 12px; display:inline-block; background:#ef2828; color:#fff; line-height:32px; font-size:16px; border-radius:5px; float:right; margin: 0 10px 0 0;}
+.jisuandiv .jingcaian2{height:32px; display:block; background:#ef2828; color:#fff; line-height:32px; font-size:16px; border-radius:5px; text-align:center; margin: 0 10px;}
+.bottomzw{height:120px; clear:both;}
+
+.nocailist{clear:both; padding:100px 10px 0 10px; text-align:center; font-size:16px; line-height:30px; color:#999;}
+.nocailist .caitips{padding:90px 0 40px 0; background:url(../images/nocaibg.png) top center no-repeat; background-size:auto 80px;}
+.nocailist .wyjc{display:inline-block; padding:5px 20px; border:#ef2828 1px solid; border-radius:5px; font-size:18px; color:#ef2828; line-height:30px;}
+
+.eurobg{width: 100%; margin:0 auto; background:url(../images/ldybg.jpg) top center no-repeat fixed; background-size:100% 100%;}
+.eurobg .ldytop{text-align:center;}
+.eurobg .ldytop img{height: 150px;}
+.eurobg .ldytit img{height: 65px; margin: -10px 0 0 0;}
+.gzcon{padding:0 18px; clear: both; font-size: 16px; color: #fff; line-height: 28px;}
+.gzcon .con1{padding:0 0 0 25px; background:url(../images/tit1.png) 0 5px no-repeat; background-size:20px auto; margin: 0 0 10px 0;}
+.gzcon .con2{padding:0 0 0 25px; background:url(../images/tit2.png) 0 5px no-repeat; background-size:20px auto; margin: 0 0 10px 0;}
+.gzcon .con3{padding:0 0 0 25px; background:url(../images/tit3.png) 0 5px no-repeat; background-size:20px auto; margin: 0 0 10px 0;}
+
+.downan{padding: 30px 0 60px 0; clear: both; text-align: center;}
+.downan img{height: 50px;}
+
+
+/*jeki css 开始*/
+/*弹窗css*/
+.shade_box{ width: 100%;height: 100%;position: fixed;top:0px;left:0;background: rgba(0,0,0,0.5);z-index: 99999;display:none;}
+.shade_boxText{ width: 100%;height: 100%;position: fixed;top:0px;left:0;background: rgba(0,0,0,0.5);display: none;z-index: 99999;}
+.centershade{width: 68%;position:absolute;top:50%;left:50%;margin-left: -34%;margin-top: -75px;text-align: center}
+.centershadeText{width: 85%;height:266px;position:absolute;top:50%;left:50%;margin-left: -42.5%;margin-top: -133px;text-align: center}
+.popup_box{ width: 100%;background: #fff;padding:25px 15px;box-sizing:border-box;border-radius: 5px;overflow: hidden;}
+.popupText{width: 100%;background: #fff;padding:10px 10px 0px 10px;box-sizing:border-box;border-radius: 2px;overflow: hidden;}
+.text_left{text-align: left}
+.popupText p{line-height: 25px;}
+.popup_box p{ line-height: 25px;}
+.popup_boxBut{width: 100%; height:45px;box-sizing:border-box;border-radius: 5px;text-align: center;margin-top: 10px;line-height: 45px;font-size: 15px;}
+.popup_boxBut a{border-radius: 5px;}
+.hidePopup{background: #ef2828;margin-right: 5%}
+.hidePopupText{ width:100%; height: 45px;border-top:1px solid #eee;display: block;line-height: 45px;margin-top: 15px;}
+.popup_boxBut a{color:#fff; display: block;width: 100%}
+/*弹窗css*/
+
+/*我的竞猜*/
+.guessingBox{ width: 100%;background: #fff}
+.guessingBox ul li{ width: 90%;margin:0 auto;border-bottom: 1px solid #c7c7c7;padding: 5px 0px;position: relative}
+.guessingBox ul li i{ background: url('../images/right_v.png')no-repeat center center;width: 20px;float:right;height:20px;display: block;position: absolute;right:-3px;top:26px;background-size: 100%;}
+.guessingBox ul li a p{ width: 100%;height: 30px; line-height: 30px;}
+.guessingBox ul li .text666{ color: #666;}
+.guessingBox ul li .textRight{text-align: right;float: right;padding-right: 25px;}
+.footerBut{width: 100%;position:fixed;padding:10px 5px 10px 5px;;box-sizing:border-box;bottom: 0px;left:0;background: #fff;border-top:1px solid #e0e0e0;}
+.footerBut a{width:100%;height: 45px;background: #ef2828;text-align: center;line-height: 45px;color: #fff;display: block;margin: 0 auto;border-radius: 5px;}
+/*我的竞猜结束*/
+
+
+/*竞猜详情*/
+.guessingBox ul li.gueList_v{ height: 50px;}
+.marginBox{margin-bottom: 120px;}
+.guessingBox ul li.gueList_v p{line-height: 50px}
+.gueListTop{ background: url('../images/pkbg.png')no-repeat center center;background-size:100%;
+    height: 130px;
+    padding-top: 15px;
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+}
+.gueListTop .gueLeft,.gueCenter,.gueRight{/*height:80px;*/text-align: center}
+.gueLeft>img,.gueRight>img{
+    width: 60px;
+}
+.gueListTop .gueLeft,.gueCenter,.gueRight p{ width: 100%;color: #fff;text-align: center;}
+.gueListTop .gueLeft{
+    width: 45%;/*background: url('../images/teamimg1.png')no-repeat center center;background-size: 50px;*/
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -42px;
+}
+.gueListTop .gueCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    width: 40px;
+    margin-left: -20px;
+    margin-top: -10px;
+}
+.gueListTop .gueCenter h4{ font-size: 20px;}
+.gueListTop .gueRight{
+    float:left;
+    width: 45%;/*background: url('../images/teamimg2.png')no-repeat center center;background-size: 50px;*/
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -42px;
+}
+.divisionBox{ width:100%;height: 10px;background:#f0f0f0;}
+.popup_boxBut a.fxBut{ width: 47%;float: left;display: inline-block;}
+.popup_boxBut a.fxBut:nth-child(1){background: #ef2828;margin-right: 5%}
+.popup_boxBut a.fxBut:nth-child(2){background: #014993}
+
+/*竞猜详情结束*/
+
+/*jeki css 结束*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

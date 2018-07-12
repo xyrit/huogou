@@ -1,0 +1,44 @@
+.userMain{ width: 100%;height: auto;position: relative}
+.userConter{ width: 100%;height:220px;text-align: center;background: url(../images/userback.jpg) top center repeat; background-size:320px auto;padding: 20px 0px;color: #fff; font-size: 16px;}
+.userImg{ width:85px;height: 85px;border-radius:50%; margin: 0px auto 15px;overflow: hidden;}
+.userImg img{ width: 100%;border-radius:50%;}
+.medalBox{ position: absolute;bottom: 0;width: 100%;padding:13px 0px;background: rgba(0,0,0,0.4);color: #fff;font-size: 15px; }
+.medalBox ul li{ width: 25%;float: left;text-align: center;box-sizing: border-box}
+.medalBox ul li:nth-child(4){ border-left: 1px solid #fff}
+.medalBox ul li:nth-child(4) span{ padding-left: 0}
+.medalBox ul li span{ width: 100%;display: inline-block;padding: 4%}
+.medalBox ul li p img{ width: 14px; margin-bottom: -2px; margin-right: 5px}
+.userList{ width: 92%;margin: 0 auto;}
+.userList ul li{ width: 100%;height: 50px;border-bottom: 1px solid #0978b8;line-height: 50px;}
+.userList ul li a{color: #0978b8;display: block }
+.userList ul li a img{ float: right;margin-top: 18px; width: 9px;}
+
+/*兑换弹窗*/
+.shade{ width: 100%;height: 100%;position: fixed;left: 0;top:0;background: rgba(0,0,0,0.4);display: none}
+.huodeMain img{width: 15px; margin: 0px 8px -3px;}
+#convertBox{ width: 90%;height: 450px;background: #fff;border-radius: 5px;position: absolute;left: 0;top:0;right: 0; bottom: 0; margin: auto}
+.removeBox{ position: absolute;right: 15px;top:10px;}
+.removeBox img{ width: 15px;}
+
+.huodeMain{padding: 8px 20px;overflow: hidden }
+.huodeMain:nth-child(2){padding: 30px 20px 10px;overflow: hidden }
+.titlefon{ float: left;width: 21%;display: inline-block;font-size: 13px;}
+.paddLeft{padding-left: 28%;}
+
+.huodeMain span{ width: 26%;display: inline-block;float: left;text-align: center}
+.cart{ width: 46%;height: 35px;background: #fff;border-radius: 5px;border:1px solid #c6c6c6;float: left;position: relative;}
+.cart .add{ width: 25%; height: 100%;background: #f4f4f4;text-align: center;line-height: 35px;display: block;font-size:18px;float:right;border-radius: 0px 5px 5px 0px;border-left:1px solid #c6c6c6;box-sizing: border-box}
+.cart .reduce{ width:25%; height: 100%;background: #f4f4f4;text-align: center;line-height: 35px;display: block;font-size:18px;float: left; border-radius: 5px 0px 0px 5px;border-right:1px solid #c6c6c6;box-sizing: border-box}
+.cartInput{ width:50%;border: none;height: 35px;outline: none;float: left;text-align: center}
+.paddLeft span{width: 26%; margin-right: 8px;}
+
+.paddLeft .cart{ width: 60%;height: 35px;background: #fff;border-radius: 5px;border:1px solid #c6c6c6;float: left;position: relative;}
+.paddLeft .cart .add{ width: 25%; height: 100%;background: #f4f4f4;text-align: center;line-height: 35px;display: block;font-size:18px;float:right;border-radius: 0px 5px 5px 0px;border-left:1px solid #c6c6c6;box-sizing: border-box}
+.paddLeft .cart .reduce{ width:25%; height: 100%;background: #f4f4f4;text-align: center;line-height: 35px;display: block;font-size:18px;float: left; border-radius: 5px 0px 0px 5px;border-right:1px solid #c6c6c6;box-sizing: border-box}
+.paddLeft .cartInput{ width:50%;border: none;height: 35px;outline: none;float: left;text-align: center}
+
+.gain{ width: 90%;height: 40px; margin:0 auto;line-height:35px;border-bottom: 1px solid #ccc;font-size: 14px;text-align: center;}
+.ruleText{ width: 90%;margin: 0 auto;font-size: 12px;}
+.ruleText p{ line-height: 25px;}
+.convertBut{ width: 90%;height: 35px;background: #2e99d7;text-align: center;line-height: 35px;border-radius: 5px;color: #fff;display: block;margin: 3% auto 0px;}
+/*兑换结束*/
